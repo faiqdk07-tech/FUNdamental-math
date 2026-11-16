@@ -140,6 +140,7 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
   - B. Desa pixel: Beranda dan Mini Games jadi peta desa, tiap game sebuah bangunan; layar game tetap sederhana. (Saran Claude.)
   - C. Pixel penuh: semua tombol, panel, dan benda di papan bergaya pixel dan kayu.
 - **Pratinjau sudah ada** di `pratinjau-tema.html` (tombol A/B/C di atas). Pixel art digambar lewat kode di file itu (`SPR` untuk ikon, `mapURL` untuk peta desa). Huruf pixel: Pixelify Sans (lisensi OFL), disisipkan di file, hanya untuk judul dan label.
+- Gambar referensi Faiq diterima 16 Nov; pratinjau disesuaikan: rumput kotak-kotak cerah, pohon bulat besar, sungai berbuih dengan dermaga, pagar, tunggul, batu, bunga, koin berkilau di semua tema, dan bingkai kayu (panel, tombol, papan nama) lewat `border-image`.
 - Temuan saat membuat pratinjau: angka huruf pixel mudah salah baca (5 mirip S, 2 mirip 8, 7 mirip 1). Jadi **angka dan cerita soal selalu memakai huruf biasa**, di tema mana pun.
 - Setelah Faiq memilih: terapkan ke `index.html` sebagai satu set warna dan huruf; `pratinjau-tema.html` boleh dihapus sesudahnya.
 - Batasan: pixel art digambar sendiri, tidak menyalin gambar referensi (sebagian dari game dan paket aset orang lain). Aturan "tampilan minimalis, elemen kecil" tetap berlaku; angka dan teks soal harus tetap mudah dibaca di HP.

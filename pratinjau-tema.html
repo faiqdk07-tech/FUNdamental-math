@@ -60,11 +60,11 @@ body { background: #E9E1CE; color: #2B1D1A; font-family: Inter, system-ui, -appl
 .chip { font-size: 12px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--card); }
 .ibtn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--mut); font-weight: 700; flex: none; }
 .dot { display: block; width: 18px; height: 6px; border-radius: 3px; background: var(--line); }
-.lv { display: inline-block; font-size: 11px; padding: 0 5px; border: 1px solid var(--line); border-radius: 3px; color: var(--mut); background: var(--card); }
+.lv { display: inline-block; white-space: nowrap; font-size: 11px; padding: 0 5px; border: 1px solid var(--line); border-radius: 3px; color: var(--mut); background: var(--card); }
 .nav { position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; border-top: 1px solid var(--line); background: var(--card); }
 .nav div { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 11px; color: var(--mut); }
 .nav div.on { color: var(--priDark); font-weight: 700; }
-.coin { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #F7D774; border: 1.5px solid #B9852A; color: #5E3B20; font-size: 12px; font-weight: 700; flex: none; }
+.coin { width: 33px; height: 33px; display: flex; align-items: center; justify-content: center; background: var(--coin) center / 33px 33px no-repeat; color: #4A2C12; font-size: 14px; font-weight: 700; flex: none; }
 .coins9 { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 3px; justify-items: center; }
 .tray { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; min-height: 34px; }
 .small { padding: 6px 14px; font-size: 13px; }
@@ -73,9 +73,9 @@ body { background: #E9E1CE; color: #2B1D1A; font-family: Inter, system-ui, -appl
 .tA, .tB { --card: #FFFBF0; --line: #D9CBA8; --line2: #EBE1C8; --mut: #6B5B45; --pri: #3A7A36; --priDark: #2E662B; --priText: #FFFFFF; background: #F5EEDC; }
 
 /* B: peta desa */
-.map { position: relative; width: 358px; height: 280px; border: 2px solid #2B1D1A; border-radius: 6px; overflow: hidden; flex: none; }
-.map img { display: block; width: 358px; height: 280px; image-rendering: pixelated; }
-.sign { position: absolute; transform: translateX(-50%); background: #FFF6DC; border: 2px solid #2B1D1A; padding: 1px 6px 2px; font-size: 12px; line-height: 1.25; white-space: nowrap; text-align: center; box-shadow: 0 2px 0 rgba(43, 29, 26, .35); }
+.map { position: relative; width: 358px; height: 300px; border: 2px solid #2B1D1A; border-radius: 6px; overflow: hidden; flex: none; }
+.map img { display: block; width: 358px; height: 300px; image-rendering: pixelated; }
+.sign { position: absolute; transform: translateX(-50%); border: 6px solid transparent; border-image: var(--fPanel) 30 fill / 6px; padding: 0 2px; font-size: 12px; line-height: 1.2; white-space: nowrap; text-align: center; }
 .sign small { font-family: Inter, system-ui, sans-serif; font-size: 11px; color: #6B5B45; margin-left: 4px; }
 .scene { width: 362px; height: 60px; border: 2px solid #2B1D1A; border-radius: 6px; overflow: hidden; flex: none; }
 .scene img { display: block; width: 358px; height: 56px; image-rendering: pixelated; }
@@ -84,10 +84,10 @@ body { background: #E9E1CE; color: #2B1D1A; font-family: Inter, system-ui, -appl
 .tC { --card: #FFF6DC; --line: #2B1D1A; --line2: #E0CC9C; --mut: #5E4A36; --pri: #F2C035; --priDark: #FFE680; --priText: #2B1D1A; background: #DCC594; font-family: "Pixelify Sans", ui-monospace, monospace; font-size: 15px; }
 .tC .scr { gap: 15px; }
 .tC .scr.game { gap: 13px; }
-.tC .card, .tC .chip, .tC .ibtn, .tC .lv, .tC .btn { border: 0; border-radius: 0; box-shadow: 0 -2px 0 #2B1D1A, 0 2px 0 #2B1D1A, -2px 0 0 #2B1D1A, 2px 0 0 #2B1D1A, inset 0 -3px 0 var(--bev, #E6D3A3), inset 0 2px 0 var(--hi, #FFFDF2); }
-.tC .chip, .tC .ibtn { --bev: #8A5A32; --hi: #E0B37A; background: #C7935A; color: #2B1D1A; }
-.tC .lv { --bev: #E6D3A3; margin-left: 4px; padding: 0 6px 1px; }
-.tC .btn.pri { --bev: #C98A1B; --hi: #FFE680; padding: 8px 8px 10px; font-weight: 700; }
+.tC .card { border: 6px solid transparent; border-radius: 0; background: none; border-image: var(--fPanel) 30 fill / 6px; }
+.tC .chip, .tC .ibtn { border: 6px solid transparent; border-radius: 0; background: none; border-image: var(--fWood) 30 fill / 6px; color: #2B1D1A; padding: 0 3px; }
+.tC .lv { border: 0; border-radius: 0; margin-left: 4px; padding: 0 6px 1px; box-shadow: 0 -2px 0 #2B1D1A, 0 2px 0 #2B1D1A, -2px 0 0 #2B1D1A, 2px 0 0 #2B1D1A, inset 0 -2px 0 #E6D3A3; }
+.tC .btn.pri { border: 6px solid transparent; border-radius: 0; background: none; border-image: var(--fGold) 30 fill / 6px; padding: 4px 10px 5px; font-weight: 700; }
 .tC .hd { background: #8A5A32; color: #FFF6DC; margin: -16px -16px 0; padding: 12px 16px; border-bottom: 2px solid #2B1D1A; box-shadow: inset 0 -4px 0 #5E3B20, inset 0 2px 0 #B9814A; }
 .tC .scr.game .hd { margin: -12px -14px 0; padding: 10px 14px 12px; }
 .tC .hd .sub { color: #F0D9A8; }
@@ -96,7 +96,6 @@ body { background: #E9E1CE; color: #2B1D1A; font-family: Inter, system-ui, -appl
 .tC .nav { background: #8A5A32; border-top: 2px solid #2B1D1A; box-shadow: inset 0 3px 0 #B9814A; }
 .tC .nav div { color: #F0D9A8; font-size: 12px; }
 .tC .nav div.on { color: #2B1D1A; background: #E0B37A; box-shadow: inset 2px 0 0 #2B1D1A, inset -2px 0 0 #2B1D1A, inset 0 4px 0 #F2D29E; }
-.tC .coin { width: 33px; height: 33px; border: 0; border-radius: 0; background: var(--coin) center / 33px 33px no-repeat; image-rendering: pixelated; font-size: 14px; }
 .tC .tray { background: #8A5A32; padding: 8px; min-height: 53px; box-shadow: 0 -2px 0 #2B1D1A, 0 2px 0 #2B1D1A, -2px 0 0 #2B1D1A, 2px 0 0 #2B1D1A, inset 0 4px 0 #5E3B20, inset 0 -2px 0 #B9814A; margin: 2px; }
 </style>
 </head>
@@ -124,11 +123,11 @@ body { background: #E9E1CE; color: #2B1D1A; font-family: Inter, system-ui, -appl
 /* ---------- warna pixel ---------- */
 var P = { k: '#2B1D1A', w: '#FFF8E6', y: '#F2C035', Y: '#FFE680', o: '#C98A1B', r: '#D9523C', R: '#A63A2A',
   g: '#6FB04A', G: '#3F7A32', l: '#93CC5E', b: '#8A5A32', B: '#5E3B20', t: '#C99A5B', T: '#E8C58C',
-  u: '#4FA6D8', U: '#2F78B0', s: '#A5DBF2', e: '#9A9488', E: '#CFC8B8' };
+  c: '#93D65F', a: '#57A843', A: '#2F7A36', u: '#4FA6D8', U: '#2F78B0', s: '#A5DBF2', e: '#9A9488', E: '#CFC8B8' };
 
 /* ---------- gambar pixel (digambar sendiri, satu huruf = satu kotak) ---------- */
 var SPR = {
-coin: ['...kkkkk...', '.kkYYYYYkk.', '.kYyyyyyok.', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', '.kyyyyyyok.', '.kkoooookk.', '...kkkkk...'],
+coin: ['...kkkkk...', '.kkYYYYYkk.', '.kYwYyyyok.', 'kYwyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', '.kyyyyyyok.', '.kkoooookk.', '...kkkkk...'],
 rumah: ['.....kk.....', '....krrk....', '...krrrrk...', '..krrrrrrk..', '.krrrrrrrrk.', 'kkkkkkkkkkkk', '.kwwwwwwwwk.', '.kwwkkwwssk.', '.kwkbbkwssk.', '.kwkbbkwwwk.', '.kkkkkkkkkk.'],
 dadu: ['.kkkkkkkkkk.', 'kwwwwwwwwwwk', 'kwkkwwwwkkwk', 'kwkkwwwwkkwk', 'kwwwwwwwwwwk', 'kwwwwkkwwwwk', 'kwwwwkkwwwwk', 'kwwwwwwwwwwk', 'kwkkwwwwkkwk', 'kwkkwwwwkkwk', 'kEEEEEEEEEEk', '.kkkkkkkkkk.'],
 grafik: ['............', '........kkkk', '........kggk', '....kkkkkggk', '....kyykkggk', 'kkkkkyykkggk', 'kuukkyykkggk', 'kuukkyykkggk', 'kuukkyykkggk', 'kuukkyykkggk', 'kkkkkkkkkkkk'],
@@ -139,6 +138,13 @@ palu: ['............', '..kkkkkkkk..', '.keeeeeeeEk.', '.keeeeeeeEk.', '..kkkbbk
 kaca: ['...kkkk.....', '..ksssskk...', '.ksswssssk..', '.kswsssssk..', '.ksssssssk..', '.ksssssssk..', '..kksssskk..', '....kkkkbk..', '........kbk.', '.........kbk', '..........kk'],
 peti: ['.kkkkkkkkkk.', 'kbbbbyybbbbk', 'kbbbbyybbbbk', 'kkkkkyykkkkk', 'kBBBkyykBBBk', 'kbbbbkkbbbbk', 'kbbbbbbbbbbk', 'kbbbbbbbbbbk', 'kkkkkkkkkkkk'],
 roti: ['...kkkkkk...', '.kkTTTTTTkk.', 'kTTtTttTtttk', 'kTttttttttbk', 'kttkttkttkbk', 'ktttttttttbk', '.ktttttttbk.', '..kkkkkkkk..'],
+coin2: ['...kkkkk...', '.kkYYYYYkk.', '.kYwYyyyok.', 'kYwyooooyok', 'kYyoyyyyYok', 'kYyoyyyyYok', 'kYyoyyyyYok', 'kyyyYYYYyok', '.kyyyyyyok.', '.kkoooookk.', '...kkkkk...'],
+pohonB: ['.....kkkkkk.....', '...kkcccccckk...', '..kccccccaaaak..', '.kcccccaaaaaaak.', '.kccccaaaaaaaak.', 'kccccaaaaaaaaaAk', 'kccaaaaaaaaaaAAk', 'kcaaaaaaaaaaaAAk', 'kaaaaaaaaaaAAAAk', 'kaaaaaaaaaAAAAAk', '.kaaaaaAAAAAAAk.', '.kkAAAAAAAAAAkk.', '...kkkAAAAkkk...', '.....kbbBk......', '.....kbbBk......', '....kkbbBkk.....', '...kbbkbBkBk....', '....kk.kk.kk....'],
+tunggul: ['.kkkkkk.', 'kTTTTTTk', 'kTttttTk', 'kbTTTTbk', 'kbbbbbbk', 'kBbbbbBk', '.kk..kk.'],
+batu: ['..kkk..', '.kEEEk.', 'kEEeeek', 'keeeeek', '.kkkkk.'],
+fPanel: ['.kkkkk.', 'kTTTTtk', 'kTBBBtk', 'kTBwBtk', 'kTBBBtk', 'kttttbk', '.kkkkk.'],
+fWood: ['.kkkkk.', 'kTTTTTk', 'kTttttk', 'kttttbk', 'kttttbk', 'kbbbbbk', '.kkkkk.'],
+fGold: ['.kkkkk.', 'kYYYYYk', 'kYyyyyk', 'kyyyyok', 'kyyyyok', 'koooook', '.kkkkk.'],
 gir: ['....kkkk....', '.kk.keek.kk.', 'kekkkeekkkek', 'keeeeeeeeeek', '.keekkkkeek.', 'kkeek..keekk', 'kkeek..keekk', '.keekkkkeek.', 'keeeeeeeeeek', 'kekkkeekkkek', '.kk.keek.kk.', '....kkkk....']
 };
 function dims(rows) { var w = 0; rows.forEach(function (r) { w = Math.max(w, r.length); }); return [w, rows.length]; }
@@ -147,7 +153,7 @@ function uri(name) {
   if (uriCache[name]) return uriCache[name];
   var rows = SPR[name], d = dims(rows), s = '';
   rows.forEach(function (r, y) { for (var x = 0; x < r.length; x++) { var c = P[r[x]]; if (c) s += '<rect x="' + x + '" y="' + y + '" width="1" height="1" fill="' + c + '"/>'; } });
-  return uriCache[name] = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + d[0] + ' ' + d[1] + '" shape-rendering="crispEdges">' + s + '</svg>');
+  return uriCache[name] = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + d[0] * 10 + '" height="' + d[1] * 10 + '" viewBox="0 0 ' + d[0] + ' ' + d[1] + '" shape-rendering="crispEdges">' + s + '</svg>');
 }
 function ic(name, scale) { var d = dims(SPR[name]); scale = scale || 2; return '<img class="spr" alt="" src="' + uri(name) + '" width="' + d[0] * scale + '" height="' + d[1] * scale + '">'; }
 function stamp(x, name, a, b) { SPR[name].forEach(function (r, j) { for (var i = 0; i < r.length; i++) { var c = P[r[i]]; if (c) { x.fillStyle = c; x.fillRect(a + i, b + j, 1, 1); } } }); }
@@ -155,49 +161,65 @@ function stamp(x, name, a, b) { SPR[name].forEach(function (r, j) { for (var i =
 /* ---------- peta desa (tema B), digambar kotak demi kotak ---------- */
 function mkCanvas(W, H) { var c = document.createElement('canvas'); c.width = W; c.height = H; return c; }
 function mapURL() {
-  var W = 179, H = 140, c = mkCanvas(W, H), x = c.getContext('2d'), seed = 11, i;
+  var W = 179, H = 150, c = mkCanvas(W, H), x = c.getContext('2d'), seed = 11, i, j;
   function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
   function R(col, a, b, w, h) { x.fillStyle = col; x.fillRect(a, b, w, h); }
-  R(P.g, 0, 0, W, H);
-  for (i = 0; i < 420; i++) R(rnd() < .5 ? P.l : '#5C9C40', rnd() * W | 0, 12 + rnd() * (H - 12) | 0, rnd() < .35 ? 2 : 1, 1);
-  /* sungai di tepi atas */
-  R(P.u, 0, 0, W, 9); R(P.U, 0, 9, W, 1); R(P.G, 0, 10, W, 1);
-  for (i = 0; i < 26; i++) R(P.s, rnd() * W | 0, 1 + (rnd() * 7 | 0), 3 + (rnd() * 4 | 0), 1);
-  for (i = 0; i < W; i += 7) R(P.U, i + (rnd() * 3 | 0), 8, 3, 1);
+  /* rumput kotak-kotak cerah */
+  for (j = 0; j < H; j += 10) for (i = 0; i < W; i += 10) R(((i + j) / 10) % 2 ? '#78C24E' : '#6FB948', i, j, 10, 10);
+  for (i = 0; i < 46; i++) { var tx = rnd() * W | 0, ty = 18 + rnd() * (H - 22) | 0; R('#4E9E3E', tx, ty, 1, 2); R('#4E9E3E', tx + 2, ty + 1, 1, 1); R('#A5E070', tx + 1, ty - 1, 1, 1); }
+  /* sungai: air, buih, tebing tanah */
+  R('#3F93DD', 0, 0, W, 10);
+  for (i = 0; i < 22; i++) R('#7CC0F2', rnd() * W | 0, 1 + (rnd() * 8 | 0), 3 + (rnd() * 5 | 0), 1);
+  R(P.w, 0, 10, W, 1); for (i = 0; i < 14; i++) R('#3F93DD', rnd() * W | 0, 10, 2 + (rnd() * 3 | 0), 1);
+  for (i = 0; i < 12; i++) R(P.w, rnd() * W | 0, 9, 2, 1);
+  R('#C08A52', 0, 11, W, 2); R(P.b, 0, 13, W, 1); R('#3F7A32', 0, 14, W, 1);
+  for (i = 3; i < W; i += 9) R(P.b, i, 12, 2, 1);
+  /* dermaga kayu */
+  R(P.k, 108, 2, 16, 13); R(P.T, 109, 3, 14, 11); for (j = 5; j < 14; j += 3) R(P.t, 109, j, 14, 1);
+  [107, 122].forEach(function (a) { R(P.k, a, 1, 3, 5); R(P.b, a + 1, 2, 1, 3); R(P.k, a, 10, 3, 5); R(P.b, a + 1, 11, 1, 3); });
   /* jalan tanah: tepi dulu, lalu isi, supaya persimpangan menyatu */
-  var roads = [[0, 66, W, 11], [27, 52, 8, 16], [85, 52, 8, 16], [143, 52, 8, 16], [27, 76, 8, 12], [85, 76, 8, 16], [143, 76, 8, 14]];
+  var roads = [[0, 73, W, 11], [27, 58, 8, 16], [85, 58, 8, 16], [143, 58, 8, 16], [27, 83, 8, 12], [85, 83, 8, 18], [143, 83, 8, 16]];
+  roads.forEach(function (r) { R('#4E9E3E', r[0] - 2, r[1] - 2, r[2] + 4, r[3] + 4); });
   roads.forEach(function (r) { R('#A8773F', r[0] - 1, r[1] - 1, r[2] + 2, r[3] + 2); });
   roads.forEach(function (r) { R('#DDB57C', r[0], r[1], r[2], r[3]); });
-  for (i = 0; i < 70; i++) R(rnd() < .5 ? '#C99A5B' : '#EBCB98', rnd() * W | 0, 67 + (rnd() * 9 | 0), 2, 1);
-  function house(a, b, w, rc, rd, wc) {
-    var j, ins;
-    R('rgba(43,29,26,.22)', a - 1, b + 33, w + 4, 2);
+  for (i = 0; i < 46; i++) { var px = rnd() * W | 0, py = 74 + (rnd() * 8 | 0); R(rnd() < .5 ? '#C99A5B' : '#EBCB98', px, py, 2, 1); }
+  function house(a, b, w, rc, rd, rl, wc, plank) {
+    var ins;
+    R('rgba(43,29,26,.25)', a - 1, b + 33, w + 4, 2);
+    R(P.k, a + w - 11, b - 4, 7, 8); R('#B8AFA0', a + w - 10, b - 3, 5, 6); R(P.E, a + w - 10, b - 3, 5, 1);
     for (j = 0; j < 14; j++) { ins = Math.max(0, 5 - j); R(P.k, a - 2 + ins, b + j, w + 4 - 2 * ins, 1); }
-    for (j = 1; j < 13; j++) { ins = Math.max(0, 5 - j); R(j % 4 === 0 ? rd : rc, a - 1 + ins, b + j, w + 2 - 2 * ins, 1); }
-    R(P.k, a, b + 14, w, 20); R(wc, a + 1, b + 14, w - 2, 19); R('rgba(43,29,26,.18)', a + 1, b + 14, w - 2, 2);
-    var dx = a + (w >> 1) - 4; R(P.k, dx, b + 21, 8, 13); R(P.b, dx + 1, b + 22, 6, 11); R(P.B, dx + 1, b + 22, 1, 11); R(P.y, dx + 5, b + 28, 1, 1);
-    [a + 4, a + w - 12].forEach(function (wx) { R(P.k, wx, b + 19, 8, 8); R(P.s, wx + 1, b + 20, 6, 6); R(P.k, wx + 4, b + 20, 1, 6); R(P.w, wx + 1, b + 20, 2, 1); });
+    for (j = 1; j < 13; j++) { ins = Math.max(0, 5 - j); R(j === 1 ? rl : (j % 4 === 0 ? rd : rc), a - 1 + ins, b + j, w + 2 - 2 * ins, 1); }
+    for (j = 2; j < 12; j += 4) for (i = (j % 8 ? 3 : 7); i < w - 2; i += 8) R(rd, a + i, b + j + 1, 1, 2);
+    R(P.k, a, b + 14, w, 20); R(wc, a + 1, b + 14, w - 2, 19); R('rgba(43,29,26,.2)', a + 1, b + 14, w - 2, 2);
+    if (plank) for (j = 19; j < 33; j += 4) R(plank, a + 1, b + j, w - 2, 1);
+    var dx = a + (w >> 1) - 4; R(P.k, dx, b + 21, 8, 13); R(P.b, dx + 1, b + 22, 6, 11); R(P.B, dx + 1, b + 22, 1, 11); R(P.t, dx + 2, b + 23, 4, 1); R(P.y, dx + 5, b + 28, 1, 1);
+    [a + 4, a + w - 12].forEach(function (wx) { R(P.k, wx, b + 19, 8, 8); R('#8FD0F2', wx + 1, b + 20, 6, 6); R(P.k, wx + 4, b + 20, 1, 6); R(P.w, wx + 1, b + 20, 2, 2); R(P.b, wx - 1, b + 27, 10, 1); });
   }
-  house(12, 18, 38, P.r, P.R, P.w);              /* Bilangan: warung beratap merah */
-  for (i = 0; i < 38; i += 6) { R(P.r, 12 + i, 32, 3, 3); R(P.w, 15 + i, 32, 3, 3); } R(P.k, 12, 35, 38, 1);
-  house(70, 18, 38, P.u, P.U, '#F4E3BD');        /* Aljabar: atap biru */
-  house(128, 18, 38, '#E0913A', '#B56A22', P.T); /* Geometri: atap jingga */
-  house(12, 88, 38, P.y, P.o, P.w);              /* Data: atap kuning */
+  house(12, 24, 38, P.r, P.R, '#F0826C', P.w, '#E9DFC6');              /* Bilangan: warung beratap merah */
+  for (i = 0; i < 38; i += 6) { R(P.r, 12 + i, 38, 3, 3); R(P.w, 15 + i, 38, 3, 3); } R(P.k, 12, 41, 38, 1);
+  house(70, 24, 38, '#4C8FDD', '#2F64B0', '#8CC0F5', '#E8C58C', '#C99A5B'); /* Aljabar: atap biru, dinding kayu */
+  house(128, 24, 38, '#E8923A', '#B56A22', '#F7B76B', '#F4E3BD', '#DFC892'); /* Geometri: atap jingga */
+  house(12, 94, 38, '#57B8A0', '#2F8672', '#93DCC8', P.w, '#E9DFC6');   /* Data: atap hijau toska */
   /* papan pengumuman (Tantangan) */
-  R('rgba(43,29,26,.22)', 76, 121, 28, 2);
-  R(P.k, 78, 100, 3, 22); R(P.b, 79, 100, 1, 21); R(P.k, 98, 100, 3, 22); R(P.b, 99, 100, 1, 21);
-  R(P.k, 74, 94, 31, 19); R(P.b, 75, 95, 29, 17); R(P.t, 76, 96, 27, 15);
-  R(P.w, 78, 98, 9, 11); R(P.k, 79, 100, 6, 1); R(P.k, 79, 102, 5, 1); R(P.k, 79, 104, 6, 1); R(P.r, 82, 97, 1, 1);
-  R(P.Y, 90, 99, 10, 8); R(P.k, 91, 101, 7, 1); R(P.k, 91, 103, 5, 1); R(P.r, 94, 98, 1, 1);
+  R('rgba(43,29,26,.25)', 76, 127, 28, 2);
+  R(P.k, 78, 106, 3, 22); R(P.b, 79, 106, 1, 21); R(P.k, 98, 106, 3, 22); R(P.b, 99, 106, 1, 21);
+  R(P.k, 73, 99, 33, 20); R(P.b, 74, 100, 31, 18); R(P.T, 74, 100, 31, 1); R(P.t, 76, 102, 27, 14);
+  R(P.w, 78, 103, 9, 11); R(P.k, 79, 105, 6, 1); R(P.k, 79, 107, 5, 1); R(P.k, 79, 109, 6, 1); R(P.r, 82, 102, 1, 2);
+  R(P.Y, 90, 104, 10, 8); R(P.k, 91, 106, 7, 1); R(P.k, 91, 108, 5, 1); R(P.r, 94, 103, 1, 2);
   /* gudang bengkel */
-  R('rgba(43,29,26,.22)', 131, 121, 34, 2);
-  for (i = 0; i < 8; i++) R(P.k, 130 + Math.max(0, 3 - i), 92 + i, 34 - 2 * Math.max(0, 3 - i), 1);
-  for (i = 1; i < 7; i++) R(i % 3 === 0 ? '#7C766B' : P.e, 131 + Math.max(0, 3 - i), 92 + i, 32 - 2 * Math.max(0, 3 - i), 1);
-  R(P.k, 132, 100, 30, 22); R(P.b, 133, 100, 28, 21); for (i = 0; i < 28; i += 4) R(P.B, 133 + i, 100, 1, 21);
-  R(P.k, 140, 106, 14, 16); R('#3A2A22', 141, 107, 12, 15); stamp(x, 'palu', 141, 108);
-  /* pohon, semak, bunga, pagar */
-  [[56, 20], [112, 22], [164, 40], [0, 44], [58, 92], [112, 90], [166, 104], [56, 124], [110, 122]].forEach(function (t) { R('rgba(43,29,26,.22)', t[0] + 1, t[1] + 10, 10, 2); stamp(x, 'pohon', t[0], t[1]); });
-  for (i = 0; i < 26; i++) { var fx = rnd() * W | 0, fy = 14 + rnd() * (H - 18) | 0; if (fy > 62 && fy < 80) continue; R([P.w, P.Y, '#F2A0A8'][i % 3], fx, fy, 1, 1); R(P.G, fx, fy + 1, 1, 1); }
+  R('rgba(43,29,26,.25)', 131, 127, 34, 2);
+  for (i = 0; i < 8; i++) R(P.k, 130 + Math.max(0, 3 - i), 98 + i, 34 - 2 * Math.max(0, 3 - i), 1);
+  for (i = 1; i < 7; i++) R(i === 1 ? P.E : (i % 3 === 0 ? '#7C766B' : P.e), 131 + Math.max(0, 3 - i), 98 + i, 32 - 2 * Math.max(0, 3 - i), 1);
+  R(P.k, 132, 106, 30, 22); R(P.b, 133, 106, 28, 21); for (i = 0; i < 28; i += 4) R(P.B, 133 + i, 106, 1, 21);
+  R(P.k, 140, 112, 14, 16); R('#3A2A22', 141, 113, 12, 15); stamp(x, 'palu', 141, 114);
+  /* pagar */
+  function fence(a, b, n) { R(P.k, a, b + 2, n * 7 + 3, 3); R(P.t, a, b + 3, n * 7 + 3, 1); for (var q = 0; q <= n; q++) { R(P.k, a + q * 7, b, 3, 8); R(P.T, a + q * 7 + 1, b + 1, 1, 6); } }
+  fence(53, 134, 2); fence(108, 136, 2); fence(162, 62, 2); fence(0, 62, 1);
+  /* pohon, tunggul, batu, bunga */
+  [[52, 22], [110, 26], [170, 30], [-8, 34], [54, 98], [110, 100], [168, 104], [-9, 112]].forEach(function (t) { R('rgba(43,29,26,.25)', t[0] + 2, t[1] + 16, 12, 2); stamp(x, 'pohonB', t[0], t[1]); });
+  stamp(x, 'tunggul', 57, 62); stamp(x, 'tunggul', 115, 62); stamp(x, 'batu', 62, 88); stamp(x, 'batu', 117, 89); stamp(x, 'batu', 4, 88);
+  [[66, 50], [122, 54], [8, 66], [60, 120], [124, 122], [170, 92], [100, 90], [48, 90], [172, 132], [6, 140], [70, 144], [150, 142], [112, 146], [36, 146], [126, 64], [68, 66]].forEach(function (f, n) {
+    R('#3F7A32', f[0], f[1] + 2, 1, 1); var col = n % 4 === 3 ? '#F7A8B0' : P.w; R(col, f[0] - 1, f[1], 3, 1); R(col, f[0], f[1] - 1, 1, 3); R(P.y, f[0], f[1], 1, 1); });
   return c.toDataURL();
 }
 /* strip suasana warung (tema B, layar game) */
@@ -232,13 +254,13 @@ function home(t) {
   var target = '<div class="card rowb pad8"><div class="f13"><span class="mut">Target hari ini</span> · <span class="b num">0/2</span></div><div class="row g4"><i class="dot"></i><i class="dot"></i></div></div>';
   var welcome = '<div class="card pad12"><div class="sub">Selamat datang, peneliti</div><div class="b">Belum ada kasus yang dimainkan</div>' +
     '<div class="f13 mut">Pilih satu game di Mini Games. Semua temuanmu akan tercatat di sini.</div><div class="btn pri" style="margin-top: 10px">Buka Mini Games</div></div>';
-  var rec = '<div><div class="sec">Coba berikutnya</div><div class="card rowb" style="padding: 10px 12px"><div class="row g10">' + (B ? '' : ic('coin', 2)) +
+  var rec = '<div><div class="sec">Coba berikutnya</div><div class="card rowb" style="padding: 10px 12px"><div class="row g10">' + (B ? '' : ic('coin2', 2)) +
     '<div><div class="b">Kasir Kilat · Fundamental</div><div class="f12 mut">Game yang belum pernah kamu coba.</div></div></div><span class="mut">' + NEXT + '</span></div></div>';
   var badge = '<div class="card rowb pad8"><div class="row g8 f13">' + ic('peti', 2) + '<div><span class="mut">Lencana</span> · <span class="b">Belum ada</span></div></div><div class="f12 b" style="color: #2E662B">Lihat semua</div></div>';
   function item(icon, a, b, c) { return '<div class="rowb"><div class="row g10">' + ic(icon, 2) + '<div><div class="b">' + a + '</div><div class="f12 mut">' + b + '</div></div></div><div class="f12 mut">' + c + '</div></div>'; }
 
   if (B) {
-    var signs = [[31, 53, 'Bilangan', '0/7'], [89, 53, 'Aljabar', '0/9'], [147, 53, 'Geometri', '0/6'], [31, 123, 'Data', '0/5'], [89, 123, 'Tantangan', '–'], [147, 123, 'Bengkel', '0']];
+    var signs = [[31, 59, 'Bilangan', '0/7'], [89, 59, 'Aljabar', '0/9'], [147, 59, 'Geometri', '0/6'], [31, 129, 'Data', '0/5'], [89, 129, 'Tantangan', '–'], [147, 129, 'Bengkel', '0']];
     h += '<div class="map"><img alt="Peta desa: empat bangunan materi, papan tantangan, dan gudang bengkel" src="' + mapURL() + '">' +
       signs.map(function (s) { return '<div class="sign px" style="left: ' + s[0] * 2 + 'px; top: ' + s[1] * 2 + 'px"><b>' + s[2] + '</b><small>' + s[3] + '</small></div>'; }).join('') + '</div>';
     h += target + welcome + rec;
@@ -292,7 +314,7 @@ function fit() {
   Array.prototype.forEach.call(document.querySelectorAll('.fit'), function (f) { f.style.width = 390 * s + 'px'; f.style.height = 844 * s + 'px'; f.firstElementChild.style.transform = 'scale(' + s + ')'; });
 }
 function fromHash() { var m = /^#tema-([abc])$/.exec(location.hash); return m ? m[1].toUpperCase() : 'A'; }
-document.documentElement.style.setProperty('--coin', 'url("' + uri('coin') + '")');
+['coin', 'fPanel', 'fWood', 'fGold'].forEach(function (n) { document.documentElement.style.setProperty('--' + n, 'url("' + uri(n) + '")'); });
 document.getElementById('tabs').addEventListener('click', function (e) { var t = e.target.getAttribute('data-t'); if (!t) return; show(t); try { history.replaceState(null, '', '#tema-' + t.toLowerCase()); } catch (err) { location.hash = 'tema-' + t.toLowerCase(); } });
 window.addEventListener('hashchange', function () { show(fromHash()); });
 window.addEventListener('resize', fit);
