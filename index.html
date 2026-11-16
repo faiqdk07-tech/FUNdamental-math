@@ -588,6 +588,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -1569,6 +1574,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -3945,6 +3955,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -4193,6 +4208,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -5653,6 +5673,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -5911,6 +5936,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -7636,7 +7666,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -7656,9 +7686,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -7671,6 +7702,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Cetak Spanduk'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -7690,16 +7724,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -7734,7 +7768,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -7823,8 +7857,26 @@ this.H = [
 { id: 'c7', konteks: 'Menara masjid', tingkat: 'I', type: 'bayangan', r: 0.5, B: 9, asks: [{ label: 'Tinggi menara (m)', key: 18 }], budget: 2, cerita: 'Tengah hari bayangan memendek. Bayangan menara masjid hanya 9 m.', tujuan: 'Berapa meter tinggi menara itu?' },
 { id: 'c8', konteks: 'Klaim panitia', tingkat: 'E', type: 'bayangan', r: 2, B: null, asks: [{ label: 'Bayangan pohon 6 m (m)', key: 12 }], budget: 1, verdict: { q: 'Apakah panitia benar?', opts: ['Benar', 'Salah'], correct: 'Benar' }, cerita: 'Panitia bilang pohon yang tingginya dua kali tiang pasti punya bayangan dua kali lebih panjang, asal diukur pada waktu yang sama.', tujuan: 'Hitung bayangan pohon setinggi 6 m, lalu nilai ucapan panitia.' },
 {id: "f1", konteks: "Spanduk warung", tingkat: "F", type: "besar", logo: [[0, 0], [3, 0], [3, 2], [0, 2]],w0: 3,h0: 2, W: 9, budget: 2, cerita: "Pesanan berikutnya minta logo dicetak selebar 9 kotak tanpa gepeng.", tujuan: "Atur lebar dan tinggi cetakan, lalu Cetak."},
-{id: "f2", konteks: "Banner lomba", tingkat: "F", type: "besar", logo: [[0, 0], [3, 0], [3, 2], [0, 2]],w0: 3,h0: 2, W: 6, budget: 2, cerita: "Pesanan berikutnya minta logo dicetak selebar 6 kotak tanpa gepeng.", tujuan: "Atur lebar dan tinggi cetakan, lalu Cetak."}
+{id: "f2", konteks: "Banner lomba", tingkat: "F", type: "besar", logo: [[0, 0], [3, 0], [3, 2], [0, 2]],w0: 3,h0: 2, W: 6, budget: 2, cerita: "Pesanan berikutnya minta logo dicetak selebar 6 kotak tanpa gepeng.", tujuan: "Atur lebar dan tinggi cetakan, lalu Cetak."},
+{ id: 'f3', konteks: 'Klaim pelanggan', tingkat: 'F', type: 'besar', logo: RECT, w0: 3, h0: 2, W: 9, budget: 2, verdict: { q: 'Apakah tinggi 5 kotak dari pelanggan cocok?', opts: ['Cocok', 'Tidak cocok'], correct: 'Tidak cocok' }, cerita: 'Pelanggan minta logo selebar 9 kotak. Ia yakin tingginya harus 5 kotak supaya tidak gepeng.', tujuan: 'Cetak logonya tanpa gepeng, lalu nilai keyakinan pelanggan.' }
 ];
+this.TN = { F: ['Logo diperbesar', 'Logo tegak', 'Logo dikecilkan'], I: ['Tinta spanduk', 'Tinta stiker', 'Klaim tinta'], E: ['Pohon di lapangan', 'Menara air', 'Tiang bendera'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'besar', logo: [[0, 0], [2, 0], [2, 3], [0, 3]], w0: 2, h0: 3, W: 6, budget: 2, cerita: 'Logo botol minuman ini tinggi dan ramping. Pemilik warung ingin logonya dicetak selebar 6 kotak tanpa gepeng atau memanjang.', tujuan: 'Atur lebar dan tinggi cetakan, lalu Cetak. Kamu punya 2 kesempatan.' },
+{ type: 'besar', logo: [[0, 0], [8, 0], [8, 6], [0, 6]], w0: 8, h0: 6, W: 4, budget: 2, cerita: 'Logo sekolah ini terlalu besar untuk stiker. Kepala sekolah ingin versi kecil selebar 4 kotak, dengan bentuk yang sama persis.', tujuan: 'Atur lebar dan tinggi cetakan, lalu Cetak. Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'tinta', logo: RECT, T: 4, K: 3, asks: [{ label: 'Tinta stiker besar (ml)', key: 36 }], budget: 2, cerita: 'Stiker kecil butuh 4 ml tinta. Pesanan stiker mobil minta gambar 3 kali lebih lebar dan 3 kali lebih tinggi.', tujuan: 'Berapa ml tinta yang perlu disiapkan? Kamu punya 2 kesempatan dan 2 jatah cetak contoh.' },
+{ type: 'tinta', logo: HOUSE, T: 6, K: 2, asks: [{ label: 'Tinta logo besar (ml)', key: 24 }], budget: 2, verdict: { q: 'Apakah pegawai baru benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Logo rumah butuh 6 ml tinta. Pegawai baru bilang logo yang 2 kali lebih lebar dan 2 kali lebih tinggi cukup 12 ml.', tujuan: 'Hitung tintanya, lalu nilai ucapan pegawai baru. Kamu punya 2 kesempatan dan 2 jatah cetak contoh.' }
+],
+E: [this.M[2],
+{ type: 'bayangan', r: 0.5, B: 11, asks: [{ label: 'Tinggi menara air (m)', key: 22 }], budget: 2, cerita: 'Spanduk lomba akan dipasang di menara air desa. Tengah hari ini bayangan menara itu 11 m.', tujuan: 'Berapa meter tinggi menara air? Kamu punya 2 kesempatan dan 3 jatah pasang tongkat.' },
+{ type: 'bayangan', r: 2.5, B: 20, asks: [{ label: 'Tinggi tiang (m)', key: 8 }], budget: 2, cerita: 'Menjelang sore, panitia ingin memasang umbul-umbul di tiang bendera sekolah. Bayangan tiang itu 20 m.', tujuan: 'Berapa meter tinggi tiang bendera? Kamu punya 2 kesempatan dan 3 jatah pasang tongkat.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['A'], I: ['B'], E: ['C'] };
 this.TUT = [
 'Hari pertama di kios cetak spanduk Bang Rudi. Semua desain dicetak di kain berpetak.',
 'Ketuk kenop lebar untuk memutarnya. Angkanya adalah lebar cetakan.',
@@ -7868,6 +7920,7 @@ return this.scene(sp, 'Tongkat dan bayangannya');
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 if (i === 0) { const L = [[[0, 0], [3, 0], [3, 2], [0, 2]], 3, 2, [6, 9]], H = [[[0, 0], [4, 0], [4, 2], [2, 3], [0, 2]], 4, 3, [8]]; const c = R(0, 1) ? L : H, W = c[3][R(0, c[3].length - 1)]; return { logo: c[0], w0: c[1], h0: c[2], W: W, cerita: 'Pesanan berikutnya minta logo dicetak selebar ' + W + ' kotak tanpa gepeng.' }; }
 if (i === 1) { const T = R(2, 9), K = R(3, 9); return { T: T, K: K, asks: [{ label: 'Tinta spanduk (ml)', key: T * K * K }], cerita: 'Logo contoh butuh ' + T + ' ml tinta. Pesanan ini minta logo ' + K + ' kali lebih lebar dan ' + K + ' kali lebih tinggi.' }; }
 const rs = [0.5, 1.5, 2, 2.5], r = rs[R(0, 3)], h = 2 * R(3, 12), B = h * r; return { r: r, B: B, asks: [{ label: 'Tinggi pohon (m)', key: h }], cerita: 'Di lapangan lain, bayangan sebatang pohon ' + this.num(B) + ' m.' };
@@ -8936,7 +8989,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -8956,9 +9009,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -8971,6 +9025,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Gudang Kardus'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -8990,16 +9047,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -9034,7 +9091,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -9122,8 +9179,26 @@ this.H = [
 { id: 'k7', konteks: 'Klaim penjual', tingkat: 'E', type: 'lancip', s: 4, t: 6, asks: [{ label: 'Isi wadah lancip (kotak)', key: 32 }], budget: 1, verdict: { q: 'Apakah penjual benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Wadah tegak dan wadah lancip ini sama-sama berdasar 4 × 4 dan tinggi 6. Penjual bilang isi wadah lancip setengah wadah tegak.', tujuan: 'Hitung isi wadah lancip, lalu nilai ucapan penjual.' },
 { id: 'k8', konteks: 'Kardus jumbo', tingkat: 'E', type: 'kardus', p: 3, l: 3, t: 2, asks: [{ label: 'Kotak dalam kardus 12 × 9 × 7', key: 756 }], budget: 1, cerita: 'Contoh kardus kecil ada di meja. Pesanan hari ini memakai kardus jumbo berukuran 12 × 9 dengan tinggi 7 kotak.', tujuan: 'Berapa kotak sabun muat di kardus jumbo?' },
 {id: "f1", konteks: "Kiriman pagi", tingkat: "F", type: "kardus", p: 5, l: 2, t: 4, asks: [{label: "Kotak kecil dalam kardus ini", key: 40}, {label: "Kotak kecil dalam kardus 14 × 12 × 8", key: 1344}], budget: 2, cerita: "Kardus lain datang. Kardus jumbonya berukuran 14 × 12 dengan tinggi 8 kotak.", tujuan: "Berapa kotak sabun yang muat di tiap kardus?"},
-{id: "f2", konteks: "Kardus retur", tingkat: "F", type: "kardus", p: 3, l: 3, t: 2, asks: [{label: "Kotak kecil dalam kardus ini", key: 18}, {label: "Kotak kecil dalam kardus 10 × 9 × 7", key: 630}], budget: 2, cerita: "Kardus lain datang. Kardus jumbonya berukuran 10 × 9 dengan tinggi 7 kotak.", tujuan: "Berapa kotak sabun yang muat di tiap kardus?"}
+{id: "f2", konteks: "Kardus retur", tingkat: "F", type: "kardus", p: 3, l: 3, t: 2, asks: [{label: "Kotak kecil dalam kardus ini", key: 18}, {label: "Kotak kecil dalam kardus 10 × 9 × 7", key: 630}], budget: 2, cerita: "Kardus lain datang. Kardus jumbonya berukuran 10 × 9 dengan tinggi 7 kotak.", tujuan: "Berapa kotak sabun yang muat di tiap kardus?"},
+{ id: 'f3', konteks: 'Klaim kurir', tingkat: 'F', type: 'kardus', p: 4, l: 3, t: 3, asks: [{ label: 'Kotak kecil dalam kardus ini', key: 36 }], budget: 2, verdict: { q: 'Apakah kurir benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Kurir melihat kardus dari atas dan bilang isinya pasti 12 kotak sabun.', tujuan: 'Hitung isi kardus, lalu nilai ucapan kurir.' }
 ];
+this.TN = { F: ['Kardus kiriman', 'Kardus mi instan', 'Kardus jumbo'], I: ['Akuarium toko', 'Akuarium pojok', 'Kolam ikan'], E: ['Wadah lancip', 'Takaran gula', 'Corong besar'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'kardus', p: 6, l: 3, t: 4, asks: [{ label: 'Bungkus dalam kardus ini', key: 72 }, { label: 'Bungkus dalam kardus 15 × 12 × 9', key: 1620 }], budget: 2, cerita: 'Gudang menerima mi instan yang dikemas dalam kardus. Toko grosir memesan kardus besar berukuran 15 × 12 dengan tinggi 9 bungkus.', tujuan: 'Berapa bungkus mi muat di tiap kardus? Kamu punya 2 kesempatan.' },
+{ type: 'kardus', p: 4, l: 4, t: 5, asks: [{ label: 'Kotak dalam kardus ini', key: 80 }, { label: 'Kotak dalam kardus 20 × 16 × 12', key: 3840 }], budget: 2, cerita: 'Pabrik sabun mengirim kardus contoh. Pesanan ekspor memakai kardus jumbo 20 × 16 dengan tinggi 12 kotak.', tujuan: 'Berapa kotak sabun muat di tiap kardus? Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'prisma', base: [[0, 0], [6, 0], [2, 4]], t: 5, asks: [{ label: 'Liter air setinggi 5', key: 60 }, { label: 'Liter air setinggi 20', key: 240 }], budget: 2, cerita: 'Akuarium pojok punya dasar segitiga. Satu kotak air seukuran satu petak dasar dan setinggi satu tingkat berisi 1 liter.', tujuan: 'Berapa liter air bila diisi setinggi 5 tingkat, dan setinggi 20 tingkat? Kamu punya 2 kesempatan.' },
+{ type: 'prisma', base: [[0, 0], [6, 0], [6, 3], [4, 3], [4, 5], [0, 5]], t: 4, asks: [{ label: 'Liter air setinggi 4', key: 104 }, { label: 'Liter air setinggi 30', key: 780 }], budget: 2, cerita: 'Kolam ikan di belakang toko berdasar tidak beraturan. Satu kotak air seukuran satu petak dasar dan setinggi satu tingkat berisi 1 liter.', tujuan: 'Berapa liter air bila diisi setinggi 4 tingkat, dan setinggi 30 tingkat? Kamu punya 2 kesempatan.' }
+],
+E: [this.M[2],
+{ type: 'lancip', s: 3, t: 6, asks: [{ label: 'Isi wadah lancip dasar 9 × 9, tinggi 8 (kotak)', key: 216 }], budget: 2, cerita: 'Toko sembako memakai wadah lancip untuk menakar gula. Wadah tegak dan wadah lancip di meja punya dasar dan tinggi yang sama.', tujuan: 'Berapa kotak gula muat dalam wadah lancip berdasar 9 × 9 dan tinggi 8? Kamu punya 2 kesempatan dan 3 jatah tuang.' },
+{ type: 'lancip', s: 4, t: 6, asks: [{ label: 'Isi wadah lancip dasar 12 × 12, tinggi 15 (kotak)', key: 720 }], budget: 2, cerita: 'Pabrik pakan memakai corong lancip raksasa. Di meja contoh ada wadah tegak dan wadah lancip yang dasar dan tingginya sama.', tujuan: 'Berapa kotak pakan muat dalam corong berdasar 12 × 12 dan tinggi 15? Kamu punya 2 kesempatan dan 3 jatah tuang.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['A'], I: ['B'], E: ['C'] };
 this.TUT = [
 'Hari pertama sebagai pengepak di gudang Bu Ratna. Barang di sini diukur dengan kotak kecil dan wadah takar.',
 'Ketuk wadah lancip. Isinya dituang ke wadah tegak.',
@@ -9165,6 +9240,7 @@ return this.scene(sp, 'Wadah tegak dan wadah lancip');
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 if (i === 0) { const p = R(3, 6), l = R(2, 5), t = R(2, 4), P2 = R(10, 15), L2 = R(8, 12), T2 = R(5, 10); return { p: p, l: l, t: t, asks: [{ label: 'Kotak kecil dalam kardus ini', key: p * l * t }, { label: 'Kotak kecil dalam kardus ' + P2 + ' × ' + L2 + ' × ' + T2, key: P2 * L2 * T2 }], cerita: 'Kardus lain datang. Kardus jumbonya berukuran ' + P2 + ' × ' + L2 + ' dengan tinggi ' + T2 + ' kotak.' }; }
 if (i === 1) { const a = R(4, 6), b = R(2, 3), c = R(1, a - 1), d = R(b + 1, b + 3), base = [[0, 0], [a, 0], [a, b], [c, b], [c, d], [0, d]], A = this.shoe(base), t = R(4, 9), T2 = R(15, 30); return { base: base, t: t, asks: [{ label: 'Liter air setinggi ' + t, key: A * t }, { label: 'Liter air setinggi ' + T2, key: A * T2 }], cerita: 'Akuarium lain juga berdasar huruf L, dengan ukuran berbeda.' }; }
 const s = 3 * R(1, 3), t = R(4, 15); return { asks: [{ label: 'Isi wadah lancip dasar ' + s + ' × ' + s + ', tinggi ' + t + ' (kotak)', key: s * s * t / 3 }], cerita: 'Pelanggan lain membawa wadah lancip berdasar ' + s + ' × ' + s + ' dan tinggi ' + t + '.' };
@@ -11799,9 +11875,9 @@ alj: [
 ],
 geo: [
 { name: 'Rute Kurir', href: 'RuteKurir.dc.html', st: { F: 0, I: 0, E: 0 }, F: 'Susun rute paket di peta kompleks', I: 'Langkah dua kurir tidak sama', E: 'Belokan di bundaran banyak pojok' },
-{ name: 'Pasang Lantai', href: 'PasangLantai.dc.html', st: { F: 0, I: 0, E: 0 }, F: 'Lantai tertutup perabot', I: 'Teras miring dipotong dan digeser', E: 'Kaca untuk meja bundar' },
-{ name: 'Gudang Kardus', href: 'GudangKardus.dc.html', F: 'Kotak sabun dalam kardus', I: 'Air dalam akuarium berdasar L', E: 'Wadah lancip dan wadah tegak', st: { F: 0, I: 0, E: 0 } },
-{ name: 'Cetak Spanduk', href: 'CetakSpanduk.dc.html', F: 'Logo diperbesar tanpa gepeng', I: 'Berapa kali lipat tintanya?', E: 'Tinggi pohon dari bayangan', st: { F: 0, I: 0, E: 0 } },
+{ name: 'Pasang Lantai', href: 'PasangLantai.dc.html', st: { F: 0, I: 0, E: 0 }, F: 'Lantai tertutup perabot', I: 'Teras miring dan taman segitiga', E: 'Kaca untuk meja bundar' },
+{ name: 'Gudang Kardus', href: 'GudangKardus.dc.html', F: 'Kotak sabun dalam kardus', I: 'Air dalam akuarium dan kolam', E: 'Wadah lancip dan wadah tegak', st: { F: 0, I: 0, E: 0 } },
+{ name: 'Cetak Spanduk', href: 'CetakSpanduk.dc.html', F: 'Logo dibesarkan dan dikecilkan', I: 'Berapa kali lipat tintanya?', E: 'Tinggi pohon dari bayangan', st: { F: 0, I: 0, E: 0 } },
 { name: 'Tangga Bangunan', href: 'TanggaBangunan.dc.html', F: 'Persegi di tiap sisi segitiga', I: 'Jarak kaki tangga dari tembok', E: 'Tangga darurat yang miring', st: { F: 0, I: 0, E: 0 } },
 { name: 'Pelabuhan', href: 'Pelabuhan.dc.html', F: 'Jarak dua kapal di peta laut', I: 'Jarak kapal dari catatan radar', E: 'Posisi kapal dari dua menara', st: { F: 0, I: 0, E: 0 } }
 ],
@@ -11870,7 +11946,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -11890,9 +11966,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -11905,6 +11982,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Pasang Lantai'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -11924,16 +12004,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -11968,7 +12048,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -12019,8 +12099,26 @@ this.H = [
 { id: 'l7', konteks: 'Klaim pembeli', tingkat: 'E', type: 'bundar', r: 20, K: 125.6, asks: [{ label: 'Luas kaca (cm²)', key: 1256 }], budget: 1, verdict: { q: 'Apakah pembeli itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Meja ini kelilingnya 125,6 cm dan jarak tengah ke tepinya 20 cm. Pembeli bilang kacanya cukup dua kali kaca meja kafe yang jarak tengah ke tepinya 10 cm.', tujuan: 'Hitung luas kacanya, lalu nilai ucapan pembeli.' },
 { id: 'l8', konteks: 'Taman segitiga', tingkat: 'E', type: 'segi', a: 12, t: 7, p: 9, asks: [{ label: 'Ubin taman', key: 42 }], budget: 1, cerita: 'Taman kecil di depan masjid berbentuk segitiga. Panitia ingin tahu berapa ubin batu yang harus dibeli.', tujuan: 'Berapa ubin yang dibutuhkan?' },
 {id: "f1", konteks: "Ruang guru", tingkat: "F", type: "petak", W: 7, H: 6, covers: [[1, 1, 2, 2, "meja"], [4, 4, 2, 2, "lemari"]], asks: [{label: "Ubin ruangan ini", key: 42}, {label: "Ubin aula 18 × 15", key: 270}], budget: 2, cerita: "Ruangan lain juga tertutup perabot. Aula berikutnya selebar 18 ubin dan sepanjang 15 ubin.", tujuan: "Berapa ubin untuk kamar dan untuk aula?"},
-{id: "f2", konteks: "Kamar kos baru", tingkat: "F", type: "petak", W: 8, H: 4, covers: [[1, 1, 2, 2, "meja"], [5, 2, 2, 2, "lemari"]], asks: [{label: "Ubin ruangan ini", key: 32}, {label: "Ubin aula 12 × 12", key: 144}], budget: 2, cerita: "Ruangan lain juga tertutup perabot. Aula berikutnya selebar 12 ubin dan sepanjang 12 ubin.", tujuan: "Berapa ubin untuk kamar dan untuk aula?"}
+{id: "f2", konteks: "Kamar kos baru", tingkat: "F", type: "petak", W: 8, H: 4, covers: [[1, 1, 2, 2, "meja"], [5, 2, 2, 2, "lemari"]], asks: [{label: "Ubin ruangan ini", key: 32}, {label: "Ubin aula 12 × 12", key: 144}], budget: 2, cerita: "Ruangan lain juga tertutup perabot. Aula berikutnya selebar 12 ubin dan sepanjang 12 ubin.", tujuan: "Berapa ubin untuk kamar dan untuk aula?"},
+{ id: 'f3', konteks: 'Pesanan kurang', tingkat: 'F', type: 'petak', W: 6, H: 5, covers: [[1, 1, 2, 2, 'meja'], [4, 2, 2, 3, 'lemari']], asks: [{ label: 'Ubin ruangan ini', key: 30 }], budget: 2, verdict: { q: 'Cukupkah 28 ubin yang dipesan?', opts: ['Cukup', 'Kurang'], correct: 'Kurang' }, cerita: 'Pemilik warung sudah memesan 28 ubin untuk ruang belakang. Meja dan lemari belum dipindah.', tujuan: 'Hitung ubinnya, lalu jawab pertanyaan pemilik warung.' }
 ];
+this.TN = { F: ['Kamar kos', 'Gudang sempit', 'Ruang rapat'], I: ['Teras miring', 'Teras toko roti', 'Taman segitiga'], E: ['Meja bundar', 'Meja kafe', 'Meja restoran'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'petak', W: 9, H: 6, covers: [[1, 1, 3, 2, 'rak'], [5, 0, 3, 3, 'karung'], [2, 4, 4, 2, 'meja']], asks: [{ label: 'Ubin gudang ini', key: 54 }, { label: 'Ubin aula 20 × 14', key: 280 }], budget: 2, cerita: 'Gudang sempit di belakang toko penuh rak, karung, dan meja. Pak Darto juga harus memesan ubin untuk aula selebar 20 ubin dan sepanjang 14 ubin.', tujuan: 'Berapa ubin untuk gudang dan untuk aula? Kamu punya 2 kesempatan.' },
+{ type: 'petak', W: 8, H: 7, covers: [[0, 0, 4, 3, 'meja rapat'], [5, 1, 3, 5, 'lemari'], [1, 4, 3, 3, 'sofa']], asks: [{ label: 'Ubin ruang rapat', key: 56 }, { label: 'Ubin aula 24 × 18', key: 432 }], budget: 2, cerita: 'Ruang rapat kantor desa hampir tertutup perabot. Aula balai desa selebar 24 ubin dan sepanjang 18 ubin juga minta diganti lantainya.', tujuan: 'Berapa ubin untuk ruang rapat dan untuk aula? Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'miring', a: 9, t: 5, s: 3, asks: [{ label: 'Ubin teras ini', key: 45 }, { label: 'Ubin teras pasar', key: 176 }], budget: 2, cerita: 'Teras toko roti juga miring dengan tepi atas dan bawah sejajar. Teras pasar di seberangnya sama bentuknya: tepi bawah 16 ubin, tinggi 11 ubin, tepi atas bergeser 5 ubin.', tujuan: 'Berapa ubin untuk kedua teras? Kamu punya 2 kesempatan.' },
+{ type: 'segi', a: 10, t: 6, p: 4, asks: [{ label: 'Ubin pojok taman ini', key: 30 }, { label: 'Ubin taman tepi 18, tinggi 13', key: 117 }], budget: 2, cerita: 'Pojok taman kantor berbentuk segitiga. Taman lain di halaman belakang juga segitiga, dengan tepi bawah 18 ubin dan tinggi 13 ubin.', tujuan: 'Berapa ubin untuk kedua taman? Ubin di tepi miring boleh dipotong dan disambung. Kamu punya 2 kesempatan.' }
+],
+E: [this.M[2],
+{ type: 'bundar', r: 30, K: 188.4, asks: [{ label: 'Luas kaca (cm²)', key: 2826 }], budget: 2, cerita: 'Kafe di pojok jalan memesan kaca untuk meja bundar. Kelilingnya 188,4 cm dan jarak dari titik tengah ke tepinya 30 cm.', tujuan: 'Berapa cm² luas kaca yang dipesan? Kamu punya 2 kesempatan dan 3 jatah ukur.' },
+{ type: 'bundar', r: 70, K: 439.6, asks: [{ label: 'Luas kaca (cm²)', key: 15386 }], budget: 2, cerita: 'Restoran keluarga memesan kaca untuk meja bundar besar. Kelilingnya 439,6 cm dan jarak dari titik tengah ke tepinya 70 cm.', tujuan: 'Berapa cm² luas kaca yang dipesan? Kamu punya 2 kesempatan dan 3 jatah ukur.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['D'], I: ['A', 'B'], E: ['C'] };
 this.TUT = [
 'Hari pertama sebagai tukang lantai di tim Pak Darto. Lantai di sini jarang berbentuk kotak biasa.',
 'Ketuk satu angka di penggaris. Garis potong tegak dipasang di kolom itu.',
@@ -12092,6 +12190,8 @@ return { isBundar: true, wedgeA: d(up), wedgeB: d(down), bundarAria: !n ? 'Meja 
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+const mi = i; i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
+if (i === 1 && this.curM()[mi].type === 'segi') { const a = R(6, 10), t = 2 * R(2, 3), A = R(10, 20), T = 2 * R(4, 8); return { a: a, t: t, p: R(1, a - 1), asks: [{ label: 'Ubin pojok taman ini', key: a * t / 2 }, { label: 'Ubin taman tepi ' + A + ', tinggi ' + T, key: A * T / 2 }], cerita: 'Taman segitiga lain menunggu ubin. Taman berikutnya bertepi bawah ' + A + ' ubin dan tinggi ' + T + ' ubin.' }; }
 if (i === 0) { const W = R(6, 9), H = R(4, 6), w2 = R(11, 20), h2 = R(10, 16); return { W: W, H: H, covers: [[1, 1, 2, 2, 'meja'], [W - 3, H - 2, 2, 2, 'lemari']], asks: [{ label: 'Ubin ruangan ini', key: W * H }, { label: 'Ubin aula ' + w2 + ' × ' + h2, key: w2 * h2 }], cerita: 'Ruangan lain juga tertutup perabot. Aula berikutnya selebar ' + w2 + ' ubin dan sepanjang ' + h2 + ' ubin.' }; }
 if (i === 1) { const a = R(5, 8), t = R(2, 5), s = R(1, 3), A = R(10, 20), T = R(6, 12), S = R(2, 6); return { a: a, t: t, s: s, asks: [{ label: 'Ubin teras ini', key: a * t }, { label: 'Ubin teras sebelah', key: A * T }], cerita: 'Teras miring lain sudah diberi ubin contoh. Teras sebelahnya bertepi bawah ' + A + ' ubin, tinggi ' + T + ' ubin, dan tepi atasnya bergeser ' + S + ' ubin.' }; }
 const r = [20, 30, 40, 60, 70][R(0, 4)], K = Math.round(6.28 * r * 10) / 10;
@@ -12205,7 +12305,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -12225,9 +12325,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -12240,6 +12341,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Pelabuhan'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -12259,16 +12363,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -12303,7 +12407,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -12391,8 +12495,26 @@ this.H = [
 { id: 'p7', konteks: 'Kapal tunda', tingkat: 'I', type: 'grid', a: 15, p: 6, q: 12, asks: [{ label: 'Jarak antarkapal (km)', key: 15 }], budget: 2, cerita: 'Kapal tunda A harus menjemput kapal B yang mesinnya mati.', tujuan: 'Berapa km jarak lurus yang harus ditempuh?' },
 { id: 'p8', konteks: 'Klaim nakhoda', tingkat: 'E', type: 'radar', a: 14, b: 13, p: 5, asks: [{ label: 'Jarak antarkapal (km)', key: 15 }], budget: 1, verdict: { q: 'Apakah nakhoda benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Radar mencatat kapal A 14 km, kapal B 13 km, dan B bergeser 5 km ke arah jalur kapal A. Nakhoda bilang jarak antarkapal cuma 14 − 13 = 1 km.', tujuan: 'Hitung jaraknya, lalu nilai ucapan nakhoda.' },
 {id: "f1", konteks: "Kapal pagi", tingkat: "F", type: "grid", a: 16, p: 4, q: 16, asks: [{label: "Jarak kapal A ke kapal B (km)", key: 20}, {label: "Jarak A di 19 km timur ke B di 7 km timur, 9 km utara", key: 15}], budget: 2, cerita: "Dua kapal lain baru saja meninggalkan pelabuhan.", tujuan: "Berapa km jarak lurus antarkapal, di papan dan untuk posisi kedua?"},
-{id: "f2", konteks: "Kapal sore", tingkat: "F", type: "grid", a: 12, p: 6, q: 8, asks: [{label: "Jarak kapal A ke kapal B (km)", key: 10}, {label: "Jarak A di 23 km timur ke B di 8 km timur, 8 km utara", key: 17}], budget: 2, cerita: "Dua kapal lain baru saja meninggalkan pelabuhan.", tujuan: "Berapa km jarak lurus antarkapal, di papan dan untuk posisi kedua?"}
+{id: "f2", konteks: "Kapal sore", tingkat: "F", type: "grid", a: 12, p: 6, q: 8, asks: [{label: "Jarak kapal A ke kapal B (km)", key: 10}, {label: "Jarak A di 23 km timur ke B di 8 km timur, 8 km utara", key: 17}], budget: 2, cerita: "Dua kapal lain baru saja meninggalkan pelabuhan.", tujuan: "Berapa km jarak lurus antarkapal, di papan dan untuk posisi kedua?"},
+{ id: 'f3', konteks: 'Klaim nelayan', tingkat: 'F', type: 'grid', a: 15, p: 3, q: 9, asks: [{ label: 'Jarak kapal A ke kapal B (km)', key: 15 }], budget: 2, verdict: { q: 'Apakah nelayan benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Seorang nelayan melihat peta dan bilang jarak kedua kapal 12 + 9 = 21 km.', tujuan: 'Hitung jarak lurusnya, lalu nilai ucapan nelayan.' }
 ];
+this.TN = { F: ['Peta laut', 'Kapal pengangkut', 'Kapal pancing'], I: ['Radar kapal', 'Radar subuh', 'Klaim operator'], E: ['Dua menara', 'Kapal barang', 'Kapal feri'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'grid', a: 11, p: 5, q: 8, asks: [{ label: 'Jarak kapal A ke kapal B (km)', key: 10 }, { label: 'Jarak A di 30 km timur ke B di 6 km timur, 7 km utara', key: 25 }], budget: 2, cerita: 'Kapal pengangkut A dan kapal B terlihat di peta laut berpetak. Petugas juga mencatat posisi dua kapal lain di luar peta.', tujuan: 'Berapa km jarak lurus antarkapal, di papan dan untuk posisi kedua? Kamu punya 2 kesempatan.' },
+{ type: 'grid', a: 13, p: 1, q: 5, asks: [{ label: 'Jarak kapal A ke kapal B (km)', key: 13 }, { label: 'Jarak A di 20 km timur ke B di 5 km timur, 8 km utara', key: 17 }], budget: 2, cerita: 'Dua kapal pancing kehilangan arah. Kapal penolong harus tahu jarak lurus di antara mereka.', tujuan: 'Berapa km jarak lurus antarkapal, di papan dan untuk posisi kedua? Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'radar', a: 21, b: 13, p: 5, asks: [{ label: 'Jarak kapal A ke kapal B (km)', key: 20 }], budget: 2, cerita: 'Subuh berkabut, hanya radar yang bisa dipakai. Radar mencatat kapal A 21 km dari pelabuhan, kapal B 13 km, dan B bergeser 5 km ke arah jalur kapal A.', tujuan: 'Berapa km jarak antarkapal? Kamu punya 2 kesempatan.' },
+{ type: 'radar', a: 12, b: 10, p: 6, asks: [{ label: 'Jarak kapal A ke kapal B (km)', key: 10 }], budget: 2, verdict: { q: 'Apakah operator benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Radar mencatat kapal A 12 km, kapal B 10 km, dan B bergeser 6 km ke arah jalur kapal A. Operator radar yakin jarak antarkapal lebih dari 12 km.', tujuan: 'Hitung jaraknya, lalu nilai keyakinan operator. Kamu punya 2 kesempatan.' }
+],
+E: [this.M[2],
+{ type: 'menara', al: 53, be: 37, b: 15, asks: [{ label: 'Jarak kapal ke menara B (km)', key: 20 }], budget: 2, cerita: 'Kapal barang berada 15 km dari menara A. Menara A membaca arah 53° dan menara B membaca arah 37° terhadap garis pantai.', tujuan: 'Berapa km jarak kapal ke menara B? Kamu punya 2 kesempatan.' },
+{ type: 'menara', al: 30, be: 37, b: 18, asks: [{ label: 'Jarak kapal ke menara B (km)', key: 15 }], budget: 2, verdict: { q: 'Apakah petugas benar?', opts: ['Benar', 'Salah'], correct: 'Benar' }, cerita: 'Kapal feri berada 18 km dari menara A, dengan arah 30° dari menara A dan 37° dari menara B. Petugas bilang feri itu lebih dekat ke menara B.', tujuan: 'Hitung jarak ke menara B, lalu nilai ucapan petugas. Kamu punya 2 kesempatan.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['A'], I: ['B'], E: ['C'] };
 this.TUT = [
 'Hari pertama di menara pelabuhan Pak Hasan. Tugasmu mengawasi kapal yang keluar-masuk.',
 'Ketuk salah satu alat garis di bawah papan. Garis putus-putus muncul dari kapal B.',
@@ -12431,6 +12553,7 @@ return this.scene(sp, 'Dua menara dan sebuah kapal');
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 const TR = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20]];
 if (i === 0) { const t = TR[R(0, TR.length - 1)], p = R(1, 6), a = p + t[0], u = TR[R(0, TR.length - 1)], p2 = R(2, 9); return { a: a, p: p, q: t[1], asks: [{ label: 'Jarak kapal A ke kapal B (km)', key: t[2] }, { label: 'Jarak A di ' + (p2 + u[1]) + ' km timur ke B di ' + p2 + ' km timur, ' + u[0] + ' km utara', key: u[2] }], cerita: 'Dua kapal lain baru saja meninggalkan pelabuhan.' }; }
 if (i === 1) { const t = TR[R(0, TR.length - 1)], pq = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 6, 10]][R(0, 3)], sg = R(0, 1) ? 1 : -1, p = sg * pq[0], a = p + t[0]; if (a <= 0) return this.genMission(1); return { a: a, b: pq[2], p: p, asks: [{ label: 'Jarak kapal A ke kapal B (km)', key: Math.round(Math.sqrt(t[0] * t[0] + pq[1] * pq[1]) * 10) / 10 }], cerita: 'Radar mencatat kapal A ' + a + ' km dari pelabuhan, kapal B ' + pq[2] + ' km, dan B bergeser ' + Math.abs(p) + ' km ' + (p > 0 ? 'ke arah' : 'berlawanan dengan') + ' jalur kapal A.', tujuan: 'Berapa km jarak antarkapal? Bulatkan satu angka di belakang koma.' }; }
@@ -13865,7 +13988,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -13885,9 +14008,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -13900,6 +14024,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Rute Kurir'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -13919,16 +14046,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -13963,7 +14090,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -14022,9 +14149,28 @@ this.H = [
 { id: 'r7', konteks: 'Gambar arsitek', tingkat: 'E', type: 'putar', nTest: 6, asks: [{ label: 'Banyak pojok taman', key: null }], status: 'mustahil', specialMsg: 'Sekali keliling sampai menghadap arah semula, total belokannya selalu satu putaran penuh. 360 tidak habis dibagi 50, jadi taman itu tidak bisa dibuat.', budget: 1, cerita: 'Arsitek menggambar taman dengan pojok-pojok sama besar. Katanya motor cukup berbelok 50° di setiap pojok dan sekali keliling sudah kembali menghadap arah semula.', tujuan: 'Berapa pojok taman itu?' },
 { id: 'r8', konteks: 'Klaim kurir', tingkat: 'E', type: 'putar', nTest: 8, asks: [{ label: 'Total belokan keliling taman 5 pojok (°)', key: 360 }], budget: 1, verdict: { q: 'Apakah kurir itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Seorang kurir bilang keliling taman 10 pojok butuh total belokan dua kali lipat taman 5 pojok. Lapangan latihan memakai taman 8 pojok.', tujuan: 'Hitung total belokan taman 5 pojok, lalu nilai ucapan kurir.' },
 {id: "f1", konteks: "Paket siang", tingkat: "F", type: "antar", map: [".......", ".##.##.", ".#M.##.", "...x...", ".##.#P.", "x##.##.", "......."], sx: 3, sy: 5, sd: 1, tx: 6, ty: 1, tname: "rumah pelanggan", budget: 2, cerita: "Paket berikutnya untuk pelanggan di sisi lain kompleks. Beberapa jalan ditutup hari ini.", tujuan: "Susun rencana sampai ★, lalu Jalankan.", maxCmds: 6, plan: [], run: null},
-{id: "f2", konteks: "Paket sore", tingkat: "F", type: "antar", map: [".......", ".##.##.", ".#M.##.", ".......", ".##.#Px", ".##.##.", ".x....."], sx: 6, sy: 1, sd: 1, tx: 2, ty: 6, tname: "rumah pelanggan", budget: 2, cerita: "Paket berikutnya untuk pelanggan di sisi lain kompleks. Beberapa jalan ditutup hari ini.", tujuan: "Susun rencana sampai ★, lalu Jalankan.", maxCmds: 8, plan: [], run: null}
+{id: "f2", konteks: "Paket sore", tingkat: "F", type: "antar", map: [".......", ".##.##.", ".#M.##.", ".......", ".##.#Px", ".##.##.", ".x....."], sx: 6, sy: 1, sd: 1, tx: 2, ty: 6, tname: "rumah pelanggan", budget: 2, cerita: "Paket berikutnya untuk pelanggan di sisi lain kompleks. Beberapa jalan ditutup hari ini.", tujuan: "Susun rencana sampai ★, lalu Jalankan.", maxCmds: 8, plan: [], run: null},
+{ id: 'r9', konteks: 'Taman 24 pojok', tingkat: 'E', type: 'putar', nTest: 6, asks: [{ label: 'Belokan di tiap pojok taman 24 pojok (°)', key: 15 }], budget: 1, verdict: { q: 'Apakah Pak Joni benar?', opts: ['Benar', 'Salah'], correct: 'Benar' }, cerita: 'Pak Joni bilang taman 24 pojok sama besar cukup dibelok 15° di tiap pojok. Lapangan latihan memakai taman 6 pojok.', tujuan: 'Hitung belokannya, lalu nilai ucapan Pak Joni.' },
+{ id: 'f3', konteks: 'Klaim kurir baru', tingkat: 'F', type: 'antar', map: ['.......', '.##.##.', '.#M.##.', '...x...', 'x##.#P.', '.##.##.', '.......'], sx: 0, sy: 6, sd: 0, tx: 6, ty: 0, tname: 'rumah pelanggan', budget: 2, verdict: { q: 'Apakah kurir baru itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Kurir baru bilang paket ini tidak bisa diantar hari ini, karena jalan lurus di depannya ditutup.', tujuan: 'Antar paketnya, lalu nilai ucapan kurir baru.' }
 ];
-this.H.concat(this.M).forEach(c => { if (c.type === 'antar') c.maxCmds = this.minCmds(c); });
+this.TN = { F: ['Antar paket', 'Tiga jalan ditutup', 'Empat jalan ditutup'], I: ['Langkah siapa', 'Tali rafia', 'Klaim Budi'], E: ['Bundaran kota', 'Taman 12 pojok', 'Taman tak beraturan'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'antar', map: ['.......', '.##x##.', '.#M.##.', 'x......', '.##.#P.', '.##.##x', '.......'], sx: 0, sy: 6, sd: 0, tx: 6, ty: 0, tname: 'toko Pak Udin', budget: 2, cerita: 'Tiga ruas jalan ditutup untuk kerja bakti. Paket toko Pak Udin harus sampai sebelum toko buka.', tujuan: 'Susun rencana sampai ★, lalu Jalankan. Kamu punya 2 kesempatan.' },
+{ type: 'antar', map: ['.......', '.##x##.', '.#M.##.', '.x.....', '.##.#P.', 'x##.##.', '....x..'], sx: 6, sy: 6, sd: 3, tx: 0, ty: 0, tname: 'rumah Bu Rini', budget: 2, cerita: 'Hujan semalam membuat empat ruas jalan tergenang dan ditutup. Bu Rini menunggu paket obatnya.', tujuan: 'Susun rencana sampai ★, lalu Jalankan. Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'ukur', sample: { name: 'Gang contoh di depan pangkalan', cm: 400, sign: '4 m' }, units: [{ name: 'langkah Andi', cm: 50 }, { name: 'langkah Budi', cm: 80 }, { name: 'tali rafia', cm: 100 }], ukurMax: 2, asks: [{ label: 'Panjang gang Kenanga (tali rafia)', key: 24 }], budget: 2, cerita: 'Andi mencatat gang Kenanga sepanjang 48 langkahnya. Pak Joni ingin memasang lampu hias dari tali rafia di sepanjang gang itu.', tujuan: 'Berapa utas tali rafia sepanjang gang Kenanga? Kamu punya 2 kesempatan dan 2 jatah ukur.' },
+{ type: 'ukur', sample: { name: 'Gang contoh di depan pangkalan', cm: 300, sign: '3 m' }, units: [{ name: 'langkah Andi', cm: 50 }, { name: 'langkah Budi', cm: 75 }, { name: 'tali rafia', cm: 90 }], ukurMax: 2, asks: [{ label: 'Langkah Budi di gang Anggrek', key: 24 }], budget: 2, verdict: { q: 'Apakah Budi benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Andi mencatat gang Anggrek sepanjang 36 langkahnya. Budi yakin gang itu 30 langkahnya.', tujuan: 'Hitung langkah Budi, lalu nilai keyakinannya. Kamu punya 2 kesempatan dan 2 jatah ukur.' }
+],
+E: [this.M[2],
+{ type: 'putar', nTest: 4, asks: [{ label: 'Belokan di tiap pojok taman (°)', key: 30 }], budget: 2, cerita: 'Taman alun-alun punya 12 pojok sama besar. Lapangan latihan hari ini memakai taman 4 pojok.', tujuan: 'Berapa derajat motor berbelok di setiap pojok taman alun-alun? Kamu punya 2 kesempatan dan 3 jatah coba.' },
+{ type: 'putar', nTest: 5, asks: [{ label: 'Total belokan keliling taman 7 pojok (°)', key: 360 }], budget: 2, cerita: 'Taman desa punya 7 pojok yang tidak sama besar. Motor berkeliling sekali sampai kembali menghadap arah semula.', tujuan: 'Berapa derajat total belokan motor? Kamu punya 2 kesempatan dan 3 jatah coba.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['D'], I: ['C'], E: ['A', 'B'] };
+this.H.concat(this.M, this.TM.F).forEach(c => { if (c.type === 'antar') c.maxCmds = this.minCmds(c); });
 this.TUT = [
 'Hari pertama sebagai kurir di pangkalan paket Pak Joni. Semua pengantaran dimulai dari rencana perjalanan.',
 'Ketuk kartu ↑ untuk menambah perintah maju ke rencana.',
@@ -14042,6 +14188,7 @@ const randomConvex = n => { const w = []; for (let i = 0; i < n; i++) w.push(0.3
 this.OPTS = {
 A: { note: 'Taman dengan n pojok sama besar, sekali keliling', lhs: 'Belokan tiap pojok =', list: ['180 ÷ n', '90', '360 − n', '360 ÷ n'], vars: ['n'], gen: t => ({ n: (t !== undefined && t % 4 === 0) ? 4 : DIV[R(0, DIV.length - 1)] }), f: v => turnSum(regular(v.n)) / v.n, g: { '180 ÷ n': v => 180 / v.n, '90': v => 90, '360 − n': v => 360 - v.n, '360 ÷ n': v => 360 / v.n } },
 B: { note: 'Taman apa pun dengan n pojok, keliling sampai menghadap arah semula', lhs: 'Total belokan =', list: ['180 × n', '90 × n', '180', '360'], vars: ['n'], gen: t => ({ n: (t !== undefined && t % 4 === 0) ? 4 : R(3, 12) }), f: v => turnSum(randomConvex(v.n)), g: { '180 × n': v => 180 * v.n, '90 × n': v => 90 * v.n, '180': v => 180, '360': v => 360 } },
+D: { note: 'Tujuan x blok ke timur dan y blok ke utara, tidak ada jalan ditutup', lhs: 'Blok terpendek =', list: ['x × y', 'x + y + 2', '2 × (x + y)', 'x + y'], vars: ['x', 'y'], gen: () => ({ x: R(0, 12), y: R(0, 12) }), f: v => { let s = 0, x = 0, y = 0; while (x < v.x) { x++; s++; } while (y < v.y) { y++; s++; } return s; }, g: { 'x × y': v => v.x * v.y, 'x + y + 2': v => v.x + v.y + 2, '2 × (x + y)': v => 2 * (v.x + v.y), 'x + y': v => v.x + v.y } },
 C: { note: 'Langkah Andi a cm, langkah Budi b cm, jarak m langkah Andi', lhs: 'Langkah Budi =', list: ['m × a × b', 'm − (b − a)', 'm × b ÷ a', 'm × a ÷ b'], vars: ['a', 'b', 'm'], gen: t => { const a = R(40, 90); const b = (t !== undefined && t % 5 === 0) ? a : R(40, 90); return { a: a, b: b, m: R(5, 60) }; }, f: v => { const cm = v.m * v.a; let c = 0, used = 0; while (used + v.b <= cm + 1e-9) { used += v.b; c++; } return c + (cm - used) / v.b; }, g: { 'm × a × b': v => v.m * v.a * v.b, 'm − (b − a)': v => v.m - (v.b - v.a), 'm × b ÷ a': v => v.m * v.b / v.a, 'm × a ÷ b': v => v.m * v.a / v.b } }
 };
 }
@@ -14085,6 +14232,7 @@ return null;
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 if (i === 0) {
 for (let tries = 0; tries < 200; tries++) {
 const map = this.MAPC.map(r => r.split(''));
@@ -14266,7 +14414,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -14286,9 +14434,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -14301,6 +14450,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Tangga Bangunan'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -14320,16 +14472,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -14364,7 +14516,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -14451,9 +14603,27 @@ this.H = [
 { id: 'g6', konteks: 'Jalan menanjak', tingkat: 'I', type: 'miring', c: 8, th: 30, asks: [{ label: 'Tinggi ujung atas jalan (m)', key: 6 }], budget: 2, cerita: 'Jalan ke gudang proyek menanjak lurus sepanjang 12 m dengan kemiringan 30° terhadap tanah datar.', tujuan: 'Berapa meter tinggi ujung atas jalan itu dari tanah datar?' },
 { id: 'g7', konteks: 'Ubin teras', tingkat: 'E', type: 'persegi', a: 3, b: 4, asks: [{ label: 'Sisi persegi miring untuk 8 dan 15', key: 17 }], budget: 1, cerita: 'Segitiga siku di teras punya sisi tegak 8 dan 15 ubin. Persegi akan dipasang menempel di sisi miringnya.', tujuan: 'Berapa ubin panjang sisi persegi miring itu?' },
 { id: 'g8', konteks: 'Klaim mandor', tingkat: 'E', type: 'miring', c: 8, th: 60, asks: [{ label: 'Jarak kaki tangga 10 m (m)', key: 5 }], budget: 1, verdict: { q: 'Apakah mandor benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Tangga 10 m dipasang miring 60° terhadap lantai. Mandor bilang tinggi puncaknya setengah panjang tangga.', tujuan: 'Hitung jarak kakinya, lalu nilai ucapan mandor.' },
-{id: "f1", konteks: "Gambar mandor", tingkat: "F", type: "persegi", a: 3, b: 5, asks: [{label: "Petak persegi miring di papan", key: 34}, {label: "Petak persegi miring untuk sisi 9 dan 12", key: 225}], budget: 2, cerita: "Gambar segitiga lain sudah disiapkan di lantai berpetak.", tujuan: "Berapa petak persegi miring itu, di papan dan untuk sisi 6 dan 8?"},
-{id: "f2", konteks: "Lantai gudang", tingkat: "F", type: "persegi", a: 1, b: 5, asks: [{label: "Petak persegi miring di papan", key: 26}, {label: "Petak persegi miring untuk sisi 20 dan 21", key: 841}], budget: 2, cerita: "Gambar segitiga lain sudah disiapkan di lantai berpetak.", tujuan: "Berapa petak persegi miring itu, di papan dan untuk sisi 6 dan 8?"}
+{id: "f1", konteks: "Gambar mandor", tingkat: "F", type: "persegi", a: 3, b: 5, asks: [{label: "Petak persegi miring di papan", key: 34}, {label: "Petak persegi miring untuk sisi 9 dan 12", key: 225}], budget: 2, cerita: "Gambar segitiga lain sudah disiapkan di lantai berpetak.", tujuan: "Berapa petak persegi miring itu, di papan dan untuk sisi 9 dan 12?"},
+{id: "f2", konteks: "Lantai gudang", tingkat: "F", type: "persegi", a: 1, b: 5, asks: [{label: "Petak persegi miring di papan", key: 26}, {label: "Petak persegi miring untuk sisi 20 dan 21", key: 841}], budget: 2, cerita: "Gambar segitiga lain sudah disiapkan di lantai berpetak.", tujuan: "Berapa petak persegi miring itu, di papan dan untuk sisi 20 dan 21?"},
+{ id: 'f3', konteks: 'Klaim mandor', tingkat: 'F', type: 'persegi', a: 3, b: 4, asks: [{ label: 'Petak persegi miring di papan', key: 25 }], budget: 2, verdict: { q: 'Apakah mandor benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Mandor baru bilang persegi di sisi miring segitiga ini cukup 3 + 4 = 7 petak.', tujuan: 'Hitung petaknya, lalu nilai ucapan mandor.' }
 ];
+this.TN = { F: ['Persegi di tiap sisi', 'Segitiga ramping', 'Segitiga kecil'], I: ['Kaki tangga', 'Jendela loteng', 'Klaim tukang'], E: ['Tangga darurat', 'Tangga 45°', 'Tangga 60°'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'persegi', a: 2, b: 4, asks: [{ label: 'Petak persegi miring di papan', key: 20 }, { label: 'Petak persegi miring untuk sisi 5 dan 12', key: 169 }], budget: 2, cerita: 'Mandor Joko menggambar segitiga siku yang lebih ramping di lantai berpetak. Ia juga ingin tahu ubin untuk segitiga bersisi tegak 5 dan 12.', tujuan: 'Berapa petak persegi miring itu, di papan dan untuk sisi 5 dan 12? Kamu punya 2 kesempatan.' },
+{ type: 'persegi', a: 1, b: 3, asks: [{ label: 'Petak persegi miring di papan', key: 10 }, { label: 'Petak persegi miring untuk sisi 8 dan 15', key: 289 }], budget: 2, cerita: 'Segitiga kecil di pojok teras akan diberi ubin di sisi miringnya. Segitiga besar di halaman bersisi tegak 8 dan 15.', tujuan: 'Berapa petak persegi miring itu, di papan dan untuk sisi 8 dan 15? Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'tangga', c: 10, asks: [{ label: 'Kaki tangga 17 m, puncak di 15 m', key: 8 }, { label: 'Kaki tangga 10 m, puncak di 8 m', key: 6 }], budget: 2, cerita: 'Jendela loteng gedung olahraga harus dicat dari luar. Di halaman ada tangga 10 m untuk dicoba.', tujuan: 'Berapa meter kaki tangga dari tembok untuk tiap tangga? Kamu punya 2 kesempatan dan 3 jatah ukur.' },
+{ type: 'tangga', c: 10, asks: [{ label: 'Kaki tangga 13 m, puncak di 12 m', key: 5 }], budget: 2, verdict: { q: 'Apakah tukang itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Tangga 13 m harus menyentuh talang setinggi 12 m. Tukang bilang kakinya cukup 1 m dari tembok, karena 13 − 12 = 1.', tujuan: 'Hitung jarak kakinya, lalu nilai ucapan tukang. Kamu punya 2 kesempatan dan 3 jatah ukur.' }
+],
+E: [this.M[2],
+{ type: 'miring', c: 8, th: 45, asks: [{ label: 'Tinggi puncak, kaki 9 m dari tembok, miring 45°', key: 9 }], budget: 2, cerita: 'Tangga darurat gudang dipasang miring 45° terhadap lantai. Kakinya berjarak 9 m dari tembok.', tujuan: 'Berapa meter tinggi puncak tangga? Kamu punya 2 kesempatan.' },
+{ type: 'miring', c: 8, th: 60, asks: [{ label: 'Jarak kaki tangga 12 m, miring 60°', key: 6 }, { label: 'Tinggi puncak tangga 14 m, miring 30°', key: 7 }], budget: 2, cerita: 'Gedung sekolah memesan dua tangga darurat dengan kemiringan berbeda terhadap lantai.', tujuan: 'Jawab kedua ukuran tangga. Kamu punya 2 kesempatan.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['A'], I: ['B'], E: ['C', 'D'] };
 this.TUT = [
 'Hari pertama di proyek Mandor Joko. Di sini tangga dan ubin selalu diukur sebelum dipasang.',
 'Ketuk bingkai. Empat segitiga di dalamnya akan berpindah tempat.',
@@ -14505,6 +14675,7 @@ return this.sceneM(sp, 'Tangga miring ' + th + ' derajat');
 petaScene(P) { return this.scene({ grids: [[0, 0, P.dx, P.dy]], D: [], C: P.tali ? [[[0, 0], [P.dx, P.dy]]] : [], A: [[[-0.2, -0.2], [0.2, -0.2], [0.2, 0.2], [-0.2, 0.2]], [[P.dx - 0.2, P.dy - 0.2], [P.dx + 0.2, P.dy - 0.2], [P.dx + 0.2, P.dy + 0.2], [P.dx - 0.2, P.dy + 0.2]]], T: [[0.3, -0.5, 'balai'], [P.dx - 1.5, P.dy + 0.6, 'rumah']] }, 'Peta kampung berpetak'); }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 const TR = [[3, 4, 5], [5, 12, 13], [6, 8, 10], [8, 15, 17], [7, 24, 25], [9, 12, 15], [12, 16, 20], [20, 21, 29]];
 if (i === 0) { const a = R(1, 4), b = R(2, 5), x = TR[R(0, TR.length - 1)]; return { a: a, b: b, asks: [{ label: 'Petak persegi miring di papan', key: a * a + b * b }, { label: 'Petak persegi miring untuk sisi ' + x[0] + ' dan ' + x[1], key: x[2] * x[2] }], cerita: 'Gambar segitiga lain sudah disiapkan di lantai berpetak.' }; }
 if (i === 1) { const x = TR[R(0, TR.length - 1)], y = TR[R(0, TR.length - 1)]; return { asks: [{ label: 'Kaki tangga ' + x[2] + ' m, puncak di ' + x[1] + ' m', key: x[0] }, { label: 'Kaki tangga ' + y[2] + ' m, puncak di ' + y[0] + ' m', key: y[1] }], cerita: 'Dua jendela lain juga butuh tangga.' }; }

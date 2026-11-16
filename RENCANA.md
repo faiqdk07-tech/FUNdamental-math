@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** tingkat F/I/E diterapkan ke 6 game Geometri (rincian di bawah). Lolos uji otomatis seperti Aljabar.
 - **16 Nov:** tingkat F/I/E diterapkan ke 9 game Aljabar (rincian di bawah). Tiap tingkat: 3 misi, minimal 3 kasus harian, rumus Aturan sendiri. Lolos uji otomatis: semua misi, kasus harian, dan tombol Berikutnya bisa diselesaikan.
 - **16 Nov:** semua layar dipindah dari kanvas ke satu `index.html`. Kanvas v4 sekarang hanya arsip.
 - **16 Nov:** crash tombol "?" diperbaiki di semua game. Panel bantuan sekarang memakai `this.state.help` dan `this.state.gmMenu`.
@@ -12,9 +13,9 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-1. **Faiq menguji game Bilangan, game Aljabar per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
+1. **Faiq menguji game Bilangan, game Aljabar dan Geometri per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
-3. **Tingkat Geometri, lalu Data:** cek tabel "Temuan F → I → E" di `konsep.md`, ajukan usulan singkat dulu.
+3. **Tingkat Data (5 game):** cek tabel "Temuan F → I → E" di `konsep.md`, ajukan usulan singkat dulu.
 4. **Tanda Selesai per tingkat** (sekarang masih per nomor misi). Bintang diambil dari progres asli, bukan data contoh.
 5. **Tahap berikutnya:**
    - kasus harian lewat prompt → JSON → validator (tiap kasus punya `tingkat`);
@@ -79,6 +80,15 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
 - Kerangka 6 game terbaru: `this.TM`/`this.TN`/`this.TO` per tingkat (misi, nama, aturan), `curM()`, `genMission` membaca tingkat aktif. Tombol Berikutnya membuang klaim (`verdict`) dari soal acak.
 - Teks Mini Games untuk Timbangan Balon, Meja Hajatan E, dan Rekap Grosir E disesuaikan.
 
+## Rincian tingkat 6 game Geometri (sudah diterapkan 16 Nov)
+Kerangka sama dengan 6 game Aljabar terbaru (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus harian klaim baru (`f3`).
+- **Rute Kurir:** F antar paket (2, 3, 4 jalan ditutup) · I langkah Andi/Budi, tali rafia, klaim Budi · E bundaran 36 pojok, taman 12 pojok, taman 7 pojok tak beraturan. Aturan F baru: blok terpendek = x + y. Kasus harian E baru: r9.
+- **Pasang Lantai:** F kamar, gudang, ruang rapat (dengan aula di luar papan) · I 2 teras miring, taman segitiga · E kaca meja r 50, 30, 70.
+- **Gudang Kardus:** F kardus sabun, mi, jumbo · I akuarium L, segitiga, kolam · E wadah lancip 6×6×10, 9×9×8, 12×12×15.
+- **Cetak Spanduk:** F logo dibesarkan (8, tegak 6), dikecilkan (8→4) · I tinta 6×, 3×, klaim 2× · E pohon, menara air, tiang bendera.
+- **Tangga Bangunan:** F persegi 3-4/6-8, 2-4/5-12, 1-3/8-15 · I kaki tangga 3 soal, klaim 13−12 · E miring 30°, 45°, 60°. Teks `tujuan` f1/f2 yang salah sisi diperbaiki.
+- **Pelabuhan:** F peta laut 3 soal · I radar 3 soal · E dua menara 3 soal. Urutan I/E tetap seperti di game (radar dulu), berbeda dengan tabel konsep.
+
 ## Catatan
-- 11 game Geometri dan Data belum punya pilihan tingkat.
+- 5 game Data belum punya pilihan tingkat.
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.
