@@ -191,6 +191,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-floor-board{align-self:center;padding:12px;background:#C99A5B repeating-linear-gradient(0deg,#B98448 0 2px,#C99A5B 2px 24px);box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,0 8px 0 rgba(43,29,26,.2);margin:6px auto 0;min-width:120px;min-height:80px;display:flex;align-items:center;justify-content:center}
 .px-tapebox{border:6px solid transparent;border-image:var(--px-fWhite) 30 fill / 6px;padding:2px 6px 4px;display:flex;flex-direction:column;gap:6px}
 .px-tape{flex:1;display:flex;align-items:flex-end;gap:1px;height:30px;padding:2px 4px 3px;background:#FFC83D;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A,inset 0 -3px 0 #E39A1C}
+.px-mode-ic{width:44px;height:44px;margin-bottom:2px}
+.px-gic{flex:none;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:#E8F1F8;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A,inset 0 -3px 0 #C9D3E0;margin:2px}
+.px-gic img{width:28px;height:28px}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -2306,7 +2309,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-if>
 <div class="px-grid2">
 <sc-for list="{{gmItems}}" as="mi" hint-placeholder-count="4">
-<button type="button" onClick="{{mi.tap}}" class="px-fw px-mode"><b class="px-f" style="font-size: 17px">{{mi.label}}</b><small style="font-size: 12px; color: #4B4B57">{{mi.desc}}</small></button>
+<button type="button" onClick="{{mi.tap}}" class="px-fw px-mode"><img alt="" class="px-mode-ic" src="{{mi.icon}}"><b class="px-f" style="font-size: 17px">{{mi.label}}</b><small style="font-size: 12px; color: #4B4B57">{{mi.desc}}</small></button>
 </sc-for>
 </div>
 </div>
@@ -3983,7 +3986,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <sc-for list="{{games}}" as="g" hint-placeholder-count="7">
 <a href="{{g.href}}" onClick="{{g.go}}" class="px-fw px-game">
 <div>
-<div class="px-f" style="font-size: 15px; font-weight: 700; line-height: 1.2">{{g.name}}</div>
+<div style="display: flex; align-items: center; gap: 8px"><span class="px-gic"><img alt="" src="{{g.icon}}"></span><div class="px-f" style="font-size: 15px; font-weight: 700; line-height: 1.2">{{g.name}}</div></div>
 <div style="font-size: 12px; color: #4B4B57; line-height: 1.35; margin-top: 2px">{{g.task}}</div>
 </div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px">
@@ -4001,7 +4004,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-if>
 <sc-if value="{{g.isNew}}" hint-placeholder-val="{{ false }}"><span class="px-tag px-f" style="background: #7CCBF2">Baru</span></sc-if>
 </div>
-<span class="px-tag" style="background: #FFC83D; padding: 3px 5px"><img alt="" src="{{px.kanan}}" width="9" height="11"></span>
+<span class="px-fg px-f" style="display: flex; align-items: center; gap: 5px; padding: 0 6px 1px; font-size: 13px; font-weight: 700"><img alt="" src="{{px.main}}" width="10" height="11">Main</span>
 </div>
 </a>
 </sc-for>
@@ -6373,7 +6376,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 </div></sc-if>
 <sc-if value="{{gmHasTut}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{gmTut}}" class="px-fw px-menu"><span class="px-tag" style="background: #7CCBF2; padding: 4px"><img alt="" src="{{px.daftar}}" width="20" height="16"></span><span style="flex: 1"><b class="px-f">Pengenalan games</b><small>Hari pertama kerja, kenali tombolnya</small></span></button></sc-if>
-<div class="px-grid2"><sc-for list="{{gmItems}}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{mi.tap}}" class="px-fw px-mode"><b class="px-f" style="font-size: 17px">{{mi.label}}</b><small style="font-size: 12px; color: #4B4B57">{{mi.desc}}</small></button></sc-for></div>
+<div class="px-grid2"><sc-for list="{{gmItems}}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{mi.tap}}" class="px-fw px-mode"><img alt="" class="px-mode-ic" src="{{mi.icon}}"><b class="px-f" style="font-size: 17px">{{mi.label}}</b><small style="font-size: 12px; color: #4B4B57">{{mi.desc}}</small></button></sc-for></div>
 </div>
 </sc-if>
 <sc-if value="{{gmShowPick}}" hint-placeholder-val="{{ false }}">
@@ -6518,7 +6521,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 </div></sc-if>
 <sc-if value="{{gmHasTut}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{gmTut}}" class="px-fw px-menu"><span class="px-tag" style="background: #7CCBF2; padding: 4px"><img alt="" src="{{px.daftar}}" width="20" height="16"></span><span style="flex: 1"><b class="px-f">Pengenalan games</b><small>Hari pertama kerja, kenali tombolnya</small></span></button></sc-if>
-<div class="px-grid2"><sc-for list="{{gmItems}}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{mi.tap}}" class="px-fw px-mode"><b class="px-f" style="font-size: 17px">{{mi.label}}</b><small style="font-size: 12px; color: #4B4B57">{{mi.desc}}</small></button></sc-for></div>
+<div class="px-grid2"><sc-for list="{{gmItems}}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{mi.tap}}" class="px-fw px-mode"><img alt="" class="px-mode-ic" src="{{mi.icon}}"><b class="px-f" style="font-size: 17px">{{mi.label}}</b><small style="font-size: 12px; color: #4B4B57">{{mi.desc}}</small></button></sc-for></div>
 </div>
 </sc-if>
 <sc-if value="{{gmShowPick}}" hint-placeholder-val="{{ false }}">
@@ -7023,6 +7026,31 @@ const PX = (() => {
     fGold: ['.kkkkk.', 'kYYYYYk', 'kYyyyyk', 'kyyyyok', 'kyyyyok', 'koooook', '.kkkkk.'],
     beban: ['..kkkkkk..', '..k....k..', '.kkkkkkkk.', 'kEEEEEEEek', 'kEEeeeeeek', 'keeeeeeeek', 'keeeeeeeek', 'keeeeeeeNk', 'keeeeeeNNk', 'kkkkkkkkkk'],
     kardus: ['kkkkkkkkkk', 'kTTTyyTTTk', 'kTttyyttbk', 'kkkkyykkkk', 'ktttyytttk', 'kttttttttk', 'kttttttttk', 'ktttttttbk', 'kkkkkkkkkk'],
+    misi: ['..kkkkkkkk..', '.kTTTTTTTTk.', 'kTkwwwwwwkTk', '.kkwkkkkwkk.', '..kwwwwwwk..', '..kwkkkkwk..', '..kwwwwwwk..', '..kwkkkwwk..', '..kwwwwwwk..', '.kkkkkkkkkk.', 'kTTTTTTTTTTk', '.kkkkkkkkkk.'],
+    kalender: ['..k.....k...', 'kkkkkkkkkkkk', 'krrrrrrrrrrk', 'krrrrrrrrrrk', 'kkkkkkkkkkkk', 'kwwwwwwwwwwk', 'kwkwkwkwkwwk', 'kwwwwwwwwwwk', 'kwkwkwkyyywk', 'kwwwwwwyyywk', 'kwwwwwwwwwwk', 'kkkkkkkkkkkk'],
+    labu: ['....kkkk....', '....kwwk....', '....kwwk....', '....kwwk....', '...kwwwwk...', '..kwwwwwwk..', '.kcccccccck.', '.kcccacccck.', 'kccaccccccck', 'kcccccccacck', 'kcccccccccck', '.kkkkkkkkkk.'],
+    papan: ['kkkkkkkkkkkk', 'kbbbbbbbbbbk', 'kbAAAAAAAAbk', 'kbAwwAAAAAbk', 'kbAAAwwwAAbk', 'kbAwwAAAAAbk', 'kbAAAAwwwAbk', 'kbAAAAAAAAbk', 'kbbbbbbbbbbk', 'kkkkkkkkkkkk', '..k......k..', '.k........k.'],
+    timb: ['.....kk.....', 'kkkkkkkkkkkk', '.k...kk...k.', '.k...ee...k.', 'k.k..ee..k.k', 'kkk..ee..kkk', 'eee..ee..eee', '.....ee.....', '.....ee.....', '...kkkkkk...', '...keeeeek..', '...kkkkkk...'],
+    bus: ['............', '.kkkkkkkkkk.', 'kyyyyyyyyyyk', 'kyssyssyssyk', 'kyssyssyssyk', 'kyyyyyyyyyyk', 'kyyyyyyyyyyk', 'kooooooooook', 'kkkkkkkkkkkk', '.kek....kek.', '..k......k..', '............'],
+    pizza: ['kkkkkkkkkkkk', 'kTTTTTTTTTTk', '.kyyryyyyyk.', '.kyyyyyryyk.', '..kyryyyyk..', '..kyyyyyyk..', '...kyyryk...', '...kyyyyk...', '....kyyk....', '....kyyk....', '.....kk.....', '............'],
+    panci: ['..w..w..w...', '...w..w..w..', '............', 'kkkkkkkkkkkk', 'keeeeeeeeeek', 'kkkkkkkkkkkk', '.kEEEEEEEEk.', 'kkeeeeeeeekk', '.keeeeeeeek.', '.keeeeeeeNk.', '.kNNNNNNNNk.', '..kkkkkkkk..'],
+    kertas: ['.kkkkkkkkk..', '.kwwwwwwwkk.', '.kwkkkkkwkwk', '.kwwwwwwwkkk', '.kwkkkkkkwwk', '.kwwwwwwwwwk', '.kwkkkkkkkwk', '.kwwwwwwwwwk', '.kwkkkkkwwwk', '.kwwwwwwwwwk', '.kEEEEEEEEEk', '.kkkkkkkkkkk'],
+    struk: ['.kkkkkkkkkk.', '.kwwwwwwwwk.', '.kwkkkkwwwk.', '.kwwwwwwwwk.', '.kwkkkwkkwk.', '.kwwwwwwwwk.', '.kwkkkwkkwk.', '.kwwwwwwwwk.', '.kwkkkkkkwk.', '.kwwwwwwwwk.', '.kwkwkwkwkk.', '.k.k.k.k.k..'],
+    meja: ['............', '............', 'kkkkkkkkkkkk', 'kwwwwwwwwwwk', 'krwrwrwrwrwk', 'kkkkkkkkkkkk', '.kbk....kbk.', '.kbk....kbk.', '.kbk....kbk.', '.kbk....kbk.', '.kkk....kkk.', '............'],
+    martabak: ['............', '.kkkkkkkkkk.', 'kTTTTTTTTTTk', 'kTttttttttTk', 'kkkkkkkkkkkk', 'kyByyByyByyk', 'kkkkkkkkkkkk', 'kTttttttttTk', 'kTTTTTTTTTTk', '.kkkkkkkkkk.', '............', '............'],
+    gelas: ['.......kk...', '......kk....', '.kkkkkkkkkk.', '.kwwwwkwwwk.', '..kssskssk..', '..kssssssk..', '..kuuuuuuk..', '..kuuuuuuk..', '...kuuuuk...', '...kuuuuk...', '...kkkkkk...', '............'],
+    motor: ['............', '.......kkk..', '......krrk..', '..kkkkrrrk..', '.krrrrrrrrk.', 'krrrrrrrrrrk', 'kkkkkkkkkkkk', '.kkk....kkk.', 'keeek..keeek', 'kekek..kekek', 'keeek..keeek', '.kkk....kkk.'],
+    krat: ['kkkkkkkkkkkk', 'kTTTTTTTTTTk', 'kbbbbbbbbbbk', 'kkkkkkkkkkkk', 'kTkTTTTTTkTk', 'kbkbbbbbbkbk', 'kkkkkkkkkkkk', 'kTkTTTTTTkTk', 'kbkbbbbbbkbk', 'kkkkkkkkkkkk', 'kTTTTTTTTTTk', 'kkkkkkkkkkkk'],
+    pagar: ['..k...k...k.', '.kTk.kTk.kTk', '.kTk.kTk.kTk', 'kkkkkkkkkkkk', 'TTTTTTTTTTTT', 'kkkkkkkkkkkk', '.kTk.kTk.kTk', '.kTk.kTk.kTk', 'kkkkkkkkkkkk', 'TTTTTTTTTTTT', 'kkkkkkkkkkkk', '.kak.kak.kak'],
+    pin: ['...kkkkk....', '..krrrrrk...', '.krrwwwrrk..', '.krwwwwwrk..', '.krrwwwrrk..', '..krrrrrk...', '..krrrrrk...', '...krrrk....', '...krrrk....', '....krk.....', '....kk......', '............'],
+    lantai: ['kkkkkkkkkkkk', 'kTTTTkeeeeek', 'kTTTTkeeeeek', 'kTTTTkeeeeek', 'kTTTTkeeeeek', 'kkkkkkkkkkkk', 'keeeeekTTTTk', 'keeeeekTTTTk', 'keeeeekTTTTk', 'keeeeekTTTTk', 'kkkkkkkkkkkk', '............'],
+    spanduk: ['k..........k', 'kkkkkkkkkkkk', 'kyyyyyyyyyyk', 'kyrrryyuuuyk', 'kyrrryyuuuyk', 'kyyyyyyyyyyk', 'kkkkkkkkkkkk', 'k..........k', 'k..........k', 'k..........k', 'k..........k', 'kk........kk'],
+    tangga: ['..kk....kk..', '..kT....kT..', '..kTkkkkkT..', '..kTTTTTTT..', '..kT....kT..', '..kTkkkkkT..', '..kTTTTTTT..', '..kT....kT..', '..kTkkkkkT..', '..kTTTTTTT..', '..kT....kT..', '..kk....kk..'],
+    kapal: ['.....k......', '.....kw.....', '.....kww....', '.....kwww...', '.....kwwww..', '.....k......', 'kkkkkkkkkkkk', 'kRrrrrrrrrRk', '.kRrrrrrrRk.', '..kkkkkkkk..', 'uuuuuuuuuuuu', 'UuUuUuUuUuUu'],
+    loker: ['kkkkkkkkkkkk', 'kuuuukkuuuuk', 'kukkukkukkuk', 'kuuuukkuuuuk', 'kukkukkukkuk', 'kuuuukkuuuuk', 'kuuuykkuyuuk', 'kuuuukkuuuuk', 'kuuuukkuuuuk', 'kUUUUkkUUUUk', 'kkkkkkkkkkkk', '.k........k.'],
+    mik: ['....kkkk....', '...keeeek...', '...kEeeek...', '...keeeek...', '...keeeek...', '....kkkk....', '.k...kk...k.', '..k..kk..k..', '...kkkkkk...', '.....kk.....', '....kkkk....', '...kkkkkk...'],
+    hadiah: ['...kk..kk...', '..krrkkrrk..', '...kkrrkk...', 'kkkkkrrkkkkk', 'kyyyyrryyyyk', 'kkkkkrrkkkkk', '.kyyyrryyyk.', '.kyyyrryyyk.', '.kyyyrryyyk.', '.kyyyrryyyk.', '.kkkkkkkkkk.', '............'],
+    main: ['kk......', 'kYk.....', 'kyYk....', 'kyyYk...', 'kyyyok..', 'kyyok...', 'kyok....', 'kok.....', 'kk......'],
     kue: ['..kkkk..', '.kwwwwk.', 'kwwrwwwk', 'kqqqqqqk', 'kppppppk', 'kqqqqqqk', 'kTTTTTTk', '.kkkkkk.'],
     kursi: ['.kkkkkk.', '.kuuuuk.', '.kuUUuk.', '.kkkkkk.', 'kuuuuuuk', 'kkkkkkkk', '.k....k.', '.k....k.'],
     balon: ['..kkkkk..', '.krrrrrk.', 'krqrrrrrk', 'krqrrrrRk', 'krrrrrrRk', 'krrrrrrRk', '.krrrrRk.', '..kRRRk..', '...kkk...', '....k....', '...k.....', '....k....', '.....k...']
@@ -7171,7 +7199,12 @@ const PX = (() => {
     R(P.k, 84, 24, 14, 7); R(P.y, 85, 25, 12, 5); R(P.Y, 85, 25, 12, 1);
     return t.cv.toDataURL();
   });
-  return { U: U, P: P, pen: pen, world: world, shop: shop, house: house, stage: stage };
+  /* Ikon mode (gmItems) dan ikon tiap game di Mini Games */
+  const MODE = { Misi: 'misi', Harian: 'kalender', Lab: 'labu', Aturan: 'papan' };
+  const modeIcons = v => Object.assign(v, { gmItems: (v.gmItems || []).map(x => Object.assign({}, x, { icon: U[MODE[x.label] || 'misi'] })) });
+  const GAMEIC = {'Kasir Kilat': 'coin', 'Timbangan': 'timb', 'Ubin': 'kue', 'Jadwal Bus': 'bus', 'Bagi Pizza': 'pizza', 'Racik Resep': 'panci', 'Lipat Kertas': 'kertas', 'Dua Struk': 'struk', 'Meja Hajatan': 'meja', 'Martabak Topping': 'martabak', 'Mesin Minuman': 'gelas', 'Argo Ojek': 'motor', 'Timbangan Balon': 'balon', 'Rekap Grosir': 'krat', 'Kebun Pagar': 'pagar', 'Dapur Roti': 'roti', 'Rute Kurir': 'pin', 'Pasang Lantai': 'lantai', 'Gudang Kardus': 'kardus', 'Cetak Spanduk': 'spanduk', 'Tangga Bangunan': 'tangga', 'Pelabuhan': 'kapal', 'Loker OSIS': 'loker', 'Pentas Seni': 'mik', 'Undian Doorprize': 'hadiah', 'Rapor Kelas': 'buku', 'Grafik Viral': 'grafik'};
+  const gameIcon = name => U[GAMEIC[name] || 'dadu'];
+  return { U: U, P: P, pen: pen, world: world, shop: shop, house: house, stage: stage, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
@@ -9979,7 +10012,7 @@ return ['Laci', ['Ketuk dua koin apa saja untuk menggabungkannya, lalu tulis nil
 renderVals() { return this.pxVals(this.gmWrap(this.gmRender())); }
 pxVals(v) {
 const board = v.gmInPlay && v.showBoard;
-return Object.assign(v, { px: PX.U, pxShop: PX.shop(), pxShowBoard: board, pxWallCls: board ? '' : 'px-grow', pxHasTag: !!v.gmTagLine,
+return Object.assign(PX.modeIcons(v), { px: PX.U, pxShop: PX.shop(), pxShowBoard: board, pxWallCls: board ? '' : 'px-grow', pxHasTag: !!v.gmTagLine,
 pxBoardCls: this.state.P.type === 'tray' ? 'px-tray' : this.state.P.type === 'struk' ? 'px-struk' : 'px-laci',
 pxMsgBoard: v.hasMsg && board, pxHasCab: !!(v.hasCoinBox || v.hasAnswer || v.hasNotEnough || v.hasImpossible), pxMsgWall: v.hasMsg && !board });
 }
@@ -12254,7 +12287,7 @@ const tiers = ['F', 'I', 'E'].map(l => { const arr = FMP.stars(g.name, l); retur
 const n = tiers.reduce((a, t) => a + t.arr.filter(Boolean).length, 0);
 const go = () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: s.mat, lvl: last, g: g.name, t: Date.now() })); } catch (e) {} };
 const pl = FMP.played(g.name);
-return { go: go, name: g.name, href: g.href, task: g[last], played: pl, isNew: !pl, tiers: tiers, starLabel: tiers.map(t => LVN[t.lab] + ' ' + t.arr.filter(Boolean).length + ' dari 3 bintang').join('. ') };
+return { go: go, icon: PX.gameIcon(g.name), name: g.name, href: g.href, task: g[last], played: pl, isNew: !pl, tiers: tiers, starLabel: tiers.map(t => LVN[t.lab] + ' ' + t.arr.filter(Boolean).length + ' dari 3 bintang').join('. ') };
 });
 const NOTE = { alj: 'Timbangan Balon membuka game Timbangan dengan misi dan kasus balon.' };
 const crumb = s.step === 'mat' ? 'Pilih subject, lalu game' : mat.label + ' · tingkat dipilih di dalam game';
@@ -15386,7 +15419,7 @@ const mh = this.all()[s.mi] || {};
 if (mh.balon) return ['Misi balon', ['Balon menarik ke atas: angka pada balon adalah kg yang diangkatnya.', 'Pilih Balon di rak, lalu taruh seperti beban. Ketuk balon di piringan untuk melepasnya. Beban dan balon bernilai sama di satu sisi saling menghapus.', 'Balik semua menukar peran semua benda di kedua sisi: beban jadi balon, balon jadi beban, kardus jadi kardus berbalon.', mh.ask ? 'Kalau satu kardus sudah sendirian, kotak jawaban muncul. Setiap cek memakai satu kesempatan.' : 'Isi terungkap kalau satu kardus sendirian, seberangnya hanya beban, dan timbangan seimbang.']];
 return ['Misi', ['Tujuan setiap misi: ungkap berat kardus tanpa membukanya.', 'Isi terungkap kalau satu kardus sendirian di satu sisi, seberangnya hanya beban, dan timbangan seimbang.', 'Ketuk beban 1–9 atau kardus di rak untuk memegangnya, lalu ketuk piringan kiri atau kanan untuk menaruhnya. Ketuk benda di piringan untuk mengambilnya.', 'Baris Kedua sisi menaruh, mengambil, mengalikan, atau membagi di kedua piringan sekaligus.', 'Batal langkah membatalkan satu langkah. Ulang mengembalikan misi ke awal.']];
 }
-renderVals() { return Object.assign(this.gmWrap(this.gmRender()), { px: PX.U, pxStage: PX.stage() }); }
+renderVals() { return Object.assign(PX.modeIcons(this.gmWrap(this.gmRender())), { px: PX.U, pxStage: PX.stage() }); }
 gmRender() {
 const s = this.state;
 const bag = this.curBag();
@@ -15710,7 +15743,7 @@ if (t === 'nampan') return ['Menata nampan', ['Ketuk meteran Baris dan Kolom unt
 if (t === 'perluas') return ['Menambah kursi', ['Ketuk meteran untuk mengatur tambahan kolom dan baris.', 'Pasang kursi menunjukkan total kursi. Total yang tidak tepat memakai satu kesempatan meleset.', 'Setiap cara berbeda yang tepat tercatat.']];
 return ['Menghitung aula', ['Meteran Potong kolom dan Potong baris membagi aula menjadi blok berwarna. Nilai 0 berarti tidak dipotong.', 'Ketuk satu blok, ketik jumlah kursinya, lalu tekan Cek hitungan.', 'Setiap cek yang salah memakai satu kesempatan.']];
 }
-renderVals() { const v = this.gmWrap(this.gmRender()); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxBoardCls: this.state.P && this.state.P.type === 'nampan' ? 'px-tray-board' : 'px-floor-board' }); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxBoardCls: this.state.P && this.state.P.type === 'nampan' ? 'px-tray-board' : 'px-floor-board' }); }
 gmRender() {
 const s = this.state, P = s.P;
 const isTut = s.mode === 'misi' && s.tut !== null;
