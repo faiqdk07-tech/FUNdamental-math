@@ -522,6 +522,29 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 #root .px-cart button[style*="background: #1C1C1A"],#root .px-cart button[style*="background: #2F5BD3"]{background:#FFC83D!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #E39A1C!important;transform:translateY(-3px)}
 .px-clip{position:relative;display:flex;flex-direction:column;gap:6px;margin-top:10px;padding:22px 12px 12px;background:#FFFCF2;box-shadow:0 0 0 2px #2B1D1A,0 0 0 9px #A8773F,0 0 0 11px #2B1D1A}
 .px-clip::before{content:"";position:absolute;top:-14px;left:50%;width:64px;height:20px;margin-left:-32px;background:#C9D1DC;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #8C97A8}
+/* ===== Temuan: kebun peneliti dilihat dari atas ===== */
+#root.px-p-PohonTemuan>div>div>div:first-child::before{display:none}
+#root.px-p-PohonTemuan>div{background:#8FCB63!important}
+.px-farm{position:relative;display:flex;flex-direction:column;gap:12px;padding:30px 16px 18px;background:#75BF4C;box-shadow:0 0 0 3px #2B1D1A;background-image:radial-gradient(circle,#5DA83C 0 1px,transparent 1.5px),radial-gradient(circle,#A5E070 0 1px,transparent 1.5px);background-size:23px 19px,31px 27px;background-position:4px 6px,15px 13px}
+.px-farm::before{content:"";position:absolute;inset:6px;pointer-events:none;border:4px solid transparent;border-image:repeating-linear-gradient(90deg,#8A5A32 0 5px,transparent 5px 14px) 4;box-shadow:inset 0 0 0 1px rgba(43,29,26,.25)}
+.px-farm::after{content:"";position:absolute;inset:9px;pointer-events:none;box-shadow:0 0 0 2px #C99A5B}
+.px-farm-sign{position:absolute;top:-12px;left:50%;transform:translateX(-50%);z-index:2;background:#C99A5B;color:#3B2414;font-size:14px;font-weight:700;padding:3px 14px 4px;box-shadow:0 0 0 2px #2B1D1A,inset 0 2px 0 #E8C58C,inset 0 -3px 0 #8A5A32;white-space:nowrap}
+.px-bed{position:relative;z-index:1;display:flex;flex-direction:column;gap:4px}
+.px-bed-sign{align-self:flex-start;display:flex;align-items:center;gap:8px;background:#FFF6E0;padding:1px 8px 2px;font-size:13px;box-shadow:0 0 0 2px #8A5A32}
+.px-bed-sign b{font-size:12px;color:#5A5048;font-weight:600}
+.px-bed-soil{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:4px;padding:6px;background:#A8773F;box-shadow:0 0 0 2px #5E3B20,inset 0 3px 0 #8A5A32;background-image:repeating-linear-gradient(#A8773F 0 14px,#9A6B36 14px 15px)}
+.px-plot{position:relative;height:50px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:flex-end;justify-content:center}
+.px-plot i{display:block;width:36px;height:42px;background:center bottom/contain no-repeat;image-rendering:pixelated}
+.px-plot.bud i{width:30px;height:20px;background-image:var(--px-tunas)}
+.px-farm-bil .px-plot.found i,.px-farm-ic.px-farm-bil{background-image:var(--px-wortel)}
+.px-farm-alj .px-plot.found i,.px-farm-ic.px-farm-alj{background-image:var(--px-tomat)}
+.px-farm-geo .px-plot.found i,.px-farm-ic.px-farm-geo{background-image:var(--px-kubis);height:36px}
+.px-farm-dat .px-plot.found i,.px-farm-ic.px-farm-dat{background-image:var(--px-matahari);height:48px}
+.px-plot.on::after{content:"";position:absolute;inset:0 2px;box-shadow:0 0 0 2px #FFF6E0,0 0 0 4px #2B1D1A;pointer-events:none}
+.px-farm-info{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#FFFCF2;box-shadow:0 0 0 2px #2B1D1A,3px 3px 0 rgba(43,29,26,.2)}
+.px-farm-ic{flex:none;width:32px;height:36px;background:center/contain no-repeat;image-rendering:pixelated}
+.px-farm-ic.bud{background-image:var(--px-tunas);height:20px}
+.px-farm-hint{font-size:12px;color:#2B3A1E;text-align:center}
 /* ===== Layar lebar (iPad mini 7, 744 px) ===== */
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 300px) * 195 / 290) * 255 / 195)}
 @media (min-width:600px){
@@ -4181,25 +4204,28 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <button type="button" onClick="{{m.tap}}" class="px-tree-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
 </sc-for>
 </div>
-<div class="px-tree">
+<div class="px-farm px-farm-{{matId}}">
+<div class="px-farm-sign px-f">{{matLabel}}</div>
 <sc-for list="{{levels}}" as="lv" hint-placeholder-count="3">
-<div class="px-branch">
-<button type="button" onClick="{{lv.toggle}}" class="px-branch-sign"><span class="px-f">{{lv.label}}</span><b>{{lv.count}}</b><span class="px-chev">{{lv.chevTxt}}</span></button>
-<sc-if value="{{lv.open}}" hint-placeholder-val="{{ true }}">
-<div class="px-leaves">
-<sc-for list="{{lv.nodes}}" as="n" hint-placeholder-count="4">
-<sc-if value="{{n.found}}" hint-placeholder-val="{{ false }}">
-<a href="Jurnal.dc.html" class="px-leaf found"><i class="px-fruit"></i><span style="min-width: 0"><b>{{n.name}}</b><span class="px-leaf-rule">{{n.rule}}</span></span></a>
-</sc-if>
-<sc-if value="{{n.hidden}}" hint-placeholder-val="{{ true }}">
-<a href="{{n.href}}" onClick="{{n.tap}}" class="px-leaf"><i class="px-bud"></i><span style="min-width: 0"><span class="px-leaf-name">Belum ditemukan</span><span class="px-leaf-game">di {{n.game}}</span></span></a>
-</sc-if>
+<div class="px-bed">
+<div class="px-bed-sign"><span class="px-f">{{lv.label}}</span><b>{{lv.count}}</b></div>
+<div class="px-bed-soil">
+<sc-for list="{{lv.nodes}}" as="n" hint-placeholder-count="7">
+<button type="button" onClick="{{n.pick}}" aria-label="{{n.aria}}" class="px-plot {{n.cls}}"><i></i></button>
 </sc-for>
 </div>
-</sc-if>
 </div>
 </sc-for>
 </div>
+<sc-if value="{{selFound}}" hint-placeholder-val="{{ false }}">
+<div class="px-farm-info"><i class="px-farm-ic px-farm-{{matId}}"></i><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f">{{sel.name}}</b><span class="px-leaf-rule">{{sel.rule}}</span></span><a href="Jurnal.dc.html" class="px-pbtn px-f" style="text-decoration: none">Jurnal</a></div>
+</sc-if>
+<sc-if value="{{selHidden}}" hint-placeholder-val="{{ false }}">
+<div class="px-farm-info"><i class="px-farm-ic bud"></i><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f">Belum ditemukan</b><span class="px-leaf-game">di {{sel.game}}</span></span><a href="{{sel.href}}" onClick="{{sel.tap}}" class="px-pbtn px-f" style="text-decoration: none">Main</a></div>
+</sc-if>
+<sc-if value="{{noSel}}" hint-placeholder-val="{{ true }}">
+<div class="px-farm-hint">Ketuk tanaman atau tunas di kebun.</div>
+</sc-if>
 </div>
 <nav style="position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; border-top: 1px solid #DDDCD7; background: #FFFFFF">
 <a href="Main.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"></path></svg>Beranda</a>
@@ -5841,7 +5867,7 @@ const DC = (() => {
 const PX = (() => {
   const P = { k: '#2B1D1A', w: '#FFFFFF', y: '#F2C035', Y: '#FFE680', o: '#C98A1B', r: '#E8554E', R: '#B23A34', q: '#FF9C8F',
     c: '#93D65F', a: '#57A843', A: '#2F7A36', b: '#8A5A32', B: '#5E3B20', t: '#C99A5B', T: '#E8C58C',
-    u: '#4C8FDD', U: '#2F64B0', s: '#A5DBF2', e: '#9AA7BA', E: '#D5DDE8', f: '#F7CDA4', p: '#E58C8C', n: '#2D3250', N: '#474E78', m: '#57B8A0' };
+    u: '#4C8FDD', U: '#2F64B0', s: '#A5DBF2', e: '#9AA7BA', E: '#D5DDE8', f: '#F7CDA4', p: '#E58C8C', n: '#2D3250', N: '#474E78', m: '#57B8A0', g: '#F08A3C', G: '#C0602A', h: '#FFB36B' };
   const SPR = {
     coin: ['...kkkkk...', '.kkYYYYYkk.', '.kYwYyyyok.', 'kYwyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', '.kyyyyyyok.', '.kkoooookk.', '...kkkkk...'],
     rumah: ['.....kk.....', '....krrk....', '...krrrrk...', '..krrrrrrk..', '.krrrrrrrrk.', 'kkkkkkkkkkkk', '.kwwwwwwwwk.', '.kwwkkwwssk.', '.kwkbbkwssk.', '.kwkbbkwwwk.', '.kkkkkkkkkk.'],
@@ -5897,6 +5923,11 @@ const PX = (() => {
     celana: ['.kkkkkkk.', '.keeeeek.', '.keeeeek.', '.keekeek.', '.keekeek.', '.keekeek.', '.kkk.kkk.'],
     piala: ['..kkkkkkkk..', '.kkYyyyyokk.', 'k.kYyyyyok.k', 'k.kyyyyyok.k', '.kkyyyyyokk.', '...kyyyok...', '....kyok....', '....kyok....', '...kkkkkk...', '..kbbbbbbk..', '..kkkkkkkk..'],
     bintang: ['....kk....', '...kYYk...', '...kYyk...', 'kkkkyyykkk', 'kYyyyyyyok', '.kyyyyyok.', '..kyyyyk..', '.kyyokyyk.', '.kyok.kok.', '.kkk...kk.'],
+    wortel: ['..kk.kk.kk..', '.kcakcakcak.', '.kcaakaakak.', '..kaaaaaak..', '...kaaAAk...', '..kkkAAkkk..', '.khhgggggGk.', '.khggggggGk.', '..kgGgggGk..', '..kgggggGk..', '...kgggGk...', '...kggGGk...', '....kgGk....', '.....kk.....'],
+    tomat: ['...kkkkkk...', '..kccaaaak..', '.kccaaaaaak.', 'kcaqraaaaaAk', 'kcarRaaqraAk', 'kaaaaaarRaAk', 'kaaqraaaaaAk', 'kaarRaaaaAAk', '.kaaaaaaAAk.', '..kkAAAAkk..', '....kbBk....', '....kbBk....', '..kBbbbbBk..', '...kkkkkk...'],
+    kubis: ['...kkkkkk...', '..kccccaak..', '.kcckkkcaak.', 'kcckcccakaAk', 'kcakcccaakAk', 'kcakccaaakAk', 'kcaakaaakaAk', 'kaaaakkkaAAk', '.kaaaaaaAAk.', '.kAaaaaAAAk.', '..kkAAAAkk..', '....kkkk....'],
+    matahari: ['....kkkk....', '..kkyYYykk..', '.kyYYyyyyok.', '.kYykkkkyok.', 'kyYkbBbBkyok', 'kyykBbBbkyok', 'kyykbBbBkyok', '.kyykkkkyok.', '.koyyyyyook.', '..kkooookk..', '.....kak....', '.kkk.kak....', 'kcaakkak....', '.kkaakak....', '...kkkak....', '.....kkk....'],
+    tunas: ['....k.k.....', '...kckak....', '....kak.....', '..kkkakkk...', '.kBbbbbbBk..', 'kBbtbbbtbBk.', '.kkkkkkkkk..'],
     buah: ['....kk...', '...kAk...', '.kkkakkk.', 'kYYyyyyok', 'kYyyyyyok', 'kyyyyyyok', 'kyyyyyyok', '.kyyyyok.', '..kkkkk..'],
     kuncup: ['....kk...', '...kAk...', '..kaak...', '.kcaaak..', 'kcaaaaAk.', 'kcaaaaAk.', '.kaaaAk..', '..kkkk...'],
     medali: ['kkk....kkk', 'krrk..kuuk', '.krrkkuuk.', '..krrkuk..', '...kkkk...', '..kkkkkk..', '.kYyyyyok.', 'kYyyYyyyok', 'kyYYYYYyok', 'kyyYYYyyok', 'kyyYyYyyok', '.koyyyyok.', '..kkkkkk..'],
@@ -5947,7 +5978,7 @@ const PX = (() => {
   }
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
-  ['coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu'].forEach(n => css(n, U[n]));
+  ['coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
   css('bunting', (() => { const t = pen(80, 20, 2); t.R(P.k, 0, 2, 80, 1); [P.r, P.y, P.u, P.a].forEach((c, n) => { const x0 = n * 20 + 3; for (let j = 0; j < 9; j++) { t.R(P.k, x0 + j, 3 + j, 15 - 2 * j, 1); if (j < 8) t.R(c, x0 + j + 1, 3 + j, Math.max(0, 13 - 2 * j), 1); } }); return t.cv.toDataURL(); })());
 
   function pen(W, H, seed) {
@@ -12476,7 +12507,7 @@ const LV = { F: 'Fundamental', I: 'Intermediate', E: 'Expert' };
 const m = M[s.mat];
 const all = m.F.concat(m.I, m.E);
 const MID = { Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' };
-const mats = Object.keys(M).map(k => ({ label: k, on: s.mat === k ? 'on' : '', img: PX.house(MID[k] || 'bil'), tap: () => this.setState({ mat: k }), style: 'padding: 7px 2px; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; ' + (s.mat === k ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF; font-weight: 500' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') }));
+const mats = Object.keys(M).map(k => ({ label: k, on: s.mat === k ? 'on' : '', img: PX.house(MID[k] || 'bil'), tap: () => this.setState({ mat: k, sel: null }), style: 'padding: 7px 2px; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; ' + (s.mat === k ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF; font-weight: 500' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') }));
 const levels = ['F', 'I', 'E'].map((l, i) => {
 const key = s.mat + l;
 const open = !s.shut[key];
@@ -12485,10 +12516,11 @@ return {
 label: LV[l], count: list.filter(x => FOUND[x[0]]).length + ' / ' + list.length, hasLine: i < 2, open: open,
 chev: open ? 'M6 9l6 6 6-6' : 'M9 6l6 6-6 6', chevTxt: open ? '▾' : '▸',
 toggle: () => this.setState({ shut: Object.assign({}, s.shut, { [key]: open }) }),
-nodes: list.map(x => ({ found: !!FOUND[x[0]], hidden: !FOUND[x[0]], name: x[1], rule: FOUND[x[0]] || '', game: x[2], href: (G[x[2]] || 'MiniGames') + '.dc.html', tap: () => FMP.go({ g: x[2], key: G[x[2]], l: l }) }))
+nodes: list.map(x => { const n = { id: x[0], found: !!FOUND[x[0]], hidden: !FOUND[x[0]], name: x[1], rule: FOUND[x[0]] || '', game: x[2], href: (G[x[2]] || 'MiniGames') + '.dc.html', tap: () => FMP.go({ g: x[2], key: G[x[2]], l: l }) }; n.cls = (n.found ? 'found' : 'bud') + (s.sel === x[0] ? ' on' : ''); n.aria = n.found ? n.name : 'Belum ditemukan, di ' + n.game; n.pick = () => this.setState({ sel: s.sel === x[0] ? null : x[0] }); return n; })
 };
 });
-return { mats: mats, levels: levels, count: s.mat + ' · ' + all.filter(x => FOUND[x[0]]).length + ' / ' + all.length + ' temuan' };
+const selN = [].concat.apply([], levels.map(v => v.nodes)).find(n => n.id === s.sel) || null;
+return { matId: MID[s.mat] || 'bil', matLabel: s.mat, sel: selN || {}, selFound: !!(selN && selN.found), selHidden: !!(selN && selN.hidden), noSel: !selN, mats: mats, levels: levels, count: s.mat + ' · ' + all.filter(x => FOUND[x[0]]).length + ' / ' + all.length + ' temuan' };
 }
 }
 
