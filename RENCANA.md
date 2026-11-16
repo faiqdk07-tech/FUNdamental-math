@@ -3,6 +3,11 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** **tema pixel B diterapkan ke app, tahap 1: Beranda, Mini Games, Kasir Kilat.** Isi, angka, dan aturan main tidak berubah.
+  - Beranda: desa satu layar (rumah 4 materi, papan Tantangan, gudang Bengkel, menara Cek celah, peti Lencana). Ketuk benda, lalu tokoh berjalan ke sana dan kotak dialog bawah menampilkan rinciannya. Tanda seru di rumah materi dari "Coba berikutnya". Tombol di rumah materi membuka Mini Games langsung di materi itu.
+  - Mini Games: latar rumput, tombol materi bergambar rumah, kartu game berbingkai pixel.
+  - Kasir Kilat: adegan warung (dinding, jendela, pembeli, meja kasir, laci koin, lantai). Koin uang emas, bon utang merah. Semua mode (Pengenalan, Misi, Harian, Lab, Aturan) dan 3 tingkat lolos uji main.
+  - Kode: CSS `.px-*` di `<style>` kedua di `<head>` (huruf Pixelify Sans OFL disisipkan); modul `PX` sebelum "Logika tiap layar" (`PX.U` gambar kecil, `PX.world()`, `PX.shop()`, `PX.house(id)`); Kasir Kilat `pxVals()` menambah nilai tampilan.
 - **16 Nov:** pratinjau desain tema dibuat di `pratinjau-tema.html` (halaman terpisah, app tidak diubah). Isinya 3 tema (A, B, C), masing-masing Beranda + Kasir Kilat F Misi 1. Faiq memilih B. Rincian di bagian "Desain tema".
 - **16 Nov:** kasus tempelan diperluas ke 24 game lain (semua kecuali Timbangan). Untuk game ini angka dan kunci dibuat app, Claude hanya menulis cerita. Layar `KasusBaru` kini punya pemilih materi dan game.
 - **16 Nov:** kasus harian lewat prompt → JSON → validator, **tahap 1 (Ubin saja)**. Layar baru `KasusBaru` (Pengaturan → Kasus harian baru). Rincian di bagian "Kasus tempelan".
@@ -23,6 +28,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
+0a. **Tema pixel tahap 2:** 26 game lain dan layar non-game (Progres, Jurnal, Temuan, Pengaturan, Tantangan, Bengkel, Cek celah, Kasus baru) masih bergaya lama. Tiap game diberi adegan sesuai ceritanya, mulai dari 6 game Bilangan lain. Faiq menilai Beranda, Mini Games, dan Kasir Kilat dulu.
 0. **Faiq mencoba alur Kasus harian baru** (salin prompt → proyek Claude → tempel) di Ubin dan beberapa game lain, lalu melaporkan kasus yang ditolak atau ceritanya janggal. Timbangan masih perlu pembuat soal acak supaya ikut kasus berangka baru dan kasus tempelan.
 1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.

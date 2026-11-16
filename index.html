@@ -2,7 +2,7 @@
 <html lang="id"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#F7F7F5">
+<meta name="theme-color" content="#2D3250">
 <title>App Fundamental Math</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
 <style>
@@ -16,6 +16,104 @@ button{font:inherit}
 #root>div{width:100%!important;height:100vh!important;height:100dvh!important}
 #root [style*="height: 844px"]{height:100vh!important;height:100dvh!important}
 #err{margin:16px;padding:12px;border:1px solid #E3A08F;background:#FDF1EE;color:#8A2A12;border-radius:6px;font:13px/1.45 Inter,system-ui,sans-serif;white-space:pre-wrap}
+</style>
+<style>
+/* ===== Tema pixel "Desa" (Beranda, Mini Games, Kasir Kilat). Gambar dibuat modul PX di bawah. ===== */
+@font-face{font-family:"Pixelify Sans";font-weight:400;src:url(data:font/woff2;base64,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) format("woff2")}
+@font-face{font-family:"Pixelify Sans";font-weight:700;src:url(data:font/woff2;base64,d09GMgABAAAAAB7gABAAAAAAXNgAAB6AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoEMG64mHIU6BmA/U1RBVCoAhGoRCArlXNB3C4NgAAE2AiQDhzIEIAWELgeGNgwHG3VPRUdo2DiAMayeG0XpZKWjqId70xvB/5cEeUgIXS7qu1AFlMLOc8cxWo9sCNYuPtt5TX6Wr0cFrVcIq+CY/w2X/PD3YpSIpbqmt+qMTg0nCVVSRoSSQqJ3hMY+yeV5aoz2/u6pJ3EIhSiaSCSG7tqYi1gWr0xnyBc62S3rHo9z/r0kVYp6KXjzktLyN6TYxBtYqaQMirWYFpMpzcSdDfbFveOLCQCPvbN80hccqy8ucud0IdXORZNwURHG4MSuQy76zq13QueKQuI1iV0Qq2FpcYnhFcSTtH0LvWNs4a3TrzosyAbTD4uuv+0fAKiypbvFS/7S9bprmSQZK3ckmUBkO9SmMpDeu7dhA1fpdIHbDWr3foBQe/FICRcVAOiP99pAUZpCvWNtistkgrAvdX4o6SBVn0tUrkD5+Dl8fBwOh5eHl/f/n+YnfffL+qVre/dZvNza0pP4hIU1GEDmvaun66dnWVN+HXnW82sZb7e36EnWHkmeSekN9nFarQDVimgAC2GBNAQEQBD4f13m47MVpQFoGMLSId61PbaunkbGTsWl4lpmEvG/jH01Uy2os5SxEBhhaHXMV9+kSpKhlz57dEJIrSdiRSSIhOn/bWP+e7y/uhZClBhAwyggpuNHKgiLgCHgLB8iDCWlMGEISL9hICgoDAQ5MVSGQckHwfOhJRBviC8LhNfHsJ3wER0gedwV5zOfC+EYDPQKnfRHKHH3dUZAnxQcYuebVSbwOb64WsEHBWhzEhAE8tiXzlb4dEcXIk40UQxBbjhY6IsFtYTAkBLzg8ghKH8SAuUVFBZG2b0J0GfuQQEhhfKGbAflMgrdDR26p0K7asTJDrHHvBgR4aqil0xrGRQYLGCMs8V4uIc0T/LBMKNqZrBSVEYrqhB6CIiiuu0h4neakSMKS0yrmEX2On/H4/Ar6vH4ntYDSqq8KVapVW95YNMBZHgjsWxdi9E9PVwCFl5daleHXBMGPuNvIeppLl9Zy9uAw+hDMFeDlab/gTVdNn6r1WtCAhMTqIABqCI9tJoFF7OPZCICFoFpYKqPkYNa9cMD7E6J2ldAkCJ6opAjOhVAga7fxTqihTg9dLHsxGCgRSM4yVDvKOL6EGcGMa8stYclEZc5iRhzSi5y+G8GpCgCzEZm8ObxQ+8wkYFtwYR+I53uJrZ/hxN5kxqLqygPyCpw0h2mQnMzboP2SvoY+fwRpFXlQBo1fZnog4HNtHgDVsVUaWhFp8psf0ljAbBtNY0z3ktSRevmVQ1F/Z/EvP0FMHktT57HLM6iwhc67J6Wtd3cuUvfKVVTSJgqJYFyrv4GAshPQUwdqJqVyv8mYRwcAQmSoplQmOMFUZITqXRGGZtfWFQ13TA3NnfzhWLJsp1K1a3VG7dv33/42Pz8/e7+4fEnNAmCDI4zBAXTDMKycCCABINwKISEwwGexwSBFEVMkhBZhnt64N5erK8PSSTgZBJLpah0ms1kSEUhx8bQ8ZnW2Vl0bg6aX0AXlzzLy+jKOqiqkK5DhkGbJrG5Se/s0PkCVCwRBwfo4Ql4dgaen6OXl5BloY7jK5ehSsVfrQZfvG5xXaJehxsN9v17uNmkPn/Bv3/H7x68j4/40zP+8yfy9y8MpUDQQxCtJOWlGSwc9nEcxPN+QQiIIi7LUCIBpVJwOh3MZAhFIcbGQvML4cVFTlUjmgbqOm0YiGlGNzaR3V00n48VCi3FEmhZoG3HHYepVNhqFXVdtFaL1utQo4Hf3tYmcUmNkyPjdiQEh3BQezlmeVmK9+0F2YwCtr6hqA0TGPM+sl8Wy//2H/0lv+5n3fYfV//yRze9Or86uoqp3qoW7BSXv5Yny3mlIoaKPMXJYqDgi3mFBhy9Mfa3vWPu7PMbMKMlpH/TmD6jKbK90EiQ/+hnozaLZdNjzTbF56idnx+QglxWB7UorSkY3TPeeubLlC3HwpQupjdDV6P7uoU67/8H5YJAnpEMBUsQmR4SNd2ZqGWsM+vmwwKLLLEsLeOAcyznhCpvcE+vSx2u0fGev3/vVKDhiCrYgzWnhN2wc4d6qoc8KOgg0znbpbKZUraKuqmtpnBr72UXjMEbgRqNpYNd5Z0K4Q7CuS6BZbZ/NeWIivup26cWcUnpxkYIACF0JJqHGJjaZNtRPVa1IqzkL5oBq8/xtvuqTntXQiiLsk3stk7w9bXoyW7ex6SKelJwRFA8SctCY9e9qbl25fqRke7pTozxEskomUb0VBf8xVGUjTf9MT85WiUnmbO7MeSb45MDTnx0lHYg2Gqj/AFs8CfSFTeH+b8n+PdMJS6oM0RZigS2gUCLOQPjhKNhKEGWUvRMyZg3/HppMBgSW0Y0UBTw83AUWnbf5bH1qbGuKyKjzzLZ8MtVrBE4r66JXQgGesmT4BoxTPK7COjQLKMVMzOkKyFtnRtby8UViimnWQOCSqdcQyyql8+HK4pWtn4Walxnu/4wyAeOC4g+RxibrsIu0DyzwPIvzHw/19wqVd1EWQ1ePw618JjvzRAiLD5H+C5mXr0ZCSWVVJtRa8oecDaaaZpH83j03cts7fbrg4pOJXYHtXOsA6dyXdWIsaHp4aY9QVOfc31hvru7cM+DHsETz36f3G6HEjxElEQqlNggiEwPCVKWXuQLQ8OJRrpYQzbQlD72KqCKJvO3+iCAI3rhYQ4AA3gxgMIGj0tdExEMRpcq6WdXyEbDkGTn1/lI5auiP3FSMz+CiNvGmEApxD4JlknrWEFP3hCyWW4eN8HRarlG0E82Qum1SNqjvymE1y7y7Qg7Jdt9eS3my3xsAPzTOcrWQ/AAfNgALgHJ+kFr2gB2DEkP96ZyZRgqbeiwG3wNOwAiI6wZbMaaDVvOnTUsMT/neoaGgf0ZyPRDcF18yvUiSNmmL+YbkdddbzJOldr3LGiRWWLZ1IDZd9fFvPP5F4XMUwflMnAhFCH7q+W01PC43I2XUDPmO4888dz+fNNhDccV8Y0TtswFkS/PBgUR4SeKaBgjXYovSyBLfRZW/o0n+cHyk9/6ZztDDdgUFqQFO7MlGzPWeP6CM1PYePX10yufrjYnl18IO9+4Ej+4Dsb74xNNLeqUBMlmwa3F+zYt7bBsKOb9HWYfADKPN9RVgfZ4W00z0MPlk4CgLNKSgsTj6xCg/8Rl2SQ9wkk2s372KV4QihTq9bzxcxdJEiNMAIVhhFJDCMX6EQwGkRKXGijnF0NQhwJcn7iLyAp5UkTxg1B2I53jntm7bk3wIba9Pe0GO5HW1ne8HkUlQgC5zUBnnS2IcBt5xY4DImutw7GNxiFFT5tAMr0ohJhY9uBzCDmFwDhIjDdomFulVmmxk1GLb4eQYoTRWA4GTXinkOoh/4RbIXGXwGs7kz//QAVnhWwJSGDshp7KLoR4qI+g0YfYNWoxQqwGimMr6zwGgYZZUWW+PoQIyG10M+BGe915jta/TldcBYeAXcQ//fItgZOUi0H44P+vAepdibsE4BEgz/QhwDwScsQBExvB9Mdx6Vu9CwFQIEA6SDiPQSWEJLFWAMsvzgZKlCCsLCPOuWoOEShdSvQZ/UA/SoikSKmykWKSIMlSpzQqPcapZJ8c/D8H8zSynXTBdbJtdICsFx5JEYlzj2ze7fQNbGhOCf+XZ/1n/WY8M9Mzb00fAODV6nTP9Lrp2LtnPI947gcko/zS7/nU94BcozzSXJZ1fGtvOuZhZ73gQ495xDXXnfGqQy456JzDjnjbm95ywqMfhHj0vfkKElyN27uacN4t77vq6w9JnLLEsuQHI565Xe3t/8I3POumdx1w3HNe8ryXPeErTxpxv/c85QfPeMde+3zjA4875Ud7jHrANpttd5IYgSIlIiGjEMiPvwCRwoSL4CNOkngJUiR6XbIM6bR0sqg1yaeXq1CeAgsstspyK6xkYVTCZKly1SpUcqjyhhodWrVp16NOr1RO97rPbVPumISgNmcP4CcgL4DMAsP7gdEA1AKQXwAKop0EsBUaZZVZTJ97BAKDNKUum4iTfghhNwkEaaGWSx5QdvMrdUB6NJJEQJMHULbIQgAQIKpIWUYsvBAlOWrER4pkqxbXiCSmAqYGb6W+Q6Ie10H5VcqK67dYELWcRoUxEV2/9oiydcpO6rLVOjRvL8oTQdxtc3ffUgDxZIJarTfmGXUs7iIBxAOx29aEGjBfT3N6fnq4X8aXGx2nXEgvAwHC3qSizupU6opq4YxwwD3REq7G4qEehzypQ8Jo7T8ergmcnoZ1y6L3OaLEpPuxTy3oD3uCslNnO2+5u7cm75eq3WwrIyqg4NuDihIatFy62V6wtFwvnhetFwoBB9TFWRc/Rq4C16UegBhOIEsx8Ht6HiQs9sEavkGWaXGlT7fzFssx2IAtaB+2SII7ZLhMHcRHUKUKcuFlr+lQwdI5ZfPk2vIw+Zm3tfTnpZAavA9FSMsEOyuvdkHBWllbk7SRfD7ZvNiunqCsAmiVFwzFpDZQr94wz5+UwzMrIcJme+8VIe8RdayC++WA6EUz8aOV8lf6lBtDHukHE64kj+Vl6ecFgKH5wJlXPDGtTkwmfg9HsUL8Mhe+AacVkdfkM/JUejj0D0QUGbYgbgV8RR6MXxLqJ3lpUKSDNCeqT5NQR7JV0oQjcbyI47UhRdYEi+o7ccFXOpR2BWZ7oU48ZPSLoBgzpKY7ivAxa73F8GKPwCIaSYf7C/f2a8YRm69MLbrTZjWZ15mWL/ZCxXQy39gLBJbAFImJkCjFgiJ1Jj1cukX5SOb5Y0gr8kWmjC6gsN4NU/VqzfVu8mJMxeja+az70KDUg8gEEEHPztBuugxDyP2tw8yklclxf1ayd/xMs1xpcaZ0mV6YOOzFWj1XsOAzn6a9S3qDxddD9uiqCBddK2rRZ18n2blRvZXdOnzr5Fldo1/sbGXb83MABg95kVH7/Sq5UM78emRt6fD8ibrr6HctVf2H6zGBhyl8k8MLHlgdajkv1vHClO1pWqxcOVfNa+9kERlPccb3O671ao7yetIc6VGeUcgAwQB1GOP5oxdqBy184LNm/mKnY5LLJD1IkX3lbM7bA+RVUitixAPezWvPh2eOngvPKsSLFn8PWQ5Xc1yW+1HqmeWQjlLGlI6yjhSVkGSZn7VCgkIPrp/IMxRTJmfFRTc2wm/HW0kxVD/fto2di7MZ/uB3WfUTZjVoQKn+aIsPSKhBAzroQnkN+wXyYdQo0ZVqFCaJ9iMyGUY0SKFSHvo2vsTClXq03k1ePCnQ3sPnGY18czagEEhMuZITmsIsHZp8fZxvXvAkpzTHaGroElsqFU8IJ4wgTCgmObJGn9UnVRPrPgypq8GYVyaWz1WqUDTFYh9cuBJrmQJGfl/dVo0ZttfcCokBKxV6Ooqedf8Ji+mr1OQLhwqE3uH0RkoV58xt6ecJtSgCMQholCfRi1904USi5+/94MUTYZm0hXkbZl/qEaInNhCJmqUAFf2cpCC8fj5gfCc29xdLMz6Nlu864IuegFAhgeiVdbZwvQQZkMU/Z4wJkpbgqrZuhw6lITAruo8FQHte/uPE3yISswIW1m7Y1V3lbHpV4yo3Uc/tZF+YZN9GLmRjW49/XV8TjFn/v86sWw54Xn3SnETcqBXM6+pu6FAZ1IJerOZ712Myu2tVdh7cRfJ0R2HK36CruOPjHWmqyCRGVEKr3lk5cZVvzkG/rZlT3BPVbCyASG9NICKB9J7LJkxVp5A8KFz78aKwqRWocJCPWNYILrloUhaGiHM7Sy342whN0nPdn2HtvJ/9+OD38ra6MtOaxbLcTCeQ2WMoLJmbCfRt4V5y9O/7Jh9FLsDf86P72rGr3y9/66R6AyimemHqZP6WeNQjuAavd4Ze1K6vC93QB/o7I02/TP192D8BewJSm7emjB+Hq0L9Y9Xks3MZnU0IlBY+9Pj0UVySiUKXjxSDwaCWCE6V3tqOqNl/F9nMpkI1iZq8l3QYs3+CiJQsqawcqKgmMadzqfQrB7LXFdoEv3B0D/BiDRgacse+SS5/TBkTuANFLWEadaaLp1ZpEr6F1skItD3ddKTttYIHWBe+8UhgVXHNCvZ4W8yKEMV5iIy2emqd49xl73y6Qt6muURvHGdVMktG2Tc/AHZ3TqsAs6NTp3Vf+3Ba9cFvm3bgGAj7e9mPLqXKGMFIM0SGW2MkMLUC4+1CWnaotIAu7rDOgw5T632dSNxc/B0HeoQzuJo/0nrHx3V4COKoe82DA3VbXmom7qiwoR4dtaaNnRVQfrrlqnb79m3+G9sTrGyoZhWi9PMfC3ufb9/w94m3H90GjfRZKlxd8mjsW6gmNPpY9Bqyh1D3Ovk33WHNMj6frLSBDr6ZZpTawNMGrq7PFH/L5oRG/c3/aHEqNZ4/gyMzgN8hLebRSDEBaafMSq3bTqNyMEMjm/fKJZsyWZCLHhSR7764lfdOHLgrwewEHa5YVaRavbKjWvGLb0iWgUElppyCY/PRp0uRDvol2zvT6MO0+qCaHsOLCtLC0zYsvLmuY4Pv4oOLWcP9aQdBNTTzxsxwIXPMUddgo2Vdy2Lq6LNx/jNDfxxIyftM4Zj8StXfhLzZZnnPVOWfvpRutpn51c14oksUPr4WNpJpwndf4RlmGCQbsmM+HSkdOTMnnXYxZQxHOuzQc14PcE9z+7jDxfu6TWN/0ajxZ79us48Emw0MY2ZYJltNM1cZZnNWDWPmGGaCwQP4PLfxuN00iml4B+fEon2GEw37i123P9vLasxyVlzZ6OZ0ZiW2cixzg9EMaBSaqxoM4heknjjME71mYv94HUX7uEMBKXt3ixh64gyDI43zjqRiDWfFVbhQBZrLsgOsgr3KDn1L/pz6OLfHsL9oT5fZv5fbZ9jDX5+JSCKhS+w0NmMm6694fmrLdjWmMb2utp7KjWIcjXyh3SMwOEX7eizu42D/YViDha7Kcht0w1HaYmAp919hvdjB1o37t/T+3V8txjTDrC/76MKJUxLMYoYZdmInc5pRRPfJ3WLYQVbBnmaxYDhWWc1VZ1dDxEfNBRRyqu9E9Q6mr1afq06+FzNX0ev4loFBdrUpiJBZZmBAQ9+AA8PwhXMww5lxjaKMYeidyPBd2NOWO2uOMnTySbMci3+ZcpxzJN2L8VWswIMYT2DNYPbuKIgc2Q5YduYOt8flFO1bdeYLa6TV7ObnlL1OReMNUolPK6Zv0OwGigxpZelx+9HEqgp+Wtgfmp42NHwX/DvGmxuPYzPH4AnMXCkF1D6r0PgDD03I7fzvs95EBwXTwijSZTQN+lXZOxl50y011EtYf4uD5bR65P+lnTJhzFiqCG6D/sTsCRozTqGAae7z/YmPuz7XjP5udYG3jD4bKCEmrjHRK4WlmOltfJdZNPX/bf9i9N9ePt0w/QnDQjFpoukSmjaJKJWuRC1Wt+MmvhreczZbZYW2VQ0/fMw8NvfjvjFsyV3nuo2hx+tnPJ73QzdySkjkTP1nAhvsWGaW+3y//zo1fE9D/u4Vf83Ws5j9HlWVxxmw0tYvYbsArzqQR7Zx5kchnmZrgVfxSHsddBG6Hdn7FEZQh6wqK+jMI24rjs0BL+4sBzMtvI6fQz1fdwL7WrhvuX+Vwi8D9aZM6fm/j1ST1icYC2txc1kaHewI0Eo58fPSpnTfYLVQgOoyNV0SdSzMnnSC9b9TeZo6WOeds2moOwFH2DaoP9ETr/GkA0crzk0u/i04tLyJTw1hEgRFTc+oUApWS12pEh63KxUgzyGAT1Tx5k3CmN6x2MbxsfgUlHekQPrTLHDMIRSa8E2GJmlR1SEGUheqIC1h9HF5q6V0vBStLwOpJ5gAdgwGnqf+RESSdul93DYcFv5/uBqHS8LlW0jP78d0RFhpQHDA7oCQbSGB5wODWpQ6PD+exvQ3tN8rWD2Z3CtY91rrEmMLeXEsPY4s908di4CG9aO7u6o+VfFwbIr8Kkt/IzKF9CtFttJeQjSxvrpCdVzths4uX/wE9n2RZZ5gfB9P3z/2SdohkZZIZaUySXKCWOmvlCakSiR1Vsfe1F/89KN4ZPHTzqfjy3WKWGuwIkGt8EmEsbBMjE0Ym8VmjC1YnWkUSy14g+lubBGL88SS3vOBaHsJLRHDYacq/nC8arc63GhalLHobhh/Ww73sMPm8vHy0mf9tcydC6ZyePY2jS8MOy53o/U0Z+ZMXnd3tO+qOln1qOfXLw9/3GSpmqovX2UZsxyY1DWb9ofefXffEt6dd8v97pa/MWM3b+/D4l6Ffy7q6V9J31D40WuJbbVNazPaFtmspa/fcVOQjrfdXPf9tQN+EW/ktfxqfgm88JzhccNVBy6r6P3Dd6tfvqnbD9QHne5eZo5fesVdJhw3lA31rh+RoRtGb+uzrxnsc7VXrGHPbsiCq4IyUrjHtIek5gOfbx08p0gHP1rw39DvDrfWrrpVtWqXbp1/qvvBbnbu/pkLW7zVxi03tnljcL2Gy4Qds0z/e3nP1OX98hb9zQ132dmy89Akd5d6EZiaV9v44ioaGP83gxVsjaoFq0xojFlkDoDfX8KYOZD+hnnWDGN7ZnppNW030liXKoeCmevpNEwb7dnzpUH+TBjD/GcE45Za9WoBrG/wuQ6bNatzluaAz8zMxBaJ2rzl1jYJBjRjNALkP6Te+v7T0r0pf9o4uoJODEyk1QAeLNsQ+fhSztm3YHbfREsd2oU3kEk/ApGUqUFAt7v2u6Id/4kD46cdGv+Ro+M9Osqf8tHDz7gtr/O/sB6EvrKw2z/GT9s3/iMHT/RoCUMPK9cOtQrsUGuhHWqFlZWaIpVpOsimW+VWlVVsbo1b49a4NeVMepRTAFbkAKzI8acTXdBnbuQ4HlQA3IvKy2Tcy9zLxi7Tq2cb7r4fZ/rT9b78WvwYXu1ZK5epKtt1uO1uu20nBHG5W9wt7paxLeVuctSNR6RnDQf22R+95crPPx+oSn+qL0/0dXqS07t6DGxqf5SYVDZembaKxtk6yGALN+jIQulb01IdLVo9VhEm3px8+fFm6fTqxGiPV62FbfekYGutvClxYQwdYvyDJTW8HixlpTdXbq2N3yiPzL0dPcwzgMD7wOGjFaM4ztdnlq9UAc77rozj+wVLlAogIGDtacyeClb/T0qSXwO8nuvUjJ/8+sbouW+bs/RUBiJGAAR8xm2942Rp5X/yGYCc3txfyrs4tobc/onXh+CBQumPn8sVtCn8Lq/sUojRkavklehzsjyxjtYyYLncVv9USGIpcWO+oy1kRCQ+t+1rltTPJPzMV6OVQV7qqdwrh8hLM3nryunrgVz0dZLhoupp6m1VV4L9tLKDHFW/IDepJxxHf77nAGF/ZRL9urXs8Y0qYnQUzrPZTiCrF/Aq/57fRlQuKblTr4a19eTYfC7ngudx82UdSRxSO4it5chLLjimYjE7yymKZTdXuTftF1jSNy4ORaPWmQXoC9xWnR4SFK8Oj9NeFTohH152Xkiil/+KNZML2k/AHmAjsA3YCowBe4Fh0GaBCdDmQm9/STz60OgVsPBts0Ig4KdiYimoZOsy/1B9RpBQhwzAE//PLkYifHoxQeqDi0mZTs9QEjiUaM52XCymsuAiH/MoGghMCIemuN+elVODOvVcPe+j23XJxvZ2qdGpIVGuoRj+QTZoxmjTqQ6ryBKrFGvQx6lZg1r9SlRp1QVboE0zBwunThbVVpitlI6h6dI5IuWxQpkg/Tbm4BThLJYjTuMCpdTCrtpb1OnEASUtDR9Ip2RKwLkwHsTM79SmkVPNLS7U7Sf/oxBXneJtXKfhvrdbNUZNUy0pOFWtvGKXPqzwCrwrFeH0KNsU0/rJ/QSWPR8CnlXtmhrX7ZQoiUOyb6Rwes4LXpQqjRrtJS97xatfYfCZp6ul9ZrX1XnTLjfcpPODjK89+Ma/5W313pElWw697+RapEGTZo1atThpsSXaLPWtZdpdCTs+t/8jr/Iulx69kdDNEPXdE74RfYz6DRoy4JRhE0r8yMTMQmDFG2nR6Nc2fGbfe0B5IiRGEnjM4445LvBrKLyvQfhvKlKU3yNFMvjDn5EjL6RA3sgH+SI/yPjjz1e0GFdQzlA57UnjvIkFyE+ABOLnltsW8KJgVylPgac8bdKUO+51yWWPeJSIXDwZt0222Gyr9Sps8DBJgthof8H4+MnP7qMUJ9YeVc4qLARpQiVMwiVCIiVKoiVGYkUpcWy30Dbv+dj7PuDpKlx3OnucsoaHzW01zSbjSkn33waNdjAL136sFXGroqEFzfAebfrw4HhoCG/76/xOfa16xXfD82aXdHnV/ujRiu8CKB8hf0czm3XY2hHd9Iwm5PvmhTU/LBFfrRdhYaEp8sXin+UJqJ/vis/4Inm98WRdJvf4WfxfGSo7/7KeQ7KqTberSUw4UG3l9czIXD+aHciRoZMGsszWXOr/lDm3rfc+PrextW0=) format("woff2")}
+.px-screen{background:#6FB948;color:#2B1D1A;font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.4;user-select:none;-webkit-user-select:none}
+.px-screen a{color:inherit;text-decoration:none}
+.px-screen button{color:inherit;cursor:pointer;margin:0}
+.px-screen img{image-rendering:pixelated;display:block;flex:none}
+.px-f{font-family:"Pixelify Sans",Inter,system-ui,sans-serif}
+.px-fw,.px-fg,.px-fs{border:6px solid transparent;background:none}
+.px-fw{border-image:var(--px-fWhite) 30 fill / 6px}
+.px-fg{border-image:var(--px-fGold) 30 fill / 6px}
+.px-fs{border-image:var(--px-fPanel) 30 fill / 6px}
+button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:active,.px-press:active{transform:translateY(2px)}
+.px-btn{display:block;text-align:center;font-family:"Pixelify Sans",Inter,sans-serif;font-weight:700;font-size:15px;padding:4px 14px 6px}
+.px-sq{width:36px;height:36px;display:flex;align-items:center;justify-content:center;padding:0;font-family:"Pixelify Sans",Inter,sans-serif;font-weight:700;font-size:16px}
+.px-tag{display:inline-block;font-size:11px;padding:1px 6px 2px;margin:2px;white-space:nowrap;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A}
+.px-col{position:absolute;inset:0;display:flex;flex-direction:column}
+.px-grass{background:#6FB948 var(--px-grass) 0 0 / 40px 40px;image-rendering:pixelated}
+/* tab bawah */
+.px-nav{flex:none;height:64px;display:flex;gap:4px;padding:6px 6px 4px;background:#2D3250;border-top:2px solid #2B1D1A;box-shadow:inset 0 3px 0 #474E78}
+.px-nav a.px-slot{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:"Pixelify Sans",Inter,sans-serif;font-size:11px;color:#DDE3F5;background:#3B4268;box-shadow:inset 0 0 0 2px #1E2238,inset 0 4px 0 #2A3052}
+.px-nav a.px-slot.on{background:#FFC83D;color:#2B1D1A;font-weight:700;box-shadow:inset 0 0 0 2px #2B1D1A,inset 0 -5px 0 #E39A1C,inset 0 4px 0 #FFE38A}
+/* Beranda */
+.px-world{flex:1;position:relative;overflow:hidden;min-height:0}
+.px-wscroll{position:absolute;inset:0;overflow-y:auto}
+.px-map{position:relative;width:100%;aspect-ratio:195 / 290;background-size:100% 100%;image-rendering:pixelated}
+.px-spot{position:absolute;background:none;border:0;padding:0;display:flex;align-items:flex-end;justify-content:center}
+.px-spot .px-fs{font-family:"Pixelify Sans",Inter,sans-serif;font-size:12px;line-height:1.15;padding:0 2px;white-space:nowrap;pointer-events:none}
+.px-spot .px-fs b{font-family:Inter,system-ui,sans-serif;font-size:11px;margin-left:3px;color:#4A2C12}
+.px-spot.on .px-fs{border-image-source:var(--px-fGold)}
+.px-mark{position:absolute;width:5.6%;pointer-events:none;animation:px-hop .8s steps(2) infinite;transform-origin:center}
+.px-mark img,.px-hero img{width:100%;height:auto}
+.px-hero{position:absolute;width:6.15%;transition:left .7s linear,top .7s linear;pointer-events:none;z-index:2;filter:drop-shadow(0 2px 0 rgba(43,29,26,.3))}
+.px-hero img,.px-bob{animation:px-bob .7s steps(2) infinite}
+@keyframes px-bob{50%{transform:translateY(-2px)}}
+@keyframes px-hop{50%{transform:translateY(-4px)}}
+@keyframes px-pop{0%{transform:scale(.4)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.px-hud{position:absolute;left:8px;right:8px;top:8px;display:flex;justify-content:space-between;align-items:flex-start;gap:6px;pointer-events:none}
+.px-hud>*{pointer-events:auto}
+.px-who{display:flex;align-items:center;gap:8px;padding:0 6px 0 2px}
+.px-who small{display:block;font-size:11px;color:#4B4B57}
+.px-who b{display:block;font-size:18px;line-height:1.1}
+.px-target{position:absolute;left:8px;top:58px;display:flex;align-items:center;gap:8px;font-size:12px;padding:1px 4px 2px}
+.px-pip{display:block;width:12px;height:12px;background:#C9D3E0;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A,inset 0 2px 0 #9AA7BA;margin:2px 3px}
+.px-pip.on{background:#FFC83D;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A,inset 0 2px 0 #FFE38A}
+.px-bottom{flex:none;display:flex;flex-direction:column;gap:6px;padding:6px 8px 8px;border-top:2px solid #3F7A32}
+.px-quest{display:flex;align-items:center;gap:8px;padding:0 4px 1px}
+.px-quest b{display:block;font-size:14px}
+.px-quest small{display:block;font-size:11px;color:#4B4B57}
+.px-dlg{padding:4px 8px 6px;min-height:128px;display:flex;flex-direction:column;gap:3px}
+.px-dlg .s{font-size:12px;color:#4B4B57}
+.px-dlg .t{font-size:16px;font-weight:700}
+.px-dlg .d{font-size:13px;color:#3A3A45}
+.px-dlg .act{margin-top:auto;padding-top:6px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.px-val{font-size:13px;padding:1px 8px 2px;background:#E8F1F8;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A;margin:2px}
+.px-lv{display:inline-block;min-width:20px;text-align:center;font-family:"Pixelify Sans",Inter,sans-serif;font-size:12px;padding:0 5px 1px;background:#E8F1F8;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A;margin:2px 3px}
+.px-lv.on{background:#FFC83D}
+/* Mini Games */
+.px-page{flex:1;min-height:0;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:10px}
+.px-ttl{flex:1;padding:0 6px 1px;min-width:0}
+.px-ttl b{display:block;font-size:18px;line-height:1.15}
+.px-ttl small{display:block;font-size:11px;color:#4B4B57}
+.px-lab{align-self:center;font-size:13px;padding:0 6px 1px}
+.px-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.px-matbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 6px 8px}
+.px-matbtn img{width:76%;height:auto}
+.px-matbtn b{font-size:16px}
+.px-matbtn small{font-size:12px;color:#4B4B57}
+.px-game{min-height:108px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;padding:2px 4px 4px}
+/* Kasir Kilat */
+.px-shop{background:#8EDCC4}
+.px-gscroll{position:absolute;inset:0;overflow-y:auto;display:flex;flex-direction:column;background:#8EDCC4 repeating-linear-gradient(90deg,#A6E8D4 0 8px,#8EDCC4 8px 26px)}
+.px-wall{flex:none;padding:8px 8px 0;display:flex;flex-direction:column;gap:8px}
+.px-wall.px-grow{flex:1 0 auto;padding-bottom:16px}
+.px-mid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:12px 4px}
+.px-card{padding:2px 6px 5px;display:flex;flex-direction:column;gap:5px}
+.px-menu{display:flex;align-items:center;gap:10px;padding:6px 6px 8px;text-align:left;width:100%}
+.px-menu b{display:block;font-size:15px}
+.px-menu small{display:block;font-size:12px;color:#4B4B57}
+.px-mode{min-height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px;text-align:center}
+.px-scene{position:relative;margin:0 -8px;aspect-ratio:195 / 50;background-size:100% 100%;image-rendering:pixelated;overflow:hidden}
+.px-scene img{position:absolute;left:50%;bottom:-9%;width:20%;height:auto;margin-left:-10%}
+.px-counter{flex:none;background:#F2C684;border-top:4px solid #2B1D1A;box-shadow:inset 0 4px 0 #FBDDA8;padding:10px 14px 12px;display:flex;flex-direction:column;gap:8px}
+.px-cfront{flex:none;height:28px;background:#D08F4C repeating-linear-gradient(90deg,transparent 0 42px,#B87636 42px 44px);border-top:4px solid #2B1D1A;border-bottom:4px solid #2B1D1A;box-shadow:inset 0 -6px 0 #B87636}
+.px-cab{flex:none;background:#3B4268;box-shadow:inset 0 6px 0 #474E78;padding:14px 14px 16px;display:flex;flex-direction:column;gap:10px}
+.px-floor{flex:1 0 28px;border-top:4px solid #2B1D1A;background:#F4EAD2 repeating-conic-gradient(#E58C6A 0 25%,#F4EAD2 0 50%) 0 0 / 52px 44px}
+.px-items{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:52px}
+.px-tray{padding:6px 10px;background:#DCE6F2;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 5px 0 #9AA7BA,inset 0 -3px 0 #FFFFFF,inset 4px 0 0 #B7C3D4,inset -4px 0 0 #B7C3D4,0 8px 0 rgba(43,29,26,.22);margin:3px 3px 8px}
+.px-laci{padding:8px 10px;background:#2D3250;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 5px 0 #1A1E36;margin:3px}
+.px-struk{padding:8px 10px;background:#FFFFFF;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 -4px 0 #D5DDE8;margin:3px}
+.px-drawer{padding:6px 10px 12px;background:#2D3250;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 3px 0 #474E78;margin:3px;display:flex;flex-direction:column;gap:6px}
+.px-cells{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px}
+.px-cell{width:54px;height:52px;display:flex;align-items:center;justify-content:center;background:#232846;box-shadow:inset 0 0 0 2px #14172B,inset 0 6px 0 #1A1E36}
+.px-items button{animation:px-pop .18s steps(3)}
+.px-msg{padding:8px 10px;font-size:13px;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A;margin:2px}
+@media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
 <body>
@@ -2091,222 +2189,187 @@ button{font:inherit}
 <a href="PohonTemuan.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M12 7v4M12 11l-5 5M12 11l5 5"></path></svg>Temuan</a>
 </nav>
 </div></template>
-<template id="tpl-KasirKilat"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.4">
-<div style="padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+<template id="tpl-KasirKilat"><div class="px-screen px-shop" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<div class="px-gscroll">
+<div class="px-wall {{pxWallCls}}">
 
-<div style="display: flex; align-items: center; gap: 8px">
+<div style="display: flex; align-items: center; gap: 6px">
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
-<a href="MiniGames.dc.html" aria-label="Kembali ke Mini Games" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+<a href="MiniGames.dc.html" aria-label="Kembali ke Mini Games" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
 </sc-if>
 <sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{gmBack}}" aria-label="Kembali" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; background: #FFFFFF; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+<button type="button" onClick="{{gmBack}}" aria-label="Kembali" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></button>
 </sc-if>
-<div style="font-weight: 600; flex: 1">Kasir Kilat</div>
-<button type="button" onClick="{{toggleHelp}}" aria-label="Cara main" style="width: 30px; height: 30px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 6px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; color: #66655F">?</button>
+<div class="px-fw px-ttl" style="display: flex; align-items: center; min-height: 36px"><b class="px-f">Kasir Kilat</b></div>
+<button type="button" onClick="{{toggleHelp}}" aria-label="Cara main" class="px-fw px-sq">?</button>
 <sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{gmOpen}}" aria-label="Pilih mode" style="display: flex; align-items: center; gap: 4px; height: 30px; padding: 0 8px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; color: #1C1C1A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"></rect><rect x="13" y="4" width="7" height="7" rx="1"></rect><rect x="4" y="13" width="7" height="7" rx="1"></rect><rect x="13" y="13" width="7" height="7" rx="1"></rect></svg>{{gmMode}}</button>
+<button type="button" onClick="{{gmOpen}}" aria-label="Pilih mode" class="px-fw px-sq px-f" style="width: auto; gap: 5px; padding: 0 5px; font-size: 13px; font-weight: 400"><img alt="" src="{{px.kisi}}" width="16" height="14">{{gmMode}}</button>
 </sc-if>
 </div>
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
-<div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div class="px-mid">
 <div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
 <sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
 <button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
 </sc-for>
 </div>
-<div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
+<div class="px-fw px-lab px-f">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
-<div style="font-weight: 600; font-size: 13px">Cara main · {{gmHelpTitle}}</div>
+<div class="px-fw" style="padding: 2px 6px 5px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
+<div class="px-f" style="font-weight: 700; font-size: 14px">Cara main · {{gmHelpTitle}}</div>
 <sc-for list="{{gmHelpLines}}" as="hl" hint-placeholder-count="3">
 <div>{{hl}}</div>
 </sc-for>
 </div>
 </sc-if>
 <sc-if value="{{gmHasTut}}" hint-placeholder-val="{{ true }}">
-<button type="button" onClick="{{gmTut}}" style="display: flex; align-items: center; gap: 12px; padding: 14px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; font: inherit; text-align: left; cursor: pointer">
-<span style="width: 28px; height: 28px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: #F0EFEB"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"></path></svg></span>
-<span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">Pengenalan games</span><span style="font-size: 12px; color: #66655F">Hari pertama kerja, kenali tombolnya</span></span>
-</button>
+<button type="button" onClick="{{gmTut}}" class="px-fw px-menu"><span class="px-tag" style="background: #7CCBF2; padding: 4px"><img alt="" src="{{px.daftar}}" width="20" height="16"></span><span style="flex: 1"><b class="px-f">Pengenalan games</b><small>Hari pertama kerja, kenali tombolnya</small></span></button>
 </sc-if>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div class="px-grid2">
 <sc-for list="{{gmItems}}" as="mi" hint-placeholder-count="4">
-<button type="button" onClick="{{mi.tap}}" style="aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; font: inherit; text-align: center; cursor: pointer">
-<span style="font-size: 15px; font-weight: 600">{{mi.label}}</span>
-<span style="font-size: 12px; color: #66655F">{{mi.desc}}</span>
-</button>
+<button type="button" onClick="{{mi.tap}}" class="px-fw px-mode"><b class="px-f" style="font-size: 17px">{{mi.label}}</b><small style="font-size: 12px; color: #4B4B57">{{mi.desc}}</small></button>
 </sc-for>
 </div>
 </div>
 </sc-if>
 
 <sc-if value="{{gmShowPick}}" hint-placeholder-val="{{ false }}">
-<div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
-<div style="font-size: 13px; color: #66655F; text-align: center">{{gmPickTitle}}</div>
+<div class="px-mid">
+<div class="px-fw px-lab px-f">{{gmPickTitle}}</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
-<div style="font-weight: 600; font-size: 13px">Cara main · {{gmHelpTitle}}</div>
+<div class="px-fw" style="padding: 2px 6px 5px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
+<div class="px-f" style="font-weight: 700; font-size: 14px">Cara main · {{gmHelpTitle}}</div>
 <sc-for list="{{gmHelpLines}}" as="hl" hint-placeholder-count="3">
 <div>{{hl}}</div>
 </sc-for>
 </div>
 </sc-if>
 <sc-for list="{{gmPickItems}}" as="pk" hint-placeholder-count="3">
-<button type="button" onClick="{{pk.tap}}" style="display: flex; align-items: center; gap: 12px; padding: 14px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; font: inherit; text-align: left; cursor: pointer">
-<span style="width: 28px; height: 28px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: #F0EFEB; font-size: 13px; font-weight: 600">{{pk.num}}</span>
-<span style="flex: 1; font-size: 14px; font-weight: 500">{{pk.name}}</span>
-<span style="font-size: 11px; color: #1F7A4D">{{pk.done}}</span>
-</button>
+<button type="button" onClick="{{pk.tap}}" class="px-fw px-menu"><span class="px-tag px-f" style="background: #FFC83D; font-size: 14px; min-width: 26px; text-align: center">{{pk.num}}</span><span style="flex: 1"><b class="px-f">{{pk.name}}</b></span><span class="px-f" style="font-size: 12px; color: #1F7A4D">{{pk.done}}</span></button>
 </sc-for>
 </div>
 </sc-if>
 
 <sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}">
-
 <sc-if value="{{help}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
-<div style="font-weight: 600; font-size: 13px">Cara main · {{helpTitle}}</div>
-<sc-for list="{{helpLines}}" as="h" hint-placeholder-count="3">
-<div>{{h}}</div>
+<div class="px-fw" style="padding: 2px 6px 5px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
+<div class="px-f" style="font-weight: 700; font-size: 14px">Cara main · {{helpTitle}}</div>
+<sc-for list="{{helpLines}}" as="hl" hint-placeholder-count="3">
+<div>{{hl}}</div>
 </sc-for>
-<div style="color: #66655F">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
-<button type="button" onClick="{{replayTut}}" style="align-self: flex-start; padding: 5px 10px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer">Ulangi hari pertama</button>
+<div style="color: #4B4B57">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
+<button type="button" onClick="{{replayTut}}" class="px-fw px-f" style="align-self: flex-start; padding: 2px 10px 4px; font-size: 13px">Ulangi hari pertama</button>
 </div>
 </sc-if>
-
-
 <sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid {{storyBorder}}; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{gmTagLine}}</div>
-<div style="font-size: 13px">{{story}}</div>
-<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}">
-<div style="font-size: 13px; font-weight: 600">{{goal}}</div>
-</sc-if>
+<div class="px-fw px-card">
+<sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-tag px-f" style="align-self: flex-start; background: #7CCBF2">{{gmTagLine}}</span></sc-if>
+<div style="font-size: 14px; line-height: 1.45">{{story}}</div>
+<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-size: 14px; font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; gap: 6px; align-items: center">
-<sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}">
-<button type="button" onClick="{{tutTap}}" style="padding: 7px 14px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer">{{tutBtn}}</button>
-</sc-if>
-<button type="button" onClick="{{skipTut}}" style="padding: 7px 10px; border: 0; background: transparent; color: #66655F; font: inherit; font-size: 12px; cursor: pointer; text-decoration: underline">Lewati</button>
+<sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if>
+<button type="button" onClick="{{skipTut}}" style="padding: 7px 10px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button>
 </div>
 </sc-if>
 </div>
 </sc-if>
+<sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
+<sc-for list="{{builders}}" as="b" hint-placeholder-count="1">
+<div class="px-fw" style="padding: 4px 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
+<span style="font-family: ui-monospace, Menlo, monospace; font-size: 15px">{{b.lhs}} =</span>
+<button type="button" onClick="{{b.cyc}}" class="px-fw" style="padding: 2px 6px 4px; font-family: ui-monospace, Menlo, monospace; font-size: 15px; color: #1E3F9E">{{b.rhs}}</button>
+<button type="button" onClick="{{b.test}}" class="px-fg px-btn" style="margin-left: auto; font-size: 13px">Uji</button>
+</div>
+</sc-for>
+<div class="px-fw px-f" style="align-self: flex-start; font-size: 13px; padding: 0 6px 1px">Buku catatan kasir ({{ruleCount}})</div>
+<sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
+<div class="px-fw" style="padding: 1px 6px 3px; font-family: ui-monospace, Menlo, monospace; font-size: 13px">{{r}}</div>
+</sc-for>
+</sc-if>
+<sc-if value="{{pxMsgWall}}" hint-placeholder-val="{{ false }}"><div class="px-msg" style="background: {{msgBg}}; color: {{msgFg}}">{{msg}}</div></sc-if>
+<sc-if value="{{pxShowBoard}}" hint-placeholder-val="{{ true }}">
+<div class="px-scene" style="background-image: url('{{pxShop}}')"><img alt="" class="px-bob" src="{{px.pembeli}}"></div>
+</sc-if>
+</sc-if>
+</div>
 
-<sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 12px; min-height: 96px; display: flex; flex-direction: column; gap: 8px">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 11px">
-<span style="color: #66655F">{{boardLabel}}</span>
-<span><span style="color: #66655F">{{statusLabel}}</span> <span style="font-weight: 600; color: {{statusColor}}">{{status}}</span></span>
+<sc-if value="{{pxShowBoard}}" hint-placeholder-val="{{ true }}">
+<div class="px-counter">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; color: #3B2414">
+<b class="px-f" style="font-size: 14px">{{boardLabel}}</b>
+<span>{{statusLabel}}<b style="color: {{statusColor}}; margin-left: 4px">{{status}}</b></span>
 </div>
-<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">
+<div class="px-items {{pxBoardCls}}">
 <sc-for list="{{items}}" as="c" hint-placeholder-count="5">
 <button type="button" onClick="{{c.tap}}" aria-label="{{c.aria}}" style="{{c.style}}">{{c.label}}</button>
 </sc-for>
+<sc-if value="{{emptyBoard}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; color: #6A7890; padding-left: 4px">Kosong</span></sc-if>
 </div>
-<sc-if value="{{emptyBoard}}" hint-placeholder-val="{{ false }}">
-<div style="font-size: 12px; color: #B9B8B2">Kosong</div>
-</sc-if>
 <sc-if value="{{hasSplit}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap; padding-top: 6px; border-top: 1px solid #ECEBE7">
-<span style="font-size: 11px; color: #66655F">Pecah {{splitOf}}</span>
-<sc-for list="{{splitOpts}}" as="p" hint-placeholder-count="3">
-<button type="button" onClick="{{p.tap}}" style="{{p.style}}">{{p.label}}</button>
-</sc-for>
+<div class="px-fw" style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap; padding: 2px 6px 4px">
+<span style="font-size: 12px; color: #4B4B57">Pecah {{splitOf}}</span>
+<sc-for list="{{splitOpts}}" as="p" hint-placeholder-count="3"><button type="button" onClick="{{p.tap}}" style="{{p.style}}">{{p.label}}</button></sc-for>
 </div>
 </sc-if>
 <sc-if value="{{hasMove}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 5px; padding-top: 6px; border-top: 1px solid #ECEBE7">
-<span style="font-size: 11px; color: #66655F">{{moveLabel}}</span>
-<div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 3px">
-<sc-for list="{{moveKeys}}" as="m" hint-placeholder-count="9">
-<button type="button" onClick="{{m.tap}}" style="{{m.style}}">{{m.label}}</button>
-</sc-for>
-</div>
-</div>
-</sc-if>
-</div>
-
-<sc-if value="{{hasCoinBox}}" hint-placeholder-val="{{ true }}">
-<div style="display: flex; flex-direction: column; gap: 6px; background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px">
-<div style="display: flex; justify-content: space-between; align-items: center">
-<span style="font-size: 11px; color: #66655F">Kotak koin (ribu)</span>
-<sc-if value="{{hasSign}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; border: 1px solid #DDDCD7; border-radius: 5px; overflow: hidden">
-<sc-for list="{{signs}}" as="g" hint-placeholder-count="2">
-<button type="button" onClick="{{g.tap}}" style="{{g.style}}">{{g.label}}</button>
-</sc-for>
-</div>
-</sc-if>
-</div>
-<div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 3px; justify-items: center">
-<sc-for list="{{boxCoins}}" as="c" hint-placeholder-count="9">
-<button type="button" onClick="{{c.tap}}" aria-label="{{c.aria}}" style="{{c.style}}">{{c.label}}</button>
-</sc-for>
+<div class="px-fw" style="display: flex; flex-direction: column; gap: 5px; padding: 2px 6px 6px">
+<span style="font-size: 12px; color: #4B4B57">{{moveLabel}}</span>
+<div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px">
+<sc-for list="{{moveKeys}}" as="m" hint-placeholder-count="9"><button type="button" onClick="{{m.tap}}" style="{{m.style}}">{{m.label}}</button></sc-for>
 </div>
 </div>
 </sc-if>
 <sc-if value="{{hasTools}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap">
-<sc-for list="{{tools}}" as="a" hint-placeholder-count="1">
-<button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button>
-</sc-for>
+<sc-for list="{{tools}}" as="a" hint-placeholder-count="1"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for>
 </div>
-</sc-if>
-
-<sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px; display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; align-items: center; gap: 8px">
-<span style="font-size: 11px; color: #66655F; flex: 1">{{answerLabel}}</span>
-<span style="min-width: 76px; padding: 4px 8px; border-radius: 4px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 16px; text-align: right">{{ansShow}}</span>
-<button type="button" onClick="{{checkAns}}" style="padding: 6px 14px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-weight: 500; cursor: pointer">Cek</button>
-</div>
-<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px">
-<sc-for list="{{keys}}" as="q" hint-placeholder-count="12">
-<button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button>
-</sc-for>
-</div>
-</div>
-</sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{sayNotEnough}}" style="padding: 8px; border: 1px solid #C98A2B; background: #FFF3DF; color: #8A5200; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer">Tidak bisa ditentukan dengan informasi ini</button>
-</sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{sayImpossible}}" style="padding: 8px; border: 1px solid #C98A2B; background: #FFF3DF; color: #8A5200; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer">Tidak mungkin</button>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
-<div style="display: flex; gap: 5px; flex-wrap: wrap">
-<sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
-<button type="button" onClick="{{v.tap}}" style="padding: 6px 12px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer">{{v.label}}</button>
-</sc-for>
+<div class="px-fg" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 14px; font-weight: 700">{{verdictQ}}</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2"><button type="button" onClick="{{v.tap}}" class="px-fw px-f" style="padding: 2px 10px 4px; font-size: 13px">{{v.label}}</button></sc-for>
 </div>
 </div>
 </sc-if>
-</sc-if>
-
-<sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
-<sc-for list="{{builders}}" as="b" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
-<span style="font-family: ui-monospace, Menlo, monospace; font-size: 15px">{{b.lhs}} =</span>
-<button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 15px; cursor: pointer">{{b.rhs}}</button>
-<button type="button" onClick="{{b.test}}" style="margin-left: auto; padding: 6px 10px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer">Uji</button>
-</div>
-</sc-for>
-<div style="font-size: 12px; color: #66655F">Buku catatan kasir ({{ruleCount}})</div>
-<sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 13px">{{r}}</div>
-</sc-for>
-</sc-if>
-
-<sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}">
-<div style="background: {{msgBg}}; color: {{msgFg}}; border-radius: 6px; padding: 8px 10px; font-size: 13px">{{msg}}</div>
-</sc-if>
+<sc-if value="{{pxMsgBoard}}" hint-placeholder-val="{{ false }}"><div class="px-msg" style="background: {{msgBg}}; color: {{msgFg}}">{{msg}}</div></sc-if>
 <sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{gmNext}}" style="display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{gmNextLabel}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+<button type="button" onClick="{{gmNext}}" class="px-fg px-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px">{{gmNextLabel}}<img alt="" src="{{px.kanan}}" width="9" height="11"></button>
 </sc-if>
+</div>
+<div class="px-cfront"></div>
+<sc-if value="{{pxHasCab}}" hint-placeholder-val="{{ true }}">
+<div class="px-cab">
+<sc-if value="{{hasCoinBox}}" hint-placeholder-val="{{ true }}">
+<div class="px-drawer">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<span class="px-f" style="font-size: 13px; color: #FFFFFF">Kotak koin (ribu)</span>
+<sc-if value="{{hasSign}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 4px"><sc-for list="{{signs}}" as="g" hint-placeholder-count="2"><button type="button" onClick="{{g.tap}}" style="{{g.style}}">{{g.label}}</button></sc-for></div></sc-if>
+</div>
+<div class="px-cells">
+<sc-for list="{{boxCoins}}" as="c" hint-placeholder-count="9"><div class="px-cell"><button type="button" onClick="{{c.tap}}" aria-label="{{c.aria}}" style="{{c.style}}">{{c.label}}</button></div></sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
+<div class="px-fw" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px">
+<span style="font-size: 12px; color: #4B4B57; flex: 1">{{answerLabel}}</span>
+<span style="min-width: 80px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span>
+<button type="button" onClick="{{checkAns}}" class="px-fg px-btn" style="font-size: 14px">Cek</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px">
+<sc-for list="{{keys}}" as="q" hint-placeholder-count="12"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-fw px-f" style="padding: 2px 8px 4px; font-size: 14px">Tidak bisa ditentukan dengan informasi ini</button></sc-if>
+<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-fw px-f" style="padding: 2px 8px 4px; font-size: 14px">Tidak mungkin</button></sc-if>
+</div>
+</sc-if>
+<div class="px-floor"></div>
 </sc-if>
 </div>
 </div></template>
@@ -3034,94 +3097,36 @@ button{font:inherit}
 </sc-if>
 </div>
 </div></template>
-<template id="tpl-Main"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
-<div style="padding: 16px 16px 80px; display: flex; flex-direction: column; gap: 12px">
-
-<div style="display: flex; justify-content: space-between; align-items: center">
-<div>
-<div style="font-size: 12px; color: #66655F">Fundamental Math</div>
-<div style="font-size: 20px; font-weight: 600">Halo, Faiq</div>
-</div>
-<div style="display: flex; align-items: center; gap: 8px">
-<div style="font-size: 12px; padding: 3px 8px; border: 1px solid #DDDCD7; border-radius: 4px; background: #FFFFFF">{{streakTxt}}</div>
-<a href="Pengaturan.dc.html" aria-label="Pengaturan" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #66655F"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"></path></svg></a>
-</div>
-</div>
-
-<a href="Pengaturan.dc.html" style="display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: #1C1C1A; background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 12px">
-<div style="font-size: 13px"><span style="color: #66655F">Target hari ini</span> · <span style="font-weight: 500">{{targetTxt}}</span></div>
-<div style="display: flex; gap: 4px" aria-hidden="true">
-<sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><div style="{{d.style}}"></div></sc-for>
-</div>
-</a>
-
-<sc-if value="{{hasLast}}" hint-placeholder-val="{{ true }}">
-<a href="{{lastHref}}" onClick="{{lastTap}}" style="display: block; text-decoration: none; color: #1C1C1A; background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 12px">
-<div style="font-size: 12px; color: #66655F">Lanjutkan</div>
-<div style="font-weight: 600">{{lastTitle}}</div>
-<div style="font-size: 13px; color: #66655F">{{lastSub}}</div>
-<div style="margin-top: 10px; background: #2F5BD3; color: #FFFFFF; text-align: center; padding: 8px; border-radius: 6px; font-weight: 500">Main</div>
-</a>
-</sc-if>
-<sc-if value="{{noLast}}" hint-placeholder-val="{{ false }}">
-<a href="MiniGames.dc.html" style="display: block; text-decoration: none; color: #1C1C1A; background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 12px">
-<div style="font-size: 12px; color: #66655F">Selamat datang, peneliti</div>
-<div style="font-weight: 600">Belum ada kasus yang dimainkan</div>
-<div style="font-size: 13px; color: #66655F">Pilih satu game di Mini Games. Semua temuanmu akan tercatat di sini.</div>
-<div style="margin-top: 10px; background: #2F5BD3; color: #FFFFFF; text-align: center; padding: 8px; border-radius: 6px; font-weight: 500">Buka Mini Games</div>
-</a>
-</sc-if>
-
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Hari ini</div>
-<div style="display: flex; flex-direction: column; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<a href="Tantangan.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7">
-<div><div style="font-weight: 500">Tantangan harian</div><div style="font-size: 12px; color: #66655F">{{tantSub}}</div></div>
-<div style="font-size: 12px; color: #66655F">{{tantCount}}</div>
-</a>
-<a href="Bengkel.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7">
-<div><div style="font-weight: 500">Bengkel kesalahan</div><div style="font-size: 12px; color: #66655F">Kasus yang pernah gagal muncul lagi</div></div>
-<div style="font-size: 12px; color: #66655F; border: 1px solid #DDDCD7; padding: 0 6px; border-radius: 4px">{{bengkelCount}}</div>
-</a>
-<a href="CekCelah.dc.html" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; text-decoration: none; color: #1C1C1A">
-<div><div style="font-weight: 500">Cek celah</div><div style="font-size: 12px; color: #66655F">Saran tingkat dari progresmu</div></div>
-<div style="font-size: 12px; color: #66655F">{{celahTxt}}</div>
-</a>
-</div>
-</div>
-
-<sc-if value="{{hasRec}}" hint-placeholder-val="{{ true }}">
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Coba berikutnya</div>
-<a href="{{recHref}}" onClick="{{recTap}}" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; text-decoration: none; color: #1C1C1A; background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px">
-<div><div style="font-weight: 500">{{recTitle}}</div><div style="font-size: 12px; color: #66655F">{{recSub}}</div></div>
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#66655F" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
-</a>
-</div>
-</sc-if>
-
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Materi · bintang ★1 per tingkat</div>
-<a href="MiniGames.dc.html" style="display: flex; flex-direction: column; text-decoration: none; color: #1C1C1A; background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 4px 12px">
-<sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<div style="{{m.row}}"><div>{{m.name}}<span style="font-size: 12px; color: #66655F; margin-left: 6px">{{m.count}}</span></div><div style="display: flex; gap: 4px; font-size: 11px"><sc-for list="{{m.lv}}" as="l" hint-placeholder-count="3"><span style="{{l.style}}">{{l.t}}</span></sc-for></div></div>
+<template id="tpl-Main"><div class="px-screen" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<div class="px-col">
+<div class="px-world px-grass"><div class="px-wscroll">
+<div class="px-map" style="background-image: url('{{mapImg}}')">
+<sc-for list="{{spots}}" as="s" hint-placeholder-count="8">
+<button type="button" class="px-spot {{s.on}}" onClick="{{s.tap}}" aria-label="{{s.aria}}" style="{{s.style}}"><span class="px-fs">{{s.name}}<b>{{s.val}}</b></span></button>
 </sc-for>
-</a>
+<sc-if value="{{hasMark}}" hint-placeholder-val="{{ true }}"><div class="px-mark" style="{{markStyle}}"><img alt="" src="{{px.seru}}"></div></sc-if>
+<div class="px-hero" style="{{heroStyle}}"><img alt="" src="{{px.orang}}"></div>
+<div class="px-hud">
+<div class="px-fw px-who"><img alt="" src="{{px.wajah}}" width="36" height="24"><div><small class="px-f">Fundamental Math</small><b class="px-f">Halo, Faiq</b></div></div>
+<div style="display: flex; gap: 6px; align-items: center"><div class="px-fw px-f" style="font-size: 12px; padding: 3px 4px 4px">{{streakTxt}}</div><a href="Pengaturan.dc.html" aria-label="Pengaturan" class="px-fw px-sq"><img alt="" src="{{px.gir}}" width="24" height="24"></a></div>
 </div>
-
-<a href="Progres.dc.html" style="display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: #1C1C1A; background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 12px">
-<div style="font-size: 13px"><span style="color: #66655F">Lencana</span> · <span style="font-weight: 500">{{badgeTxt}}</span></div>
-<div style="font-size: 12px; color: #2F5BD3">Lihat semua</div>
-</a>
-
+<a href="Pengaturan.dc.html" class="px-fw px-target px-f"><span>Target hari ini · <b style="font-family: Inter, system-ui, sans-serif">{{targetTxt}}</b></span><span style="display: flex"><sc-for list="{{pips}}" as="d" hint-placeholder-count="2"><i class="px-pip {{d}}"></i></sc-for></span></a>
 </div>
-<nav style="position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; border-top: 1px solid #DDDCD7; background: #FFFFFF">
-<a href="Main.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #2F5BD3; font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"></path></svg>Beranda</a>
-<a href="MiniGames.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 7h10a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-2a4 4 0 0 1 4-4zM7 12h4M9 10v4M15.5 11.5h.01M17.5 13.5h.01"></path></svg>Mini Games</a>
-<a href="Progres.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 20V11M11 20V5M17 20v-6M3 20h18"></path></svg>Progres</a>
-<a href="Jurnal.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM8 4v13M11 9h5M11 12h5"></path></svg>Jurnal</a>
-<a href="PohonTemuan.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M12 7v4M12 11l-5 5M12 11l5 5"></path></svg>Temuan</a>
-</nav>
+</div></div>
+<div class="px-bottom px-grass">
+<sc-if value="{{hasRec}}" hint-placeholder-val="{{ true }}">
+<a href="{{recHref}}" onClick="{{recTap}}" class="px-fw px-quest"><span class="px-tag px-f" style="background: #FFC83D">Coba berikutnya</span><span style="flex: 1; min-width: 0"><b class="px-f">{{recTitle}}</b><small>{{recSub}}</small></span><img alt="" src="{{px.kanan}}" width="12" height="14"></a>
+</sc-if>
+<div class="px-fw px-dlg">
+<sc-if value="{{dHasS}}" hint-placeholder-val="{{ true }}"><div class="s px-f">{{dS}}</div></sc-if>
+<div class="t px-f">{{dT}}<sc-if value="{{dHasN}}" hint-placeholder-val="{{ false }}"><span style="font-family: Inter, system-ui, sans-serif; font-size: 14px; margin-left: 6px">{{dN}}</span></sc-if></div>
+<sc-if value="{{dHasD}}" hint-placeholder-val="{{ true }}"><div class="d">{{dD}}</div></sc-if>
+<sc-if value="{{dHasLv}}" hint-placeholder-val="{{ false }}"><div style="display: flex; margin-top: 4px"><sc-for list="{{dLv}}" as="l" hint-placeholder-count="3"><span class="px-lv {{l.on}}">{{l.t}}</span></sc-for></div></sc-if>
+<div class="act"><span><sc-if value="{{dHasVal}}" hint-placeholder-val="{{ false }}"><span class="px-val px-f">{{dVal}}</span></sc-if></span><a href="{{dHref}}" onClick="{{dTap}}" class="px-fg px-btn">{{dBtn}}</a></div>
+</div>
+</div>
+<nav class="px-nav"><a href="Main.dc.html" class="px-slot on"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot"><img alt="" src="{{px.dadu}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
+</div>
 </div></template>
 <template id="tpl-MartabakTopping"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.4">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
@@ -3868,61 +3873,47 @@ button{font:inherit}
 </sc-if>
 </div>
 </div></template>
-<template id="tpl-MiniGames"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
-<div style="height: 780px; box-sizing: border-box; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px">
-
-<div style="display: flex; align-items: center; gap: 8px; min-height: 32px">
-<sc-if value="{{canBack}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{back}}" aria-label="Kembali" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
-</sc-if>
-<div style="flex: 1">
-<div style="font-size: 18px; font-weight: 600">Mini Games</div>
-<div style="font-size: 12px; color: #66655F">{{crumb}}</div>
+<template id="tpl-MiniGames"><div class="px-screen px-grass" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<div class="px-col">
+<div class="px-page">
+<div style="display: flex; align-items: center; gap: 6px">
+<sc-if value="{{canBack}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{back}}" aria-label="Kembali" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></button></sc-if>
+<div class="px-fw px-ttl"><b class="px-f">Mini Games</b><small>{{crumb}}</small></div>
+<div class="px-fw px-f" style="padding: 0 4px 1px; font-size: 13px">{{stepTxt}}</div>
 </div>
-<div style="font-size: 12px; color: #66655F">{{stepTxt}}</div>
-</div>
-
 <sc-if value="{{isMat}}" hint-placeholder-val="{{ true }}">
 <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px">
-<div style="font-size: 13px; color: #66655F; text-align: center">Pilih subject</div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div class="px-fw px-lab px-f">Pilih subject</div>
+<div class="px-grid2">
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<button type="button" onClick="{{m.tap}}" style="aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; font: inherit; cursor: pointer">
-<span style="font-size: 15px; font-weight: 600">{{m.label}}</span>
-<span style="font-size: 12px; color: #66655F">{{m.sub}}</span>
-</button>
+<button type="button" onClick="{{m.tap}}" class="px-fw px-matbtn"><img alt="" src="{{m.img}}"><b class="px-f">{{m.label}}</b><small>{{m.sub}}</small></button>
 </sc-for>
 </div>
 </div>
 </sc-if>
-
 <sc-if value="{{isLvl}}" hint-placeholder-val="{{ false }}">
 <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px">
-<div style="font-size: 13px; color: #66655F; text-align: center">Pilih tingkat</div>
+<div class="px-fw px-lab px-f">Pilih tingkat</div>
 <sc-for list="{{lvls}}" as="v" hint-placeholder-count="3">
-<button type="button" onClick="{{v.tap}}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 14px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; font: inherit; text-align: left; cursor: pointer">
-<span style="font-size: 15px; font-weight: 600">{{v.label}}</span>
-<span style="font-size: 12px; color: #66655F">{{v.hint}}</span>
-</button>
+<button type="button" onClick="{{v.tap}}" class="px-fw px-menu"><span><b class="px-f">{{v.label}}</b><small>{{v.hint}}</small></span></button>
 </sc-for>
 </div>
 </sc-if>
-
 <sc-if value="{{isGame}}" hint-placeholder-val="{{ false }}">
-<div style="font-size: 13px; color: #66655F; text-align: center">Pilih game</div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div class="px-fw px-lab px-f">Pilih game</div>
+<div class="px-grid2">
 <sc-for list="{{games}}" as="g" hint-placeholder-count="7">
-<a href="{{g.href}}" onClick="{{g.go}}" style="min-height: 104px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 6px; padding: 10px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; text-decoration: none">
+<a href="{{g.href}}" onClick="{{g.go}}" class="px-fw px-game">
 <div>
-<div style="font-size: 14px; font-weight: 600; line-height: 1.3">{{g.name}}</div>
-<div style="font-size: 12px; color: #66655F; line-height: 1.35; margin-top: 2px">{{g.task}}</div>
+<div class="px-f" style="font-size: 15px; font-weight: 700; line-height: 1.2">{{g.name}}</div>
+<div style="font-size: 12px; color: #4B4B57; line-height: 1.35; margin-top: 2px">{{g.task}}</div>
 </div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px">
 <div style="display: flex; align-items: center; min-height: 18px">
 <sc-if value="{{g.played}}" hint-placeholder-val="{{ true }}">
 <div role="img" aria-label="{{g.starLabel}}" style="display: flex; flex-direction: column; gap: 1px">
 <sc-for list="{{g.tiers}}" as="tr" hint-placeholder-count="3">
-<div style="display: flex; align-items: center; gap: 2px"><span style="width: 11px; font-size: 10px; font-weight: 600; color: #66655F">{{tr.lab}}</span>
+<div style="display: flex; align-items: center; gap: 2px"><span class="px-f" style="width: 11px; font-size: 10px; font-weight: 700; color: #4B4B57">{{tr.lab}}</span>
 <sc-for list="{{tr.stars}}" as="t" hint-placeholder-count="3">
 <svg width="11" height="11" viewBox="0 0 24 24" fill="{{t.fill}}" stroke="{{t.stroke}}" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg>
 </sc-for>
@@ -3930,31 +3921,23 @@ button{font:inherit}
 </sc-for>
 </div>
 </sc-if>
-<sc-if value="{{g.isNew}}" hint-placeholder-val="{{ false }}">
-<span style="font-size: 11px; font-weight: 500; color: #2F5BD3; border: 1px solid #2F5BD3; border-radius: 4px; padding: 0 6px">Baru</span>
-</sc-if>
+<sc-if value="{{g.isNew}}" hint-placeholder-val="{{ false }}"><span class="px-tag px-f" style="background: #7CCBF2">Baru</span></sc-if>
 </div>
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F5BD3" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5l5 3.5-5 3.5z" fill="#2F5BD3"></path></svg>
+<span class="px-tag" style="background: #FFC83D; padding: 3px 5px"><img alt="" src="{{px.kanan}}" width="9" height="11"></span>
 </div>
 </a>
 </sc-for>
 </div>
-<div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; font-size: 11px; color: #66655F">
+<div class="px-fw" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; font-size: 11px; color: #4B4B57; padding: 0 4px 1px">
 <sc-for list="{{starRules}}" as="sr" hint-placeholder-count="3">
 <span style="display: inline-flex; align-items: center; gap: 3px"><svg width="11" height="11" viewBox="0 0 24 24" fill="#E8A317" stroke="#E8A317" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg>{{sr}}</span>
 </sc-for>
 </div>
-<div style="font-size: 11px; color: #66655F; text-align: center">{{gamesNote}}</div>
+<sc-if value="{{hasNote}}" hint-placeholder-val="{{ false }}"><div class="px-fw" style="font-size: 11px; color: #4B4B57; text-align: center; padding: 0 4px 1px">{{gamesNote}}</div></sc-if>
 </sc-if>
-
 </div>
-<nav style="position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; border-top: 1px solid #DDDCD7; background: #FFFFFF">
-<a href="Main.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"></path></svg>Beranda</a>
-<a href="MiniGames.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #2F5BD3; font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 7h10a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-2a4 4 0 0 1 4-4zM7 12h4M9 10v4M15.5 11.5h.01M17.5 13.5h.01"></path></svg>Mini Games</a>
-<a href="Progres.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 20V11M11 20V5M17 20v-6M3 20h18"></path></svg>Progres</a>
-<a href="Jurnal.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM8 4v13M11 9h5M11 12h5"></path></svg>Jurnal</a>
-<a href="PohonTemuan.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M12 7v4M12 11l-5 5M12 11l5 5"></path></svg>Temuan</a>
-</nav>
+<nav class="px-nav"><a href="Main.dc.html" class="px-slot"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot on"><img alt="" src="{{px.dadu}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
+</div>
 </div></template>
 <template id="tpl-PasangLantai"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.4">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
@@ -7136,6 +7119,168 @@ const DC = (() => {
 })();
 
 
+/* ===== Tema pixel: gambar digambar lewat kode (tidak ada file gambar) =====
+   SPR = gambar kecil, satu huruf = satu kotak warna (lihat P).
+   PX.U.nama   = alamat gambar kecil, dipakai template lewat {{px.nama}}.
+   PX.world()  = peta desa Beranda. PX.shop() = dinding warung. PX.house(id) = rumah tiap materi. */
+const PX = (() => {
+  const P = { k: '#2B1D1A', w: '#FFFFFF', y: '#F2C035', Y: '#FFE680', o: '#C98A1B', r: '#E8554E', R: '#B23A34', q: '#FF9C8F',
+    c: '#93D65F', a: '#57A843', A: '#2F7A36', b: '#8A5A32', B: '#5E3B20', t: '#C99A5B', T: '#E8C58C',
+    u: '#4C8FDD', U: '#2F64B0', s: '#A5DBF2', e: '#9AA7BA', E: '#D5DDE8', f: '#F7CDA4', p: '#E58C8C', n: '#2D3250', N: '#474E78', m: '#57B8A0' };
+  const SPR = {
+    coin: ['...kkkkk...', '.kkYYYYYkk.', '.kYwYyyyok.', 'kYwyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', '.kyyyyyyok.', '.kkoooookk.', '...kkkkk...'],
+    rumah: ['.....kk.....', '....krrk....', '...krrrrk...', '..krrrrrrk..', '.krrrrrrrrk.', 'kkkkkkkkkkkk', '.kwwwwwwwwk.', '.kwwkkwwssk.', '.kwkbbkwssk.', '.kwkbbkwwwk.', '.kkkkkkkkkk.'],
+    dadu: ['.kkkkkkkkkk.', 'kwwwwwwwwwwk', 'kwkkwwwwkkwk', 'kwkkwwwwkkwk', 'kwwwwwwwwwwk', 'kwwwwkkwwwwk', 'kwwwwkkwwwwk', 'kwwwwwwwwwwk', 'kwkkwwwwkkwk', 'kwkkwwwwkkwk', 'kEEEEEEEEEEk', '.kkkkkkkkkk.'],
+    grafik: ['............', '........kkkk', '........kaak', '....kkkkkaak', '....kyykkaak', 'kkkkkyykkaak', 'kuukkyykkaak', 'kuukkyykkaak', 'kuukkyykkaak', 'kuukkyykkaak', 'kkkkkkkkkkkk'],
+    buku: ['.kkkkkkkkk..', 'kRrrrrrrrrk.', 'kRrrrrrrrrk.', 'kRrwwwwwwrk.', 'kRrwwwwwwrk.', 'kRrrrrrrrrk.', 'kRrrrrrrrrk.', 'kRrrrrrrrrk.', 'kRkkkkkkkkkk', 'kwwwwwwwwwwk', '.kkkkkkkkkk.'],
+    pohon: ['....kkkk....', '..kkccaakk..', '.kcccaaaaAk.', '.kccaaaaaAk.', 'kccaaaaaAAAk', 'kaaaaaaaAAAk', '.kaaaaAAAAk.', '..kkkAAkkk..', '....kbBk....', '....kbBk....', '...kkbBkk...'],
+    pohonB: ['.....kkkkkk.....', '...kkcccccckk...', '..kccccccaaaak..', '.kcccccaaaaaaak.', '.kccccaaaaaaaak.', 'kccccaaaaaaaaaAk', 'kccaaaaaaaaaaAAk', 'kcaaaaaaaaaaaAAk', 'kaaaaaaaaaaAAAAk', 'kaaaaaaaaaAAAAAk', '.kaaaaaAAAAAAAk.', '.kkAAAAAAAAAAkk.', '...kkkAAAAkkk...', '.....kbbBk......', '.....kbbBk......', '....kkbbBkk.....', '...kbbkbBkBk....', '....kk.kk.kk....'],
+    tunggul: ['.kkkkkk.', 'kTTTTTTk', 'kTttttTk', 'kbTTTTbk', 'kbbbbbbk', 'kBbbbbBk', '.kk..kk.'],
+    batu: ['..kkk..', '.kEEEk.', 'kEEeeek', 'keeeeek', '.kkkkk.'],
+    palu: ['............', '..kkkkkkkk..', '.keeeeeeeEk.', '.keeeeeeeEk.', '..kkkbbkkk..', '....kbBk....', '....kbBk....', '....kbBk....', '....kbBk....', '....kbBk....', '....kkkk....'],
+    peti: ['.kkkkkkkkkk.', 'kbbbbyybbbbk', 'kbbbbyybbbbk', 'kkkkkyykkkkk', 'kBBBkyykBBBk', 'kbbbbkkbbbbk', 'kbbbbbbbbbbk', 'kbbbbbbbbbbk', 'kkkkkkkkkkkk'],
+    roti: ['...kkkkkk...', '.kkTTTTTTkk.', 'kTTtTttTtttk', 'kTttttttttbk', 'kttkttkttkbk', 'ktttttttttbk', '.ktttttttbk.', '..kkkkkkkk..'],
+    gir: ['....kkkk....', '.kk.keek.kk.', 'kekkkeekkkek', 'keeeeeeeeeek', '.keekkkkeek.', 'kkeek..keekk', 'kkeek..keekk', '.keekkkkeek.', 'keeeeeeeeeek', 'kekkkeekkkek', '.kk.keek.kk.', '....kkkk....'],
+    kiri: ['...kk.', '..kkk.', '.kkkkk', 'kkkkkk', '.kkkkk', '..kkk.', '...kk.'],
+    kisi: ['kkkkk.kkkkk', 'kwwwk.kwwwk', 'kwwwk.kwwwk', 'kkkkk.kkkkk', '...........', 'kkkkk.kkkkk', 'kwwwk.kwwwk', 'kwwwk.kwwwk', 'kkkkk.kkkkk'],
+    daftar: ['kk.kkkkkkk', 'kk.kkkkkkk', '..........', 'kk.kkkkk..', 'kk.kkkkk..', '..........', 'kk.kkkkkkk', 'kk.kkkkkkk'],
+    seru: ['..kkkkk..', '.kyyyyyk.', 'kyykkkyyk', 'kyykkkyyk', 'kyykkkyyk', 'kyyykyyyk', 'kyyyyyyyk', 'kyyykyyyk', '.kyyyyyk.', '..kkykk..', '....k....'],
+    orang: ['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.', '.kBffffffBk.', '.kfkffffkfk.', '.kffffffffk.', '..kffppffk..', '...kkkkkk...', '..krrrrrrk..', '.kfrrrrrrfk.', '.kfrrrrrrfk.', '..krrrrrrk..', '..kUUkkUUk..', '..kUUkkUUk..', '..kkk..kkk..'],
+    fPanel: ['.kkkkk.', 'kTTTTtk', 'kTBBBtk', 'kTBwBtk', 'kTBBBtk', 'kttttbk', '.kkkkk.'],
+    fWhite: ['.kkkkk.', 'kwwwwwk', 'kwwwwwk', 'kwwwwwk', 'kwwwwwk', 'kEEEEEk', '.kkkkk.'],
+    fGold: ['.kkkkk.', 'kYYYYYk', 'kYyyyyk', 'kyyyyok', 'kyyyyok', 'koooook', '.kkkkk.']
+  };
+  SPR.kanan = SPR.kiri.map(r => r.split('').reverse().join(''));
+  SPR.wajah = SPR.orang.slice(0, 8);
+  SPR.pembeli = SPR.orang.map(r => r.replace(/B/g, 'o').replace(/r/g, 'm').replace(/U/g, 'e'));
+  SPR.coinR = SPR.coin.map(r => r.replace(/Y/g, 'q').replace(/y/g, 'r').replace(/o/g, 'R'));
+  const dims = rows => [Math.max.apply(null, rows.map(r => r.length)), rows.length];
+  function uri(name) {
+    const rows = SPR[name], d = dims(rows); let s = '';
+    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const c = P[r[x]]; if (c) s += '<rect x="' + x + '" y="' + y + '" width="1" height="1" fill="' + c + '"/>'; } });
+    return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + d[0] * 10 + '" height="' + d[1] * 10 + '" viewBox="0 0 ' + d[0] + ' ' + d[1] + '" shape-rendering="crispEdges">' + s + '</svg>');
+  }
+  const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
+  const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
+  ['coin', 'coinR', 'fPanel', 'fWhite', 'fGold'].forEach(n => css(n, U[n]));
+
+  function pen(W, H, seed) {
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const x = cv.getContext('2d'), t = { cv: cv, x: x };
+    t.rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    t.R = (col, a, b, w, h) => { x.fillStyle = col; x.fillRect(a, b, w, h); };
+    t.stamp = (name, a, b) => SPR[name].forEach((r, j) => { for (let i = 0; i < r.length; i++) { const c = P[r[i]]; if (c) { x.fillStyle = c; x.fillRect(a + i, b + j, 1, 1); } } });
+    t.tree = (a, b) => { t.R('rgba(43,29,26,.25)', a + 2, b + 16, 12, 2); t.stamp('pohonB', a, b); };
+    t.flower = (a, b, n) => { const col = n % 4 === 3 ? '#F7A8B0' : (n % 4 === 1 ? P.Y : P.w); t.R('#3F7A32', a, b + 2, 1, 1); t.R(col, a - 1, b, 3, 1); t.R(col, a, b - 1, 1, 3); t.R(n % 4 === 1 ? P.o : P.y, a, b, 1, 1); };
+    t.fence = (a, b, n) => { t.R(P.k, a, b + 2, n * 7 + 3, 3); t.R(P.t, a, b + 3, n * 7 + 3, 1); for (let q = 0; q <= n; q++) { t.R(P.k, a + q * 7, b, 3, 8); t.R(P.T, a + q * 7 + 1, b + 1, 1, 6); } };
+    t.cloud = (a, b) => { t.R(P.w, a + 4, b, 9, 2); t.R(P.w, a + 1, b + 2, 17, 2); t.R(P.w, a, b + 4, 21, 3); t.R('#D5ECFA', a + 1, b + 7, 19, 1); };
+    t.house = (a, b, w, col, awning) => {
+      const R = t.R, rc = col[0], rd = col[1], rl = col[2], wc = col[3], plank = col[4]; let i, j, ins;
+      R('rgba(43,29,26,.25)', a - 1, b + 33, w + 4, 2);
+      R(P.k, a + w - 11, b - 4, 7, 8); R('#B8AFA0', a + w - 10, b - 3, 5, 6); R(P.E, a + w - 10, b - 3, 5, 1);
+      for (j = 0; j < 14; j++) { ins = Math.max(0, 5 - j); R(P.k, a - 2 + ins, b + j, w + 4 - 2 * ins, 1); }
+      for (j = 1; j < 13; j++) { ins = Math.max(0, 5 - j); R(j === 1 ? rl : (j % 4 === 0 ? rd : rc), a - 1 + ins, b + j, w + 2 - 2 * ins, 1); }
+      for (j = 2; j < 12; j += 4) for (i = (j % 8 ? 3 : 7); i < w - 2; i += 8) R(rd, a + i, b + j + 1, 1, 2);
+      R(P.k, a, b + 14, w, 20); R(wc, a + 1, b + 14, w - 2, 19); R('rgba(43,29,26,.2)', a + 1, b + 14, w - 2, 2);
+      for (j = 19; j < 33; j += 4) R(plank, a + 1, b + j, w - 2, 1);
+      const dx = a + (w >> 1) - 4; R(P.k, dx, b + 21, 8, 13); R(P.b, dx + 1, b + 22, 6, 11); R(P.B, dx + 1, b + 22, 1, 11); R(P.t, dx + 2, b + 23, 4, 1); R(P.y, dx + 5, b + 28, 1, 1);
+      [a + 4, a + w - 12].forEach(wx => { R(P.k, wx, b + 19, 8, 8); R('#8FD0F2', wx + 1, b + 20, 6, 6); R(P.k, wx + 4, b + 20, 1, 6); R(P.w, wx + 1, b + 20, 2, 2); R(P.b, wx - 1, b + 27, 10, 1); });
+      if (awning) { for (i = 0; i < w; i += 6) { R(P.r, a + i, b + 14, 3, 3); R(P.w, a + i + 3, b + 14, 3, 3); } R(P.k, a, b + 17, w, 1); }
+    };
+    return t;
+  }
+  const HOUSE = {
+    bil: [P.r, P.R, '#F58A80', '#FFF6E0', '#EDE2C4'], alj: ['#4C8FDD', '#2F64B0', '#8CC0F5', '#F3D9A6', '#D9B57A'],
+    geo: ['#F0963A', '#B56A22', '#F9BE74', '#FFF6E0', '#EDE2C4'], dat: ['#57B8A0', '#2F8672', '#93DCC8', '#FFF6E0', '#EDE2C4']
+  };
+  const memo = {};
+  const once = (k, f) => () => memo[k] || (memo[k] = f());
+  const grass = (t, W, y0, H) => { for (let j = y0; j < H; j += 10) for (let i = 0; i < W; i += 10) t.R(((i + j - y0) / 10) % 2 ? '#78C24E' : '#6FB948', i, j, 10, 10); };
+
+  /* Peta desa Beranda, 195 x 290 kotak. Letak benda harus cocok dengan SPOTS di layar Main. */
+  const world = once('world', () => {
+    const W = 195, H = 290, t = pen(W, H, 11), R = t.R, rnd = t.rnd; let i, j;
+    grass(t, W, 0, H);
+    for (i = 0; i < 90; i++) { const tx = rnd() * W | 0, ty = 56 + rnd() * (H - 60) | 0; R('#4E9E3E', tx, ty, 1, 2); R('#4E9E3E', tx + 2, ty + 1, 1, 1); R('#A5E070', tx + 1, ty - 1, 1, 1); }
+    R('#3F93DD', 0, 0, W, 48);
+    for (i = 0; i < 70; i++) R('#7CC0F2', rnd() * W | 0, 1 + (rnd() * 45 | 0), 3 + (rnd() * 6 | 0), 1);
+    R(P.w, 0, 48, W, 1); for (i = 0; i < 16; i++) R('#3F93DD', rnd() * W | 0, 48, 2 + (rnd() * 3 | 0), 1);
+    for (i = 0; i < 14; i++) R(P.w, rnd() * W | 0, 47, 2, 1);
+    R('#C08A52', 0, 49, W, 2); R(P.b, 0, 51, W, 1); R('#3F7A32', 0, 52, W, 1);
+    for (i = 3; i < W; i += 9) R(P.b, i, 50, 2, 1);
+    [[150, 40], [166, 44], [20, 43]].forEach(q => { R(P.A, q[0], q[1], 6, 3); R(P.a, q[0] + 1, q[1], 4, 2); R('#3F93DD', q[0] + 3, q[1], 1, 1); });
+    R(P.k, 89, 34, 16, 19); R(P.T, 90, 35, 14, 17); for (j = 37; j < 52; j += 3) R(P.t, 90, j, 14, 1);
+    [88, 103].forEach(a => { R(P.k, a, 33, 3, 5); R(P.b, a + 1, 34, 1, 3); R(P.k, a, 46, 3, 5); R(P.b, a + 1, 47, 1, 3); });
+    const roads = [[0, 114, W, 12], [0, 196, W, 12], [93, 52, 8, 150], [82, 66, 30, 26], [35, 96, 8, 20], [152, 96, 8, 20], [35, 174, 8, 24], [152, 174, 8, 24], [20, 206, 8, 14], [66, 206, 8, 14], [120, 206, 8, 8], [166, 206, 8, 28]];
+    roads.forEach(r => R('#4E9E3E', r[0] - 2, r[1] - 2, r[2] + 4, r[3] + 4));
+    roads.forEach(r => R('#A8773F', r[0] - 1, r[1] - 1, r[2] + 2, r[3] + 2));
+    roads.forEach(r => R('#E3BD86', r[0], r[1], r[2], r[3]));
+    roads.forEach(r => { for (let q = 0; q < r[2] * r[3] / 28; q++) R(rnd() < .5 ? '#CDA066' : '#F0D3A2', r[0] + (rnd() * (r[2] - 2) | 0), r[1] + (rnd() * r[3] | 0), 2, 1); });
+    R('rgba(43,29,26,.25)', 88, 88, 20, 2);
+    R(P.k, 88, 72, 18, 16); R(P.k, 86, 75, 22, 10); R(P.E, 89, 73, 16, 14); R(P.E, 87, 76, 20, 8); R('#4C8FDD', 90, 75, 14, 10); R('#7CC0F2', 91, 76, 5, 1); R(P.k, 95, 77, 4, 6); R(P.E, 96, 76, 2, 6); R(P.w, 96, 73, 2, 3); R(P.w, 94, 75, 1, 2); R(P.w, 99, 75, 1, 2);
+    t.house(20, 62, 38, HOUSE.bil, true); t.house(137, 62, 38, HOUSE.alj); t.house(20, 140, 38, HOUSE.geo); t.house(137, 140, 38, HOUSE.dat);
+    ((ox, oy) => { /* papan pengumuman */
+      R('rgba(43,29,26,.25)', ox + 3, oy + 28, 28, 2);
+      R(P.k, ox + 5, oy + 7, 3, 22); R(P.b, ox + 6, oy + 7, 1, 21); R(P.k, ox + 25, oy + 7, 3, 22); R(P.b, ox + 26, oy + 7, 1, 21);
+      R(P.k, ox, oy, 33, 20); R(P.b, ox + 1, oy + 1, 31, 18); R(P.T, ox + 1, oy + 1, 31, 1); R(P.t, ox + 3, oy + 3, 27, 14);
+      R(P.w, ox + 5, oy + 4, 9, 11); R(P.k, ox + 6, oy + 6, 6, 1); R(P.k, ox + 6, oy + 8, 5, 1); R(P.k, ox + 6, oy + 10, 6, 1); R(P.r, ox + 9, oy + 3, 1, 2);
+      R(P.Y, ox + 17, oy + 5, 10, 8); R(P.k, ox + 18, oy + 7, 7, 1); R(P.k, ox + 18, oy + 9, 5, 1); R(P.r, ox + 21, oy + 4, 1, 2);
+    })(8, 220);
+    ((ox, oy) => { /* gudang bengkel */
+      R('rgba(43,29,26,.25)', ox + 1, oy + 29, 34, 2);
+      for (i = 0; i < 8; i++) R(P.k, ox + Math.max(0, 3 - i), oy + i, 34 - 2 * Math.max(0, 3 - i), 1);
+      for (i = 1; i < 7; i++) R(i === 1 ? P.E : (i % 3 === 0 ? '#7C879A' : P.e), ox + 1 + Math.max(0, 3 - i), oy + i, 32 - 2 * Math.max(0, 3 - i), 1);
+      R(P.k, ox + 2, oy + 8, 30, 22); R(P.b, ox + 3, oy + 8, 28, 21); for (i = 0; i < 28; i += 4) R(P.B, ox + 3 + i, oy + 8, 1, 21);
+      R(P.k, ox + 10, oy + 14, 14, 16); R('#3A2A22', ox + 11, oy + 15, 12, 15); t.stamp('palu', ox + 11, oy + 16);
+    })(53, 218);
+    ((cx, oy) => { /* menara teropong */
+      R('rgba(43,29,26,.25)', cx - 8, oy + 40, 18, 2);
+      R(P.k, cx - 7, oy + 8, 14, 33); R(P.E, cx - 6, oy + 8, 12, 32); R(P.e, cx + 3, oy + 8, 3, 32);
+      for (j = 12; j < 40; j += 6) { R(P.e, cx - 6, oy + j, 12, 1); R(P.e, cx - 2 + (j % 12 ? 0 : 3), oy + j - 3, 1, 3); }
+      R(P.k, cx - 10, oy + 1, 20, 8); R(P.E, cx - 9, oy + 2, 18, 6); R(P.k, cx - 5, oy + 1, 3, 3); R(P.k, cx + 3, oy + 1, 3, 3);
+      R(P.k, cx - 3, oy + 30, 6, 11); R(P.b, cx - 2, oy + 31, 4, 10);
+      R(P.k, cx - 2, oy + 16, 4, 6); R('#8FD0F2', cx - 1, oy + 17, 2, 4);
+      for (i = 0; i < 6; i++) { R(P.k, cx - 4 + i * 2, oy - 2 - i, 4, 3); R(P.u, cx - 3 + i * 2, oy - 1 - i, 2, 1); } R(P.s, cx + 8, oy - 7, 2, 2);
+    })(124, 206);
+    R('rgba(43,29,26,.25)', 160, 247, 22, 2); R(P.k, 160, 239, 20, 9); R(P.E, 161, 240, 18, 4); R(P.e, 161, 244, 18, 3); t.stamp('peti', 164, 231);
+    t.fence(0, 104, 2); t.fence(178, 104, 2); t.fence(62, 186, 3); t.fence(108, 186, 3);
+    [[62, 58], [116, 58], [-8, 66], [182, 64], [62, 134], [116, 136], [-9, 146], [183, 146], [92, 222], [184, 216], [4, 270], [150, 272], [84, 274]].forEach(q => t.tree(q[0], q[1]));
+    t.stamp('tunggul', 68, 100); t.stamp('tunggul', 118, 180); t.stamp('tunggul', 40, 274); t.stamp('batu', 8, 130); t.stamp('batu', 124, 104); t.stamp('batu', 182, 184); t.stamp('batu', 118, 270);
+    for (i = 0; i < 40; i++) { const fx = 4 + rnd() * (W - 8) | 0, fy = 58 + rnd() * (H - 64) | 0; if ((fy > 108 && fy < 130) || (fy > 190 && fy < 212) || (fx > 78 && fx < 116 && fy < 200)) continue; t.flower(fx, fy, i); }
+    return t.cv.toDataURL();
+  });
+
+  /* Dinding warung dengan jendela dan rak, 195 x 50 kotak. Bagian bawahnya menempel ke meja kasir. */
+  const shop = once('shop', () => {
+    const W = 195, H = 50, t = pen(W, H, 9), R = t.R; let i;
+    R('#8EDCC4', 0, 0, W, H); for (i = 0; i < W; i += 13) R('#A6E8D4', i, 0, 4, H);
+    R(P.k, 46, 8, 103, 42); R('#7CCBF2', 49, 11, 97, 39); R('#AEE2FA', 49, 30, 97, 20);
+    t.x.save(); t.x.beginPath(); t.x.rect(49, 11, 97, 39); t.x.clip();
+    t.cloud(54, 14); t.cloud(120, 20);
+    for (i = 49; i < 146; i++) { const hh = Math.round(11 + 5 * Math.sin(i / 15) + 3 * Math.sin(i / 6 + 1)); R(P.a, i, 50 - hh, 1, hh); R(P.A, i, 50 - hh, 1, 1); R('#7CC95A', i, 51 - hh, 1, 1); }
+    t.stamp('pohonB', 50, 30); t.stamp('pohonB', 128, 32);
+    t.x.restore();
+    R(P.k, 96, 11, 3, 39);
+    for (i = 0; i < 103; i += 12) { R(i % 24 ? P.w : P.r, 46 + i, 1, 12, 6); R(i % 24 ? '#D9E2EC' : P.R, 46 + i, 6, 12, 2); } R(P.k, 44, 0, 107, 1); R(P.k, 44, 8, 107, 1); R(P.k, 44, 0, 2, 9); R(P.k, 149, 0, 2, 9);
+    [[4, 8], [4, 29], [155, 8], [155, 29]].forEach((s, n) => {
+      R(P.k, s[0], s[1] + 11, 36, 3); R(P.T, s[0], s[1] + 11, 36, 1); R(P.k, s[0] + 3, s[1] + 14, 2, 4); R(P.k, s[0] + 31, s[1] + 14, 2, 4);
+      if (n % 3 === 0) { t.stamp('roti', s[0] + 3, s[1] + 3); t.stamp('roti', s[0] + 20, s[1] + 3); }
+      else [0, 1, 2].forEach(q => { const jx = s[0] + 3 + q * 11; R(P.k, jx, s[1] + 1, 8, 10); R([P.r, P.y, P.u][(q + n) % 3], jx + 1, s[1] + 4, 6, 6); R(P.w, jx + 1, s[1] + 2, 6, 2); R(P.w, jx + 2, s[1] + 5, 1, 3); });
+    });
+    return t.cv.toDataURL();
+  });
+  const grassTile = once('grass', () => { const t = pen(20, 20, 3); grass(t, 20, 0, 20); return t.cv.toDataURL(); });
+  css('grass', grassTile());
+  /* Gambar rumah satu materi (dipakai Mini Games) */
+  const house = id => memo['h' + id] || (memo['h' + id] = (() => {
+    const t = pen(50, 46, 5); grass(t, 50, 0, 50);
+    t.stamp('pohon', -3, 20); t.stamp('pohon', 41, 22); t.flower(8, 40, 0); t.flower(44, 41, 1);
+    t.house(6, 6, 38, HOUSE[id] || HOUSE.bil, id === 'bil'); t.R('#E3BD86', 21, 40, 8, 6);
+    return t.cv.toDataURL();
+  })());
+  return { U: U, world: world, shop: shop, house: house };
+})();
+
 /* ===== Logika tiap layar ===== */
 const GAMES = {};
 GAMES["ArgoOjek"] = (function () {
@@ -9793,7 +9938,7 @@ const clean = l => String(l).replace(/^✓\s*/, '').replace(/^\d+\.\s*/, '');
 const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'], gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); }, gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi', gmHasNext: inPlay && v.status === 'Selesai' && !!nextChip, gmNext: () => { if (nextChip) nextChip.tap(); }, gmNextLabel: (v.isHarian ? 'Kasus berikutnya: ' : 'Misi berikutnya: ') + (nextChip ? clean(nextChip.label) : ''), gmBack: () => { if (inPlay && chips.length > 0) this.setState({ gmPick: true, help: false }); else this.setState({ gmMenu: true, gmPick: false, help: false }); }, gmItems: items, gmMode: mode ? mode.label : 'Mode', gmOpen: () => this.setState({ gmMenu: true, gmPick: false, help: false }), gmNum: nums.length ? nums[ni].label : '', gmDec: step(-1), gmInc: step(1), gmTagLine: tagLine });
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 1px 8px 3px; font-family: \"Pixelify Sans\", Inter, sans-serif; font-size: 14px; color: #2B1D1A; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 6px solid transparent; border-image: var(--px-fGold) 30 fill / 6px; background: none; font-weight: 700' : 'border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; ') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'], gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); }, gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi', gmHasNext: inPlay && v.status === 'Selesai' && !!nextChip, gmNext: () => { if (nextChip) nextChip.tap(); }, gmNextLabel: (v.isHarian ? 'Kasus berikutnya: ' : 'Misi berikutnya: ') + (nextChip ? clean(nextChip.label) : ''), gmBack: () => { if (inPlay && chips.length > 0) this.setState({ gmPick: true, help: false }); else this.setState({ gmMenu: true, gmPick: false, help: false }); }, gmItems: items, gmMode: mode ? mode.label : 'Mode', gmOpen: () => this.setState({ gmMenu: true, gmPick: false, help: false }), gmNum: nums.length ? nums[ni].label : '', gmDec: step(-1), gmInc: step(1), gmTagLine: tagLine });
 }
 constructor(props) {
 super(props);
@@ -9871,7 +10016,13 @@ if (t === 'tray') return ['Kembalian', ['Ketuk koin di kotak koin untuk menaruhn
 if (t === 'struk') return ['Struk', ['Ketuk dua harga: yang pertama diketuk memberi, yang kedua menerima.', 'Ketuk angka di baris Geser untuk memindahkan nilai.', 'Ketik total di mesin kasir, lalu tekan Cek. Setiap cek memakai satu kesempatan.']];
 return ['Laci', ['Ketuk dua koin apa saja untuk menggabungkannya, lalu tulis nilai koin gabungannya di mesin kasir. Pakai − untuk utang.', 'Ketuk satu koin lalu Pecah untuk membaginya jadi dua koin sejenis. Tulis kedua bagiannya; tombol "dan" pindah ke bagian kedua.', 'Gabung atau pecah yang tidak cocok memakai satu kesempatan. Ketuk koin terpilih sekali lagi untuk batal memilih.', 'Ketik nilai bersih laci di mesin kasir, lalu tekan Cek. Setiap cek memakai satu kesempatan.']];
 }
-renderVals() { return this.gmWrap(this.gmRender()); }
+renderVals() { return this.pxVals(this.gmWrap(this.gmRender())); }
+pxVals(v) {
+const board = v.gmInPlay && v.showBoard;
+return Object.assign(v, { px: PX.U, pxShop: PX.shop(), pxShowBoard: board, pxWallCls: board ? '' : 'px-grow', pxHasTag: !!v.gmTagLine,
+pxBoardCls: this.state.P.type === 'tray' ? 'px-tray' : this.state.P.type === 'struk' ? 'px-struk' : 'px-laci',
+pxMsgBoard: v.hasMsg && board, pxHasCab: !!(v.hasCoinBox || v.hasAnswer || v.hasNotEnough || v.hasImpossible), pxMsgWall: v.hasMsg && !board });
+}
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -9884,8 +10035,8 @@ let chips = [];
 if (s.mode === 'misi' && !isTut) chips = this.T[this.curLvl()].map(m => m.name).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 const toggleSel = i => { const sel = s.sel.indexOf(i) >= 0 ? s.sel.filter(x => x !== i) : s.sel.concat([i]).slice(-2); this.setState({ sel: sel, msg: '' }); };
-const coinSt = (v, on) => { const size = 34 + Math.min(Math.abs(v), 12); return 'width: ' + size + 'px; height: ' + size + 'px; border-radius: 50%; font: inherit; font-weight: 600; font-size: 13px; cursor: pointer; ' + (v < 0 ? 'background: #F6D6CF; color: #8A2A12; border: 2px solid ' + (on ? '#1C1C1A' : '#E3A08F') : 'background: #DCE5FA; color: #1E3F9E; border: 2px solid ' + (on ? '#1C1C1A' : '#9DB3EE')) + (on ? '; transform: translateY(-3px)' : ''); };
-const act = (label, tap, primary) => ({ label: label, tap: tap, style: 'padding: 6px 12px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (primary ? 'border: 0; background: #2F5BD3; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') });
+const coinSt = (v, on) => { const size = 40 + Math.min(Math.abs(v), 12); return 'width: ' + size + 'px; height: ' + size + 'px; padding: 0 0 2px; border: 0; background: var(--px-' + (v < 0 ? 'coinR' : 'coin') + ') center / 100% 100% no-repeat; image-rendering: pixelated; font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: ' + (size > 46 ? 17 : 15) + 'px; color: ' + (v < 0 ? '#3B0F0B' : '#4A2C12') + '; cursor: pointer; ' + (on ? 'transform: translateY(-5px); filter: drop-shadow(0 0 2px #FFFFFF) drop-shadow(0 4px 0 #2B1D1A)' : 'filter: drop-shadow(0 3px 0 rgba(20, 23, 43, .35))'); };
+const act = (label, tap, primary) => ({ label: label, tap: tap, style: 'padding: 1px 10px 3px; font-family: \"Pixelify Sans\", Inter, sans-serif; font-size: 14px; color: #2B1D1A; cursor: pointer; ' + (primary ? 'border: 6px solid transparent; border-image: var(--px-fGold) 30 fill / 6px; background: none; font-weight: 700' : 'border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; ') });
 const setP = (patch, extra) => this.setState(Object.assign({ P: Object.assign({}, P, patch), msg: '', kind: '' }, extra || {}));
 const isLab = s.mode === 'lab';
 let items = [], boardLabel = '', statusLabel = '', status = '', statusColor = '#1C1C1A', actions = [], hasAnswer = false, answerLabel = '', next = null, boxAdd = null, hasSign = false, splitOpts = [], splitOf = '', moveKeys = [], moveLabel = '', mgOn = false, doMg = null, mgLabel = '', mgShow = '';
@@ -9966,25 +10117,25 @@ else if (!doneStage && s.sel.length === 1 && coins[s.sel[0]] !== undefined && Ma
 if (s.mode === 'misi' && s.mi < 3) next = () => { const c = this.genLaci(); setP({ coins: c, coins0: c.slice(), left: P.budget }, { stage: 'main', ans: '', sel: [] }); };
 } else if (P.type === 'struk') {
 boardLabel = 'Struk belanja';
-items = P.nums.map((v, i) => ({ label: v === null ? '?' : String(v), aria: v === null ? 'Harga tidak diketahui' : 'Harga ' + v, tap: () => toggleSel(i), style: 'min-width: 52px; height: 40px; padding: 0 8px; border-radius: 6px; font: inherit; font-weight: 600; font-size: 15px; cursor: pointer; background: ' + (v === null ? '#F0EFEB' : '#FFFFFF') + '; color: #1C1C1A; border: 2px solid ' + (s.sel.indexOf(i) >= 0 ? '#1C1C1A' : '#DDDCD7') }));
+items = P.nums.map((v, i) => ({ label: v === null ? '?' : String(v), aria: v === null ? 'Harga tidak diketahui' : 'Harga ' + v, tap: () => toggleSel(i), style: 'min-width: 58px; height: 46px; padding: 0 8px; font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: 16px; cursor: pointer; color: ' + (v === null ? '#6A7890' : '#2B1D1A') + '; border: 6px solid transparent; background: none; border-image: var(--px-' + (s.sel.indexOf(i) >= 0 ? 'fGold' : 'fWhite') + ') 30 fill / 6px' + (s.sel.indexOf(i) >= 0 ? '; transform: translateY(-3px)' : '') }));
 statusLabel = 'Kesempatan menjawab'; status = P.left + ' / ' + P.budget;
 if (s.sel.length === 2) {
 const from = s.sel[0], to = s.sel[1];
 const okPair = P.nums[from] !== null && P.nums[to] !== null;
 moveLabel = okPair ? 'Geser dari ' + P.nums[from] + ' ke ' + P.nums[to] : 'Harga yang tidak diketahui tidak bisa digeser';
-if (okPair) moveKeys = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(kk => { const can = P.nums[from] >= kk; return { label: String(kk), tap: () => { if (!can) return; const arr = P.nums.slice(); arr[from] -= kk; arr[to] += kk; setP({ nums: arr }); }, style: 'padding: 6px 0; border: 1px solid #DDDCD7; border-radius: 5px; background: #FFFFFF; font: inherit; font-size: 13px; font-weight: 600; color: #1C1C1A; ' + (can ? 'cursor: pointer' : 'opacity: 0.35; cursor: default') }; });
+if (okPair) moveKeys = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(kk => { const can = P.nums[from] >= kk; return { label: String(kk), tap: () => { if (!can) return; const arr = P.nums.slice(); arr[from] -= kk; arr[to] += kk; setP({ nums: arr }); }, style: 'padding: 1px 0 3px; border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 700; color: #2B1D1A; ' + (can ? 'cursor: pointer' : 'opacity: 0.35; cursor: default') }; });
 }
 actions = [act('↺ Ulang struk', () => s.mode === 'harian' ? this.loadCase(s.hi) : this.loadMission(s.mi))];
 hasAnswer = true; answerLabel = 'Total belanja (ribu)';
 if (s.mode === 'misi' && s.mi < 3) next = () => { const arr = [0, 0, 0, 0].map(() => this.rnd(11, 49)); setP({ nums: arr, nums0: arr.slice(), left: P.budget }, { stage: 'main', ans: '', sel: [] }); };
 }
 if (doneStage && next) actions = actions.concat([act('Pelanggan berikutnya', next, true)]);
-const miniCoin = v => 'width: 30px; height: 30px; padding: 0; border-radius: 50%; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; ' + (v < 0 ? 'background: #F6D6CF; color: #8A2A12; border: 1.5px solid #E3A08F' : 'background: #DCE5FA; color: #1E3F9E; border: 1.5px solid #9DB3EE');
+const miniCoin = v => 'width: 44px; height: 44px; padding: 0 0 2px; border: 0; background: var(--px-' + (v < 0 ? 'coinR' : 'coin') + ') center / 100% 100% no-repeat; image-rendering: pixelated; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-weight: 800; color: ' + (v < 0 ? '#3B0F0B' : '#4A2C12') + '; cursor: pointer; filter: drop-shadow(0 3px 0 rgba(20, 23, 43, .45))';
 const sg0 = hasSign ? s.cs : 1;
 const boxCoins = boxAdd ? [1, 2, 3, 4, 5, 6, 7, 8, 9].map(v => ({ label: String(v), aria: (sg0 < 0 ? 'Taruh utang ' : 'Taruh koin ') + v, style: miniCoin(sg0 * v), tap: () => boxAdd(v) })) : [];
-const signs = [[1, 'Uang'], [-1, 'Utang']].map(g => ({ label: g[1], tap: () => this.setState({ cs: g[0] }), style: 'padding: 3px 9px; border: 0; font: inherit; font-size: 11px; cursor: pointer; ' + (s.cs === g[0] ? (g[0] < 0 ? 'background: #8A2A12; color: #FFFFFF' : 'background: #1E3F9E; color: #FFFFFF') : 'background: #FFFFFF; color: #66655F') }));
-const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '−', '⌫'].map(q => ({ label: q, aria: q === '⌫' ? 'Hapus' : q === '−' ? 'Tanda minus' : q, tap: () => { let a = String(s.ans); if (q === '⌫') a = a.slice(0, -1); else if (q === '−') a = a.charAt(0) === '-' ? a.slice(1) : '-' + a; else if (a.replace('-', '').length < 4) a = a + q; this.setState({ ans: a, msg: '' }); }, style: 'padding: 8px 0; border: 1px solid #DDDCD7; border-radius: 5px; background: ' + (q === '⌫' || q === '−' ? '#F0EFEB' : '#FFFFFF') + '; font: inherit; font-size: 14px; font-weight: 600; color: #1C1C1A; cursor: pointer' }));
-const pecKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'dan', '⌫'].map(q => ({ label: q, aria: q === '⌫' ? 'Hapus' : q === 'dan' ? 'Pindah ke bagian lain' : q, tap: () => { const f = (s.mg && s.mg.f) || 'a', key = f === 'a' ? 'ans' : 'ansB'; if (q === 'dan') return this.setState({ mg: Object.assign({}, s.mg, { f: f === 'a' ? 'b' : 'a' }) }); let a = String(s[key] || ''); if (q === '⌫') a = a.slice(0, -1); else if (a.length < 2) a = a + q; this.setState({ [key]: a, msg: '' }); }, style: 'padding: 8px 0; border: 1px solid #DDDCD7; border-radius: 5px; background: ' + (q === '⌫' || q === 'dan' ? '#F0EFEB' : '#FFFFFF') + '; font: inherit; font-size: 14px; font-weight: 600; color: #1C1C1A; cursor: pointer' }));
+const signs = [[1, 'Uang'], [-1, 'Utang']].map(g => ({ label: g[1], tap: () => this.setState({ cs: g[0] }), style: 'padding: 0 6px 1px; font-family: \"Pixelify Sans\", Inter, sans-serif; font-size: 12px; color: #2B1D1A; cursor: pointer; ' + (s.cs === g[0] ? 'border: 6px solid transparent; border-image: var(--px-fGold) 30 fill / 6px; background: none; font-weight: 700' : 'border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; ') }));
+const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '−', '⌫'].map(q => ({ label: q, aria: q === '⌫' ? 'Hapus' : q === '−' ? 'Tanda minus' : q, tap: () => { let a = String(s.ans); if (q === '⌫') a = a.slice(0, -1); else if (q === '−') a = a.charAt(0) === '-' ? a.slice(1) : '-' + a; else if (a.replace('-', '').length < 4) a = a + q; this.setState({ ans: a, msg: '' }); }, style: 'padding: 3px 0 5px; border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 700; color: ' + (q === '⌫' || q === '−' ? '#4B4B57' : '#2B1D1A') + '; cursor: pointer' }));
+const pecKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'dan', '⌫'].map(q => ({ label: q, aria: q === '⌫' ? 'Hapus' : q === 'dan' ? 'Pindah ke bagian lain' : q, tap: () => { const f = (s.mg && s.mg.f) || 'a', key = f === 'a' ? 'ans' : 'ansB'; if (q === 'dan') return this.setState({ mg: Object.assign({}, s.mg, { f: f === 'a' ? 'b' : 'a' }) }); let a = String(s[key] || ''); if (q === '⌫') a = a.slice(0, -1); else if (a.length < 2) a = a + q; this.setState({ [key]: a, msg: '' }); }, style: 'padding: 3px 0 5px; border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 700; color: ' + (q === '⌫' || q === 'dan' ? '#4B4B57' : '#2B1D1A') + '; cursor: pointer' }));
 const target = () => {
 if (P.type === 'laci') return P.coins0.reduce((a, b) => a + b, 0);
 if (P.type === 'struk') return P.nums0.some(v => v === null) ? null : P.nums0.reduce((a, b) => a + b, 0);
@@ -11006,6 +11157,12 @@ return Component;
 })();
 GAMES["Main"] = (function () {
 
+const SPOTS = [
+{ id: 'bil', mat: 'bil', cx: 39, sy: 96 }, { id: 'alj', mat: 'alj', cx: 156, sy: 96 }, { id: 'geo', mat: 'geo', cx: 39, sy: 174 }, { id: 'dat', mat: 'dat', cx: 156, sy: 174 },
+{ id: 'tan', cx: 25, sy: 249, hx: 25, hy: 214 }, { id: 'ben', cx: 70, sy: 249, hx: 70, hy: 214 }, { id: 'cek', cx: 124, sy: 249, hx: 110, hy: 248 }, { id: 'len', cx: 170, sy: 249, hx: 170, hy: 236 }
+];
+/* koordinat di peta desa (PX.world, 195 x 290 kotak) diubah ke persen */
+const pc = (v, d) => (v / d * 100).toFixed(2) + '%';
 class Component extends DCLogic {
 renderVals() {
 const p = FMP.load(), LVN = FMP.LVN;
@@ -11028,19 +11185,45 @@ return { name: m[0], count: got + '/' + m[2].length, row: 'display: flex; justif
 lv: ['F', 'I', 'E'].map(l => { const on = m[2].some(g => FMP.stars(g[0], l)[0]); return { t: l, style: 'padding: 0 5px; border-radius: 3px; ' + (on ? 'background: #2F5BD3; color: #FFFFFF; border: 1px solid #2F5BD3' : 'border: 1px solid #DDDCD7; color: #66655F') }; }) }; });
 const bs = FMP.badges().filter(b => b[2]);
 const celah = FMP.MATS.find(m => !m[2].some(g => FMP.played(g[0])));
+const streakTxt = st > 0 ? st + ' hari beruntun' : 'Mulai hari ini';
+const targetTxt = Math.min(n, target) + '/' + target;
+const tantSub = tant ? (tant.items.length ? tant.items.length + ' kasus campuran dari game yang pernah kamu mainkan' : 'Belum ada kasus untuk hari ini') : 'Mainkan satu game dulu';
+const tantCount = tant && tant.items.length ? tDone + '/' + tant.items.length : '–';
+const celahTxt = celah ? celah[0] : 'Semua dicoba';
+const badgeTxt = bs.length ? bs[bs.length - 1][0] : 'Belum ada';
+const matOf = id => { const i = FMP.MATS.findIndex(m => m[1] === id); return i >= 0 ? mats[i] : null; };
+const INFO = {
+tan: { name: 'Tantangan', val: tantCount, t: 'Tantangan harian', d: tantSub, v: tantCount, btn: 'Buka', href: 'Tantangan.dc.html' },
+ben: { name: 'Bengkel', val: String(ready), t: 'Bengkel kesalahan', d: 'Kasus yang pernah gagal muncul lagi', v: ready + ' kasus', btn: 'Buka', href: 'Bengkel.dc.html' },
+cek: { name: 'Cek celah', val: '', t: 'Cek celah', d: 'Saran tingkat dari progresmu', v: celahTxt, btn: 'Buka', href: 'CekCelah.dc.html' },
+len: { name: 'Lencana', val: '', t: 'Lencana', d: badgeTxt, v: '', btn: 'Lihat semua', href: 'Progres.dc.html' }
+};
+const sp = SPOTS.find(o => o.id === this.state.spot) || null;
+const spots = SPOTS.map(o => {
+const m = o.mat ? matOf(o.mat) : null, inf = INFO[o.id] || {};
+const top = o.mat ? o.sy - 40 : o.sy - 46, h = o.mat ? 55 : 61;
+return { name: m ? m.name : inf.name, val: m ? m.count : inf.val, aria: m ? m.name : inf.t, on: sp === o ? 'on' : '',
+style: 'left: ' + pc(o.cx - 22, 195) + '; top: ' + pc(top, 290) + '; width: ' + pc(44, 195) + '; height: ' + pc(h, 290),
+tap: () => this.setState({ spot: sp === o ? null : o.id }) };
+});
+const hx = sp ? (sp.mat ? sp.cx + 12 : sp.hx) : 97, hy = sp ? (sp.mat ? sp.sy + 1 : sp.hy) : 122;
+const recMat = rec && FMP.GAME[rec.g] ? SPOTS.find(o => o.mat === FMP.GAME[rec.g].mat) : null;
+let d;
+if (sp && sp.mat) {
+const m = matOf(sp.mat);
+d = { s: 'Materi · bintang ★1 per tingkat', t: m.name, n: m.count, lv: m.lv.map(l => ({ t: l.t, on: l.on ? 'on' : '' })), btn: 'Buka Mini Games', href: 'MiniGames.dc.html',
+tap: () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: sp.mat, lvl: 'F', t: Date.now() })); } catch (e) {} } };
+} else if (sp) { const inf = INFO[sp.id]; d = { t: inf.t, d: inf.d, v: inf.v, btn: inf.btn, href: inf.href }; }
+else if (L) d = { s: 'Lanjutkan', t: L.g + ' · ' + L.label, d: LVN[L.l] + ' · ' + (L.mode === 'misi' ? 'Misi ' + (L.idx + 1) : 'Kasus harian'), btn: 'Main', href: L.key + '.dc.html', tap: () => FMP.go(L) };
+else d = { s: 'Selamat datang, peneliti', t: 'Belum ada kasus yang dimainkan', d: 'Pilih satu game di Mini Games. Semua temuanmu akan tercatat di sini.', btn: 'Buka Mini Games', href: 'MiniGames.dc.html' };
 return {
-streakTxt: st > 0 ? st + ' hari beruntun' : 'Mulai hari ini',
-targetTxt: Math.min(n, target) + '/' + target, dots: dots,
-hasLast: !!L, noLast: !L,
-lastTitle: L ? L.g + ' · ' + L.label : '', lastSub: L ? LVN[L.l] + ' · ' + (L.mode === 'misi' ? 'Misi ' + (L.idx + 1) : 'Kasus harian') : '',
-lastHref: L ? L.key + '.dc.html' : 'MiniGames.dc.html', lastTap: () => { if (L) FMP.go(L); },
-tantSub: tant ? (tant.items.length ? tant.items.length + ' kasus campuran dari game yang pernah kamu mainkan' : 'Belum ada kasus untuk hari ini') : 'Mainkan satu game dulu',
-tantCount: tant && tant.items.length ? tDone + '/' + tant.items.length : '–',
-bengkelCount: ready + ' kasus',
-celahTxt: celah ? celah[0] : 'Semua dicoba',
+px: PX.U, mapImg: PX.world(), spots: spots,
+heroStyle: 'left: ' + pc(hx - 6, 195) + '; top: ' + pc(hy - 15, 290),
+hasMark: !!recMat, markStyle: recMat ? 'left: ' + pc(recMat.cx - 5.5, 195) + '; top: ' + pc(recMat.sy - 48, 290) : '',
+streakTxt: streakTxt, targetTxt: targetTxt, pips: dots.map((_, i) => i < n ? 'on' : ''),
 hasRec: !!rec, recTitle: rec ? rec.g + ' · ' + LVN[rec.l] : '', recSub: rec ? rec.why : '', recHref: rec ? rec.key + '.dc.html' : 'MiniGames.dc.html', recTap: () => { if (rec) FMP.go(rec); },
-mats: mats,
-badgeTxt: bs.length ? bs[bs.length - 1][0] : 'Belum ada'
+dHasS: !!d.s, dS: d.s || '', dT: d.t, dHasN: !!d.n, dN: d.n || '', dHasD: !!d.d, dD: d.d || '', dHasLv: !!d.lv, dLv: d.lv || [],
+dHasVal: !!d.v, dVal: d.v || '', dBtn: d.btn, dHref: d.href, dTap: d.tap || (() => {})
 };
 }
 }
@@ -12100,7 +12283,7 @@ dat: [
 const mat = MATS.find(m => m.id === s.mat);
 const lv = LV.find(v => v.id === s.lvl);
 const list = GAMES[s.mat] || [];
-const mats = MATS.map(m => ({ label: m.label, sub: m.sub, tap: () => this.setState({ mat: m.id, step: 'game' }) }));
+const mats = MATS.map(m => ({ label: m.label, sub: m.sub, img: PX.house(m.id), tap: () => this.setState({ mat: m.id, step: 'game' }) }));
 const lvls = LV.map(v => ({ label: v.label, hint: v.hint, tap: () => this.setState({ lvl: v.id, step: 'game' }) }));
 let lastMap = {};
 try { lastMap = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; } catch (e) {}
@@ -12120,7 +12303,7 @@ isMat: s.step === 'mat', isLvl: s.step === 'lvl', isGame: s.step === 'game',
 canBack: s.step !== 'mat',
 back: () => this.setState({ step: 'mat' }),
 crumb: crumb, stepTxt: (s.step === 'mat' ? 1 : 2) + '/2',
-mats: mats, lvls: lvls, games: games, gamesNote: NOTE[s.mat] || '', starRules: ['1 semua misi selesai', '2 tepat 8 dari 10 kasus', '3 satu aturan lolos uji']
+px: PX.U, hasNote: !!NOTE[s.mat], mats: mats, lvls: lvls, games: games, gamesNote: NOTE[s.mat] || '', starRules: ['1 semua misi selesai', '2 tepat 8 dari 10 kasus', '3 satu aturan lolos uji']
 };
 }
 }
