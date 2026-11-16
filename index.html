@@ -367,6 +367,37 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-da-grafik .px-inner button[style*="background: #FBFAF7"]{background:#FFF1A8!important;border:0!important;box-shadow:0 3px 0 rgba(43,29,26,.25),inset 0 4px 0 #FFE38A!important}
 .px-da-grafik .px-inner path[fill="#DCE5FA"]{fill:#4C8FDD;stroke:#2B1D1A;stroke-width:2}
 .px-da-grafik .px-inner path[fill="#EFE6D2"]{fill:#FFC83D;stroke:#2B1D1A;stroke-width:2}
+/* ===== Layar non-game sebagai ruangan: gambar ruangan di atas, latar polos, isi jadi benda khas ===== */
+#root.px-room>div>div{background-image:none!important}
+#root.px-room>div>div>div:first-child::before{content:"";flex:none;display:block;margin:-16px -16px 2px;height:120px;background:var(--px-room) center bottom / 100% auto no-repeat;image-rendering:pixelated;border-bottom:4px solid #2B1D1A}
+#root.px-p-Progres>div>div{background-color:#EDE4F5!important}
+#root.px-p-Jurnal>div>div{background-color:#F6EEDC!important}
+#root.px-p-PohonTemuan>div>div{background-color:#E6F4DC!important}
+#root.px-p-Pengaturan>div>div{background-color:#E3E8EF!important}
+#root.px-p-Tantangan>div>div{background-color:#F2EAD9!important}
+#root.px-p-Bengkel>div>div{background-color:#EFE8DC!important}
+#root.px-p-CekCelah>div>div{background-color:#E4ECF6!important}
+#root.px-p-KasusBaru>div>div{background-color:#FBEFD9!important}
+/* Progres: plakat emas, papan kayu, batang progres seperti bar pengalaman */
+#root.px-p-Progres div[style*="background: #FFFFFF"][style*="border: 1px solid #DDDCD7"]{box-shadow:0 0 0 2px #2B1D1A,inset 0 0 0 3px #FFC83D,0 4px 0 rgba(43,29,26,.25)!important;border:0!important}
+#root.px-p-Progres [style*="background: #F0EFEB"]{background:#2D3250!important;box-shadow:inset 0 0 0 2px #2B1D1A!important}
+/* Jurnal: kertas buku bergaris dengan garis tepi merah */
+#root.px-p-Jurnal div[style*="border: 1px dashed"],#root.px-p-Jurnal div[style*="background: #FFFFFF"][style*="border"]{background:#FFFFFF repeating-linear-gradient(180deg,transparent 0 21px,#DCEBFF 21px 22px)!important;border:0!important;box-shadow:0 0 0 2px #2B1D1A,inset 4px 0 0 #F7A8B0,0 4px 0 rgba(43,29,26,.2)!important;padding-left:16px!important}
+/* Temuan: daun */
+#root.px-p-PohonTemuan a[style*="border"],#root.px-p-PohonTemuan div[style*="border: 1px dashed"],#root.px-p-PohonTemuan button[style*="border: 1px dashed"]{border:0!important;background:#FFFFFF!important;border-radius:0 18px 0 18px!important;box-shadow:0 0 0 2px #2B1D1A,inset 6px 0 0 #93CC5E!important}
+/* Pengaturan: panel logam */
+#root.px-p-Pengaturan div[style*="background: #FFFFFF"][style*="border: 1px solid #DDDCD7"]{background:#F4F7FB!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 4px 0 #C9D3E0,0 4px 0 rgba(43,29,26,.2)!important;border:0!important}
+/* Tantangan: kertas tertancap pin di papan gabus */
+#root.px-p-Tantangan>div>div>div:first-child>div[style*="background: #FFFFFF"]{background:#D8B07A!important;padding:10px!important;gap:10px;box-shadow:0 0 0 3px #2B1D1A,inset 0 0 0 6px #8A5A32!important;border:0!important}
+#root.px-p-Tantangan a[style*="border-bottom"]{position:relative;background:#FFF6C2!important;border:0!important;box-shadow:0 0 0 2px #2B1D1A,0 3px 0 rgba(43,29,26,.25)!important;margin:4px 0}
+#root.px-p-Tantangan a[style*="border-bottom"]::after{content:"";position:absolute;left:50%;top:-6px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#E8554E;box-shadow:0 0 0 2px #2B1D1A}
+/* Bengkel: label perbaikan di meja kerja */
+#root.px-p-Bengkel div[style*="background: #FFFFFF"][style*="border"]{background:#F4E3BD!important;border:0!important;clip-path:polygon(14px 0,100% 0,100% 100%,14px 100%,0 50%);padding-left:20px!important;box-shadow:inset 0 -3px 0 #E8C58C!important}
+/* Cek celah: buku log teropong */
+#root.px-p-CekCelah div[style*="background: #FFFFFF"][style*="border: 1px solid #DDDCD7"]{background:#FFFFFF repeating-linear-gradient(180deg,transparent 0 33px,#DCEBFF 33px 34px)!important;box-shadow:0 0 0 2px #2B1D1A,inset 5px 0 0 #2D3250,0 4px 0 rgba(43,29,26,.2)!important;border:0!important}
+/* Kasus baru: amplop dan kertas surat */
+#root.px-p-KasusBaru div[style*="background: #FFFFFF"][style*="border: 1px solid #DDDCD7"]{background:#FFFFFF!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 5px 0 #E8554E,0 4px 0 rgba(43,29,26,.2)!important;border:0!important}
+#root.px-p-KasusBaru textarea{background:#FFFFFF repeating-linear-gradient(180deg,transparent 0 19px,#DCEBFF 19px 20px)!important;border:2px solid #2B1D1A!important;border-radius:0!important}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -5730,6 +5761,7 @@ const PX = (() => {
     cangkir: ['..........', '.kkkkkkk..', '.kwwwwwkkk', '.kwttttk.k', '.kwttttkkk', '..kwwwk...', 'kkkkkkkkk.', '.kkkkkkk..'],
     baju: ['.kkk..kkk.', 'kwwwkkwwwk', 'kwwwwwwwwk', '.kkwwwwkk.', '..kwwwwk..', '..kwwwwk..', '..kwwwwk..', '..kkkkkk..'],
     celana: ['.kkkkkkk.', '.keeeeek.', '.keeeeek.', '.keekeek.', '.keekeek.', '.keekeek.', '.kkk.kkk.'],
+    piala: ['..kkkkkkkk..', '.kkYyyyyokk.', 'k.kYyyyyok.k', 'k.kyyyyyok.k', '.kkyyyyyokk.', '...kyyyok...', '....kyok....', '....kyok....', '...kkkkkk...', '..kbbbbbbk..', '..kkkkkkkk..'],
     kue: ['..kkkk..', '.kwwwwk.', 'kwwrwwwk', 'kqqqqqqk', 'kppppppk', 'kqqqqqqk', 'kTTTTTTk', '.kkkkkk.'],
     kursi: ['.kkkkkk.', '.kuuuuk.', '.kuUUuk.', '.kkkkkk.', 'kuuuuuuk', 'kkkkkkkk', '.k....k.', '.k....k.'],
     balon: ['..kkkkk..', '.krrrrrk.', 'krqrrrrrk', 'krqrrrrRk', 'krrrrrrRk', 'krrrrrrRk', '.krrrrRk.', '..kRRRk..', '...kkk...', '....k....', '...k.....', '....k....', '.....k...']
@@ -5763,6 +5795,8 @@ const PX = (() => {
   SPR.mandor = ['...kkkkkk...', '..kyyyyyyk..', '.kyYyyyyyok.', 'kkkkkkkkkkkk'].concat(SPR.orang.slice(3, 8)).concat(SPR.orang.slice(8).map(r => r.replace(/r/g, 'u')));
   SPR.pembeli = SPR.orang.map(r => r.replace(/B/g, 'o').replace(/r/g, 'm').replace(/U/g, 'e'));
   SPR.coinR = SPR.coin.map(r => r.replace(/Y/g, 'q').replace(/y/g, 'r').replace(/o/g, 'R'));
+  SPR.pialaP = SPR.piala.map(r => r.replace(/Y/g, 'w').replace(/y/g, 'E').replace(/o/g, 'e'));
+  SPR.pialaB = SPR.piala.map(r => r.replace(/Y/g, 'T').replace(/y/g, 't').replace(/o/g, 'b'));
   SPR.coinB = SPR.coin.map(r => r.replace(/Y/g, 's').replace(/y/g, 'u').replace(/o/g, 'U'));
   const dims = rows => [Math.max.apply(null, rows.map(r => r.length)), rows.length];
   function uri(name) {
@@ -6099,6 +6133,31 @@ const PX = (() => {
       [[70, 18, P.u], [82, 12, P.y], [94, 22, P.a], [106, 9, P.r], [118, 15, P.u]].forEach(q => { R(P.k, q[0], q[1], 8, 33 - q[1]); R(q[2], q[0] + 1, q[1] + 1, 6, 32 - q[1]); });
       R(P.k, 92, 40, 12, 4); R('#9AA7BA', 93, 40, 10, 3); R(P.k, 82, 44, 32, 2);
       [[6, 8], [6, 27], [150, 8], [150, 27]].forEach((q, n) => { R(P.k, q[0], q[1] + 15, 40, 3); R(P.T, q[0], q[1] + 15, 40, 1); for (i = 0; i < 7; i++) { R(P.k, q[0] + 2 + i * 5, q[1] + 3 + (i % 3), 4, 12 - (i % 3)); R([P.r, P.u, P.a, P.y, P.m][(i + n) % 5], q[0] + 3 + i * 5, q[1] + 4 + (i % 3), 2, 11 - (i % 3)); } }); }],
+    ruangpiala: ['#EDE4F5', t => { const R = t.R; [[8, 14], [8, 33], [138, 14], [138, 33]].forEach((q, n) => { R(P.k, q[0], q[1] + 11, 50, 3); R(P.T, q[0], q[1] + 11, 50, 1); ['piala', 'pialaP', 'pialaB'].forEach((sp, i) => t.stamp(sp, q[0] + 2 + i * 16, q[1])); });
+      R(P.k, 82, 30, 32, 17); R('#9AA7BA', 83, 31, 30, 16); R('#C9D3E0', 83, 31, 30, 2); t.x.save(); t.x.translate(86, 8); t.x.scale(2, 2); t.stamp('piala', 0, 0); t.x.restore(); }],
+    meja: ['#F6EEDC', t => { const R = t.R; R(P.k, 0, 34, 195, 3); R(P.b, 0, 37, 195, 10); R(P.T, 0, 37, 195, 2);
+      R(P.k, 50, 18, 94, 17); R(P.w, 51, 19, 45, 15); R('#F4EAD2', 98, 19, 45, 15); R(P.k, 96, 18, 2, 17); for (let i = 0; i < 4; i++) { R('#DCEBFF', 54, 23 + i * 3, 38, 1); R('#DCEBFF', 101, 23 + i * 3, 38, 1); } R(P.r, 56, 19, 1, 15);
+      R(P.k, 150, 4, 3, 30); R(P.k, 144, 2, 16, 7); R(P.y, 145, 3, 14, 5); R('rgba(255,230,128,.4)', 136, 9, 32, 25); R(P.k, 146, 31, 12, 3);
+      R(P.k, 22, 26, 22, 3); R(P.y, 23, 27, 18, 1); R(P.p, 41, 27, 2, 1); R(P.k, 18, 12, 12, 16); R('#C9D3E0', 19, 13, 10, 14); R(P.r, 20, 15, 8, 1); }],
+    pohon: ['#E6F4DC', t => { const R = t.R; let i; R('#BFE3F7', 0, 0, 195, 34); t.cloud(14, 5); t.cloud(150, 8); R(P.a, 0, 34, 195, 13);
+      R(P.k, 92, 20, 12, 27); R(P.b, 93, 20, 10, 27); R(P.B, 99, 20, 4, 27);
+      for (i = 0; i < 9; i++) { const cx = 98 + Math.round(Math.cos(i * 0.7) * 34), cy = 16 + Math.round(Math.sin(i * 0.7) * 10); R(P.k, cx - 13, cy - 7, 26, 14); R(i % 2 ? P.a : P.c, cx - 12, cy - 6, 24, 12); }
+      R(P.c, 74, 6, 48, 18); [[80, 10], [108, 8], [94, 16], [118, 18], [72, 20]].forEach(q => { R(P.k, q[0] - 1, q[1] - 1, 6, 6); R(P.y, q[0], q[1], 4, 4); R(P.w, q[0], q[1], 1, 1); }); }],
+    panel: ['#E3E8EF', t => { const R = t.R; let i; R(P.k, 30, 6, 135, 38); R('#9AA7BA', 31, 7, 133, 36); R('#C9D3E0', 31, 7, 133, 3);
+      for (i = 0; i < 4; i++) { const x = 42 + i * 20; R(P.k, x, 14, 10, 22); R('#5A6278', x + 1, 15, 8, 20); R(P.k, x - 1, 18 + (i * 5) % 14, 12, 4); R([P.r, P.y, P.a, P.u][i], x, 19 + (i * 5) % 14, 10, 2); }
+      R(P.k, 126, 12, 28, 18); R('#2D3250', 127, 13, 26, 16); R('#9FE0B5', 130, 18, 14, 2); R('#9FE0B5', 130, 22, 8, 2); t.stamp('gir', 134, 32); }],
+    papan: ['#F2EAD9', t => { const R = t.R; let i; R(P.k, 24, 4, 148, 42); R(P.b, 25, 5, 146, 40); R('#D8B07A', 29, 9, 138, 32);
+      [[36, 12, P.w, P.r], [66, 16, P.Y, P.u], [98, 11, P.w, P.a], [130, 15, '#F7A8B0', P.r]].forEach(q => { R(P.k, q[0], q[1], 24, 20); R(q[2], q[0] + 1, q[1] + 1, 22, 18); for (i = 0; i < 3; i++) R('#9AA7BA', q[0] + 4, q[1] + 7 + i * 4, 16, 1); R(P.k, q[0] + 10, q[1] - 2, 4, 4); R(q[3], q[0] + 11, q[1] - 1, 2, 2); }); }],
+    bengkel: ['#EFE8DC', t => { const R = t.R; let i; R(P.k, 20, 4, 155, 26); R('#C9A47A', 21, 5, 153, 24); for (i = 0; i < 12; i++) R('#B48E62', 26 + i * 12, 8, 2, 2);
+      t.stamp('palu', 34, 10); t.stamp('gir', 60, 11); R(P.k, 84, 9, 3, 16); R('#9AA7BA', 85, 9, 1, 16); R(P.k, 81, 7, 9, 4); R('#9AA7BA', 82, 8, 7, 2);
+      R(P.k, 104, 12, 22, 10); R(P.r, 105, 13, 20, 8); R(P.k, 112, 9, 6, 4); t.stamp('pisau', 140, 10);
+      R(P.k, 0, 34, 195, 3); R(P.b, 0, 37, 195, 10); R(P.T, 0, 37, 195, 2); [[40, 24], [120, 26]].forEach(q => { R(P.k, q[0], q[1], 26, 11); R('#F4E3BD', q[0] + 1, q[1] + 1, 24, 9); R(P.k, q[0] + 3, q[1] + 4, 3, 3); R(P.k, q[0] + 4, q[1] - 6, 1, 6); }); }],
+    teropong: ['#E4ECF6', t => { const R = t.R; let i; R('#2D3250', 0, 0, 195, 34); for (i = 0; i < 30; i++) R(i % 3 ? P.w : P.Y, (i * 47) % 195, (i * 13) % 32, 1, 1); R(P.k, 140, 6, 6, 6); R(P.Y, 141, 7, 4, 4);
+      R(P.E, 0, 34, 195, 13); R(P.k, 82, 22, 34, 25); R(P.E, 83, 23, 32, 24); R(P.e, 106, 23, 9, 24);
+      for (i = 0; i < 8; i++) { R(P.k, 90 + i * 3, 18 - i * 2, 8, 5); R(P.u, 91 + i * 3, 19 - i * 2, 6, 3); } R(P.s, 115, 3, 3, 3); }],
+    pos: ['#FBEFD9', t => { const R = t.R; let i; R(P.k, 20, 8, 30, 38); R(P.r, 21, 9, 28, 37); R(P.R, 21, 38, 28, 8); R(P.k, 26, 16, 18, 4); R(P.k, 25, 9, 20, 2); R(P.y, 30, 26, 10, 2);
+      R(P.k, 70, 30, 110, 4); R(P.T, 71, 30, 108, 2); R(P.k, 70, 34, 110, 12); R(P.b, 71, 34, 108, 12);
+      [[80, 16, 0], [104, 20, 1], [130, 14, 0], [154, 19, 1]].forEach(q => { R(P.k, q[0], q[1], 20, 12); R(q[2] ? '#F4E3BD' : P.w, q[0] + 1, q[1] + 1, 18, 10); for (i = 0; i < 4; i++) R(P.k, q[0] + 1 + i * 2, q[1] + 1 + i, 2, 1), R(P.k, q[0] + 17 - i * 2, q[1] + 1 + i, 2, 1); R(P.r, q[0] + 14, q[1] + 2, 3, 3); }); }],
   };
   const alView = name => memo['al-' + name] || (memo['al-' + name] = (() => { const t = pen(195, 50, name.length + 3); t.R(AL[name][0], 0, 0, 195, 50); AL[name][1](t); t.R(P.k, 0, 47, 195, 3); return t.cv.toDataURL(); })());
   return { U: U, P: P, pen: pen, world: world, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
@@ -6162,9 +6221,11 @@ const PX = (() => {
     return memo[key] = t.cv.toDataURL();
   }
   PX.scene = scene;
+  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'panel', Tantangan: 'papan', Bengkel: 'bengkel', CekCelah: 'teropong', KasusBaru: 'pos' };
   const DONE = { LokerOSIS: 1, PentasSeni: 1, UndianDoorprize: 1, RaporKelas: 1, GrafikViral: 1, RuteKurir: 1, PasangLantai: 1, GudangKardus: 1, CetakSpanduk: 1, TanggaBangunan: 1, Pelabuhan: 1, Main: 1, MiniGames: 1, KasirKilat: 1, Timbangan: 1, Ubin: 1, JadwalBus: 1, BagiPizza: 1, RacikResep: 1, LipatKertas: 1, DuaStruk: 1, MejaHajatan: 1, MartabakTopping: 1, MesinMinuman: 1, ArgoOjek: 1, RekapGrosir: 1, KebunPagar: 1, DapurRoti: 1 };
   PX.skin = (root, name) => {
     if (DONE[name]) { root.className = ''; return; }
+    if (ROOM[name]) { root.className = 'px-skin px-room px-p-' + name; root.style.setProperty('--px-room', 'url("' + PX.alView(ROOM[name]) + '")'); return; }
     const m = FMP.isGame(name) ? FMP.MATS.find(x => x[2].some(g => g[1] === name)) : null;
     root.className = 'px-skin px-g-' + name;
     root.style.setProperty('--px-bg', 'url("' + (m ? scene(name, m[1]) : ((mt) => scene('desa-' + mt, mt))(['bil', 'alj', 'geo', 'dat'][name.length % 4])) + '")');
