@@ -4448,6 +4448,67 @@ button{font:inherit}
 </sc-if>
 </div>
 </div></template>
+<template id="tpl-KasusBaru"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
+<div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 10px">
+<a href="Pengaturan.dc.html" aria-label="Kembali ke pengaturan" style="display: flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+<div style="min-width: 0"><div style="font-size: 18px; font-weight: 600">Kasus harian baru</div><div style="font-size: 12px; color: #66655F">Percobaan untuk game Ubin</div></div>
+</div>
+<div style="font-size: 13px; color: #444441">Pak Darto butuh kasus segar untuk hari-hari berikutnya. Salin pesanannya, jalankan di proyek Claude, lalu tempel jawabannya di sini. App memeriksa tiap kasus dan menghitung kuncinya sendiri.</div>
+<div style="display: flex; gap: 6px">
+<sc-for list="{{tiers}}" as="t" hint-placeholder-count="3">
+<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" style="{{t.style}}">{{t.label}}</button>
+</sc-for>
+</div>
+<div>
+<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">1. Salin prompt</div>
+<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="max-height: 120px; overflow-y: auto; white-space: pre-wrap; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #444441; background: #F7F7F5; border-radius: 5px; padding: 8px">{{prompt}}</div>
+<div style="display: flex; gap: 6px; justify-content: flex-end">
+<button type="button" onClick="{{regen}}" style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Prompt lain</button>
+<button type="button" onClick="{{copy}}" style="padding: 6px 12px; border: 0; border-radius: 6px; background: #1C1C1A; color: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Salin prompt</button>
+</div>
+</div>
+</div>
+<div>
+<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">2. Tempel jawaban Claude</div>
+<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+<textarea id="kb-paste" aria-label="Tempel JSON jawaban di sini" placeholder="Tempel JSON di sini" onChange="{{typed}}" style="width: 100%; box-sizing: border-box; height: 110px; resize: none; border: 1px solid #DDDCD7; border-radius: 5px; padding: 8px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #1C1C1A; background: #FFFFFF"></textarea>
+<div style="display: flex; justify-content: flex-end">
+<button type="button" onClick="{{check}}" style="padding: 6px 12px; border: 0; border-radius: 6px; background: #1C1C1A; color: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Periksa dan simpan</button>
+</div>
+</div>
+</div>
+<sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}">
+<div style="{{msgStyle}}">{{msg}}</div>
+</sc-if>
+<sc-if value="{{hasBad}}" hint-placeholder-val="{{ false }}">
+<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
+<sc-for list="{{bad}}" as="b" hint-placeholder-count="2">
+<div style="padding: 8px 12px; border-bottom: 1px solid #ECEBE7; font-size: 13px"><span style="font-weight: 600">Kasus ke-{{b.no}} ditolak:</span> {{b.why}}.</div>
+</sc-for>
+</div>
+</sc-if>
+<div>
+<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">{{storedTitle}}</div>
+<sc-if value="{{noStored}}" hint-placeholder-val="{{ false }}">
+<div style="border: 1px dashed #B9B8B2; border-radius: 6px; padding: 12px; font-size: 13px; color: #66655F">Belum ada kasus tambahan di tingkat ini.</div>
+</sc-if>
+<sc-if value="{{hasStored}}" hint-placeholder-val="{{ true }}">
+<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
+<sc-for list="{{stored}}" as="c" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid #ECEBE7">
+<span style="flex: 1; min-width: 0; font-size: 13px">{{c.label}}</span>
+<a href="Ubin.dc.html" onClick="{{c.play}}" style="padding: 5px 10px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font-size: 12px; color: #1C1C1A; text-decoration: none">Mainkan</a>
+<button type="button" onClick="{{c.del}}" aria-label="{{c.delAria}}" style="padding: 5px 10px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; color: #A32D2D; cursor: pointer">Hapus</button>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<div style="font-size: 12px; color: #66655F">Kasus yang lolos ikut bergiliran di tab Harian dan ikut tersimpan di file cadangan.</div>
+</div>
+</div></template>
 <template id="tpl-Pengaturan"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
@@ -4493,6 +4554,7 @@ button{font:inherit}
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Ekspor progres</span><span style="font-size: 12px; color: #66655F">Unduh file cadangan</span></span><button type="button" onClick="{{doCopy}}" style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Unduh</button></div>
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Impor progres</span><span style="font-size: 12px; color: #66655F">Pulihkan dari file cadangan</span></span><label style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Pilih file<input type="file" accept="application/json,.json" onChange="{{doImport}}" style="display: none"></label></div>
+<a href="KasusBaru.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Kasus harian baru</span><span style="font-size: 12px; color: #66655F">Tambah lewat prompt (percobaan: Ubin)</span></span><span style="font-size: 12px; color: #66655F">Buka ›</span></a>
 <sc-if value="{{askWipe}}" hint-placeholder-val="{{ false }}">
 <div style="padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: #FCEBEB">
 <span style="font-size: 13px; color: #791F1F">Semua progres di perangkat ini akan terhapus dan tidak bisa dikembalikan.</span>
@@ -15983,6 +16045,50 @@ return Component;
 })();
 
 /* ===== Progres pemain (disimpan di HP, kunci fm.progress) ===== */
+GAMES["KasusBaru"] = (function () {
+
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+let l = 'F'; try { const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; if (/^[FIE]$/.test(m.Ubin)) l = m.Ubin; } catch (e) {}
+this.txt = '';
+this.state = { key: 'Ubin', lvl: l, prompt: FMP.casePrompt('Ubin', l), msg: '', kind: '', bad: [], tick: 0 };
+}
+renderVals() {
+const s = this.state, key = s.key;
+const chip = on => 'padding: 6px 12px; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer; ' + (on ? 'background: #1C1C1A; color: #FFFFFF; border: 1px solid #1C1C1A' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7');
+const list = FMP.caseStored(key).filter(c => c.tingkat === s.lvl);
+return {
+tiers: ['F', 'I', 'E'].map(l => ({ label: FMP.LVN[l], aria: 'Tingkat ' + FMP.LVN[l] + (s.lvl === l ? ', dipilih' : ''), style: chip(s.lvl === l), tap: () => this.setState({ lvl: l, prompt: FMP.casePrompt(key, l), msg: '', bad: [] }) })),
+prompt: s.prompt,
+regen: () => this.setState({ prompt: FMP.casePrompt(key, s.lvl), msg: '' }),
+copy: () => {
+const done = ok => this.setState({ msg: ok ? 'Prompt tersalin. Jalankan di proyek Claude, lalu tempel jawabannya di bawah.' : 'Tidak bisa menyalin otomatis. Tekan lama teks prompt di atas untuk menyalinnya.', kind: ok ? 'ok' : 'warn' });
+try { navigator.clipboard.writeText(s.prompt).then(() => done(true), () => done(false)); } catch (e) { done(false); }
+},
+typed: ev => { this.txt = (ev && ev.target && ev.target.value) || ''; },
+check: () => {
+const el = document.getElementById('kb-paste'); if (el) this.txt = el.value;
+if (!this.txt.trim()) return this.setState({ msg: 'Tempel dulu jawaban Claude di kotak di atas.', kind: 'warn', bad: [] });
+const r = FMP.caseAdd(key, s.lvl, this.txt);
+if (r.err) return this.setState({ msg: r.err, kind: 'warn', bad: [] });
+if (r.ok.length && el) { el.value = ''; this.txt = ''; }
+this.setState({ msg: r.ok.length ? r.ok.length + ' kasus lolos dan tersimpan.' + (r.bad.length ? ' ' + r.bad.length + ' ditolak.' : '') : 'Tidak ada kasus yang lolos.', kind: r.ok.length ? 'ok' : 'warn', bad: r.bad });
+},
+hasMsg: !!s.msg, msg: s.msg,
+msgStyle: 'border-radius: 6px; padding: 8px 10px; font-size: 13px; ' + (s.kind === 'ok' ? 'background: #E6F4EC; color: #1F7A4D' : 'background: #FBF0DC; color: #8A5200'),
+hasBad: s.bad.length > 0, bad: s.bad,
+storedTitle: 'Kasus tambahan ' + FMP.LVN[s.lvl] + ' (' + list.length + ')',
+noStored: list.length === 0, hasStored: list.length > 0,
+stored: list.map(c => ({ label: c.konteks, delAria: 'Hapus kasus ' + c.konteks,
+play: () => FMP.go({ key: key, g: FMP.KEYS[key], l: c.tingkat, mode: 'harian', id: c.id }),
+del: () => { FMP.caseRemove(key, c.id); this.setState({ tick: s.tick + 1, msg: 'Kasus "' + c.konteks + '" dihapus.', kind: 'ok', bad: [] }); } }))
+};
+}
+}
+
+return Component;
+})();
 const FMP = (() => {
   const KEY = 'fm.progress';
   const LVN = { F: 'Fundamental', I: 'Intermediate', E: 'Expert' };
@@ -16099,7 +16205,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
   function caseList(key, g, l) {
     try {
       if (!inst[key]) inst[key] = new GAMES[key]({});
-      const H = inst[key].H || [];
+      const H = (inst[key].H || []).concat(BUILD[key] ? caseStored(key) : []);
       return H.filter(h => h.tingkat === l && (key !== 'Timbangan' || !!h.balon === (g === 'Timbangan Balon')));
     } catch (e) { return []; }
   }
@@ -16119,6 +16225,154 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     save();
     return p.tant;
   }
+
+  // ---- kasus tempelan: prompt → JSON → diperiksa app. Tahap 1: Ubin ----
+  const KONTEKS = ['pasar', 'kantin sekolah', 'UMKM kue', 'ojek online', 'pertanian', 'gudang paket', 'acara RT', 'olahraga', 'posyandu', 'perjalanan kereta', 'kos-kosan', 'bank sampah', 'perpustakaan', 'panitia lomba', 'bengkel motor', 'toko bangunan'];
+  const LARANG = /faktor|kelipatan|perkalian|pembagian|dikali|kalikan|mengalikan|rumus|prima|komposit|distributif|komutatif|habis dibagi|bagi habis|persamaan|aljabar/i;
+  const isInt = v => typeof v === 'number' && isFinite(v) && Math.floor(v) === v;
+  const hasNum = (t, n) => new RegExp('(^|[^0-9.,])' + n + '($|[^0-9]|[.,](?![0-9]))').test(t);
+  const nSent = t => (t.match(/[.!?]+["”’']?(?=\s|$)/g) || []).length;
+  const CASES = {
+    Ubin: {
+      peran: 'penata ruang gedung serbaguna; atasannya Pak Darto',
+      F: {
+        mesin: 'Pemain menata sejumlah benda di nampan/meja berbentuk persegi panjang penuh, tanpa sisa dan tanpa tempat kosong, lalu mencari semua susunan baris dan kolom yang mungkin.',
+        bentuk: '{"game":"Ubin","tingkat":"F","konteks":"2-3 kata","cerita":"...","n":24}',
+        batas: 'n = banyak benda, bilangan bulat 6 sampai 36.',
+        klaim: 'tambahkan "klaim":{"tokoh":"nama tokoh"}. Di cerita, tokoh itu yakin bendanya pasti bisa ditata jadi persegi panjang yang punya lebih dari satu baris dan lebih dari satu kolom. Keyakinannya boleh benar atau keliru.',
+        larangTeks: /×|\bkali\b|\d\s*x\s*\d/i
+      },
+      I: {
+        mesin: 'Aula berisi kursi yang tersusun baris × kolom. Pemain menambah baris utuh atau kolom utuh sampai jumlah kursi tepat sama dengan target.',
+        bentuk: '{"game":"Ubin","tingkat":"I","konteks":"2-3 kata","cerita":"...","baris":4,"kolom":6,"target":48,"hanyaKolom":false}',
+        batas: 'baris dan kolom 2 sampai 8; target lebih besar dari baris × kolom dan paling banyak 120. "hanyaKolom": true berarti kursi hanya bisa ditambah ke samping, dan cerita harus menyebut alasannya.',
+        klaim: 'pilih target yang TIDAK bisa dicapai dengan menambah baris atau kolom utuh (jangan menyebut hal itu di cerita).'
+      },
+      E: {
+        mesin: 'Ruangan besar berisi kursi atau orang yang tersusun baris × kolom. Pemain menghitung jumlah seluruhnya.',
+        bentuk: '{"game":"Ubin","tingkat":"E","konteks":"2-3 kata","cerita":"...","baris":17,"kolom":23}',
+        batas: 'baris 11 sampai 19; kolom 12 sampai 25.',
+        klaim: 'tambahkan "klaim":{"tokoh":"nama tokoh","banding":"lebih" atau "kurang","angka":400}. Di cerita, tokoh itu yakin jumlahnya lebih dari (atau kurang dari) angka tersebut. Angkanya dekat dengan jumlah sebenarnya tetapi tidak sama; keyakinannya boleh benar atau keliru.'
+      }
+    }
+  };
+  function casePrompt(key, l) {
+    const G = CASES[key], S = G && G[l]; if (!S) return '';
+    const pool = KONTEKS.slice(); const ks = [];
+    while (ks.length < 5) ks.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+    const a = Math.floor(Math.random() * 5); let b = Math.floor(Math.random() * 5); if (b === a) b = (a + 2) % 5;
+    const nomor = [a + 1, b + 1].sort().join(' dan ke-');
+    return [
+      'Buat 5 kasus cerita untuk game puzzle matematika "' + KEYS[key] + '", tingkat ' + LVN[l] + '. Balas HANYA dengan satu JSON array berisi 5 objek, tanpa penjelasan dan tanpa teks lain.',
+      '',
+      'Peran pemain: ' + G.peran + '.',
+      'Cara main: ' + S.mesin,
+      '',
+      'Aturan cerita:',
+      '- 2 sampai 3 kalimat, bahasa Indonesia sehari-hari, nama orang generik.',
+      '- Semua angka kasus harus tertulis di cerita.',
+      '- Jangan menyebut rumus, nama konsep matematika, jawaban, atau cara menyelesaikan.',
+      '- Jangan menulis kalimat perintah atau pertanyaan untuk pemain; app yang menambahkannya.',
+      '- Boleh ada satu informasi yang tidak dipakai.',
+      '',
+      'Bentuk tiap objek (ganti isinya):',
+      S.bentuk,
+      'Batas angka: ' + S.batas,
+      'Jangan sertakan kunci jawaban.',
+      '',
+      'Konteks cerita, satu per kasus sesuai urutan: ' + ks.join('; ') + '.',
+      'Khusus kasus ke-' + nomor + ': ' + S.klaim,
+      'Setiap kasus memakai angka yang berbeda.'
+    ].join('\n');
+  }
+  function buildUbin(o) {
+    const l = o.tingkat, type = ({ F: 'nampan', I: 'perluas', E: 'hitung' })[l];
+    const t = o.cerita, S = CASES.Ubin[l];
+    const need = [], C = { konteks: o.konteks.trim(), tingkat: l, type: type, cerita: t.trim() };
+    const tokoh = k => { if (!k || typeof k.tokoh !== 'string' || k.tokoh.trim().length < 2) throw new Error('klaim tanpa nama tokoh'); if (t.indexOf(k.tokoh.trim()) < 0) throw new Error('tokoh klaim "' + k.tokoh + '" tidak ada di cerita'); return k.tokoh.trim(); };
+    if (S.larangTeks && S.larangTeks.test(t)) throw new Error('cerita memberi petunjuk cara (tanda kali)');
+    if (type === 'nampan') {
+      if (!isInt(o.n) || o.n < 6 || o.n > 36) throw new Error('n harus bilangan bulat 6–36');
+      C.n = o.n; need.push(o.n);
+      if (o.klaim) {
+        const nm = tokoh(o.klaim);
+        if (!/baris/i.test(t) || !/kolom/i.test(t)) throw new Error('cerita klaim harus menyebut baris dan kolom');
+        let comp = false; for (let i = 2; i < o.n; i++) if (o.n % i === 0) comp = true;
+        C.verdictNow = true; C.verdict = { q: 'Apakah ucapan ' + nm + ' benar?', opts: ['Benar', 'Salah'], correct: comp ? 'Benar' : 'Salah' };
+        C.tujuan = 'Uji ucapan ' + nm + ' dengan mencoba susunan.';
+      } else C.tujuan = 'Temukan semua susunan yang mungkin.';
+      C.sig = 'n' + o.n + (o.klaim ? 'k' : '');
+    } else if (type === 'perluas') {
+      const r = o.baris, c = o.kolom, T = o.target;
+      if (!isInt(r) || !isInt(c) || r < 2 || r > 8 || c < 2 || c > 8) throw new Error('baris dan kolom harus 2–8');
+      if (!isInt(T) || T <= r * c || T > 120) throw new Error('target harus lebih dari baris × kolom dan paling banyak 120');
+      C.base = { r: r, c: c }; C.target = T; need.push(r, c, T);
+      if (o.hanyaKolom === true) C.onlyCols = true;
+      let paths = 0; for (let x = 0; x <= 12; x++) for (let y = 0; y <= 12; y++) { if (C.onlyCols && x) continue; if ((r + x) * (c + y) === T) paths++; }
+      if (!paths) C.impossible = true;
+      C.tujuan = 'Temukan semua cara menambah ' + (C.onlyCols ? 'kolom utuh' : 'baris atau kolom utuh') + ' sampai tepat ' + T + ' kursi, atau tunjukkan bahwa itu tidak mungkin.';
+      C.sig = 'p' + r + 'x' + c + 't' + T + (C.onlyCols ? 'c' : '');
+    } else {
+      const r = o.baris, c = o.kolom;
+      if (!isInt(r) || !isInt(c) || r < 11 || r > 19 || c < 12 || c > 25) throw new Error('baris harus 11–19 dan kolom 12–25');
+      C.W = c; C.H = r; need.push(r, c);
+      if (o.klaim) {
+        const nm = tokoh(o.klaim), k = o.klaim;
+        if (k.banding !== 'lebih' && k.banding !== 'kurang') throw new Error('klaim.banding harus "lebih" atau "kurang"');
+        if (!isInt(k.angka) || k.angka === r * c || Math.abs(k.angka - r * c) > 120) throw new Error('klaim.angka harus dekat dengan jumlah sebenarnya dan tidak sama');
+        need.push(k.angka);
+        const benar = k.banding === 'lebih' ? r * c > k.angka : r * c < k.angka;
+        C.verdict = { q: 'Apakah ' + nm + ' benar?', opts: ['Benar', 'Salah'], correct: benar ? 'Benar' : 'Salah' };
+        C.tujuan = 'Hitung jumlahnya, lalu nilai keyakinan ' + nm + '.';
+      } else C.tujuan = 'Hitung jumlahnya.';
+      C.sig = 'h' + r + 'x' + c + (o.klaim ? 'k' + o.klaim.angka : '');
+    }
+    need.forEach(n => { if (!hasNum(t, n)) throw new Error('angka ' + n + ' tidak tertulis di cerita'); });
+    return C;
+  }
+  const BUILD = { Ubin: buildUbin };
+  function builtinSigs(key) {
+    const out = {};
+    try {
+      const c = new GAMES[key]({}), all = (c.H || []).slice();
+      ['F', 'I', 'E'].forEach(l => ((c.T || {})[l] || []).forEach(m => all.push(m)));
+      all.forEach(h => { if (h.type === 'nampan') out['n' + h.n + (h.verdict ? 'k' : '')] = 1; else if (h.type === 'perluas') out['p' + h.base.r + 'x' + h.base.c + 't' + h.target + (h.onlyCols ? 'c' : '')] = 1; else if (h.type === 'hitung') out['h' + h.H + 'x' + h.W + (h.verdict ? 'k' : '')] = 1; });
+    } catch (e) {}
+    return out;
+  }
+  function caseStored(key) { const p = load(); if (!p.cases) p.cases = {}; return p.cases[key] || []; }
+  // memeriksa teks tempelan; yang lolos langsung disimpan
+  function caseAdd(key, l, txt) {
+    const res = { ok: [], bad: [], err: '' };
+    if (!BUILD[key]) { res.err = 'Game ini belum menerima kasus tempelan.'; return res; }
+    let arr;
+    try {
+      const m = String(txt || '').match(/[\[{][\s\S]*[\]}]/);
+      arr = JSON.parse(m ? m[0] : '');
+      if (arr && !Array.isArray(arr)) arr = Array.isArray(arr.kasus) ? arr.kasus : [arr];
+    } catch (e) { res.err = 'Teks itu bukan JSON yang utuh. Salin seluruh jawaban, dari tanda [ sampai ].'; return res; }
+    if (!arr || !arr.length) { res.err = 'Tidak ada kasus di dalam teks itu.'; return res; }
+    const sigs = builtinSigs(key); caseStored(key).forEach(c => { sigs[c.sig] = 1; });
+    arr.slice(0, 12).forEach((o, i) => {
+      try {
+        if (!o || typeof o !== 'object') throw new Error('bukan objek');
+        if (o.game && o.game !== key && o.game !== KEYS[key]) throw new Error('untuk game lain (' + o.game + ')');
+        if (o.tingkat !== l) throw new Error('tingkatnya ' + (o.tingkat || 'kosong') + ', bukan ' + l);
+        if (typeof o.konteks !== 'string' || o.konteks.trim().length < 3 || o.konteks.trim().length > 24) throw new Error('konteks harus 3–24 huruf');
+        if (typeof o.cerita !== 'string' || o.cerita.trim().length < 20) throw new Error('cerita kosong atau terlalu pendek');
+        if (o.cerita.length > 320 || nSent(o.cerita.trim()) > 3) throw new Error('cerita lebih dari 3 kalimat');
+        const lr = LARANG.exec(o.cerita + ' ' + o.konteks); if (lr) throw new Error('cerita menyebut "' + lr[0] + '"');
+        const C = BUILD[key](o);
+        if (sigs[C.sig]) throw new Error('angkanya sama dengan kasus yang sudah ada');
+        sigs[C.sig] = 1;
+        C.id = 'x' + Date.now().toString(36) + i; C.custom = true;
+        res.ok.push(C);
+      } catch (e) { res.bad.push({ no: i + 1, why: (e && e.message) || 'tidak terbaca' }); }
+    });
+    if (res.ok.length) { const p = load(); if (!p.cases) p.cases = {}; p.cases[key] = (p.cases[key] || []).concat(res.ok); save(); }
+    return res;
+  }
+  function caseRemove(key, id) { const p = load(); if (!p.cases || !p.cases[key]) return; p.cases[key] = p.cases[key].filter(c => c.id !== id); save(); }
 
   // ---- kasus harian berangka baru: dibuat dari tombol soal acak milik misi, dengan benih hari ----
   const GEN_RE = /^a(\d+)([FIE])(\d)$/, genCache = {};
@@ -16240,7 +16494,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
   function wrap(key, Base) {
     const doneMap = c => { const T = load().tiers[tk(nameOf(key, c), c.curLvl())]; return Object.assign({}, T ? T.misi : {}); };
     return class extends Base {
-      constructor(props) { super(props); if (key !== 'Timbangan') { try { this.state.done = doneMap(this); } catch (e) {} } }
+      constructor(props) { super(props); if (key !== 'Timbangan') { try { this.state.done = doneMap(this); } catch (e) {} } try { if (BUILD[key] && this.H) caseStored(key).forEach(c => { if (!this.H.some(h => h.id === c.id)) this.H.push(JSON.parse(JSON.stringify(c))); }); } catch (e) {} }
       setState(patch) {
         const prev = this.state; super.setState(patch);
         try { observe(key, this, prev, this.state); } catch (e) { console.error(e); }
@@ -16283,11 +16537,11 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     if (hasAsks) return ('Jawab pertanyaan di bawah. ' + tail).trim();
     return t;
   }
-  return { nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, isGame: k => !!KEYS[k] };
+  return { nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, casePrompt, caseAdd, caseStored, caseRemove, caseGames: () => Object.keys(BUILD), isGame: k => !!KEYS[k] };
 })();
 
 /* ===== Navigasi: tautan "Nama.dc.html" dibuka sebagai #Nama ===== */
-const TITLES = {"Main": "Beranda", "MiniGames": "Mini Games", "Timbangan": "Game Timbangan + lanjutan Balon (bisa dimainkan)", "Ubin": "Game Ubin (bisa dimainkan)", "KasirKilat": "Game Kasir Kilat (bisa dimainkan)", "PohonTemuan": "Pohon Temuan", "Jurnal": "Jurnal Peneliti", "CekCelah": "Cek celah", "Tantangan": "Tantangan harian", "Bengkel": "Bengkel kesalahan", "Progres": "Progres", "Pengaturan": "Pengaturan", "JadwalBus": "Game Jadwal Bus (bisa dimainkan)", "BagiPizza": "Game Bagi Pizza (bisa dimainkan)", "RacikResep": "Game Racik Resep (bisa dimainkan)", "LipatKertas": "Game Lipat Kertas (bisa dimainkan)", "DuaStruk": "Game Dua Struk (bisa dimainkan)", "MejaHajatan": "Game Meja Hajatan (bisa dimainkan)", "MartabakTopping": "Game Martabak Topping (bisa dimainkan)", "MesinMinuman": "Game Mesin Minuman (bisa dimainkan)", "ArgoOjek": "Game Argo Ojek (bisa dimainkan)", "RekapGrosir": "Game Rekap Grosir (bisa dimainkan)", "KebunPagar": "Game Kebun Pagar (bisa dimainkan)", "DapurRoti": "Game Dapur Roti (bisa dimainkan)", "RuteKurir": "Game Rute Kurir (bisa dimainkan)", "PasangLantai": "Game Pasang Lantai (bisa dimainkan)", "GudangKardus": "Game Gudang Kardus (bisa dimainkan)", "CetakSpanduk": "Game Cetak Spanduk (bisa dimainkan)", "TanggaBangunan": "Game Tangga Bangunan (bisa dimainkan)", "Pelabuhan": "Game Pelabuhan (bisa dimainkan)", "LokerOSIS": "Game Loker OSIS (bisa dimainkan)", "PentasSeni": "Game Pentas Seni (bisa dimainkan)", "UndianDoorprize": "Game Undian Doorprize (bisa dimainkan)", "RaporKelas": "Game Rapor Kelas (bisa dimainkan)", "GrafikViral": "Game Grafik Viral (bisa dimainkan)"};
+const TITLES = {"Main": "Beranda", "KasusBaru": "Kasus harian baru", "MiniGames": "Mini Games", "Timbangan": "Game Timbangan + lanjutan Balon (bisa dimainkan)", "Ubin": "Game Ubin (bisa dimainkan)", "KasirKilat": "Game Kasir Kilat (bisa dimainkan)", "PohonTemuan": "Pohon Temuan", "Jurnal": "Jurnal Peneliti", "CekCelah": "Cek celah", "Tantangan": "Tantangan harian", "Bengkel": "Bengkel kesalahan", "Progres": "Progres", "Pengaturan": "Pengaturan", "JadwalBus": "Game Jadwal Bus (bisa dimainkan)", "BagiPizza": "Game Bagi Pizza (bisa dimainkan)", "RacikResep": "Game Racik Resep (bisa dimainkan)", "LipatKertas": "Game Lipat Kertas (bisa dimainkan)", "DuaStruk": "Game Dua Struk (bisa dimainkan)", "MejaHajatan": "Game Meja Hajatan (bisa dimainkan)", "MartabakTopping": "Game Martabak Topping (bisa dimainkan)", "MesinMinuman": "Game Mesin Minuman (bisa dimainkan)", "ArgoOjek": "Game Argo Ojek (bisa dimainkan)", "RekapGrosir": "Game Rekap Grosir (bisa dimainkan)", "KebunPagar": "Game Kebun Pagar (bisa dimainkan)", "DapurRoti": "Game Dapur Roti (bisa dimainkan)", "RuteKurir": "Game Rute Kurir (bisa dimainkan)", "PasangLantai": "Game Pasang Lantai (bisa dimainkan)", "GudangKardus": "Game Gudang Kardus (bisa dimainkan)", "CetakSpanduk": "Game Cetak Spanduk (bisa dimainkan)", "TanggaBangunan": "Game Tangga Bangunan (bisa dimainkan)", "Pelabuhan": "Game Pelabuhan (bisa dimainkan)", "LokerOSIS": "Game Loker OSIS (bisa dimainkan)", "PentasSeni": "Game Pentas Seni (bisa dimainkan)", "UndianDoorprize": "Game Undian Doorprize (bisa dimainkan)", "RaporKelas": "Game Rapor Kelas (bisa dimainkan)", "GrafikViral": "Game Grafik Viral (bisa dimainkan)"};
 const ROOT = document.getElementById('root');
 function show(name) {
   if (!GAMES[name]) name = 'Main';

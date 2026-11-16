@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** kasus harian lewat prompt → JSON → validator, **tahap 1 (Ubin saja)**. Layar baru `KasusBaru` (Pengaturan → Kasus harian baru). Rincian di bagian "Kasus tempelan".
 - **16 Nov:** kasus harian berangka baru (jalan pintas sebelum prompt → JSON). Tiap hari per tingkat: 1 kasus cerita dari kumpulan lama (bergilir) + 2 kasus "Angka baru" yang angkanya berganti tiap hari. Berlaku di 25 game; **Timbangan belum** (masih kumpulan lama). Rincian di bagian "Kasus harian berangka baru".
 - **16 Nov:** deskripsi Mini Games diganti: Racik Resep F "Resep 4 orang, tamunya berubah", Ubin F "Tata kue di nampan tanpa sisa", Lipat Kertas I "Kertas lewat dua mesin lipat".
 - **16 Nov:** perbaikan tombol Berikutnya: Martabak Topping kini membaca tingkat aktif (sebelumnya memakai nomor misi, jadi soal survei bisa muncul di papan sortir); teks tujuan soal acak yang punya kotak jawaban selalu "Jawab pertanyaan di bawah" (`FMP.nextGoal`), supaya tidak ada lagi tujuan yang tidak cocok dengan soalnya (mis. "tiang bendera" padahal ceritanya pohon).
@@ -20,6 +21,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
+0. **Faiq mencoba alur Kasus harian baru di Ubin** (salin prompt → proyek Claude → tempel). Kalau alurnya enak, tahap 2: 6 game Bilangan lain, lalu Aljabar, Geometri, Data. Timbangan juga masih perlu kasus berangka baru.
 1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
 3. **Cek Celah versi tes:** 2 tantangan singkat per game yang menyarankan tingkat (ditunda, disetujui Faiq 16 Nov).
@@ -116,6 +118,13 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 - `FMP.wrap` menimpa `todayIdx` (1 kasus cerita `pool[hari % n]` + 2 kasus buatan, dimasukkan ke `this.H`) dan `loadCase` (berbenih, jadi soal yang sama tampil sama sepanjang hari). `applyOpen` dan `tantangan()` mengenali id buatan; Tantangan mendahulukan kasus buatan.
 - Tingkat yang misinya tidak punya tombol soal acak memakai tabel `EXTRA` di `FMP`: Jadwal Bus I (pita) dan E (hari), Ubin I (aula diperluas), Bagi Pizza I (papan sisa).
 - Batas: variasi beberapa pembuat soal masih sedikit (Cetak Spanduk F dan Grafik Viral F hanya 3 bentuk, Pasang Lantai E 5, Pentas Seni I 6). Kasus buatan memakai cerita pendek umum dari tombol Berikutnya, dan tidak berisi klaim; klaim hanya ada di kasus cerita.
+
+## Kasus tempelan: prompt → JSON → validator (16 Nov, tahap 1)
+- Semua di modul `FMP`: `CASES[game][tingkat]` (teks prompt per tingkat), `casePrompt` (5 kasus, konteks diacak dari 16 pilihan, 2 kasus diminta berisi klaim atau target mustahil), `BUILD[game]` (pemeriksa per game; baru `buildUbin`), `caseAdd`, `caseStored`, `caseRemove`.
+- JSON dari Claude **tidak berisi kunci dan tidak berisi tujuan**. App menulis `tujuan` dari templat tetap dan menghitung sendiri: jawaban klaim (`verdict.correct`) dan apakah target mustahil (`impossible`).
+- Yang ditolak: tingkat tidak cocok, angka di luar batas papan, cerita > 3 kalimat, angka kasus tidak tertulis di cerita, kata terlarang (`LARANG`: faktor, kelipatan, rumus, dst.; tanda kali untuk Ubin F), tokoh klaim tidak ada di cerita, angka sama dengan misi/kasus yang sudah ada.
+- Kasus lolos disimpan di `fm.progress.cases[game]` (ikut cadangan dan Hapus semua data), dimasukkan ke `this.H` oleh `FMP.wrap`, dan ikut bergiliran sebagai kasus cerita di tab Harian (1 per hari) serta di Tantangan. Tombol Mainkan di layar `KasusBaru` membukanya langsung.
+- Menambah game lain: isi `CASES[game]` dan tulis `BUILD[game]`; layar `KasusBaru` masih mengunci `key: 'Ubin'`.
 
 ## Catatan
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.

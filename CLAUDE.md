@@ -39,6 +39,7 @@ Baca file ini dan `RENCANA.md` sebelum mengubah apa pun. Dokumen konsep lengkap 
   - ★3: satu aturan lolos uji.
 - Tab bawah: Beranda, Mini Games, Progres, Jurnal, Temuan.
 - Semua halaman non-game membaca progres asli lewat `FMP`. Jangan menulis angka contoh lagi.
+- Kasus harian per tingkat per hari: 1 kasus cerita (bergilir, termasuk kasus tempelan) + 2 kasus "Angka baru" buatan `FMP.genCase`. Lihat RENCANA.md.
 
 ## Struktur kode `index.html`
 Satu file, tanpa build.
