@@ -90,10 +90,10 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 /* Kasir Kilat */
 .px-shop{background:#8EDCC4}
 .px-gscroll{position:absolute;inset:0;overflow-y:auto;display:flex;flex-direction:column;background:#8EDCC4 repeating-linear-gradient(90deg,#A6E8D4 0 8px,#8EDCC4 8px 26px)}
-.px-wall{flex:none;padding:8px 8px 0;display:flex;flex-direction:column;gap:8px}
+.px-wall{flex:none;padding:8px 8px 0;display:flex;flex-direction:column;gap:14px}
 .px-wall.px-grow{flex:1 0 auto;padding-bottom:16px}
 .px-mid{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:12px 4px}
-.px-card{padding:2px 6px 5px;display:flex;flex-direction:column;gap:5px}
+.px-card{padding:8px 12px 10px;display:flex;flex-direction:column;gap:8px;text-align:center;align-items:center;margin-top:4px}
 .px-menu{display:flex;align-items:center;gap:10px;padding:6px 6px 8px;text-align:left;width:100%}
 .px-menu b{display:block;font-size:15px}
 .px-menu small{display:block;font-size:12px;color:#4B4B57}
@@ -162,11 +162,12 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 /* ===== Adegan gudang (Timbangan) dan bagian bersama untuk game yang dirancang ulang ===== */
 .px-gudang{background:#B98448 repeating-linear-gradient(90deg,#A8733C 0 2px,#C9955A 2px 30px,#BE8A50 30px 32px,#C9955A 32px 62px)!important}
 .px-gfloor{flex:0 0 40px;margin-top:auto;border-top:4px solid #2B1D1A;background:#8A5A32 repeating-linear-gradient(90deg,#5E3B20 0 2px,#8A5A32 2px 46px)}
-.px-npc{display:flex;align-items:flex-end;gap:6px}
-.px-npc-face{width:54px;height:auto;flex:none;filter:drop-shadow(0 3px 0 rgba(43,29,26,.3))}
-.px-bubble{flex:1;min-width:0;position:relative;border:6px solid transparent;border-image:var(--px-fWhite) 30 fill / 6px;padding:2px 6px 5px;display:flex;flex-direction:column;gap:5px;font-size:14px;line-height:1.45}
-.px-bubble::before{content:"";position:absolute;left:-14px;bottom:8px;width:10px;height:12px;background:#FFFFFF;clip-path:polygon(100% 0,0 100%,100% 100%);filter:drop-shadow(-2px 0 0 #2B1D1A)}
-.px-legend{display:flex;align-items:center;gap:6px;font-size:12px;color:#4B4B57}
+.px-npc{display:flex;flex-direction:column;align-items:center;gap:8px;margin:4px 0}
+.px-npc-face{width:60px;height:auto;flex:none;filter:drop-shadow(0 3px 0 rgba(43,29,26,.3))}
+.px-bubble{align-self:stretch;position:relative;border:6px solid transparent;border-image:var(--px-fWhite) 30 fill / 6px;padding:8px 12px 10px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5;text-align:center;align-items:center}
+.px-bubble::before{content:"";position:absolute;left:50%;top:-16px;margin-left:-8px;width:16px;height:10px;background:#2B1D1A;clip-path:polygon(50% 0,0 100%,100% 100%)}
+.px-bubble::after{content:"";position:absolute;left:50%;top:-11px;margin-left:-5px;width:10px;height:6px;background:#FFFFFF;clip-path:polygon(50% 0,0 100%,100% 100%)}
+.px-legend{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:#4B4B57}
 .px-stage{position:relative;width:362px;max-width:100%;height:214px;margin:0 auto;background:#7E5A3A center / 100% 100% no-repeat;image-rendering:pixelated;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A;overflow:hidden}
 .px-beam{position:absolute;left:46px;top:52px;width:270px;height:12px;background:#8A5A32;border:2px solid #2B1D1A;box-shadow:inset 0 3px 0 #C99A5B,inset 0 -2px 0 #5E3B20;transition:transform 300ms ease;z-index:1}
 .px-drop{position:absolute;top:64px;width:152px;height:104px;padding:0 0 4px;border:2px dashed rgba(255,246,224,.45);background:transparent;display:flex;align-items:flex-end;justify-content:center;font:inherit;font-size:11px;color:#FFF6E0;cursor:pointer;transition:transform 300ms ease}
@@ -2334,9 +2335,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-if>
 <sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}">
 <div class="px-fw px-card">
-<sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-tag px-f" style="align-self: flex-start; background: #7CCBF2">{{gmTagLine}}</span></sc-if>
-<div style="font-size: 14px; line-height: 1.45">{{story}}</div>
-<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-size: 14px; font-weight: 700">{{goal}}</div></sc-if>
+<sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-tag px-f" style="background: #7CCBF2">{{gmTagLine}}</span></sc-if>
+<div style="font-size: 15px; line-height: 1.5">{{story}}</div>
+<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-size: 15px; line-height: 1.5; font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; gap: 6px; align-items: center">
 <sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if>
@@ -6346,7 +6347,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div></template>
 <template id="tpl-Timbangan"><div class="px-screen px-gudang" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-gudang">
-<div class="px-wall px-grow" style="gap: 10px">
+<div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div style="display: flex; align-items: center; gap: 6px">
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}"><a href="MiniGames.dc.html" aria-label="Kembali ke Mini Games" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a></sc-if>
 <sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmBack}}" aria-label="Kembali" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></button></sc-if>
