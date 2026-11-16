@@ -113,6 +113,30 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-cell{width:54px;height:52px;display:flex;align-items:center;justify-content:center;background:#232846;box-shadow:inset 0 0 0 2px #14172B,inset 0 6px 0 #1A1E36}
 .px-items button{animation:px-pop .18s steps(3)}
 .px-msg{padding:8px 10px;font-size:13px;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A;margin:2px}
+/* ===== Kulit pixel untuk layar yang belum dirancang ulang (dipasang PX.skin di show()) ===== */
+#root.px-skin>div>div{background:#8FD3F5 var(--px-bg) center bottom / 100% auto no-repeat!important;image-rendering:pixelated}
+#root.px-skin.px-tile>div>div{background:#6FB948 var(--px-grass) 0 0 / 40px 40px!important}
+#root.px-skin [style*="border-radius"]:not([style*="50%"]){border-radius:0!important}
+#root.px-skin [style*="border: 1px solid #DDDCD7"],#root.px-skin [style*="border: 1px solid #C9C8C2"],#root.px-skin [style*="border: 1px solid #C98A2B"],#root.px-skin [style*="border: 2px solid #1C1C1A"],#root.px-skin [style*="border: 1px solid #1C1C1A"]{border:2px solid #2B1D1A!important}
+#root.px-skin [style*="background: #FFFFFF"][style*="border: 1px solid #DDDCD7"]{box-shadow:inset 0 -3px 0 #D5DDE8,0 2px 0 rgba(43,29,26,.22)!important}
+#root.px-skin [style*="border: 1px solid #2F5BD3"],#root.px-skin [style*="border: 2px solid #2F5BD3"],#root.px-skin [style*="border: 1.5px solid #2F5BD3"]{border:2px solid #1F6FC9!important}
+#root.px-skin [style*="background: #2F5BD3"]{background:#FFC83D!important;color:#2B1D1A!important}
+#root.px-skin button[style*="background: #2F5BD3"],#root.px-skin a[style*="background: #2F5BD3"],#root.px-skin div[style*="background: #2F5BD3"][style*="padding"]{border:2px solid #2B1D1A!important;box-shadow:inset 0 -3px 0 #E39A1C,inset 0 2px 0 #FFE38A!important;font-weight:700!important}
+#root.px-skin [style*="background: #1C1C1A"]:not([style*="#9FE0B5"]){background:#2D3250!important;box-shadow:inset 0 3px 0 #474E78!important}
+#root.px-skin [style*="color: #66655F"]{color:#3E4050!important}
+#root.px-skin [style*="background: #F2F5FD"]{background:#DCEBFF!important}
+#root.px-skin [style*="background: #FFF3DF"]{background:#FFE8B0!important}
+#root.px-skin [style="font-weight: 600"],#root.px-skin [style*="font-weight: 600; flex: 1"],#root.px-skin [style*="font-size: 18px; font-weight: 600"],#root.px-skin [style*="font-size: 20px; font-weight: 600"]{font-family:"Pixelify Sans",Inter,sans-serif!important;font-weight:700!important}
+#root.px-skin nav[style*="position: absolute"]{background:#2D3250!important;border-top:2px solid #2B1D1A!important;box-shadow:inset 0 3px 0 #474E78;gap:4px;padding:6px 6px 4px}
+#root.px-skin nav a{color:#DDE3F5!important;background:#3B4268;box-shadow:inset 0 0 0 2px #1E2238,inset 0 4px 0 #2A3052;font-family:"Pixelify Sans",Inter,sans-serif;font-weight:400!important}
+#root.px-skin nav a[style*="color: #2F5BD3"]{background:#FFC83D;color:#2B1D1A!important;font-weight:700!important;box-shadow:inset 0 0 0 2px #2B1D1A,inset 0 -5px 0 #E39A1C,inset 0 4px 0 #FFE38A}
+#root.px-skin nav a svg{display:none}
+#root.px-skin nav a::before{content:"";width:24px;height:24px;background:center / 24px 24px no-repeat;image-rendering:pixelated}
+#root.px-skin nav a[href="Main.dc.html"]::before{background-image:var(--px-i-rumah)}
+#root.px-skin nav a[href="MiniGames.dc.html"]::before{background-image:var(--px-i-dadu)}
+#root.px-skin nav a[href="Progres.dc.html"]::before{background-image:var(--px-i-grafik)}
+#root.px-skin nav a[href="Jurnal.dc.html"]::before{background-image:var(--px-i-buku)}
+#root.px-skin nav a[href="PohonTemuan.dc.html"]::before{background-image:var(--px-i-pohon)}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -7028,7 +7052,8 @@ const DC = (() => {
   function build(node, scope, out) {
     if (node.nodeType === 3) {
       const t = node.data;
-      out.push({ text: t.indexOf('{{') >= 0 ? interp(t, scope) : t });
+      /* teks: spasi di sekitar {{nilai}} dipertahankan, supaya "label {{angka}}" tidak menempel */
+      out.push({ text: t.indexOf('{{') >= 0 ? t.replace(RX, (_, p) => { const v = lookup(scope, p); return v == null ? '' : String(v); }) : t });
       return;
     }
     if (node.nodeType !== 1) return;
@@ -7278,8 +7303,75 @@ const PX = (() => {
     t.house(6, 6, 38, HOUSE[id] || HOUSE.bil, id === 'bil'); t.R('#E3BD86', 21, 40, 8, 6);
     return t.cv.toDataURL();
   })());
-  return { U: U, world: world, shop: shop, house: house };
+  return { U: U, P: P, pen: pen, world: world, shop: shop, house: house };
 })();
+/* ===== Kulit pixel: latar tiap layar lama ===== */
+(() => {
+  ['rumah', 'dadu', 'grafik', 'buku', 'pohon'].forEach(n => document.documentElement.style.setProperty('--px-i-' + n, 'url("' + PX.U[n] + '")'));
+  const P = PX.P, memo = {};
+  /* Pemandangan 195 x 422 kotak: langit, awan, bukit, rumput, jalan, lalu benda utama sesuai cerita game. */
+  function scene(key, mat) {
+    if (memo[key]) return memo[key];
+    const W = 195, H = 422, t = PX.pen(W, H, key.length * 7 + 3), R = t.R, rnd = t.rnd; let i, j;
+    R('#8FD3F5', 0, 0, W, H); R('#A3DCF7', 0, 230, W, 60); R('#B8E5FA', 0, 270, W, 40);
+    [[10, 250], [140, 238], [70, 276], [165, 290]].forEach(q => t.cloud(q[0], q[1]));
+    for (i = 0; i < W; i++) { const hh = Math.round(16 + 7 * Math.sin(i / 17 + key.length) + 4 * Math.sin(i / 7)); R('#57A843', i, 330 - hh, 1, hh); R('#2F7A36', i, 330 - hh, 1, 1); R('#7CC95A', i, 331 - hh, 1, 1); }
+    for (j = 330; j < H; j += 10) for (i = 0; i < W; i += 10) R(((i + j - 330) / 10) % 2 ? '#78C24E' : '#6FB948', i, j, 10, 10);
+    R('#3F7A32', 0, 330, W, 1); R('#A5E070', 0, 331, W, 1);
+    R('#4E9E3E', 0, 396, W, 15); R('#A8773F', 0, 397, W, 13); R('#E3BD86', 0, 398, W, 11);
+    for (i = 0; i < 40; i++) R(rnd() < .5 ? '#CDA066' : '#F0D3A2', rnd() * W | 0, 399 + (rnd() * 9 | 0), 2, 1);
+    for (i = 0; i < 30; i++) { const tx = rnd() * W | 0, ty = 336 + rnd() * 56 | 0; R('#4E9E3E', tx, ty, 1, 2); R('#A5E070', tx + 1, ty - 1, 1, 1); }
+    [[2, 338], [24, 352], [160, 336], [178, 356]].forEach(q => t.tree(q[0], q[1]));
+    for (i = 0; i < 12; i++) t.flower(6 + rnd() * 183 | 0, 340 + rnd() * 50 | 0, i);
+    const cx = 97, base = 392;
+    const shadow = (a, w) => R('rgba(43,29,26,.25)', a, base, w, 2);
+    const ROOF = { bil: [P.r, P.R, '#F58A80', '#FFF6E0', '#EDE2C4'], alj: ['#4C8FDD', '#2F64B0', '#8CC0F5', '#F3D9A6', '#D9B57A'], geo: ['#F0963A', '#B56A22', '#F9BE74', '#FFF6E0', '#EDE2C4'], dat: ['#57B8A0', '#2F8672', '#93DCC8', '#FFF6E0', '#EDE2C4'] };
+    const home = (x0, col, aw) => t.house(x0, base - 34, 38, col, aw);
+    if (key === 'Timbangan') { /* lapak pasar dengan timbangan besar */
+      home(44, ROOF.bil, true);
+      shadow(94, 52); R(P.k, 118, 352, 4, 40); R('#9AA7BA', 119, 352, 2, 40); R(P.k, 108, 388, 24, 4); R('#9AA7BA', 109, 389, 22, 2);
+      R(P.k, 96, 350, 48, 4); R('#D5DDE8', 97, 351, 46, 2); R(P.y, 117, 347, 6, 4); R(P.k, 117, 346, 6, 1);
+      [[96, 368], [130, 368]].forEach(q => { R(P.k, q[0] + 6, 354, 1, 14); R(P.k, q[0] + 12, 354, 1, 14); R(P.k, q[0], q[1], 19, 3); R('#C9D3E0', q[0] + 1, q[1], 17, 2); });
+      R(P.k, 100, 359, 10, 9); R(P.t, 101, 360, 8, 8); R(P.b, 101, 363, 8, 1); R(P.k, 134, 361, 9, 7); R(P.u, 135, 362, 7, 6);
+    } else if (key === 'Ubin') { /* toko kue dengan nampan kue */
+      home(36, ['#B56A22', '#8A5A32', '#E8A85C', '#FFF6E0', '#EDE2C4'], true);
+      shadow(96, 52); R(P.k, 96, 374, 52, 18); R('#C9D3E0', 97, 375, 50, 16); R('#9AA7BA', 97, 389, 50, 2);
+      for (j = 0; j < 2; j++) for (i = 0; i < 6; i++) { R(P.k, 99 + i * 8, 377 + j * 7, 7, 6); R(i % 2 ? '#F7A8B0' : P.T, 100 + i * 8, 378 + j * 7, 5, 4); R(P.w, 101 + i * 8, 378 + j * 7, 2, 1); }
+    } else if (key === 'JadwalBus') { /* halte dan bus */
+      shadow(30, 70); R(P.k, 40, 350, 3, 42); R('#9AA7BA', 41, 350, 1, 42); R(P.k, 34, 342, 15, 11); R(P.u, 35, 343, 13, 9); R(P.w, 37, 345, 9, 2); R(P.w, 37, 348, 6, 2);
+      R(P.k, 56, 356, 40, 3); R('#2F8672', 57, 357, 38, 1); R(P.k, 58, 359, 2, 33); R(P.k, 92, 359, 2, 33); R(P.k, 62, 380, 26, 3); R(P.t, 63, 381, 24, 1);
+      shadow(104, 80); R(P.k, 104, 358, 80, 30); R(P.y, 105, 359, 78, 28); R(P.Y, 105, 359, 78, 2); R(P.o, 105, 381, 78, 6);
+      for (i = 0; i < 5; i++) { R(P.k, 108 + i * 14, 363, 12, 10); R('#8FD0F2', 109 + i * 14, 364, 10, 8); R(P.w, 109 + i * 14, 364, 3, 2); }
+      R(P.k, 176, 363, 6, 18); R('#8FD0F2', 177, 364, 4, 8); R(P.r, 182, 377, 2, 3);
+      [118, 166].forEach(a => { R(P.k, a - 6, 384, 12, 9); R('#3A3A45', a - 5, 385, 10, 7); R('#9AA7BA', a - 2, 387, 4, 3); });
+    } else if (key === 'BagiPizza') { /* kedai pizza dengan papan pizza bundar */
+      home(44, ROOF.bil, true);
+      shadow(104, 40); R(P.k, 122, 366, 3, 26); R(P.b, 123, 366, 1, 26);
+      const pz = (x0, y0, r) => { for (j = -r; j <= r; j++) for (i = -r; i <= r; i++) { const d = i * i + j * j; if (d <= r * r) R(d > (r - 2) * (r - 2) ? (d > (r - 1) * (r - 1) ? P.k : '#E0A050') : '#F7D774', x0 + i, y0 + j, 1, 1); } };
+      pz(123, 356, 14); [[118, 350], [128, 352], [121, 361], [130, 362], [114, 358]].forEach(q => { R(P.r, q[0], q[1], 3, 3); R(P.R, q[0] + 2, q[1] + 2, 1, 1); });
+      R(P.k, 109, 356, 29, 1); R(P.k, 123, 342, 1, 29);
+    } else if (key === 'RacikResep') { /* dapur dengan panci besar di atas tungku */
+      home(36, ['#E8C58C', '#C99A5B', '#F5DDB0', '#FFF6E0', '#EDE2C4']);
+      shadow(98, 46); R(P.k, 100, 380, 42, 12); R('#9AA7BA', 101, 381, 40, 10); R(P.r, 112, 383, 18, 4); R(P.y, 116, 383, 10, 2);
+      R(P.k, 104, 360, 34, 21); R('#5A6278', 105, 361, 32, 19); R('#7C879A', 105, 361, 32, 3); R(P.k, 100, 363, 5, 3); R(P.k, 137, 363, 5, 3);
+      [[110, 346], [120, 340], [130, 348]].forEach(q => { R(P.w, q[0], q[1], 3, 3); R(P.w, q[0] + 2, q[1] + 4, 3, 3); R('#E4EEF7', q[0] + 1, q[1] + 8, 3, 3); });
+    } else if (key === 'LipatKertas') { /* toko kertas dengan tumpukan kertas dan pesawat kertas */
+      home(36, ['#7C6CC4', '#5A4AA0', '#A99BEA', '#FFF6E0', '#EDE2C4']);
+      shadow(98, 48); R(P.k, 100, 372, 44, 20); R(P.b, 101, 373, 42, 18);
+      for (i = 0; i < 4; i++) { R(P.k, 104 + (i % 2), 360 - i * 4, 30, 5); R(i % 2 ? '#F4EAD2' : P.w, 105 + (i % 2), 361 - i * 4, 28, 3); }
+      R(P.k, 150, 340, 20, 2); R(P.w, 152, 336, 16, 4); R(P.k, 151, 335, 1, 6); R('#D5DDE8', 156, 340, 8, 3); R(P.k, 160, 342, 1, 3);
+    } else { home(78, ROOF[mat] || ROOF.bil, mat === 'bil'); t.stamp('tunggul', 132, 384); t.stamp('batu', 60, 386); }
+    return memo[key] = t.cv.toDataURL();
+  }
+  const DONE = { Main: 1, MiniGames: 1, KasirKilat: 1 };
+  PX.skin = (root, name) => {
+    if (DONE[name]) { root.className = ''; return; }
+    const m = FMP.isGame(name) ? FMP.MATS.find(x => x[2].some(g => g[1] === name)) : null;
+    root.className = 'px-skin';
+    root.style.setProperty('--px-bg', 'url("' + (m ? scene(name, m[1]) : ((mt) => scene('desa-' + mt, mt))(['bil', 'alj', 'geo', 'dat'][name.length % 4])) + '")');
+  };
+})();
+
 
 /* ===== Logika tiap layar ===== */
 const GAMES = {};
@@ -16849,7 +16941,7 @@ const TITLES = {"Main": "Beranda", "KasusBaru": "Kasus harian baru", "MiniGames"
 const ROOT = document.getElementById('root');
 function show(name) {
   if (!GAMES[name]) name = 'Main';
-  ROOT.innerHTML = '';
+  ROOT.innerHTML = ''; ROOT.className = '';
   const box = document.createElement('div');
   ROOT.appendChild(box);
   try {
@@ -16858,6 +16950,7 @@ function show(name) {
       onError: e => { ROOT.innerHTML = '<div id="err">Layar ' + name + ' gagal dibuka.\n' + (e && e.message || e) + '</div>'; }
     });
     FMP.applyOpen(name, m.comp);
+    PX.skin(ROOT, name);
     window.__fmComp = m.comp;
     m.host.render();
   } catch (e) {
