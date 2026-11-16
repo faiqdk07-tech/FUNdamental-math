@@ -70,15 +70,25 @@ body { background: #E9E1CE; color: #2B1D1A; font-family: Inter, system-ui, -appl
 .small { padding: 6px 14px; font-size: 13px; }
 
 /* ---------- A dan B: hangat, bentuk seperti sekarang ---------- */
-.tA, .tB { --card: #FFFBF0; --line: #D9CBA8; --line2: #EBE1C8; --mut: #6B5B45; --pri: #3A7A36; --priDark: #2E662B; --priText: #FFFFFF; background: #F5EEDC; }
+.tB { --card: #FFFFFF; --line: #2B1D1A; --line2: #E4E4DC; --mut: #4B4B57; --pri: #FFC83D; --priDark: #1F6FC9; --priText: #2B1D1A; background: #8FD3F5 top center / 390px 844px no-repeat; image-rendering: pixelated; }
+.tB.pHome { background-image: var(--bgHome); }
+.tB.pGame { background-image: var(--bgGame); }
+.tB .card { border-width: 2px; border-radius: 8px; box-shadow: 0 3px 0 rgba(43, 29, 26, .3); }
+.tB .list > div { border-bottom-width: 1px; }
+.tB .chip, .tB .ibtn { border-width: 2px; color: #2B1D1A; font-weight: 600; }
+.tB .btn.pri { border: 2px solid #2B1D1A; box-shadow: inset 0 -3px 0 #E39A1C, inset 0 2px 0 #FFE38A; padding-bottom: 10px; }
+.tB .btn.pri.small { padding: 6px 16px 9px; }
+.tB .sec { display: inline-block; background: #FFFFFF; border: 2px solid #2B1D1A; border-radius: 6px; padding: 0 7px; color: #2B1D1A; font-weight: 600; }
+.tB .dot { background: #D3D3CB; }
+.tB .nav { border-top-width: 2px; }
+.tB .coin { filter: drop-shadow(0 2px 0 rgba(43, 29, 26, .25)); }
+.tA { --card: #FFFBF0; --line: #D9CBA8; --line2: #EBE1C8; --mut: #6B5B45; --pri: #3A7A36; --priDark: #2E662B; --priText: #FFFFFF; background: #F5EEDC; }
 
 /* B: peta desa */
 .map { position: relative; width: 358px; height: 300px; border: 2px solid #2B1D1A; border-radius: 6px; overflow: hidden; flex: none; }
 .map img { display: block; width: 358px; height: 300px; image-rendering: pixelated; }
 .sign { position: absolute; transform: translateX(-50%); border: 6px solid transparent; border-image: var(--fPanel) 30 fill / 6px; padding: 0 2px; font-size: 12px; line-height: 1.2; white-space: nowrap; text-align: center; }
 .sign small { font-family: Inter, system-ui, sans-serif; font-size: 11px; color: #6B5B45; margin-left: 4px; }
-.scene { width: 362px; height: 60px; border: 2px solid #2B1D1A; border-radius: 6px; overflow: hidden; flex: none; }
-.scene img { display: block; width: 358px; height: 56px; image-rendering: pixelated; }
 
 /* ---------- C: pixel penuh ---------- */
 .tC { --card: #FFF6DC; --line: #2B1D1A; --line2: #E0CC9C; --mut: #5E4A36; --pri: #F2C035; --priDark: #FFE680; --priText: #2B1D1A; background: #DCC594; font-family: "Pixelify Sans", ui-monospace, monospace; font-size: 15px; }
@@ -222,18 +232,38 @@ function mapURL() {
     R('#3F7A32', f[0], f[1] + 2, 1, 1); var col = n % 4 === 3 ? '#F7A8B0' : P.w; R(col, f[0] - 1, f[1], 3, 1); R(col, f[0], f[1] - 1, 1, 3); R(P.y, f[0], f[1], 1, 1); });
   return c.toDataURL();
 }
-/* strip suasana warung (tema B, layar game) */
-function sceneURL() {
-  var W = 179, H = 28, c = mkCanvas(W, H), x = c.getContext('2d'), i;
+/* latar gambar tema B: langit, awan, bukit, rumput (dan lapak warung di layar game) */
+function bgURL(kind) {
+  var W = 195, H = 422, c = mkCanvas(W, H), x = c.getContext('2d'), seed = kind === 'home' ? 5 : 9, i, j, game = kind === 'game';
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
   function R(col, a, b, w, h) { x.fillStyle = col; x.fillRect(a, b, w, h); }
-  R('#EBD3A2', 0, 0, W, H); for (i = 0; i < W; i += 12) R('#DDBF86', i, 0, 1, H);
-  R(P.k, 6, 3, 30, 15); R(P.s, 7, 4, 28, 13); R(P.k, 20, 4, 1, 13); R(P.w, 9, 6, 6, 1); R(P.w, 24, 8, 7, 1);
-  R(P.k, 46, 13, 88, 2); R(P.b, 46, 12, 88, 1);
-  [50, 66, 82].forEach(function (a) { stamp(x, 'roti', a, 4); });
-  [102, 111, 120].forEach(function (a, n) { R(P.k, a, 4, 7, 8); R([P.r, P.y, P.g][n], a + 1, 6, 5, 5); R(P.w, a + 1, 5, 5, 1); });
-  stamp(x, 'peti', 150, 10);
-  R(P.k, 0, 19, W, 1); R(P.t, 0, 20, W, 2); R(P.b, 0, 22, W, 6); for (i = 4; i < W; i += 16) R(P.B, i, 22, 1, 6);
-  [140, 143].forEach(function (a) { R(P.k, a - 6, 16, 6, 3); R(P.y, a - 5, 16, 4, 2); });
+  var hz = game ? 322 : 36;
+  R('#7CCBF2', 0, 0, W, hz); R('#93D6F6', 0, Math.max(0, hz - 120), W, 60); R('#AEE2FA', 0, Math.max(0, hz - 60), W, 60);
+  function cloud(a, b) { R(P.w, a + 4, b, 9, 2); R(P.w, a + 1, b + 2, 17, 2); R(P.w, a, b + 4, 21, 3); R('#D5ECFA', a + 1, b + 7, 19, 1); }
+  (game ? [[8, 28], [150, 22], [70, 96], [160, 150], [14, 190], [120, 236], [40, 272], [168, 286]] : [[96, 4], [168, 20], [-6, 24]]).forEach(function (q) { cloud(q[0], q[1]); });
+  if (game) for (i = 0; i < W; i++) { var hh = Math.round(11 + 6 * Math.sin(i / 19) + 4 * Math.sin(i / 7 + 1)); R('#57A843', i, hz - hh, 1, hh); R('#2F7A36', i, hz - hh, 1, 1); R('#7CC95A', i, hz - hh + 1, 1, 1); }
+  for (j = hz; j < H; j += 10) for (i = 0; i < W; i += 10) R(((i + j - hz) / 10) % 2 ? '#78C24E' : '#6FB948', i, j, 10, 10);
+  R('#3F7A32', 0, hz, W, 1); R('#A5E070', 0, hz + 1, W, 1);
+  for (i = 0; i < 90; i++) { var tx = rnd() * W | 0, ty = hz + 6 + rnd() * (H - hz - 10) | 0; R('#4E9E3E', tx, ty, 1, 2); R('#4E9E3E', tx + 2, ty + 1, 1, 1); R('#A5E070', tx + 1, ty - 1, 1, 1); }
+  for (i = 0; i < (game ? 16 : 40); i++) { var fx = 3 + rnd() * (W - 6) | 0, fy = hz + 8 + rnd() * (H - hz - 14) | 0, col = i % 4 === 3 ? '#F7A8B0' : P.w; R('#3F7A32', fx, fy + 2, 1, 1); R(col, fx - 1, fy, 3, 1); R(col, fx, fy - 1, 1, 3); R(P.y, fx, fy, 1, 1); }
+  if (game) {
+    /* jalan tanah */
+    R('#4E9E3E', 0, 388, W, 15); R('#A8773F', 0, 389, W, 13); R('#DDB57C', 0, 390, W, 11);
+    for (i = 0; i < 40; i++) R(rnd() < .5 ? '#C99A5B' : '#EBCB98', rnd() * W | 0, 391 + (rnd() * 9 | 0), 2, 1);
+    /* lapak warung */
+    var a = 72, b = 340, w = 52;
+    R('rgba(43,29,26,.25)', a - 2, b + 37, w + 6, 2);
+    R(P.k, a, b + 8, 3, 30); R(P.b, a + 1, b + 8, 1, 29); R(P.k, a + w - 3, b + 8, 3, 30); R(P.b, a + w - 2, b + 8, 1, 29);
+    R('#4A2F1C', a + 3, b + 10, w - 6, 14); R(P.k, a + 3, b + 20, w - 6, 1); R(P.t, a + 3, b + 19, w - 6, 1);
+    stamp(x, 'roti', a + 6, b + 11); stamp(x, 'roti', a + 20, b + 11); stamp(x, 'roti', a + 34, b + 11);
+    R(P.k, a - 4, b - 1, w + 8, 12);
+    for (i = 0; i < w + 6; i += 6) { R(i % 12 ? P.w : P.r, a - 3 + i, b, 6, 8); R(i % 12 ? '#E6DCC8' : P.R, a - 3 + i, b + 8, 6, 2); }
+    R(P.k, a - 2, b + 24, w + 4, 14); R(P.T, a - 1, b + 25, w + 2, 3); R(P.b, a - 1, b + 28, w + 2, 9); for (i = 4; i < w; i += 7) R(P.B, a + i, b + 28, 1, 9);
+    /* pohon, pagar, tunggul, batu */
+    [[6, 330], [28, 344], [158, 328], [176, 350], [-8, 362]].forEach(function (t) { R('rgba(43,29,26,.25)', t[0] + 2, t[1] + 16, 12, 2); stamp(x, 'pohonB', t[0], t[1]); });
+    [[134, 368, 3], [26, 372, 3]].forEach(function (f) { R(P.k, f[0], f[1] + 2, f[2] * 7 + 3, 3); R(P.t, f[0], f[1] + 3, f[2] * 7 + 3, 1); for (var q = 0; q <= f[2]; q++) { R(P.k, f[0] + q * 7, f[1], 3, 8); R(P.T, f[0] + q * 7 + 1, f[1] + 1, 1, 6); } });
+    stamp(x, 'tunggul', 56, 366); stamp(x, 'batu', 146, 408); stamp(x, 'batu', 18, 410); stamp(x, 'peti', 128, 354);
+  }
   return c.toDataURL();
 }
 
@@ -284,7 +314,6 @@ function game(t) {
   var C = t === 'C', B = t === 'B', h = '', i, box = '';
   h += '<div class="row g8 hd"><div class="ibtn" style="width: 30px; height: 30px; color: inherit">' + BACK + '</div><div class="b px" style="flex: 1; font-size: 17px">Kasir Kilat</div>' +
     '<div class="ibtn" style="width: 30px; height: 30px">?</div><div class="chip" style="padding: 5px 9px">Misi</div></div>';
-  if (B) h += '<div class="scene"><img alt="Suasana warung: rak roti dan meja kasir" src="' + sceneURL() + '"></div>';
   h += '<div class="card" style="padding: 10px 12px; display: flex; flex-direction: column; gap: 6px"><div class="rowb"><span class="f11 mut">Misi <span class="num">1</span></span>' + (C ? ic('roti', 2) : '') + '</div>' +
     '<div class="story" style="font-size: ' + (C ? 14 : 13) + 'px">Pelanggan pertamamu membeli roti seharga 37 ribu dan membayar 50 ribu.</div>' +
     '<div class="b story" style="font-size: ' + (C ? 14 : 13) + 'px">Siapkan kembalian yang pas. Kamu hanya boleh menyerahkan 2 kali.</div></div>';
@@ -299,21 +328,22 @@ function game(t) {
 /* ---------- pemilih tema ---------- */
 var INFO = {
   A: ['A. Sentuhan pixel', 'Tata letak persis seperti sekarang. Yang berubah: warna hangat, huruf pixel hanya di judul, dan ikon benda pixel kecil. Paling tenang dan paling mudah dibaca.'],
-  B: ['B. Desa pixel', 'Beranda menjadi peta desa: tiap materi sebuah bangunan, tantangan di papan pengumuman, bengkel di gudang. Layar game tetap sederhana, hanya ditambah satu strip suasana warung.'],
+  B: ['B. Desa pixel (dipilih Faiq)', 'Beranda menjadi peta desa: tiap materi sebuah bangunan, tantangan di papan pengumuman, bengkel di gudang. Latar layar berupa gambar pixel (langit, awan, rumput), bukan warna cokelat. Kartu putih bergaris tegas supaya teks tetap mudah dibaca.'],
   C: ['C. Pixel penuh', 'Semua panel, tombol, label, dan koin bergaya pixel dan kayu. Cerita soal dan angka tetap memakai huruf biasa supaya tidak salah baca. Paling terasa seperti game, tetapi paling ramai.']
 };
 function show(t) {
-  if (!INFO[t]) t = 'A';
+  if (!INFO[t]) t = 'B';
   document.getElementById('tname').textContent = INFO[t][0];
   document.getElementById('tdesc').textContent = INFO[t][1];
-  [['pHome', home], ['pGame', game]].forEach(function (p) { var el = document.getElementById(p[0]); el.className = 'phone t' + t; el.innerHTML = p[1](t); });
+  [['pHome', home], ['pGame', game]].forEach(function (p) { var el = document.getElementById(p[0]); el.className = 'phone t' + t + ' ' + p[0]; el.innerHTML = p[1](t); });
   Array.prototype.forEach.call(document.querySelectorAll('#tabs button'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-t') === t ? 'true' : 'false'); });
 }
 function fit() {
   var s = Math.min(1, (document.documentElement.clientWidth - 24) / 390);
   Array.prototype.forEach.call(document.querySelectorAll('.fit'), function (f) { f.style.width = 390 * s + 'px'; f.style.height = 844 * s + 'px'; f.firstElementChild.style.transform = 'scale(' + s + ')'; });
 }
-function fromHash() { var m = /^#tema-([abc])$/.exec(location.hash); return m ? m[1].toUpperCase() : 'A'; }
+function fromHash() { var m = /^#tema-([abc])$/.exec(location.hash); return m ? m[1].toUpperCase() : 'B'; }
+document.documentElement.style.setProperty('--bgHome', 'url("' + bgURL('home') + '")'); document.documentElement.style.setProperty('--bgGame', 'url("' + bgURL('game') + '")');
 ['coin', 'fPanel', 'fWood', 'fGold'].forEach(function (n) { document.documentElement.style.setProperty('--' + n, 'url("' + uri(n) + '")'); });
 document.getElementById('tabs').addEventListener('click', function (e) { var t = e.target.getAttribute('data-t'); if (!t) return; show(t); try { history.replaceState(null, '', '#tema-' + t.toLowerCase()); } catch (err) { location.hash = 'tema-' + t.toLowerCase(); } });
 window.addEventListener('hashchange', function () { show(fromHash()); });

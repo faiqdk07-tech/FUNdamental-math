@@ -3,7 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
-- **16 Nov:** pratinjau desain tema dibuat di `pratinjau-tema.html` (halaman terpisah, app tidak diubah). Isinya 3 tema (A, B, C), masing-masing Beranda + Kasir Kilat F Misi 1. **Menunggu pilihan Faiq.** Rincian di bagian "Desain tema".
+- **16 Nov:** pratinjau desain tema dibuat di `pratinjau-tema.html` (halaman terpisah, app tidak diubah). Isinya 3 tema (A, B, C), masing-masing Beranda + Kasir Kilat F Misi 1. Faiq memilih B. Rincian di bagian "Desain tema".
 - **16 Nov:** kasus tempelan diperluas ke 24 game lain (semua kecuali Timbangan). Untuk game ini angka dan kunci dibuat app, Claude hanya menulis cerita. Layar `KasusBaru` kini punya pemilih materi dan game.
 - **16 Nov:** kasus harian lewat prompt → JSON → validator, **tahap 1 (Ubin saja)**. Layar baru `KasusBaru` (Pengaturan → Kasus harian baru). Rincian di bagian "Kasus tempelan".
 - **16 Nov:** kasus harian berangka baru (jalan pintas sebelum prompt → JSON). Tiap hari per tingkat: 1 kasus cerita dari kumpulan lama (bergilir) + 2 kasus "Angka baru" yang angkanya berganti tiap hari. Berlaku di 25 game; **Timbangan belum** (masih kumpulan lama). Rincian di bagian "Kasus harian berangka baru".
@@ -135,7 +135,8 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 
 ## Desain tema: bahan untuk sesi berikutnya (16 Nov)
 - Faiq ingin Claude bekerja sebagai app designer. Referensinya (dikirim sebagai gambar di chat, tidak tersimpan di repo): pixel art hangat bergaya desa dan kebun (hijau rumput, cokelat tanah, biru air, garis tepi gelap), ikon benda pixel (koin, makanan, peti, ransel), tombol kayu tebal.
-- Usulan yang sudah disampaikan, **belum dipilih Faiq**: 3 pratinjau, masing-masing Beranda + satu layar Kasir Kilat, sebagai halaman terpisah tanpa mengubah app.
+- **Keputusan Faiq 16 Nov: tema B (Desa pixel).** Tambahan dari Faiq: semua layar memakai **latar gambar pixel**, **jangan latar cokelat/krem** (bikin mengantuk); app ini mini games interaktif, jadi tampilannya harus terasa hidup. Di pratinjau: latar langit, awan, bukit, rumput (`bgURL`), kartu putih bergaris gelap 2px, tombol utama kuning emas. **Belum diterapkan ke `index.html`**; menunggu Faiq menyetujui usulan penerapan.
+- Usulan awal (sebelum Faiq memilih): 3 pratinjau, masing-masing Beranda + satu layar Kasir Kilat, sebagai halaman terpisah tanpa mengubah app.
   - A. Sentuhan pixel: tata letak sekarang + warna hangat, huruf pixel untuk judul, ikon benda pixel.
   - B. Desa pixel: Beranda dan Mini Games jadi peta desa, tiap game sebuah bangunan; layar game tetap sederhana. (Saran Claude.)
   - C. Pixel penuh: semua tombol, panel, dan benda di papan bergaya pixel dan kayu.
