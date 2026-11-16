@@ -65,6 +65,7 @@ Satu file, tanpa build.
   - `todayIdx` memilih kasus harian `tingkat === curLvl()`;
   - chip `gmTiers` di Pilih mode.
 - **Adegan harus masuk akal (permintaan Faiq 16 Nov):** tidak ada benda melayang, perspektif konsisten (kursi di belakang meja, bukan tertutup kaki meja), tiap benda berbentuk jelas (kubis bulat, telur lonjong, karung berbentuk karung). Periksa setiap gambar adegan sebelum menyerahkan.
+- **Warna benda harus cocok dengan teks.** Sebelum mengganti warna benda, cari teks bantuan/keterangan yang menyebut warnanya ("koin biru", "abu-abu = bangunan", "tombol oranye"); isi tidak boleh diubah, jadi warnanya yang menyesuaikan.
 - **Huruf (permintaan Faiq 16 Nov):** jangan pakai huruf pixel untuk teks. Judul dan label memakai Fredoka (bulat, halus), teks biasa Inter. Gambar boleh tetap pixel.
 - **Latar tenang (permintaan Faiq 16 Nov):** jangan pakai pola yang bikin pusing (kotak-kotak kontras, garis rapat). Lantai dan dinding polos atau bergaris samar. Tidak ada elemen yang tumpang tindih (pemandangan tidak boleh di belakang tombol; taruh di ujung bawah). Tiap layar sederhana, tidak terlihat penuh.
 - **Tema pixel (sudah di Beranda, Mini Games, Kasir Kilat):** kelas CSS `.px-*`, bingkai `px-fw` (putih), `px-fg` (emas), `px-fs` (kayu); gambar dari modul `PX` (`{{px.nama}}` lewat `px: PX.U` di `renderVals`). Angka dan cerita soal selalu Inter; judul dan label Fredoka (kelas `px-f`). Desain boleh diubah bebas, isi tidak.
