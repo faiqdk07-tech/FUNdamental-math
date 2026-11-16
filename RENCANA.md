@@ -5,6 +5,8 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
 ## Sudah selesai
 - **16 Nov:** Faiq menolak hasil tahap 2–3 ("cuma ditambah kotak-kotak, masih format prototipe"). **Arah baru: tiap game dirancang ulang jadi adegan game pixel sungguhan** (template baru seperti Kasir Kilat), isi tetap. Kulit umum (`px-skin`) hanya sementara untuk layar yang belum dirancang ulang.
   - **Masukan Faiq (16 Nov): kotak soal di tengah, lebar, huruf lebih besar, jarak antar kotak lega.** Diterapkan: `.px-npc` jadi kolom (tokoh di atas, balon dialog lebar penuh, teks rata tengah 15px), jarak antar bagian 14–16px; Kasir Kilat disamakan. Pakai pola ini di semua game berikutnya.
+  - **Jadwal Bus selesai dirancang ulang:** adegan terminal (langit, halte, bus kuning di latar bawah, `PX.scene`), Kepala Terminal bertopi biru bercerita, papan keberangkatan biru tua dengan jalur aspal bergaris kuning dan bus kecil sebagai tanda keberangkatan (garis bertitik = menit yang dicek tanpa bus), tiang merah = menit pilihan, pita merah di meja kayu (I), kalender berbingkai (E), meteran kuning untuk garis waktu. Diuji: misi F1 menit 12 salah, menit 24 "Tepat!", I, E, Harian, Lab, Aturan.
+  - **Huruf pixel diganti ke Tiny5** (OFL): di Pixelify Sans huruf besar B terbaca seperti G ("Gilangan"). `font-synthesis: none` supaya judul tebal tidak kabur.
   - **Bangunan khas materi (masukan Faiq 16 Nov):** Bilangan = pasar (lapak belang, papan koin, dagangan), Aljabar = bengkel (roda gigi, pintu gulung, kardus "?"), Geometri = proyek bangunan (bata, perancah, derek), Data = observatorium (kubah, antena, papan grafik). Fungsi `t.building(id, a, b)` di `PX.pen`, dipakai peta Beranda dan tombol materi Mini Games.
   - **Ikon (masukan Faiq 16 Nov):** tiap mode punya ikon pixel (Misi gulungan tugas, Harian kalender, Lab labu, Aturan papan tulis) lewat `PX.modeIcons(v)`; tiap game di Mini Games punya ikon sendiri (`PX.gameIcon(nama)`, tabel `GAMEIC`) dan tombol "Main" emas. Game yang dirancang ulang berikutnya wajib memanggil `PX.modeIcons`.
   - **Ubin selesai dirancang ulang:** gedung serbaguna berhias bendera segitiga, Pak Darto bercerita lewat balon dialog, kue di nampan logam (F), kursi biru di lantai kayu aula (I/E), blok berwarna untuk aula yang dipotong, meteran kuning untuk baris/kolom/potong, papan tulis untuk Aturan. Diuji: misi F1 3 × 4 "Pas!", tingkat I dan E, Harian, Lab, Aturan, Pengenalan.
@@ -38,7 +40,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-0a. **Rancang ulang game berikutnya satu per satu** seperti Timbangan, urut: Jadwal Bus, Bagi Pizza, Racik Resep, Lipat Kertas, lalu Aljabar, Geometri, Data, lalu layar non-game.
+0a. **Rancang ulang game berikutnya satu per satu** seperti Timbangan, urut: Bagi Pizza, Racik Resep, Lipat Kertas, lalu Aljabar, Geometri, Data, lalu layar non-game.
 0. **Faiq mencoba alur Kasus harian baru** (salin prompt → proyek Claude → tempel) di Ubin dan beberapa game lain, lalu melaporkan kasus yang ditolak atau ceritanya janggal. Timbangan masih perlu pembuat soal acak supaya ikut kasus berangka baru dan kasus tempelan.
 1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
@@ -157,7 +159,7 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
   - A. Sentuhan pixel: tata letak sekarang + warna hangat, huruf pixel untuk judul, ikon benda pixel.
   - B. Desa pixel: Beranda dan Mini Games jadi peta desa, tiap game sebuah bangunan; layar game tetap sederhana. (Saran Claude.)
   - C. Pixel penuh: semua tombol, panel, dan benda di papan bergaya pixel dan kayu.
-- **Pratinjau sudah ada** di `pratinjau-tema.html` (tombol A/B/C di atas). Pixel art digambar lewat kode di file itu (`SPR` untuk ikon, `mapURL` untuk peta desa). Huruf pixel: Pixelify Sans (lisensi OFL), disisipkan di file, hanya untuk judul dan label.
+- **Pratinjau sudah ada** di `pratinjau-tema.html` (tombol A/B/C di atas). Pixel art digambar lewat kode di file itu (`SPR` untuk ikon, `mapURL` untuk peta desa). Huruf pixel di app: Tiny5 (lisensi OFL), menggantikan Pixelify Sans karena huruf besar B di Pixelify terbaca seperti G.
 - Gambar referensi Faiq diterima 16 Nov; pratinjau disesuaikan: rumput kotak-kotak cerah, pohon bulat besar, sungai berbuih dengan dermaga, pagar, tunggul, batu, bunga, koin berkilau di semua tema, dan bingkai kayu (panel, tombol, papan nama) lewat `border-image`.
 - Temuan saat membuat pratinjau: angka huruf pixel mudah salah baca (5 mirip S, 2 mirip 8, 7 mirip 1). Jadi **angka dan cerita soal selalu memakai huruf biasa**, di tema mana pun.
 - Setelah Faiq memilih: terapkan ke `index.html` sebagai satu set warna dan huruf; `pratinjau-tema.html` boleh dihapus sesudahnya.
