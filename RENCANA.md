@@ -132,5 +132,13 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 - Timbangan belum bisa: tidak punya tombol soal acak, jadi `genBy` mengembalikan null.
 - `proyek-claude.md` berisi instruksi proyek dan konteks proyek untuk proyek Claude milik Faiq. Kalau batas angka, kata terlarang, atau bentuk JSON di `FMP` berubah, perbarui file itu juga, dan tambah bagian game baru di sana.
 
+## Desain tema: bahan untuk sesi berikutnya (16 Nov)
+- Faiq ingin Claude bekerja sebagai app designer. Referensinya (dikirim sebagai gambar di chat, tidak tersimpan di repo): pixel art hangat bergaya desa dan kebun (hijau rumput, cokelat tanah, biru air, garis tepi gelap), ikon benda pixel (koin, makanan, peti, ransel), tombol kayu tebal.
+- Usulan yang sudah disampaikan, **belum dipilih Faiq**: 3 pratinjau, masing-masing Beranda + satu layar Kasir Kilat, sebagai halaman terpisah tanpa mengubah app.
+  - A. Sentuhan pixel: tata letak sekarang + warna hangat, huruf pixel untuk judul, ikon benda pixel.
+  - B. Desa pixel: Beranda dan Mini Games jadi peta desa, tiap game sebuah bangunan; layar game tetap sederhana. (Saran Claude.)
+  - C. Pixel penuh: semua tombol, panel, dan benda di papan bergaya pixel dan kayu.
+- Batasan: pixel art digambar sendiri, tidak menyalin gambar referensi (sebagian dari game dan paket aset orang lain). Aturan "tampilan minimalis, elemen kecil" tetap berlaku; angka dan teks soal harus tetap mudah dibaca di HP.
+
 ## Catatan
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.
