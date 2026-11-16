@@ -7095,6 +7095,49 @@ const PX = (() => {
       [a + 4, a + w - 12].forEach(wx => { R(P.k, wx, b + 19, 8, 8); R('#8FD0F2', wx + 1, b + 20, 6, 6); R(P.k, wx + 4, b + 20, 1, 6); R(P.w, wx + 1, b + 20, 2, 2); R(P.b, wx - 1, b + 27, 10, 1); });
       if (awning) { for (i = 0; i < w; i += 6) { R(P.r, a + i, b + 14, 3, 3); R(P.w, a + i + 3, b + 14, 3, 3); } R(P.k, a, b + 17, w, 1); }
     };
+    /* Bangunan khas tiap materi, alas 38 x 34 kotak di (a, b), boleh menjulang sampai b - 12. */
+    t.building = (id, a, b) => {
+      const R = t.R, w = 38; let i, j;
+      R('rgba(43,29,26,.25)', a - 1, b + 33, w + 4, 2);
+      if (id === 'bil') { /* pasar: lapak beratap belang, papan koin, meja dagangan */
+        R(P.k, a + 18, b - 3, 2, 5); t.stamp('coin', a + 14, b - 13);
+        R(P.k, a + 1, b + 8, 3, 26); R(P.b, a + 2, b + 9, 1, 24); R(P.k, a + w - 4, b + 8, 3, 26); R(P.b, a + w - 3, b + 9, 1, 24);
+        R('#FFF6E0', a + 4, b + 9, w - 8, 13); R('#EDE2C4', a + 4, b + 9, w - 8, 2);
+        for (i = 0; i < 3; i++) { R(P.k, a + 6 + i * 10, b + 13, 8, 1); R([P.r, P.y, P.a][i], a + 7 + i * 10, b + 11, 2, 2); R([P.o, P.r, P.y][i], a + 10 + i * 10, b + 11, 2, 2); }
+        R(P.k, a + 5, b + 17, w - 10, 1);
+        for (j = 0; j < 8; j++) { R(P.k, a - 2, b + j, w + 4, 1); for (i = 0; i < w + 2; i += 6) R(j < 7 ? ((i / 6) % 2 ? P.w : P.r) : P.k, a - 1 + i, b + j, Math.min(6, w + 2 - i), 1); }
+        for (i = 0; i < w + 2; i += 6) { R((i / 6) % 2 ? P.w : P.r, a - 1 + i, b + 8, 6, 2); R(P.k, a - 1 + i, b + 10, 6, 1); }
+        R(P.k, a + 2, b + 21, w - 4, 13); R(P.b, a + 3, b + 22, w - 6, 11); R(P.T, a + 3, b + 22, w - 6, 2); for (i = 5; i < w - 4; i += 7) R(P.B, a + i, b + 25, 1, 8);
+        [[a + 6, P.r], [a + 10, P.r], [a + 15, P.o], [a + 19, P.o], [a + 24, P.a], [a + 28, P.y]].forEach(q => { R(P.k, q[0] - 1, b + 18, 5, 4); R(q[1], q[0], b + 18, 3, 3); R(P.w, q[0], b + 18, 1, 1); });
+      } else if (id === 'alj') { /* bengkel: atap biru, roda gigi besar, pintu gulung, kardus tanda tanya */
+        let ins; const rc = '#4C8FDD', rd = '#2F64B0', rl = '#8CC0F5';
+        for (j = 0; j < 14; j++) { ins = Math.max(0, 5 - j); R(P.k, a - 2 + ins, b + j, w + 4 - 2 * ins, 1); }
+        for (j = 1; j < 13; j++) { ins = Math.max(0, 5 - j); R(j === 1 ? rl : (j % 4 === 0 ? rd : rc), a - 1 + ins, b + j, w + 2 - 2 * ins, 1); }
+        t.stamp('gir', a + 13, b - 4);
+        R(P.k, a, b + 14, w, 20); R('#D5DDE8', a + 1, b + 14, w - 2, 19); R('#9AA7BA', a + 1, b + 14, w - 2, 2);
+        R(P.k, a + 9, b + 18, 20, 16); R('#7C879A', a + 10, b + 19, 18, 15); for (j = b + 21; j < b + 34; j += 3) R('#5A6278', a + 10, j, 18, 1); R(P.y, a + 18, b + 31, 2, 1);
+        R(P.k, a + 2, b + 18, 6, 6); R('#8FD0F2', a + 3, b + 19, 4, 4); R(P.k, a + w - 8, b + 18, 6, 6); R('#8FD0F2', a + w - 7, b + 19, 4, 4);
+        t.stamp('kardus', a + w - 4, b + 25); R(P.k, a + w, b + 28, 2, 1); R(P.k, a + w + 1, b + 29, 1, 1); R(P.k, a + w, b + 31, 1, 1);
+      } else if (id === 'geo') { /* proyek: tembok bata, perancah, derek */
+        R('#F0963A', a, b + 12, w, 22); R(P.k, a, b + 11, w, 1); R(P.k, a, b + 12, 1, 22); R(P.k, a + w - 1, b + 12, 1, 22);
+        for (j = 0; j < 22; j += 4) { R('#B56A22', a + 1, b + 12 + j, w - 2, 1); for (i = (j % 8 ? 3 : 7); i < w - 1; i += 8) R('#B56A22', a + i, b + 13 + j, 1, 3); }
+        R(P.k, a + 14, b + 22, 10, 12); R('#5E3B20', a + 15, b + 23, 8, 11);
+        R(P.k, a + 4, b + 16, 7, 6); R('#8FD0F2', a + 5, b + 17, 5, 4); R(P.k, a + w - 11, b + 16, 7, 6); R('#8FD0F2', a + w - 10, b + 17, 5, 4);
+        for (i = 0; i < 3; i++) { R(P.k, a - 2 + i * 20, b + 4, 2, 30); R(P.y, a - 1 + i * 20, b + 5, 1, 28); }
+        R(P.k, a - 2, b + 4, 42, 2); R(P.y, a - 1, b + 4, 40, 1); R(P.k, a - 2, b + 20, 42, 2); R(P.T, a - 1, b + 20, 40, 1);
+        R(P.k, a + w - 6, b - 12, 3, 16); R(P.y, a + w - 5, b - 11, 1, 15); R(P.k, a + 6, b - 13, w - 8, 3); R(P.y, a + 7, b - 12, w - 10, 1);
+        R(P.k, a + 10, b - 10, 1, 8); R(P.k, a + 8, b - 2, 5, 3); R('#9AA7BA', a + 9, b - 1, 3, 1);
+        R(P.k, a + 22, b - 1, 1, 4); for (i = 0; i < 5; i++) R(P.r, a + 23, b - 1 + i, 5 - i, 1);
+      } else { /* data: observatorium berkubah, antena, papan grafik */
+        R(P.k, a, b + 14, w, 20); R('#93DCC8', a + 1, b + 14, w - 2, 19); R('#57B8A0', a + 1, b + 14, w - 2, 2);
+        for (j = 0; j < 12; j++) { const r2 = Math.round(Math.sqrt(144 - (12 - j) * (12 - j)) * 1.4); R(P.k, a + 19 - r2 - 1, b + 2 + j, 2 * r2 + 2, 1); R(j < 3 ? '#FFFFFF' : '#D5DDE8', a + 19 - r2, b + 2 + j, 2 * r2, 1); }
+        R(P.k, a, b + 13, w, 1); R('#5A6278', a + 17, b + 3, 4, 10); R(P.k, a + 16, b + 3, 1, 10); R(P.k, a + 21, b + 3, 1, 10);
+        R(P.k, a + 30, b - 8, 1, 12); R(P.r, a + 29, b - 9, 3, 2); R(P.k, a + 27, b - 4, 7, 1);
+        R(P.k, a + 15, b + 22, 8, 12); R(P.b, a + 16, b + 23, 6, 11);
+        R(P.k, a + 2, b + 17, 11, 12); R(P.w, a + 3, b + 18, 9, 10); R(P.u, a + 4, b + 23, 2, 4); R(P.y, a + 7, b + 20, 2, 7); R(P.a, a + 10, b + 21, 1, 6);
+        R(P.k, a + w - 12, b + 18, 8, 7); R('#8FD0F2', a + w - 11, b + 19, 6, 5); R(P.w, a + w - 11, b + 19, 2, 1);
+      }
+    };
     return t;
   }
   const HOUSE = {
@@ -7126,7 +7169,7 @@ const PX = (() => {
     roads.forEach(r => { for (let q = 0; q < r[2] * r[3] / 28; q++) R(rnd() < .5 ? '#CDA066' : '#F0D3A2', r[0] + (rnd() * (r[2] - 2) | 0), r[1] + (rnd() * r[3] | 0), 2, 1); });
     R('rgba(43,29,26,.25)', 88, 88, 20, 2);
     R(P.k, 88, 72, 18, 16); R(P.k, 86, 75, 22, 10); R(P.E, 89, 73, 16, 14); R(P.E, 87, 76, 20, 8); R('#4C8FDD', 90, 75, 14, 10); R('#7CC0F2', 91, 76, 5, 1); R(P.k, 95, 77, 4, 6); R(P.E, 96, 76, 2, 6); R(P.w, 96, 73, 2, 3); R(P.w, 94, 75, 1, 2); R(P.w, 99, 75, 1, 2);
-    t.house(20, 62, 38, HOUSE.bil, true); t.house(137, 62, 38, HOUSE.alj); t.house(20, 140, 38, HOUSE.geo); t.house(137, 140, 38, HOUSE.dat);
+    t.building('bil', 20, 62); t.building('alj', 137, 62); t.building('geo', 20, 140); t.building('dat', 137, 140);
     ((ox, oy) => { /* papan pengumuman */
       R('rgba(43,29,26,.25)', ox + 3, oy + 28, 28, 2);
       R(P.k, ox + 5, oy + 7, 3, 22); R(P.b, ox + 6, oy + 7, 1, 21); R(P.k, ox + 25, oy + 7, 3, 22); R(P.b, ox + 26, oy + 7, 1, 21);
@@ -7181,9 +7224,9 @@ const PX = (() => {
   css('grass', grassTile());
   /* Gambar rumah satu materi (dipakai Mini Games) */
   const house = id => memo['h' + id] || (memo['h' + id] = (() => {
-    const t = pen(50, 46, 5); grass(t, 50, 0, 50);
-    t.stamp('pohon', -3, 20); t.stamp('pohon', 41, 22); t.flower(8, 40, 0); t.flower(44, 41, 1);
-    t.house(6, 6, 38, HOUSE[id] || HOUSE.bil, id === 'bil'); t.R('#E3BD86', 21, 40, 8, 6);
+    const t = pen(54, 56, 5); grass(t, 54, 0, 56); t.R('#9ED7F5', 0, 0, 54, 14); t.R('#B8E5FA', 0, 10, 54, 4);
+    t.stamp('pohon', -4, 32); t.stamp('pohon', 46, 34); t.flower(10, 51, 0); t.flower(46, 52, 1);
+    t.building(HOUSE[id] ? id : 'bil', 8, 16); t.R('#E3BD86', 23, 50, 8, 6);
     return t.cv.toDataURL();
   })());
   /* Latar panggung timbangan, 181 x 107 kotak: dinding gudang, jendela, tiang timbangan, lantai. */
