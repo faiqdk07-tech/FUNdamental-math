@@ -60,7 +60,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-0a. **Tahap 2 layar non-game (berjalan).** Sudah: Temuan jadi pohon sungguhan (buah = temuan, kuncup = belum), Jurnal jadi buku catatan (pembatas warna per materi, catatan berpaku, cap tanggal), Progres jadi papan skor (ikon, balok kayu per hari, gedung materi + bilah XP, medali tingkat dan lencana). Tampilan iPad: app diperbesar proporsional (tidak direntang, tidak gepeng). Berikutnya: Pengaturan, Tantangan, Bengkel, Cek celah, Kasus baru. Tahap 3: susun ulang total papan Aljabar/Geometri/Data, satu materi per sesi.
+0a. **Tahap 2 layar non-game (berjalan).** Sudah: Temuan jadi pohon sungguhan (buah = temuan, kuncup = belum), Jurnal jadi buku catatan (pembatas warna per materi, catatan berpaku, cap tanggal), Progres jadi papan skor (ikon, balok kayu per hari, gedung materi + bilah XP, medali tingkat dan lencana). Tampilan iPad: app dalam bingkai seperti ponsel besar di tengah layar (tidak direntang, tidak gepeng). Berikutnya: Pengaturan, Tantangan, Bengkel, Cek celah, Kasus baru. Tahap 3: susun ulang total papan Aljabar/Geometri/Data, satu materi per sesi.
 0. **Faiq mencoba alur Kasus harian baru** (salin prompt → proyek Claude → tempel) di Ubin dan beberapa game lain, lalu melaporkan kasus yang ditolak atau ceritanya janggal. Timbangan masih perlu pembuat soal acak supaya ikut kasus berangka baru dan kasus tempelan.
 1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.

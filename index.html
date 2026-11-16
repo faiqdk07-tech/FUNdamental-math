@@ -10,9 +10,11 @@
 *{box-sizing:border-box}
 html,body{margin:0;background:#EDECE8}
 body{-webkit-tap-highlight-color:transparent}
+body.fm-framed{background:#2E3A2C}
+body.fm-framed #root{box-shadow:0 0 0 3px #1B2219,0 0 40px rgba(0,0,0,.35)}
 a{color:#2F5BD3}a:hover{color:#1E3F9E}
 button{font:inherit}
-#root{max-width:834px;margin:0 auto;background:#F7F7F5;min-height:100vh}
+#root{max-width:834px;margin:0 auto;background:#F7F7F5;min-height:100vh;min-height:var(--appH,100vh)}
 /* Layar mengikuti lebar perangkat: ponsel sampai iPad mini 7 (744 px) */
 #root>div>div{width:100%!important}
 #root>div{width:100%!important;height:100vh!important;height:var(--appH,100dvh)!important}
@@ -15906,14 +15908,19 @@ window.addEventListener('hashchange', () => show(current()));
 show(current());
 </script>
 <script>
-/* Layar lebar (iPad): seluruh app diperbesar seperti di ponsel, tidak direntang melebar */
+/* Layar lebar (iPad, tablet): app dibingkai seperti ponsel besar di tengah layar.
+   Lebar bingkai = 0,56 x tinggi layar, lalu isinya diperbesar proporsional (tidak direntang). */
 (function () {
   function fit() {
-    var W = window.innerWidth, H = window.innerHeight, z = 1, r = document.getElementById('root');
+    var W = window.innerWidth, H = window.innerHeight, r = document.getElementById('root');
     if (!r) return;
-    if (W >= 600) z = Math.max(1, Math.min(W / 390, H / 844));
+    var F = Math.min(W, Math.round(H * 0.56));
+    if (F < 390) F = Math.min(W, 390);
+    var z = Math.max(1, Math.min(F / 420, H / 800));
+    var framed = F < W;
     r.style.zoom = z === 1 ? '' : String(z);
-    r.style.maxWidth = z === 1 ? '' : (W / z) + 'px';
+    r.style.maxWidth = framed || z > 1 ? (F / z) + 'px' : '';
+    document.body.classList.toggle('fm-framed', framed);
     if (z === 1) document.documentElement.style.removeProperty('--appH');
     else document.documentElement.style.setProperty('--appH', (H / z) + 'px');
   }
