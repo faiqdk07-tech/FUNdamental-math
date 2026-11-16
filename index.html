@@ -10,7 +10,10 @@
 *{box-sizing:border-box}
 html,body{margin:0;background:#EDECE8}
 body{-webkit-tap-highlight-color:transparent}
-body.fm-framed{background:radial-gradient(120% 40% at 20% 100%,#BFE3A8 0 55%,transparent 56%),radial-gradient(110% 35% at 85% 100%,#CBE9B6 0 55%,transparent 56%),linear-gradient(#D6ECF8,#EAF5FB 60%,#F4F9F1);background-attachment:fixed}
+body.fm-framed{background:transparent}
+html:has(body.fm-framed){background:#DDE3D6}
+#fm-bg{display:none}
+body.fm-framed #fm-bg{display:block;position:fixed;inset:-60px;z-index:-1;filter:blur(22px) saturate(.9) brightness(.97);transform:scale(1.15);image-rendering:auto}
 body.fm-framed #root{box-shadow:0 8px 30px rgba(43,60,90,.18)}
 a{color:#2F5BD3}a:hover{color:#1E3F9E}
 button{font:inherit}
@@ -15932,6 +15935,27 @@ show(current());
     if (z === 1) document.documentElement.style.removeProperty('--appH');
     else document.documentElement.style.setProperty('--appH', (H / z) + 'px');
   }
+  /* Latar luar kolom = latar layar yang sedang dibuka, diperbesar dan diburamkan */
+  function syncBg() {
+    var r = document.getElementById('root'); if (!r) return;
+    var bg = document.getElementById('fm-bg');
+    if (!bg) { bg = document.createElement('div'); bg.id = 'fm-bg'; document.body.insertBefore(bg, document.body.firstChild); }
+    var el = r.firstElementChild, pick = null;
+    for (var d = 0; el && d < 4; d++) {
+      var cs = getComputedStyle(el);
+      if (cs.backgroundImage !== 'none' || (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent')) { pick = cs; break; }
+      el = el.firstElementChild;
+    }
+    if (!pick) pick = getComputedStyle(r);
+    bg.style.backgroundColor = pick.backgroundColor;
+    bg.style.backgroundImage = pick.backgroundImage;
+    bg.style.backgroundSize = pick.backgroundSize;
+    bg.style.backgroundRepeat = pick.backgroundRepeat;
+    bg.style.backgroundPosition = 'center';
+  }
+  var rt = document.getElementById('root');
+  if (rt && window.MutationObserver) new MutationObserver(function () { syncBg(); }).observe(rt, { childList: true, attributes: true, attributeFilter: ['class', 'style'] });
+  syncBg();
   window.addEventListener('resize', fit);
   fit();
 })();
