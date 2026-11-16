@@ -15396,7 +15396,8 @@ const bagStyle = 'display: inline-flex; align-items: center; justify-content: ce
 const balStyle = 'display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 44px; padding: 0 0 16px; background: var(--px-balon) center / 100% 100% no-repeat; image-rendering: pixelated; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: 12px; text-shadow: 0 1px 0 #B23A34';
 const wStyle = v => 'display: inline-flex; align-items: center; justify-content: center; width: ' + (24 + v * 2) + 'px; height: ' + (24 + v * 2) + 'px; padding-top: ' + (6 + v * 0.4) + 'px; background: var(--px-beban) center / 100% 100% no-repeat; image-rendering: pixelated; color: #2B1D1A; font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: ' + (v > 5 ? 14 : 12) + 'px; text-shadow: 0 1px 0 #D5DDE8';
 const hc = s.mode === 'harian' ? this.curCase() : null;
-const bagLabel = s.mode === 'lab' && s.showBag ? String(s.labBag) : hc && hc.showBag ? String(hc.bag) : (s.mode === 'misi' && s.tut === null && (this.all()[s.mi] || {}).showBag) ? String(s.bag) : '?';
+/* Isi kotak tidak pernah ditulis di kotak (anti-clue); berat yang diketahui hanya ada di cerita. Lab: pemain sendiri yang memilih menampilkan isinya. */
+const bagLabel = s.mode === 'lab' && s.showBag ? String(s.labBag) : '?';
 const items = (T, S) => {
 const a = [];
 const nm = S === 'L' ? 'kiri' : 'kanan', side = (L, R) => S === 'L' ? L : R;
