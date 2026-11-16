@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** **tema pixel tahap 3: benda papan 6 game Bilangan** lewat CSS per game (`#root.px-g-Nama`, kelasnya dipasang `PX.skin`; logika game tidak diubah). Timbangan: batang kayu, tiang logam, piringan logam, beban balok logam, kardus bersolasi, hadiah berpita. Ubin: kue merah muda di nampan logam. Jadwal Bus: rel jalan, penanda bus kotak. Bagi Pizza: kerak dan keju (tanpa topping, supaya jumlah topping tidak terbaca sebagai petunjuk potongan). Racik Resep: kotak takaran, air biru. Lipat Kertas: lembar berbingkai.
 - **16 Nov:** **tema pixel tahap 2: kulit pixel untuk semua layar lain** (26 game + Progres, Jurnal, Temuan, Pengaturan, Tantangan, Bengkel, Cek celah, Kasus baru). Template lama tidak diubah; CSS `#root.px-skin` membaca gaya bawaan (kartu putih, tombol biru, pilihan hitam) dan menggantinya jadi bingkai gelap, tombol emas, pilihan biru tua, tab bawah slot pixel. `PX.skin(root, nama)` dipanggil di `show()`.
   - Latar: langit, awan, bukit, rumput, jalan. 6 game Bilangan punya adegan sendiri (Timbangan: lapak dan timbangan; Ubin: toko kue dan nampan; Jadwal Bus: halte dan bus; Bagi Pizza: kedai dan papan pizza; Racik Resep: dapur dan panci; Lipat Kertas: toko kertas). Game lain dan layar non-game: rumah dengan warna atap materinya.
   - Perbaikan mesin template: spasi di sekitar `{{nilai}}` di teks tidak lagi dibuang (sebelumnya "Kesempatan cicip3 / 3").
@@ -31,7 +32,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-0a. **Tema pixel tahap 3 (bila Faiq ingin):** benda di papan game selain Kasir Kilat (ubin, pizza, beban, gelas) masih bentuk lama di dalam bingkai pixel; bisa dibuat pixel per game seperti koin Kasir Kilat. Game Aljabar, Geometri, Data juga bisa diberi adegan sendiri.
+0a. **Tema pixel berikutnya (bila Faiq ingin):** benda papan dan adegan sendiri untuk game Aljabar, Geometri, Data (sekarang memakai kulit umum dan rumah warna materi).
 0. **Faiq mencoba alur Kasus harian baru** (salin prompt → proyek Claude → tempel) di Ubin dan beberapa game lain, lalu melaporkan kasus yang ditolak atau ceritanya janggal. Timbangan masih perlu pembuat soal acak supaya ikut kasus berangka baru dan kasus tempelan.
 1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.

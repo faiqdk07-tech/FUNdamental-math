@@ -137,6 +137,28 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 #root.px-skin nav a[href="Progres.dc.html"]::before{background-image:var(--px-i-grafik)}
 #root.px-skin nav a[href="Jurnal.dc.html"]::before{background-image:var(--px-i-buku)}
 #root.px-skin nav a[href="PohonTemuan.dc.html"]::before{background-image:var(--px-i-pohon)}
+/* ===== Benda pixel di papan 6 game Bilangan (kelas #root.px-g-Nama dari PX.skin) ===== */
+#root.px-g-Timbangan div[style*="height: 6px; background: #1C1C1A"][style*="rotate"][style*="position"]{background:#8A5A32!important;height:10px!important;margin-top:-2px;border:2px solid #2B1D1A;box-shadow:inset 0 3px 0 #C99A5B,inset 0 -2px 0 #5E3B20!important}
+#root.px-g-Timbangan div[style*="solid #E9E8E4"]{border-bottom-color:#9AA7BA!important}
+#root.px-g-Timbangan [style*="dashed #9DB3EE"]{border:2px dashed rgba(43,29,26,.35)!important;border-radius:0!important}
+#root.px-g-Timbangan div[style*="border-top: 2px solid #66655F"]{border-top:6px solid #9AA7BA!important;box-shadow:0 -2px 0 #2B1D1A,inset 0 2px 0 #D5DDE8}
+#root.px-g-Timbangan div[style*="border-top: 2px solid #66655F"] span,#root.px-g-Timbangan button[style*="background: #E9E8E4"],#root.px-g-Timbangan button[style*="background: #E9DCC4"]{border:2px solid #2B1D1A!important;border-radius:0!important;font-family:Inter,system-ui,sans-serif;font-weight:800!important}
+#root.px-g-Timbangan button[style*="background: #E9E8E4"],#root.px-g-Timbangan span[style*="background: #E9E8E4"]{background:#D5DDE8!important;box-shadow:inset 0 -4px 0 #9AA7BA,inset 0 3px 0 #FFFFFF!important}
+#root.px-g-Timbangan button[style*="background: #E9DCC4"],#root.px-g-Timbangan span[style*="background: #E9DCC4"]{background:#E8C58C linear-gradient(90deg,transparent 42%,#C99A5B 42% 58%,transparent 58%)!important;box-shadow:inset 0 -4px 0 #C99A5B!important;color:#4A2C12!important}
+#root.px-g-Timbangan span[style*="background: #F0A35E"]{background:#F0A35E linear-gradient(180deg,#E8554E 0 4px,transparent 4px)!important;box-shadow:inset 0 -4px 0 #C9782E,inset 0 3px 0 #F9C38E!important;text-shadow:0 1px 0 #F9C38E}
+#root.px-g-Ubin div:has(> div[style*="background: #6F8FE3"]){background:#C9D3E0;padding:5px;border:2px solid #2B1D1A;box-shadow:inset 0 3px 0 #9AA7BA,0 3px 0 rgba(43,29,26,.25)}
+#root.px-g-Ubin div[style*="background: #6F8FE3"]{background:#F7A8B0!important;border:2px solid #2B1D1A!important;border-radius:0!important;box-shadow:inset 0 3px 0 #FFFFFF,inset 0 -3px 0 #E07A88,inset 3px 0 0 #FCD3D8}
+#root.px-g-Ubin div[style*="dashed #9DB3EE"]{border:2px dashed rgba(43,29,26,.35)!important;border-radius:0!important;background:#FFF6E0!important}
+#root.px-g-JadwalBus div[style*="position: relative"][style*="border-bottom: 1px solid #DDDCD7"]{border-bottom:5px solid #8A8F9E!important;box-shadow:0 2px 0 #2B1D1A}
+#root.px-g-JadwalBus span[style*="position: absolute"][style*="border-radius"]{border-radius:0!important;outline:2px solid #2B1D1A}
+#root.px-g-JadwalBus span[style*="position: absolute"][style*="background: #2F5BD3"]{background:#FFC83D!important}
+#root.px-g-BagiPizza [style*="conic-gradient"],#root.px-g-BagiPizza [style*="solid #E0B07A"]{border:3px solid #2B1D1A!important;box-shadow:inset 0 0 0 5px #E0A050,0 3px 0 rgba(43,29,26,.3)!important}
+#root.px-g-BagiPizza [style*="conic-gradient(#EBDDC5 0deg 360deg"]{position:relative;background:#F7D774!important}
+#root.px-g-RacikResep span[style*="display: inline-block"][style*="border-radius"]{border-radius:0!important;box-shadow:inset 0 0 0 1px #2B1D1A}
+#root.px-g-RacikResep span[style*="display: inline-block"][style*="background: #2F5BD3"]{background:#4C8FDD!important;color:#FFFFFF!important}
+#root.px-g-RacikResep span[style*="display: inline-block"][style*="background: #BFCDF3"]{background:#CFE6FA!important}
+#root.px-g-LipatKertas span[style*="border: 1px solid #C9C8C2"]{border:2px solid #2B1D1A!important;border-radius:0!important;box-shadow:inset 0 -2px 0 #D5DDE8}
+#root.px-g-LipatKertas span[style*="background: #E9E8E4"]{background:#F4EAD2!important}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -7367,7 +7389,7 @@ const PX = (() => {
   PX.skin = (root, name) => {
     if (DONE[name]) { root.className = ''; return; }
     const m = FMP.isGame(name) ? FMP.MATS.find(x => x[2].some(g => g[1] === name)) : null;
-    root.className = 'px-skin';
+    root.className = 'px-skin px-g-' + name;
     root.style.setProperty('--px-bg', 'url("' + (m ? scene(name, m[1]) : ((mt) => scene('desa-' + mt, mt))(['bil', 'alj', 'geo', 'dat'][name.length % 4])) + '")');
   };
 })();
