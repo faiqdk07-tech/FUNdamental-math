@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** tingkat F/I/E diterapkan ke 5 game Data (rincian di bawah). Sekarang semua 27 game punya tingkat.
 - **16 Nov:** tingkat F/I/E diterapkan ke 6 game Geometri (rincian di bawah). Lolos uji otomatis seperti Aljabar.
 - **16 Nov:** tingkat F/I/E diterapkan ke 9 game Aljabar (rincian di bawah). Tiap tingkat: 3 misi, minimal 3 kasus harian, rumus Aturan sendiri. Lolos uji otomatis: semua misi, kasus harian, dan tombol Berikutnya bisa diselesaikan.
 - **16 Nov:** semua layar dipindah dari kanvas ke satu `index.html`. Kanvas v4 sekarang hanya arsip.
@@ -13,11 +14,10 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-1. **Faiq menguji game Bilangan, game Aljabar dan Geometri per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
+1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
-3. **Tingkat Data (5 game):** cek tabel "Temuan F → I → E" di `konsep.md`, ajukan usulan singkat dulu.
-4. **Tanda Selesai per tingkat** (sekarang masih per nomor misi). Bintang diambil dari progres asli, bukan data contoh.
-5. **Tahap berikutnya:**
+3. **Tanda Selesai per tingkat** (sekarang masih per nomor misi). Bintang diambil dari progres asli, bukan data contoh.
+4. **Tahap berikutnya:**
    - kasus harian lewat prompt → JSON → validator (tiap kasus punya `tingkat`);
    - Koleksi Rumus;
    - Bengkel dan Cek Celah memakai data nyata.
@@ -89,6 +89,14 @@ Kerangka sama dengan 6 game Aljabar terbaru (`this.TM`, `this.TN`, `this.TO`). T
 - **Tangga Bangunan:** F persegi 3-4/6-8, 2-4/5-12, 1-3/8-15 · I kaki tangga 3 soal, klaim 13−12 · E miring 30°, 45°, 60°. Teks `tujuan` f1/f2 yang salah sisi diperbaiki.
 - **Pelabuhan:** F peta laut 3 soal · I radar 3 soal · E dua menara 3 soal. Urutan I/E tetap seperti di game (radar dulu), berbeda dengan tabel konsep.
 
+## Rincian tingkat 5 game Data (sudah diterapkan 16 Nov)
+Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus harian `f3`.
+- **Loker OSIS:** F outfit 2 jenis, 3 jenis, klaim 2+3+2 · I paket kantin 2 grup, 3 grup, klaim 5×4 · E PIN boleh kembar, tanpa kembar, klaim 10+10+10.
+- **Pentas Seni:** F urutan 4&6, 5&8, klaim 6×6 · I papan dari 5, dari 8, klaim 8×720 · E 8 calon, 10 calon, 4 jabatan dari 7. Aturan I baru: urutan n = n × urutan (n − 1).
+- **Undian Doorprize:** F peluang kupon 3 kotak (klaim "4 persen") · I dadu, kupon 250 peserta, koin 500 (klaim "pasti tepat") · E bola, genap atau kelipatan 3, setidaknya satu biru. Aturan F baru: m ÷ n × 100. `genMission` menyesuaikan jenis papan.
+- **Rapor Kelas:** F rekap 10 nilai, 12 nilai (KKM 75), klaim selisih · I meratakan, nilai keempat, siswa pindahan · E 11 nilai, 10 nilai (genap), skor ekstrem 25. Aturan F baru: selisih = a − b.
+- **Grafik Viral:** F garis, batang, lingkaran · I sumbu terpotong 3 grafik (klaim "dua kali lipat") · E judul naik 300%, naik 3 kali lipat, anjlok tiga perempat.
+- Teks `tujuan` f1/f2 Pentas Seni yang salah jumlah kelompok diperbaiki.
+
 ## Catatan
-- 5 game Data belum punya pilihan tingkat.
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.

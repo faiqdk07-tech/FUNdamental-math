@@ -1320,6 +1320,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -2788,6 +2793,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -4513,6 +4523,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -5143,6 +5158,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -6660,6 +6680,11 @@ button{font:inherit}
 
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
+<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
+</sc-for>
+</div>
 <div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
@@ -8681,7 +8706,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -8701,9 +8726,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -8716,6 +8742,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Grafik Viral'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -8735,16 +8764,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -8779,7 +8808,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -8869,8 +8898,26 @@ this.H = [
 { id: 'v7', konteks: 'Iuran kelas', tingkat: 'I', type: 'sumbu', labels: ['Kelas 9A', 'Kelas 9B'], data: [92, 98], s0: 90, asks: [{ label: 'Pada grafik itu, 9B tampak berapa kali 9A', key: 4 }, { label: 'Sebenarnya 9B berapa kali 9A (1 angka desimal)', key: 1.1 }], budget: 2, cerita: 'Bendahara mengunggah grafik iuran kelas dalam ribuan rupiah. Sumbunya dimulai dari 90.', tujuan: 'Jawab kedua pertanyaan.' },
 { id: 'v8', konteks: 'Kantin turun', tingkat: 'E', type: 'sumbu', labels: ['Bulan lalu', 'Bulan ini'], data: [200, 150], s0: 100, asks: [{ label: 'Turun berapa persen sebenarnya', key: 25 }], budget: 1, verdict: { q: 'Apakah judul "penjualan turun separuh" itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Unggahan berjudul "Penjualan kantin turun separuh!" memakai grafik dengan sumbu mulai dari 100.', tujuan: 'Hitung penurunan sebenarnya, lalu nilai judulnya.' },
 {id: "f1", konteks: "Unggahan OSIS", tingkat: "F", type: "pilih", labels: ["Jalan", "Sepeda", "Diantar"], data: [45, 25, 30], gambarMax: 2, verdict: {q: "Diagram mana yang paling cocok?", opts: ["Batang", "Garis", "Lingkaran"], correct: "Lingkaran"}, budget: 1, cerita: "Unggahan berikutnya menunjukkan bagian siswa menurut cara berangkat dari seluruh siswa.", tujuan: "Coba gambar datanya, lalu Putuskan diagram yang paling cocok."},
-{id: "f2", konteks: "Mading sekolah", tingkat: "F", type: "pilih", labels: ["07", "08", "09", "10", "11"], data: [24, 26, 29, 31, 30], gambarMax: 2, verdict: {q: "Diagram mana yang paling cocok?", opts: ["Batang", "Garis", "Lingkaran"], correct: "Garis"}, budget: 1, cerita: "Unggahan berikutnya menunjukkan naik-turunnya suhu kelas dari jam ke jam.", tujuan: "Coba gambar datanya, lalu Putuskan diagram yang paling cocok."}
+{id: "f2", konteks: "Mading sekolah", tingkat: "F", type: "pilih", labels: ["07", "08", "09", "10", "11"], data: [24, 26, 29, 31, 30], gambarMax: 2, verdict: {q: "Diagram mana yang paling cocok?", opts: ["Batang", "Garis", "Lingkaran"], correct: "Garis"}, budget: 1, cerita: "Unggahan berikutnya menunjukkan naik-turunnya suhu kelas dari jam ke jam.", tujuan: "Coba gambar datanya, lalu Putuskan diagram yang paling cocok."},
+{ id: 'f3', konteks: 'Peserta lomba', tingkat: 'F', type: 'pilih', labels: ['Basket', 'Voli', 'Futsal', 'Catur'], data: [18, 24, 30, 12], gambarMax: 2, verdict: { q: 'Diagram mana yang paling cocok?', opts: ['Batang', 'Garis', 'Lingkaran'], correct: 'Batang', why: 'Pertanyaannya membandingkan banyak peserta antarlomba.' }, budget: 1, cerita: 'Panitia classmeeting ingin membandingkan banyak peserta di tiap cabang lomba.', tujuan: 'Coba gambar datanya, lalu Putuskan diagram yang paling cocok.' }
 ];
+this.TN = { F: ['Pilih diagram', 'Buku di rak', 'Anggota ekskul'], I: ['Sumbu terpotong', 'Grafik kelas 7', 'Klaim akun gosip'], E: ['Judul viral', 'Naik tiga kali lipat?', 'Anjlok tiga perempat?'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'pilih', labels: ['Rak 1', 'Rak 2', 'Rak 3', 'Rak 4'], data: [40, 25, 35, 30], gambarMax: 2, verdict: { q: 'Diagram mana yang paling cocok?', opts: ['Batang', 'Garis', 'Lingkaran'], correct: 'Batang', why: 'Pertanyaannya membandingkan banyak buku antarrak yang tidak berurutan waktu.' }, budget: 1, cerita: 'Petugas perpustakaan ingin membandingkan banyak buku di empat rak. Mbak Rara memintamu membuat satu gambar untuk mading.', tujuan: 'Coba gambar datanya, lalu Putuskan diagram yang paling cocok. Kamu punya 1 kesempatan dan 2 jatah gambar.' },
+{ type: 'pilih', labels: ['Pramuka', 'PMR', 'Futsal'], data: [50, 30, 20], gambarMax: 2, verdict: { q: 'Diagram mana yang paling cocok?', opts: ['Batang', 'Garis', 'Lingkaran'], correct: 'Lingkaran', why: 'Pertanyaannya tentang bagian dari seluruh anggota ekskul.' }, budget: 1, cerita: 'Pembina ingin menunjukkan bagian siswa di tiap ekskul dari seluruh anggota, dalam persen.', tujuan: 'Coba gambar datanya, lalu Putuskan diagram yang paling cocok. Kamu punya 1 kesempatan dan 2 jatah gambar.' }
+],
+I: [this.M[1],
+{ type: 'sumbu', labels: ['Kelas 7A', 'Kelas 7B'], data: [60, 66], s0: 57, asks: [{ label: 'Pada grafik, 7B tampak berapa kali 7A', key: 3 }, { label: 'Sebenarnya 7B berapa kali 7A (1 angka desimal)', key: 1.1 }], budget: 2, cerita: 'Grafik sampah plastik yang dikumpulkan kelas 7A dan 7B diunggah dengan sumbu mulai dari 57 kg.', tujuan: 'Jawab kedua pertanyaan. Kamu punya 2 kesempatan.' },
+{ type: 'sumbu', labels: ['Kelas A', 'Kelas B'], data: [45, 50], s0: 40, asks: [{ label: 'Pada grafik, B tampak berapa kali A', key: 2 }, { label: 'Sebenarnya B berapa kali A (1 angka desimal)', key: 1.1 }], budget: 2, verdict: { q: 'Apakah akun gosip itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Akun gosip menulis: "Donasi kelas B dua kali lipat kelas A!" Grafiknya memakai sumbu yang dimulai dari 40.', tujuan: 'Jawab kedua pertanyaan, lalu nilai tulisan akun gosip. Kamu punya 2 kesempatan.' }
+],
+E: [this.M[2],
+{ type: 'sumbu', labels: ['2025', '2026'], data: [80, 88], s0: 76, asks: [{ label: 'Naik berapa persen sebenarnya', key: 10 }], verdict: { q: 'Apakah judul "naik tiga kali lipat" itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, budget: 2, cerita: 'Unggahan berjudul "Peminjam buku naik tiga kali lipat!" memakai grafik dengan sumbu mulai dari 76.', tujuan: 'Hitung kenaikan sebenarnya, lalu nilai judulnya. Kamu punya 2 kesempatan.' },
+{ type: 'sumbu', labels: ['Bulan lalu', 'Bulan ini'], data: [120, 90], s0: 80, asks: [{ label: 'Turun berapa persen sebenarnya', key: 25 }], verdict: { q: 'Apakah judul "pembeli anjlok tiga perempat" itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, budget: 2, cerita: 'Unggahan berjudul "Pembeli koperasi anjlok tiga perempat!" memakai grafik dengan sumbu mulai dari 80.', tujuan: 'Hitung penurunan sebenarnya, lalu nilai judulnya. Kamu punya 2 kesempatan.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['C'], I: ['A'], E: ['B'] };
 this.TUT = [
 'Hari pertama sebagai admin media sosial sekolah, membantu Mbak Rara. Setiap gambar data harus dicek sebelum diunggah.',
 'Ketuk satu angka di penggeser sumbu. Titik awal sumbu berubah.',
@@ -8912,6 +8959,7 @@ return this.scene(sp, 'Grafik dua batang');
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 if (i === 0) { const sets = [['Garis', 'naik-turunnya suhu kelas dari jam ke jam', ['07', '08', '09', '10', '11'], [24, 26, 29, 31, 30]], ['Batang', 'perbandingan banyak buku di empat rak', ['Rak 1', 'Rak 2', 'Rak 3', 'Rak 4'], [40, 25, 35, 30]], ['Lingkaran', 'bagian siswa menurut cara berangkat dari seluruh siswa', ['Jalan', 'Sepeda', 'Diantar'], [45, 25, 30]]]; const c = sets[R(0, 2)]; return { budget: 1, labels: c[2], data: c[3], verdict: { q: 'Diagram mana yang paling cocok?', opts: ['Batang', 'Garis', 'Lingkaran'], correct: c[0] }, cerita: 'Unggahan berikutnya menunjukkan ' + c[1] + '.' }; }
 const a = R(20, 90), b = a + R(2, 12), s = a - R(1, 3) * Math.max(1, Math.round((b - a) / 4)), tam = (b - s) / (a - s);
 if (i === 1) { if (s <= 0 || Math.abs(tam * 10 - Math.round(tam * 10)) > 1e-9) return this.genMission(1); return { data: [a, b], s0: s, asks: [{ label: 'Pada grafik viral, B tampak berapa kali A', key: tam }, { label: 'Sebenarnya B berapa kali A (1 angka desimal)', key: Math.round(b / a * 10) / 10 }], cerita: 'Grafik lain diunggah dengan sumbu mulai dari ' + s + '.' }; }
@@ -10550,7 +10598,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -10570,9 +10618,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -10585,6 +10634,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Loker OSIS'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -10604,16 +10656,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -10648,7 +10700,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -10739,8 +10791,27 @@ this.H = [
 { id: 'o7', konteks: 'Klaim ketua', tingkat: 'E', type: 'pin', digits: [1, 2, 3], slots: 2, catatMax: 4, asks: [{ label: 'PIN 2 angka dari 0–9, boleh kembar', key: 100 }], budget: 1, verdict: { q: 'Apakah ketua benar?', opts: ['Benar', 'Salah'], correct: 'Benar' }, cerita: 'Ketua OSIS bilang kunci 2 roda berisi angka 0 sampai 9 punya tepat 100 PIN berbeda.', tujuan: 'Hitung banyak PIN, lalu nilai ucapan ketua.' },
 { id: 'o8', konteks: 'Lemari pramuka', tingkat: 'I', type: 'outfit', cats: [['Kaus', ['coklat', 'krem', 'hijau', 'putih']], ['Celana', ['coklat', 'hitam']]], catatMax: 3, asks: [{ label: 'Outfit dengan 3 topi juga', key: 24 }], budget: 2, cerita: 'Lemari pramuka berisi 4 kaus dan 2 celana. Ada juga 3 topi, dan setiap outfit memakai satu topi.', tujuan: 'Berapa outfit lengkap yang berbeda?' },
 {id: "f1", konteks: "Lemari kelas 8", tingkat: "F", type: "outfit", cats: [["Kemeja", ["putih", "batik"]], ["Bawahan", ["abu", "biru", "hitam"]], ["Sepatu", ["hitam", "putih"]]], catatMax: 4, asks: [{label: "Outfit berbeda dari lemari ini", key: 12}, {label: "Outfit dari 6 kemeja, 3 bawahan, 2 sepatu", key: 36}], budget: 2, cerita: "Lemari OSIS yang lain berisi 6 kemeja, 3 bawahan, dan 2 sepatu.", tujuan: "Berapa outfit berbeda, untuk lemari ini dan lemari besar?"},
-{id: "f2", konteks: "Lemari pramuka", tingkat: "F", type: "outfit", cats: [["Kemeja", ["putih", "batik"]], ["Bawahan", ["abu", "biru", "hitam"]], ["Sepatu", ["hitam", "putih"]]], catatMax: 4, asks: [{label: "Outfit berbeda dari lemari ini", key: 12}, {label: "Outfit dari 3 kemeja, 4 bawahan, 4 sepatu", key: 48}], budget: 2, cerita: "Lemari OSIS yang lain berisi 3 kemeja, 4 bawahan, dan 4 sepatu.", tujuan: "Berapa outfit berbeda, untuk lemari ini dan lemari besar?"}
+{id: "f2", konteks: "Lemari pramuka", tingkat: "F", type: "outfit", cats: [["Kemeja", ["putih", "batik"]], ["Bawahan", ["abu", "biru", "hitam"]], ["Sepatu", ["hitam", "putih"]]], catatMax: 4, asks: [{label: "Outfit berbeda dari lemari ini", key: 12}, {label: "Outfit dari 3 kemeja, 4 bawahan, 4 sepatu", key: 48}], budget: 2, cerita: "Lemari OSIS yang lain berisi 3 kemeja, 4 bawahan, dan 4 sepatu.", tujuan: "Berapa outfit berbeda, untuk lemari ini dan lemari besar?"},
+{ id: 'f3', konteks: 'Klaim ketua kelas', tingkat: 'F', type: 'outfit', cats: [['Kaus', ['merah', 'kuning', 'hijau']], ['Celana', ['hitam', 'biru']]], catatMax: 3, asks: [{ label: 'Outfit berbeda', key: 6 }], budget: 2, verdict: { q: 'Apakah ketua kelas benar?', opts: ['Benar', 'Salah'], correct: 'Benar' }, cerita: 'Ketua kelas yakin 3 kaus dan 2 celana cukup untuk 6 penari yang outfitnya berbeda semua.', tujuan: 'Hitung outfitnya, lalu nilai keyakinan ketua kelas.' }
 ];
+this.TN = { F: ['Kemeja dan bawahan', 'Outfit seragam', 'Klaim Bu Wina'], I: ['Paket kantin', 'Tiga jenis paket', 'Klaim kantin'], E: ['PIN loker', 'Tanpa angka kembar', 'Klaim satpam'] };
+this.TM = {
+F: [
+{ type: 'outfit', cats: [['Kemeja', ['putih', 'batik', 'pramuka']], ['Bawahan', ['abu', 'biru']]], catatMax: 3, asks: [{ label: 'Outfit berbeda dari lemari ini', key: 6 }, { label: 'Outfit dari 5 kemeja dan 4 bawahan', key: 20 }], budget: 2, cerita: 'Lemari kecil OSIS berisi kemeja dan bawahan untuk upacara. Bu Wina juga punya lemari besar berisi 5 kemeja dan 4 bawahan.', tujuan: 'Berapa outfit berbeda, untuk lemari ini dan lemari besar? Kamu punya 2 kesempatan.' },
+this.M[0],
+{ type: 'outfit', cats: OUT, catatMax: 4, asks: [{ label: 'Outfit berbeda dari lemari ini', key: 12 }], budget: 2, verdict: { q: 'Apakah Bu Wina benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Bu Wina menghitung cepat: 2 kemeja, 3 bawahan, dan 2 sepatu berarti 2 + 3 + 2 = 7 outfit.', tujuan: 'Hitung outfitnya, lalu nilai hitungan Bu Wina. Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'menu', groups: [['Paket nasi', 3, 2], ['Paket mie', 2, 2], ['Paket roti', 2, 1]], asks: [{ label: 'Total bila nasi 4 × 3, mie 3 × 2, atau roti 5 × 2', key: 28 }], budget: 2, cerita: 'Kantin menambah paket roti. Pembeli memilih satu jenis paket saja, lalu memilih isinya.', tujuan: 'Berapa pilihan menu kantin minggu depan? Kamu punya 2 kesempatan.' },
+{ type: 'menu', groups: [['Bakso', 3, 2], ['Soto', 2, 2]], asks: [{ label: 'Total pilihan', key: 10 }], budget: 2, verdict: { q: 'Apakah pemilik kantin benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Pembeli memilih bakso atau soto, lalu satu minuman. Pemilik kantin bilang 5 makanan × 4 minuman = 20 pilihan.', tujuan: 'Hitung pilihannya, lalu nilai ucapan pemilik kantin. Kamu punya 2 kesempatan.' }
+],
+E: [this.M[2],
+{ type: 'pin', digits: [1, 2, 3], slots: 2, catatMax: 4, asks: [{ label: 'PIN 4 angka dari 1–6, tanpa angka kembar', key: 360 }, { label: 'PIN 3 angka dari 0–9, tanpa angka kembar', key: 720 }], budget: 2, cerita: 'Loker ruang OSIS memakai kunci baru: angka yang sama tidak boleh dipakai dua kali dalam satu PIN.', tujuan: 'Berapa PIN berbeda untuk kedua kunci? Kamu punya 2 kesempatan.' },
+{ type: 'pin', digits: [1, 2, 3], slots: 2, catatMax: 4, asks: [{ label: 'PIN 3 angka dari 0–9, boleh kembar', key: 1000 }], budget: 2, verdict: { q: 'Apakah satpam benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Satpam sekolah bilang kunci 3 roda berisi angka 0 sampai 9 hanya punya 10 + 10 + 10 = 30 PIN, jadi mudah dibobol.', tujuan: 'Hitung banyak PIN, lalu nilai ucapan satpam. Kamu punya 2 kesempatan.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['A'], I: ['B'], E: ['C'] };
 this.TUT = [
 'Hari pertama sebagai pengurus OSIS. Bu Wina sering bertanya "ada berapa kemungkinan?" untuk setiap acara.',
 'Ketuk satu barang dari setiap jenis untuk memilihnya.',
@@ -10771,6 +10842,8 @@ return this.scene(sp, 'Cabang pilihan menu');
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+const base = this.curM()[i]; i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
+if (i === 0 && base.cats.length === 2) { const a = R(3, 8), b = R(2, 6); return { asks: [{ label: 'Outfit berbeda dari lemari ini', key: base.cats[0][1].length * base.cats[1][1].length }, { label: 'Outfit dari ' + a + ' kemeja dan ' + b + ' bawahan', key: a * b }], cerita: 'Lemari lain berisi ' + a + ' kemeja dan ' + b + ' bawahan.' }; }
 if (i === 0) { const a = R(3, 7), b = R(3, 7), c = R(2, 5); return { asks: [{ label: 'Outfit berbeda dari lemari ini', key: 12 }, { label: 'Outfit dari ' + a + ' kemeja, ' + b + ' bawahan, ' + c + ' sepatu', key: a * b * c }], cerita: 'Lemari OSIS yang lain berisi ' + a + ' kemeja, ' + b + ' bawahan, dan ' + c + ' sepatu.' }; }
 if (i === 1) { const a = R(3, 8), b = R(2, 5), c = R(2, 6), d = R(2, 5); return { asks: [{ label: 'Pilihan paket nasi ' + a + ' lauk × ' + b + ' minuman', key: a * b }, { label: 'Total bila nasi ' + a + ' × ' + b + ' atau mie ' + c + ' × ' + d, key: a * b + c * d }], cerita: 'Menu kantin bulan depan berubah lagi.' }; }
 const k = R(3, 9), n = R(2, 4), m = R(4, 7); return { asks: [{ label: 'PIN ' + n + ' angka dari 1–' + k + ', boleh kembar', key: Math.pow(k, n) }, { label: 'PIN 3 angka dari 1–' + m + ', tanpa angka kembar', key: m * (m - 1) * (m - 2) }], cerita: 'Loker baru dipesan dengan kunci yang berbeda.' };
@@ -12672,7 +12745,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -12692,9 +12765,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -12707,6 +12781,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Pentas Seni'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -12726,16 +12803,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -12770,7 +12847,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -12861,9 +12938,27 @@ this.H = [
 { id: 's6', konteks: 'Pembuka tetap', tingkat: 'E', type: 'antrean', n: 3, catatMax: 3, asks: [{ label: 'Urutan tampil', key: 120 }], budget: 1, cerita: 'Ada 6 kelompok, tetapi paduan suara sekolah wajib tampil paling awal.', tujuan: 'Berapa urutan tampil yang mungkin?' },
 { id: 's7', konteks: 'Klaim pembina', tingkat: 'E', type: 'jabatan', catatMax: 4, asks: [{ label: 'Tim 3 orang dari 5 calon', key: 10 }], budget: 1, verdict: { q: 'Apakah pembina benar?', opts: ['Benar', 'Salah'], correct: 'Benar' }, cerita: 'Pembina bilang memilih 3 orang dari 5 calon sama banyak caranya dengan memilih 2 orang yang tidak ikut.', tujuan: 'Hitung pilihan tim 3 orang, lalu nilai ucapan pembina.' },
 { id: 's8', konteks: 'Papan kosong', tingkat: 'I', type: 'bagi', rows: [[4, 24], [3, 6], [2, 2]], asks: [{ label: 'Urutan untuk 0 kelompok', key: 1 }], budget: 2, verdict: { q: 'Apakah anggota panitia benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Seorang anggota panitia bilang kalau tidak ada kelompok, banyak urutannya pasti 0.', tujuan: 'Lanjutkan papan sampai 0 kelompok, lalu nilai ucapannya.' },
-{id: "f1", konteks: "Lomba kelas", tingkat: "F", type: "antrean", n: 3, catatMax: 3, asks: [{label: "Urutan tampil 5 kelompok", key: 120}, {label: "Urutan tampil 8 kelompok", key: 40320}], budget: 2, cerita: "Pentas berikutnya punya jumlah kelompok yang berbeda.", tujuan: "Berapa urutan tampil untuk 4 kelompok dan untuk 6 kelompok?"},
-{id: "f2", konteks: "Malam seni", tingkat: "F", type: "antrean", n: 3, catatMax: 3, asks: [{label: "Urutan tampil 5 kelompok", key: 120}, {label: "Urutan tampil 7 kelompok", key: 5040}], budget: 2, cerita: "Pentas berikutnya punya jumlah kelompok yang berbeda.", tujuan: "Berapa urutan tampil untuk 4 kelompok dan untuk 6 kelompok?"}
+{id: "f1", konteks: "Lomba kelas", tingkat: "F", type: "antrean", n: 3, catatMax: 3, asks: [{label: "Urutan tampil 5 kelompok", key: 120}, {label: "Urutan tampil 8 kelompok", key: 40320}], budget: 2, cerita: "Pentas berikutnya punya jumlah kelompok yang berbeda.", tujuan: "Berapa urutan tampil untuk 5 kelompok dan untuk 8 kelompok?"},
+{id: "f2", konteks: "Malam seni", tingkat: "F", type: "antrean", n: 3, catatMax: 3, asks: [{label: "Urutan tampil 5 kelompok", key: 120}, {label: "Urutan tampil 7 kelompok", key: 5040}], budget: 2, cerita: "Pentas berikutnya punya jumlah kelompok yang berbeda.", tujuan: "Berapa urutan tampil untuk 5 kelompok dan untuk 7 kelompok?"},
+{ id: 'f3', konteks: 'Klaim ketua kelas', tingkat: 'F', type: 'antrean', n: 3, catatMax: 3, asks: [{ label: 'Urutan tampil 4 kelompok', key: 24 }], budget: 2, verdict: { q: 'Apakah ketua kelas benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Ketua kelas bilang 4 kelompok hanya punya 4 urutan tampil, satu untuk tiap kelompok yang tampil pertama.', tujuan: 'Hitung urutannya, lalu nilai ucapan ketua kelas.' }
 ];
+this.TN = { F: ['Urutan tampil', 'Lima dan delapan kelompok', 'Klaim enam kelompok'], I: ['Tangga urutan', 'Papan dari 8 kelompok', 'Klaim panitia'], E: ['Pengurus dan tim', 'Sepuluh calon', 'Empat jabatan'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'antrean', n: 3, catatMax: 3, asks: [{ label: 'Urutan tampil 5 kelompok', key: 120 }, { label: 'Urutan tampil 8 kelompok', key: 40320 }], budget: 2, cerita: 'Lomba seni antarkelas diikuti 5 kelompok di babak pagi dan 8 kelompok di babak sore. Setiap urutan berbeda masuk ke kotak undian.', tujuan: 'Berapa urutan tampil untuk tiap babak? Kamu punya 2 kesempatan dan 3 baris catatan.' },
+{ type: 'antrean', n: 3, catatMax: 3, asks: [{ label: 'Urutan tampil 6 kelompok', key: 720 }], budget: 2, verdict: { q: 'Apakah anggota panitia benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Malam puncak diisi 6 kelompok. Seorang anggota panitia bilang urutannya cukup 6 × 6 = 36 kertas undian.', tujuan: 'Hitung urutannya, lalu nilai ucapan anggota panitia. Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'bagi', rows: [[8, 40320], [7, 5040], [6, 720]], asks: [{ label: 'Urutan untuk 5 kelompok', key: 120 }, { label: 'Urutan untuk 9 kelompok', key: 362880 }], budget: 2, cerita: 'Papan Kak Dimas kali ini dimulai dari 8 kelompok. Ia ingin tahu angka papan ke bawah dan ke atas.', tujuan: 'Lanjutkan papan, lalu isi kedua jawaban. Kamu punya 2 kesempatan.' },
+{ type: 'bagi', rows: [[6, 720], [5, 120], [4, 24]], asks: [{ label: 'Urutan untuk 8 kelompok', key: 40320 }], budget: 2, verdict: { q: 'Apakah panitia benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Tahun depan ada 8 kelompok. Panitia bilang urutannya cukup 8 × 720 = 5.760, karena 6 kelompok punya 720 urutan.', tujuan: 'Hitung urutan 8 kelompok, lalu nilai ucapan panitia. Kamu punya 2 kesempatan.' }
+],
+E: [this.M[2],
+{ type: 'jabatan', catatMax: 4, asks: [{ label: 'Ketua, wakil, sekretaris dari 10 calon', key: 720 }, { label: 'Tim 3 orang dari 10 calon', key: 120 }], budget: 2, cerita: 'Pendaftar panitia tahun ini 10 orang. Panitia butuh ketua, wakil, sekretaris, dan juga tim dokumentasi 3 orang yang tugasnya sama.', tujuan: 'Berapa susunan pengurus dan berapa pilihan tim? Kamu punya 2 kesempatan.' },
+{ type: 'jabatan', catatMax: 4, asks: [{ label: 'Ketua, wakil, sekretaris, bendahara dari 7 calon', key: 840 }, { label: 'Tim 4 orang dari 7 calon', key: 35 }], budget: 2, cerita: 'OSIS kini butuh empat jabatan berbeda: ketua, wakil, sekretaris, dan bendahara. Ada juga tim 4 orang yang tugasnya sama.', tujuan: 'Berapa susunan pengurus dan berapa pilihan tim bila ada 7 calon? Kamu punya 2 kesempatan.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['A'], I: ['D'], E: ['B', 'C'] };
 this.TUT = [
 'Hari pertama sebagai panitia pentas seni. Kak Dimas selalu ingin tahu ada berapa cara menyusun acara.',
 'Ketuk dua kelompok berturut-turut. Mereka mengisi slot panggung dari kiri.',
@@ -12879,6 +12974,7 @@ const sub = (n, r) => { let c = 0; for (let m = 0; m < 1 << n; m++) { let b = 0;
 this.OPTS = {
 A: { note: 'n kelompok tampil bergantian', lhs: 'Banyak urutan =', list: ['n × n', 'n × (n − 1)', '2 × n', 'n × (n − 1) × … × 1'], vars: ['n'], gen: t => ({ n: (t !== undefined && t % 4 === 0) ? 2 : R(1, 7) }), f: v => perm(v.n, v.n), g: { 'n × n': v => v.n * v.n, 'n × (n − 1)': v => v.n * (v.n - 1), '2 × n': v => 2 * v.n, 'n × (n − 1) × … × 1': v => { let p = 1; for (let i = 2; i <= v.n; i++) p *= i; return p; } } },
 B: { note: 'Ketua, wakil, dan sekretaris dari n calon', lhs: 'Banyak susunan =', list: ['n × 3', 'n × n × n', 'n − 3', 'n × (n − 1) × (n − 2)'], vars: ['n'], gen: () => ({ n: R(3, 9) }), f: v => perm(v.n, 3), g: { 'n × 3': v => 3 * v.n, 'n × n × n': v => v.n * v.n * v.n, 'n − 3': v => v.n - 3, 'n × (n − 1) × (n − 2)': v => v.n * (v.n - 1) * (v.n - 2) } },
+D: { note: 'Papan urutan: baris n kelompok dari baris (n − 1) kelompok', lhs: 'Urutan n kelompok =', list: ['n + urutan (n − 1)', 'urutan (n − 1)', '(n − 1) × urutan (n − 1)', 'n × urutan (n − 1)'], vars: ['n'], gen: () => ({ n: R(1, 9) }), f: v => perm(v.n, v.n), g: { 'n + urutan (n − 1)': v => v.n + perm(v.n - 1, v.n - 1), 'urutan (n − 1)': v => perm(v.n - 1, v.n - 1), '(n − 1) × urutan (n − 1)': v => (v.n - 1) * perm(v.n - 1, v.n - 1), 'n × urutan (n − 1)': v => v.n * perm(v.n - 1, v.n - 1) } },
 C: { note: 'Tim 3 orang bertugas sama dari n calon', lhs: 'Banyak tim =', list: ['n × (n − 1) × (n − 2)', 'n ÷ 3', 'n × 3', 'n × (n − 1) × (n − 2) ÷ 6'], vars: ['n'], gen: t => ({ n: (t !== undefined && t % 4 === 0) ? 3 : R(3, 12) }), f: v => sub(v.n, 3), g: { 'n × (n − 1) × (n − 2)': v => v.n * (v.n - 1) * (v.n - 2), 'n ÷ 3': v => v.n / 3, 'n × 3': v => v.n * 3, 'n × (n − 1) × (n − 2) ÷ 6': v => v.n * (v.n - 1) * (v.n - 2) / 6 } }
 };
 }
@@ -12887,6 +12983,7 @@ tutProblem() { return { type: 'antrean', n: 2, catatMax: 9, budget: 0 }; }
 boardInit(P) { if (P.type === 'antrean') return { q: [], notes: [], nNow: P.n }; if (P.type === 'jabatan') return { q: [], notes: [], mode: 'pengurus' }; return {}; }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b), fac = n => { let p = 1; for (let i = 2; i <= n; i++) p *= i; return p; };
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 if (i === 0) { const a = R(4, 5), b = R(6, 8); return { asks: [{ label: 'Urutan tampil ' + a + ' kelompok', key: fac(a) }, { label: 'Urutan tampil ' + b + ' kelompok', key: fac(b) }], cerita: 'Pentas berikutnya punya jumlah kelompok yang berbeda.' }; }
 if (i === 1) { const top = R(5, 6); return { rows: [[top, fac(top)], [top - 1, fac(top - 1)], [top - 2, fac(top - 2)]], asks: [{ label: 'Urutan untuk 1 kelompok', key: 1 }, { label: 'Urutan untuk 0 kelompok', key: 1 }, { label: 'Urutan untuk ' + (top + 2) + ' kelompok', key: fac(top + 2) }], cerita: 'Papan baru dimulai dari ' + top + ' kelompok.' }; }
 const n = R(6, 10); return { asks: [{ label: 'Ketua, wakil, sekretaris dari ' + n + ' calon', key: n * (n - 1) * (n - 2) }, { label: 'Tim 3 orang dari ' + n + ' calon', key: n * (n - 1) * (n - 2) / 6 }], cerita: 'Organisasi lain punya ' + n + ' calon.' };
@@ -13356,7 +13453,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -13376,9 +13473,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -13391,6 +13489,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Rapor Kelas'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -13410,16 +13511,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -13454,7 +13555,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -13544,8 +13645,26 @@ this.H = [
 { id: 'r7', konteks: 'Skor yang jauh', tingkat: 'E', type: 'tengah', data: [70, 72, 74, 75, 76, 78, 80, 81, 82, 84, 30], asks: [{ label: 'Jarak tengah separuh atas dan tengah separuh bawah', key: 9 }], budget: 1, verdict: { q: 'Apakah skor 30 termasuk terlalu jauh?', opts: ['Ya', 'Tidak'], correct: 'Ya' }, cerita: 'Bu Sinta menyebut sebuah skor terlalu jauh bila selisihnya dari tengah separuh terdekat lebih dari 1,5 kali jarak antara tengah separuh atas dan tengah separuh bawah. Satu siswa yang sakit mendapat skor 30.', tujuan: 'Hitung jarak itu, lalu putuskan apakah skor 30 terlalu jauh.' },
 { id: 'r8', konteks: 'Antrean sembilan', tingkat: 'E', type: 'tengah', data: [55, 90, 62, 78, 84, 70, 66, 95, 73], asks: [{ label: 'Nilai di tengah separuh bawah', key: 64 }, { label: 'Nilai di tengah separuh atas', key: 87 }], budget: 1, cerita: 'Sembilan siswa ikut ulangan susulan. Bila sebuah separuh tidak punya satu siswa tepat di tengah, Bu Sinta memakai nilai di antara dua siswa tengahnya.', tujuan: 'Berapa nilai tengah separuh bawah dan separuh atas?' },
 {id: "f1", konteks: "Ulangan IPS", tingkat: "F", type: "rekap", data: [77, 93, 63, 84, 58, 61, 57, 72, 95, 87], asks: [{label: "Siswa dengan nilai di bawah 70", key: 4}, {label: "Selisih nilai tertinggi dan terendah", key: 38}], budget: 2, cerita: "Kartu nilai kelas lain datang.", tujuan: "Jawab kedua pertanyaan Bu Sinta."},
-{id: "f2", konteks: "Ulangan bahasa", tingkat: "F", type: "rekap", data: [83, 79, 86, 52, 83, 52, 58, 64, 77, 59], asks: [{label: "Siswa dengan nilai di bawah 70", key: 5}, {label: "Selisih nilai tertinggi dan terendah", key: 34}], budget: 2, cerita: "Kartu nilai kelas lain datang.", tujuan: "Jawab kedua pertanyaan Bu Sinta."}
+{id: "f2", konteks: "Ulangan bahasa", tingkat: "F", type: "rekap", data: [83, 79, 86, 52, 83, 52, 58, 64, 77, 59], asks: [{label: "Siswa dengan nilai di bawah 70", key: 5}, {label: "Selisih nilai tertinggi dan terendah", key: 34}], budget: 2, cerita: "Kartu nilai kelas lain datang.", tujuan: "Jawab kedua pertanyaan Bu Sinta."},
+{ id: 'f3', konteks: 'Klaim wali kelas', tingkat: 'F', type: 'rekap', data: [90, 65, 78, 55, 82, 71, 60, 88], asks: [{ label: 'Siswa dengan nilai di bawah 70', key: 3 }], budget: 2, verdict: { q: 'Apakah wali kelas benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Wali kelas sebelah bilang separuh kelompok ini nilainya di bawah 70.', tujuan: 'Hitung siswanya, lalu nilai ucapan wali kelas.' }
 ];
+this.TN = { F: ['Rekap nilai', 'Batas tuntas 75', 'Klaim ketua kelas'], I: ['Meratakan tumpukan', 'Target empat nilai', 'Siswa pindahan'], E: ['Membelah antrean', 'Antrean genap', 'Skor yang jauh'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'rekap', data: [82, 74, 68, 91, 77, 59, 88, 73, 95, 66, 80, 71], asks: [{ label: 'Siswa dengan nilai di bawah 75', key: 6 }, { label: 'Selisih nilai tertinggi dan terendah', key: 36 }], budget: 2, cerita: 'Kelas 8B punya 12 siswa, dan batas tuntasnya 75. Kartu nilainya datang dalam urutan acak.', tujuan: 'Jawab kedua pertanyaan Bu Sinta. Kamu punya 2 kesempatan.' },
+{ type: 'rekap', data: [70, 85, 92, 64, 78, 88, 59, 81], asks: [{ label: 'Selisih nilai tertinggi dan terendah', key: 33 }], budget: 2, verdict: { q: 'Apakah ketua kelas benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Ketua kelas melihat sekilas kartu nilai kelompoknya dan bilang selisih nilai tertinggi dan terendah kurang dari 30.', tujuan: 'Hitung selisihnya, lalu nilai ucapan ketua kelas. Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'ratakan', piles: [6, 9, 3], asks: [{ label: 'Tinggi tiap tumpukan setelah rata', key: 6 }, { label: 'Nilai keempat agar rata-rata 80 (75, 85, 70)', key: 90 }], budget: 2, cerita: 'Tiga siswa piket membawa buku yang tidak sama banyak. Raka juga sudah mendapat nilai 75, 85, dan 70, dan ingin rata-rata empat nilainya 80.', tujuan: 'Jawab kedua pertanyaan Bu Sinta. Kamu punya 2 kesempatan.' },
+{ type: 'ratakan', piles: [6, 2, 5, 3, 4], asks: [{ label: 'Rata-rata baru', key: 77 }], budget: 2, cerita: 'Rata-rata nilai 6 siswa kelompok B adalah 75. Seorang siswa pindahan bernilai 89 masuk ke kelompok itu.', tujuan: 'Berapa rata-rata kelompok B sekarang? Kamu punya 2 kesempatan.' }
+],
+E: [this.M[2],
+{ type: 'tengah', data: [64, 88, 72, 95, 58, 81, 77, 69, 90, 84], asks: [{ label: 'Nilai tengah antrean', key: 79 }, { label: 'Nilai di tengah separuh bawah', key: 69 }, { label: 'Nilai di tengah separuh atas', key: 88 }], budget: 2, cerita: 'Sepuluh siswa ikut lomba cerdas cermat. Bila tidak ada satu siswa tepat di tengah, Bu Sinta memakai nilai di antara dua siswa tengahnya.', tujuan: 'Berapa nilai tengah antrean, separuh bawah, dan separuh atas? Kamu punya 2 kesempatan.' },
+{ type: 'tengah', data: [72, 75, 78, 80, 81, 83, 85, 86, 88, 90, 25], asks: [{ label: 'Jarak tengah separuh atas dan tengah separuh bawah', key: 11 }], budget: 2, verdict: { q: 'Apakah skor 25 termasuk terlalu jauh?', opts: ['Ya', 'Tidak'], correct: 'Ya' }, cerita: 'Bu Sinta menyebut skor terlalu jauh bila selisihnya dari tengah separuh terdekat lebih dari 1,5 kali jarak antara tengah separuh atas dan bawah. Satu siswa lupa membawa kalkulator dan mendapat 25.', tujuan: 'Hitung jarak itu, lalu putuskan apakah skor 25 terlalu jauh. Kamu punya 2 kesempatan.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['D'], I: ['A', 'B'], E: ['C'] };
 this.TUT = [
 'Hari pertama sebagai asisten wali kelas Bu Sinta. Kartu nilai siswa selalu datang dalam urutan acak.',
 'Ketuk satu kartu nilai. Kartu itu pindah ke antrean di bawahnya.',
@@ -13559,6 +13678,7 @@ const R = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 this.OPTS = {
 A: { note: 'n nilai dengan jumlah J', lhs: 'Rata-rata =', list: ['J − n', 'J × n', 'n ÷ J', 'J ÷ n'], vars: ['n', 'J'], gen: () => { const n = R(2, 10), vals = []; for (let i = 0; i < n; i++) vals.push(R(40, 100)); return { n: n, J: vals.reduce((a, b) => a + b, 0), vals: vals }; }, f: v => { const p = v.vals.slice(); for (let it = 0; it < 2000; it++) { let hi = 0, lo = 0; p.forEach((x, i) => { if (x > p[hi]) hi = i; if (x < p[lo]) lo = i; }); const d = (p[hi] - p[lo]) / 2; if (d < 1e-12) break; p[hi] -= d; p[lo] += d; } return p[0]; }, g: { 'J − n': v => v.J - v.n, 'J × n': v => v.J * v.n, 'n ÷ J': v => v.n / v.J, 'J ÷ n': v => v.J / v.n } },
 B: { note: 'Empat nilai berjumlah J, target rata-rata lima nilai T', lhs: 'Nilai kelima =', list: ['T − J ÷ 4', 'T × 5 + J', '(J + T) ÷ 5', 'T × 5 − J'], vars: ['J', 'T'], gen: () => ({ J: R(200, 380), T: R(60, 95) }), f: v => { for (let x = -2000; x <= 2000; x++) if ((v.J + x) === 5 * v.T) return x; return NaN; }, g: { 'T − J ÷ 4': v => v.T - v.J / 4, 'T × 5 + J': v => v.T * 5 + v.J, '(J + T) ÷ 5': v => (v.J + v.T) / 5, 'T × 5 − J': v => v.T * 5 - v.J } },
+D: { note: 'Nilai tertinggi a, nilai terendah b', lhs: 'Selisih =', list: ['a + b', '(a + b) ÷ 2', 'a × b', 'a − b'], vars: ['a', 'b'], gen: () => { const b = R(30, 70); return { a: b + R(0, 30), b: b }; }, f: v => { let s = 0, x = v.b; while (x < v.a) { x++; s++; } return s; }, g: { 'a + b': v => v.a + v.b, '(a + b) ÷ 2': v => (v.a + v.b) / 2, 'a × b': v => v.a * v.b, 'a − b': v => v.a - v.b } },
 C: { note: 'n nilai diurutkan, n ganjil', lhs: 'Urutan siswa di tengah =', list: ['n ÷ 2', 'n − 1', 'n + 1', '(n + 1) ÷ 2'], vars: ['n'], gen: t => ({ n: (t !== undefined && t % 4 === 0) ? 3 : 2 * R(0, 15) + 1 }), f: v => { let lo = 1, hi = v.n; while (lo < hi) { lo++; hi--; } return lo; }, g: { 'n ÷ 2': v => v.n / 2, 'n − 1': v => v.n - 1, 'n + 1': v => v.n + 1, '(n + 1) ÷ 2': v => (v.n + 1) / 2 } }
 };
 }
@@ -13572,6 +13692,7 @@ mark(0, q.length - 1, 1); return tone;
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 const sorted = d => d.slice().sort((a, b) => a - b);
 if (i === 0) { const d = []; for (let j = 0; j < 10; j++) d.push(R(50, 99)); const lim = 70; return { data: d, asks: [{ label: 'Siswa dengan nilai di bawah ' + lim, key: d.filter(x => x < lim).length }, { label: 'Selisih nilai tertinggi dan terendah', key: Math.max.apply(null, d) - Math.min.apply(null, d) }], cerita: 'Kartu nilai kelas lain datang.' }; }
 if (i === 1) { const n = R(3, 6), piles = []; let avg = R(3, 6); for (let j = 0; j < n; j++) piles.push(avg); for (let j = 0; j < n * 2; j++) { const a = R(0, n - 1), b = R(0, n - 1); if (piles[a] > 1 && piles[b] < 9) { piles[a]--; piles[b]++; } } const T = R(75, 90), vals = [R(70, 95), R(70, 95), R(70, 95), R(70, 95)], x = 5 * T - vals.reduce((a, b) => a + b, 0); if (x > 100 || x < 0) return this.genMission(1); return { piles: piles, asks: [{ label: 'Tinggi tiap tumpukan setelah rata', key: avg }, { label: 'Nilai kelima agar rata-rata ' + T + ' (' + vals.join(', ') + ')', key: x }], cerita: 'Kelompok baca lain dan siswa lain juga butuh bantuan.' }; }
@@ -15500,7 +15621,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus baru setiap hari, berganti pukul 07.00 WIB.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus berganti setiap hari pukul 07.00 WIB.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -15520,9 +15641,10 @@ rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
 shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 clone(o) { return JSON.parse(JSON.stringify(o)); }
 fresh(P) { const base = Object.assign({ status: 'ok', asks: [], budget: 2 }, P); return Object.assign(base, this.boardInit(base), { left: base.budget }); }
-mission(i) { if (i < this.M.length) return this.clone(this.M[i]); return this.customMission(this.state.customs[i - this.M.length]); }
+curM() { return this.TM ? this.TM[this.curLvl()] : this.M; }
+mission(i) { const M = this.curM(); if (i < M.length) return Object.assign({ tingkat: this.curLvl() }, this.clone(M[i])); return this.customMission(this.state.customs[i - M.length]); }
 loadMission(i) { this.setState({ mode: 'misi', tut: null, mi: i, P: this.fresh(this.mission(i)), ans: {}, af: 0, stage: 'main', sel: [], msg: '', kind: '' }); }
-todayIdx(day) { const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); const st = (d * 3) % this.H.length; return [0, 1, 2].map(i => (st + i) % this.H.length); }
+todayIdx(day) { const lv = this.curLvl(); const pool = this.H.map((c, i) => i).filter(i => this.H[i].tingkat === lv); const n = pool.length; const d = Math.floor(Date.now() / 86400000) + (day === undefined ? this.state.hDay : day); if (!n) return [0]; const st = (d * 3) % n; return [0, 1, 2].slice(0, Math.min(3, n)).map(i => pool[(st + i) % n]); }
 loadCase(i, day) { const c = this.clone(this.H[this.todayIdx(day)[i]]); c.special = true; const upd = { mode: 'harian', tut: null, hi: i, P: this.fresh(c), ans: {}, af: 0, stage: c.verdictOnly ? 'verdict' : 'main', sel: [], msg: '', kind: '' }; if (day !== undefined) upd.hDay = day; this.setState(upd); }
 startTut() { this.setState({ mode: 'misi', tut: 0, P: this.fresh(this.tutProblem()), sel: [], msg: '', kind: '', help: false, ans: {}, af: 0, stage: 'main' }); }
 markDone() { const s = this.state; if (s.mode === 'harian') return { hDone: Object.assign({}, s.hDone, { [s.P.id]: true }) }; return { done: Object.assign({}, s.done, { [s.mi]: true }) }; }
@@ -15535,6 +15657,9 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: s.P.verdictO
 addLog(log, entry, max) { return log.indexOf(entry) >= 0 ? log : log.concat([entry]).slice(-(max || 8)); }
 same(a, b) { if (typeof a === 'boolean' || typeof b === 'boolean') return a === b; return Math.abs(a - b) < 1e-9 * Math.max(1, Math.abs(a), Math.abs(b)); }
 show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(Math.round(v * 1000) / 1000); }
+initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
+curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
+setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Undian Doorprize'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 renderVals() { return this.gmWrap(this.gmRender()); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -15554,16 +15679,16 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = this.MN.concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], logLabel: 'Catatan percobaan', info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
 else if (s.mode !== 'rumus') view = Object.assign(view, this.boardView(ctx));
 let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A', actions = view.actions;
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
-if (doneStage && s.mode === 'misi' && s.mi < this.M.length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
+if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -15598,7 +15723,7 @@ tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
 } else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
-const builders = Object.keys(this.OPTS).map(id => {
+const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
 return {
 note: o.note, lhs: o.lhs, rhs: cur,
@@ -15688,8 +15813,26 @@ this.H = [
 { id: 'd7', konteks: 'Klaim panitia', tingkat: 'E', type: 'kupon', box: [['merah', 2], ['putih', 2]], undiMax: 4, asks: [{ label: 'Pasangan berurutan dengan setidaknya satu merah', key: 12 }], budget: 1, verdict: { q: 'Apakah panitia benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Kotak berisi 2 kupon merah dan 2 putih bernomor. Kupon diundi 2 kali dan dikembalikan setiap kali, dan panitia bilang peserta pasti mendapat merah.', tujuan: 'Hitung pasangan dengan setidaknya satu merah, lalu nilai ucapan panitia.' },
 { id: 'd8', konteks: 'Jalan sehat', tingkat: 'I', type: 'kupon', box: [['merah', 1], ['putih', 7]], undiMax: 5, asks: [{ label: 'Kira-kira pemenang dari 400 peserta', key: 50 }], budget: 2, cerita: 'Setiap peserta jalan sehat mengambil satu kupon lalu mengembalikannya. Dari setiap 8 kupon, hanya 1 yang berhadiah.', tujuan: 'Kira-kira berapa hadiah yang perlu disiapkan untuk 400 peserta?' },
 {id: "f1", konteks: "Lomba RT", tingkat: "F", type: "kupon", box: [["merah", 2], ["putih", 8]], undiMax: 5, asks: [{label: "Kemungkinan kupon merah (persen)", key: 20}, {label: "Kemungkinan bila 6 merah dari 20 kupon (persen)", key: 30}], budget: 2, cerita: "Kotak kupon lain disiapkan untuk lomba berikutnya.", tujuan: "Seberapa besar kemungkinan peserta mendapat kupon merah, di kotak ini dan di kotak lain?"},
-{id: "f2", konteks: "Arisan warga", tingkat: "F", type: "kupon", box: [["merah", 4], ["putih", 6]], undiMax: 5, asks: [{label: "Kemungkinan kupon merah (persen)", key: 40}, {label: "Kemungkinan bila 8 merah dari 10 kupon (persen)", key: 80}], budget: 2, cerita: "Kotak kupon lain disiapkan untuk lomba berikutnya.", tujuan: "Seberapa besar kemungkinan peserta mendapat kupon merah, di kotak ini dan di kotak lain?"}
+{id: "f2", konteks: "Arisan warga", tingkat: "F", type: "kupon", box: [["merah", 4], ["putih", 6]], undiMax: 5, asks: [{label: "Kemungkinan kupon merah (persen)", key: 40}, {label: "Kemungkinan bila 8 merah dari 10 kupon (persen)", key: 80}], budget: 2, cerita: "Kotak kupon lain disiapkan untuk lomba berikutnya.", tujuan: "Seberapa besar kemungkinan peserta mendapat kupon merah, di kotak ini dan di kotak lain?"},
+{ id: 'f3', konteks: 'Klaim Pak RT', tingkat: 'F', type: 'kupon', box: [['merah', 1], ['putih', 9]], undiMax: 5, asks: [{ label: 'Kemungkinan kupon merah (persen)', key: 10 }], budget: 2, verdict: { q: 'Apakah Pak RT benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Pak RT bilang kemungkinan mendapat kupon merah 50 persen, karena hasilnya cuma dua: merah atau putih.', tujuan: 'Hitung kemungkinannya, lalu nilai ucapan Pak RT.' }
 ];
+this.TN = { F: ['Kotak kupon', 'Kotak kecil', 'Klaim Bu RT'], I: ['Dadu lomba', 'Kupon jalan sehat', 'Lempar koin'], E: ['Kantong bola', 'Genap atau kelipatan 3', 'Setidaknya satu biru'] };
+this.TM = {
+F: [this.M[0],
+{ type: 'kupon', box: [['merah', 1], ['putih', 4]], undiMax: 5, asks: [{ label: 'Kemungkinan kupon merah (persen)', key: 20 }, { label: 'Kemungkinan bila 9 merah dari 25 kupon (persen)', key: 36 }], budget: 2, cerita: 'Kotak kecil untuk lomba anak berisi kupon merah dan putih. Kotak besar untuk lomba dewasa berisi 25 kupon, 9 di antaranya merah.', tujuan: 'Seberapa besar kemungkinan mendapat kupon merah di tiap kotak? Kamu punya 2 kesempatan.' },
+{ type: 'kupon', box: [['merah', 4], ['putih', 4]], undiMax: 5, asks: [{ label: 'Kemungkinan kupon merah (persen)', key: 50 }], budget: 2, verdict: { q: 'Apakah Bu RT benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Bu RT melihat ada 4 kupon merah di kotak ini, lalu bilang kemungkinan mendapat merah hanya 4 persen.', tujuan: 'Hitung kemungkinannya, lalu nilai ucapan Bu RT. Kamu punya 2 kesempatan.' }
+],
+I: [this.M[1],
+{ type: 'kupon', box: [['merah', 1], ['putih', 4]], undiMax: 5, asks: [{ label: 'Kira-kira hadiah dari 250 peserta', key: 50 }], budget: 2, cerita: 'Setiap peserta jalan sehat mengambil satu kupon dari kotak ini, lalu mengembalikannya. Pesertanya 250 orang.', tujuan: 'Kira-kira berapa hadiah yang perlu disiapkan? Kamu punya 2 kesempatan.' },
+{ type: 'dadu', faces: ['gambar', 'angka'], lemparMax: 3, asks: [{ label: 'Kira-kira gambar dari 500 lemparan', key: 250 }], budget: 2, verdict: { q: 'Apakah Raka benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Koin dilempar 500 kali di lomba anak-anak. Raka yakin sisi gambar pasti muncul tepat 250 kali, tidak kurang dan tidak lebih.', tujuan: 'Hitung perkiraannya, lalu nilai keyakinan Raka. Kamu punya 2 kesempatan.' }
+],
+E: [this.M[2],
+{ type: 'dadu', lemparMax: 3, asks: [{ label: 'Hasil yang menang dari 6 hasil', key: 4 }], budget: 2, cerita: 'Di lomba ini, peserta menang bila dadu menunjukkan angka genap atau kelipatan 3.', tujuan: 'Berapa dari 6 hasil dadu yang menang? Kamu punya 2 kesempatan.' },
+{ type: 'bola', m: 4, b: 3, ambilMax: 4, asks: [{ label: 'Pasangan dengan setidaknya satu biru', key: 30 }], budget: 2, cerita: 'Kantong berisi 4 bola merah dan 3 bola biru bernomor. Pak RT mengambil 2 bola berurutan tanpa dikembalikan. Hadiah diberikan bila ada bola biru.', tujuan: 'Berapa pasangan berurutan yang berisi setidaknya satu bola biru? Kamu punya 2 kesempatan.' }
+]
+};
+this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
+this.TO = { F: ['E'], I: ['A'], E: ['B', 'C', 'D'] };
 this.TUT = [
 'Hari pertama sebagai panitia jalan sehat Pak RT. Tugasmu menyiapkan undian doorprize.',
 'Ketuk kotak kupon. Satu kupon diambil lalu dikembalikan.',
@@ -15702,6 +15845,7 @@ this.NEXT_STORY = 'Lomba berikutnya disiapkan.';
 const R = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 this.OPTS = {
 A: { note: 'm hasil menang dari n hasil yang sama mungkin, diundi T kali', lhs: 'Kira-kira menang =', list: ['T − m', 'm × n', 'T ÷ m', 'T × m ÷ n'], vars: ['m', 'n', 'T'], gen: () => { const n = R(2, 12); return { m: R(1, n), n: n, T: n * R(2, 40) }; }, f: v => { let w = 0; for (let t = 0; t < v.T; t++) if (t % v.n < v.m) w++; return w; }, g: { 'T − m': v => v.T - v.m, 'm × n': v => v.m * v.n, 'T ÷ m': v => v.T / v.m, 'T × m ÷ n': v => v.T * v.m / v.n } },
+E: { note: 'Kotak berisi n kupon, m di antaranya merah', lhs: 'Kemungkinan merah (persen) =', list: ['m × 100', 'n ÷ m × 100', 'm + n', 'm ÷ n × 100'], vars: ['m', 'n'], gen: () => { const n = [2, 4, 5, 10, 20, 25, 50][R(0, 6)]; return { m: R(1, n), n: n }; }, f: v => { let c = 0; for (let i = 0; i < v.n; i++) if (i < v.m) c++; return c / v.n * 100; }, g: { 'm × 100': v => v.m * 100, 'n ÷ m × 100': v => v.n / v.m * 100, 'm + n': v => v.m + v.n, 'm ÷ n × 100': v => v.m / v.n * 100 } },
 B: { note: 'Kantong berisi m merah dan b biru; 2 bola diambil berurutan tanpa dikembalikan', lhs: 'Pasangan merah-merah =', list: ['m × m', 'm × b', 'm + (m − 1)', 'm × (m − 1)'], vars: ['m', 'b'], gen: () => ({ m: R(1, 9), b: R(1, 9) }), f: v => { let c = 0; const n = v.m + v.b; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) if (i !== j && i < v.m && j < v.m) c++; return c; }, g: { 'm × m': v => v.m * v.m, 'm × b': v => v.m * v.b, 'm + (m − 1)': v => 2 * v.m - 1, 'm × (m − 1)': v => v.m * (v.m - 1) } },
 C: { note: 'Semua pasangan berurutan S, pasangan tanpa biru sama sekali N', lhs: 'Setidaknya satu biru =', list: ['S + N', 'N', 'S ÷ N', 'S − N'], vars: ['S', 'N'], gen: () => { const m = R(2, 8), b = R(1, 6), n = m + b; return { m: m, b: b, S: n * (n - 1), N: m * (m - 1) }; }, f: v => { let c = 0; const n = v.m + v.b; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) if (i !== j && (i >= v.m || j >= v.m)) c++; return c; }, g: { 'S + N': v => v.S + v.N, 'N': v => v.N, 'S ÷ N': v => v.S / v.N, 'S − N': v => v.S - v.N } },
 D: { note: 'Hasil yang memenuhi syarat P ada a, syarat Q ada b, keduanya sekaligus c', lhs: 'Memenuhi P atau Q =', list: ['a + b', 'a × b', 'a + b + c', 'a + b − c'], vars: ['a', 'b', 'c'], gen: t => { const n = R(4, 30), P = [], Q = []; for (let i = 0; i < n; i++) { P.push(Math.random() < 0.5); Q.push(Math.random() < 0.5); } if (t !== undefined && t % 4 === 0) { for (let i = 0; i < n; i++) Q[i] = Q[i] && !P[i]; } let a = 0, b = 0, c = 0; for (let i = 0; i < n; i++) { a += P[i]; b += Q[i]; c += P[i] && Q[i]; } return { a: a, b: b, c: c, P: P, Q: Q }; }, f: v => v.P.filter((p, i) => p || v.Q[i]).length, g: { 'a + b': v => v.a + v.b, 'a × b': v => v.a * v.b, 'a + b + c': v => v.a + v.b + v.c, 'a + b − c': v => v.a + v.b - v.c } }
@@ -15713,6 +15857,10 @@ boardInit(P) { if (P.type === 'kupon') return { draws: [], tk: 0 }; if (P.type =
 balls(P) { const a = []; for (let i = 1; i <= P.m; i++) a.push('M' + i); for (let i = 1; i <= P.b; i++) a.push('B' + i); return a; }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+const base = this.curM()[i]; i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
+if (i === 1 && base.type === 'kupon') { const n = [4, 5, 8, 10][R(0, 3)], m = R(1, n - 1), T = n * R(10, 60); return { box: [['merah', m], ['putih', n - m]], asks: [{ label: 'Kira-kira hadiah dari ' + T + ' peserta', key: T * m / n }], cerita: 'Lomba lain memakai kotak kupon berbeda dengan ' + T + ' peserta.' }; }
+if (i === 1 && base.faces) { const T = 2 * R(50, 400); return { asks: [{ label: 'Kira-kira gambar dari ' + T + ' lemparan', key: T / 2 }], cerita: 'Koin dilempar ' + T + ' kali di lomba berikutnya.' }; }
+if (i === 2 && base.type === 'dadu') return null;
 if (i === 0) { const bx = [[1, 3], [1, 4], [2, 3], [3, 7], [2, 8], [1, 9], [4, 6], [2, 2]][R(0, 7)], m2 = R(1, 9), n2 = [10, 20, 25, 50][R(0, 3)]; return { box: [['merah', bx[0]], ['putih', bx[1]]], asks: [{ label: 'Kemungkinan kupon merah (persen)', key: bx[0] * 100 / (bx[0] + bx[1]) }, { label: 'Kemungkinan bila ' + m2 + ' merah dari ' + n2 + ' kupon (persen)', key: m2 * 100 / n2 }], cerita: 'Kotak kupon lain disiapkan untuk lomba berikutnya.' }; }
 if (i === 1) { const T = 6 * R(10, 50), n = [4, 5, 8, 10][R(0, 3)], T2 = n * R(10, 50), m = R(1, n - 1); return { asks: [{ label: 'Kira-kira angka 6 dari ' + T + ' lemparan', key: T / 6 }, { label: 'Kira-kira kupon merah dari ' + T2 + ' undian (' + m + ' merah dari ' + n + ')', key: T2 * m / n }], cerita: 'Lomba berikutnya lebih ramai.' }; }
 const m = R(2, 5), b = R(1, 4), n = m + b; return { m: m, b: b, asks: [{ label: 'Pasangan merah-merah', key: m * (m - 1) }, { label: 'Pasangan dengan setidaknya satu biru', key: n * (n - 1) - m * (m - 1) }], cerita: 'Kantong lain berisi ' + m + ' bola merah dan ' + b + ' bola biru bernomor.' };
