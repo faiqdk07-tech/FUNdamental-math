@@ -208,7 +208,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 /* ===== Adegan kedai pizza (Bagi Pizza) ===== */
 .px-kedai{background:#F6E2C6!important}
 .px-pizzas>div>div{border:3px solid #2B1D1A!important;box-shadow:inset 0 0 0 5px #E0A050,0 4px 0 rgba(43,29,26,.35)!important}
-.px-pizzas>div>div[style*="conic-gradient(#EBDDC5 0deg 360deg"]{background:#F7D774!important}
+.px-pizzas>div>div[style*="conic-gradient(#EBDDC5 0deg 360deg"],.px-pizzas>div>div[style*="conic-gradient(#F6C89A 0deg 360deg"]{background:#F7D774!important}
 .px-pizzas>div>div span{font-family:Inter,system-ui,sans-serif;font-weight:800!important;text-shadow:0 1px 0 #FFFFFF}
 .px-pbox{display:flex;align-items:center;gap:8px;padding:6px 10px;background:#E8C58C;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A,inset 0 -3px 0 #C99A5B;margin:2px;font-size:13px}
 .px-loyang{height:16px;background:#F7D774;box-shadow:inset 0 0 0 2px #E0A050;font-size:11px;line-height:16px;text-align:center;color:#6B4426;font-weight:700}
@@ -295,6 +295,17 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-al-dapur button[style*="height"][style*="border: 1px solid #DDDCD7"][style*="background: #FFFFFF"]{background:#FFFFFF!important;border:2px solid #9AA7BA!important;border-radius:50%!important}
 .px-al-dapur button[style*="height"][style*="border: 1px solid #2F5BD3"]{background:var(--px-roti) center / 92% auto no-repeat,#FFF6E0!important;border:2px solid #2B1D1A!important;border-radius:50%!important;image-rendering:pixelated}
 .px-al-dapur button[style*="text-align: left"][style*="background: #FFFFFF"]{background:#FFF6E0!important;box-shadow:inset 4px 0 0 #E8554E!important}
+/* ===== Alat dan benda khas Bilangan (revisi 16 Nov) ===== */
+.px-calc{background:#5A6278!important;border:0!important;border-image:none!important;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 4px 0 #7C879A!important;padding:10px!important;margin:3px}
+.px-calc>div>span:first-child,.px-calc span.px-f{color:#FFFFFF!important}
+.px-calc button:not(.px-fg){border:0!important;border-image:none!important;background:#E8F1F8!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #9AA7BA,inset 0 2px 0 #FFFFFF!important;margin:2px;padding:6px 0 8px!important;font-family:Inter,system-ui,sans-serif!important}
+.px-calc.px-jump button{background:revert-layer}
+.px-calc:not(.px-fw){padding:8px!important}
+.px-machine{background:#57B8A0;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 4px 0 #93DCC8,inset 0 -5px 0 #2F8672;padding:10px 12px 14px;margin:3px;color:#FFFFFF}
+.px-machine button{border:0!important;border-image:none!important;background:#FFC83D!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 -5px 0 #E39A1C,inset 0 3px 0 #FFE38A!important;padding:10px 0 12px!important;margin:2px}
+.px-machine button:active{transform:translateY(2px)}
+.px-kedai button[style*="ui-monospace"]{border:0!important;border-image:none!important;background:#FFF6E0!important;box-shadow:0 0 0 2px #2B1D1A,0 3px 0 rgba(43,29,26,.3)!important;clip-path:polygon(0 0,100% 0,100% 35%,94% 50%,100% 65%,100% 100%,0 100%,0 65%,6% 50%,0 35%);padding:6px 12px!important}
+.px-kedai button[style*="ui-monospace"][style*="fGold"]{background:#FFE38A!important}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -585,7 +596,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px"><sc-for list="{{knives}}" as="kn" hint-placeholder-count="9"><button type="button" onClick="{{kn.tap}}" aria-label="{{kn.aria}}" style="{{kn.style}}">{{kn.label}}</button></sc-for></div>
 </div>
 </sc-if>
-<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
+<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw px-calc" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">Jumlah porsi</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div></sc-if>
@@ -1885,7 +1896,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasJump}}" hint-placeholder-val="{{ false }}">
-<div class="px-fw px-jump" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-fw px-jump px-calc" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px">
 <sc-for list="{{jumpRows}}" as="r" hint-placeholder-count="3"><div style="display: flex; flex-direction: column; gap: 3px"><span class="px-f" style="font-size: 12px; color: #4B4B57">{{r.label}}</span><div style="{{r.gridStyle}}"><sc-for list="{{r.keys}}" as="q" hint-placeholder-count="9"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div></div></sc-for>
 </div>
 </sc-if>
@@ -2142,7 +2153,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-fw" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-fw px-calc" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; gap: 8px">
 <span style="font-size: 12px; color: #4B4B57; flex: 1">{{answerLabel}}</span>
 <span style="min-width: 80px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span>
@@ -2424,12 +2435,12 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-if>
 <sc-if value="{{showPicker}}" hint-placeholder-val="{{ false }}"><div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px"><sc-for list="{{nums}}" as="n" hint-placeholder-count="9"><button type="button" onClick="{{n.tap}}" style="{{n.style}}">{{n.label}}</button></sc-for></div></sc-if>
 <sc-if value="{{hasFold}}" hint-placeholder-val="{{ true }}">
-<div class="px-fw" style="display: flex; flex-direction: column; gap: 6px; padding: 2px 6px 5px">
+<div class="px-machine" style="display: flex; flex-direction: column; gap: 6px">
 <span class="px-f" style="font-size: 13px">{{foldLabel}}</span>
 <div style="display: grid; grid-template-columns: repeat({{foldCols}}, minmax(0, 1fr)); gap: 4px"><sc-for list="{{foldKeys}}" as="f" hint-placeholder-count="2"><button type="button" onClick="{{f.tap}}" aria-label="{{f.aria}}" style="{{f.style}}">{{f.label}}</button></sc-for></div>
 </div>
 </sc-if>
-<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
+<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw px-calc" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">{{keyLabel}}</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div></sc-if>
@@ -4503,7 +4514,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{showTaste}}" hint-placeholder-val="{{ true }}">
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><sc-for list="{{taste}}" as="t" hint-placeholder-count="3"><div class="px-fw" style="padding: 1px 6px 4px; text-align: center"><div class="px-f" style="font-size: 12px; color: #4B4B57">{{t.label}}</div><div style="font-size: 14px; font-weight: 700; color: {{t.color}}">{{t.val}}</div></div></sc-for></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><sc-for list="{{taste}}" as="t" hint-placeholder-count="3"><div class="px-fw" style="padding: 1px 6px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px"><img alt="" src="{{px.cangkir}}" width="30" height="24"><div class="px-f" style="font-size: 12px; color: #4B4B57">{{t.label}}</div><div style="font-size: 14px; font-weight: 700; color: {{t.color}}">{{t.val}}</div></div></sc-for></div>
 </sc-if>
 </sc-if>
 <sc-if value="{{isKupon}}" hint-placeholder-val="{{ false }}"><div class="px-receipt"><sc-for list="{{receipt}}" as="r" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; font-size: 14px; font-family: ui-monospace, Menlo, monospace"><span>{{r.label}}</span><span>{{r.val}}</span></div></sc-for></div>
@@ -4511,7 +4522,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-if>
 <sc-if value="{{isTumpuk}}" hint-placeholder-val="{{ false }}"><div class="px-receipt"><sc-for list="{{receipt}}" as="r" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; font-size: 14px; font-family: ui-monospace, Menlo, monospace"><span>{{r.label}}</span><span>{{r.val}}</span></div></sc-for></div></sc-if>
 <sc-if value="{{showPicker}}" hint-placeholder-val="{{ false }}"><div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px"><sc-for list="{{nums}}" as="n" hint-placeholder-count="9"><button type="button" onClick="{{n.tap}}" style="{{n.style}}">{{n.label}}</button></sc-for></div></sc-if>
-<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
+<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw px-calc" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">Total diskon</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div></sc-if>
@@ -5771,7 +5782,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <sc-for list="{{blocks}}" as="b" hint-placeholder-count="2">
 <button type="button" onClick="{{b.sel}}" style="{{b.rowStyle}}"><span style="width: 14px; height: 14px; background: {{b.color}}; box-shadow: 0 0 0 2px #2B1D1A"></span><span class="px-f" style="flex: 1">Blok {{b.w}} × {{b.h}}</span><span style="{{b.dispStyle}}">{{b.show}}</span></button>
 </sc-for>
-<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{bkeys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
+<div class="px-calc" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{bkeys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div>
 </sc-if>
 
@@ -6249,6 +6260,7 @@ const PX = (() => {
     hadiah: ['...kk..kk...', '..krrkkrrk..', '...kkrrkk...', 'kkkkkrrkkkkk', 'kyyyyrryyyyk', 'kkkkkrrkkkkk', '.kyyyrryyyk.', '.kyyyrryyyk.', '.kyyyrryyyk.', '.kyyyrryyyk.', '.kkkkkkkkkk.', '............'],
     main: ['kk......', 'kYk.....', 'kyYk....', 'kyyYk...', 'kyyyok..', 'kyyok...', 'kyok....', 'kok.....', 'kk......'],
     pisau: ['..........kk', '.........kek', '........keEk', '.......keEk.', '......keEk..', '.....keEk...', '....keEk....', '...kbkk.....', '..kbBk......', '.kbBk.......', 'kbBk........', 'kkk.........'],
+    cangkir: ['..........', '.kkkkkkk..', '.kwwwwwkkk', '.kwttttk.k', '.kwttttkkk', '..kwwwk...', 'kkkkkkkkk.', '.kkkkkkk..'],
     kue: ['..kkkk..', '.kwwwwk.', 'kwwrwwwk', 'kqqqqqqk', 'kppppppk', 'kqqqqqqk', 'kTTTTTTk', '.kkkkkk.'],
     kursi: ['.kkkkkk.', '.kuuuuk.', '.kuUUuk.', '.kkkkkk.', 'kuuuuuuk', 'kkkkkkkk', '.k....k.', '.k....k.'],
     balon: ['..kkkkk..', '.krrrrrk.', 'krqrrrrrk', 'krqrrrrRk', 'krrrrrrRk', 'krrrrrrRk', '.krrrrRk.', '..kRRRk..', '...kkk...', '....k....', '...k.....', '....k....', '.....k...']
@@ -9467,7 +9479,7 @@ else if (!doneStage && s.sel.length === 1 && coins[s.sel[0]] !== undefined && Ma
 if (s.mode === 'misi' && s.mi < 3) next = () => { const c = this.genLaci(); setP({ coins: c, coins0: c.slice(), left: P.budget }, { stage: 'main', ans: '', sel: [] }); };
 } else if (P.type === 'struk') {
 boardLabel = 'Struk belanja';
-items = P.nums.map((v, i) => ({ label: v === null ? '?' : String(v), aria: v === null ? 'Harga tidak diketahui' : 'Harga ' + v, tap: () => toggleSel(i), style: 'min-width: 58px; height: 46px; padding: 0 8px; font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: 16px; cursor: pointer; color: ' + (v === null ? '#6A7890' : '#2B1D1A') + '; border: 6px solid transparent; background: none; border-image: var(--px-' + (s.sel.indexOf(i) >= 0 ? 'fGold' : 'fWhite') + ') 30 fill / 6px' + (s.sel.indexOf(i) >= 0 ? '; transform: translateY(-3px)' : '') }));
+items = P.nums.map((v, i) => ({ label: v === null ? '?' : String(v), aria: v === null ? 'Harga tidak diketahui' : 'Harga ' + v, tap: () => toggleSel(i), style: 'min-width: 64px; height: 34px; padding: 0 8px; font-family: ui-monospace, Menlo, monospace; font-weight: 800; font-size: 18px; cursor: pointer; color: ' + (v === null ? '#6A7890' : '#2B1D1A') + '; border: 0; border-bottom: 2px dashed #9AA7BA; background: ' + (s.sel.indexOf(i) >= 0 ? 'linear-gradient(transparent 30%, #FFE38A 30% 90%, transparent 90%)' : 'none') }));
 statusLabel = 'Kesempatan menjawab'; status = P.left + ' / ' + P.budget;
 if (s.sel.length === 2) {
 const from = s.sel[0], to = s.sel[1];
