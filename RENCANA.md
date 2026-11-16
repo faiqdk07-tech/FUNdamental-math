@@ -3,6 +3,8 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** Faiq menolak hasil tahap 2–3 ("cuma ditambah kotak-kotak, masih format prototipe"). **Arah baru: tiap game dirancang ulang jadi adegan game pixel sungguhan** (template baru seperti Kasir Kilat), isi tetap. Kulit umum (`px-skin`) hanya sementara untuk layar yang belum dirancang ulang.
+  - **Timbangan selesai dirancang ulang:** adegan gudang (dinding papan, lantai kayu), mandor bertopi kuning bercerita lewat balon dialog, panggung timbangan (tiang logam, batang kayu, piringan bergantung rantai, papan status), beban balok besi, kardus bersolasi, balon merah bertali, rak kayu, papan tulis hijau untuk Aturan. Bagian bersama: `head()`, `menus()`, `npc()` di skrip pembuat template; CSS `.px-npc`, `.px-bubble`, `.px-stage`, `.px-shelf`, `.px-chalk`. Diuji: misi 1 seimbang dengan 9 + 9 + 3, Batal langkah, Harian, Lab, Aturan, Pengenalan, Timbangan Balon.
 - **16 Nov:** **tema pixel tahap 3: benda papan 6 game Bilangan** lewat CSS per game (`#root.px-g-Nama`, kelasnya dipasang `PX.skin`; logika game tidak diubah). Timbangan: batang kayu, tiang logam, piringan logam, beban balok logam, kardus bersolasi, hadiah berpita. Ubin: kue merah muda di nampan logam. Jadwal Bus: rel jalan, penanda bus kotak. Bagi Pizza: kerak dan keju (tanpa topping, supaya jumlah topping tidak terbaca sebagai petunjuk potongan). Racik Resep: kotak takaran, air biru. Lipat Kertas: lembar berbingkai.
 - **16 Nov:** **tema pixel tahap 2: kulit pixel untuk semua layar lain** (26 game + Progres, Jurnal, Temuan, Pengaturan, Tantangan, Bengkel, Cek celah, Kasus baru). Template lama tidak diubah; CSS `#root.px-skin` membaca gaya bawaan (kartu putih, tombol biru, pilihan hitam) dan menggantinya jadi bingkai gelap, tombol emas, pilihan biru tua, tab bawah slot pixel. `PX.skin(root, nama)` dipanggil di `show()`.
   - Latar: langit, awan, bukit, rumput, jalan. 6 game Bilangan punya adegan sendiri (Timbangan: lapak dan timbangan; Ubin: toko kue dan nampan; Jadwal Bus: halte dan bus; Bagi Pizza: kedai dan papan pizza; Racik Resep: dapur dan panci; Lipat Kertas: toko kertas). Game lain dan layar non-game: rumah dengan warna atap materinya.
@@ -32,7 +34,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-0a. **Tema pixel berikutnya (bila Faiq ingin):** benda papan dan adegan sendiri untuk game Aljabar, Geometri, Data (sekarang memakai kulit umum dan rumah warna materi).
+0a. **Rancang ulang game berikutnya satu per satu** seperti Timbangan, urut: Ubin, Jadwal Bus, Bagi Pizza, Racik Resep, Lipat Kertas, lalu Aljabar, Geometri, Data, lalu layar non-game.
 0. **Faiq mencoba alur Kasus harian baru** (salin prompt → proyek Claude → tempel) di Ubin dan beberapa game lain, lalu melaporkan kasus yang ditolak atau ceritanya janggal. Timbangan masih perlu pembuat soal acak supaya ikut kasus berangka baru dan kasus tempelan.
 1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
