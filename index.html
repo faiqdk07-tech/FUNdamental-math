@@ -198,7 +198,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-gic img{width:28px;height:28px}
 /* ===== Adegan terminal (Jadwal Bus) ===== */
 .px-endscene{flex:0 0 250px;margin-top:auto;background:center bottom / 100% auto no-repeat;image-rendering:pixelated}
-.px-terminal{background-color:#8FD3F5!important;background-position:center bottom!important;background-size:100% auto!important;background-repeat:no-repeat!important;image-rendering:pixelated}
+.px-terminal{background:#DCE8F2!important}
+.px-view{position:relative;margin:0 -8px;aspect-ratio:195 / 50;background:center / 100% 100% no-repeat;image-rendering:pixelated}
 .px-board{background:#2D3250;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 4px 0 #474E78;margin:3px;padding:10px 14px 12px;display:flex;flex-direction:column;gap:12px}
 .px-road{position:relative;height:28px;margin-top:5px;background:#5A6278 linear-gradient(90deg,#FFC83D 50%,transparent 50%) 0 50% / 14px 2px repeat-x;border-top:2px solid #2B1D1A;border-bottom:2px solid #2B1D1A}
 .px-table{background:#8A5A32 repeating-linear-gradient(0deg,#7A4E2A 0 2px,#8A5A32 2px 22px);box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 4px 0 #A8773F;margin:3px;padding:10px 12px 12px;display:flex;flex-direction:column;gap:12px}
@@ -2040,6 +2041,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
 
 <sc-if value="{{showPlay}}" hint-placeholder-val="{{ true }}">
+<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <sc-if value="{{isBus}}" hint-placeholder-val="{{ true }}">
 <div class="px-board">
 <div class="px-f" style="text-align: center; color: #FFC83D; font-size: 14px; letter-spacing: 1px">PAPAN KEBERANGKATAN</div>
@@ -2106,7 +2108,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmNext}}" class="px-fg px-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px">{{gmNextLabel}}<img alt="" src="{{px.kanan}}" width="9" height="11"></button></sc-if>
 </sc-if>
 </div>
-<div class="px-endscene" style="background-image: url('{{pxBg}}')"></div>
+<div class="px-floor" style="flex: 0 0 48px; margin-top: auto; background: #C9D3E0 repeating-linear-gradient(90deg, #C9D3E0 0 58px, #BAC6D6 58px 60px)"></div>
 </div>
 </div></template>
 <template id="tpl-Jurnal"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
@@ -7149,7 +7151,25 @@ const PX = (() => {
   const modeIcons = v => Object.assign(v, { gmItems: (v.gmItems || []).map(x => Object.assign({}, x, { icon: U[MODE[x.label] || 'misi'] })) });
   const GAMEIC = {'Kasir Kilat': 'coin', 'Timbangan': 'timb', 'Ubin': 'kue', 'Jadwal Bus': 'bus', 'Bagi Pizza': 'pizza', 'Racik Resep': 'panci', 'Lipat Kertas': 'kertas', 'Dua Struk': 'struk', 'Meja Hajatan': 'meja', 'Martabak Topping': 'martabak', 'Mesin Minuman': 'gelas', 'Argo Ojek': 'motor', 'Timbangan Balon': 'balon', 'Rekap Grosir': 'krat', 'Kebun Pagar': 'pagar', 'Dapur Roti': 'roti', 'Rute Kurir': 'pin', 'Pasang Lantai': 'lantai', 'Gudang Kardus': 'kardus', 'Cetak Spanduk': 'spanduk', 'Tangga Bangunan': 'tangga', 'Pelabuhan': 'kapal', 'Loker OSIS': 'loker', 'Pentas Seni': 'mik', 'Undian Doorprize': 'hadiah', 'Rapor Kelas': 'buku', 'Grafik Viral': 'grafik'};
   const gameIcon = name => U[GAMEIC[name] || 'dadu'];
-  return { U: U, P: P, pen: pen, world: world, shop: shop, house: house, stage: stage, modeIcons: modeIcons, gameIcon: gameIcon };
+  /* Jendela ruang tunggu terminal yang menghadap peron, 195 x 50 kotak. */
+  const peron = once('peron', () => {
+    const W = 195, H = 50, t = pen(W, H, 4), R = t.R; let i;
+    R('#DCE8F2', 0, 0, W, H);
+    R(P.k, 8, 4, 179, 46); R('#9ED7F5', 10, 6, 175, 44); R('#B8E5FA', 10, 22, 175, 10);
+    t.x.save(); t.x.beginPath(); t.x.rect(10, 6, 175, 44); t.x.clip();
+    t.cloud(20, 9); t.cloud(140, 12);
+    for (i = 10; i < 185; i++) { const hh = Math.round(6 + 3 * Math.sin(i / 13)); R(P.a, i, 34 - hh, 1, hh); R(P.A, i, 34 - hh, 1, 1); }
+    R('#9AA7BA', 10, 34, 175, 3); R('#5A6278', 10, 37, 175, 13); for (i = 12; i < 185; i += 14) R(P.y, i, 43, 7, 1);
+    R(P.k, 30, 16, 2, 22); R(P.k, 25, 12, 12, 7); R(P.u, 26, 13, 10, 5); R(P.w, 28, 14, 6, 1); R(P.w, 28, 16, 4, 1);
+    R(P.k, 70, 18, 82, 22); R(P.y, 71, 19, 80, 20); R(P.Y, 71, 19, 80, 2); R(P.o, 71, 34, 80, 5);
+    for (i = 0; i < 5; i++) { R(P.k, 74 + i * 14, 22, 12, 9); R('#8FD0F2', 75 + i * 14, 23, 10, 7); R(P.w, 75 + i * 14, 23, 3, 2); }
+    R(P.k, 144, 22, 6, 14); R('#8FD0F2', 145, 23, 4, 7);
+    [86, 136].forEach(a => { R(P.k, a - 5, 37, 10, 8); R('#3A3A45', a - 4, 38, 8, 6); R('#9AA7BA', a - 2, 40, 4, 2); });
+    t.x.restore();
+    R(P.k, 64, 4, 3, 46); R(P.k, 128, 4, 3, 46);
+    return t.cv.toDataURL();
+  });
+  return { U: U, P: P, pen: pen, world: world, shop: shop, house: house, stage: stage, peron: peron, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
@@ -9661,7 +9681,7 @@ if (t === 'pita') return ['Memotong pita', ['Ketuk meteran untuk memilih panjang
 if (t === 'hari') return ['Melompati hari', ['Ketuk kotak di baris Maju hari, blok di baris Maju minggu, atau tombol ◀ di baris Mundur hari untuk langsung melompat. Hitungan hari dan lompatan ada di bawah kalender.', 'Kotak biru menunjukkan hari setelah lompatan. Bingkai putus-putus adalah hari ini.', 'Ulang mengembalikan ke hari ini.']];
 return ['Jadwal bus', ['Ketuk satu menit di garis waktu. Tombol panah menggeser garis waktu 12 menit.', 'Cek menit ini menunjukkan bus mana yang berangkat pada menit itu. Titik penuh berarti berangkat, titik kosong berarti tidak.', 'Setiap cek yang bukan jawaban memakai satu kesempatan.']];
 }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxBg: PX.scene('JadwalBus', 'bil') }); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.peron() }); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null, isLab = s.mode === 'lab';
