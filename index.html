@@ -4452,9 +4452,21 @@ button{font:inherit}
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
 <a href="Pengaturan.dc.html" aria-label="Kembali ke pengaturan" style="display: flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
-<div style="min-width: 0"><div style="font-size: 18px; font-weight: 600">Kasus harian baru</div><div style="font-size: 12px; color: #66655F">Percobaan untuk game Ubin</div></div>
+<div style="min-width: 0"><div style="font-size: 18px; font-weight: 600">Kasus harian baru</div><div style="font-size: 12px; color: #66655F">{{sub}}</div></div>
 </div>
-<div style="font-size: 13px; color: #444441">Pak Darto butuh kasus segar untuk hari-hari berikutnya. Salin pesanannya, jalankan di proyek Claude, lalu tempel jawabannya di sini. App memeriksa tiap kasus dan menghitung kuncinya sendiri.</div>
+<div style="font-size: 13px; color: #444441">Tiap game butuh kasus segar untuk hari-hari berikutnya. Pilih game, salin pesanannya, jalankan di proyek Claude, lalu tempel jawabannya di sini. App memeriksa tiap kasus dan menghitung kuncinya sendiri.</div>
+<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
+<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" style="{{m.style}}">{{m.label}}</button>
+</sc-for>
+</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{games}}" as="g" hint-placeholder-count="6">
+<button type="button" onClick="{{g.tap}}" aria-label="{{g.aria}}" style="{{g.style}}">{{g.label}}</button>
+</sc-for>
+</div>
+</div>
 <div style="display: flex; gap: 6px">
 <sc-for list="{{tiers}}" as="t" hint-placeholder-count="3">
 <button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" style="{{t.style}}">{{t.label}}</button>
@@ -4499,7 +4511,7 @@ button{font:inherit}
 <sc-for list="{{stored}}" as="c" hint-placeholder-count="2">
 <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid #ECEBE7">
 <span style="flex: 1; min-width: 0; font-size: 13px">{{c.label}}</span>
-<a href="Ubin.dc.html" onClick="{{c.play}}" style="padding: 5px 10px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font-size: 12px; color: #1C1C1A; text-decoration: none">Mainkan</a>
+<a href="{{c.href}}" onClick="{{c.play}}" style="padding: 5px 10px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font-size: 12px; color: #1C1C1A; text-decoration: none">Mainkan</a>
 <button type="button" onClick="{{c.del}}" aria-label="{{c.delAria}}" style="padding: 5px 10px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; color: #A32D2D; cursor: pointer">Hapus</button>
 </div>
 </sc-for>
@@ -4554,7 +4566,7 @@ button{font:inherit}
 <div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Ekspor progres</span><span style="font-size: 12px; color: #66655F">Unduh file cadangan</span></span><button type="button" onClick="{{doCopy}}" style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Unduh</button></div>
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Impor progres</span><span style="font-size: 12px; color: #66655F">Pulihkan dari file cadangan</span></span><label style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Pilih file<input type="file" accept="application/json,.json" onChange="{{doImport}}" style="display: none"></label></div>
-<a href="KasusBaru.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Kasus harian baru</span><span style="font-size: 12px; color: #66655F">Tambah lewat prompt (percobaan: Ubin)</span></span><span style="font-size: 12px; color: #66655F">Buka ›</span></a>
+<a href="KasusBaru.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Kasus harian baru</span><span style="font-size: 12px; color: #66655F">Tambah lewat prompt, untuk 25 game</span></span><span style="font-size: 12px; color: #66655F">Buka ›</span></a>
 <sc-if value="{{askWipe}}" hint-placeholder-val="{{ false }}">
 <div style="padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: #FCEBEB">
 <span style="font-size: 13px; color: #791F1F">Semua progres di perangkat ini akan terhapus dan tidak bisa dikembalikan.</span>
@@ -16050,17 +16062,29 @@ GAMES["KasusBaru"] = (function () {
 class Component extends DCLogic {
 constructor(props) {
 super(props);
-let l = 'F'; try { const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; if (/^[FIE]$/.test(m.Ubin)) l = m.Ubin; } catch (e) {}
+let key = 'Ubin', l = 'F';
+try { const r = JSON.parse(window.localStorage.getItem('fm.kasusbaru') || 'null'); if (r && FMP.KEYS[r.key] && /^[FIE]$/.test(r.lvl)) { key = r.key; l = r.lvl; } } catch (e) {}
 this.txt = '';
-this.state = { key: 'Ubin', lvl: l, prompt: FMP.casePrompt('Ubin', l), msg: '', kind: '', bad: [], tick: 0 };
+this.state = { key: key, lvl: l, mat: this.matOf(key), prompt: FMP.casePrompt(key, l), msg: '', kind: '', bad: [], tick: 0 };
+}
+matOf(key) { const G = FMP.caseGames(); for (let i = 0; i < G.length; i++) if (G[i][1].indexOf(key) >= 0) return i; return 0; }
+pick(key, l, mat) {
+try { window.localStorage.setItem('fm.kasusbaru', JSON.stringify({ key: key, lvl: l })); } catch (e) {}
+const el = document.getElementById('kb-paste'); if (el) el.value = ''; this.txt = '';
+this.setState({ key: key, lvl: l, mat: mat === undefined ? this.state.mat : mat, prompt: FMP.casePrompt(key, l), msg: '', bad: [] });
 }
 renderVals() {
-const s = this.state, key = s.key;
+const s = this.state, key = s.key, G = FMP.caseGames();
 const chip = on => 'padding: 6px 12px; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer; ' + (on ? 'background: #1C1C1A; color: #FFFFFF; border: 1px solid #1C1C1A' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7');
+const small = on => 'padding: 4px 9px; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'background: #2F5BD3; color: #FFFFFF; border: 1px solid #2F5BD3' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7');
 const list = FMP.caseStored(key).filter(c => c.tingkat === s.lvl);
+const name = FMP.KEYS[key];
 return {
-tiers: ['F', 'I', 'E'].map(l => ({ label: FMP.LVN[l], aria: 'Tingkat ' + FMP.LVN[l] + (s.lvl === l ? ', dipilih' : ''), style: chip(s.lvl === l), tap: () => this.setState({ lvl: l, prompt: FMP.casePrompt(key, l), msg: '', bad: [] }) })),
-prompt: s.prompt,
+sub: name + ' · ' + FMP.LVN[s.lvl],
+mats: G.map((m, i) => ({ label: m[0], aria: 'Materi ' + m[0] + (s.mat === i ? ', dipilih' : ''), style: small(s.mat === i), tap: () => this.pick(m[1].indexOf(key) >= 0 ? key : m[1][0], s.lvl, i) })),
+games: (G[s.mat] ? G[s.mat][1] : []).map(k => ({ label: FMP.KEYS[k], aria: 'Game ' + FMP.KEYS[k] + (k === key ? ', dipilih' : ''), style: small(k === key), tap: () => this.pick(k, s.lvl) })),
+tiers: ['F', 'I', 'E'].map(l => ({ label: FMP.LVN[l], aria: 'Tingkat ' + FMP.LVN[l] + (s.lvl === l ? ', dipilih' : ''), style: chip(s.lvl === l), tap: () => this.pick(key, l) })),
+prompt: s.prompt || 'Game ini belum bisa membuat prompt untuk tingkat ini.',
 regen: () => this.setState({ prompt: FMP.casePrompt(key, s.lvl), msg: '' }),
 copy: () => {
 const done = ok => this.setState({ msg: ok ? 'Prompt tersalin. Jalankan di proyek Claude, lalu tempel jawabannya di bawah.' : 'Tidak bisa menyalin otomatis. Tekan lama teks prompt di atas untuk menyalinnya.', kind: ok ? 'ok' : 'warn' });
@@ -16078,10 +16102,10 @@ this.setState({ msg: r.ok.length ? r.ok.length + ' kasus lolos dan tersimpan.' +
 hasMsg: !!s.msg, msg: s.msg,
 msgStyle: 'border-radius: 6px; padding: 8px 10px; font-size: 13px; ' + (s.kind === 'ok' ? 'background: #E6F4EC; color: #1F7A4D' : 'background: #FBF0DC; color: #8A5200'),
 hasBad: s.bad.length > 0, bad: s.bad,
-storedTitle: 'Kasus tambahan ' + FMP.LVN[s.lvl] + ' (' + list.length + ')',
+storedTitle: 'Kasus tambahan ' + name + ' ' + FMP.LVN[s.lvl] + ' (' + list.length + ')',
 noStored: list.length === 0, hasStored: list.length > 0,
-stored: list.map(c => ({ label: c.konteks, delAria: 'Hapus kasus ' + c.konteks,
-play: () => FMP.go({ key: key, g: FMP.KEYS[key], l: c.tingkat, mode: 'harian', id: c.id }),
+stored: list.map(c => ({ label: c.konteks, href: key + '.dc.html', delAria: 'Hapus kasus ' + c.konteks,
+play: () => FMP.go({ key: key, g: name, l: c.tingkat, mode: 'harian', id: c.id }),
 del: () => { FMP.caseRemove(key, c.id); this.setState({ tick: s.tick + 1, msg: 'Kasus "' + c.konteks + '" dihapus.', kind: 'ok', bad: [] }); } }))
 };
 }
@@ -16205,7 +16229,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
   function caseList(key, g, l) {
     try {
       if (!inst[key]) inst[key] = new GAMES[key]({});
-      const H = (inst[key].H || []).concat(BUILD[key] ? caseStored(key) : []);
+      const H = (inst[key].H || []).concat(canCase(key) ? caseStored(key) : []);
       return H.filter(h => h.tingkat === l && (key !== 'Timbangan' || !!h.balon === (g === 'Timbangan Balon')));
     } catch (e) { return []; }
   }
@@ -16228,7 +16252,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
 
   // ---- kasus tempelan: prompt → JSON → diperiksa app. Tahap 1: Ubin ----
   const KONTEKS = ['pasar', 'kantin sekolah', 'UMKM kue', 'ojek online', 'pertanian', 'gudang paket', 'acara RT', 'olahraga', 'posyandu', 'perjalanan kereta', 'kos-kosan', 'bank sampah', 'perpustakaan', 'panitia lomba', 'bengkel motor', 'toko bangunan'];
-  const LARANG = /faktor|kelipatan|perkalian|pembagian|dikali|kalikan|mengalikan|rumus|prima|komposit|distributif|komutatif|habis dibagi|bagi habis|persamaan|aljabar/i;
+  const LARANG = /faktor|kelipatan|perkalian|pembagian|dikali|kalikan|mengalikan|rumus|prima|komposit|distributif|komutatif|habis dibagi|bagi habis|persamaan|aljabar|\bKPK\b|\bFPB\b|himpunan|\bfungsi\b|invers|komposisi|gradien|\bderet\b|nilai mutlak|matriks|determinan|kuadrat|parabola|program linear|pythagoras|sinus|cosinus|tangen|trigonometri|sebangun|faktorial|permutasi|kombinasi|peluang|median|kuartil|pencilan|eksponen|pangkat|logaritma|modulo/i;
   const isInt = v => typeof v === 'number' && isFinite(v) && Math.floor(v) === v;
   const hasNum = (t, n) => new RegExp('(^|[^0-9.,])' + n + '($|[^0-9]|[.,](?![0-9]))').test(t);
   const nSent = t => (t.match(/[.!?]+["”’']?(?=\s|$)/g) || []).length;
@@ -16257,6 +16281,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     }
   };
   function casePrompt(key, l) {
+    if (!CASES[key]) return genericPrompt(key, l);
     const G = CASES[key], S = G && G[l]; if (!S) return '';
     const pool = KONTEKS.slice(); const ks = [];
     while (ks.length < 5) ks.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
@@ -16330,7 +16355,102 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     need.forEach(n => { if (!hasNum(t, n)) throw new Error('angka ' + n + ' tidak tertulis di cerita'); });
     return C;
   }
+
+  // ---- kasus tempelan untuk game selain Ubin: angka dan kunci dari app, cerita dari Claude ----
+  const PERAN = {
+    KasirKilat: 'kasir baru di warung; atasannya Bu Ani, pemilik warung', JadwalBus: 'petugas jadwal terminal; atasannya kepala terminal', BagiPizza: 'panitia konsumsi acara; atasannya ketua panitia', RacikResep: 'barista dan kasir kedai teh; atasannya pemilik kedai', LipatKertas: 'pekerja percetakan; atasannya kepala percetakan',
+    DuaStruk: 'petugas koperasi; atasannya Bu Sari', MejaHajatan: 'pekerja persewaan tenda; atasannya Pak Harun', MartabakTopping: 'penjual martabak; atasannya Bang Udin', MesinMinuman: 'teknisi mesin minuman di stasiun; atasannya Bu Rina', ArgoOjek: 'koordinator pangkalan ojek; atasannya Pak Yanto', RekapGrosir: 'admin grosir; atasannya Bu Lina', KebunPagar: 'pekerja kebun; atasannya Bu Wati', DapurRoti: 'asisten dapur roti; atasannya Bu Mira',
+    RuteKurir: 'kurir paket; atasannya Pak Joni', PasangLantai: 'tukang lantai; atasannya Pak Darto', GudangKardus: 'pengepak gudang; atasannya kepala gudang', CetakSpanduk: 'tukang cetak spanduk; atasannya pemilik percetakan', TanggaBangunan: 'tukang bangunan; atasannya mandor', Pelabuhan: 'petugas menara pelabuhan; atasannya kepala pelabuhan',
+    LokerOSIS: 'pengurus OSIS; pembinanya Bu Wina', PentasSeni: 'panitia pentas seni; ketuanya Kak Dimas', UndianDoorprize: 'panitia jalan sehat; atasannya Pak RT', RaporKelas: 'asisten wali kelas; wali kelasnya Bu Sinta', GrafikViral: 'admin media sosial sekolah; atasannya Mbak Rara'
+  };
+  const KODE_RE = /^([a-z0-9]{5})([012])([kn])$/;
+  const numTok = t => (String(t || '').match(/\d+(?:[.,]\d+)?/g) || []).map(x => x.replace('.', ','));
+  const fmtNum = x => String(Math.round(x * 100) / 100).replace('.', ',');
+  const claimCache = {};
+  function claimable(key, l, spec) {
+    const ck = key + l + (spec.type || '');
+    if (ck in claimCache) return claimCache[ck];
+    let ok = false;
+    try {
+      const c = new GAMES[key]({});
+      c.setState = patch => { c.state = Object.assign({}, c.state, patch); };
+      c.setState({ lvl: l });
+      const cs = Object.assign({}, spec, { verdict: { q: '?', opts: ['Benar', 'Salah'], correct: 'Benar' }, special: true, id: 'tes' });
+      c.setState({ mode: 'harian', tut: null, hi: 0, P: c.fresh(cs), stage: 'main' });
+      if (typeof c.solved === 'function') { c.solved('ok'); if (c.state.stage === 'verdict') { c.gmRender(); ok = true; } }
+    } catch (e) { ok = false; }
+    claimCache[ck] = ok;
+    return ok;
+  }
+  function genericCase(key, l, kode) {
+    const m = KODE_RE.exec(kode || ''); if (!m) return null;
+    const spec = genBy(key, l, 'P' + key + l + kode, Number(m[2])); if (!spec) return null;
+    const out = { spec: spec, fact: spec.cerita || '', claim: null };
+    const a0 = (spec.asks || [])[0];
+    if (m[3] === 'k' && a0 && typeof a0.key === 'number' && isFinite(a0.key) && !spec.verdict && claimable(key, l, spec)) {
+      const r = seeded(hash('K' + key + l + kode)); for (let i = 0; i < 8; i++) r();
+      const K = a0.key, truth = r() < 0.4;
+      let x = K;
+      if (!truth) { const step = Math.floor(K) !== K ? 0.5 : K >= 200 ? 10 : K >= 40 ? 5 : 1; const mul = 1 + Math.floor(r() * 3); x = K + step * mul * (r() < 0.5 ? -1 : 1); if (x <= 0) x = K + step * mul; }
+      out.claim = { label: a0.label, x: fmtNum(x), correct: truth };
+    }
+    return out;
+  }
+  function genericPrompt(key, l) {
+    const pool = KONTEKS.slice(), rows = [];
+    const a = Math.floor(Math.random() * 5); let b = Math.floor(Math.random() * 5); if (b === a) b = (a + 2) % 5;
+    let anyClaim = false, nk = 0;
+    for (let i = 0; i < 5; i++) {
+      const kode = Math.random().toString(36).slice(2, 7).padEnd(5, '0') + (i % 3) + (i === a || i === b ? 'k' : 'n');
+      const g = genericCase(key, l, kode); if (!g) continue;
+      const ks = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+      nk++; rows.push('Kasus ' + nk + ' — kode: ' + kode + ' · Konteks: ' + ks);
+      rows.push('Fakta: ' + (g.fact || '(tidak ada; tulis pembuka cerita saja)'));
+      if (!numTok(g.fact).length) rows.push('Catatan: angka soal tampil di papan app, jadi cerita ini tidak boleh memuat angka.');
+      if (g.claim) { anyClaim = true; rows.push('Klaim: seorang tokoh yakin "' + g.claim.label + '" adalah ' + g.claim.x + '.'); }
+      rows.push('');
+    }
+    if (!rows.length) return '';
+    return [
+      'Buat cerita untuk ' + nk + ' kasus game puzzle matematika "' + KEYS[key] + '", tingkat ' + LVN[l] + '. Balas HANYA dengan satu JSON array, tanpa penjelasan dan tanpa teks lain.',
+      '',
+      'Peran pemain: ' + (PERAN[key] || 'pekerja baru') + '.',
+      'Angka dan kunci jawaban sudah ditentukan app. Tugasmu hanya menulis ceritanya.',
+      '',
+      'Aturan cerita:',
+      '- 2 sampai 3 kalimat, bahasa Indonesia sehari-hari, nama orang generik.',
+      '- Semua angka dan keterangan di "Fakta" harus tetap ada di cerita, dengan angka yang sama persis. Jangan mengganti nama benda dan satuannya.',
+      '- Jangan menambah angka lain (jam, harga, jumlah lain).',
+      '- Latar dan tokoh mengikuti "Konteks" sejauh masuk akal dengan Fakta.',
+      '- Jangan menyebut rumus, nama konsep matematika, jawaban, atau cara menyelesaikan.',
+      '- Jangan menulis kalimat perintah atau pertanyaan untuk pemain; app yang menambahkannya.',
+      '',
+      'Bentuk tiap objek: {"game":"' + KEYS[key] + '","tingkat":"' + l + '","kode":"salin persis","konteks":"2-3 kata","cerita":"..."}',
+      anyClaim ? 'Untuk kasus yang punya "Klaim": tambahkan "tokoh":"nama tokoh", dan tulis di cerita bahwa tokoh itu yakin seperti isi Klaim (angkanya sama persis). Jangan memberi isyarat apakah ia benar.' : '',
+      ''
+    ].filter((x, i, arr) => !(x === '' && arr[i - 1] === '')).concat(rows).join('\n').trim();
+  }
+  function buildGeneric(key, l, o) {
+    const g = genericCase(key, l, String(o.kode || '').trim());
+    if (!g) throw new Error('kode "' + (o.kode || '') + '" tidak dikenal; salin kode persis dari prompt');
+    const t = o.cerita.trim(), allow = numTok(g.fact);
+    const C = Object.assign({}, g.spec, { konteks: o.konteks.trim(), tingkat: l, cerita: t, sig: 'k' + o.kode, sl: true });
+    if (g.claim) {
+      if (typeof o.tokoh !== 'string' || o.tokoh.trim().length < 2) throw new Error('kasus berklaim tanpa "tokoh"');
+      const nm = o.tokoh.trim();
+      if (t.indexOf(nm) < 0) throw new Error('tokoh "' + nm + '" tidak ada di cerita');
+      allow.push(g.claim.x);
+      C.verdict = { q: 'Apakah ' + nm + ' benar?', opts: ['Benar', 'Salah'], correct: g.claim.correct ? 'Benar' : 'Salah' };
+      const tj = C.tujuan || 'Jawab pertanyaan di bawah.';
+      C.tujuan = /^Jawab pertanyaan di bawah\./.test(tj) ? tj.replace(/^Jawab pertanyaan di bawah\./, 'Jawab pertanyaan di bawah, lalu nilai ucapan ' + nm + '.') : tj + ' Lalu nilai ucapan ' + nm + '.';
+    }
+    const have = numTok(t);
+    allow.forEach(n => { if (have.indexOf(n) < 0) throw new Error('angka ' + n + ' tidak tertulis di cerita'); });
+    have.forEach(n => { if (allow.indexOf(n) < 0) throw new Error('cerita memuat angka lain (' + n + ') di luar Fakta'); });
+    return C;
+  }
   const BUILD = { Ubin: buildUbin };
+  const canCase = key => !!BUILD[key] || (!!PERAN[key] && !!GAMES[key]);
   function builtinSigs(key) {
     const out = {};
     try {
@@ -16344,7 +16464,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
   // memeriksa teks tempelan; yang lolos langsung disimpan
   function caseAdd(key, l, txt) {
     const res = { ok: [], bad: [], err: '' };
-    if (!BUILD[key]) { res.err = 'Game ini belum menerima kasus tempelan.'; return res; }
+    if (!canCase(key)) { res.err = 'Game ini belum menerima kasus tempelan.'; return res; }
     let arr;
     try {
       const m = String(txt || '').match(/[\[{][\s\S]*[\]}]/);
@@ -16352,17 +16472,17 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
       if (arr && !Array.isArray(arr)) arr = Array.isArray(arr.kasus) ? arr.kasus : [arr];
     } catch (e) { res.err = 'Teks itu bukan JSON yang utuh. Salin seluruh jawaban, dari tanda [ sampai ].'; return res; }
     if (!arr || !arr.length) { res.err = 'Tidak ada kasus di dalam teks itu.'; return res; }
-    const sigs = builtinSigs(key); caseStored(key).forEach(c => { sigs[c.sig] = 1; });
+    const sigs = BUILD[key] ? builtinSigs(key) : {}; caseStored(key).forEach(c => { sigs[c.sig] = 1; });
     arr.slice(0, 12).forEach((o, i) => {
       try {
         if (!o || typeof o !== 'object') throw new Error('bukan objek');
         if (o.game && o.game !== key && o.game !== KEYS[key]) throw new Error('untuk game lain (' + o.game + ')');
-        if (o.tingkat !== l) throw new Error('tingkatnya ' + (o.tingkat || 'kosong') + ', bukan ' + l);
+        if (BUILD[key] ? o.tingkat !== l : (o.tingkat && o.tingkat !== l)) throw new Error('tingkatnya ' + (o.tingkat || 'kosong') + ', bukan ' + l);
         if (typeof o.konteks !== 'string' || o.konteks.trim().length < 3 || o.konteks.trim().length > 24) throw new Error('konteks harus 3–24 huruf');
         if (typeof o.cerita !== 'string' || o.cerita.trim().length < 20) throw new Error('cerita kosong atau terlalu pendek');
         if (o.cerita.length > 320 || nSent(o.cerita.trim()) > 3) throw new Error('cerita lebih dari 3 kalimat');
         const lr = LARANG.exec(o.cerita + ' ' + o.konteks); if (lr) throw new Error('cerita menyebut "' + lr[0] + '"');
-        const C = BUILD[key](o);
+        const C = BUILD[key] ? BUILD[key](o) : buildGeneric(key, l, o);
         if (sigs[C.sig]) throw new Error('angkanya sama dengan kasus yang sudah ada');
         sigs[C.sig] = 1;
         C.id = 'x' + Date.now().toString(36) + i; C.custom = true;
@@ -16397,34 +16517,35 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
       I: R => { const F = [['1/4', 3], ['1/3', 4], ['1/2', 6], ['2/3', 8], ['3/4', 9], ['5/6', 10], ['7/6', 14], ['5/4', 15], ['4/3', 16], ['3/2', 18], ['5/3', 20], ['7/4', 21]]; const cards = []; while (cards.length < 4) { const f = F[R(0, F.length - 1)]; if (!cards.some(x => x.v === f[1])) cards.push({ l: f[0], v: f[1] }); } return { type: 'garis', cards: cards, cerita: 'Meja-meja lain juga menyisakan pizza. Ketua panitia minta semuanya dicatat di papan.', tujuan: 'Pasang setiap kartu sisa di tempat yang tepat.' }; }
     }
   };
-  function genCase(key, l, d, slot) {
+  function genBy(key, l, seedStr, mi0) {
     if (key === 'Timbangan' || !GAMES[key]) return null;
-    const id = 'a' + d + l + slot, ck = key + id;
-    if (ck in genCache) return genCache[ck];
-    let out = null;
     try {
-      out = withSeed(hash(ck), () => {
+      return withSeed(hash(seedStr), () => {
         const X = EXTRA[key] && EXTRA[key][l];
-        if (X) return Object.assign(X((a, b) => a + Math.floor(Math.random() * (b - a + 1))), { id: id, tingkat: l, konteks: 'Angka baru ' + slot, gen: true });
+        if (X) return X((a, b) => a + Math.floor(Math.random() * (b - a + 1)));
         const c = new GAMES[key]({});
         c.setState = patch => { c.state = Object.assign({}, c.state, patch); };
         c.setState({ lvl: l });
         for (let k = 0; k < 3; k++) {
-          const mi = (d + slot + k) % 3;
+          const mi = (mi0 + k) % 3;
           c.loadMission(mi); c.setState({ stage: 'done' });
           const a = findNext(c.gmRender(), 0);
           if (!a) continue;
           a.tap();
           const P = c.state.P;
           if (!P || c.state.stage === 'done') continue;
-          const spec = JSON.parse(JSON.stringify(P));
-          return Object.assign(spec, { id: id, tingkat: l, konteks: 'Angka baru ' + slot, gen: true });
+          return JSON.parse(JSON.stringify(P));
         }
         return null;
       });
-    } catch (e) { out = null; }
-    genCache[ck] = out;
-    return out;
+    } catch (e) { return null; }
+  }
+  function genCase(key, l, d, slot) {
+    const id = 'a' + d + l + slot, ck = key + id;
+    if (ck in genCache) return genCache[ck];
+    const sp = genBy(key, l, ck, (d + slot) % 3);
+    genCache[ck] = sp ? Object.assign(sp, { id: id, tingkat: l, konteks: 'Angka baru ' + slot, gen: true }) : null;
+    return genCache[ck];
   }
   function absDay() { return Math.floor(Date.now() / 86400000); }
 
@@ -16494,7 +16615,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
   function wrap(key, Base) {
     const doneMap = c => { const T = load().tiers[tk(nameOf(key, c), c.curLvl())]; return Object.assign({}, T ? T.misi : {}); };
     return class extends Base {
-      constructor(props) { super(props); if (key !== 'Timbangan') { try { this.state.done = doneMap(this); } catch (e) {} } try { if (BUILD[key] && this.H) caseStored(key).forEach(c => { if (!this.H.some(h => h.id === c.id)) this.H.push(JSON.parse(JSON.stringify(c))); }); } catch (e) {} }
+      constructor(props) { super(props); if (key !== 'Timbangan') { try { this.state.done = doneMap(this); } catch (e) {} } try { if (canCase(key) && this.H) caseStored(key).forEach(c => { if (!this.H.some(h => h.id === c.id)) this.H.push(JSON.parse(JSON.stringify(c))); }); } catch (e) {} }
       setState(patch) {
         const prev = this.state; super.setState(patch);
         try { observe(key, this, prev, this.state); } catch (e) { console.error(e); }
@@ -16514,7 +16635,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
       }
       loadCase(i, day) {
         let c = null; try { c = this.H[this.todayIdx(day)[i]]; } catch (e) {}
-        if (c && c.gen) return withSeed(hash(key + c.id + 'L'), () => super.loadCase(i, day));
+        if (c && (c.gen || c.sl)) return withSeed(hash(key + c.id + 'L'), () => super.loadCase(i, day));
         return super.loadCase(i, day);
       }
       renderVals() {
@@ -16537,7 +16658,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     if (hasAsks) return ('Jawab pertanyaan di bawah. ' + tail).trim();
     return t;
   }
-  return { nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, casePrompt, caseAdd, caseStored, caseRemove, caseGames: () => Object.keys(BUILD), isGame: k => !!KEYS[k] };
+  return { nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, casePrompt, caseAdd, caseStored, caseRemove, caseGames: () => MATS.map(m => [m[0], m[2].filter(g => canCase(g[1])).map(g => g[1])]), isGame: k => !!KEYS[k] };
 })();
 
 /* ===== Navigasi: tautan "Nama.dc.html" dibuka sebagai #Nama ===== */
