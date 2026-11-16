@@ -181,6 +181,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-bubble::before{content:"";position:absolute;left:50%;top:-16px;margin-left:-8px;width:16px;height:10px;background:#2B1D1A;clip-path:polygon(50% 0,0 100%,100% 100%)}
 .px-bubble::after{content:"";position:absolute;left:50%;top:-11px;margin-left:-5px;width:10px;height:6px;background:#FFFFFF;clip-path:polygon(50% 0,0 100%,100% 100%)}
 .px-legend{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;color:#4B4B57}
+.px-scn,.px-clip,.px-calcbody,.px-rulecard,.px-hall,.px-cart{flex:none!important;overflow:visible!important}
 .px-stage{position:relative;width:362px;max-width:100%;height:214px;margin:0 auto;background:#7E5A3A center / 100% 100% no-repeat;image-rendering:pixelated;box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A;overflow:hidden}
 .px-beam{position:absolute;left:46px;top:52px;width:270px;height:12px;background:#8A5A32;border:2px solid #2B1D1A;box-shadow:inset 0 3px 0 #C99A5B,inset 0 -2px 0 #5E3B20;transition:transform 300ms ease;z-index:1}
 .px-drop{position:absolute;top:64px;width:152px;height:104px;padding:0 0 4px;border:2px dashed rgba(255,246,224,.45);background:transparent;display:flex;align-items:flex-end;justify-content:center;font:inherit;font-size:11px;color:#FFF6E0;cursor:pointer;transition:transform 300ms ease}
@@ -597,6 +598,25 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 #root.px-p-Progres>div>div{background:#C99A5B!important;background-image:linear-gradient(#B48552 1px,transparent 1px)!important;background-size:100% 14px!important}
 #root.px-p-Jurnal>div>div{background:#6B4A2E!important;background-image:linear-gradient(#5E3F26 1px,transparent 1px)!important;background-size:100% 18px!important}
 #root.px-p-Jurnal .px-page-note,#root.px-p-Jurnal .px-jpage{color:#2B1D1A}
+/* ===== Tahap 3 Aljabar: papan menyatu dengan adegan tiap game ===== */
+.px-scn{position:relative;display:flex;flex-direction:column;gap:8px;padding:0 12px 14px;background:rgba(255,255,255,.45);box-shadow:0 0 0 3px #2B1D1A;background-image:linear-gradient(rgba(43,29,26,.07) 1px,transparent 1px);background-size:100% 20px}
+.px-scn-top{margin:0 -12px 4px;aspect-ratio:195 / 50;background:center bottom / 100% 100% no-repeat;image-rendering:pixelated;box-shadow:0 3px 0 #2B1D1A}
+.px-scn>div[style*="font-size: 11px"]:first-of-type,.px-scn-top+div[style*="font-size: 11px"]{align-self:center;background:#FFF6E0;color:#3B2414!important;padding:1px 10px 2px;box-shadow:0 0 0 2px #8A5A32}
+.px-calcbody{display:flex;flex-direction:column;gap:6px;padding:12px;background:#3E4050;box-shadow:0 0 0 3px #2B1D1A,inset 0 3px 0 #5A5D72,inset 0 -4px 0 #2A2C38;color:#FFF6E0}
+.px-calcbody span,.px-calcbody div[style*="color: #66655F"]{color:#C9D1DC!important}
+#root .px-calcbody button{background:#F2F4F7!important;color:#2B1D1A!important;border:0!important;border-radius:0!important;box-shadow:0 0 0 2px #1C1D26,inset 0 -3px 0 #A7B0BE!important;font-weight:700!important}
+#root .px-calcbody button[style*="background: #1C1C1A"],#root .px-calcbody button[style*="background: #2F5BD3"]{background:#FFC83D!important;box-shadow:0 0 0 2px #1C1D26,inset 0 -3px 0 #E39A1C!important}
+.px-clip-dua,.px-clip-argo,.px-clip-mesin{padding:14px 12px 12px!important;margin-top:0!important;background:#3E4050!important;box-shadow:0 0 0 3px #2B1D1A,inset 0 3px 0 #5A5D72,inset 0 -4px 0 #2A2C38!important;color:#FFF6E0}
+.px-clip-dua::before,.px-clip-argo::before,.px-clip-mesin::before{display:none}
+.px-clip-argo{background:#24332A!important}
+.px-clip-mesin{background:#2F64B0!important}
+.px-clip-dua button span:first-child,.px-clip-argo button span:first-child,.px-clip-mesin button span:first-child{color:#2B1D1A}
+.px-verdict{margin-top:10px}
+.px-rulecard{display:flex;flex-direction:column;gap:6px;padding:10px 12px;background:#2F4A3A;box-shadow:0 0 0 3px #8A5A32,0 0 0 5px #2B1D1A;color:#FFF6E0}
+.px-rulecard-n{font-size:12px;color:#CFE6D5}
+#root .px-inner .px-rulecard span,#root .px-inner .px-rulecard,#root .px-inner .px-rulecard>div{color:#FFF6E0!important}#root .px-inner .px-rulecard>.px-rulecard-n{color:#CFE6D5!important}
+.px-rulenote{padding:7px 10px;font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#FFF3C4;box-shadow:0 0 0 2px #2B1D1A,2px 2px 0 rgba(43,29,26,.2);transform:rotate(-.6deg)}
+#root .px-inner button[style*="border: 1px solid #C98A2B"]{background:#FFFCF2!important;color:#B23A34!important;border:0!important;border-radius:0!important;box-shadow:0 0 0 2px #B23A34,3px 3px 0 rgba(43,29,26,.2)!important;font-family:"Fredoka",Inter,sans-serif!important;font-weight:700!important}
 /* ===== Layar lebar (iPad mini 7, 744 px) ===== */
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 300px) * 195 / 290) * 255 / 195)}
 @media (min-width:600px){
@@ -712,9 +732,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div>{{story}}</div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
-<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div class="px-scn px-st-argo">
+<div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isArgo}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; gap: 8px; align-items: stretch">
@@ -814,7 +834,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-clip-argo">
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -833,7 +853,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-verdict">
 <div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
 <div style="display: flex; gap: 5px; flex-wrap: wrap">
 <sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
@@ -846,8 +866,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{b.note}}</div>
+<div class="px-rulecard">
+<div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}}</span>
 <button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
@@ -857,7 +877,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 <div style="font-size: 12px; color: #66655F">Catatan untuk Pak Yanto ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
@@ -1263,9 +1283,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div>{{story}}</div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
-<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div class="px-scn px-st-dapur">
+<div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isProd}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; gap: 4px">
@@ -1350,7 +1370,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-clip-dapur">
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -1369,7 +1389,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-verdict">
 <div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
 <div style="display: flex; gap: 5px; flex-wrap: wrap">
 <sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
@@ -1382,8 +1402,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{b.note}}</div>
+<div class="px-rulecard">
+<div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}}</span>
 <button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
@@ -1393,7 +1413,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 <div style="font-size: 12px; color: #66655F">Catatan untuk Bu Mira ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
@@ -1454,9 +1474,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div>{{story}}</div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
-<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div class="px-scn px-st-dua">
+<div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="display: flex; align-items: center; justify-content: space-between">
 <span style="font-size: 11px; color: #66655F">{{boardLabel}}</span>
 <button type="button" onClick="{{toggleView}}" style="padding: 3px 8px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 5px; font: inherit; font-size: 11px; cursor: pointer; color: #444441">{{viewLabel}}</button>
@@ -1505,7 +1525,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-calcbody">
 <div style="display: flex; justify-content: space-between; font-size: 11px; color: #66655F"><span>{{padTitle}}</span><span>{{calcHint}}</span></div>
 <sc-if value="{{hasOps}}" hint-placeholder-val="{{ true }}">
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px">
@@ -1539,7 +1559,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-clip-dua">
 <div style="display: flex; align-items: center; justify-content: space-between">
 <span style="font-size: 12px; color: #66655F">Harga satuan (ribu)</span>
 <button type="button" onClick="{{checkAns}}" style="padding: 6px 14px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-weight: 500; cursor: pointer">Cek</button>
@@ -1563,7 +1583,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-verdict">
 <div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
 <div style="display: flex; gap: 5px; flex-wrap: wrap">
 <sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
@@ -1576,8 +1596,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{b.note}}</div>
+<div class="px-rulecard">
+<div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}} =</span>
 <button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
@@ -1587,7 +1607,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 <div style="font-size: 12px; color: #66655F">Catatan untuk Bu Sari ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
@@ -2398,9 +2418,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div>{{story}}</div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
-<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div class="px-scn px-st-kebun">
+<div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isPagar}}" hint-placeholder-val="{{ true }}">
 <div style="min-height: 150px; display: flex; align-items: center; justify-content: center">
@@ -2498,7 +2518,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-clip-kebun">
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -2517,7 +2537,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-verdict">
 <div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
 <div style="display: flex; gap: 5px; flex-wrap: wrap">
 <sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
@@ -2530,8 +2550,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{b.note}}</div>
+<div class="px-rulecard">
+<div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}}</span>
 <button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
@@ -2541,7 +2561,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 <div style="font-size: 12px; color: #66655F">Catatan untuk Bu Wati ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
@@ -2931,9 +2951,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div>{{story}}</div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
-<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div class="px-scn px-st-mart">
+<div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isSortir}}" hint-placeholder-val="{{ true }}">
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
@@ -3027,7 +3047,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-clip-mart">
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.sel}}" style="{{f.style}}"><span style="flex: 1; font-size: 13px; text-align: left">{{f.label}}</span><span style="{{f.disp}}">{{f.show}}</span></button>
 </sc-for>
@@ -3046,7 +3066,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-verdict">
 <div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
 <div style="display: flex; gap: 5px; flex-wrap: wrap">
 <sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
@@ -3059,8 +3079,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{b.note}}</div>
+<div class="px-rulecard">
+<div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}}</span>
 <button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
@@ -3070,7 +3090,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 <div style="font-size: 12px; color: #66655F">Catatan untuk Bang Udin ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
@@ -3243,7 +3263,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-verdict">
 <div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
 <div style="display: flex; gap: 5px; flex-wrap: wrap">
 <sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
@@ -3256,8 +3276,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="4">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{b.note}}</div>
+<div class="px-rulecard">
+<div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}} =</span>
 <button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
@@ -3267,7 +3287,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 <div style="font-size: 12px; color: #66655F">Catatan untuk Pak Harun ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
@@ -3328,9 +3348,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div>{{story}}</div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
-<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div class="px-scn px-st-mesin">
+<div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isKabel}}" hint-placeholder-val="{{ true }}">
 <div style="position: relative; width: 320px; height: {{kabH}}px; margin: 0 auto">
@@ -3410,7 +3430,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-clip-mesin">
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -3429,7 +3449,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-verdict">
 <div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
 <div style="display: flex; gap: 5px; flex-wrap: wrap">
 <sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
@@ -3442,8 +3462,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{b.note}}</div>
+<div class="px-rulecard">
+<div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}}</span>
 <button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
@@ -3453,7 +3473,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 <div style="font-size: 12px; color: #66655F">Catatan untuk Bu Rina ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
@@ -4713,9 +4733,9 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div>{{story}}</div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
-<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px">
+<div class="px-scn px-st-grosir">
+<div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{hasNotes}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; gap: 3px">
@@ -4831,7 +4851,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-clip-grosir">
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -4850,7 +4870,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip px-verdict">
 <div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
 <div style="display: flex; gap: 5px; flex-wrap: wrap">
 <sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
@@ -4863,8 +4883,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{b.note}}</div>
+<div class="px-rulecard">
+<div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}}</span>
 <button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
@@ -4874,7 +4894,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-for>
 <div style="font-size: 12px; color: #66655F">Catatan untuk Bu Lina ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
