@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pratinjau Tema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root { --page: #EEEDE9; --ink: #1C1C1A; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font-family: system-ui, sans-serif; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 20px 16px 40px; }
+h1 { font-size: 20px; margin: 0 0 4px; }
+.lead { font-size: 14px; color: #55544F; margin: 0 0 18px; max-width: 680px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; align-items: start; }
+.col h2 { font-size: 16px; margin: 0 0 2px; }
+.col .why { font-size: 13px; color: #55544F; margin: 0 0 10px; min-height: 54px; }
+.sw { display: flex; gap: 6px; margin: 0 0 10px; flex-wrap: wrap; }
+.sw span { width: 26px; height: 26px; border-radius: 6px; border: 1px solid rgba(0,0,0,.12); }
+.fonts { font-size: 12px; color: #55544F; margin-bottom: 10px; }
+
+/* ===== kerangka HP yang sama untuk ketiga tema ===== */
+.phone { width: 100%; max-width: 360px; border-radius: 22px; overflow: hidden; border: 1px solid rgba(0,0,0,.15); background: var(--bg); color: var(--fg); font-family: var(--body); box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+.scr { padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 10px; background: var(--bgimg, none), var(--bg); background-size: var(--bgsize, auto); }
+.top { display: flex; justify-content: space-between; align-items: center; }
+.hi small { display: block; font-size: 11px; color: var(--mute); letter-spacing: .02em; }
+.hi b { font-family: var(--head); font-size: 19px; font-weight: var(--headw); }
+.chip { font-size: 11px; padding: 3px 8px; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); color: var(--fg); }
+.card { background: var(--card); border: var(--cardb); border-radius: var(--r); padding: 11px 12px; box-shadow: var(--shadow); }
+.lbl { font-size: 11px; color: var(--mute); }
+.ttl { font-family: var(--head); font-weight: var(--headw); font-size: 15px; margin: 1px 0; }
+.sub { font-size: 12px; color: var(--mute); }
+.btn { margin-top: 9px; text-align: center; padding: 8px; border-radius: var(--r); background: var(--accent); color: var(--onaccent); font-weight: 600; font-size: 13px; }
+.row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.row:last-child { border-bottom: 0; }
+.row .ic { width: 22px; height: 22px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; margin-right: 8px; background: var(--soft); color: var(--accent2); font-size: 12px; }
+.badge { font-size: 11px; padding: 0 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--mute); }
+.toast { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: var(--r); background: var(--toast); color: var(--ontoast); border: var(--toastb); }
+.toast .spark { font-size: 20px; }
+.toast b { display: block; font-size: 12px; font-family: var(--head); letter-spacing: .04em; }
+.toast code { font-family: var(--mono); font-size: 14px; }
+.tree svg { display: block; width: 100%; height: auto; }
+.tree .node rect { fill: var(--card); stroke: var(--line2); }
+.tree .node.on rect { fill: var(--soft); stroke: var(--accent2); }
+.tree .node text { font-family: var(--mono); font-size: 10.5px; fill: var(--fg); }
+.tree .node.off text { fill: var(--mute); font-family: var(--body); }
+.tree path { stroke: var(--line2); fill: none; stroke-width: 1.4; }
+.tree path.on { stroke: var(--accent2); stroke-width: 2; }
+.tabs { display: flex; border-top: 1px solid var(--line); background: var(--card); }
+.tabs div { flex: 1; text-align: center; font-size: 10.5px; padding: 8px 0 9px; color: var(--mute); }
+.tabs div.on { color: var(--accent); font-weight: 700; }
+.tabs i { display: block; font-style: normal; font-size: 15px; line-height: 1.1; }
+
+/* ===== Tema A: Buku catatan lab ===== */
+.A { --bg: #FBF8F0; --bgimg: linear-gradient(#E8E2D2 1px, transparent 1px), linear-gradient(90deg, #E8E2D2 1px, transparent 1px); --bgsize: 18px 18px;
+  --fg: #1F2A44; --mute: #6B6E7A; --card: #FFFDF7; --cardb: 1px solid #DCD4C0; --line: #E6DFCE; --line2: #C9C0A8; --r: 6px; --shadow: 2px 2px 0 #E6DFCE;
+  --accent: #23408E; --onaccent: #FFFFFF; --accent2: #23408E; --soft: #FFF2A8; --toast: #FFF2A8; --ontoast: #1F2A44; --toastb: 1px dashed #C9A400;
+  --head: 'Space Grotesk', system-ui, sans-serif; --headw: 600; --body: 'Space Grotesk', system-ui, sans-serif; --mono: 'JetBrains Mono', ui-monospace, monospace; }
+/* ===== Tema B: Lab cerah ===== */
+.B { --bg: #F4FAF8; --fg: #12302B; --mute: #5B726D; --card: #FFFFFF; --cardb: 0; --line: #E3EEEA; --line2: #BFD8D1; --r: 14px; --shadow: 0 2px 8px rgba(18, 48, 43, .07);
+  --accent: #0E9F86; --onaccent: #FFFFFF; --accent2: #F07A2B; --soft: #FFEBDD; --toast: #12302B; --ontoast: #FFFFFF; --toastb: 0;
+  --head: 'Nunito', system-ui, sans-serif; --headw: 800; --body: 'Nunito', system-ui, sans-serif; --mono: 'Fira Code', ui-monospace, monospace; }
+/* ===== Tema C: Papan tulis ===== */
+.C { --bg: #1F2D2A; --bgimg: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px); --bgsize: 6px 6px;
+  --fg: #EEF2EA; --mute: #A9B7AF; --card: #283A36; --cardb: 1px solid #3A504A; --line: #3A504A; --line2: #5C766E; --r: 8px; --shadow: none;
+  --accent: #F2C94C; --onaccent: #1F2D2A; --accent2: #F2C94C; --soft: #36504A; --toast: #F2C94C; --ontoast: #1F2D2A; --toastb: 0;
+  --head: 'Patrick Hand', 'Comic Sans MS', cursive; --headw: 400; --body: 'Nunito', system-ui, sans-serif; --mono: 'JetBrains Mono', ui-monospace, monospace; }
+.C .hi b, .C .ttl { font-size: 21px; letter-spacing: .01em; }
+.C .ttl { font-size: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Pratinjau tema: pilih satu</h1>
+<p class="lead">Ketiganya memakai isi yang sama: Beranda, momen "Temuan baru!" saat aturan lolos uji, dan Pohon Temuan bergambar. Tata letak dan elemen tetap kecil dan minimalis. Yang berubah hanya warna, huruf, latar, dan suasana.</p>
+<div class="grid" id="grid"></div>
+</div>
+<template id="phone">
+<div class="phone"><div class="scr">
+  <div class="top"><div class="hi"><small>Fundamental Math · Peneliti</small><b>Halo, Faiq</b></div><span class="chip">🔥 3 hari beruntun</span></div>
+  <div class="card"><div class="lbl">Lanjutkan penyelidikan</div><div class="ttl">Dua Struk · Teh dan roti</div><div class="sub">Fundamental · Misi 2</div><div class="btn">Main</div></div>
+  <div class="toast"><span class="spark">✦</span><div><b>TEMUAN BARU!</b><code>a + b = b + a</code><div class="sub" style="color: inherit; opacity: .8">Lolos 12 uji acak · masuk Jurnal</div></div></div>
+  <div class="card" style="padding: 4px 12px">
+    <div class="row"><span><span class="ic">◎</span>Tantangan harian</span><span class="badge">1/3</span></div>
+    <div class="row"><span><span class="ic">⚒</span>Bengkel kesalahan</span><span class="badge">2 kasus</span></div>
+    <div class="row"><span><span class="ic">⌕</span>Cek celah</span><span class="badge">Geometri</span></div>
+  </div>
+  <div class="card tree"><div class="lbl" style="margin-bottom: 4px">Pohon Temuan · Bilangan</div>
+    <svg viewBox="0 0 320 150" aria-label="Pohon temuan contoh">
+      <path class="on" d="M160 34 C160 52, 70 52, 70 70"></path>
+      <path class="on" d="M160 34 C160 52, 250 52, 250 70"></path>
+      <path class="on" d="M70 92 C70 108, 70 108, 70 118"></path>
+      <path d="M250 92 C250 108, 250 108, 250 118"></path>
+      <g class="node on"><rect x="105" y="10" width="110" height="24" rx="6"></rect><text x="160" y="26" text-anchor="middle">a + b = b + a</text></g>
+      <g class="node on"><rect x="15" y="70" width="110" height="22" rx="6"></rect><text x="70" y="85" text-anchor="middle">a + (−a) = 0</text></g>
+      <g class="node on"><rect x="195" y="70" width="110" height="22" rx="6"></rect><text x="250" y="85" text-anchor="middle">a × b = b × a</text></g>
+      <g class="node on"><rect x="15" y="118" width="110" height="22" rx="6"></rect><text x="70" y="133" text-anchor="middle">49+38 = 50+37</text></g>
+      <g class="node off"><rect x="195" y="118" width="110" height="22" rx="6"></rect><text x="250" y="133" text-anchor="middle">? di Ubin</text></g>
+    </svg>
+  </div>
+</div>
+<div class="tabs"><div class="on"><i>⌂</i>Beranda</div><div><i>◇</i>Mini Games</div><div><i>▤</i>Progres</div><div><i>✎</i>Jurnal</div><div><i>⋔</i>Temuan</div></div>
+</div>
+</template>
+<script>
+const T = [
+  { c: 'A', name: 'A · Buku Catatan Lab', why: 'Kertas berpetak, tinta biru, dan stabilo kuning, seperti buku catatan peneliti. Tenang, rapi, dan paling dekat dengan suasana belajar.', sw: ['#FBF8F0', '#1F2A44', '#23408E', '#FFF2A8', '#DCD4C0'], f: 'Huruf: Space Grotesk · rumus: JetBrains Mono' },
+  { c: 'B', name: 'B · Lab Cerah', why: 'Putih bersih dengan hijau tosca dan oranye. Sudut membulat dan bayangan lembut, terasa paling "app" dan paling ceria.', sw: ['#F4FAF8', '#12302B', '#0E9F86', '#F07A2B', '#FFEBDD'], f: 'Huruf: Nunito · rumus: Fira Code' },
+  { c: 'C', name: 'C · Papan Tulis', why: 'Latar gelap seperti papan tulis, judul bergaya tulisan kapur, aksen kuning. Nyaman untuk belajar malam dan paling berkarakter.', sw: ['#1F2D2A', '#EEF2EA', '#F2C94C', '#36504A', '#283A36'], f: 'Judul: Patrick Hand · teks: Nunito · rumus: JetBrains Mono' }
+];
+const g = document.getElementById('grid'), tp = document.getElementById('phone');
+T.forEach(t => {
+  const col = document.createElement('div'); col.className = 'col';
+  col.innerHTML = '<h2>' + t.name + '</h2><p class="why">' + t.why + '</p><div class="sw">' + t.sw.map(c => '<span style="background:' + c + '" title="' + c + '"></span>').join('') + '</div><div class="fonts">' + t.f + '</div>';
+  const ph = tp.content.cloneNode(true); ph.firstElementChild.classList.add(t.c); col.appendChild(ph); g.appendChild(col);
+});
+</script>
+</body>
+</html>
