@@ -545,6 +545,49 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-farm-ic{flex:none;width:32px;height:36px;background:center/contain no-repeat;image-rendering:pixelated}
 .px-farm-ic.bud{background-image:var(--px-tunas);height:20px}
 .px-farm-hint{font-size:12px;color:#2B3A1E;text-align:center}
+/* ===== Progres: layar tas dan gudang ala game ===== */
+#root.px-p-Progres>div>div>div:first-child::before{display:none}
+.px-hud3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:6px;background:#3B3550;box-shadow:0 0 0 3px #2B1D1A,inset 0 3px 0 #5A527A}
+.px-hud3-c{display:flex;align-items:center;gap:6px;padding:6px;background:#2A2540;box-shadow:inset 0 0 0 2px #1C182C;color:#FFF6E0;min-width:0}
+.px-hud3-c i{flex:none;width:24px;height:24px;background:center/contain no-repeat;image-rendering:pixelated}
+.px-hud3-c b{display:block;font-size:17px;color:#FFC83D;line-height:1.1}
+.px-hud3-c small{display:block;font-size:10.5px;line-height:1.2;color:#C9C2E0}
+.px-inv{display:flex;flex-direction:column;gap:8px;padding:10px;background:#3B3550;box-shadow:0 0 0 3px #2B1D1A,inset 0 3px 0 #5A527A,inset 0 -4px 0 #2A2540}
+.px-inv-h{align-self:flex-start;font-size:13px;color:#2B1D1A;background:#FFC83D;padding:1px 10px 2px;box-shadow:0 0 0 2px #2B1D1A}
+.px-inv-num{font-size:12px;color:#C9C2E0}
+.px-inv-empty{font-size:12px;color:#C9C2E0;padding:4px 2px}
+.px-crates{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;padding:8px 4px 4px;background:#2A2540;box-shadow:inset 0 0 0 2px #1C182C}
+.px-crate-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;height:120px}
+.px-crate-n{font-size:11px;color:#C9C2E0}
+.px-crate-stack{display:flex;flex-direction:column-reverse;align-items:center;min-height:4px;border-bottom:3px solid #5A527A;width:100%}
+.px-crate-stack i{display:block;width:22px;height:14px;background:var(--px-kardus) center/100% 100% no-repeat;image-rendering:pixelated}
+.px-crate-d{font-size:12px;color:#C9C2E0}
+.px-crate-col.on .px-crate-d{color:#FFC83D;font-weight:700}.px-crate-col.on .px-crate-n{color:#FFC83D}
+.px-slotrow{background:#2A2540;box-shadow:inset 0 0 0 2px #1C182C}
+.px-slotbtn{width:100%;display:flex;align-items:center;gap:10px;padding:8px;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;color:#FFF6E0}
+.px-slot{flex:none;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:#4A4366;box-shadow:inset 0 0 0 2px #1C182C,inset 0 -3px 0 #3B3550}
+.px-slot img{width:40px;height:auto;image-rendering:pixelated}
+.px-slotlist{display:flex;flex-direction:column;gap:4px;padding:0 8px 8px}
+.px-slotgame{display:flex;align-items:center;gap:8px;padding:6px 8px;background:#4A4366;box-shadow:inset 0 0 0 2px #1C182C;color:#FFF6E0;text-decoration:none;font-size:13px}
+.px-slotgame img{flex:none;width:22px;height:22px;image-rendering:pixelated}
+.px-tcoin{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:800;background:#5A527A;color:#9A93B8;box-shadow:0 0 0 2px #1C182C}
+.px-tcoin.on{background:#FFC83D;color:#2B1D1A;box-shadow:0 0 0 2px #2B1D1A,inset 0 -3px 0 #E39A1C}
+.px-bag{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:6px;background:#2A2540;box-shadow:inset 0 0 0 2px #1C182C}
+.px-bagslot{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px 6px;border:0;cursor:pointer;background:#4A4366;box-shadow:inset 0 0 0 2px #1C182C,inset 0 -3px 0 #3B3550;font:inherit;font-size:11.5px;line-height:1.25;color:#C9C2E0;text-align:center}
+.px-bagslot i{width:30px;height:36px;background:var(--px-medali) center/contain no-repeat;image-rendering:pixelated}
+.px-bagslot.lock i{filter:brightness(0) opacity(.45)}
+.px-bagslot.got{background:#5E5480;color:#FFF6E0}
+.px-bagslot.got i{filter:drop-shadow(0 0 3px #FFE38A)}
+.px-bagslot.sel{box-shadow:inset 0 0 0 2px #FFC83D,inset 0 -3px 0 #3B3550}
+/* ===== Jurnal: buku catatan petualang ===== */
+#root.px-p-Jurnal>div>div>div:first-child::before{display:none}
+.px-book{padding:30px 10px 12px;background:#6B4A2E;box-shadow:0 0 0 3px #2B1D1A,inset 0 0 0 3px #8A5A32}
+.px-book-tabs{left:24px;right:24px;top:8px}
+.px-note-ic{flex:none;width:28px;height:28px;padding:3px;background:#3B3550;box-shadow:0 0 0 2px #2B1D1A,inset 0 0 0 2px #1C182C;image-rendering:pixelated}
+.px-try b{font-family:"Fredoka",Inter,sans-serif;letter-spacing:.5px;text-transform:uppercase;font-size:10.5px!important;padding:1px 6px!important;transform:rotate(-4deg)}
+.px-try b.ok{color:#1F7A4D;box-shadow:0 0 0 2px #1F7A4D;background:rgba(31,122,77,.08)}
+.px-try b.no{color:#B23A34;box-shadow:0 0 0 2px #B23A34;background:rgba(178,58,52,.08)}
+.px-note-fail{color:#B23A34}
 /* ===== Layar lebar (iPad mini 7, 744 px) ===== */
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 300px) * 195 / 290) * 255 / 195)}
 @media (min-width:600px){
@@ -574,7 +617,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-note-go{align-self:flex-start;margin-top:4px;padding:3px 10px;font-size:12px;color:#2B1D1A;text-decoration:none;background:#FFC83D;box-shadow:0 0 0 2px #2B1D1A,inset 0 -3px 0 #E39A1C}
 .px-page-empty{padding:18px 6px;text-align:center;font-size:13px;color:#5A5048}
 .px-book-link{display:flex;align-items:center;gap:8px;font-size:13px;color:#2B1D1A;text-decoration:none;padding:6px 10px;background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A;align-self:flex-start}
-.px-book-link i{width:18px;height:18px;background:var(--px-buah) center/contain no-repeat;image-rendering:pixelated}
+.px-book-link i{width:18px;height:18px;background:var(--px-wortel) center/contain no-repeat;image-rendering:pixelated}
 .px-tree-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .px-tree-tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px 6px;border:0;background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A,inset 0 -3px 0 #D5DDE8;cursor:pointer;font-size:12px;color:#2B1D1A}
 .px-tree-tab img{width:44px;height:auto;image-rendering:pixelated}
@@ -2077,7 +2120,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <sc-for list="{{gr.items}}" as="it" hint-placeholder-count="2">
 <div class="px-note" style="--c: {{it.col}}">
 <button type="button" onClick="{{it.toggle}}" class="px-note-head">
-<i class="px-pin"></i>
+<img alt="" class="px-note-ic" src="{{it.ic}}">
 <span style="flex: 1; min-width: 0">
 <span class="px-note-rule">{{it.rule}}</span>
 <span class="px-note-meta">{{it.meta}}</span>
@@ -4237,76 +4280,56 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div></template>
 <template id="tpl-Progres"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 80px; display: flex; flex-direction: column; gap: 14px">
-<div style="font-size: 20px; font-weight: 600">Progres</div>
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div class="px-f" style="font-size: 20px; font-weight: 700">Progres</div>
+<div class="px-hud3">
 <sc-for list="{{stats}}" as="st" hint-placeholder-count="3">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px"><div style="font-size: 18px; font-weight: 600">{{st.v}}</div><div style="font-size: 11px; color: #66655F">{{st.k}}</div></div>
+<div class="px-hud3-c"><i style="background-image: var(--px-{{st.ic}})"></i><span><b>{{st.v}}</b><small>{{st.k}}</small></span></div>
 </sc-for>
 </div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px">
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Kasus per hari · 7 hari terakhir</div>
-<div style="display: flex; align-items: flex-end; gap: 8px; height: 90px">
+<div class="px-inv">
+<div class="px-inv-h px-f">Kasus per hari · 7 hari terakhir</div>
+<div class="px-crates">
 <sc-for list="{{week}}" as="w" hint-placeholder-count="7">
-<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 3px; height: 90px">
-<span style="font-size: 10px; color: #66655F">{{w.n}}</span>
-<span style="{{w.bar}}"></span>
-</div>
-</sc-for>
-</div>
-<div style="display: flex; gap: 8px; margin-top: 4px">
-<sc-for list="{{week}}" as="w" hint-placeholder-count="7">
-<span style="{{w.lblStyle}}">{{w.d}}</span>
+<div class="px-crate-col {{w.today}}"><span class="px-crate-n">{{w.n}}</span><span class="px-crate-stack"><sc-for list="{{w.cr}}" as="c" hint-placeholder-count="2"><i></i></sc-for></span><span class="px-crate-d px-f">{{w.d}}</span></div>
 </sc-for>
 </div>
 </div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Tingkat tuntas per materi · ketuk untuk rincian</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
+<div class="px-inv">
+<div class="px-inv-h px-f">Tingkat tuntas per materi · ketuk untuk rincian</div>
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<div style="border-bottom: 1px solid #ECEBE7">
-<button type="button" onClick="{{m.toggle}}" aria-label="{{m.aria}}" style="width: 100%; display: flex; flex-direction: column; gap: 5px; padding: 10px 12px; border: 0; background: transparent; font: inherit; text-align: left; cursor: pointer; color: #1C1C1A">
-<span style="display: flex; align-items: center; gap: 10px; width: 100%"><img alt="" src="{{m.img}}" class="px-matimg"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between; width: 100%"><span class="px-f" style="font-size: 15px; font-weight: 700">{{m.name}}</span><span style="font-size: 12px; color: #3E4050">{{m.count}} {{m.arrow}}</span></span><span class="px-xpbar"><span style="{{m.fill}}"></span></span></span></span>
+<div class="px-slotrow">
+<button type="button" onClick="{{m.toggle}}" aria-label="{{m.aria}}" class="px-slotbtn">
+<span class="px-slot"><img alt="" src="{{m.img}}"></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between; width: 100%"><span class="px-f" style="font-size: 15px; font-weight: 700">{{m.name}}</span><span class="px-inv-num">{{m.count}} {{m.arrow}}</span></span><span class="px-xpbar"><span style="{{m.fill}}"></span></span></span>
 </button>
 <sc-if value="{{m.open}}" hint-placeholder-val="{{ false }}">
-<div style="padding: 0 12px 10px; display: flex; flex-direction: column; gap: 4px">
+<div class="px-slotlist">
 <sc-for list="{{m.games}}" as="g" hint-placeholder-count="3">
-<a href="{{g.href}}" style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; text-decoration: none; color: #1C1C1A; padding: 3px 0">
-<span>{{g.name}}</span>
-<span style="display: flex; gap: 4px">
-<sc-for list="{{g.lv}}" as="l" hint-placeholder-count="3">
-<span style="{{l.style}}">{{l.t}}</span>
-</sc-for>
-</span>
-</a>
+<a href="{{g.href}}" class="px-slotgame"><img alt="" src="{{g.ic}}"><span style="flex: 1; min-width: 0">{{g.name}}</span><span style="display: flex; gap: 4px"><sc-for list="{{g.lv}}" as="l" hint-placeholder-count="3"><span class="px-tcoin {{l.cls}}">{{l.t}}</span></sc-for></span></a>
 </sc-for>
 </div>
 </sc-if>
 </div>
 </sc-for>
 </div>
-</div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Perlu diulang</div>
-<sc-if value="{{noRedo}}" hint-placeholder-val="{{ false }}"><div style="font-size: 12px; color: #66655F; background: #FFFFFF; border: 1px dashed #DDDCD7; border-radius: 6px; padding: 10px 12px">Belum ada. Tingkat dengan ketepatan di bawah 70% akan muncul di sini.</div></sc-if>
+<div class="px-inv">
+<div class="px-inv-h px-f">Perlu diulang</div>
+<sc-if value="{{noRedo}}" hint-placeholder-val="{{ false }}"><div class="px-inv-empty">Belum ada. Tingkat dengan ketepatan di bawah 70% akan muncul di sini.</div></sc-if>
 <sc-if value="{{hasRedo}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
 <sc-for list="{{redo}}" as="r" hint-placeholder-count="2">
-<a href="{{r.href}}" onClick="{{r.tap}}" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span>{{r.name}}</span><span style="font-size: 12px; color: #66655F">{{r.pct}} ›</span></a>
+<a href="{{r.href}}" onClick="{{r.tap}}" class="px-slotgame"><img alt="" src="{{r.ic}}"><span style="flex: 1; min-width: 0">{{r.name}}</span><span class="px-inv-num">{{r.pct}} ›</span></a>
 </sc-for>
-</div>
 </sc-if>
 </div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Lencana · {{badgeCount}}</div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<div class="px-inv">
+<div class="px-inv-h px-f">Lencana · {{badgeCount}}</div>
+<div class="px-bag">
 <sc-for list="{{badges}}" as="b" hint-placeholder-count="6">
-<button type="button" onClick="{{b.tap}}" aria-label="{{b.aria}}" style="{{b.style}}">
-<span style="{{b.icon}}"></span><span>{{b.name}}</span>
-</button>
+<button type="button" onClick="{{b.tap}}" aria-label="{{b.aria}}" class="px-bagslot {{b.cls}}"><i></i><span>{{b.name}}</span></button>
 </sc-for>
 </div>
 <sc-if value="{{hasBadgeInfo}}" hint-placeholder-val="{{ false }}">
-<div style="margin-top: 6px; font-size: 12px; color: #444441">{{badgeInfo}}</div>
+<div class="px-inv-empty" style="color: #FFF6E0">{{badgeInfo}}</div>
 </sc-if>
 </div>
 </div>
@@ -9035,7 +9058,7 @@ const firstId = list.length ? list[0].id : null;
 const groups = days.map(g => ({ day: g.day, items: g.items.map(e => {
 const j = e.j, open = s.open[e.id] === undefined ? e.id === firstId : !!s.open[e.id];
 const tries = (j.gagal || []).map(x => ({ a: x, b: 'ditolak', color: warn, cls: 'no' })).concat([{ a: j.rule.replace(/\s+\(.*\)$/, ''), b: 'lolos uji', color: ok, cls: 'ok' }]);
-return { col: MC[e.mat] || '#8C8C8C', chevTxt: open ? '▾' : '▸', rule: j.rule.replace(/\s+\(.*\)$/, ''), meta: j.g + ' · ' + FMP.LVN[j.l], problem: 'aturan untuk ' + j.g + ', tingkat ' + FMP.LVN[j.l], game: j.g, href: j.key + '.dc.html', tap: () => FMP.go({ key: j.key, g: j.g, l: j.l }), open: open, chev: open ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6', toggle: () => this.setState({ open: Object.assign({}, s.open, { [e.id]: !open }) }), tries: tries, hasFail: false, fail: '' };
+return { ic: PX.gameIcon(j.g), col: MC[e.mat] || '#8C8C8C', chevTxt: open ? '▾' : '▸', rule: j.rule.replace(/\s+\(.*\)$/, ''), meta: j.g + ' · ' + FMP.LVN[j.l], problem: 'aturan untuk ' + j.g + ', tingkat ' + FMP.LVN[j.l], game: j.g, href: j.key + '.dc.html', tap: () => FMP.go({ key: j.key, g: j.g, l: j.l }), open: open, chev: open ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6', toggle: () => this.setState({ open: Object.assign({}, s.open, { [e.id]: !open }) }), tries: tries, hasFail: false, fail: '' };
 }) }));
 const mats = ['Semua', 'Bilangan', 'Aljabar', 'Geometri', 'Data'].map(k => ({ label: k, on: s.mat === k ? 'on' : '', col: MC[k], tap: () => this.setState({ mat: k }), style: 'padding: 5px 10px; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; ' + (s.mat === k ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') }));
 return { mats: mats, groups: groups, empty: list.length === 0, emptyMsg: p.journal.length ? 'Belum ada catatan di materi ini.' : 'Belum ada catatan. Buka tab Aturan di sebuah game; setiap aturan yang lolos uji tercatat di sini bersama dugaan yang gagal.', count: list.length + ' catatan' };
@@ -12551,29 +12574,29 @@ const DAYS = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
 const counts = [6, 5, 4, 3, 2, 1, 0].map(k => p.ev.filter(e => FMP.dayDiff(e.t) === k).length);
 const mx = Math.max(1, Math.max.apply(null, counts)), now = new Date();
 const week = counts.map((n, i) => { const d = (now.getDay() - 6 + i + 7) % 7, last = i === 6;
-return { n: String(n), d: DAYS[d], bar: 'display: block; width: 100%; max-width: 28px; box-sizing: border-box; height: ' + Math.max(4, Math.round(n / mx * 64)) + 'px; border: 2px solid #2B1D1A; background: ' + (last ? '#FFC83D repeating-linear-gradient(0deg, #E39A1C 0 2px, #FFC83D 2px 10px)' : '#C99A5B repeating-linear-gradient(0deg, #8A5A32 0 2px, #C99A5B 2px 10px)'),
+return { today: last ? 'on' : '', cr: Array(Math.min(n, 6)).fill(0), n: String(n), d: DAYS[d], bar: 'display: block; width: 100%; max-width: 28px; box-sizing: border-box; height: ' + Math.max(4, Math.round(n / mx * 64)) + 'px; border: 2px solid #2B1D1A; background: ' + (last ? '#FFC83D repeating-linear-gradient(0deg, #E39A1C 0 2px, #FFC83D 2px 10px)' : '#C99A5B repeating-linear-gradient(0deg, #8A5A32 0 2px, #C99A5B 2px 10px)'),
 lblStyle: 'flex: 1; text-align: center; font-size: 11px; color: ' + (last ? '#1C1C1A' : '#66655F') + (last ? '; font-weight: 600' : '') }; });
 const mats = Object.keys(this.G).map(name => {
 const games = this.G[name].map(g => { const got = ['F', 'I', 'E'].filter(l => FMP.stars(g[0], l)[0]);
-return { name: g[0], href: g[1] + '.dc.html', done: got.length, lv: ['F', 'I', 'E'].map(t => ({ t: t, style: 'display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: 800; ' + (got.indexOf(t) >= 0 ? 'background: #FFC83D; color: #2B1D1A; box-shadow: 0 0 0 2px #2B1D1A, inset 0 -3px 0 #E39A1C' : 'background: #E8E3D6; color: #9A9488; box-shadow: 0 0 0 2px #9A9488') })) }; });
+return { ic: PX.gameIcon(g[0]), name: g[0], href: g[1] + '.dc.html', done: got.length, lv: ['F', 'I', 'E'].map(t => ({ t: t, cls: got.indexOf(t) >= 0 ? 'on' : '', style: 'display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: 800; ' + (got.indexOf(t) >= 0 ? 'background: #FFC83D; color: #2B1D1A; box-shadow: 0 0 0 2px #2B1D1A, inset 0 -3px 0 #E39A1C' : 'background: #E8E3D6; color: #9A9488; box-shadow: 0 0 0 2px #9A9488') })) }; });
 const done = games.reduce((a, g) => a + g.done, 0), total = games.length * 3, open = s.open === name;
 return { name: name, count: done + ' / ' + total, arrow: open ? '▴' : '▾', open: open, games: games, aria: name + ', ' + done + ' dari ' + total + ' tingkat tuntas, ketuk untuk ' + (open ? 'menutup' : 'membuka') + ' rincian',
 img: PX.house(({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' })[name] || 'bil'), fill: 'display: block; height: 100%; background: #FFC83D; box-shadow: inset 0 -3px 0 #E39A1C; width: ' + Math.round(done / total * 100) + '%', toggle: () => this.setState({ open: open ? null : name }) }; });
 const totalDone = mats.reduce((a, m) => a + Number(m.count.split(' / ')[0]), 0);
 const B = FMP.badges();
 const badges = B.map((b, i) => { const on = s.badge === i;
-return { name: b[0], aria: b[0] + (b[2] ? ', sudah didapat' : ', belum didapat') + ', ketuk untuk keterangan', tap: () => this.setState({ badge: on ? null : i }),
+return { cls: (b[2] ? 'got' : 'lock') + (on ? ' sel' : ''), name: b[0], aria: b[0] + (b[2] ? ', sudah didapat' : ', belum didapat') + ', ketuk untuk keterangan', tap: () => this.setState({ badge: on ? null : i }),
 icon: 'flex: none; width: 26px; height: 32px; image-rendering: pixelated; background: var(--px-' + (b[2] ? 'medali' : 'medali0') + ') center / 100% 100% no-repeat',
 style: 'display: flex; align-items: center; gap: 8px; padding: 6px 10px; border: 0; font: inherit; font-size: 13px; text-align: left; cursor: pointer; ' + (b[2] ? 'color: #2B1D1A; background: #FFF6C2; box-shadow: 0 0 0 2px #2B1D1A, inset 0 -3px 0 #FFE38A' : 'color: #6E6A62; background: #F1ECE2; box-shadow: 0 0 0 2px ' + (on ? '#2B1D1A' : '#9A9488')) + (on ? '; transform: translateY(-2px)' : '') }; });
 const got = B.filter(b => b[2]).length, sel = s.badge === null ? null : B[s.badge];
 const tiersSeen = {}; p.ev.forEach(e => { tiersSeen[e.g + '|' + e.l] = { g: e.g, key: e.key, l: e.l }; });
 const redo = Object.keys(tiersSeen).map(k => { const t = tiersSeen[k], ev = p.ev.filter(e => e.g === t.g && e.l === t.l).slice(-10); return Object.assign({ n: ev.length, a: FMP.acc(ev) }, t); })
 .filter(t => t.n >= 3 && t.a < 70).sort((x, y) => x.a - y.a).slice(0, 3)
-.map(t => ({ name: t.g + ' · ' + LVN[t.l], pct: t.a + '%', href: t.key + '.dc.html', tap: () => FMP.go(t) }));
+.map(t => ({ ic: PX.gameIcon(t.g), name: t.g + ' · ' + LVN[t.l], pct: t.a + '%', href: t.key + '.dc.html', tap: () => FMP.go(t) }));
 let nFound = 0, nAll = 0; Object.keys(FMP.SUB).forEach(m => ['F', 'I', 'E'].forEach(l => FMP.SUB[m][l].forEach(x => { nAll++; if (FMP.found(x[0])) nFound++; })));
 const a10 = FMP.acc(p.ev.slice(-10));
 return {
-stats: [{ v: String(p.ev.length), k: 'kasus dimainkan' }, { v: a10 === null ? '–' : a10 + '%', k: 'tepat, 10 terakhir' }, { v: nFound + ' / ' + nAll, k: 'temuan' }],
+stats: [{ ic: 'dadu', v: String(p.ev.length), k: 'kasus dimainkan' }, { ic: 'bintang', v: a10 === null ? '–' : a10 + '%', k: 'tepat, 10 terakhir' }, { ic: 'wortel', v: nFound + ' / ' + nAll, k: 'temuan' }],
 week: week, mats: mats,
 redo: redo, hasRedo: redo.length > 0, noRedo: redo.length === 0,
 badges: badges, badgeCount: got + ' dari ' + B.length, hasBadgeInfo: !!sel, badgeInfo: sel ? sel[0] + ': ' + sel[1] + (sel[2] ? '' : ' Belum didapat.') : '',
