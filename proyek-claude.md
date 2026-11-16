@@ -3,7 +3,7 @@
 Ada dua bagian. Salin masing-masing ke tempatnya di proyek Claude.
 Bagian 1 masuk ke **Instruksi proyek**. Bagian 2 disimpan sebagai **file/pengetahuan proyek**.
 
-Saat ini app baru bisa memeriksa kasus untuk game **Ubin**. Game lain menyusul; bagian 2 akan ditambah saat itu.
+App bisa memeriksa kasus untuk **25 game**. Timbangan belum. Ada dua jenis pesanan: pesanan Ubin (Claude memilih angka) dan pesanan game lain (angka sudah ditentukan app, Claude menulis ceritanya).
 
 ---
 
@@ -21,14 +21,25 @@ Cara membalas:
 Aturan cerita (berlaku untuk semua game):
 - 2 sampai 3 kalimat. Bahasa Indonesia sehari-hari, hangat, tidak kaku.
 - Nama orang generik (Bu Rini, Pak Anton, Dika). Jangan pakai nama tokoh terkenal atau merek.
-- Semua angka kasus harus tertulis di cerita, dengan angka (bukan huruf).
-- Jangan menyebut rumus, nama konsep matematika, jawaban, hasil hitungan, atau cara menyelesaikan. Contoh kata yang dilarang: faktor, kelipatan, perkalian, pembagian, dikali, rumus, prima, persamaan.
+- Angka ditulis dengan angka (bukan huruf).
+- Jangan menyebut rumus, nama konsep matematika, jawaban, hasil hitungan, atau cara menyelesaikan. Contoh kata yang dilarang: faktor, kelipatan, perkalian, pembagian, dikali, rumus, prima, persamaan, peluang, median, pangkat, kuadrat, matriks, fungsi, himpunan, kombinasi, permutasi, Pythagoras, sebangun.
 - Jangan menulis perintah atau pertanyaan untuk pemain ("hitunglah", "berapa"). App yang menambahkan tujuannya.
 - Jangan menyertakan kunci jawaban dalam bentuk apa pun.
-- Boleh ada satu informasi yang tidak dipakai (misalnya jam, harga, atau jumlah lain), supaya pemain belajar memilah.
-- Pakai konteks yang diminta untuk tiap kasus, sesuai urutannya. Tiap kasus punya cerita dan angka yang berbeda.
+- Pakai konteks yang diminta untuk tiap kasus. Tiap kasus punya cerita yang berbeda.
 
-Kalau pesanan meminta kasus berisi klaim, tulis seorang tokoh yang yakin akan sesuatu, dengan nada wajar. Keyakinan itu boleh benar atau keliru; usahakan kira-kira separuh keliru. Jangan memberi isyarat apakah tokoh itu benar.
+Pesanan Ubin (Claude memilih angka):
+- Semua angka kasus harus tertulis di cerita.
+- Boleh ada satu informasi yang tidak dipakai (misalnya jam atau harga), supaya pemain belajar memilah.
+- Kalau diminta kasus berisi klaim, keyakinan tokoh boleh benar atau keliru; usahakan kira-kira separuh keliru.
+
+Pesanan game lain (ada baris "kode", "Fakta", dan kadang "Klaim"):
+- Salin "kode" persis, huruf demi huruf.
+- Semua angka dan keterangan di Fakta harus tetap ada di cerita, dengan angka yang sama persis. Jangan mengganti nama benda dan satuannya (kebun tetap kebun, roket tetap roket, km tetap km).
+- Jangan menambah angka lain apa pun. Kalau ada "Catatan" bahwa cerita tidak boleh memuat angka, tulis cerita tanpa angka sama sekali.
+- Konteks dipakai sebagai latar dan tokoh sejauh masuk akal dengan Fakta. Kalau konteks tidak cocok dengan bendanya, cukup jadikan tempat atau acara di sekitarnya.
+- Kalau ada Klaim, tambahkan "tokoh" dan tulis di cerita bahwa tokoh itu yakin seperti isi Klaim, dengan angka yang sama persis.
+
+Untuk semua klaim: tulis dengan nada wajar dan jangan memberi isyarat apakah tokoh itu benar.
 
 Sebelum membalas, periksa sendiri: jumlah kalimat tiap cerita, semua angka tertulis di cerita, angka di dalam batas, tidak ada kata terlarang, dan JSON-nya utuh.
 
@@ -83,5 +94,26 @@ Peran pemain: penata ruang gedung serbaguna. Atasan: Pak Darto.
 - Label konteks kurang dari 3 atau lebih dari 24 huruf.
 - Angkanya sama dengan kasus yang sudah ada di app.
 
-### Game lain (belum menerima kasus)
-Peran untuk nanti: Kasir Kilat (kasir baru di warung, Bu Ani), Timbangan (pekerja magang gudang, mandor), Jadwal Bus (petugas jadwal terminal, kepala terminal), Bagi Pizza (panitia konsumsi, ketua panitia), Racik Resep (barista kedai teh, pemilik kedai), Lipat Kertas (pekerja percetakan, kepala percetakan). Bentuk JSON-nya belum ditentukan; jangan membuat kasus untuk game ini sampai bagian ini diperbarui.
+### Game lain (24 game)
+Untuk game selain Ubin, app sudah menentukan angka dan kuncinya. Pesanan berisi daftar kasus seperti ini:
+
+```
+Kasus 1 — kode: 2c34p1k · Konteks: kantin sekolah
+Fakta: Kebun persegi lain diperluas 6 m ke satu sisi menjadi 391 m².
+Klaim: seorang tokoh yakin "Sisi kebun semula (m)" adalah 15.
+```
+
+- Bentuk tanpa klaim: `{"game":"Kebun Pagar","tingkat":"E","kode":"kmbzj0n","konteks":"Acara RT","cerita":"..."}`
+- Bentuk dengan klaim: tambah `"tokoh":"Pak Seno"`.
+- Contoh jawaban untuk kasus di atas: `{"game":"Kebun Pagar","tingkat":"E","kode":"2c34p1k","konteks":"Kantin sekolah","cerita":"Di belakang kantin sekolah ada kebun persegi milik Bu Wati. Kebun itu diperluas 6 m ke satu sisi menjadi 391 m². Pak Seno yakin sisi kebun semula 15 m.","tokoh":"Pak Seno"}`
+- Contoh bila Fakta tanpa angka ("Pesanan tabel berikutnya datang." dengan Catatan tanpa angka): `{"game":"Mesin Minuman","tingkat":"F","kode":"poap70n","konteks":"Olahraga","cerita":"Usai lomba lari, penonton menyerbu mesin minuman di stasiun. Bu Rina membawa catatan pesanan yang baru untuk diperiksa."}`
+
+Peran pemain tiap game:
+- Bilangan: Kasir Kilat (kasir baru di warung, Bu Ani), Jadwal Bus (petugas jadwal terminal, kepala terminal), Bagi Pizza (panitia konsumsi, ketua panitia), Racik Resep (barista kedai teh, pemilik kedai), Lipat Kertas (pekerja percetakan, kepala percetakan).
+- Aljabar: Dua Struk (petugas koperasi, Bu Sari), Meja Hajatan (persewaan tenda, Pak Harun), Martabak Topping (penjual martabak, Bang Udin), Mesin Minuman (teknisi stasiun, Bu Rina), Argo Ojek (koordinator pangkalan, Pak Yanto), Rekap Grosir (admin grosir, Bu Lina), Kebun Pagar (pekerja kebun, Bu Wati), Dapur Roti (asisten dapur, Bu Mira).
+- Geometri: Rute Kurir (kurir paket, Pak Joni), Pasang Lantai (tukang lantai, Pak Darto), Gudang Kardus (pengepak gudang), Cetak Spanduk (tukang spanduk), Tangga Bangunan (tukang bangunan, mandor), Pelabuhan (petugas menara pelabuhan).
+- Data: Loker OSIS (pengurus OSIS, Bu Wina), Pentas Seni (panitia pensi, Kak Dimas), Undian Doorprize (panitia jalan sehat, Pak RT), Rapor Kelas (asisten wali kelas, Bu Sinta), Grafik Viral (admin media sosial sekolah, Mbak Rara).
+
+Yang membuat kasus game lain ditolak app: kode tidak dikenal atau salah salin, angka Fakta atau Klaim tidak tertulis di cerita, ada angka lain di cerita, cerita lebih dari 3 kalimat, kata terlarang, atau tokoh klaim tidak ada di cerita.
+
+Timbangan belum menerima kasus; jangan membuat kasus untuk game itu.

@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** kasus tempelan diperluas ke 24 game lain (semua kecuali Timbangan). Untuk game ini angka dan kunci dibuat app, Claude hanya menulis cerita. Layar `KasusBaru` kini punya pemilih materi dan game.
 - **16 Nov:** kasus harian lewat prompt → JSON → validator, **tahap 1 (Ubin saja)**. Layar baru `KasusBaru` (Pengaturan → Kasus harian baru). Rincian di bagian "Kasus tempelan".
 - **16 Nov:** kasus harian berangka baru (jalan pintas sebelum prompt → JSON). Tiap hari per tingkat: 1 kasus cerita dari kumpulan lama (bergilir) + 2 kasus "Angka baru" yang angkanya berganti tiap hari. Berlaku di 25 game; **Timbangan belum** (masih kumpulan lama). Rincian di bagian "Kasus harian berangka baru".
 - **16 Nov:** deskripsi Mini Games diganti: Racik Resep F "Resep 4 orang, tamunya berubah", Ubin F "Tata kue di nampan tanpa sisa", Lipat Kertas I "Kertas lewat dua mesin lipat".
@@ -21,7 +22,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-0. **Faiq mencoba alur Kasus harian baru di Ubin** (salin prompt → proyek Claude → tempel). Kalau alurnya enak, tahap 2: 6 game Bilangan lain, lalu Aljabar, Geometri, Data. Timbangan juga masih perlu kasus berangka baru.
+0. **Faiq mencoba alur Kasus harian baru** (salin prompt → proyek Claude → tempel) di Ubin dan beberapa game lain, lalu melaporkan kasus yang ditolak atau ceritanya janggal. Timbangan masih perlu pembuat soal acak supaya ikut kasus berangka baru dan kasus tempelan.
 1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
 3. **Cek Celah versi tes:** 2 tantangan singkat per game yang menyarankan tingkat (ditunda, disetujui Faiq 16 Nov).
@@ -124,7 +125,11 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 - JSON dari Claude **tidak berisi kunci dan tidak berisi tujuan**. App menulis `tujuan` dari templat tetap dan menghitung sendiri: jawaban klaim (`verdict.correct`) dan apakah target mustahil (`impossible`).
 - Yang ditolak: tingkat tidak cocok, angka di luar batas papan, cerita > 3 kalimat, angka kasus tidak tertulis di cerita, kata terlarang (`LARANG`: faktor, kelipatan, rumus, dst.; tanda kali untuk Ubin F), tokoh klaim tidak ada di cerita, angka sama dengan misi/kasus yang sudah ada.
 - Kasus lolos disimpan di `fm.progress.cases[game]` (ikut cadangan dan Hapus semua data), dimasukkan ke `this.H` oleh `FMP.wrap`, dan ikut bergiliran sebagai kasus cerita di tab Harian (1 per hari) serta di Tantangan. Tombol Mainkan di layar `KasusBaru` membukanya langsung.
-- Menambah game lain: isi `CASES[game]` dan tulis `BUILD[game]`; layar `KasusBaru` masih mengunci `key: 'Ubin'`.
+- **Game selain Ubin (jalur umum):** `genericPrompt` membuat 5 `kode` (5 huruf acak + nomor misi awal 0–2 + `k`/`n` untuk klaim). `genericCase(key, tingkat, kode)` membuat ulang soal yang sama dari kode itu lewat `genBy` (mesin yang sama dengan kasus "Angka baru"), jadi app tidak perlu menyimpan apa pun antara salin prompt dan tempel jawaban. Kalimat cerita bawaan soal dikirim ke Claude sebagai "Fakta".
+- Klaim jalur umum: hanya bila soal punya kotak jawaban angka, belum punya `verdict`, dan game lolos `claimable` (simulasi `solved` → tahap `verdict`). Nilai klaim = kunci (40%) atau kunci digeser; `verdict.correct` dihitung app.
+- `buildGeneric` menolak: kode tak dikenal, angka Fakta/Klaim tidak ada di cerita, angka lain di cerita, tokoh klaim tidak ada. Kasus diberi `sl: true` supaya `loadCase` berbenih.
+- Jalur khusus (Claude memilih angka) baru ada untuk Ubin: `CASES.Ubin` + `buildUbin`. Game lain bisa dinaikkan ke jalur khusus dengan menambah `CASES[game]` dan `BUILD[game]`.
+- Timbangan belum bisa: tidak punya tombol soal acak, jadi `genBy` mengembalikan null.
 - `proyek-claude.md` berisi instruksi proyek dan konteks proyek untuk proyek Claude milik Faiq. Kalau batas angka, kata terlarang, atau bentuk JSON di `FMP` berubah, perbarui file itu juga, dan tambah bagian game baru di sana.
 
 ## Catatan
