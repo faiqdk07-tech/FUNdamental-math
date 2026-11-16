@@ -7160,7 +7160,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -7537,7 +7537,7 @@ if (playing && P.goalType === 'all') { statusLabel += ' · ditemukan ' + P.found
 if (playing && shown && !locked) actions.push(act('↺ Satukan', () => setP({ cutN: null })));
 if (isLab) actions = actions.concat([act('Loyang ' + s.lab.m + ' ↻', () => { const v = s.lab.m >= 6 ? 1 : s.lab.m + 1; this.setState({ lab: Object.assign({}, s.lab, { m: v }), P: this.fresh({ type: 'bagi', m: v, p: s.lab.p, tutorial: true }) }); }), act('Orang ' + s.lab.p + ' ↻', () => { const v = s.lab.p >= 8 ? 2 : s.lab.p + 1; this.setState({ lab: Object.assign({}, s.lab, { p: v }), P: this.fresh({ type: 'bagi', m: s.lab.m, p: v, tutorial: true }) }); }),
 act('Jadikan tantangan', () => this.setState({ customs: s.customs.concat([{ m: s.lab.m, p: s.lab.p }]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + '" di tab Misi.', kind: 'ok' }), true)]);
-if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Pesta lain', () => { const mm = this.rnd(1, 5), pp = this.rnd(2, 7); this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { goalType: 'all', budget: 0 }, { m: mm, p: pp, cerita: 'Pesta berikutnya: ' + mm + ' loyang pizza untuk ' + pp + ' orang.' })), stage: 'main', msg: '', n: 1 }); }, true));
+if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Pesta lain', () => { const mm = this.rnd(1, 5), pp = this.rnd(2, 7); this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { verdict: null }, { m: mm, p: pp, cerita: 'Pesta berikutnya: ' + mm + ' loyang pizza untuk ' + pp + ' orang.' })), stage: 'main', msg: '', n: 1 }); }, true));
 } else if (P.type === 'garis') {
 const C = P.cards;
 cards = C.map((c, i) => ({ label: c.l, tap: () => setP({ sel: i }), style: 'min-width: 44px; padding: 6px 8px; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer; ' + (P.sel === i ? 'border: 2px solid #1C1C1A; background: #FFFFFF' : P.place[i] !== undefined ? 'border: 1px solid ' + (P.bad[i] ? '#B3261E' : '#9DB3EE') + '; background: #F2F5FD; color: #1E3F9E' : 'border: 1px solid #DDDCD7; background: #FFFFFF') }));
@@ -7571,7 +7571,7 @@ const right = P.pa * P.den / P.num;
 if (P.ans !== right) return this.spend(P, 'Belum tepat.');
 this.finish('Tepat! ' + P.pa + ' loyang cukup untuk ' + right + ' porsi.');
 }, true)];
-if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Tamu berikutnya', () => { const a = this.rnd(2, 6), d = this.rnd(2, 5); this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { num: 1, verdict: null }, { pa: a, den: d, cerita: 'Rombongan tamu berikutnya datang. Tersedia ' + a + ' loyang, dan satu porsi kecil besarnya 1/' + d + ' loyang.' })), stage: 'main', msg: '', n: 1 }); }, true));
+if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Tamu berikutnya', () => { const a = this.rnd(2, 6), d = this.rnd(2, 5); this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { num: 1, verdict: null, tujuan: 'Berapa porsi yang bisa disajikan?' }, { pa: a, den: d, cerita: 'Rombongan tamu berikutnya datang. Tersedia ' + a + ' loyang, dan satu porsi kecil besarnya 1/' + d + ' loyang.' })), stage: 'main', msg: '', n: 1 }); }, true));
 }
 if (doneStage) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const TUT = [
@@ -7787,7 +7787,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -8146,7 +8146,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -8802,7 +8802,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -9133,7 +9133,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -9553,7 +9553,7 @@ actions = [act('Cek menit ini', check, true)];
 if (isLab) actions = actions.concat([act('Jarak A ' + s.lab.a + ' ↻', () => { const v = s.lab.a >= 15 ? 2 : s.lab.a + 1; this.setState({ lab: Object.assign({}, s.lab, { a: v }), P: this.fresh({ type: 'bus', a: v, b: s.lab.b, names: ['Bus A', 'Bus B'], tutorial: true }) }); }), act('Jarak B ' + s.lab.b + ' ↻', () => { const v = s.lab.b >= 15 ? 2 : s.lab.b + 1; this.setState({ lab: Object.assign({}, s.lab, { b: v }), P: this.fresh({ type: 'bus', a: s.lab.a, b: v, names: ['Bus A', 'Bus B'], tutorial: true }) }); }),
 act('Jadikan tantangan', () => { if (s.lab.a === s.lab.b) return this.setState({ msg: 'Buat jarak kedua bus berbeda.', kind: 'warn' }); this.setState({ customs: s.customs.concat([{ a: s.lab.a, b: s.lab.b }]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + '" di tab Misi.', kind: 'ok' }); }, true)]);
 log = P.checks;
-if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Pasangan bus lain', () => { let x = this.rnd(3, 12), y = this.rnd(3, 12); if (x === y) y = x + 1; this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { budget: 3 }, { a: x, b: y, cerita: 'Jadwal baru: bus kota tiap ' + x + ' menit, bus bandara tiap ' + y + ' menit. Keduanya baru saja berangkat bersama.' })), stage: 'main', msg: '' }); }, true));
+if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Pasangan bus lain', () => { let x = this.rnd(3, 12), y = this.rnd(3, 12); if (x === y) y = x + 1; const M0 = this.mission(s.mi); this.setState({ P: this.fresh(Object.assign(M0, { budget: M0.budget || 3, verdict: null }, { a: x, b: y, cerita: 'Jadwal baru: ' + M0.names[0].toLowerCase() + ' tiap ' + x + ' menit, ' + M0.names[1].toLowerCase() + ' tiap ' + y + ' menit. Keduanya baru saja berangkat bersama.' })), stage: 'main', msg: '' }); }, true));
 } else if (P.type === 'pita') {
 const W = 330, Lm = Math.max(P.L1, P.L2);
 const rib = L => {
@@ -10091,7 +10091,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -10514,7 +10514,7 @@ if (locked) return;
 if (right === null || P.ans !== right) return this.spend(P, 'Kepala percetakan mengecek: belum tepat.');
 this.finish(big ? 'Tepat! Hasilnya ' + right.toLocaleString('id-ID') + ' lapis.' : 'Tepat! ' + right + ' kali lipat dua menghasilkan ' + Math.pow(2, right).toLocaleString('id-ID') + ' lapis.');
 }, true)].concat(freeActs([2]));
-if (doneStage && s.mode === 'misi' && s.mi < 3 && P.type === 'tebak') actions.push(act('Soal lain', () => { const m = this.rnd(3, 5), n = this.rnd(2, 5); this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { verdict: null }, { m: m, n: n, cerita: 'Kertas dilipat dua ' + m + ' kali di mesin pertama, lalu dilipat dua ' + n + ' kali lagi di mesin kedua.' })), stage: 'main', msg: '' }); }, true));
+if (doneStage && s.mode === 'misi' && s.mi < 3 && P.type === 'tebak') actions.push(act('Soal lain', () => { const m = this.rnd(3, 5), n = this.rnd(2, 5); this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { verdict: null, tujuan: this.mission(s.mi).verdict ? 'Berapa lapis hasil akhirnya?' : this.mission(s.mi).tujuan }, { m: m, n: n, cerita: 'Kertas dilipat dua ' + m + ' kali di mesin pertama, lalu dilipat dua ' + n + ' kali lagi di mesin kedua.' })), stage: 'main', msg: '' }); }, true));
 if (doneStage && s.mode === 'misi' && s.mi < 3 && P.type === 'seribu') actions.push(act('Target lain', () => { const g = [100, 500, 2000, 5000, 10000][this.rnd(0, 4)]; this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { verdict: null }, { goalL: g, cerita: 'Tantangan berikutnya: setidaknya ' + g.toLocaleString('id-ID') + ' lapis hanya dengan lipat dua.' })), stage: 'main', msg: '' }); }, true));
 } else if (playing && P.type === 'banding') {
 statusLabel = 'Kertas latihan ' + P.seq.length + ' / ' + MAXF + ' lipatan'; status = 'Kesempatan ' + P.left + ' / ' + P.budget;
@@ -10692,7 +10692,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -11069,7 +11069,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const af = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -11522,7 +11522,7 @@ statusLabel = 'Kesempatan'; status = P.left + ' / ' + P.budget;
 }
 if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Berikutnya', () => {
 const g = this.genMission(this.curLvl(), s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: 'Pesanan lain datang dengan susunan serupa.' }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: 'Pesanan lain datang dengan susunan serupa.', tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, true) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true));
 }
 if (doneStage && (s.mode === 'misi' || s.mode === 'harian')) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
@@ -11708,7 +11708,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -12147,7 +12147,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -12506,7 +12506,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -12873,7 +12873,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -13584,7 +13584,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -13911,7 +13911,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -14240,7 +14240,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -14666,7 +14666,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -15753,7 +15753,7 @@ let statusLabel = view.statusLabel, status = view.status, statusColor = '#1C1C1A
 if (!isLab && s.mode !== 'rumus' && !statusLabel) { statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? 'Latihan' : P.left + ' / ' + P.budget; }
 if (doneStage && s.mode === 'misi' && s.mi < this.curM().length && this.genMission) actions = actions.concat([act('Berikutnya', () => {
 const g = this.genMission(s.mi);
-this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
+this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { cerita: this.NEXT_STORY, verdict: undefined, tujuan: FMP.nextGoal(this.mission(s.mi).tujuan, !!(this.mission(s.mi).asks || []).length) }, g)), stage: 'main', ans: {}, sel: [], msg: '', kind: '' });
 }, true)]);
 if (doneStage && playing) { statusLabel = 'Status'; status = 'Selesai'; statusColor = '#1F7A4D'; }
 const afI = Math.min(s.af || 0, Math.max(0, (P.asks || []).length - 1));
@@ -16198,7 +16198,16 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
       }
     };
   }
-  return { SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, isGame: k => !!KEYS[k] };
+  function nextGoal(tj, hasAsks) {
+    tj = tj || '';
+    const hadClaim = /,? lalu (nilai|putuskan|jawab pertanyaan)[^.?]*[.?]/.test(tj);
+    const t = tj.replace(/,? lalu (nilai|putuskan|jawab pertanyaan)[^.?]*[.?]/, '.');
+    const tail = (t.match(/Kamu (hanya )?punya[^.]*\./) || [''])[0];
+    const head = t.replace(tail, '').trim();
+    if (hasAsks && (hadClaim || /\d/.test(head))) return ('Jawab pertanyaan di bawah. ' + tail).trim();
+    return t;
+  }
+  return { nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, isGame: k => !!KEYS[k] };
 })();
 
 /* ===== Navigasi: tautan "Nama.dc.html" dibuka sebagai #Nama ===== */
