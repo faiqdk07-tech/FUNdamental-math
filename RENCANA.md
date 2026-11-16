@@ -3,6 +3,15 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** kasus harian lewat prompt → JSON → validator, **tahap 1 (Ubin saja)**. Layar baru `KasusBaru` (Pengaturan → Kasus harian baru). Rincian di bagian "Kasus tempelan".
+- **16 Nov:** kasus harian berangka baru (jalan pintas sebelum prompt → JSON). Tiap hari per tingkat: 1 kasus cerita dari kumpulan lama (bergilir) + 2 kasus "Angka baru" yang angkanya berganti tiap hari. Berlaku di 25 game; **Timbangan belum** (masih kumpulan lama). Rincian di bagian "Kasus harian berangka baru".
+- **16 Nov:** deskripsi Mini Games diganti: Racik Resep F "Resep 4 orang, tamunya berubah", Ubin F "Tata kue di nampan tanpa sisa", Lipat Kertas I "Kertas lewat dua mesin lipat".
+- **16 Nov:** perbaikan tombol Berikutnya: Martabak Topping kini membaca tingkat aktif (sebelumnya memakai nomor misi, jadi soal survei bisa muncul di papan sortir); teks tujuan soal acak yang punya kotak jawaban selalu "Jawab pertanyaan di bawah" (`FMP.nextGoal`), supaya tidak ada lagi tujuan yang tidak cocok dengan soalnya (mis. "tiang bendera" padahal ceritanya pohon).
+- **16 Nov:** tiga perbaikan dari pemeriksaan Faiq. (1) Menu dan bantuan tidak lagi menjanjikan "kasus baru setiap hari" (kumpulan kasus per tingkat baru 2–6, jadi berulang); janji itu boleh kembali setelah kasus lewat prompt → JSON → validator jadi. (2) Tombol "Catat percobaan otomatis" dan "Kirim ringkasan ke Progres Harian" disembunyikan dari Pengaturan sampai fiturnya dibuat (`toggles: []`; nilai `autoLog`/`sendPH` masih tersimpan). (3) Deskripsi Bagi Pizza di Mini Games: I "Catat sisa pizza di papan", E "Berapa porsi dari sisa loyang?".
+- **16 Nov:** audit soal acak (tombol Berikutnya/…lain) di semua game. Diperbaiki: Kasir Kilat "Koin menipis" (kembalian mustahil), jatah kesempatan soal acak (Kasir, Ubin, Jadwal Bus), Bagi Pizza "Pisau tumpul" (tujuan berganti), dan teks tujuan soal acak yang masih memakai klaim atau angka lama (lewat `FMP.nextGoal`).
+- **16 Nov:** progres nyata. Hasil main disimpan di `fm.progress`, dan Beranda, Mini Games (bintang), Progres, Jurnal, Pohon Temuan, Tantangan, Bengkel, Cek Celah (versi saran), serta Pengaturan (unduh/pulihkan cadangan, hapus) memakai data itu. Semua angka contoh dihapus. Tombol Lanjutkan, Tantangan, Bengkel, dan saran membuka misi/kasus yang tepat. Tanda ✓ misi kini per tingkat dan tetap ada setelah app ditutup.
+- **16 Nov:** tingkat F/I/E diterapkan ke 5 game Data (rincian di bawah). Sekarang semua 27 game punya tingkat.
+- **16 Nov:** tingkat F/I/E diterapkan ke 6 game Geometri (rincian di bawah). Lolos uji otomatis seperti Aljabar.
 - **16 Nov:** tingkat F/I/E diterapkan ke 9 game Aljabar (rincian di bawah). Tiap tingkat: 3 misi, minimal 3 kasus harian, rumus Aturan sendiri. Lolos uji otomatis: semua misi, kasus harian, dan tombol Berikutnya bisa diselesaikan.
 - **16 Nov:** semua layar dipindah dari kanvas ke satu `index.html`. Kanvas v4 sekarang hanya arsip.
 - **16 Nov:** crash tombol "?" diperbaiki di semua game. Panel bantuan sekarang memakai `this.state.help` dan `this.state.gmMenu`.
@@ -12,14 +21,13 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-1. **Faiq menguji game Bilangan, game Aljabar per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
+0. **Faiq mencoba alur Kasus harian baru di Ubin** (salin prompt → proyek Claude → tempel). Kalau alurnya enak, tahap 2: 6 game Bilangan lain, lalu Aljabar, Geometri, Data. Timbangan juga masih perlu kasus berangka baru.
+1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
-3. **Tingkat Geometri, lalu Data:** cek tabel "Temuan F → I → E" di `konsep.md`, ajukan usulan singkat dulu.
-4. **Tanda Selesai per tingkat** (sekarang masih per nomor misi). Bintang diambil dari progres asli, bukan data contoh.
-5. **Tahap berikutnya:**
-   - kasus harian lewat prompt → JSON → validator (tiap kasus punya `tingkat`);
+3. **Cek Celah versi tes:** 2 tantangan singkat per game yang menyarankan tingkat (ditunda, disetujui Faiq 16 Nov).
+4. **Tahap berikutnya:**
+   - kasus harian lewat prompt → JSON → validator (tiap kasus punya `tingkat`); **prioritas**, karena kasus harian sekarang berulang dan membuat ★2 serta Tantangan terlalu mudah;
    - Koleksi Rumus;
-   - Bengkel dan Cek Celah memakai data nyata.
 
 ## Rincian tingkat 7 game Bilangan (sudah diterapkan)
 - **Kasir Kilat**
@@ -79,6 +87,44 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
 - Kerangka 6 game terbaru: `this.TM`/`this.TN`/`this.TO` per tingkat (misi, nama, aturan), `curM()`, `genMission` membaca tingkat aktif. Tombol Berikutnya membuang klaim (`verdict`) dari soal acak.
 - Teks Mini Games untuk Timbangan Balon, Meja Hajatan E, dan Rekap Grosir E disesuaikan.
 
+## Rincian tingkat 6 game Geometri (sudah diterapkan 16 Nov)
+Kerangka sama dengan 6 game Aljabar terbaru (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus harian klaim baru (`f3`).
+- **Rute Kurir:** F antar paket (2, 3, 4 jalan ditutup) · I langkah Andi/Budi, tali rafia, klaim Budi · E bundaran 36 pojok, taman 12 pojok, taman 7 pojok tak beraturan. Aturan F baru: blok terpendek = x + y. Kasus harian E baru: r9.
+- **Pasang Lantai:** F kamar, gudang, ruang rapat (dengan aula di luar papan) · I 2 teras miring, taman segitiga · E kaca meja r 50, 30, 70.
+- **Gudang Kardus:** F kardus sabun, mi, jumbo · I akuarium L, segitiga, kolam · E wadah lancip 6×6×10, 9×9×8, 12×12×15.
+- **Cetak Spanduk:** F logo dibesarkan (8, tegak 6), dikecilkan (8→4) · I tinta 6×, 3×, klaim 2× · E pohon, menara air, tiang bendera.
+- **Tangga Bangunan:** F persegi 3-4/6-8, 2-4/5-12, 1-3/8-15 · I kaki tangga 3 soal, klaim 13−12 · E miring 30°, 45°, 60°. Teks `tujuan` f1/f2 yang salah sisi diperbaiki.
+- **Pelabuhan:** F peta laut 3 soal · I radar 3 soal · E dua menara 3 soal. Urutan I/E tetap seperti di game (radar dulu), berbeda dengan tabel konsep.
+
+## Rincian tingkat 5 game Data (sudah diterapkan 16 Nov)
+Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus harian `f3`.
+- **Loker OSIS:** F outfit 2 jenis, 3 jenis, klaim 2+3+2 · I paket kantin 2 grup, 3 grup, klaim 5×4 · E PIN boleh kembar, tanpa kembar, klaim 10+10+10.
+- **Pentas Seni:** F urutan 4&6, 5&8, klaim 6×6 · I papan dari 5, dari 8, klaim 8×720 · E 8 calon, 10 calon, 4 jabatan dari 7. Aturan I baru: urutan n = n × urutan (n − 1).
+- **Undian Doorprize:** F peluang kupon 3 kotak (klaim "4 persen") · I dadu, kupon 250 peserta, koin 500 (klaim "pasti tepat") · E bola, genap atau kelipatan 3, setidaknya satu biru. Aturan F baru: m ÷ n × 100. `genMission` menyesuaikan jenis papan.
+- **Rapor Kelas:** F rekap 10 nilai, 12 nilai (KKM 75), klaim selisih · I meratakan, nilai keempat, siswa pindahan · E 11 nilai, 10 nilai (genap), skor ekstrem 25. Aturan F baru: selisih = a − b.
+- **Grafik Viral:** F garis, batang, lingkaran · I sumbu terpotong 3 grafik (klaim "dua kali lipat") · E judul naik 300%, naik 3 kali lipat, anjlok tiga perempat.
+- Teks `tujuan` f1/f2 Pentas Seni yang salah jumlah kelompok diperbaiki.
+
+## Progres nyata (16 Nov)
+- Modul `FMP` (di atas blok Navigasi) menyimpan `fm.progress`: `ev` (setiap misi/kasus: game, tingkat, benar/gagal), `tiers` (misi selesai dan aturan lolos per game-tingkat), `journal`, `guesses` (dugaan ditolak), `bengkel`, `fixed`, `last`, `tant`, `lab`.
+- Game tidak diubah satu per satu: `show()` membungkus kelas game dengan `FMP.wrap`, yang mengamati `setState` (stage selesai, "Kesempatan habis", `rules` bertambah, `customs` bertambah) dan tombol Uji di Aturan.
+- Bintang: ★1 misi 1–3 selesai, ★2 ≥ syarat Pengaturan (default 8) dari 10 kasus harian terakhir, ★3 satu aturan lolos.
+- Tautan langsung: `FMP.go({key, g, l, mode, idx, id, regen})` lalu `FMP.applyOpen` di `show()`. Kasus harian dibuka dengan mengganti `todayIdx` sementara.
+- Pohon Temuan: subbab menyala bila game itu punya aturan lolos di tingkat yang sama dengan level subbab.
+- Batas: Timbangan belum mencatat dugaan yang ditolak (Aturannya berbeda bentuk). Kasus harian di Bengkel dibuka dengan soal yang sama.
+
+## Kasus harian berangka baru (16 Nov)
+- Ada di modul `FMP`: `genCase(key, tingkat, hari, slot)` membuat instance game sementara, membuka misi, menekan tombol soal acak milik misi itu ("Berikutnya", "… lain", "… berikutnya") dengan `Math.random` berbenih (game + tingkat + hari + slot), lalu menyimpan `P` hasilnya sebagai kasus ber-`id` `a<hari><tingkat><slot>`, `konteks` "Angka baru n", `gen: true`.
+- `FMP.wrap` menimpa `todayIdx` (1 kasus cerita `pool[hari % n]` + 2 kasus buatan, dimasukkan ke `this.H`) dan `loadCase` (berbenih, jadi soal yang sama tampil sama sepanjang hari). `applyOpen` dan `tantangan()` mengenali id buatan; Tantangan mendahulukan kasus buatan.
+- Tingkat yang misinya tidak punya tombol soal acak memakai tabel `EXTRA` di `FMP`: Jadwal Bus I (pita) dan E (hari), Ubin I (aula diperluas), Bagi Pizza I (papan sisa).
+- Batas: variasi beberapa pembuat soal masih sedikit (Cetak Spanduk F dan Grafik Viral F hanya 3 bentuk, Pasang Lantai E 5, Pentas Seni I 6). Kasus buatan memakai cerita pendek umum dari tombol Berikutnya, dan tidak berisi klaim; klaim hanya ada di kasus cerita.
+
+## Kasus tempelan: prompt → JSON → validator (16 Nov, tahap 1)
+- Semua di modul `FMP`: `CASES[game][tingkat]` (teks prompt per tingkat), `casePrompt` (5 kasus, konteks diacak dari 16 pilihan, 2 kasus diminta berisi klaim atau target mustahil), `BUILD[game]` (pemeriksa per game; baru `buildUbin`), `caseAdd`, `caseStored`, `caseRemove`.
+- JSON dari Claude **tidak berisi kunci dan tidak berisi tujuan**. App menulis `tujuan` dari templat tetap dan menghitung sendiri: jawaban klaim (`verdict.correct`) dan apakah target mustahil (`impossible`).
+- Yang ditolak: tingkat tidak cocok, angka di luar batas papan, cerita > 3 kalimat, angka kasus tidak tertulis di cerita, kata terlarang (`LARANG`: faktor, kelipatan, rumus, dst.; tanda kali untuk Ubin F), tokoh klaim tidak ada di cerita, angka sama dengan misi/kasus yang sudah ada.
+- Kasus lolos disimpan di `fm.progress.cases[game]` (ikut cadangan dan Hapus semua data), dimasukkan ke `this.H` oleh `FMP.wrap`, dan ikut bergiliran sebagai kasus cerita di tab Harian (1 per hari) serta di Tantangan. Tombol Mainkan di layar `KasusBaru` membukanya langsung.
+- Menambah game lain: isi `CASES[game]` dan tulis `BUILD[game]`; layar `KasusBaru` masih mengunci `key: 'Ubin'`.
+
 ## Catatan
-- 11 game Geometri dan Data belum punya pilihan tingkat.
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.

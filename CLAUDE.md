@@ -38,6 +38,8 @@ Baca file ini dan `RENCANA.md` sebelum mengubah apa pun. Dokumen konsep lengkap 
   - ★2: tepat 8 dari 10 kasus terakhir;
   - ★3: satu aturan lolos uji.
 - Tab bawah: Beranda, Mini Games, Progres, Jurnal, Temuan.
+- Semua halaman non-game membaca progres asli lewat `FMP`. Jangan menulis angka contoh lagi.
+- Kasus harian per tingkat per hari: 1 kasus cerita (bergilir, termasuk kasus tempelan) + 2 kasus "Angka baru" buatan `FMP.genCase`. Lihat RENCANA.md.
 
 ## Struktur kode `index.html`
 Satu file, tanpa build.
@@ -55,6 +57,7 @@ Satu file, tanpa build.
   - `fm.minigames.return` {mat, lvl, g, t}
   - `fm.lastLvl` {namaGame: lvl}
   - `fm.settings`
+  - `fm.progress` (progres pemain, lihat modul `FMP` dan RENCANA.md)
 - **Pola tingkat (contoh di 7 game Bilangan):**
   - `this.T = {F:[...3 misi], I:[...], E:[...]}`;
   - `initLvl()`, `curLvl()`, `setLvl(l)`;
