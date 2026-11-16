@@ -72,7 +72,7 @@ Satu file, tanpa build.
 - **Sebelum menyisipkan kode yang sama ke banyak game, cek nama variabel di tiap game.** Game Aljabar, Geometri, dan Data dibuat terpisah, jadi strukturnya berbeda.
 
 ## Cara menguji
-- **Faiq memakai iPad mini 7 (744 × 1133).** Uji di ukuran itu dan di ukuran ponsel (390 × 844). App mengikuti lebar layar (maks. 834 px); jangan mengunci lebar 390 px.
+- **Faiq memakai iPad mini 7 (744 × 1133).** Uji di ukuran itu dan di ukuran ponsel (390 × 844). Di layar ≥ 600 px app diperbesar proporsional (zoom = min(lebar/390, tinggi/844), skrip di akhir `index.html`), jadi tampilan iPad sama bentuknya dengan ponsel, hanya lebih besar; jangan merentang elemen melebar dan jangan mengunci lebar 390 px.
 - Buka `index.html` di browser. Pastikan setiap layar tampil (tidak muncul kotak merah "Layar … gagal dibuka").
 - Ketuk tombol-tombolnya. Tidak boleh ada error di console.
 - Periksa juga aturan anti-clue di atas.
