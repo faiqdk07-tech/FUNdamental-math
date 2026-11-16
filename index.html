@@ -12,7 +12,9 @@ html,body{margin:0;background:#EDECE8}
 body{-webkit-tap-highlight-color:transparent}
 a{color:#2F5BD3}a:hover{color:#1E3F9E}
 button{font:inherit}
-#root{max-width:480px;margin:0 auto;background:#F7F7F5;min-height:100vh}
+#root{max-width:834px;margin:0 auto;background:#F7F7F5;min-height:100vh}
+/* Layar mengikuti lebar perangkat: ponsel sampai iPad mini 7 (744 px) */
+#root>div>div{width:100%!important}
 #root>div{width:100%!important;height:100vh!important;height:100dvh!important}
 #root [style*="height: 844px"]{height:100vh!important;height:100dvh!important}
 #err{margin:16px;padding:12px;border:1px solid #E3A08F;background:#FDF1EE;color:#8A2A12;border-radius:6px;font:13px/1.45 Inter,system-ui,sans-serif;white-space:pre-wrap}
@@ -369,7 +371,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-da-grafik .px-inner path[fill="#EFE6D2"]{fill:#FFC83D;stroke:#2B1D1A;stroke-width:2}
 /* ===== Layar non-game sebagai ruangan: gambar ruangan di atas, latar polos, isi jadi benda khas ===== */
 #root.px-room>div>div{background-image:none!important}
-#root.px-room>div>div>div:first-child::before{content:"";flex:none;display:block;margin:-16px -16px 2px;height:120px;background:var(--px-room) center bottom / 100% auto no-repeat;image-rendering:pixelated;border-bottom:4px solid #2B1D1A}
+#root.px-room>div>div>div:first-child::before{content:"";flex:none;display:block;margin:-16px -16px 2px;height:auto;aspect-ratio:195 / 50;background:var(--px-room) center bottom / 100% 100% no-repeat;image-rendering:pixelated;border-bottom:4px solid #2B1D1A}
 #root.px-p-Progres>div>div{background-color:#EDE4F5!important}
 #root.px-p-Jurnal>div>div{background-color:#F6EEDC!important}
 #root.px-p-PohonTemuan>div>div{background-color:#E6F4DC!important}
@@ -421,6 +423,13 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-gname{font-size:15px;font-weight:700;line-height:1.2;color:#3B2414}
 .px-gtask{font-size:12px;line-height:1.35;margin-top:4px;background:#FFF6E0;color:#4B4B57;padding:4px 6px;box-shadow:0 0 0 2px #8A5A32}
 .px-ribbon{display:inline-block;font-size:11px;background:#E8554E;color:#FFFFFF;padding:1px 10px 2px 6px;clip-path:polygon(0 0,100% 0,88% 50%,100% 100%,0 100%);font-weight:700}
+/* ===== Layar lebar (iPad mini 7, 744 px) ===== */
+.px-map{max-width:calc((100dvh - 300px) * 195 / 290);margin:0 auto}
+@media (min-width:600px){
+.px-grid2:has(> a.px-shopboard){grid-template-columns:repeat(3,minmax(0,1fr))}
+.px-grid2:has(> .px-matbtn){max-width:560px;margin:0 auto;width:100%}
+.px-page,.px-wall{padding-left:16px!important;padding-right:16px!important}
+}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
