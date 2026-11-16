@@ -444,6 +444,66 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-starrule i{width:20px;height:20px;background:var(--px-bintang) center/contain no-repeat;image-rendering:pixelated}
 .px-pinnote{position:relative;margin:6px 10px 2px;padding:12px 12px 8px;background:#FFFCF2;box-shadow:0 0 0 2px #2B1D1A,3px 3px 0 rgba(43,29,26,.2);font-size:12px;color:#3B2414;text-align:center;transform:rotate(-1deg)}
 .px-pinnote::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#E8554E;box-shadow:0 0 0 2px #2B1D1A}
+/* ===== Pengaturan: panel kendali ===== */
+.px-ctl{position:relative;background:#C9D1DC;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #E4E9F0,inset 0 -4px 0 #8C97A8;padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px;background-image:radial-gradient(circle,#7C879A 0 2px,transparent 2.5px),radial-gradient(circle,#7C879A 0 2px,transparent 2.5px),radial-gradient(circle,#7C879A 0 2px,transparent 2.5px),radial-gradient(circle,#7C879A 0 2px,transparent 2.5px);background-size:8px 8px;background-repeat:no-repeat;background-position:5px 5px,calc(100% - 5px) 5px,5px calc(100% - 7px),calc(100% - 5px) calc(100% - 7px)}
+.px-ctl-h{align-self:flex-start;background:#3E4050;color:#FFF6E0;font-size:13px;padding:2px 10px 3px;box-shadow:0 0 0 2px #2B1D1A;margin-left:6px}
+.px-ctl-sub{font-size:13px;color:#2B1D1A}
+.px-ctl-note{font-size:12px;color:#3E4050}
+.px-keys{display:flex;gap:8px;flex-wrap:wrap}
+.px-key{display:flex;align-items:center;gap:6px;padding:6px 12px 8px;border:0;cursor:pointer;background:#F2F4F7;color:#2B1D1A;font-size:13px;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #A7B0BE}
+.px-key i{width:9px;height:9px;border-radius:50%;background:#7C879A;box-shadow:0 0 0 1.5px #2B1D1A}
+.px-key.on{transform:translateY(2px);box-shadow:0 0 0 2px #2B1D1A,inset 0 -2px 0 #E39A1C;background:#FFC83D;font-weight:700}
+.px-key.on i{background:#5BE07A}
+.px-ctl-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 10px;background:#F2F4F7;box-shadow:0 0 0 2px #2B1D1A;color:#2B1D1A}
+.px-ctl-row small{font-size:12px;color:#3E4050}
+.px-knob{width:30px;height:30px;padding:0;border:0;border-radius:50%;background:#F2F4F7;box-shadow:0 0 0 2px #2B1D1A,inset 0 -3px 0 #A7B0BE;font:inherit;font-size:17px;font-weight:700;cursor:pointer}
+.px-lcd{min-width:30px;text-align:center;padding:2px 6px;background:#24332A;color:#7DF29A;font-weight:700;box-shadow:0 0 0 2px #2B1D1A;font-variant-numeric:tabular-nums}
+.px-pbtn{flex:none;padding:5px 12px 7px;border:0;cursor:pointer;background:#FFC83D;color:#2B1D1A;font-size:13px;box-shadow:0 0 0 2px #2B1D1A,inset 0 -3px 0 #E39A1C}
+.px-pbtn.px-red{background:#E8554E;color:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A,inset 0 -3px 0 #A32D2D}
+.px-ctl-warn{display:flex;flex-direction:column;gap:8px;padding:10px;background:#FCEBEB;box-shadow:0 0 0 2px #A32D2D;color:#791F1F;font-size:13px}
+.px-lcdmsg{padding:8px 10px;background:#24332A;color:#7DF29A;box-shadow:0 0 0 2px #2B1D1A;font-size:13px}
+/* ===== Tantangan: papan gabus ===== */
+.px-cork{display:flex;flex-direction:column;gap:12px;padding:16px 14px;background:#C99A5B;box-shadow:0 0 0 3px #2B1D1A,inset 0 0 0 6px #8A5A32,inset 0 0 0 8px #2B1D1A;padding:22px 20px}
+.px-cnote{position:relative;display:flex;align-items:center;gap:10px;padding:12px 12px 10px;background:#FFFCF2;box-shadow:0 0 0 2px #2B1D1A,3px 3px 0 rgba(43,29,26,.25);color:#2B1D1A;text-decoration:none}
+.px-cnote:nth-child(odd){transform:rotate(-.8deg)}.px-cnote:nth-child(even){transform:rotate(.8deg)}
+.px-cnote::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#E8554E;box-shadow:0 0 0 2px #2B1D1A}
+.px-cnote small{font-size:12px;color:#5A5048}
+.px-cnum{flex:none;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;background:#E8E2D0;box-shadow:0 0 0 2px #2B1D1A}
+.px-cic{flex:none;width:28px;height:28px;image-rendering:pixelated}
+.px-cst{flex:none;font-size:12px;padding:1px 8px 2px;color:#5A5048;box-shadow:0 0 0 1.5px #8C8B85}
+.px-cnote.now{background:#FFF3C4}.px-cnote.now .px-cnum{background:#FFC83D}.px-cnote.now .px-cst{color:#2B1D1A;background:#FFC83D;box-shadow:0 0 0 2px #2B1D1A;font-weight:700}
+.px-cnote.done .px-cnum{background:#BFE8C9;color:#1F7A4D}.px-cnote.done .px-cst{color:#1F7A4D;box-shadow:0 0 0 2px #1F7A4D;font-weight:700;transform:rotate(-6deg)}
+.px-cnote.done b{color:#5A5048}
+/* ===== Bengkel: meja kerja dan rak tunggu ===== */
+.px-bench{position:relative;display:flex;flex-direction:column;gap:10px;padding:12px 12px 26px;background:#E9D3AE;box-shadow:0 0 0 2px #2B1D1A}
+.px-bench-top{position:absolute;left:-6px;right:-6px;bottom:0;height:14px;background:#A8773F;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #C99A5B}
+.px-bench-h{align-self:flex-start;background:#8A5A32;color:#FFF6E0;font-size:13px;padding:2px 10px 3px;box-shadow:0 0 0 2px #2B1D1A}
+.px-rtag{position:relative;display:flex;align-items:center;gap:10px;padding:10px 12px 10px 26px;background:#F5E3C0;color:#2B1D1A;text-decoration:none;box-shadow:0 0 0 2px #2B1D1A,0 3px 0 rgba(43,29,26,.2);border-left:4px solid #C99A5B}
+.px-rtag::before{content:"";position:absolute;left:10px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:#E9D3AE;box-shadow:0 0 0 2px #2B1D1A}
+.px-rtag small{font-size:12px;color:#5A5048}
+.px-rdate{flex:none;font-size:12px;font-weight:600;color:#A32D2D}
+.px-rtag.empty{font-size:13px;color:#5A5048}
+.px-rack{display:flex;flex-direction:column;gap:10px;padding:12px;background:#D9DEE6;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #A7B0BE}
+.px-rack,.px-bench{align-items:stretch!important}.px-rack>.px-rtag,.px-bench>.px-rtag{align-self:stretch;margin:0!important}.px-rack>.px-bench-h,.px-bench>.px-bench-h{align-self:flex-start}
+.px-rtag.wait{background:#EEF0F4}.px-rtag.wait .px-rdate{color:#3E4050}
+/* ===== Cek celah: buku pengamatan langit ===== */
+.px-sky{display:flex;flex-direction:column;gap:6px;padding:12px;background:#24304A;box-shadow:0 0 0 2px #2B1D1A,inset 0 0 0 4px #3B4A6B}
+.px-sky-h{font-size:12px;color:#BFD6F2}
+.px-obs{display:flex;align-items:center;gap:10px;padding:8px 10px;background:#2E3B58;box-shadow:0 0 0 1.5px #3B4A6B;color:#FFF6E0;text-decoration:none;font-size:14px}
+.px-moon{flex:none;width:18px;height:18px;border-radius:50%;background:conic-gradient(#FFC83D var(--p),#3B4A6B 0);box-shadow:0 0 0 2px #10172A}
+.px-obs-st{flex:none;font-size:12px;color:#BFD6F2}
+.px-sky-legend{font-size:11px;color:#BFD6F2;margin-top:4px}
+/* ===== Kasus baru: kantor pos (perangko, surat, kartu pos) ===== */
+.px-stamps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.px-stamp{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px 6px;border:0;cursor:pointer;background:#FFFCF2;color:#2B1D1A;font-size:12px;line-height:1.2;outline:2px dashed #C9C2AE;outline-offset:-5px;box-shadow:0 0 0 2px #2B1D1A}
+.px-stamp img{width:28px;height:28px;image-rendering:pixelated}
+.px-stamp.on{background:#FFF3C4;outline-color:#E39A1C;font-weight:700;box-shadow:0 0 0 3px #2B1D1A}
+.px-letter{display:flex;flex-direction:column;gap:8px;padding:12px;background:#FFFCF2;box-shadow:0 0 0 2px #2B1D1A,3px 3px 0 rgba(43,29,26,.2);border-top:6px solid #E8554E}
+.px-letter-h{font-size:14px;font-weight:700;color:#2B1D1A}
+.px-letter-body{max-height:120px;overflow-y:auto;white-space:pre-wrap;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#3B2414;background:#F3ECDA;padding:8px;box-shadow:inset 0 0 0 1.5px #C9C2AE}
+.px-letter textarea{border:0!important;box-shadow:inset 0 0 0 1.5px #C9C2AE;background:#F3ECDA!important;border-radius:0!important}
+.px-pbtn.px-light{background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A,inset 0 -3px 0 #C9C2AE}
+.px-pcard{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#FFFCF2;box-shadow:0 0 0 2px #2B1D1A;border-left:6px solid #4C7BD9}
 /* ===== Layar lebar (iPad mini 7, 744 px) ===== */
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 300px) * 195 / 290) * 255 / 195)}
 @media (min-width:600px){
@@ -825,33 +885,30 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <template id="tpl-Bengkel"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
-<a href="Main.dc.html" aria-label="Kembali ke beranda" style="display: flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
-<div style="min-width: 0"><div style="font-size: 18px; font-weight: 600">Bengkel kesalahan</div></div>
+<a href="Main.dc.html" aria-label="Kembali ke beranda" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
+<div class="px-f" style="font-size: 20px; font-weight: 700">Bengkel kesalahan</div>
 </div>
-<div style="font-size: 13px; color: #444441">Misi atau kasus yang kesempatannya habis kembali paling cepat besok. Misi datang dengan angka baru, jadi yang dilatih caranya, bukan hafalan jawaban.</div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Siap diperbaiki hari ini · {{readyCount}}</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
+<div style="font-size: 13px; color: #3B2414">Misi atau kasus yang kesempatannya habis kembali paling cepat besok. Misi datang dengan angka baru, jadi yang dilatih caranya, bukan hafalan jawaban.</div>
+<div class="px-bench">
+<div class="px-bench-h px-f">Siap diperbaiki hari ini · {{readyCount}}</div>
 <sc-for list="{{ready}}" as="r" hint-placeholder-count="2">
-<a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span style="font-weight: 500">{{r.game}}</span><span style="font-size: 12px; color: #66655F">{{r.level}}</span></span><span style="font-size: 12px; color: #66655F">gagal {{r.date}} ›</span></a>
+<a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="px-rtag"><img alt="" src="{{r.ic}}" class="px-cic"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f" style="font-size: 15px">{{r.game}}</b><small>{{r.level}}</small></span><span class="px-rdate">gagal {{r.date}} ›</span></a>
 </sc-for>
 <sc-if value="{{noReady}}" hint-placeholder-val="{{ false }}">
-<div style="padding: 10px 12px; font-size: 13px; color: #66655F">Belum ada kasus yang perlu diperbaiki hari ini.</div>
+<div class="px-rtag empty">Belum ada kasus yang perlu diperbaiki hari ini.</div>
 </sc-if>
+<div class="px-bench-top"></div>
 </div>
-</div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Menunggu</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
-<sc-if value="{{noWaiting}}" hint-placeholder-val="{{ false }}"><div style="padding: 10px 12px; font-size: 13px; color: #66655F">Tidak ada.</div></sc-if>
+<div class="px-rack">
+<div class="px-bench-h px-f">Menunggu</div>
+<sc-if value="{{noWaiting}}" hint-placeholder-val="{{ false }}"><div class="px-rtag empty">Tidak ada.</div></sc-if>
 <sc-for list="{{waiting}}" as="w" hint-placeholder-count="1">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7; color: #66655F"><span style="display: flex; flex-direction: column"><span>{{w.game}}</span><span style="font-size: 12px">{{w.level}}</span></span><span style="font-size: 12px">{{w.when}}</span></div>
+<div class="px-rtag wait"><img alt="" src="{{w.ic}}" class="px-cic"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f">{{w.game}}</b><small>{{w.level}}</small></span><span class="px-rdate">{{w.when}}</span></div>
 </sc-for>
 </div>
-</div>
-<div style="font-size: 12px; color: #66655F">Diperbaiki minggu ini: {{weekFixed}} kasus</div>
+<div style="font-size: 12px; color: #3B2414">Diperbaiki minggu ini: {{weekFixed}} kasus</div>
 <sc-if value="{{hasReady}}" hint-placeholder-val="{{ true }}">
-<a href="{{firstHref}}" onClick="{{firstTap}}" style="display: block; text-align: center; padding: 10px; border-radius: 6px; background: #2F5BD3; color: #FFFFFF; text-decoration: none; font-weight: 500">Perbaiki sekarang ({{readyCount}})</a>
+<a href="{{firstHref}}" onClick="{{firstTap}}" class="px-pbtn px-f" style="display: block; text-align: center; font-size: 16px; padding: 10px; text-decoration: none">Perbaiki sekarang ({{readyCount}})</a>
 </sc-if>
 </div>
 
@@ -859,25 +916,23 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <template id="tpl-CekCelah"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
-<a href="Main.dc.html" aria-label="Kembali ke beranda" style="display: flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
-<div style="min-width: 0"><div style="font-size: 18px; font-weight: 600">Cek celah</div></div>
+<a href="Main.dc.html" aria-label="Kembali ke beranda" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
+<div class="px-f" style="font-size: 20px; font-weight: 700">Cek celah</div>
 </div>
-<div style="font-size: 13px; color: #444441">Saran tingkat untuk tiap game, dihitung dari progresmu. Versi tes singkat per game menyusul.</div>
-<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<div style="font-size: 13px; color: #2B2F45">Saran tingkat untuk tiap game, dihitung dari progresmu. Versi tes singkat per game menyusul.</div>
+<div class="px-tree-tabs">
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" style="{{m.style}}">{{m.label}}</button>
+<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" class="px-tree-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
 </sc-for>
 </div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">{{when}}</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
+<div class="px-sky">
+<div class="px-sky-h">{{when}}</div>
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
-<a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span>{{r.name}}</span><span style="font-size: 12px; color: {{r.col}}">{{r.sym}} {{r.status}}</span></a>
+<a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="px-obs"><i class="px-moon" style="--p: {{r.ph}}"></i><span class="px-f" style="flex: 1; min-width: 0">{{r.name}}</span><span class="px-obs-st">{{r.sym}} {{r.status}}</span></a>
 </sc-for>
+<div class="px-sky-legend">● ketiga tingkat berbintang · ◕ lanjut Expert · ◐ lanjut Intermediate · ◔ mulai Fundamental · ○ belum dicoba</div>
 </div>
-<div style="font-size: 11px; color: #66655F; margin-top: 6px">● ketiga tingkat berbintang · ◕ lanjut Expert · ◐ lanjut Intermediate · ◔ mulai Fundamental · ○ belum dicoba</div>
-</div>
-<a href="{{startHref}}" onClick="{{startTap}}" style="display: block; text-align: center; padding: 10px; border-radius: 6px; background: #2F5BD3; color: #FFFFFF; text-decoration: none; font-weight: 500">{{startLabel}}</a>
+<a href="{{startHref}}" onClick="{{startTap}}" class="px-pbtn px-f" style="display: block; text-align: center; font-size: 16px; padding: 10px; text-decoration: none">{{startLabel}}</a>
 </div>
 
 </div></template>
@@ -3769,43 +3824,41 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <template id="tpl-KasusBaru"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
-<a href="Pengaturan.dc.html" aria-label="Kembali ke pengaturan" style="display: flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
-<div style="min-width: 0"><div style="font-size: 18px; font-weight: 600">Kasus harian baru</div><div style="font-size: 12px; color: #66655F">{{sub}}</div></div>
+<a href="Pengaturan.dc.html" aria-label="Kembali ke pengaturan" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
+<div style="min-width: 0"><div class="px-f" style="font-size: 20px; font-weight: 700">Kasus harian baru</div><div style="font-size: 12px; color: #3E4050">{{sub}}</div></div>
 </div>
-<div style="font-size: 13px; color: #444441">Tiap game butuh kasus segar untuk hari-hari berikutnya. Pilih game, salin pesanannya, jalankan di proyek Claude, lalu tempel jawabannya di sini. App memeriksa tiap kasus dan menghitung kuncinya sendiri.</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
-<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<div style="font-size: 13px; color: #3B2414">Tiap game butuh kasus segar untuk hari-hari berikutnya. Pilih game, salin pesanannya, jalankan di proyek Claude, lalu tempel jawabannya di sini. App memeriksa tiap kasus dan menghitung kuncinya sendiri.</div>
+<div class="px-tree-tabs">
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" style="{{m.style}}">{{m.label}}</button>
+<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" class="px-tree-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
 </sc-for>
 </div>
-<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<div class="px-stamps">
 <sc-for list="{{games}}" as="g" hint-placeholder-count="6">
-<button type="button" onClick="{{g.tap}}" aria-label="{{g.aria}}" style="{{g.style}}">{{g.label}}</button>
+<button type="button" onClick="{{g.tap}}" aria-label="{{g.aria}}" class="px-stamp {{g.on}}"><img alt="" src="{{g.ic}}"><span class="px-f">{{g.label}}</span></button>
 </sc-for>
 </div>
-</div>
-<div style="display: flex; gap: 6px">
+<div class="px-keys">
 <sc-for list="{{tiers}}" as="t" hint-placeholder-count="3">
-<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" style="{{t.style}}">{{t.label}}</button>
+<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" class="px-key {{t.on}}"><i></i><span class="px-f">{{t.label}}</span></button>
 </sc-for>
 </div>
 <div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">1. Salin prompt</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
-<div style="max-height: 120px; overflow-y: auto; white-space: pre-wrap; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #444441; background: #F7F7F5; border-radius: 5px; padding: 8px">{{prompt}}</div>
+<div class="px-letter">
+<div class="px-letter-h px-f">1. Salin prompt</div>
+<div class="px-letter-body">{{prompt}}</div>
 <div style="display: flex; gap: 6px; justify-content: flex-end">
-<button type="button" onClick="{{regen}}" style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Prompt lain</button>
-<button type="button" onClick="{{copy}}" style="padding: 6px 12px; border: 0; border-radius: 6px; background: #1C1C1A; color: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Salin prompt</button>
+<button type="button" onClick="{{regen}}" class="px-pbtn px-light px-f">Prompt lain</button>
+<button type="button" onClick="{{copy}}" class="px-pbtn px-f">Salin prompt</button>
 </div>
 </div>
 </div>
 <div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">2. Tempel jawaban Claude</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+<div class="px-letter">
+<div class="px-letter-h px-f">2. Tempel jawaban Claude</div>
 <textarea id="kb-paste" aria-label="Tempel JSON jawaban di sini" placeholder="Tempel JSON di sini" onChange="{{typed}}" style="width: 100%; box-sizing: border-box; height: 110px; resize: none; border: 1px solid #DDDCD7; border-radius: 5px; padding: 8px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #1C1C1A; background: #FFFFFF"></textarea>
 <div style="display: flex; justify-content: flex-end">
-<button type="button" onClick="{{check}}" style="padding: 6px 12px; border: 0; border-radius: 6px; background: #1C1C1A; color: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Periksa dan simpan</button>
+<button type="button" onClick="{{check}}" class="px-pbtn px-f">Periksa dan simpan</button>
 </div>
 </div>
 </div>
@@ -3813,96 +3866,84 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div style="{{msgStyle}}">{{msg}}</div>
 </sc-if>
 <sc-if value="{{hasBad}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
+<div class="px-ctl-warn" style="gap: 4px">
 <sc-for list="{{bad}}" as="b" hint-placeholder-count="2">
-<div style="padding: 8px 12px; border-bottom: 1px solid #ECEBE7; font-size: 13px"><span style="font-weight: 600">Kasus ke-{{b.no}} ditolak:</span> {{b.why}}.</div>
+<div style="font-size: 13px"><span style="font-weight: 600">Kasus ke-{{b.no}} ditolak:</span> {{b.why}}.</div>
 </sc-for>
 </div>
 </sc-if>
 <div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">{{storedTitle}}</div>
+<div class="px-bench-h px-f" style="margin-bottom: 8px">{{storedTitle}}</div>
 <sc-if value="{{noStored}}" hint-placeholder-val="{{ false }}">
-<div style="border: 1px dashed #B9B8B2; border-radius: 6px; padding: 12px; font-size: 13px; color: #66655F">Belum ada kasus tambahan di tingkat ini.</div>
+<div class="px-pcard" style="font-size: 13px; color: #5A5048">Belum ada kasus tambahan di tingkat ini.</div>
 </sc-if>
 <sc-if value="{{hasStored}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
+<div style="display: flex; flex-direction: column; gap: 8px">
 <sc-for list="{{stored}}" as="c" hint-placeholder-count="2">
-<div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid #ECEBE7">
+<div class="px-pcard">
 <span style="flex: 1; min-width: 0; font-size: 13px">{{c.label}}</span>
-<a href="{{c.href}}" onClick="{{c.play}}" style="padding: 5px 10px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font-size: 12px; color: #1C1C1A; text-decoration: none">Mainkan</a>
-<button type="button" onClick="{{c.del}}" aria-label="{{c.delAria}}" style="padding: 5px 10px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; color: #A32D2D; cursor: pointer">Hapus</button>
+<a href="{{c.href}}" onClick="{{c.play}}" class="px-pbtn px-f" style="text-decoration: none">Mainkan</a>
+<button type="button" onClick="{{c.del}}" aria-label="{{c.delAria}}" class="px-pbtn px-red px-f">Hapus</button>
 </div>
 </sc-for>
 </div>
 </sc-if>
 </div>
-<div style="font-size: 12px; color: #66655F">Kasus yang lolos ikut bergiliran di tab Harian dan ikut tersimpan di file cadangan.</div>
+<div style="font-size: 12px; color: #3B2414">Kasus yang lolos ikut bergiliran di tab Harian dan ikut tersimpan di file cadangan.</div>
 </div>
 </div></template>
 <template id="tpl-Pengaturan"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
-<a href="Main.dc.html" aria-label="Kembali ke beranda" style="display: flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
-<div style="min-width: 0"><div style="font-size: 18px; font-weight: 600">Pengaturan</div></div>
+<a href="Main.dc.html" aria-label="Kembali ke beranda" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
+<div class="px-f" style="font-size: 20px; font-weight: 700">Pengaturan</div>
 </div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Target harian</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<div class="px-ctl">
+<div class="px-ctl-h px-f">Target harian</div>
+<div class="px-keys">
 <sc-for list="{{targets}}" as="t" hint-placeholder-count="3">
-<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" style="{{t.style}}">{{t.label}}</button>
+<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" class="px-key {{t.on}}"><i></i><span class="px-f">{{t.label}}</span></button>
 </sc-for>
 </div>
-<div style="font-size: 12px; color: #66655F">{{targetNote}}</div>
+<div class="px-ctl-note">{{targetNote}}</div>
 </div>
-</div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Latihan</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span>Kasus per tingkat</span>
-<span style="display: flex; align-items: center; gap: 6px">
-<button type="button" onClick="{{perDown}}" aria-label="Kurangi kasus per tingkat" style="width: 28px; height: 28px; padding: 0; border: 1px solid #DDDCD7; border-radius: 5px; background: #FFFFFF; font: inherit; font-size: 15px; cursor: pointer; color: {{perDownCol}}">−</button>
-<span style="min-width: 20px; text-align: center; font-weight: 600">{{per}}</span>
-<button type="button" onClick="{{perUp}}" aria-label="Tambah kasus per tingkat" style="width: 28px; height: 28px; padding: 0; border: 1px solid #DDDCD7; border-radius: 5px; background: #FFFFFF; font: inherit; font-size: 15px; cursor: pointer; color: {{perUpCol}}">+</button>
+<div class="px-ctl">
+<div class="px-ctl-h px-f">Latihan</div>
+<div class="px-ctl-row"><span>Kasus per tingkat</span>
+<span style="display: flex; align-items: center; gap: 8px">
+<button type="button" onClick="{{perDown}}" aria-label="Kurangi kasus per tingkat" class="px-knob" style="color: {{perDownCol}}">−</button>
+<span class="px-lcd">{{per}}</span>
+<button type="button" onClick="{{perUp}}" aria-label="Tambah kasus per tingkat" class="px-knob" style="color: {{perUpCol}}">+</button>
 </span></div>
-<div style="padding: 10px 12px; border-bottom: 1px solid #ECEBE7; display: flex; flex-direction: column; gap: 6px"><span>Syarat tingkat tuntas</span>
-<span style="display: flex; gap: 6px; flex-wrap: wrap">
+<div class="px-ctl-sub">Syarat tingkat tuntas</div>
+<div class="px-keys">
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="3">
-<button type="button" onClick="{{r.tap}}" aria-label="{{r.aria}}" style="{{r.style}}">{{r.label}}</button>
-</sc-for>
-</span></div>
-<sc-for list="{{toggles}}" as="tg" hint-placeholder-count="2">
-<button type="button" onClick="{{tg.tap}}" aria-label="{{tg.aria}}" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; border: 0; border-bottom: 1px solid #ECEBE7; background: transparent; font: inherit; text-align: left; cursor: pointer; color: #1C1C1A">
-<span style="display: flex; flex-direction: column"><span>{{tg.label}}</span><span style="font-size: 12px; color: #66655F">{{tg.sub}}</span></span>
-<span style="{{tg.track}}"><span style="{{tg.knob}}"></span></span>
-</button>
+<button type="button" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="px-key {{r.on}}"><i></i><span class="px-f">{{r.label}}</span></button>
 </sc-for>
 </div>
 </div>
-<div>
-<div style="font-size: 12px; color: #66655F; margin-bottom: 6px">Data</div>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Ekspor progres</span><span style="font-size: 12px; color: #66655F">Unduh file cadangan</span></span><button type="button" onClick="{{doCopy}}" style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Unduh</button></div>
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Impor progres</span><span style="font-size: 12px; color: #66655F">Pulihkan dari file cadangan</span></span><label style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Pilih file<input type="file" accept="application/json,.json" onChange="{{doImport}}" style="display: none"></label></div>
-<a href="KasusBaru.dc.html" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7"><span style="display: flex; flex-direction: column"><span>Kasus harian baru</span><span style="font-size: 12px; color: #66655F">Tambah lewat prompt, untuk 25 game</span></span><span style="font-size: 12px; color: #66655F">Buka ›</span></a>
+<div class="px-ctl">
+<div class="px-ctl-h px-f">Data</div>
+<div class="px-ctl-row"><span style="display: flex; flex-direction: column"><span>Ekspor progres</span><small>Unduh file cadangan</small></span><button type="button" onClick="{{doCopy}}" class="px-pbtn px-f">Unduh</button></div>
+<div class="px-ctl-row"><span style="display: flex; flex-direction: column"><span>Impor progres</span><small>Pulihkan dari file cadangan</small></span><label class="px-pbtn px-f">Pilih file<input type="file" accept="application/json,.json" onChange="{{doImport}}" style="display: none"></label></div>
+<a href="KasusBaru.dc.html" class="px-ctl-row" style="text-decoration: none"><span style="display: flex; flex-direction: column"><span>Kasus harian baru</span><small>Tambah lewat prompt, untuk 25 game</small></span><span class="px-pbtn px-f">Buka ›</span></a>
 <sc-if value="{{askWipe}}" hint-placeholder-val="{{ false }}">
-<div style="padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; background: #FCEBEB">
-<span style="font-size: 13px; color: #791F1F">Semua progres di perangkat ini akan terhapus dan tidak bisa dikembalikan.</span>
-<span style="display: flex; justify-content: flex-end; gap: 6px">
-<button type="button" onClick="{{cancelWipe}}" style="padding: 6px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Batal</button>
-<button type="button" onClick="{{confirmWipe}}" style="padding: 6px 12px; border: 0; border-radius: 6px; background: #A32D2D; color: #FFFFFF; font: inherit; font-size: 12px; cursor: pointer">Ya, hapus</button>
+<div class="px-ctl-warn">
+<span>Semua progres di perangkat ini akan terhapus dan tidak bisa dikembalikan.</span>
+<span style="display: flex; justify-content: flex-end; gap: 8px">
+<button type="button" onClick="{{cancelWipe}}" class="px-pbtn px-f">Batal</button>
+<button type="button" onClick="{{confirmWipe}}" class="px-pbtn px-red px-f">Ya, hapus</button>
 </span>
 </div>
 </sc-if>
 <sc-if value="{{showWipeBtn}}" hint-placeholder-val="{{ true }}">
-<button type="button" onClick="{{startWipe}}" style="width: 100%; padding: 10px 12px; border: 0; background: transparent; font: inherit; text-align: left; color: #A32D2D; cursor: pointer">Hapus semua data</button>
+<div class="px-ctl-row" style="justify-content: flex-start"><button type="button" onClick="{{startWipe}}" class="px-pbtn px-red px-f">Hapus semua data</button></div>
 </sc-if>
-</div>
 </div>
 <sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}">
-<div style="background: #E6F4EC; color: #1F7A4D; border-radius: 6px; padding: 8px 10px; font-size: 13px">{{msg}}</div>
+<div class="px-lcdmsg">{{msg}}</div>
 </sc-if>
-<div style="font-size: 12px; color: #66655F">Data tersimpan di perangkat ini. Ekspor secara berkala supaya progres tidak hilang.</div>
+<div style="font-size: 12px; color: #3E4050">Data tersimpan di perangkat ini. Ekspor secara berkala supaya progres tidak hilang.</div>
 </div>
 
 </div></template>
@@ -5163,27 +5204,28 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <template id="tpl-Tantangan"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
-<a href="Main.dc.html" aria-label="Kembali ke beranda" style="display: flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
-<div style="min-width: 0"><div style="font-size: 18px; font-weight: 600">Tantangan harian</div><div style="font-size: 12px; color: #66655F">{{dateLine}}</div></div>
+<a href="Main.dc.html" aria-label="Kembali ke beranda" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
+<div style="min-width: 0"><div class="px-f" style="font-size: 20px; font-weight: 700">Tantangan harian</div><div style="font-size: 12px; color: #3E4050">{{dateLine}}</div></div>
 </div>
-<div style="font-size: 13px; color: #444441">3 kasus campuran dari game yang sudah kamu mainkan. Campuran membuat ingatan bertahan lebih lama.</div>
+<div style="font-size: 13px; color: #3B2414">3 kasus campuran dari game yang sudah kamu mainkan. Campuran membuat ingatan bertahan lebih lama.</div>
+<div class="px-cork">
 <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
-<a href="MiniGames.dc.html" style="display: block; border: 1px dashed #B9B8B2; border-radius: 6px; padding: 14px; font-size: 13px; color: #66655F; text-decoration: none">Belum ada kasus. Mainkan satu game dulu di Mini Games, lalu tantangan harian akan diambil dari game itu.</a>
+<a href="MiniGames.dc.html" class="px-cnote" style="text-decoration: none"><span style="font-size: 13px; color: #3B2414">Belum ada kasus. Mainkan satu game dulu di Mini Games, lalu tantangan harian akan diambil dari game itu.</span></a>
 </sc-if>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px">
 <sc-for list="{{cases}}" as="c" hint-placeholder-count="3">
-<a href="{{c.href}}" onClick="{{c.tap}}" aria-label="{{c.aria}}" style="{{c.style}}">
-<span style="{{c.numStyle}}">{{c.num}}</span>
-<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="{{c.nameStyle}}">{{c.game}}</span><span style="font-size: 12px; color: #66655F">{{c.level}}</span></span>
-<span style="font-size: 12px; color: {{c.stCol}}">{{c.status}}</span>
+<a href="{{c.href}}" onClick="{{c.tap}}" aria-label="{{c.aria}}" class="px-cnote {{c.k}}">
+<span class="px-cnum px-f">{{c.num}}</span>
+<img alt="" src="{{c.ic}}" class="px-cic">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f" style="font-size: 15px">{{c.game}}</b><small>{{c.level}}</small></span>
+<span class="px-cst px-f">{{c.status}}</span>
 </a>
 </sc-for>
 </div>
 <sc-if value="{{allDone}}" hint-placeholder-val="{{ false }}">
-<div style="background: #E6F4EC; color: #1F7A4D; border-radius: 6px; padding: 10px 12px; font-size: 13px">Selesai untuk hari ini. Kasus baru muncul besok.</div>
+<div class="px-pinnote" style="margin: 4px 0 0">Selesai untuk hari ini. Kasus baru muncul besok.</div>
 </sc-if>
 <sc-if value="{{notDone}}" hint-placeholder-val="{{ true }}">
-<a href="{{nextHref}}" onClick="{{nextTap}}" style="display: block; text-align: center; padding: 10px; border-radius: 6px; background: #2F5BD3; color: #FFFFFF; text-decoration: none; font-weight: 500">{{nextLabel}}</a>
+<a href="{{nextHref}}" onClick="{{nextTap}}" class="px-pbtn px-f" style="display: block; text-align: center; font-size: 16px; padding: 10px; text-decoration: none">{{nextLabel}}</a>
 </sc-if>
 </div>
 
@@ -6903,9 +6945,9 @@ const fmt = t => { const d = new Date(t); return d.getDate() + ' ' + BL[d.getMon
 const what = b => FMP.LVN[b.l] + ' · ' + (b.k === 'misi' ? 'Misi ' + (Number(b.id) + 1) + (b.label ? ' ' + b.label : '') : 'Kasus ' + (b.label || 'harian'));
 const open = b => FMP.go({ key: b.key, g: b.g, l: b.l, mode: b.k, idx: b.k === 'misi' ? Number(b.id) : undefined, id: b.k === 'harian' ? b.id : undefined, regen: true });
 const R = p.bengkel.filter(b => FMP.dayDiff(b.t) >= 1), W = p.bengkel.filter(b => FMP.dayDiff(b.t) < 1);
-const ready = R.map(b => ({ game: b.g, level: what(b), date: fmt(b.t), href: b.key + '.dc.html', tap: () => open(b), aria: b.g + ' ' + what(b) + ', gagal ' + fmt(b.t) + ', ketuk untuk memperbaiki' }));
-const waiting = W.map(b => ({ game: b.g, level: what(b), when: 'besok' }));
-return { ready: ready, waiting: waiting, hasWaiting: waiting.length > 0, noWaiting: !waiting.length, readyCount: String(ready.length), noReady: !ready.length, hasReady: ready.length > 0, firstHref: R.length ? R[0].key + '.dc.html' : 'Main.dc.html', firstTap: () => { if (R.length) open(R[0]); }, weekFixed: String(p.fixed.filter(t => FMP.dayDiff(t) < 7).length) };
+const ready = R.map(b => ({ ic: PX.gameIcon(b.g), game: b.g, level: what(b), date: fmt(b.t), href: b.key + '.dc.html', tap: () => open(b), aria: b.g + ' ' + what(b) + ', gagal ' + fmt(b.t) + ', ketuk untuk memperbaiki' }));
+const waiting = W.map(b => ({ ic: PX.gameIcon(b.g), game: b.g, level: what(b), when: 'besok' }));
+return { px: PX.U, ready: ready, waiting: waiting, hasWaiting: waiting.length > 0, noWaiting: !waiting.length, readyCount: String(ready.length), noReady: !ready.length, hasReady: ready.length > 0, firstHref: R.length ? R[0].key + '.dc.html' : 'Main.dc.html', firstTap: () => { if (R.length) open(R[0]); }, weekFixed: String(p.fixed.filter(t => FMP.dayDiff(t) < 7).length) };
 }
 }
 
@@ -6934,11 +6976,12 @@ if (st[0]) return { sym: '◐', status: 'Lanjut Intermediate', col: '#1E3F9E', l
 return { sym: '◔', status: 'Mulai Fundamental', col: '#8A5200', l: 'F', rank: 1 };
 };
 const rows = this.G[mat].map(g => { const m = status(g[0]);
-return { name: g[0], href: g[1] + '.dc.html', tap: () => FMP.go({ g: g[0], key: g[1], l: m.l }), sym: m.sym, status: m.status, col: m.col, rank: m.rank, l: m.l, key: g[1], aria: g[0] + ', ' + m.status + ', ketuk untuk membuka game' }; });
+return { ph: (m.rank * 25) + '%', name: g[0], href: g[1] + '.dc.html', tap: () => FMP.go({ g: g[0], key: g[1], l: m.l }), sym: m.sym, status: m.status, col: m.col, rank: m.rank, l: m.l, key: g[1], aria: g[0] + ', ' + m.status + ', ketuk untuk membuka game' }; });
 const first = rows.find(r => r.rank > 0 && r.rank < 4) || rows.find(r => r.rank === 0) || rows[0];
 return {
+px: PX.U,
 mat: mat, rows: rows, when: 'Dihitung dari bintang ★1 di setiap tingkat', startHref: first.href, startTap: () => FMP.go({ g: first.name, key: first.key, l: first.l }), startLabel: 'Main ' + first.name + ' · ' + FMP.LVN[first.l],
-mats: Object.keys(this.G).map(m => ({ label: m, aria: 'Materi ' + m + (m === mat ? ', dipilih' : ''), tap: () => this.setState({ mat: m }),
+mats: Object.keys(this.G).map(m => ({ on: m === mat ? 'on' : '', img: PX.house({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m] || 'bil'), label: m, aria: 'Materi ' + m + (m === mat ? ', dipilih' : ''), tap: () => this.setState({ mat: m }),
 style: 'padding: 5px 12px; border-radius: 14px; font: inherit; font-size: 13px; cursor: pointer; ' + (m === mat ? 'background: #1C1C1A; color: #FFFFFF; border: 1px solid #1C1C1A' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7') }))
 };
 }
@@ -12054,11 +12097,11 @@ return { label: label, sub: sub, aria: label + ', ' + (on ? 'aktif' : 'mati') + 
 track: 'flex: none; position: relative; width: 40px; height: 22px; border-radius: 11px; background: ' + (on ? '#2F5BD3' : '#DDDCD7'),
 knob: 'position: absolute; top: 2px; left: ' + (on ? 20 : 2) + 'px; width: 18px; height: 18px; border-radius: 50%; background: #FFFFFF' }; };
 return {
-targets: T.map(t => ({ label: t[1] + ' · ' + t[0], aria: 'Target ' + t[1] + ', ' + t[0] + ' kegiatan per hari' + (s.target === t[0] ? ', dipilih' : ''), style: seg(s.target === t[0]), tap: () => this.save({ target: t[0] }) })),
-targetNote: 'Dihitung dari misi dan kasus yang selesai hari ini. Target sekarang: ' + s.target + ' per hari.',
+targets: T.map(t => ({ on: s.target === t[0] ? 'on' : '', label: t[1] + ' · ' + t[0], aria: 'Target ' + t[1] + ', ' + t[0] + ' kegiatan per hari' + (s.target === t[0] ? ', dipilih' : ''), style: seg(s.target === t[0]), tap: () => this.save({ target: t[0] }) })),
+px: PX.U, targetNote: 'Dihitung dari misi dan kasus yang selesai hari ini. Target sekarang: ' + s.target + ' per hari.',
 per: String(s.per), perUp: () => { if (s.per < 10) this.save({ per: s.per + 1 }); }, perDown: () => { if (s.per > 3) this.save({ per: s.per - 1 }); },
 perUpCol: s.per < 10 ? '#1C1C1A' : '#B9B8B2', perDownCol: s.per > 3 ? '#1C1C1A' : '#B9B8B2',
-rules: [7, 8, 9].map(r => ({ label: r + ' dari 10 tepat', aria: 'Syarat bintang kedua: ' + r + ' dari 10 kasus harian tepat' + (s.rule === r ? ', dipilih' : ''), style: seg(s.rule === r), tap: () => this.save({ rule: r }) })),
+rules: [7, 8, 9].map(r => ({ on: s.rule === r ? 'on' : '', label: r + ' dari 10 tepat', aria: 'Syarat bintang kedua: ' + r + ' dari 10 kasus harian tepat' + (s.rule === r ? ', dipilih' : ''), style: seg(s.rule === r), tap: () => this.save({ rule: r }) })),
 toggles: [],
 doCopy: () => { try { const txt = FMP.exportText(), a = document.createElement('a'), d = new Date(); a.href = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.download = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; document.body.appendChild(a); a.click(); a.remove(); this.setState({ msg: 'File cadangan diunduh. Simpan baik-baik.' }); } catch (e) { this.setState({ msg: 'Gagal membuat file cadangan.' }); } },
 doImport: ev => { const f = ev && ev.target && ev.target.files && ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { try { FMP.importText(String(r.result)); this.setState({ msg: 'Progres dari file cadangan sudah dipulihkan.' }); } catch (e) { this.setState({ msg: 'File itu bukan cadangan Fundamental Math.' }); } }; r.readAsText(f); ev.target.value = ''; },
@@ -14237,11 +14280,11 @@ const nxt = items.findIndex(c => !c.done);
 const ST = { done: ['✓ Selesai', '#1F7A4D'], now: ['Sekarang ›', '#2F5BD3'], todo: ['Belum', '#8C8B85'] };
 const open = c => FMP.go({ key: c.key, g: c.g, l: c.l, mode: 'harian', id: c.id });
 const cases = items.map((c, i) => { const k = c.done ? 'done' : i === nxt ? 'now' : 'todo', st = ST[k], now = k === 'now', done = k === 'done';
-return { num: done ? '✓' : String(i + 1), game: c.g, level: FMP.LVN[c.l] + ' · ' + c.konteks, status: st[0], stCol: st[1], href: c.key + '.dc.html', tap: () => open(c), aria: 'Kasus ' + (i + 1) + ', ' + c.g + ' ' + FMP.LVN[c.l] + ', ' + st[0].replace(/[✓›]/g, '').trim(),
+return { k: k, ic: PX.gameIcon(c.g), num: done ? '✓' : String(i + 1), game: c.g, level: FMP.LVN[c.l] + ' · ' + c.konteks, status: st[0], stCol: st[1], href: c.key + '.dc.html', tap: () => open(c), aria: 'Kasus ' + (i + 1) + ', ' + c.g + ' ' + FMP.LVN[c.l] + ', ' + st[0].replace(/[✓›]/g, '').trim(),
 style: 'display: flex; align-items: center; gap: 10px; padding: 10px 12px; text-decoration: none; color: #1C1C1A; border-bottom: 1px solid #ECEBE7' + (now ? '; background: #F2F5FD' : ''),
 numStyle: 'flex: none; width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; ' + (done ? 'background: #E6F4EC; color: #1F7A4D' : now ? 'background: #2F5BD3; color: #FFFFFF' : 'background: #F0EFEB; color: #66655F'),
 nameStyle: 'font-weight: ' + (now ? '600' : '500') + (done ? '; color: #66655F' : '') }; });
-return { dateLine: dateLine, cases: cases, empty: !items.length, allDone: items.length > 0 && nxt < 0, notDone: nxt >= 0, nextHref: nxt >= 0 ? items[nxt].key + '.dc.html' : 'Main.dc.html', nextTap: () => { if (nxt >= 0) open(items[nxt]); }, nextLabel: nxt >= 0 ? 'Mulai kasus ' + (nxt + 1) : '' };
+return { px: PX.U, dateLine: dateLine, cases: cases, empty: !items.length, allDone: items.length > 0 && nxt < 0, notDone: nxt >= 0, nextHref: nxt >= 0 ? items[nxt].key + '.dc.html' : 'Main.dc.html', nextTap: () => { if (nxt >= 0) open(items[nxt]); }, nextLabel: nxt >= 0 ? 'Mulai kasus ' + (nxt + 1) : '' };
 }
 }
 
@@ -15303,9 +15346,9 @@ const list = FMP.caseStored(key).filter(c => c.tingkat === s.lvl);
 const name = FMP.KEYS[key];
 return {
 sub: name + ' · ' + FMP.LVN[s.lvl],
-mats: G.map((m, i) => ({ label: m[0], aria: 'Materi ' + m[0] + (s.mat === i ? ', dipilih' : ''), style: small(s.mat === i), tap: () => this.pick(m[1].indexOf(key) >= 0 ? key : m[1][0], s.lvl, i) })),
-games: (G[s.mat] ? G[s.mat][1] : []).map(k => ({ label: FMP.KEYS[k], aria: 'Game ' + FMP.KEYS[k] + (k === key ? ', dipilih' : ''), style: small(k === key), tap: () => this.pick(k, s.lvl) })),
-tiers: ['F', 'I', 'E'].map(l => ({ label: FMP.LVN[l], aria: 'Tingkat ' + FMP.LVN[l] + (s.lvl === l ? ', dipilih' : ''), style: chip(s.lvl === l), tap: () => this.pick(key, l) })),
+px: PX.U, mats: G.map((m, i) => ({ on: s.mat === i ? 'on' : '', img: PX.house({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m[0]] || 'bil'), label: m[0], aria: 'Materi ' + m[0] + (s.mat === i ? ', dipilih' : ''), style: small(s.mat === i), tap: () => this.pick(m[1].indexOf(key) >= 0 ? key : m[1][0], s.lvl, i) })),
+games: (G[s.mat] ? G[s.mat][1] : []).map(k => ({ on: k === key ? 'on' : '', ic: PX.gameIcon(FMP.KEYS[k]), label: FMP.KEYS[k], aria: 'Game ' + FMP.KEYS[k] + (k === key ? ', dipilih' : ''), style: small(k === key), tap: () => this.pick(k, s.lvl) })),
+tiers: ['F', 'I', 'E'].map(l => ({ on: s.lvl === l ? 'on' : '', label: FMP.LVN[l], aria: 'Tingkat ' + FMP.LVN[l] + (s.lvl === l ? ', dipilih' : ''), style: chip(s.lvl === l), tap: () => this.pick(key, l) })),
 prompt: s.prompt || 'Game ini belum bisa membuat prompt untuk tingkat ini.',
 regen: () => this.setState({ prompt: FMP.casePrompt(key, s.lvl), msg: '' }),
 copy: () => {
