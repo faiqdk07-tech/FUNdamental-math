@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** pratinjau desain tema dibuat di `pratinjau-tema.html` (halaman terpisah, app tidak diubah). Isinya 3 tema (A, B, C), masing-masing Beranda + Kasir Kilat F Misi 1. **Menunggu pilihan Faiq.** Rincian di bagian "Desain tema".
 - **16 Nov:** kasus tempelan diperluas ke 24 game lain (semua kecuali Timbangan). Untuk game ini angka dan kunci dibuat app, Claude hanya menulis cerita. Layar `KasusBaru` kini punya pemilih materi dan game.
 - **16 Nov:** kasus harian lewat prompt → JSON → validator, **tahap 1 (Ubin saja)**. Layar baru `KasusBaru` (Pengaturan → Kasus harian baru). Rincian di bagian "Kasus tempelan".
 - **16 Nov:** kasus harian berangka baru (jalan pintas sebelum prompt → JSON). Tiap hari per tingkat: 1 kasus cerita dari kumpulan lama (bergilir) + 2 kasus "Angka baru" yang angkanya berganti tiap hari. Berlaku di 25 game; **Timbangan belum** (masih kumpulan lama). Rincian di bagian "Kasus harian berangka baru".
@@ -138,6 +139,9 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
   - A. Sentuhan pixel: tata letak sekarang + warna hangat, huruf pixel untuk judul, ikon benda pixel.
   - B. Desa pixel: Beranda dan Mini Games jadi peta desa, tiap game sebuah bangunan; layar game tetap sederhana. (Saran Claude.)
   - C. Pixel penuh: semua tombol, panel, dan benda di papan bergaya pixel dan kayu.
+- **Pratinjau sudah ada** di `pratinjau-tema.html` (tombol A/B/C di atas). Pixel art digambar lewat kode di file itu (`SPR` untuk ikon, `mapURL` untuk peta desa). Huruf pixel: Pixelify Sans (lisensi OFL), disisipkan di file, hanya untuk judul dan label.
+- Temuan saat membuat pratinjau: angka huruf pixel mudah salah baca (5 mirip S, 2 mirip 8, 7 mirip 1). Jadi **angka dan cerita soal selalu memakai huruf biasa**, di tema mana pun.
+- Setelah Faiq memilih: terapkan ke `index.html` sebagai satu set warna dan huruf; `pratinjau-tema.html` boleh dihapus sesudahnya.
 - Batasan: pixel art digambar sendiri, tidak menyalin gambar referensi (sebagian dari game dan paket aset orang lain). Aturan "tampilan minimalis, elemen kecil" tetap berlaku; angka dan teks soal harus tetap mudah dibaca di HP.
 
 ## Catatan
