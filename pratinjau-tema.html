@@ -95,13 +95,14 @@ button.fg:active, button.fw:active, .slot:active { transform: translateY(2px); }
 .story .txt { font-size: 14px; line-height: 1.45; }
 .story .goal { font-weight: 700; }
 .cust { position: absolute; left: 153px; top: 312px; width: 84px; height: 96px; overflow: hidden; pointer-events: none; }
-.clab { position: absolute; left: 16px; right: 16px; top: 412px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #3B2414; }
-.clab b { font-size: 14px; }
-.tray { position: absolute; left: 16px; right: 16px; top: 436px; height: 68px; display: flex; align-items: center; gap: 4px; padding: 0 8px; background: #DCE6F2; box-shadow: 0 -3px 0 #2B1D1A, 0 3px 0 #2B1D1A, -3px 0 0 #2B1D1A, 3px 0 0 #2B1D1A, inset 0 5px 0 #9AA7BA, inset 0 -3px 0 #FFFFFF, inset 4px 0 0 #B7C3D4, inset -4px 0 0 #B7C3D4, 0 8px 0 rgba(43, 29, 26, .22); }
+.clab { position: absolute; left: 14px; right: 14px; top: 414px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #3B2414; }
+.clab b { font-size: 13px; }
+.tray { position: absolute; left: 17px; right: 17px; top: 440px; height: 64px; display: flex; align-items: center; gap: 4px; padding: 0 8px; background: #DCE6F2; box-shadow: 0 -3px 0 #2B1D1A, 0 3px 0 #2B1D1A, -3px 0 0 #2B1D1A, 3px 0 0 #2B1D1A, inset 0 5px 0 #9AA7BA, inset 0 -3px 0 #FFFFFF, inset 4px 0 0 #B7C3D4, inset -4px 0 0 #B7C3D4, 0 8px 0 rgba(43, 29, 26, .22); }
 .tray .hint { font-size: 13px; color: #6A7890; padding-left: 4px; }
-.send { position: absolute; right: 14px; top: 520px; font-size: 16px; }
-.dlab { position: absolute; left: 20px; top: 612px; font-size: 13px; color: #FFFFFF; }
-.drawer { position: absolute; left: 14px; right: 14px; top: 636px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px 4px; justify-items: center; }
+.send { position: absolute; right: 14px; top: 522px; font-size: 16px; }
+.drawer { position: absolute; left: 14px; right: 14px; top: 620px; padding: 6px 10px 12px; background: #2D3250; box-shadow: 0 -3px 0 #2B1D1A, 0 3px 0 #2B1D1A, -3px 0 0 #2B1D1A, 3px 0 0 #2B1D1A, inset 0 3px 0 #474E78; }
+.drawer .dlab { font-size: 13px; color: #FFFFFF; margin-bottom: 6px; }
+.drawer .cells { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; }
 .cell { width: 56px; height: 54px; display: flex; align-items: center; justify-content: center; background: #232846; box-shadow: inset 0 0 0 2px #14172B, inset 0 6px 0 #1A1E36; }
 .coin { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; padding: 0 0 2px; background: var(--coin) center / 44px 44px no-repeat; color: #4A2C12; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 18px; font-weight: 800; flex: none; filter: drop-shadow(0 3px 0 rgba(20, 23, 43, .45)); }
 .coin:active { transform: translateY(2px); }
@@ -251,9 +252,9 @@ function worldURL() {
   /* peti lencana di atas alas batu */
   R('rgba(43,29,26,.25)', 160, 247, 22, 2); R(P.k, 160, 239, 20, 9); R(P.E, 161, 240, 18, 4); R(P.e, 161, 244, 18, 3); t.stamp('peti', 164, 231);
   /* pagar, pohon, tunggul, batu, bunga */
-  t.fence(0, 104, 2); t.fence(178, 104, 2); t.fence(62, 186, 3); t.fence(108, 186, 3); t.fence(0, 262, 1); t.fence(140, 258, 1);
+  t.fence(0, 104, 2); t.fence(178, 104, 2); t.fence(62, 186, 3); t.fence(108, 186, 3);
   [[62, 58], [116, 58], [-8, 66], [182, 64], [62, 134], [116, 136], [-9, 146], [183, 146], [92, 222], [184, 216], [4, 276], [36, 292], [150, 280], [180, 300], [86, 306], [118, 330], [20, 340], [60, 352], [160, 346]].forEach(function (q) { t.tree(q[0], q[1]); });
-  t.stamp('tunggul', 68, 100); t.stamp('tunggul', 118, 180); t.stamp('tunggul', 44, 262); t.stamp('batu', 8, 130); t.stamp('batu', 124, 104); t.stamp('batu', 182, 184); t.stamp('batu', 104, 268);
+  t.stamp('tunggul', 68, 100); t.stamp('tunggul', 118, 180); t.stamp('tunggul', 96, 252); t.stamp('batu', 8, 130); t.stamp('batu', 124, 104); t.stamp('batu', 182, 184); t.stamp('batu', 104, 268);
   for (i = 0; i < 44; i++) { var fx = 4 + rnd() * (W - 8) | 0, fy = 58 + rnd() * (H - 64) | 0; if ((fy > 108 && fy < 130) || (fy > 190 && fy < 212) || (fx > 78 && fx < 116 && fy < 200)) continue; t.flower(fx, fy, i); }
   return c.toDataURL();
 }
@@ -284,7 +285,7 @@ function shopURL() {
   for (i = 0; i < 26; i++) R('#E4B36C', rnd() * W | 0, 212 + (rnd() * 70 | 0), 8 + (rnd() * 14 | 0), 1);
   R(P.k, 0, 286, W, 2); R('#D08F4C', 0, 288, W, 12); R('#B87636', 0, 297, W, 3); for (i = 9; i < W; i += 22) R('#B87636', i, 288, 1, 12);
   /* laci koin */
-  R(P.k, 0, 300, W, 2); R('#3B4268', 0, 302, W, 96); R('#474E78', 0, 302, W, 3); R(P.k, 3, 308, W - 6, 2); R(P.k, 3, 308, 2, 88); R(P.k, W - 5, 308, 2, 88); R(P.k, 3, 394, W - 6, 2); R('#2D3250', 5, 310, W - 10, 84);
+  R(P.k, 0, 300, W, 2); R('#3B4268', 0, 302, W, 96); R('#474E78', 0, 302, W, 3);
   /* lantai */
   R(P.k, 0, 398, W, 2); for (j = 400; j < H; j += 11) for (i = 0; i < W; i += 13) R(((i / 13) + ((j - 400) / 11)) % 2 ? '#F4EAD2' : '#E58C6A', i, j, 13, 11);
   return c.toDataURL();
@@ -296,9 +297,9 @@ var SPOTS = [
   { id: 'alj', cx: 156, sy: 96, hy: 108, name: 'Aljabar', val: '0/9', mat: true },
   { id: 'geo', cx: 39, sy: 174, hy: 190, name: 'Geometri', val: '0/6', mat: true },
   { id: 'dat', cx: 156, sy: 174, hy: 190, name: 'Data', val: '0/5', mat: true },
-  { id: 'tan', cx: 24, sy: 249, hy: 214, name: 'Tantangan', val: '–', t: 'Tantangan harian', d: 'Mainkan satu game dulu', v: '–' },
+  { id: 'tan', cx: 25, sy: 249, hy: 214, name: 'Tantangan', val: '–', t: 'Tantangan harian', d: 'Mainkan satu game dulu', v: '–' },
   { id: 'ben', cx: 70, sy: 249, hy: 214, name: 'Bengkel', val: '0', t: 'Bengkel kesalahan', d: 'Kasus yang pernah gagal muncul lagi', v: '<span class="num">0</span> kasus' },
-  { id: 'cek', cx: 124, sy: 249, hy: 214, name: 'Cek celah', val: '', t: 'Cek celah', d: 'Saran tingkat dari progresmu', v: 'Bilangan' },
+  { id: 'cek', cx: 124, sy: 249, hy: 248, dx: -14, name: 'Cek celah', val: '', t: 'Cek celah', d: 'Saran tingkat dari progresmu', v: 'Bilangan' },
   { id: 'len', cx: 170, sy: 249, hy: 236, name: 'Lencana', val: '', t: 'Lencana', d: 'Belum ada', link: 'Lihat semua' }
 ];
 function dlgHTML(o) {
@@ -331,7 +332,7 @@ function pick(id) {
   SPOTS.forEach(function (s) { if (s.id === id) o = s; });
   Array.prototype.forEach.call(document.querySelectorAll('.spot'), function (b) { b.classList.toggle('on', !!o && b.getAttribute('data-spot') === id); });
   document.getElementById('dlg').innerHTML = dlgHTML(o);
-  var hx = o ? o.cx + (o.mat ? 12 : 0) : 97, hy = o ? (o.mat ? o.sy + 1 : o.hy) : 122;
+  var hx = o ? o.cx + (o.mat ? 12 : (o.dx || 0)) : 97, hy = o ? (o.mat ? o.sy + 1 : o.hy) : 122;
   hero.style.left = (hx * 2 - 12) + 'px'; hero.style.top = (hy * 2 - 30) + 'px';
 }
 
@@ -351,9 +352,8 @@ function game() {
   h += '<div class="clab"><b>Nampan kembalian</b><span>Kesempatan menyerahkan <span class="num">2 / 2</span></span></div>';
   h += '<div class="tray" id="tray">' + trayHTML() + '</div>';
   h += '<button type="button" class="fg send">Serahkan</button>';
-  h += '<div class="dlab">Kotak koin (ribu)</div>';
   for (i = 1; i <= 9; i++) cells += '<div class="cell"><button type="button" class="coin" data-in="' + i + '" aria-label="Koin ' + i + '">' + i + '</button></div>';
-  h += '<div class="drawer">' + cells + '</div>';
+  h += '<div class="drawer"><div class="dlab">Kotak koin (ribu)</div><div class="cells">' + cells + '</div></div>';
   return h;
 }
 
