@@ -125,6 +125,7 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 - Yang ditolak: tingkat tidak cocok, angka di luar batas papan, cerita > 3 kalimat, angka kasus tidak tertulis di cerita, kata terlarang (`LARANG`: faktor, kelipatan, rumus, dst.; tanda kali untuk Ubin F), tokoh klaim tidak ada di cerita, angka sama dengan misi/kasus yang sudah ada.
 - Kasus lolos disimpan di `fm.progress.cases[game]` (ikut cadangan dan Hapus semua data), dimasukkan ke `this.H` oleh `FMP.wrap`, dan ikut bergiliran sebagai kasus cerita di tab Harian (1 per hari) serta di Tantangan. Tombol Mainkan di layar `KasusBaru` membukanya langsung.
 - Menambah game lain: isi `CASES[game]` dan tulis `BUILD[game]`; layar `KasusBaru` masih mengunci `key: 'Ubin'`.
+- `proyek-claude.md` berisi instruksi proyek dan konteks proyek untuk proyek Claude milik Faiq. Kalau batas angka, kata terlarang, atau bentuk JSON di `FMP` berubah, perbarui file itu juga, dan tambah bagian game baru di sana.
 
 ## Catatan
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.
