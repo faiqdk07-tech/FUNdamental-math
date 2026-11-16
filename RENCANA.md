@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** tingkat F/I/E diterapkan ke 9 game Aljabar (rincian di bawah). Tiap tingkat: 3 misi, minimal 3 kasus harian, rumus Aturan sendiri. Lolos uji otomatis: semua misi, kasus harian, dan tombol Berikutnya bisa diselesaikan.
 - **16 Nov:** semua layar dipindah dari kanvas ke satu `index.html`. Kanvas v4 sekarang hanya arsip.
 - **16 Nov:** crash tombol "?" diperbaiki di semua game. Panel bantuan sekarang memakai `this.state.help` dan `this.state.gmMenu`.
 - **15 Nov:**
@@ -11,45 +12,11 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Tombol "?" ditambahkan ke semua game.
 
 ## Berikutnya (urut)
-1. **Faiq menguji game Bilangan dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
-2. **Terapkan tingkat F/I/E Aljabar** (disetujui Faiq 15 Nov). Pakai pola game Bilangan:
-   - Dua Struk:
-     - F: dua struk cukup (3 pasang)
-     - I: struk perlu digandakan
-     - E: tiga barang tiga struk (biasa, angka besar, tabel)
-   - Meja Hajatan:
-     - F: 10, 25, 40 meja
-     - I: baris ke-15, total 15, total 20 baris
-     - E: meja terbanyak dari 100 kursi, undangan 5 gelombang, sampai 1.000 orang
-   - Martabak Topping:
-     - F: sortir aturan sederhana, "dan", daftar vs aturan
-     - I: racikan 3, 4, 6 topping
-     - E: survei 40, 60, yang tidak memilih keduanya
-   - Mesin Minuman:
-     - F: kabel 3, 4, 5 tombol
-     - I: berantai 2 komponen, urutan ditukar, 3 komponen
-     - E: pembatal "×3 lalu +2", "+4 lalu ×2", 3 komponen
-   - Argo Ojek:
-     - F: ongkos 23 km, 40 km, klaim <70 ribu
-     - I: radius 4 dari km 3, radius 5 dari km 12, dua pangkalan
-     - E: rata-rata 30&60, 40&60, klaim 40
-   - Timbangan Balon: tambah 2 misi balon per tingkat di `this.MA`.
-   - Rekap Grosir:
-     - F: tabel 2×2, 3×3, 3×4
-     - I: total 2 pelanggan, 3 pelanggan, 3 barang
-     - E: luas label ditarik ×3 (termasuk gepeng 0)
-   - Kebun Pagar:
-     - F: pagar 24, 30, 40 m
-     - I: roket jatuh detik 22, 18, 30
-     - E: tiga kebun diperluas
-   - Dapur Roti:
-     - F: satu bahan ×3
-     - I: memilah catatan ×3
-     - E: dua bahan ×3
-3. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
-4. **Tingkat Geometri, lalu Data:** cek tabel "Temuan F → I → E" di `konsep.md`, ajukan usulan singkat dulu.
-5. **Tanda Selesai per tingkat** (sekarang masih per nomor misi). Bintang diambil dari progres asli, bukan data contoh.
-6. **Tahap berikutnya:**
+1. **Faiq menguji game Bilangan, game Aljabar per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
+2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
+3. **Tingkat Geometri, lalu Data:** cek tabel "Temuan F → I → E" di `konsep.md`, ajukan usulan singkat dulu.
+4. **Tanda Selesai per tingkat** (sekarang masih per nomor misi). Bintang diambil dari progres asli, bukan data contoh.
+5. **Tahap berikutnya:**
    - kasus harian lewat prompt → JSON → validator (tiap kasus punya `tingkat`);
    - Koleksi Rumus;
    - Bengkel dan Cek Celah memakai data nyata.
@@ -99,6 +66,19 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
     - E: ≥100/1.000/10.000
   - Kasus harian: F l1,l2,l3 · I l4,l5,l6,l8 · E l7,l9,l10
 
+## Rincian tingkat 9 game Aljabar (sudah diterapkan 16 Nov)
+- **Dua Struk** (`this.T`): F dua struk cukup ×3 · I struk perlu digandakan ×3 · E tiga barang (biasa, puluhan ribu, tampilan tabel). Harian F f1–f4 · I d1,d2,d4,d7,d8 · E d3,d5,d6. Aturan F selisih struk, I gandakan, E coret harga.
+- **Meja Hajatan** (`this.T`): F 10/25/40 meja · I baris ke-15, total 15, total 20 baris · E meja dari 100 kursi, undangan 5 gelombang, sampai 1.000 orang. Harian F f1–f3 · I m1,m2,m5,m6,m8 · E m3,m4,m7.
+- **Martabak Topping** (`this.TM`): F sortir sederhana, "dan", daftar vs syarat · I racikan 3/4/6 topping · E survei 40, 60, yang tidak memilih. Aturan F baru: n(A saja) = n(A) − n(A ∩ B).
+- **Mesin Minuman**: F kabel 3/4/5 tombol · I 2 komponen, tabel kedua (urutan ditukar), 3 komponen (12x + 5) · E pembatal ×3+2, +4×2, 3 komponen. Aturan F baru: + a lalu − a.
+- **Argo Ojek**: F 23 km, 40 km, klaim < 70 ribu · I radius km 3, km 12, dua pangkalan (fitur baru `a2`, `b2`) · E 30&60, 40&60, klaim 36&45.
+- **Timbangan Balon** (`this.MA`): 3 misi balon per tingkat; kasus harian balon baru hb1–hb7 (F hb1–3, I h11,hb4,hb5, E h12,hb6,hb7).
+- **Rekap Grosir**: F tabel 2×2, 3×3, 3×4 · I 2 pelanggan, 3 pelanggan, 3 barang · E luas label 5, 10, 0 (gepeng).
+- **Kebun Pagar**: F pagar 24, 28, 40 m (28 dipakai, bukan 30, supaya jawabannya bulat) · I roket jatuh detik 22, 18, 30 · E kebun 299, 187, 351 m².
+- **Dapur Roti**: F satu bahan ×3 · I memilah catatan ×3 · E dua bahan ×3.
+- Kerangka 6 game terbaru: `this.TM`/`this.TN`/`this.TO` per tingkat (misi, nama, aturan), `curM()`, `genMission` membaca tingkat aktif. Tombol Berikutnya membuang klaim (`verdict`) dari soal acak.
+- Teks Mini Games untuk Timbangan Balon, Meja Hajatan E, dan Rekap Grosir E disesuaikan.
+
 ## Catatan
-- 19 game non-Bilangan belum punya pilihan tingkat.
+- 11 game Geometri dan Data belum punya pilihan tingkat.
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.
