@@ -3,6 +3,9 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** kasus harian berangka baru (jalan pintas sebelum prompt → JSON). Tiap hari per tingkat: 1 kasus cerita dari kumpulan lama (bergilir) + 2 kasus "Angka baru" yang angkanya berganti tiap hari. Berlaku di 25 game; **Timbangan belum** (masih kumpulan lama). Rincian di bagian "Kasus harian berangka baru".
+- **16 Nov:** deskripsi Mini Games diganti: Racik Resep F "Resep 4 orang, tamunya berubah", Ubin F "Tata kue di nampan tanpa sisa", Lipat Kertas I "Kertas lewat dua mesin lipat".
+- **16 Nov:** perbaikan tombol Berikutnya: Martabak Topping kini membaca tingkat aktif (sebelumnya memakai nomor misi, jadi soal survei bisa muncul di papan sortir); teks tujuan soal acak yang punya kotak jawaban selalu "Jawab pertanyaan di bawah" (`FMP.nextGoal`), supaya tidak ada lagi tujuan yang tidak cocok dengan soalnya (mis. "tiang bendera" padahal ceritanya pohon).
 - **16 Nov:** tiga perbaikan dari pemeriksaan Faiq. (1) Menu dan bantuan tidak lagi menjanjikan "kasus baru setiap hari" (kumpulan kasus per tingkat baru 2–6, jadi berulang); janji itu boleh kembali setelah kasus lewat prompt → JSON → validator jadi. (2) Tombol "Catat percobaan otomatis" dan "Kirim ringkasan ke Progres Harian" disembunyikan dari Pengaturan sampai fiturnya dibuat (`toggles: []`; nilai `autoLog`/`sendPH` masih tersimpan). (3) Deskripsi Bagi Pizza di Mini Games: I "Catat sisa pizza di papan", E "Berapa porsi dari sisa loyang?".
 - **16 Nov:** audit soal acak (tombol Berikutnya/…lain) di semua game. Diperbaiki: Kasir Kilat "Koin menipis" (kembalian mustahil), jatah kesempatan soal acak (Kasir, Ubin, Jadwal Bus), Bagi Pizza "Pisau tumpul" (tujuan berganti), dan teks tujuan soal acak yang masih memakai klaim atau angka lama (lewat `FMP.nextGoal`).
 - **16 Nov:** progres nyata. Hasil main disimpan di `fm.progress`, dan Beranda, Mini Games (bintang), Progres, Jurnal, Pohon Temuan, Tantangan, Bengkel, Cek Celah (versi saran), serta Pengaturan (unduh/pulihkan cadangan, hapus) memakai data itu. Semua angka contoh dihapus. Tombol Lanjutkan, Tantangan, Bengkel, dan saran membuka misi/kasus yang tepat. Tanda ✓ misi kini per tingkat dan tetap ada setelah app ditutup.
@@ -107,6 +110,12 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 - Tautan langsung: `FMP.go({key, g, l, mode, idx, id, regen})` lalu `FMP.applyOpen` di `show()`. Kasus harian dibuka dengan mengganti `todayIdx` sementara.
 - Pohon Temuan: subbab menyala bila game itu punya aturan lolos di tingkat yang sama dengan level subbab.
 - Batas: Timbangan belum mencatat dugaan yang ditolak (Aturannya berbeda bentuk). Kasus harian di Bengkel dibuka dengan soal yang sama.
+
+## Kasus harian berangka baru (16 Nov)
+- Ada di modul `FMP`: `genCase(key, tingkat, hari, slot)` membuat instance game sementara, membuka misi, menekan tombol soal acak milik misi itu ("Berikutnya", "… lain", "… berikutnya") dengan `Math.random` berbenih (game + tingkat + hari + slot), lalu menyimpan `P` hasilnya sebagai kasus ber-`id` `a<hari><tingkat><slot>`, `konteks` "Angka baru n", `gen: true`.
+- `FMP.wrap` menimpa `todayIdx` (1 kasus cerita `pool[hari % n]` + 2 kasus buatan, dimasukkan ke `this.H`) dan `loadCase` (berbenih, jadi soal yang sama tampil sama sepanjang hari). `applyOpen` dan `tantangan()` mengenali id buatan; Tantangan mendahulukan kasus buatan.
+- Tingkat yang misinya tidak punya tombol soal acak memakai tabel `EXTRA` di `FMP`: Jadwal Bus I (pita) dan E (hari), Ubin I (aula diperluas), Bagi Pizza I (papan sisa).
+- Batas: variasi beberapa pembuat soal masih sedikit (Cetak Spanduk F dan Grafik Viral F hanya 3 bentuk, Pasang Lantai E 5, Pentas Seni I 6). Kasus buatan memakai cerita pendek umum dari tombol Berikutnya, dan tidak berisi klaim; klaim hanya ada di kasus cerita.
 
 ## Catatan
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.

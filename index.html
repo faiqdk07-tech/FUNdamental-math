@@ -7070,7 +7070,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -7092,7 +7092,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -7377,7 +7377,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -7399,7 +7399,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -7698,7 +7698,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -7720,7 +7720,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -8056,7 +8056,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -8078,7 +8078,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -8373,7 +8373,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map((t, i) => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -8389,7 +8389,7 @@ const isDone = v.status === 'Selesai';
 const nextName = nextChip ? String(nextChip.label).replace(/^✓\s*/, '').replace(/^\d+\.\s*/, '') : '';
 const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const pickItems = chips.map((c, i) => { const raw = String(c.label); return { num: String(i + 1), name: raw.replace(/^✓\s*/, '').replace(/^\d+\.\s*/, ''), done: raw.indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false }); } }; });
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'], gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); }, gmShowPick: showPick, gmNotMenu: !showMenu, gmBack: () => { if (!showPick && chips.length > 0) this.setState({ gmPick: true, help: false }); else this.setState({ gmMenu: true, gmPick: false, help: false }); }, gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi', gmHasNext: isDone && !!nextChip, gmNext: () => { if (nextChip) nextChip.tap(); }, gmNextLabel: (v.isHarian ? 'Kasus berikutnya: ' : 'Misi berikutnya: ') + nextName, gmShowMenu: showMenu, gmInPlay: !showMenu && !(st.gmPick === true && chips.length > 0), gmItems: items, gmMode: mode ? mode.label : 'Mode', gmOpen: () => this.setState({ gmMenu: true, help: false }), gmNum: nums.length ? nums[ni].label : '', gmDec: step(-1), gmInc: step(1), gmTagLine: tagLine });
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'], gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); }, gmShowPick: showPick, gmNotMenu: !showMenu, gmBack: () => { if (!showPick && chips.length > 0) this.setState({ gmPick: true, help: false }); else this.setState({ gmMenu: true, gmPick: false, help: false }); }, gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi', gmHasNext: isDone && !!nextChip, gmNext: () => { if (nextChip) nextChip.tap(); }, gmNextLabel: (v.isHarian ? 'Kasus berikutnya: ' : 'Misi berikutnya: ') + nextName, gmShowMenu: showMenu, gmInPlay: !showMenu && !(st.gmPick === true && chips.length > 0), gmItems: items, gmMode: mode ? mode.label : 'Mode', gmOpen: () => this.setState({ gmMenu: true, help: false }), gmNum: nums.length ? nums[ni].label : '', gmDec: step(-1), gmInc: step(1), gmTagLine: tagLine });
 }
 constructor(props) {
 super(props);
@@ -8713,7 +8713,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -8735,7 +8735,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -9044,7 +9044,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -9066,7 +9066,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -9391,7 +9391,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -9413,7 +9413,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -9703,7 +9703,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -9719,7 +9719,7 @@ const clean = l => String(l).replace(/^✓\s*/, '').replace(/^\d+\.\s*/, '');
 const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'], gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); }, gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi', gmHasNext: inPlay && v.status === 'Selesai' && !!nextChip, gmNext: () => { if (nextChip) nextChip.tap(); }, gmNextLabel: (v.isHarian ? 'Kasus berikutnya: ' : 'Misi berikutnya: ') + (nextChip ? clean(nextChip.label) : ''), gmBack: () => { if (inPlay && chips.length > 0) this.setState({ gmPick: true, help: false }); else this.setState({ gmMenu: true, gmPick: false, help: false }); }, gmItems: items, gmMode: mode ? mode.label : 'Mode', gmOpen: () => this.setState({ gmMenu: true, gmPick: false, help: false }), gmNum: nums.length ? nums[ni].label : '', gmDec: step(-1), gmInc: step(1), gmTagLine: tagLine });
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'], gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); }, gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi', gmHasNext: inPlay && v.status === 'Selesai' && !!nextChip, gmNext: () => { if (nextChip) nextChip.tap(); }, gmNextLabel: (v.isHarian ? 'Kasus berikutnya: ' : 'Misi berikutnya: ') + (nextChip ? clean(nextChip.label) : ''), gmBack: () => { if (inPlay && chips.length > 0) this.setState({ gmPick: true, help: false }); else this.setState({ gmMenu: true, gmPick: false, help: false }); }, gmItems: items, gmMode: mode ? mode.label : 'Mode', gmOpen: () => this.setState({ gmMenu: true, gmPick: false, help: false }), gmNum: nums.length ? nums[ni].label : '', gmDec: step(-1), gmInc: step(1), gmTagLine: tagLine });
 }
 constructor(props) {
 super(props);
@@ -10001,7 +10001,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -10023,7 +10023,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -10335,7 +10335,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -10357,7 +10357,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -10603,7 +10603,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -10625,7 +10625,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -10979,7 +10979,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -11001,7 +11001,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -11203,6 +11203,7 @@ ruleTest(r, c) { if (r.kind === 'has') return c.top.indexOf(r.val) >= 0; if (r.k
 zoneOf(P, c) { const a = this.ruleTest(P.ruleA, c), b = this.ruleTest(P.ruleB, c); return a && b ? 'AB' : a ? 'A' : b ? 'B' : 'L'; }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
+i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 if (i === 0) {
 const p = this.shuffle(['cokelat', 'keju', 'kacang', 'pisang']), cards = [];
 for (let j = 0; j < 8; j++) { const t = this.shuffle(this.POOL.slice(0, 6)).slice(0, R(1, 3)); cards.push({ top: t, harga: R(12, 28) }); }
@@ -11210,7 +11211,7 @@ return { ruleA: { kind: 'has', val: p[0], label: 'ada ' + p[0] }, ruleB: { kind:
 }
 if (i === 1) { const n = R(6, 10); return { asks: [{ label: 'Racikan dari ' + n + ' topping', key: Math.pow(2, n) }], cerita: 'Gerobak baru menjual ' + n + ' topping. Martabak tanpa topping juga dihitung satu racikan.' }; }
 const a = R(3, 20), ab = R(2, 15), b = R(3, 20), l = R(0, 8), T = a + ab + b + l;
-return { asks: [{ label: 'Suka keduanya', key: ab }], cerita: 'Dari ' + T + ' pelanggan, ' + (a + ab) + ' suka cokelat, ' + (b + ab) + ' suka keju, dan ' + l + ' orang tidak suka keduanya.' };
+return { asks: [{ label: 'Suka keduanya', key: ab }], tujuan: 'Berapa pelanggan yang suka keduanya? Kamu punya 2 kesempatan.', cerita: 'Dari ' + T + ' pelanggan, ' + (a + ab) + ' suka cokelat, ' + (b + ab) + ' suka keju, dan ' + l + ' orang tidak suka keduanya.' };
 }
 customMission(c) { return { tingkat: '', type: 'survei', labA: 'cokelat', labB: 'keju', special: true, asks: [{ label: 'Suka keduanya', key: c.AB }], budget: 2, cerita: 'Rekan kerjamu bertanya kepada ' + (c.A + c.AB + c.B + c.L) + ' pelanggan: ' + (c.A + c.AB) + ' suka cokelat, ' + (c.B + c.AB) + ' suka keju, dan ' + c.L + ' tidak suka keduanya.', tujuan: 'Berapa pelanggan yang suka keduanya?' }; }
 helpFor(s) {
@@ -11321,7 +11322,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -11343,7 +11344,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -11618,7 +11619,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -11640,7 +11641,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -11989,11 +11990,11 @@ const GAMES = {
 bil: [
 { name: 'Kasir Kilat', href: 'KasirKilat.dc.html', F: 'Kumpulkan kembalian pas dengan koin', I: 'Ada koin utang di laci kasir', E: 'Antrean makin panjang, waktu makin sempit', st: { F: 3, I: 1, E: 0 } },
 { name: 'Timbangan', href: 'Timbangan.dc.html', F: 'Seimbangkan dengan beban paling sedikit', I: 'Cari isi kardus tanpa membukanya', E: 'Timbangan miring, berapa paling berat?', st: { F: 3, I: 2, E: 0 } },
-{ name: 'Ubin', href: 'Ubin.dc.html', F: 'Susun ubin jadi persegi panjang', I: 'Aula dibagi jadi dua blok', E: 'Aula raksasa, hitung kursinya', st: { F: 2, I: 0, E: 0 } },
+{ name: 'Ubin', href: 'Ubin.dc.html', F: 'Tata kue di nampan tanpa sisa', I: 'Aula dibagi jadi dua blok', E: 'Aula raksasa, hitung kursinya', st: { F: 2, I: 0, E: 0 } },
 { name: 'Jadwal Bus', href: 'JadwalBus.dc.html', F: 'Kapan dua bus berangkat bersama?', I: 'Potong pita sama panjang tanpa sisa', E: 'Hari apa 100 hari lagi?', st: { F: 0, I: 0, E: 0 } },
 { name: 'Bagi Pizza', href: 'BagiPizza.dc.html', F: 'Bagi pizza sama rata', I: 'Catat sisa pizza di papan', E: 'Berapa porsi dari sisa loyang?', st: { F: 0, I: 0, E: 0 } },
-{ name: 'Racik Resep', href: 'RacikResep.dc.html', F: 'Gandakan resep', I: 'Resep untuk jumlah tamu yang ganjil', E: 'Diskon yang bertumpuk', st: { F: 1, I: 0, E: 0 } },
-{ name: 'Lipat Kertas', href: 'LipatKertas.dc.html', F: 'Lipat dan hitung lapisannya', I: 'Gabungkan dua lipatan', E: 'Berapa lipatan sampai 1.000 lapis?', st: { F: 0, I: 0, E: 0 } }
+{ name: 'Racik Resep', href: 'RacikResep.dc.html', F: 'Resep 4 orang, tamunya berubah', I: 'Resep untuk jumlah tamu yang ganjil', E: 'Diskon yang bertumpuk', st: { F: 1, I: 0, E: 0 } },
+{ name: 'Lipat Kertas', href: 'LipatKertas.dc.html', F: 'Lipat dan hitung lapisannya', I: 'Kertas lewat dua mesin lipat', E: 'Berapa lipatan sampai 1.000 lapis?', st: { F: 0, I: 0, E: 0 } }
 ],
 alj: [
 { name: 'Dua Struk', href: 'DuaStruk.dc.html', F: 'Dua struk lama, label harga hilang', I: 'Jumlah barang di tiap struk berbeda', E: 'Tiga barang, tiga struk', st: { F: 0, I: 0, E: 0 } },
@@ -12058,7 +12059,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -12080,7 +12081,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -12417,7 +12418,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -12439,7 +12440,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -12784,7 +12785,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -12806,7 +12807,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -13202,7 +13203,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -13224,7 +13225,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -13495,7 +13496,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -13517,7 +13518,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -13821,7 +13822,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -13843,7 +13844,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -14151,7 +14152,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -14173,7 +14174,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -14577,7 +14578,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -14599,7 +14600,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -15380,7 +15381,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -15402,7 +15403,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -15664,7 +15665,7 @@ class Component extends DCLogic {
 gmWrap(v) {
 const st = this.state;
 const showMenu = st.gmMenu !== false;
-const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus cerita per tingkat', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
+const D = { Misi: 'Pesanan atasan, dari mudah ke sulit', Harian: '3 kasus, angka berganti tiap hari', Lab: 'Buat tantangan untuk rekan', Aturan: 'Rakit catatan untuk atasan' };
 const tabs = v.tabs || [];
 const mode = tabs.find(t => String(t.style).indexOf('background: #1C1C1A') >= 0);
 const items = tabs.map(t => ({ label: t.label, desc: D[t.label] || '', tap: () => { t.tap(); this.setState({ gmMenu: false, gmPick: true, help: false }); } }));
@@ -15686,7 +15687,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus cerita untuk tingkat yang dipilih.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kumpulan kasus masih sedikit, jadi kasus yang sama bisa muncul lagi.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -16107,15 +16108,71 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     if (p.tant && p.tant.day === d) return p.tant;
     const seen = {}, pool = [];
     p.ev.forEach(e => { const k = tk(e.g, e.l); if (!seen[k] && GAME[e.g]) { seen[k] = true; caseList(e.key, e.g, e.l).forEach(c => pool.push({ key: e.key, g: e.g, l: e.l, id: c.id, konteks: c.konteks })); } });
+    Object.keys(seen).forEach(k => { const e = p.ev.find(x => tk(x.g, x.l) === k); [1, 2].forEach(slot => { const sp = genCase(e.key, e.l, absDay(), slot); if (sp) pool.push({ key: e.key, g: e.g, l: e.l, id: sp.id, konteks: sp.konteks, gen: true }); }); });
     const rnd = seeded(Number(d.replace(/-/g, '')));
     for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    pool.sort((a, b) => (b.gen ? 1 : 0) - (a.gen ? 1 : 0));
     const items = [], usedG = {};
     pool.forEach(c => { if (items.length < 3 && !usedG[c.g]) { usedG[c.g] = true; items.push(c); } });
     pool.forEach(c => { if (items.length < 3 && items.indexOf(c) < 0) items.push(c); });
-    p.tant = { day: d, items: items.map(c => Object.assign({ done: false }, c)) };
+    p.tant = { day: d, items: items.map(c => ({ done: false, key: c.key, g: c.g, l: c.l, id: c.id, konteks: c.konteks })) };
     save();
     return p.tant;
   }
+
+  // ---- kasus harian berangka baru: dibuat dari tombol soal acak milik misi, dengan benih hari ----
+  const GEN_RE = /^a(\d+)([FIE])(\d)$/, genCache = {};
+  function hash(str) { let h = 2166136261; for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619); h ^= h >>> 15; h = Math.imul(h, 2246822507); h ^= h >>> 13; return (h >>> 0) % 2147483646 + 1; }
+  function withSeed(seed, fn) { const R = Math.random, r = seeded(seed); for (let i = 0; i < 8; i++) r(); Math.random = r; try { return fn(); } finally { Math.random = R; } }
+  function findNext(v, depth) {
+    if (!v || typeof v !== 'object' || depth > 3) return null;
+    if (Array.isArray(v)) { for (const x of v) { if (x && typeof x.tap === 'function' && typeof x.label === 'string' && /(berikutnya|lain)$/i.test(x.label.trim()) && !/^(misi|hari)/i.test(x.label)) return x; } return null; }
+    for (const k in v) { const r = findNext(v[k], depth + 1); if (r) return r; }
+    return null;
+  }
+  // tingkat yang misinya belum punya tombol soal acak
+  const EXTRA = {
+    JadwalBus: {
+      I: R => { const pr = [[2, 3], [3, 4], [2, 5], [3, 5], [4, 5], [4, 6], [3, 6], [2, 4]][R(0, 7)], g = R(3, 9), L1 = g * pr[0], L2 = g * pr[1]; return { type: 'pita', L1: L1, L2: L2, cerita: 'Dua gulung pita lain datang ke loket, ' + L1 + ' cm dan ' + L2 + ' cm.', tujuan: 'Potong keduanya jadi potongan sama panjang tanpa sisa. Temukan semua panjang yang mungkin.' }; },
+      E: R => { const T = [[30, 3], [45, 3], [50, 2], [60, 2], [100, 3]][R(0, 4)], st = R(0, 6), D = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']; return { type: 'hari', start: st, target: T[0], maxJumps: T[1], cerita: 'Hari ini ' + D[st] + '. Rombongan wisata akan tiba ' + T[0] + ' hari lagi.', tujuan: 'Majulah tepat ' + T[0] + ' hari dengan paling banyak ' + T[1] + ' lompatan untuk mengetahui harinya.' }; }
+    },
+    Ubin: {
+      I: R => { const r = R(3, 6), c = R(4, 7), T = (r + R(0, 3)) * (c + R(1, 4)); return { type: 'perluas', base: { r: r, c: c }, target: T, cerita: 'Aula berisi ' + r + ' baris × ' + c + ' kolom kursi. Acara berikutnya butuh tepat ' + T + ' kursi.', tujuan: 'Temukan semua cara menambah baris atau kolom utuh sampai tepat ' + T + ' kursi.' }; }
+    },
+    BagiPizza: {
+      I: R => { const F = [['1/4', 3], ['1/3', 4], ['1/2', 6], ['2/3', 8], ['3/4', 9], ['5/6', 10], ['7/6', 14], ['5/4', 15], ['4/3', 16], ['3/2', 18], ['5/3', 20], ['7/4', 21]]; const cards = []; while (cards.length < 4) { const f = F[R(0, F.length - 1)]; if (!cards.some(x => x.v === f[1])) cards.push({ l: f[0], v: f[1] }); } return { type: 'garis', cards: cards, cerita: 'Meja-meja lain juga menyisakan pizza. Ketua panitia minta semuanya dicatat di papan.', tujuan: 'Pasang setiap kartu sisa di tempat yang tepat.' }; }
+    }
+  };
+  function genCase(key, l, d, slot) {
+    if (key === 'Timbangan' || !GAMES[key]) return null;
+    const id = 'a' + d + l + slot, ck = key + id;
+    if (ck in genCache) return genCache[ck];
+    let out = null;
+    try {
+      out = withSeed(hash(ck), () => {
+        const X = EXTRA[key] && EXTRA[key][l];
+        if (X) return Object.assign(X((a, b) => a + Math.floor(Math.random() * (b - a + 1))), { id: id, tingkat: l, konteks: 'Angka baru ' + slot, gen: true });
+        const c = new GAMES[key]({});
+        c.setState = patch => { c.state = Object.assign({}, c.state, patch); };
+        c.setState({ lvl: l });
+        for (let k = 0; k < 3; k++) {
+          const mi = (d + slot + k) % 3;
+          c.loadMission(mi); c.setState({ stage: 'done' });
+          const a = findNext(c.gmRender(), 0);
+          if (!a) continue;
+          a.tap();
+          const P = c.state.P;
+          if (!P || c.state.stage === 'done') continue;
+          const spec = JSON.parse(JSON.stringify(P));
+          return Object.assign(spec, { id: id, tingkat: l, konteks: 'Angka baru ' + slot, gen: true });
+        }
+        return null;
+      });
+    } catch (e) { out = null; }
+    genCache[ck] = out;
+    return out;
+  }
+  function absDay() { return Math.floor(Date.now() / 86400000); }
 
   // ---- membuka game langsung di misi atau kasus ----
   function go(o) {
@@ -16136,6 +16193,8 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
         (c.loadMission || c.load).call(c, o.idx);
         if (o.regen && c.genMission && c.fresh && c.NEXT_STORY && o.idx < 3) { const g = c.genMission(o.idx); if (g) c.setState({ P: c.fresh(Object.assign(c.mission(o.idx), { cerita: c.NEXT_STORY, verdict: undefined }, g)) }); }
       } else {
+        const gm = GEN_RE.exec(o.id || '');
+        if (gm && c.H && !c.H.some(h => h.id === o.id)) { const sp = genCase(name, gm[2], Number(gm[1]), Number(gm[3])); if (sp) c.H.push(sp); }
         const ix = (c.H || []).findIndex(h => h.id === o.id);
         if (ix < 0) return;
         c.todayIdx = () => [ix];
@@ -16187,6 +16246,23 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
         try { observe(key, this, prev, this.state); } catch (e) { console.error(e); }
         if (key !== 'Timbangan' && this.state.lvl !== prev.lvl) { try { super.setState({ done: doneMap(this) }); } catch (e) {} }
       }
+      todayIdx(day) {
+        const base = super.todayIdx(day);
+        if (key === 'Timbangan') return base;
+        try {
+          const l = this.curLvl(), H = this.H, d = absDay() + (day === undefined ? ((this.state && this.state.hDay) || 0) : day);
+          const pool = H.map((c, i) => i).filter(i => H[i].tingkat === l && !H[i].gen);
+          const out = pool.length ? [pool[d % pool.length]] : [];
+          [1, 2].forEach(slot => { const sp = genCase(key, l, d, slot); if (!sp) return; let ix = H.findIndex(h => h.id === sp.id); if (ix < 0) { H.push(sp); ix = H.length - 1; } out.push(ix); });
+          for (let k = 1; out.length < 3 && k < pool.length; k++) out.push(pool[(d + k) % pool.length]);
+          return out.length ? out : base;
+        } catch (e) { return base; }
+      }
+      loadCase(i, day) {
+        let c = null; try { c = this.H[this.todayIdx(day)[i]]; } catch (e) {}
+        if (c && c.gen) return withSeed(hash(key + c.id + 'L'), () => super.loadCase(i, day));
+        return super.loadCase(i, day);
+      }
       renderVals() {
         const v = super.renderVals();
         (v.builders || []).forEach(b => {
@@ -16204,7 +16280,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     const t = tj.replace(/,? lalu (nilai|putuskan|jawab pertanyaan)[^.?]*[.?]/, '.');
     const tail = (t.match(/Kamu (hanya )?punya[^.]*\./) || [''])[0];
     const head = t.replace(tail, '').trim();
-    if (hasAsks && (hadClaim || /\d/.test(head))) return ('Jawab pertanyaan di bawah. ' + tail).trim();
+    if (hasAsks) return ('Jawab pertanyaan di bawah. ' + tail).trim();
     return t;
   }
   return { nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, isGame: k => !!KEYS[k] };
