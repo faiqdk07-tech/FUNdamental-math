@@ -246,6 +246,55 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-inner [style*="background: #FFF3DF"]{background:#FFE8B0!important}
 .px-inner [style*="color: #66655F"]{color:#3E4050!important}
 .px-inner button{cursor:pointer}
+/* ===== Benda papan 8 game Aljabar (gaya per game, logika tidak diubah) ===== */
+.px-inner>div[style*="background: #FFFFFF"]{box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,0 8px 0 rgba(43,29,26,.18)!important;border:0!important;margin:3px}
+/* Dua Struk: meja kayu, struk bergerigi, kalkulator, label harga */
+.px-al-dua .px-inner>div[style*="background: #FFFFFF"]:first-child{background:#C99A5B repeating-linear-gradient(0deg,#BB8C4E 0 2px,#C99A5B 2px 26px)!important}
+.px-al-dua .px-inner>div:first-child>div:first-child,.px-al-dua .px-inner>div:first-child>div>span{color:#3B2414!important}
+.px-al-dua button[style*="flex-direction: column"][style*="text-align: left"]{background:linear-gradient(135deg,#C99A5B 25%,transparent 25%) -6px 100% / 12px 8px repeat-x,linear-gradient(225deg,#C99A5B 25%,transparent 25%) -6px 100% / 12px 8px repeat-x,#FFFFFF!important;border:0!important;box-shadow:0 -2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A!important;padding-bottom:16px!important;font-family:ui-monospace,Menlo,monospace!important}
+.px-al-dua button[style*="font-weight"][style*="background: #F7F7F5"],.px-al-dua button[style*="font-weight"][style*="background: #F0EFEB"]{background:#D5DDE8!important;box-shadow:inset 0 -4px 0 #9AA7BA,inset 0 2px 0 #FFFFFF!important;font-weight:800!important}
+.px-al-dua button[style*="display: flex; align-items: center; gap"]{background:#FFE38A!important;clip-path:polygon(12px 0,100% 0,100% 100%,12px 100%,0 50%);padding-left:16px!important;border:0!important;box-shadow:inset 0 -3px 0 #E39A1C!important}
+/* Meja Hajatan: lantai tenda, meja bertaplak, kursi */
+.px-al-meja .px-inner>div[style*="background: #FFFFFF"]{background:#F4E3BD!important}
+.px-al-meja div[style*="background: #EFE"]{background:#FFFFFF!important;border:2px solid #2B1D1A!important;box-shadow:inset 0 -5px 0 #E8554E,inset 0 3px 0 #FFFFFF!important}
+.px-al-meja span[style^="display: block; width"]{width:13px!important;height:13px!important;border-radius:0!important;background:var(--px-kursi) center / 100% 100% no-repeat!important;image-rendering:pixelated}
+.px-al-meja span[style^="display: block; height"]{background:#FFC83D!important;box-shadow:inset 0 -2px 0 #E39A1C}
+.px-al-meja span[style*="flex: 1; height"]{background:#FFFFFF!important;box-shadow:0 0 0 2px #2B1D1A!important}
+/* Martabak Topping: peti kayu, tiket pesanan, topping */
+.px-al-mart .px-inner>div[style*="background: #FFFFFF"]{background:#F6D9C4!important}
+.px-al-mart div[style*="min-height"][style*="flex-direction: column"][style*="border: 1px solid #DDDCD7"]{background:#E8C58C repeating-linear-gradient(0deg,#D9B57A 0 2px,#E8C58C 2px 18px)!important;border:3px solid #2B1D1A!important;border-radius:0!important;box-shadow:inset 0 3px 0 #F4DDB0}
+.px-al-mart button[style*="flex-direction: column; align-items: center"]{background:#FFFFFF!important;border:2px solid #2B1D1A!important;box-shadow:0 3px 0 rgba(43,29,26,.25)!important;padding-top:4px!important}
+.px-al-mart button[style*="flex-direction: column; align-items: center"]::before{content:"";width:22px;height:22px;background:var(--px-martabak) center / 100% 100% no-repeat;image-rendering:pixelated}
+.px-al-mart span[style*="display: block; width"][style*="border-radius"]{border:2px solid #2B1D1A!important}
+.px-al-mart button[style*="text-align: left"][style*="background: #F"],.px-al-mart button[style*="text-align: left"][style*="background: #E"]{background:#FFF6C2!important;box-shadow:0 3px 0 rgba(43,29,26,.2)!important}
+/* Mesin Minuman: panel logam, kabel, tombol arkade, gelas */
+.px-al-mesin .px-inner>div[style*="background: #FFFFFF"]{background:#C9D3E0!important}
+.px-al-mesin span[style*="transform-origin"]{height:5px!important;box-shadow:0 0 0 1px #2B1D1A}
+.px-al-mesin button[style*="position: absolute; left"]{background:#E8554E!important;color:#FFFFFF!important;border:3px solid #2B1D1A!important;border-radius:50%!important;box-shadow:inset 0 -4px 0 #B23A34,inset 0 3px 0 #FF9C8F!important;font-weight:800!important}
+.px-al-mesin button[style*="position: absolute; left"][style*="background: #1C1C1A"]{background:#FFC83D!important;color:#2B1D1A!important;box-shadow:inset 0 -4px 0 #E39A1C,inset 0 3px 0 #FFE38A,0 0 0 3px #FFFFFF!important}
+.px-al-mesin button[style*="position: absolute; right"]{background:#FFFFFF!important;border:2px solid #2B1D1A!important;border-radius:0!important;box-shadow:inset 0 -3px 0 #D5DDE8!important}
+.px-al-mesin span[style*="border: 1px solid #66655F"]{border:2px solid #2B1D1A!important;border-radius:0 0 4px 4px!important}
+.px-al-mesin div[style*="background: #FAFAF"]{background:#4C8FDD!important;border:3px solid #2B1D1A!important;border-radius:0!important;color:#FFFFFF;box-shadow:inset 0 4px 0 #8CC0F5}
+.px-al-mesin button[style*="position: relative"][style*="border-radius"]{background:#E8554E!important;color:#FFFFFF!important;border:3px solid #2B1D1A!important;box-shadow:inset 0 -4px 0 #B23A34!important}
+/* Argo Ojek: argo di dasbor, jalan aspal */
+.px-al-ojek .px-inner>div[style*="background: #FFFFFF"]{background:#EAF4EC!important}
+.px-al-ojek div[style*="background: #1C1C1A; color: #FFFFFF"]{background:#2D3250!important;border:3px solid #2B1D1A!important;box-shadow:inset 0 4px 0 #E8554E!important}
+.px-al-ojek span[style*="position: absolute; left"][style*="right"][style*="height"][style*="display: block"]{height:12px!important;margin-top:-4px;border-radius:0!important;background:#5A6278 linear-gradient(90deg,#FFC83D 50%,transparent 50%) 0 50% / 12px 2px repeat-x!important;box-shadow:0 0 0 2px #2B1D1A}
+/* Rekap Grosir: kertas tempel, buku besar */
+.px-al-grosir .px-inner>div[style*="background: #FFFFFF"]{background:#FFFFFF repeating-linear-gradient(180deg,transparent 0 23px,#DCEBFF 23px 24px)!important}
+.px-al-grosir button[style*="background: #FFF"][style*="#EADB"]{background:#FFF1A8!important;border:0!important;box-shadow:0 3px 0 rgba(43,29,26,.25),inset 0 4px 0 #FFE38A!important}
+.px-al-grosir button[style*="background: #FFF"][style*="#EADB"]:nth-child(odd){transform:rotate(-1deg)}
+.px-al-grosir button[style*="min-height"]{background:#FFFFFF!important;border:2px solid #2B1D1A!important}
+/* Kebun Pagar: panel kebun, penggaris bambu, petak tanah */
+.px-al-kebun .px-inner>div[style*="background: #FFFFFF"]{background:#F1F8E8!important}
+.px-al-kebun div[style*="border-top"][style*="position: relative"]{border-top:8px solid #D9C27A!important;box-shadow:0 -2px 0 #2B1D1A,inset 0 2px 0 #2B1D1A}
+.px-al-kebun button[style*="position: absolute"][style*="background: #EF"]{background:#C9955A!important;border:2px solid #2B1D1A!important;color:#2B1D1A;box-shadow:inset 0 3px 0 #E8C58C}
+.px-al-kebun button[style*="position: absolute"][style*="background: #DC"]{background:#93CC5E!important;border:2px solid #2B1D1A!important;box-shadow:inset 0 3px 0 #B8E59A}
+/* Dapur Roti: nampan logam berisi roti, catatan resep */
+.px-al-dapur .px-inner>div[style*="background: #FFFFFF"]{background:#E3E8EF!important}
+.px-al-dapur button[style*="height"][style*="border: 1px solid #DDDCD7"][style*="background: #FFFFFF"]{background:#FFFFFF!important;border:2px solid #9AA7BA!important;border-radius:50%!important}
+.px-al-dapur button[style*="height"][style*="border: 1px solid #2F5BD3"]{background:var(--px-roti) center / 92% auto no-repeat,#FFF6E0!important;border:2px solid #2B1D1A!important;border-radius:50%!important;image-rendering:pixelated}
+.px-al-dapur button[style*="text-align: left"][style*="background: #FFFFFF"]{background:#FFF6E0!important;box-shadow:inset 4px 0 0 #E8554E!important}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -6232,7 +6281,7 @@ const PX = (() => {
   }
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
-  ['coin', 'coinR', 'fPanel', 'fWhite', 'fGold', 'beban', 'kardus', 'balon', 'kue', 'kursi'].forEach(n => css(n, U[n]));
+  ['coin', 'coinR', 'fPanel', 'fWhite', 'fGold', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti'].forEach(n => css(n, U[n]));
   css('bunting', (() => { const t = pen(80, 20, 2); t.R(P.k, 0, 2, 80, 1); [P.r, P.y, P.u, P.a].forEach((c, n) => { const x0 = n * 20 + 3; for (let j = 0; j < 9; j++) { t.R(P.k, x0 + j, 3 + j, 15 - 2 * j, 1); if (j < 8) t.R(c, x0 + j + 1, 3 + j, Math.max(0, 13 - 2 * j), 1); } }); return t.cv.toDataURL(); })());
 
   function pen(W, H, seed) {
