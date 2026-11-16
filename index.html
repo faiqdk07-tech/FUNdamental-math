@@ -398,6 +398,29 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 /* Kasus baru: amplop dan kertas surat */
 #root.px-p-KasusBaru div[style*="background: #FFFFFF"][style*="border: 1px solid #DDDCD7"]{background:#FFFFFF!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 5px 0 #E8554E,0 4px 0 rgba(43,29,26,.2)!important;border:0!important}
 #root.px-p-KasusBaru textarea{background:#FFFFFF repeating-linear-gradient(180deg,transparent 0 19px,#DCEBFF 19px 20px)!important;border:2px solid #2B1D1A!important;border-radius:0!important}
+/* ===== Beranda dan Mini Games: dialog RPG, gulungan misi, bintang, pulau bangunan, papan toko ===== */
+.px-dlg{display:flex;flex-direction:row;align-items:flex-start;gap:10px;background:#2D3250;box-shadow:0 0 0 3px #2B1D1A,inset 0 0 0 3px #FFC83D,inset 0 0 0 5px #2B1D1A;padding:12px 12px 12px 10px;min-height:118px;margin:3px}
+.px-dlg-face{width:52px;height:auto;flex:none;background:#7CCBF2;box-shadow:0 0 0 2px #2B1D1A,inset 0 -6px 0 #57A843;padding:4px 4px 0;image-rendering:pixelated}
+.px-dlg-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;color:#FFFFFF}
+.px-dlg .s{color:#C9D3E0!important}.px-dlg .t{color:#FFE680!important}.px-dlg .d{color:#E8F1F8!important}
+.px-dlg .px-lv{background:#474E78;color:#FFFFFF;box-shadow:0 -2px 0 #FFFFFF,0 2px 0 #FFFFFF,-2px 0 0 #FFFFFF,2px 0 0 #FFFFFF}
+.px-dlg .px-lv.on{background:#FFC83D;color:#2B1D1A}
+.px-dlg .px-val{background:#474E78;color:#FFFFFF;box-shadow:0 -2px 0 #FFFFFF,0 2px 0 #FFFFFF,-2px 0 0 #FFFFFF,2px 0 0 #FFFFFF}
+.px-scroll{background:#F4E3BD;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #FFF6E0,inset 0 -3px 0 #E8C58C;margin:2px 14px;padding:6px 10px!important;position:relative}
+.px-scroll::before,.px-scroll::after{content:"";position:absolute;top:-4px;bottom:-4px;width:12px;background:#E8C58C;box-shadow:0 0 0 2px #2B1D1A,inset -3px 0 0 #C99A5B}
+.px-scroll::before{left:-14px}.px-scroll::after{right:-14px}
+.px-star{display:inline-block;width:18px;height:18px;background:var(--px-bintang0) center / 100% 100% no-repeat;image-rendering:pixelated;margin:0 1px}
+.px-star.on{background-image:var(--px-bintang)}
+.px-star.sm{width:12px;height:12px;margin:0}
+.px-matbtn{border:0!important;background:none!important;padding:0 0 4px!important;gap:0!important}
+.px-matbtn img{width:88%!important;box-shadow:0 0 0 3px #2B1D1A;border-radius:0 0 40% 40%/0 0 22% 22%;background:#57A843}
+.px-signplate{display:flex;flex-direction:column;align-items:center;margin-top:-6px;background:#C99A5B;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #E8C58C,inset 0 -3px 0 #8A5A32;padding:3px 14px 5px;position:relative;z-index:1}
+.px-signplate b{color:#3B2414!important}.px-signplate small{color:#5E3B20!important}
+.px-shopboard{border:0!important;background:#C99A5B!important;box-shadow:0 0 0 3px #2B1D1A,inset 0 4px 0 #E8C58C,inset 0 -4px 0 #8A5A32,0 5px 0 rgba(43,29,26,.25)!important;padding:8px!important;margin:3px}
+.px-shopboard .px-gic{background:#FFF6E0}
+.px-gname{font-size:15px;font-weight:700;line-height:1.2;color:#3B2414}
+.px-gtask{font-size:12px;line-height:1.35;margin-top:4px;background:#FFF6E0;color:#4B4B57;padding:4px 6px;box-shadow:0 0 0 2px #8A5A32}
+.px-ribbon{display:inline-block;font-size:11px;background:#E8554E;color:#FFFFFF;padding:1px 10px 2px 6px;clip-path:polygon(0 0,100% 0,88% 50%,100% 100%,0 100%);font-weight:700}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -2617,20 +2640,20 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div class="px-fw px-who"><img alt="" src="{{px.wajah}}" width="36" height="24"><div><small class="px-f">Fundamental Math</small><b class="px-f">Halo, Faiq</b></div></div>
 <div style="display: flex; gap: 6px; align-items: center"><div class="px-fw px-f" style="font-size: 12px; padding: 3px 4px 4px">{{streakTxt}}</div><a href="Pengaturan.dc.html" aria-label="Pengaturan" class="px-fw px-sq"><img alt="" src="{{px.gir}}" width="24" height="24"></a></div>
 </div>
-<a href="Pengaturan.dc.html" class="px-fw px-target px-f"><span>Target hari ini · <b style="font-family: Inter, system-ui, sans-serif">{{targetTxt}}</b></span><span style="display: flex"><sc-for list="{{pips}}" as="d" hint-placeholder-count="2"><i class="px-pip {{d}}"></i></sc-for></span></a>
+<a href="Pengaturan.dc.html" class="px-fw px-target px-f"><span>Target hari ini · <b style="font-family: Inter, system-ui, sans-serif">{{targetTxt}}</b></span><span style="display: flex"><sc-for list="{{pips}}" as="d" hint-placeholder-count="2"><i class="px-star {{d}}"></i></sc-for></span></a>
 </div>
 </div></div>
 <div class="px-bottom px-grass">
 <sc-if value="{{hasRec}}" hint-placeholder-val="{{ true }}">
-<a href="{{recHref}}" onClick="{{recTap}}" class="px-fw px-quest"><span class="px-tag px-f" style="background: #FFC83D">Coba berikutnya</span><span style="flex: 1; min-width: 0"><b class="px-f">{{recTitle}}</b><small>{{recSub}}</small></span><img alt="" src="{{px.kanan}}" width="12" height="14"></a>
+<a href="{{recHref}}" onClick="{{recTap}}" class="px-quest px-scroll"><span class="px-tag px-f" style="background: #FFC83D">Coba berikutnya</span><span style="flex: 1; min-width: 0"><b class="px-f">{{recTitle}}</b><small>{{recSub}}</small></span><img alt="" src="{{px.kanan}}" width="12" height="14"></a>
 </sc-if>
-<div class="px-fw px-dlg">
+<div class="px-dlg"><img alt="" class="px-dlg-face" src="{{px.pemandu}}"><div class="px-dlg-body">
 <sc-if value="{{dHasS}}" hint-placeholder-val="{{ true }}"><div class="s px-f">{{dS}}</div></sc-if>
 <div class="t px-f">{{dT}}<sc-if value="{{dHasN}}" hint-placeholder-val="{{ false }}"><span style="font-family: Inter, system-ui, sans-serif; font-size: 14px; margin-left: 6px">{{dN}}</span></sc-if></div>
 <sc-if value="{{dHasD}}" hint-placeholder-val="{{ true }}"><div class="d">{{dD}}</div></sc-if>
 <sc-if value="{{dHasLv}}" hint-placeholder-val="{{ false }}"><div style="display: flex; margin-top: 4px"><sc-for list="{{dLv}}" as="l" hint-placeholder-count="3"><span class="px-lv {{l.on}}">{{l.t}}</span></sc-for></div></sc-if>
 <div class="act"><span><sc-if value="{{dHasVal}}" hint-placeholder-val="{{ false }}"><span class="px-val px-f">{{dVal}}</span></sc-if></span><a href="{{dHref}}" onClick="{{dTap}}" class="px-fg px-btn">{{dBtn}}</a></div>
-</div>
+</div></div>
 </div>
 <nav class="px-nav"><a href="Main.dc.html" class="px-slot on"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot"><img alt="" src="{{px.dadu}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
 </div>
@@ -3231,7 +3254,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div class="px-fw px-lab px-f">Pilih subject</div>
 <div class="px-grid2">
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<button type="button" onClick="{{m.tap}}" class="px-fw px-matbtn"><img alt="" src="{{m.img}}"><b class="px-f">{{m.label}}</b><small>{{m.sub}}</small></button>
+<button type="button" onClick="{{m.tap}}" class="px-matbtn"><img alt="" src="{{m.img}}"><span class="px-signplate"><b class="px-f">{{m.label}}</b><small>{{m.sub}}</small></span></button>
 </sc-for>
 </div>
 </div>
@@ -3248,10 +3271,10 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div class="px-fw px-lab px-f">Pilih game</div>
 <div class="px-grid2">
 <sc-for list="{{games}}" as="g" hint-placeholder-count="7">
-<a href="{{g.href}}" onClick="{{g.go}}" class="px-fw px-game">
+<a href="{{g.href}}" onClick="{{g.go}}" class="px-game px-shopboard">
 <div>
-<div style="display: flex; align-items: center; gap: 8px"><span class="px-gic"><img alt="" src="{{g.icon}}"></span><div class="px-f" style="font-size: 15px; font-weight: 700; line-height: 1.2">{{g.name}}</div></div>
-<div style="font-size: 12px; color: #4B4B57; line-height: 1.35; margin-top: 2px">{{g.task}}</div>
+<div style="display: flex; align-items: center; gap: 8px"><span class="px-gic"><img alt="" src="{{g.icon}}"></span><div class="px-f px-gname">{{g.name}}</div></div>
+<div class="px-gtask">{{g.task}}</div>
 </div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px">
 <div style="display: flex; align-items: center; min-height: 18px">
@@ -3260,13 +3283,13 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <sc-for list="{{g.tiers}}" as="tr" hint-placeholder-count="3">
 <div style="display: flex; align-items: center; gap: 2px"><span class="px-f" style="width: 11px; font-size: 10px; font-weight: 700; color: #4B4B57">{{tr.lab}}</span>
 <sc-for list="{{tr.stars}}" as="t" hint-placeholder-count="3">
-<svg width="11" height="11" viewBox="0 0 24 24" fill="{{t.fill}}" stroke="{{t.stroke}}" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg>
+<i class="px-star sm {{t.on}}"></i>
 </sc-for>
 </div>
 </sc-for>
 </div>
 </sc-if>
-<sc-if value="{{g.isNew}}" hint-placeholder-val="{{ false }}"><span class="px-tag px-f" style="background: #7CCBF2">Baru</span></sc-if>
+<sc-if value="{{g.isNew}}" hint-placeholder-val="{{ false }}"><span class="px-ribbon px-f">Baru</span></sc-if>
 </div>
 <span class="px-fg px-f" style="display: flex; align-items: center; gap: 5px; padding: 0 6px 1px; font-size: 13px; font-weight: 700"><img alt="" src="{{px.main}}" width="10" height="11">Main</span>
 </div>
@@ -5762,6 +5785,7 @@ const PX = (() => {
     baju: ['.kkk..kkk.', 'kwwwkkwwwk', 'kwwwwwwwwk', '.kkwwwwkk.', '..kwwwwk..', '..kwwwwk..', '..kwwwwk..', '..kkkkkk..'],
     celana: ['.kkkkkkk.', '.keeeeek.', '.keeeeek.', '.keekeek.', '.keekeek.', '.keekeek.', '.kkk.kkk.'],
     piala: ['..kkkkkkkk..', '.kkYyyyyokk.', 'k.kYyyyyok.k', 'k.kyyyyyok.k', '.kkyyyyyokk.', '...kyyyok...', '....kyok....', '....kyok....', '...kkkkkk...', '..kbbbbbbk..', '..kkkkkkkk..'],
+    bintang: ['....kk....', '...kYYk...', '...kYyk...', 'kkkkyyykkk', 'kYyyyyyyok', '.kyyyyyok.', '..kyyyyk..', '.kyyokyyk.', '.kyok.kok.', '.kkk...kk.'],
     kue: ['..kkkk..', '.kwwwwk.', 'kwwrwwwk', 'kqqqqqqk', 'kppppppk', 'kqqqqqqk', 'kTTTTTTk', '.kkkkkk.'],
     kursi: ['.kkkkkk.', '.kuuuuk.', '.kuUUuk.', '.kkkkkk.', 'kuuuuuuk', 'kkkkkkkk', '.k....k.', '.k....k.'],
     balon: ['..kkkkk..', '.krrrrrk.', 'krqrrrrrk', 'krqrrrrRk', 'krrrrrrRk', 'krrrrrrRk', '.krrrrRk.', '..kRRRk..', '...kkk...', '....k....', '...k.....', '....k....', '.....k...']
@@ -5775,6 +5799,7 @@ const PX = (() => {
   SPR.cetak = ['............', '..kkkkkkkk..', '.kmmmmmmmmk.', 'kkkkkkkkkkkk'].concat(SPR.orang.slice(3, 4)).concat(['.kkkkffkkkk.', '.kskkffkksk.']).concat(SPR.orang.slice(5, 8)).concat(SPR.orang.slice(8).map(r => r.replace(/r/g, 'm').replace(/U/g, 'n')));
   /* Tokoh game Aljabar: kepala (3 baris) + wajah orang + baju/celana berganti warna */
   const tokoh = (top, shirt, pants, side) => top.concat(SPR.orang.slice(3, 8).map(r => side ? r.replace(/B/g, side) : r)).concat(SPR.orang.slice(8).map(r => r.replace(/r/g, shirt).replace(/U/g, pants)));
+  SPR.pemandu = tokoh(['...kkkkkk...', '..kwwwwwwk..', '.kwwwwwwwwk.'], 'o', 'B', 'w');
   SPR.sari = tokoh(['...kkkkkk...', '..kmmmmmmk..', '.kmmmmmmmmk.'], 'p', 'n', 'm');
   SPR.harun = tokoh(['............', '...kkkkkk...', '..knnnnnnk..'], 'a', 'B');
   SPR.udin = tokoh(['...kkkkkk...', '..krrrrrrk..', '.kkkkkkkkkk.'], 'w', 'e');
@@ -5797,6 +5822,7 @@ const PX = (() => {
   SPR.coinR = SPR.coin.map(r => r.replace(/Y/g, 'q').replace(/y/g, 'r').replace(/o/g, 'R'));
   SPR.pialaP = SPR.piala.map(r => r.replace(/Y/g, 'w').replace(/y/g, 'E').replace(/o/g, 'e'));
   SPR.pialaB = SPR.piala.map(r => r.replace(/Y/g, 'T').replace(/y/g, 't').replace(/o/g, 'b'));
+  SPR.bintang0 = SPR.bintang.map(r => r.replace(/[Yyo]/g, 'E'));
   SPR.coinB = SPR.coin.map(r => r.replace(/Y/g, 's').replace(/y/g, 'u').replace(/o/g, 'U'));
   const dims = rows => [Math.max.apply(null, rows.map(r => r.length)), rows.length];
   function uri(name) {
@@ -5806,7 +5832,7 @@ const PX = (() => {
   }
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
-  ['coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana'].forEach(n => css(n, U[n]));
+  ['coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0'].forEach(n => css(n, U[n]));
   css('bunting', (() => { const t = pen(80, 20, 2); t.R(P.k, 0, 2, 80, 1); [P.r, P.y, P.u, P.a].forEach((c, n) => { const x0 = n * 20 + 3; for (let j = 0; j < 9; j++) { t.R(P.k, x0 + j, 3 + j, 15 - 2 * j, 1); if (j < 8) t.R(c, x0 + j + 1, 3 + j, Math.max(0, 13 - 2 * j), 1); } }); return t.cv.toDataURL(); })());
 
   function pen(W, H, seed) {
@@ -11244,7 +11270,7 @@ try { lastMap = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') ||
 const LVN = { F: 'Fundamental', I: 'Intermediate', E: 'Expert' };
 const games = list.map(g => {
 const last = /^[FIE]$/.test(lastMap[g.name] || '') ? lastMap[g.name] : 'F';
-const tiers = ['F', 'I', 'E'].map(l => { const arr = FMP.stars(g.name, l); return { lab: l, arr: arr, stars: arr.map(on => ({ fill: on ? '#E8A317' : 'none', stroke: on ? '#E8A317' : '#B9B8B2' })) }; });
+const tiers = ['F', 'I', 'E'].map(l => { const arr = FMP.stars(g.name, l); return { lab: l, arr: arr, stars: arr.map(on => ({ fill: on ? '#E8A317' : 'none', stroke: on ? '#E8A317' : '#B9B8B2', on: on ? 'on' : '' })) }; });
 const n = tiers.reduce((a, t) => a + t.arr.filter(Boolean).length, 0);
 const go = () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: s.mat, lvl: last, g: g.name, t: Date.now() })); } catch (e) {} };
 const pl = FMP.played(g.name);
