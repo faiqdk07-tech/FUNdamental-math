@@ -9834,7 +9834,7 @@ if (s.mode === 'misi') { const isNew = s.paths1.indexOf(key) < 0; upd.paths1 = i
 this.setState(upd);
 this.solved('Pas! Pelanggan puas dengan kembalian ' + key + '.');
 }, true)];
-if (s.mode === 'misi' && s.mi < 3) next = () => { const price = this.rnd(11, 95), paid = price < 50 ? 50 : 100; setP({ price: price, paid: paid, tray: [], left: 2, cerita: 'Pelanggan berikutnya belanja ' + price + ' ribu dan membayar ' + paid + ' ribu.' }, { stage: 'main', sel: [] }); };
+if (s.mode === 'misi' && s.mi < 3) next = () => { let price, paid; do { price = this.rnd(11, 95); paid = price < 50 ? 50 : 100; } while (P.maxCoins && paid - price > 9 * P.maxCoins); setP({ price: price, paid: paid, tray: [], left: P.budget, cerita: 'Pelanggan berikutnya belanja ' + price + ' ribu dan membayar ' + paid + ' ribu.' }, { stage: 'main', sel: [] }); };
 } else if (P.type === 'laci') {
 const coins = isLab ? s.lab : P.coins;
 boardLabel = isLab ? 'Laci tantangan' : 'Isi laci';
@@ -9889,7 +9889,7 @@ hasAnswer = true; answerLabel = 'Nilai bersih laci (ribu)';
 }
 if (mgOn) actions.unshift(act('Batal', () => this.setState({ sel: [], mg: null, ans: '', ansB: '', msg: '' })));
 else if (!doneStage && s.sel.length === 1 && coins[s.sel[0]] !== undefined && Math.abs(coins[s.sel[0]]) > 1) actions.unshift(act('Pecah', () => this.setState({ mg: { k: 'pec', f: 'a' }, ans: '', ansB: '', msg: '' })));
-if (s.mode === 'misi' && s.mi < 3) next = () => { const c = this.genLaci(); setP({ coins: c, coins0: c.slice(), left: 2 }, { stage: 'main', ans: '', sel: [] }); };
+if (s.mode === 'misi' && s.mi < 3) next = () => { const c = this.genLaci(); setP({ coins: c, coins0: c.slice(), left: P.budget }, { stage: 'main', ans: '', sel: [] }); };
 } else if (P.type === 'struk') {
 boardLabel = 'Struk belanja';
 items = P.nums.map((v, i) => ({ label: v === null ? '?' : String(v), aria: v === null ? 'Harga tidak diketahui' : 'Harga ' + v, tap: () => toggleSel(i), style: 'min-width: 52px; height: 40px; padding: 0 8px; border-radius: 6px; font: inherit; font-weight: 600; font-size: 15px; cursor: pointer; background: ' + (v === null ? '#F0EFEB' : '#FFFFFF') + '; color: #1C1C1A; border: 2px solid ' + (s.sel.indexOf(i) >= 0 ? '#1C1C1A' : '#DDDCD7') }));
@@ -9902,7 +9902,7 @@ if (okPair) moveKeys = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(kk => { const can = P.num
 }
 actions = [act('↺ Ulang struk', () => s.mode === 'harian' ? this.loadCase(s.hi) : this.loadMission(s.mi))];
 hasAnswer = true; answerLabel = 'Total belanja (ribu)';
-if (s.mode === 'misi' && s.mi < 3) next = () => { const arr = [0, 0, 0, 0].map(() => this.rnd(11, 49)); setP({ nums: arr, nums0: arr.slice(), left: 2 }, { stage: 'main', ans: '', sel: [] }); };
+if (s.mode === 'misi' && s.mi < 3) next = () => { const arr = [0, 0, 0, 0].map(() => this.rnd(11, 49)); setP({ nums: arr, nums0: arr.slice(), left: P.budget }, { stage: 'main', ans: '', sel: [] }); };
 }
 if (doneStage && next) actions = actions.concat([act('Pelanggan berikutnya', next, true)]);
 const miniCoin = v => 'width: 30px; height: 30px; padding: 0; border-radius: 50%; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; ' + (v < 0 ? 'background: #F6D6CF; color: #8A2A12; border: 1.5px solid #E3A08F' : 'background: #DCE5FA; color: #1E3F9E; border: 1.5px solid #9DB3EE');
@@ -15593,7 +15593,7 @@ this.finish('Semua blok tepat. Total ' + bl.map(b => b.w * b.h).join(' + ') + ' 
 };
 actions = [act('Cek hitungan', check, true), act('Hapus potongan', () => upd({ cx: 0, cy: 0, vals: {}, bad: {} }))];
 if (isLab) actions.push(act('Jadikan tantangan', () => this.setState({ customs: s.customs.concat([{ W: s.lab.W, H: s.lab.H }]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + '" di tab Misi.', kind: 'ok' }), true));
-if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Aula berikutnya', () => { const W2 = this.rnd(13, 25), H2 = this.rnd(11, 18); this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { budget: 3 }, { W: W2, H: H2, cerita: 'Aula lain berisi ' + H2 + ' baris × ' + W2 + ' kolom kursi.' })), stage: 'main', msg: '' }); }, true));
+if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Aula berikutnya', () => { const W2 = this.rnd(13, 25), H2 = this.rnd(11, 18); this.setState({ P: this.fresh(Object.assign(this.mission(s.mi), { budget: this.mission(s.mi).budget || 3 }, { W: W2, H: H2, cerita: 'Aula lain berisi ' + H2 + ' baris × ' + W2 + ' kolom kursi.' })), stage: 'main', msg: '' }); }, true));
 }
 const rows = Math.max(1, Math.ceil(kinds.length / cols));
 const cell = Math.max(5, Math.min(22, Math.floor(300 / Math.max(cols, 1)) - 1, Math.floor(180 / rows) - 1));
