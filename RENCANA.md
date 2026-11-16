@@ -161,7 +161,7 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
   - A. Sentuhan pixel: tata letak sekarang + warna hangat, huruf pixel untuk judul, ikon benda pixel.
   - B. Desa pixel: Beranda dan Mini Games jadi peta desa, tiap game sebuah bangunan; layar game tetap sederhana. (Saran Claude.)
   - C. Pixel penuh: semua tombol, panel, dan benda di papan bergaya pixel dan kayu.
-- **Pratinjau sudah ada** di `pratinjau-tema.html` (tombol A/B/C di atas). Pixel art digambar lewat kode di file itu (`SPR` untuk ikon, `mapURL` untuk peta desa). Huruf pixel di app: Tiny5 (lisensi OFL), menggantikan Pixelify Sans karena huruf besar B di Pixelify terbaca seperti G.
+- **Pratinjau sudah ada** di `pratinjau-tema.html` (tombol A/B/C di atas). Pixel art digambar lewat kode di file itu (`SPR` untuk ikon, `mapURL` untuk peta desa). Huruf judul dan label di app: Fredoka (bulat, halus, OFL). Huruf pixel (Pixelify, lalu Tiny5) dihapus: Faiq bilang terlalu banyak huruf pixel bikin pusing.
 - Gambar referensi Faiq diterima 16 Nov; pratinjau disesuaikan: rumput kotak-kotak cerah, pohon bulat besar, sungai berbuih dengan dermaga, pagar, tunggul, batu, bunga, koin berkilau di semua tema, dan bingkai kayu (panel, tombol, papan nama) lewat `border-image`.
 - Temuan saat membuat pratinjau: angka huruf pixel mudah salah baca (5 mirip S, 2 mirip 8, 7 mirip 1). Jadi **angka dan cerita soal selalu memakai huruf biasa**, di tema mana pun.
 - Setelah Faiq memilih: terapkan ke `index.html` sebagai satu set warna dan huruf; `pratinjau-tema.html` boleh dihapus sesudahnya.
