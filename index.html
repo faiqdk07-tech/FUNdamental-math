@@ -504,6 +504,24 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-letter textarea{border:0!important;box-shadow:inset 0 0 0 1.5px #C9C2AE;background:#F3ECDA!important;border-radius:0!important}
 .px-pbtn.px-light{background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A,inset 0 -3px 0 #C9C2AE}
 .px-pcard{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#FFFCF2;box-shadow:0 0 0 2px #2B1D1A;border-left:6px solid #4C7BD9}
+/* ===== Tahap 3 · Meja Hajatan: papan menyatu dengan tenda hajatan ===== */
+.px-hall{position:relative;display:flex;flex-direction:column;gap:8px;padding:0 14px 14px;background:#E8C58C;box-shadow:0 0 0 3px #2B1D1A;background-image:linear-gradient(#D9B57A 1px,transparent 1px);background-size:100% 22px;background-position:0 46px}
+.px-hall-roof{height:40px;margin:0 -14px;background:radial-gradient(circle at 10px 0,transparent 0 0),repeating-linear-gradient(90deg,#E8554E 0 26px,#FFFFFF 26px 52px);clip-path:polygon(0 0,100% 0,100% 70%,0 70%);position:relative;box-shadow:inset 0 -2px 0 #2B1D1A}
+.px-hall-roof{-webkit-mask:radial-gradient(13px 9px at 13px 28px,#000 98%,transparent) 0 0/26px 40px repeat-x,linear-gradient(#000 0 28px,transparent 28px);mask:radial-gradient(13px 9px at 13px 28px,#000 98%,transparent) 0 0/26px 40px repeat-x,linear-gradient(#000 0 28px,transparent 28px);clip-path:none;box-shadow:none}
+.px-hall::before,.px-hall::after{content:"";position:absolute;top:24px;bottom:0;width:6px;background:#8A5A32;box-shadow:0 0 0 2px #2B1D1A}
+.px-hall::before{left:4px}.px-hall::after{right:4px}
+.px-hall-lab{align-self:center;font-size:12px;color:#3B2414;background:#FFF6E0;padding:1px 10px 2px;box-shadow:0 0 0 2px #8A5A32}
+.px-hall-row{min-height:110px;display:flex;align-items:center;justify-content:center;gap:2px;padding:8px 0;transform:scale(1.25);transform-origin:center}
+.px-stool{display:block;width:9px;height:9px;border-radius:50%;background:#2F5BD3;box-shadow:0 0 0 1.5px #1B2A5C,inset 2px 2px 0 #7FA2F0}
+.px-htable{height:24px;background:#FFFFFF;box-shadow:0 0 0 1.5px #2B1D1A,inset 0 -4px 0 #E8554E;position:relative}
+.px-hwall{width:8px;height:66px;background:#8C97A8;box-shadow:0 0 0 1.5px #2B1D1A,inset 2px 0 0 #C9D1DC}
+.px-cart{display:flex;flex-direction:column;gap:6px;padding:10px 10px 18px;background:#A8773F;box-shadow:0 0 0 3px #2B1D1A,inset 0 3px 0 #C99A5B;position:relative}
+.px-cart::after{content:"";position:absolute;left:18px;right:18px;bottom:-10px;height:12px;background:radial-gradient(circle at 8px 6px,#3E4050 0 5px,transparent 5.5px) 0 0/calc(100% - 16px) 12px no-repeat,radial-gradient(circle at calc(100% - 8px) 6px,#3E4050 0 5px,transparent 5.5px)}
+.px-cart span{color:#FFF6E0!important;font-size:12px!important}
+#root .px-cart button{background:#FFFFFF!important;color:#2B1D1A!important;border:0!important;border-radius:0!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #E8554E!important;min-height:34px;font-weight:700!important}
+#root .px-cart button[style*="background: #1C1C1A"],#root .px-cart button[style*="background: #2F5BD3"]{background:#FFC83D!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #E39A1C!important;transform:translateY(-3px)}
+.px-clip{position:relative;display:flex;flex-direction:column;gap:6px;margin-top:10px;padding:22px 12px 12px;background:#FFFCF2;box-shadow:0 0 0 2px #2B1D1A,0 0 0 9px #A8773F,0 0 0 11px #2B1D1A}
+.px-clip::before{content:"";position:absolute;top:-14px;left:50%;width:64px;height:20px;margin-left:-32px;background:#C9D1DC;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #8C97A8}
 /* ===== Layar lebar (iPad mini 7, 744 px) ===== */
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 300px) * 195 / 290) * 255 / 195)}
 @media (min-width:600px){
@@ -3037,35 +3055,35 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div>{{story}}</div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
-<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px">
-<div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
+<div class="px-hall">
+<div class="px-hall-roof"></div>
+<div class="px-hall-lab">{{boardLabel}}</div>
 
 <sc-if value="{{isMeja}}" hint-placeholder-val="{{ true }}">
-<div style="min-height: 76px; display: flex; align-items: center; justify-content: center; gap: 2px">
+<div class="px-hall-row">
 <sc-for list="{{segs}}" as="g" hint-placeholder-count="5">
 <sc-if value="{{g.isEnd}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; gap: 3px; padding: 0 2px">
 <sc-for list="{{g.dots}}" as="d" hint-placeholder-count="1">
-<span style="display: block; width: 9px; height: 9px; border-radius: 50%; background: #2F5BD3"></span>
+<span class="px-stool"></span>
 </sc-for>
 </div>
 </sc-if>
 <sc-if value="{{g.isWall}}" hint-placeholder-val="{{ false }}">
-<div style="width: 6px; height: 60px; background: #8C8B85; border-radius: 2px" aria-label="Tembok"></div>
+<div class="px-hwall" aria-label="Tembok"></div>
 </sc-if>
 <sc-if value="{{g.isMeja}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 3px">
 <div style="display: flex; gap: 2px; height: 9px">
 <sc-for list="{{g.dots}}" as="d" hint-placeholder-count="1">
-<span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: #2F5BD3"></span>
+<span class="px-stool"></span>
 </sc-for>
 </div>
-<div style="width: {{g.w}}px; height: 24px; background: #EFE6D2; border: 1px solid #C9B98F; border-radius: 3px"></div>
+<div class="px-htable" style="width: {{g.w}}px"></div>
 <div style="display: flex; gap: 2px; height: 9px">
 <sc-for list="{{g.dots}}" as="d" hint-placeholder-count="1">
-<span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: #2F5BD3"></span>
+<span class="px-stool"></span>
 </sc-for>
 </div>
 </div>
@@ -3106,7 +3124,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-cart">
 <sc-if value="{{hasLabFields}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px">
 <sc-for list="{{labFields}}" as="f" hint-placeholder-count="3">
@@ -3130,7 +3148,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip">
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.sel}}" style="{{f.style}}"><span style="flex: 1; font-size: 13px; text-align: left">{{f.label}}</span><span style="{{f.disp}}">{{f.show}}</span></button>
 </sc-for>
