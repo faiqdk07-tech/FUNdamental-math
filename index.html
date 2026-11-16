@@ -217,6 +217,13 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-receipt{background:#FFFFFF;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A,inset 0 -4px 0 #E8F1F8;margin:2px 24px;padding:12px 14px 16px;display:flex;flex-direction:column;gap:6px;background-image:linear-gradient(135deg,transparent 6px,#FFFFFF 6px),linear-gradient(225deg,transparent 6px,#FFFFFF 6px)}
 .px-kedaiteh button[style*="border-radius: 5px"]{border-radius:0!important;border:2px solid #2B1D1A!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
 .px-kedaiteh button[style*="background: #2F5BD3"]{background:#FFC83D!important;color:#2B1D1A!important}
+/* ===== Adegan percetakan (Lipat Kertas) ===== */
+.px-cetak{background:#E7E3F2!important}
+.px-desk{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;min-height:150px;padding:10px 6px 8px;border:0;background:#8A5A32 repeating-linear-gradient(0deg,#7A4E2A 0 2px,#8A5A32 2px 22px);box-shadow:0 -3px 0 #2B1D1A,0 3px 0 #2B1D1A,-3px 0 0 #2B1D1A,3px 0 0 #2B1D1A,inset 0 4px 0 #A8773F;margin:3px;cursor:pointer}
+.px-desk:active{transform:translateY(2px)}
+.px-cetak button[style*="border-radius: 5px"]{border-radius:0!important;border:2px solid #2B1D1A!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+.px-cetak button[style*="background: #2F5BD3"]{background:#FFC83D!important;color:#2B1D1A!important}
+.px-lined{background:#FFFFFF repeating-linear-gradient(180deg,transparent 0 21px,#DCEBFF 21px 22px);box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A,inset 3px 0 0 #F7A8B0;margin:2px;padding:8px 10px 10px 14px}
 @media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -2503,211 +2510,97 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 </sc-if>
 </div>
 </div></template>
-<template id="tpl-LipatKertas"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.4">
-<div style="padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
-
-<div style="display: flex; align-items: center; gap: 8px">
-<sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
-<a href="MiniGames.dc.html" aria-label="Kembali ke Mini Games" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; text-decoration: none; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
-</sc-if>
-<sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{gmBack}}" aria-label="Kembali" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; border: 1px solid #DDDCD7; border-radius: 6px; color: #1C1C1A; background: #FFFFFF; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
-</sc-if>
-<div style="flex: 1; min-width: 0; line-height: 1.25"><div style="font-weight: 600">Lipat Kertas</div><sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}"><div style="font-size: 11px; color: #66655F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{statusLabel}} <span style="font-weight: 600; color: {{statusColor}}">{{status}}</span></div></sc-if></div>
-<button type="button" onClick="{{toggleHelp}}" aria-label="Cara main" style="width: 30px; height: 30px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 6px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; color: #66655F">?</button>
-<sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{gmOpen}}" aria-label="Pilih mode" style="display: flex; align-items: center; gap: 4px; height: 30px; padding: 0 8px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; color: #1C1C1A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1"></rect><rect x="13" y="4" width="7" height="7" rx="1"></rect><rect x="4" y="13" width="7" height="7" rx="1"></rect><rect x="13" y="13" width="7" height="7" rx="1"></rect></svg>{{gmMode}}</button>
-</sc-if>
+<template id="tpl-LipatKertas"><div class="px-screen px-cetak" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<div class="px-gscroll px-cetak">
+<div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
+<div style="display: flex; align-items: center; gap: 6px">
+<sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}"><a href="MiniGames.dc.html" aria-label="Kembali ke Mini Games" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a></sc-if>
+<sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmBack}}" aria-label="Kembali" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></button></sc-if>
+<div class="px-fw px-ttl" style="display: flex; flex-direction: column; justify-content: center; min-height: 36px"><b class="px-f">Lipat Kertas</b><sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}"><small>{{statusLabel}} <b style="color: {{statusColor}}">{{status}}</b></small></sc-if></div>
+<button type="button" onClick="{{toggleHelp}}" aria-label="Cara main" class="px-fw px-sq">?</button>
+<sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmOpen}}" aria-label="Pilih mode" class="px-fw px-sq px-f" style="width: auto; gap: 5px; padding: 0 5px; font-size: 13px; font-weight: 400"><img alt="" src="{{px.kisi}}" width="16" height="14">{{gmMode}}</button></sc-if>
 </div>
-
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
-<div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
-<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap">
-<sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3">
-<button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button>
-</sc-for>
-</div>
-<div style="font-size: 13px; color: #66655F; text-align: center">Pilih mode</div>
-<sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
-<div style="font-weight: 600; font-size: 13px">Cara main · {{gmHelpTitle}}</div>
+<div class="px-mid">
+<div style="display: flex; justify-content: center; gap: 6px; flex-wrap: wrap"><sc-for list="{{gmTiers}}" as="tr" hint-placeholder-count="3"><button type="button" onClick="{{tr.tap}}" style="{{tr.style}}">{{tr.label}}</button></sc-for></div>
+<div class="px-fw px-lab px-f">Pilih mode</div>
+<sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}"><div class="px-fw" style="padding: 2px 6px 5px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
+<div class="px-f" style="font-weight: 700; font-size: 14px">Cara main · {{gmHelpTitle}}</div>
 <sc-for list="{{gmHelpLines}}" as="hl" hint-placeholder-count="3">
 <div>{{hl}}</div>
 </sc-for>
+</div></sc-if>
+<sc-if value="{{gmHasTut}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{gmTut}}" class="px-fw px-menu"><span class="px-tag" style="background: #7CCBF2; padding: 4px"><img alt="" src="{{px.daftar}}" width="20" height="16"></span><span style="flex: 1"><b class="px-f">Pengenalan games</b><small>Hari pertama kerja, kenali tombolnya</small></span></button></sc-if>
+<div class="px-grid2"><sc-for list="{{gmItems}}" as="mi" hint-placeholder-count="4"><button type="button" onClick="{{mi.tap}}" class="px-fw px-mode"><img alt="" class="px-mode-ic" src="{{mi.icon}}"><b class="px-f" style="font-size: 17px">{{mi.label}}</b><small style="font-size: 12px; color: #4B4B57">{{mi.desc}}</small></button></sc-for></div>
 </div>
 </sc-if>
-<sc-if value="{{gmHasTut}}" hint-placeholder-val="{{ true }}">
-<button type="button" onClick="{{gmTut}}" style="display: flex; align-items: center; gap: 12px; padding: 14px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; font: inherit; text-align: left; cursor: pointer">
-<span style="width: 28px; height: 28px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: #F0EFEB"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"></path></svg></span>
-<span style="flex: 1; display: flex; flex-direction: column"><span style="font-size: 15px; font-weight: 600">Pengenalan games</span><span style="font-size: 12px; color: #66655F">Hari pertama kerja, kenali tombolnya</span></span>
-</button>
-</sc-if>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
-<sc-for list="{{gmItems}}" as="mi" hint-placeholder-count="4">
-<button type="button" onClick="{{mi.tap}}" style="aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; font: inherit; text-align: center; cursor: pointer">
-<span style="font-size: 15px; font-weight: 600">{{mi.label}}</span>
-<span style="font-size: 12px; color: #66655F">{{mi.desc}}</span>
-</button>
-</sc-for>
-</div>
-</div>
-</sc-if>
-
 <sc-if value="{{gmShowPick}}" hint-placeholder-val="{{ false }}">
-<div style="min-height: 700px; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding-bottom: 40px">
-<div style="font-size: 13px; color: #66655F; text-align: center">{{gmPickTitle}}</div>
-<sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
-<div style="font-weight: 600; font-size: 13px">Cara main · {{gmHelpTitle}}</div>
+<div class="px-mid">
+<div class="px-fw px-lab px-f">{{gmPickTitle}}</div>
+<sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}"><div class="px-fw" style="padding: 2px 6px 5px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
+<div class="px-f" style="font-weight: 700; font-size: 14px">Cara main · {{gmHelpTitle}}</div>
 <sc-for list="{{gmHelpLines}}" as="hl" hint-placeholder-count="3">
 <div>{{hl}}</div>
 </sc-for>
+</div></sc-if>
+<sc-for list="{{gmPickItems}}" as="pk" hint-placeholder-count="3"><button type="button" onClick="{{pk.tap}}" class="px-fw px-menu"><span class="px-tag px-f" style="background: #FFC83D; font-size: 14px; min-width: 26px; text-align: center">{{pk.num}}</span><span style="flex: 1"><b class="px-f">{{pk.name}}</b></span><span class="px-f" style="font-size: 12px; color: #1F7A4D">{{pk.done}}</span></button></sc-for>
 </div>
 </sc-if>
-<sc-for list="{{gmPickItems}}" as="pk" hint-placeholder-count="3">
-<button type="button" onClick="{{pk.tap}}" style="display: flex; align-items: center; gap: 12px; padding: 14px 12px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF; color: #1C1C1A; font: inherit; text-align: left; cursor: pointer">
-<span style="width: 28px; height: 28px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: #F0EFEB; font-size: 13px; font-weight: 600">{{pk.num}}</span>
-<span style="flex: 1; font-size: 14px; font-weight: 500">{{pk.name}}</span>
-<span style="font-size: 11px; color: #1F7A4D">{{pk.done}}</span>
-</button>
-</sc-for>
-</div>
-</sc-if>
-
 <sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}">
-
-<sc-if value="{{help}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
-<div style="font-weight: 600; font-size: 13px">Cara main · {{helpTitle}}</div>
-<sc-for list="{{helpLines}}" as="h" hint-placeholder-count="3">
-<div>{{h}}</div>
+<sc-if value="{{help}}" hint-placeholder-val="{{ false }}"><div class="px-fw" style="padding: 2px 6px 5px; font-size: 12px; display: flex; flex-direction: column; gap: 5px">
+<div class="px-f" style="font-weight: 700; font-size: 14px">Cara main · {{helpTitle}}</div>
+<sc-for list="{{helpLines}}" as="hl" hint-placeholder-count="3">
+<div>{{hl}}</div>
 </sc-for>
-<div style="color: #66655F">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
-<button type="button" onClick="{{replayTut}}" style="align-self: flex-start; padding: 5px 10px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer">Ulangi hari pertama</button>
-</div>
-</sc-if>
-
-
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 1px solid {{storyBorder}}; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 11px; color: #66655F">{{gmTagLine}}</div>
-<div style="font-size: 13px">{{story}}</div>
-<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}">
-<div style="font-size: 13px; font-weight: 600">{{goal}}</div>
-</sc-if>
-<sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; gap: 6px; align-items: center">
-<sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}">
-<button type="button" onClick="{{tutTap}}" style="padding: 7px 14px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer">{{tutBtn}}</button>
-</sc-if>
-<button type="button" onClick="{{skipTut}}" style="padding: 7px 10px; border: 0; background: transparent; color: #66655F; font: inherit; font-size: 12px; cursor: pointer; text-decoration: underline">Lewati</button>
-</div>
-</sc-if>
-</div>
-</sc-if>
-
+<div style="color: #4B4B57">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
+<button type="button" onClick="{{replayTut}}" class="px-fw px-f" style="align-self: flex-start; padding: 2px 10px 4px; font-size: 13px">Ulangi hari pertama</button>
+</div></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-npc"><img alt="" class="px-npc-face" src="{{px.cetak}}"><div class="px-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-tag px-f" style="background: #7CCBF2">{{gmTagLine}}</span></sc-if>
+<div>{{story}}</div>
+<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
+<sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
 <sc-if value="{{showPlay}}" hint-placeholder-val="{{ true }}">
+<div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <sc-if value="{{showPaper}}" hint-placeholder-val="{{ true }}">
-<div style="display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 8px">
-<button type="button" onClick="{{paperTap}}" aria-label="Buka lipatan terakhir" style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; min-height: 190px; gap: 6px; font: inherit; color: #1C1C1A; cursor: pointer">
-<span style="display: flex; flex-direction: column; gap: 1px; width: 100px">
-<sc-for list="{{sheets}}" as="x" hint-placeholder-count="4">
-<span style="{{x}}"></span>
-</sc-for>
-</span>
-<span style="font-size: 12px; color: #66655F">{{paperNote}}</span>
-</button>
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px 10px">
-<div style="font-size: 11px; color: #66655F; margin-bottom: 4px">{{tableTitle}}</div>
-<sc-for list="{{table}}" as="r" hint-placeholder-count="3">
-<div style="display: flex; justify-content: space-between; font-size: 12px; font-family: ui-monospace, Menlo, monospace; padding: 2px 0; border-bottom: 1px solid #F0EFEB"><span>{{r.a}}</span><span>{{r.b}}</span></div>
-</sc-for>
-</div>
+<div style="display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 10px">
+<button type="button" onClick="{{paperTap}}" aria-label="Buka lipatan terakhir" class="px-desk"><span style="display: flex; flex-direction: column; gap: 1px; width: 104px"><sc-for list="{{sheets}}" as="x" hint-placeholder-count="4"><span style="{{x}}"></span></sc-for></span><span class="px-f" style="font-size: 13px; color: #FFF6E0">{{paperNote}}</span></button>
+<div class="px-lined"><div class="px-f" style="font-size: 13px; color: #4B4B57; margin-bottom: 4px">{{tableTitle}}</div><sc-for list="{{table}}" as="r" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; gap: 6px; font-size: 13px; font-family: ui-monospace, Menlo, monospace; padding: 2px 0"><span>{{r.a}}</span><span>{{r.b}}</span></div></sc-for></div>
 </div>
 </sc-if>
-
-
-<sc-if value="{{showPicker}}" hint-placeholder-val="{{ false }}">
-<div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 3px">
-<sc-for list="{{nums}}" as="n" hint-placeholder-count="9">
-<button type="button" onClick="{{n.tap}}" style="{{n.style}}">{{n.label}}</button>
-</sc-for>
-</div>
-</sc-if>
+<sc-if value="{{showPicker}}" hint-placeholder-val="{{ false }}"><div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px"><sc-for list="{{nums}}" as="n" hint-placeholder-count="9"><button type="button" onClick="{{n.tap}}" style="{{n.style}}">{{n.label}}</button></sc-for></div></sc-if>
 <sc-if value="{{hasFold}}" hint-placeholder-val="{{ true }}">
-<div style="display: flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 6px 8px">
-<span style="font-size: 11px; color: #66655F; white-space: nowrap">{{foldLabel}}</span>
-<div style="flex: 1; display: grid; grid-template-columns: repeat({{foldCols}}, minmax(0, 1fr)); gap: 3px">
-<sc-for list="{{foldKeys}}" as="f" hint-placeholder-count="2">
-<button type="button" onClick="{{f.tap}}" aria-label="{{f.aria}}" style="{{f.style}}">{{f.label}}</button>
-</sc-for>
-</div>
+<div class="px-fw" style="display: flex; flex-direction: column; gap: 6px; padding: 2px 6px 5px">
+<span class="px-f" style="font-size: 13px">{{foldLabel}}</span>
+<div style="display: grid; grid-template-columns: repeat({{foldCols}}, minmax(0, 1fr)); gap: 4px"><sc-for list="{{foldKeys}}" as="f" hint-placeholder-count="2"><button type="button" onClick="{{f.tap}}" aria-label="{{f.aria}}" style="{{f.style}}">{{f.label}}</button></sc-for></div>
 </div>
 </sc-if>
-<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 8px; display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; align-items: center; gap: 8px">
-<span style="font-size: 11px; color: #66655F; flex: 1">{{keyLabel}}</span>
-<span style="min-width: 76px; padding: 4px 8px; border-radius: 4px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 16px; text-align: right">{{ansShow}}</span>
-</div>
-<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px">
-<sc-for list="{{keys}}" as="q" hint-placeholder-count="11">
-<button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button>
-</sc-for>
-</div>
-</div>
-</sc-if>
-<div style="display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap">
-<sc-for list="{{actions}}" as="a" hint-placeholder-count="2">
-<button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button>
-</sc-for>
-</div>
-<sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; gap: 4px; flex-wrap: wrap">
-<sc-for list="{{log}}" as="h" hint-placeholder-count="2">
-<span style="font-size: 12px; padding: 2px 8px; border: 1px solid #DDDCD7; border-radius: 4px; background: #FFFFFF">{{h}}</span>
-</sc-for>
-</div>
-</sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{sayNotEnough}}" style="padding: 8px; border: 1px solid #C98A2B; background: #FFF3DF; color: #8A5200; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer">Tidak bisa ditentukan dengan informasi ini</button>
-</sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{sayImpossible}}" style="padding: 8px; border: 1px solid #C98A2B; background: #FFF3DF; color: #8A5200; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer">Tidak mungkin</button>
-</sc-if>
+<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">{{keyLabel}}</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
+</div></sc-if>
+<div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
+<sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
+<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-fw px-f" style="padding: 2px 8px 4px; font-size: 14px">Tidak bisa ditentukan dengan informasi ini</button></sc-if>
+<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-fw px-f" style="padding: 2px 8px 4px; font-size: 14px">Tidak mungkin</button></sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
-<div style="background: #FFFFFF; border: 1px solid #2F5BD3; border-radius: 6px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
-<div style="font-size: 13px; font-weight: 500">{{verdictQ}}</div>
-<div style="display: flex; gap: 5px; flex-wrap: wrap">
-<sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2">
-<button type="button" onClick="{{v.tap}}" style="padding: 6px 12px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer">{{v.label}}</button>
-</sc-for>
-</div>
+<div class="px-fg" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center">
+<div style="font-size: 15px; font-weight: 700">{{verdictQ}}</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{verdictOpts}}" as="v" hint-placeholder-count="2"><button type="button" onClick="{{v.tap}}" class="px-fw px-f" style="padding: 2px 10px 4px; font-size: 13px">{{v.label}}</button></sc-for></div>
 </div>
 </sc-if>
 </sc-if>
-
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="2">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 10px 12px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
-<span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}}</span>
-<button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
-<button type="button" onClick="{{b.test}}" style="margin-left: auto; padding: 6px 10px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer">Uji</button>
+<div class="px-chalk"><div class="px-chalk-row"><span>{{b.lhs}}</span><button type="button" onClick="{{b.cyc}}" class="px-chalk-btn">{{b.rhs}}</button></div><button type="button" onClick="{{b.test}}" class="px-fg px-btn">Uji</button></div>
+</sc-for>
+<div class="px-fw px-f" style="align-self: flex-start; font-size: 13px; padding: 0 6px 1px">Catatan aturan untuk kepala percetakan ({{ruleCount}})</div>
+<sc-for list="{{rules}}" as="r" hint-placeholder-count="1"><div class="px-fw" style="padding: 1px 6px 3px; font-family: ui-monospace, Menlo, monospace; font-size: 13px">{{r}}</div></sc-for>
+</sc-if>
+<sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}"><div class="px-msg" style="background: {{msgBg}}; color: {{msgFg}}">{{msg}}</div></sc-if>
+<sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmNext}}" class="px-fg px-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px">{{gmNextLabel}}<img alt="" src="{{px.kanan}}" width="9" height="11"></button></sc-if>
+</sc-if>
 </div>
-</sc-for>
-<div style="font-size: 12px; color: #66655F">Catatan aturan untuk kepala percetakan ({{ruleCount}})</div>
-<sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div style="background: #FFFFFF; border: 1px solid #DDDCD7; border-radius: 6px; padding: 7px 10px; font-family: ui-monospace, Menlo, monospace; font-size: 13px">{{r}}</div>
-</sc-for>
-</sc-if>
-
-<sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}">
-<div style="background: {{msgBg}}; color: {{msgFg}}; border-radius: 6px; padding: 8px 10px; font-size: 13px">{{msg}}</div>
-</sc-if>
-<sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{gmNext}}" style="display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{gmNextLabel}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
-</sc-if>
-</sc-if>
+<div class="px-floor" style="flex: 0 0 48px; margin-top: auto; background: #9AA7BA repeating-linear-gradient(90deg, #9AA7BA 0 58px, #8E9BAE 58px 60px)"></div>
 </div>
 </div></template>
 <template id="tpl-LokerOSIS"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.4">
@@ -6727,6 +6620,7 @@ const PX = (() => {
   SPR.kepala = ['............', '..kkkkkkkk..', '.knnnnnnnnk.', 'kkkkkkkkkkkk'].concat(SPR.orang.slice(3, 8)).concat(SPR.orang.slice(8).map(r => r.replace(/r/g, 'n').replace(/U/g, 'e')));
   SPR.ketua = ['............', '...kkkkkk...', '..krrrrrrk..', '.kkkkkkkkkk.'].concat(SPR.orang.slice(3, 8)).concat(SPR.orang.slice(8).map(r => r.replace(/r/g, 'a').replace(/U/g, 'B')));
   SPR.barista = ['............', '...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.'].concat(SPR.orang.slice(3, 8)).concat(['..kwwwwwwk..', '.kfwwwwwwfk.', '.kfwwkkwwfk.', '..kwwwwwwk..', '..kBBkkBBk..', '..kBBkkBBk..', '..kkk..kkk..']);
+  SPR.cetak = ['............', '..kkkkkkkk..', '.kmmmmmmmmk.', 'kkkkkkkkkkkk'].concat(SPR.orang.slice(3, 4)).concat(['.kkkkffkkkk.', '.kskkffkksk.']).concat(SPR.orang.slice(5, 8)).concat(SPR.orang.slice(8).map(r => r.replace(/r/g, 'm').replace(/U/g, 'n')));
   SPR.mandor = ['...kkkkkk...', '..kyyyyyyk..', '.kyYyyyyyok.', 'kkkkkkkkkkkk'].concat(SPR.orang.slice(3, 8)).concat(SPR.orang.slice(8).map(r => r.replace(/r/g, 'u')));
   SPR.pembeli = SPR.orang.map(r => r.replace(/B/g, 'o').replace(/r/g, 'm').replace(/U/g, 'e'));
   SPR.coinR = SPR.coin.map(r => r.replace(/Y/g, 'q').replace(/y/g, 'r').replace(/o/g, 'R'));
@@ -6964,7 +6858,20 @@ const PX = (() => {
     R(P.k, 56, 39, 8, 7); R(P.w, 57, 40, 6, 5); R(P.b, 58, 41, 4, 3);
     return t.cv.toDataURL();
   });
-  return { U: U, P: P, pen: pen, world: world, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, modeIcons: modeIcons, gameIcon: gameIcon };
+  /* Ruang percetakan, 195 x 50 kotak: rol kertas, mesin cetak, tumpukan kertas. */
+  const cetakView = once('cetak', () => {
+    const W = 195, H = 50, t = pen(W, H, 12), R = t.R; let i;
+    R('#E7E3F2', 0, 0, W, H);
+    R(P.k, 10, 14, 30, 30); R('#F4F7F0', 11, 15, 28, 28); for (i = 0; i < 28; i += 4) R('#DCEBFF', 11, 15 + i, 28, 1); R(P.k, 22, 12, 6, 34); R('#9AA7BA', 23, 13, 4, 32);
+    R(P.k, 62, 12, 72, 34); R('#57B8A0', 63, 13, 70, 32); R('#2F8672', 63, 40, 70, 5); R('#93DCC8', 63, 13, 70, 3);
+    R(P.k, 72, 20, 52, 12); R('#2D3250', 73, 21, 50, 10); R(P.y, 76, 24, 4, 4); R(P.r, 84, 24, 4, 4); R(P.a, 92, 24, 4, 4);
+    R(P.k, 70, 6, 56, 7); R(P.w, 71, 7, 54, 5); R('#D5DDE8', 71, 11, 54, 1);
+    R(P.k, 126, 34, 22, 4); R(P.w, 127, 35, 20, 2);
+    for (i = 0; i < 5; i++) { R(P.k, 152 + (i % 2), 42 - i * 5, 32, 5); R(i % 2 ? '#F4EAD2' : P.w, 153 + (i % 2), 43 - i * 5, 30, 3); }
+    R(P.k, 0, 46, W, 4); R('#8E9BAE', 0, 47, W, 3);
+    return t.cv.toDataURL();
+  });
+  return { U: U, P: P, pen: pen, world: world, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
@@ -7025,7 +6932,7 @@ const PX = (() => {
     return memo[key] = t.cv.toDataURL();
   }
   PX.scene = scene;
-  const DONE = { Main: 1, MiniGames: 1, KasirKilat: 1, Timbangan: 1, Ubin: 1, JadwalBus: 1, BagiPizza: 1, RacikResep: 1 };
+  const DONE = { Main: 1, MiniGames: 1, KasirKilat: 1, Timbangan: 1, Ubin: 1, JadwalBus: 1, BagiPizza: 1, RacikResep: 1, LipatKertas: 1 };
   PX.skin = (root, name) => {
     if (DONE[name]) { root.className = ''; return; }
     const m = FMP.isGame(name) ? FMP.MATS.find(x => x[2].some(g => g[1] === name)) : null;
@@ -10336,7 +10243,7 @@ const showPick = !showMenu && st.gmPick === true && chips.length > 0;
 const inPlay = !showMenu && !showPick;
 const pickItems = chips.map((c, i) => ({ num: String(i + 1), name: clean(c.label), done: String(c.label).indexOf('✓') === 0 ? 'Selesai' : '', tap: () => { c.tap(); this.setState({ gmPick: false, help: false }); } }));
 const tagLine = (v.tags || []).map(g => g.label).filter(l => !/kesempatan|^Maks/i.test(l)).join(' · ');
-return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 5px 10px; border-radius: 14px; font: inherit; font-size: 12px; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
+return Object.assign({}, v, { gmTiers: [['F', 'Fundamental'], ['I', 'Intermediate'], ['E', 'Expert']].map(t => ({ label: t[1], tap: () => this.setLvl(t[0]), style: 'padding: 1px 8px 3px; font-family: \"Fredoka\", Inter, sans-serif; font-size: 14px; color: #2B1D1A; cursor: pointer; ' + (this.curLvl() === t[0] ? 'border: 6px solid transparent; border-image: var(--px-fGold) 30 fill / 6px; background: none; font-weight: 700' : 'border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; ') })), gmHelpMenu: !!this.state.help, gmHelpTitle: this.state.gmMenu !== false ? 'Pilih mode' : (v.isHarian ? 'Pilih kasus' : 'Pilih misi'), gmHelpLines: this.state.gmMenu !== false ? ['Pengenalan games: hari pertama kerja untuk mengenal tombol. Boleh dilewati.', 'Misi: pesanan atasan, dari yang mudah ke yang sulit.', 'Harian: 3 kasus tiap hari, dua di antaranya memakai angka baru.', 'Lab: buat tantanganmu sendiri untuk rekan.', 'Aturan: rakit catatan aturan, lalu uji dengan angka acak.'] : ['Ketuk satu nomor untuk mulai.', 'Tanda Selesai berarti sudah pernah dituntaskan. Kamu tetap boleh mengulang.', v.isHarian ? 'Kasus "Angka baru" berganti setiap hari pukul 07.00 WIB. Kasus pertama diambil dari kumpulan cerita yang masih sedikit.' : 'Misi berikutnya bisa dibuka langsung setelah satu misi selesai.', 'Tombol kembali membawamu ke Pilih mode.'],
 gmHasTut: typeof v.replayTut === 'function', gmTut: () => { if (v.replayTut) v.replayTut(); this.setState({ gmMenu: false, gmPick: false, help: false }); },
 gmShowMenu: showMenu, gmShowPick: showPick, gmNotMenu: !showMenu, gmInPlay: inPlay, gmItems: items,
 gmPickItems: pickItems, gmPickTitle: v.isHarian ? 'Pilih kasus hari ini' : 'Pilih misi',
@@ -10422,7 +10329,7 @@ if (t === 'banding') return ['Membandingkan tumpukan', ['Kamu boleh melipat kert
 if (t === 'free') return ['Hari pertama', ['Ketuk Lipat 2 atau Lipat 3 untuk melipat. Ketuk tumpukan kertas untuk membuka lipatan terakhir.', 'Gambar di kiri menunjukkan tumpukan, catatan di kanan mencatat setiap lipatan.']];
 return ['Menghitung lapisan', ['Kamu boleh melipat kertas latihan sampai 6 kali dengan lipat dua.', 'Ketik jawabanmu, lalu tekan Laporkan.', 'Laporan yang meleset memakai satu kesempatan.']];
 }
-renderVals() { return this.gmWrap(this.gmRender()); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.cetakView() }); }
 gmRender() {
 const s = this.state, P = s.P;
 const isTut = s.mode === 'misi' && s.tut !== null, isLab = s.mode === 'lab';
@@ -10434,7 +10341,7 @@ tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'har
 let chips = [];
 if (s.mode === 'misi' && !isTut) chips = this.T[this.curLvl()].map(m => m.name).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
-const act = (label, tap, primary) => ({ label: label, tap: tap, style: 'padding: 6px 12px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (primary ? 'border: 0; background: #2F5BD3; color: #FFFFFF' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') });
+const act = (label, tap, primary) => ({ label: label, tap: tap, style: 'padding: 2px 12px 4px; font-family: \"Fredoka\", Inter, sans-serif; font-size: 15px; color: #2B1D1A; cursor: pointer; ' + (primary ? 'border: 6px solid transparent; border-image: var(--px-fGold) 30 fill / 6px; background: none; font-weight: 700' : 'border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; ') });
 const setP = (patch, extra) => this.setState(Object.assign({ P: Object.assign({}, P, patch), msg: '', kind: '' }, extra || {}));
 const doneStage = s.stage === 'done', locked = doneStage || s.stage === 'verdict';
 const playing = (s.mode === 'misi' && !isTut) || s.mode === 'harian';
@@ -10442,7 +10349,7 @@ const isPlan = playing && P.type === 'target';
 const seq = isPlan ? (P.folded ? P.plan : []) : P.seq;
 const L = this.layers(seq);
 const shownN = Math.min(L, 48), h = Math.max(2, Math.min(8, Math.floor(150 / shownN) - 1));
-const sheets = Array.from({ length: shownN }, (_, i) => 'height: ' + h + 'px; background: ' + (i % 2 ? '#E9E8E4' : '#FFFFFF') + '; border: 1px solid #C9C8C2; border-radius: 1px');
+const sheets = Array.from({ length: shownN }, (_, i) => 'height: ' + Math.max(h, 4) + 'px; box-sizing: border-box; background: ' + (i % 2 ? '#F4EAD2' : '#FFFFFF') + '; border: 2px solid #2B1D1A');
 const paperNote = L > 48 ? L + ' lapis (terlalu banyak untuk digambar)' : L + ' lapis';
 let table, tableTitle;
 if (isPlan) {
@@ -10455,7 +10362,7 @@ let q = 1;
 table = [{ a: 'awal', b: '1 lapis' }].concat(P.seq.map((k, i) => { q *= k; return { a: 'lipatan ' + (i + 1) + ' (×' + k + ')', b: q + ' lapis' }; }));
 }
 let statusLabel = '', status = '', statusColor = '#1C1C1A', actions = [], log = [], hasStepper = false, stepLabel = '', stepBtns = [], foldKeys = [], foldLabel = 'Mesin lipat', keys = [], hasKeypad = false, keyLabel = '';
-const fkey = (k, tap) => ({ label: 'Lipat ' + k, aria: 'Lipat ' + k, tap: tap, style: 'padding: 7px 0; border: 1px solid #DDDCD7; border-radius: 5px; background: #F7F7F5; font: inherit; font-size: 12px; font-weight: 600; color: #1C1C1A; cursor: pointer' });
+const fkey = (k, tap) => ({ label: 'Lipat ' + k, aria: 'Lipat ' + k, tap: tap, style: 'padding: 3px 0 5px; border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; font-family: \"Fredoka\", Inter, sans-serif; font-size: 15px; font-weight: 700; color: #2B1D1A; cursor: pointer' });
 const MAXF = isLab ? 8 : 6;
 const fold = k => {
 if (locked) return;
@@ -10484,7 +10391,7 @@ if (doneStage && s.mode === 'misi' && s.mi < 3) actions.push(act('Pesanan lain',
 statusLabel = 'Kertas latihan ' + P.seq.length + ' / ' + MAXF + ' lipatan'; status = 'Kesempatan ' + P.left + ' / ' + P.budget;
 const big = P.type === 'tebak';
 hasKeypad = !locked; keyLabel = big ? 'Jumlah lapis' : 'Jumlah lipatan';
-keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '⌫'].map(q => ({ label: q, aria: q === '⌫' ? 'Hapus' : q, tap: () => { let a = P.ans ? String(P.ans) : ''; if (q === '⌫') a = a.slice(0, -1); else if (a.length < (big ? 6 : 2)) a = a + q; setP({ ans: Number(a) || 0 }); }, style: 'padding: 8px 0; border: 1px solid #DDDCD7; border-radius: 5px; background: ' + (q === '⌫' ? '#F0EFEB' : '#FFFFFF') + '; font: inherit; font-size: 14px; font-weight: 600; color: #1C1C1A; cursor: pointer' }));
+keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '⌫'].map(q => ({ label: q, aria: q === '⌫' ? 'Hapus' : q, tap: () => { let a = P.ans ? String(P.ans) : ''; if (q === '⌫') a = a.slice(0, -1); else if (a.length < (big ? 6 : 2)) a = a + q; setP({ ans: Number(a) || 0 }); }, style: 'padding: 3px 0 5px; border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 700; color: ' + (q === '⌫' ? '#4B4B57' : '#2B1D1A') + '; cursor: pointer' }));
 const setA = v => setP({ ans: Math.max(0, Math.min(big ? 100000 : 30, v)) });
 stepBtns = big ? [{ label: '÷2', tap: () => setA(Math.floor(P.ans / 2)) }, { label: '−1', tap: () => setA(P.ans - 1) }, { label: '+1', tap: () => setA(P.ans + 1) }, { label: '×2', tap: () => setA(Math.max(1, P.ans) * 2) }] : [{ label: '−1', tap: () => setA(P.ans - 1) }, { label: '+1', tap: () => setA(P.ans + 1) }];
 const right = big ? (P.m === null ? null : Math.pow(2, P.m + P.n)) : Math.ceil(Math.log2(P.goalL) - 1e-9);
