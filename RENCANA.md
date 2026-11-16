@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **16 Nov:** progres nyata. Hasil main disimpan di `fm.progress`, dan Beranda, Mini Games (bintang), Progres, Jurnal, Pohon Temuan, Tantangan, Bengkel, Cek Celah (versi saran), serta Pengaturan (unduh/pulihkan cadangan, hapus) memakai data itu. Semua angka contoh dihapus. Tombol Lanjutkan, Tantangan, Bengkel, dan saran membuka misi/kasus yang tepat. Tanda ✓ misi kini per tingkat dan tetap ada setelah app ditutup.
 - **16 Nov:** tingkat F/I/E diterapkan ke 5 game Data (rincian di bawah). Sekarang semua 27 game punya tingkat.
 - **16 Nov:** tingkat F/I/E diterapkan ke 6 game Geometri (rincian di bawah). Lolos uji otomatis seperti Aljabar.
 - **16 Nov:** tingkat F/I/E diterapkan ke 9 game Aljabar (rincian di bawah). Tiap tingkat: 3 misi, minimal 3 kasus harian, rumus Aturan sendiri. Lolos uji otomatis: semua misi, kasus harian, dan tombol Berikutnya bisa diselesaikan.
@@ -16,11 +17,10 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
 ## Berikutnya (urut)
 1. **Faiq menguji game Bilangan, game Aljabar, Geometri, dan Data per tingkat, dan Mini Games 2 langkah**, lalu mengisi lembar jawaban. Perbaiki sesuai masukan.
 2. **Desain tema:** 2–3 pratinjau dulu, lalu satu set warna dan huruf untuk semua layar.
-3. **Tanda Selesai per tingkat** (sekarang masih per nomor misi). Bintang diambil dari progres asli, bukan data contoh.
+3. **Cek Celah versi tes:** 2 tantangan singkat per game yang menyarankan tingkat (ditunda, disetujui Faiq 16 Nov).
 4. **Tahap berikutnya:**
    - kasus harian lewat prompt → JSON → validator (tiap kasus punya `tingkat`);
    - Koleksi Rumus;
-   - Bengkel dan Cek Celah memakai data nyata.
 
 ## Rincian tingkat 7 game Bilangan (sudah diterapkan)
 - **Kasir Kilat**
@@ -97,6 +97,14 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 - **Rapor Kelas:** F rekap 10 nilai, 12 nilai (KKM 75), klaim selisih · I meratakan, nilai keempat, siswa pindahan · E 11 nilai, 10 nilai (genap), skor ekstrem 25. Aturan F baru: selisih = a − b.
 - **Grafik Viral:** F garis, batang, lingkaran · I sumbu terpotong 3 grafik (klaim "dua kali lipat") · E judul naik 300%, naik 3 kali lipat, anjlok tiga perempat.
 - Teks `tujuan` f1/f2 Pentas Seni yang salah jumlah kelompok diperbaiki.
+
+## Progres nyata (16 Nov)
+- Modul `FMP` (di atas blok Navigasi) menyimpan `fm.progress`: `ev` (setiap misi/kasus: game, tingkat, benar/gagal), `tiers` (misi selesai dan aturan lolos per game-tingkat), `journal`, `guesses` (dugaan ditolak), `bengkel`, `fixed`, `last`, `tant`, `lab`.
+- Game tidak diubah satu per satu: `show()` membungkus kelas game dengan `FMP.wrap`, yang mengamati `setState` (stage selesai, "Kesempatan habis", `rules` bertambah, `customs` bertambah) dan tombol Uji di Aturan.
+- Bintang: ★1 misi 1–3 selesai, ★2 ≥ syarat Pengaturan (default 8) dari 10 kasus harian terakhir, ★3 satu aturan lolos.
+- Tautan langsung: `FMP.go({key, g, l, mode, idx, id, regen})` lalu `FMP.applyOpen` di `show()`. Kasus harian dibuka dengan mengganti `todayIdx` sementara.
+- Pohon Temuan: subbab menyala bila game itu punya aturan lolos di tingkat yang sama dengan level subbab.
+- Batas: Timbangan belum mencatat dugaan yang ditolak (Aturannya berbeda bentuk). Kasus harian di Bengkel dibuka dengan soal yang sama.
 
 ## Catatan
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.
