@@ -661,6 +661,10 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 #root.px-skin nav[style*="position: absolute"],.px-nav{gap:4px;padding:6px 6px 4px;background:#FFE9B0!important;border-top:0!important;box-shadow:inset 0 3px 0 #C99A5B,inset 0 5px 0 #FFF6E0!important}
 #root.px-skin nav a[href],.px-nav a.px-slot{color:#5E3B20!important;background:none!important;box-shadow:none!important;border-image:var(--px-fWhite) 40 fill / 8px;image-rendering:pixelated}
 #root.px-skin nav a[style*="color: #2F5BD3"],.px-nav a.px-slot.on{color:#FFFFFF!important;border-image:var(--px-fOrange) 40 fill / 8px!important;transform:translateY(-3px);text-shadow:0 1px 0 #A34A16}
+/* Beranda: papan nama di tiap rumah dihapus; tempat diketahui lewat tokoh pemandu di panel bawah */
+.px-spot .px-fs{display:none!important}
+.px-spot{background:none!important}
+.px-spot.on{box-shadow:0 0 0 2px #FFF6E0,0 0 0 4px #2B1D1A;border-radius:2px}
 /* ===== Layar lebar (iPad mini 7, 744 px) ===== */
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 300px) * 195 / 290) * 255 / 195)}
 @media (min-width:600px){
@@ -2935,7 +2939,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <sc-if value="{{hasRec}}" hint-placeholder-val="{{ true }}">
 <a href="{{recHref}}" onClick="{{recTap}}" class="px-quest px-scroll"><span class="px-tag px-f" style="background: #FFC83D">Coba berikutnya</span><span style="flex: 1; min-width: 0"><b class="px-f">{{recTitle}}</b><small>{{recSub}}</small></span><img alt="" src="{{px.kanan}}" width="12" height="14"></a>
 </sc-if>
-<div class="px-dlg"><img alt="" class="px-dlg-face" src="{{px.pemandu}}"><div class="px-dlg-body">
+<div class="px-dlg"><img alt="" class="px-dlg-face" src="{{dFace}}"><div class="px-dlg-body">
 <sc-if value="{{dHasS}}" hint-placeholder-val="{{ true }}"><div class="s px-f">{{dS}}</div></sc-if>
 <div class="t px-f">{{dT}}<sc-if value="{{dHasN}}" hint-placeholder-val="{{ false }}"><span style="font-family: Inter, system-ui, sans-serif; font-size: 14px; margin-left: 6px">{{dN}}</span></sc-if></div>
 <sc-if value="{{dHasD}}" hint-placeholder-val="{{ true }}"><div class="d">{{dD}}</div></sc-if>
@@ -10536,11 +10540,22 @@ tap: () => this.setState({ spot: sp === o ? null : o.id }) };
 const hx = sp ? (sp.mat ? sp.cx + 12 : sp.hx) : 97, hy = sp ? (sp.mat ? sp.sy + 1 : sp.hy) : 122;
 const recMat = rec && FMP.GAME[rec.g] ? SPOTS.find(o => o.mat === FMP.GAME[rec.g].mat) : null;
 let d;
+const GUIDE = {
+bil: ['ratna', 'Bu Ratna, pedagang pasar', 'Ini pasar desa. Pedagang di sini butuh bantuan menghitung kembalian, menimbang, dan membagi barang. Ketuk tombol di bawah untuk melihat gamenya.'],
+alj: ['udin', 'Pak Udin, montir bengkel', 'Ini bengkel desa. Di sini ada struk, mesin, dan catatan yang angkanya hilang atau berubah-ubah. Bantu warga menemukan hubungannya.'],
+geo: ['lina', 'Mbak Lina, mandor proyek', 'Ini proyek bangunan. Tukang di sini mengukur lantai, kardus, tangga, dan jarak di peta. Coba bantu pekerjaan mereka.'],
+dat: ['dimas', 'Mas Dimas, penjaga observatorium', 'Ini observatorium. Warga di sini mengurutkan, mengundi, dan membaca catatan nilai. Ayo lihat apa yang mereka butuhkan.'],
+tan: ['pakrt', 'Pak RT', 'Ini papan pengumuman desa. Tiap hari aku menempel kasus campuran dari game yang pernah kamu mainkan.'],
+ben: ['harun', 'Pak Harun, penjaga gudang', 'Ini gudang perbaikan. Misi atau kasus yang kesempatannya habis kusimpan di sini, lalu bisa kamu coba lagi paling cepat besok.'],
+cek: ['pemandu', 'Penjaga menara', 'Dari menara ini aku bisa melihat bagian desa yang belum kamu jelajahi. Aku akan menyarankan tingkat untuk tiap game.'],
+len: ['sinta', 'Mbak Sinta, penjaga peti', 'Peti ini menyimpan lencanamu. Lencana didapat dari kebiasaan bermain, misalnya bermain beberapa hari berturut-turut.']
+};
+const gd = sp ? GUIDE[sp.id] : null;
 if (sp && sp.mat) {
 const m = matOf(sp.mat);
-d = { s: 'Materi · bintang ★1 per tingkat', t: m.name, n: m.count, lv: m.lv.map(l => ({ t: l.t, on: l.on ? 'on' : '' })), btn: 'Buka Mini Games', href: 'MiniGames.dc.html',
+d = { s: gd[1], d: gd[2], t: m.name, n: m.count, lv: m.lv.map(l => ({ t: l.t, on: l.on ? 'on' : '' })), btn: 'Buka Mini Games', href: 'MiniGames.dc.html',
 tap: () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: sp.mat, lvl: 'F', t: Date.now() })); } catch (e) {} } };
-} else if (sp) { const inf = INFO[sp.id]; d = { t: inf.t, d: inf.d, v: inf.v, btn: inf.btn, href: inf.href }; }
+} else if (sp) { const inf = INFO[sp.id]; d = { s: gd[1], t: inf.t, d: gd[2] + ' ' + inf.d + '.', v: inf.v, btn: inf.btn, href: inf.href }; }
 else if (L) d = { s: 'Lanjutkan', t: L.g + ' · ' + L.label, d: LVN[L.l] + ' · ' + (L.mode === 'misi' ? 'Misi ' + (L.idx + 1) : 'Kasus harian'), btn: 'Main', href: L.key + '.dc.html', tap: () => FMP.go(L) };
 else d = { s: 'Selamat datang, peneliti', t: 'Belum ada kasus yang dimainkan', d: 'Pilih satu game di Mini Games. Semua temuanmu akan tercatat di sini.', btn: 'Buka Mini Games', href: 'MiniGames.dc.html' };
 return {
@@ -10550,7 +10565,7 @@ hasMark: !!recMat, markStyle: recMat ? 'left: ' + pc(recMat.cx - 5.5 + 30, 255) 
 streakTxt: streakTxt, targetTxt: targetTxt, pips: dots.map((_, i) => i < n ? 'on' : ''),
 hasRec: !!rec, recTitle: rec ? rec.g + ' · ' + LVN[rec.l] : '', recSub: rec ? rec.why : '', recHref: rec ? rec.key + '.dc.html' : 'MiniGames.dc.html', recTap: () => { if (rec) FMP.go(rec); },
 dHasS: !!d.s, dS: d.s || '', dT: d.t, dHasN: !!d.n, dN: d.n || '', dHasD: !!d.d, dD: d.d || '', dHasLv: !!d.lv, dLv: d.lv || [],
-dHasVal: !!d.v, dVal: d.v || '', dBtn: d.btn, dHref: d.href, dTap: d.tap || (() => {})
+dFace: PX.U[gd ? gd[0] : 'pemandu'] || PX.U.pemandu, dHasVal: !!d.v, dVal: d.v || '', dBtn: d.btn, dHref: d.href, dTap: d.tap || (() => {})
 };
 }
 }
