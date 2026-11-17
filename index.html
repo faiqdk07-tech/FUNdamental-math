@@ -953,6 +953,22 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 .px-v2 .px-rulenote{position:relative;background:none!important;border:9px solid transparent!important;border-image:var(--px-fPaper) 40 fill / 9px!important;image-rendering:pixelated;box-shadow:none!important;border-radius:0!important;padding:4px 6px 2px!important;font:600 14px ui-monospace,Menlo,monospace;filter:drop-shadow(2px 3px 0 rgba(43,29,26,.25))}
 .px-v2 .px-rulenote::before{content:"";position:absolute;top:-14px;left:50%;width:30px;height:10px;margin-left:-15px;background:#8FD3F5;box-shadow:0 0 0 2px #2B1D1A;opacity:.9}
 .px-v2.v2wait .px-inner,.px-v2.v2wait .px-counter,.px-v2.v2wait .px-cab,.px-v2.v2wait .px-cfront,.px-v2.v2wait .px-scene,.px-v2.v2wait .px-next2{display:none!important}
+/* Revisi Faiq 17 Nov: jarak antarkotak lega, hati di kanan papan judul, label misi di tepi atas balon, kartu tugas seperti kertas tugas */
+.px-v2 .px-wall{gap:26px!important}
+.px-v2 .px-talk{margin-top:6px}
+.px-ttl2{flex-direction:row!important;align-items:center;justify-content:space-between;gap:8px}
+.px-ttl2 b{margin:-2px 0 0!important;flex:0 1 auto}
+.px-ttl2-s{margin:0!important;flex:none}
+.px-hearts{margin-top:0!important}
+.px-heart{width:20px;height:20px}
+.px-talk-bubble{padding-top:12px!important}
+.px-talk-tag{position:absolute;top:-24px;left:6px;z-index:2}
+.px-task{margin-top:4px!important;padding:14px 10px 6px 26px!important;border-image:var(--px-fWhite) 40 / 9px!important;background:linear-gradient(90deg,transparent 0 16px,#F2A0A0 16px 18px,transparent 18px),repeating-linear-gradient(#FFFFFF 0 24px,#CFE2F7 24px 26px) 0 12px,#FFFFFF!important;background-clip:padding-box!important;background-origin:padding-box!important}
+.px-task-t{line-height:26px!important}
+.px-task::before{content:"";position:absolute;top:-14px;left:50%;width:22px;height:22px;margin-left:-11px;background:radial-gradient(circle at 8px 8px,#FF9C8F 0 3px,#E8554E 3.5px 8px,#2B1D1A 8.5px 10px,transparent 10.5px);image-rendering:pixelated}
+.px-task::after{content:"";position:absolute;right:-9px;bottom:-9px;width:18px;height:18px;background:linear-gradient(135deg,transparent 0 50%,#E3E8EF 50%) ;box-shadow:-2px -2px 0 #2B1D1A inset}
+.px-task-h{top:-22px!important;left:8px!important;border-image-source:var(--px-fRed)!important;text-shadow:0 1px 0 #B23A34!important}
+.px-task-t{text-align:left!important;padding:2px 0 4px}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
