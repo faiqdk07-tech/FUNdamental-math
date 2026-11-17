@@ -1109,6 +1109,10 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-ttl2-s{flex:1 1 0!important;justify-content:flex-end}
 @media (max-width:500px){html.fm-pxtext #root .px-ttl2 b,.px-ttl2 b{font-size:18px!important}.px-heart{width:15px!important;height:15px!important}}
 .px-v2 .px-clip button[aria-label][style*="display: flex"],.px-v2 .px-calc button[aria-label][style*="display: flex"]{border-image-source:var(--px-fWhite)!important;color:#2B1D1A!important;text-shadow:none!important;font-size:14px!important;padding:2px 6px 4px!important;text-align:left}
+/* Pembuka misi di semua game: sebelum Lanjut hanya bilah judul dan perkenalan tokoh yang tampil */
+.px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
+.px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
+.px-v2.v2wait .px-gscroll{justify-content:flex-start}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -1116,7 +1120,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <div id="root"></div>
 
 <!-- ===== Tampilan tiap layar (satu template per file .dc.html asal) ===== -->
-<template id="tpl-ArgoOjek"><div class="px-screen px-v2 px-al-ojek" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-ArgoOjek"><div class="px-screen px-v2 {{v2Wait}} px-al-ojek" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-ojek">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -1319,7 +1323,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-BagiPizza"><div class="px-screen px-v2 px-kedai" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-BagiPizza"><div class="px-screen px-v2 {{v2Wait}} px-kedai" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-kedai">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -1476,7 +1480,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 </div>
 
 </div></template>
-<template id="tpl-CetakSpanduk"><div class="px-screen px-v2 px-ge-spanduk" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-CetakSpanduk"><div class="px-screen px-v2 {{v2Wait}} px-ge-spanduk" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-ge-spanduk">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -1658,7 +1662,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-DapurRoti"><div class="px-screen px-v2 px-al-dapur" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-DapurRoti"><div class="px-screen px-v2 {{v2Wait}} px-al-dapur" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-dapur">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -1846,7 +1850,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-DuaStruk"><div class="px-screen px-v2 px-al-dua" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-DuaStruk"><div class="px-screen px-v2 {{v2Wait}} px-al-dua" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-dua">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -2037,7 +2041,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-GrafikViral"><div class="px-screen px-v2 px-da-grafik" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-GrafikViral"><div class="px-screen px-v2 {{v2Wait}} px-da-grafik" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-da-grafik">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -2239,7 +2243,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-GudangKardus"><div class="px-screen px-v2 px-ge-gudang" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-GudangKardus"><div class="px-screen px-v2 {{v2Wait}} px-ge-gudang" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-ge-gudang">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -2759,7 +2763,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-KebunPagar"><div class="px-screen px-v2 px-al-kebun" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-KebunPagar"><div class="px-screen px-v2 {{v2Wait}} px-al-kebun" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-kebun">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -2960,7 +2964,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-LipatKertas"><div class="px-screen px-v2 px-cetak" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-LipatKertas"><div class="px-screen px-v2 {{v2Wait}} px-cetak" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-cetak">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -3050,7 +3054,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-LokerOSIS"><div class="px-screen px-v2 px-da-loker" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-LokerOSIS"><div class="px-screen px-v2 {{v2Wait}} px-da-loker" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-da-loker">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -3285,7 +3289,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <nav class="px-nav"><a href="Main.dc.html" class="px-slot on"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot"><img alt="" src="{{px.stik}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
 </div>
 </div></template>
-<template id="tpl-MartabakTopping"><div class="px-screen px-v2 px-al-mart" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-MartabakTopping"><div class="px-screen px-v2 {{v2Wait}} px-al-mart" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-mart">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -3675,7 +3679,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-MesinMinuman"><div class="px-screen px-v2 px-al-mesin" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-MesinMinuman"><div class="px-screen px-v2 {{v2Wait}} px-al-mesin" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-mesin">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -3900,7 +3904,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <nav class="px-nav"><a href="Main.dc.html" class="px-slot"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot on"><img alt="" src="{{px.stik}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
 </div>
 </div></template>
-<template id="tpl-PasangLantai"><div class="px-screen px-v2 px-ge-lantai" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-PasangLantai"><div class="px-screen px-v2 {{v2Wait}} px-ge-lantai" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-ge-lantai">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -4096,7 +4100,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-Pelabuhan"><div class="px-screen px-v2 px-ge-laut" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-Pelabuhan"><div class="px-screen px-v2 {{v2Wait}} px-ge-laut" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-ge-laut">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -4404,7 +4408,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 </div>
 
 </div></template>
-<template id="tpl-PentasSeni"><div class="px-screen px-v2 px-da-pentas" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-PentasSeni"><div class="px-screen px-v2 {{v2Wait}} px-da-pentas" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-da-pentas">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -4713,7 +4717,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <a href="PohonTemuan.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M12 7v4M12 11l-5 5M12 11l5 5"></path></svg>Temuan</a>
 </nav>
 </div></template>
-<template id="tpl-RacikResep"><div class="px-screen px-v2 px-kedaiteh" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-RacikResep"><div class="px-screen px-v2 {{v2Wait}} px-kedaiteh" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-kedaiteh">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -4816,7 +4820,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-RaporKelas"><div class="px-screen px-v2 px-da-rapor" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-RaporKelas"><div class="px-screen px-v2 {{v2Wait}} px-da-rapor" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-da-rapor">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -5018,7 +5022,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-RekapGrosir"><div class="px-screen px-v2 px-al-grosir" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-RekapGrosir"><div class="px-screen px-v2 {{v2Wait}} px-al-grosir" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-grosir">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -5237,7 +5241,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-RuteKurir"><div class="px-screen px-v2 px-ge-kurir" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-RuteKurir"><div class="px-screen px-v2 {{v2Wait}} px-ge-kurir" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-ge-kurir">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -5443,7 +5447,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-TanggaBangunan"><div class="px-screen px-v2 px-ge-tangga" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-TanggaBangunan"><div class="px-screen px-v2 {{v2Wait}} px-ge-tangga" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-ge-tangga">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -5654,7 +5658,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 </div>
 
 </div></template>
-<template id="tpl-Timbangan"><div class="px-screen px-v2 px-gudang" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-Timbangan"><div class="px-screen px-v2 {{v2Wait}} px-gudang" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-gudang">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -5798,7 +5802,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-Ubin"><div class="px-screen px-v2 px-aula" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-Ubin"><div class="px-screen px-v2 {{v2Wait}} px-aula" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-aula">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -5903,7 +5907,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-UndianDoorprize"><div class="px-screen px-v2 px-da-undian" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-UndianDoorprize"><div class="px-screen px-v2 {{v2Wait}} px-da-undian" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-da-undian">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
 <div class="px-hud2">
@@ -7067,7 +7071,7 @@ PX.v2 = (comp, v, o) => {
   const hearts = useH ? Array.from({ length: +m[2] }, (_, i) => i < +m[1] ? 'on' : '') : [];
   const story = o.story !== undefined ? o.story : v.story, goal = o.goal !== undefined ? o.goal : v.goal, hasGoal = o.hasGoal !== undefined ? o.hasGoal : v.hasGoal; const key = String(story || '') + '|' + String(goal || '');
   if (x.key !== key) { x.key = key; x.open = false; }
-  const needTap = !!hasGoal && !v.isTut;
+  const needTap = !!hasGoal && !v.isTut && v.gmInPlay !== false;
   const pick = (v.gmPickItems || []).map((pk, i) => Object.assign({}, pk, { cls: (pk.done ? 'done ' : '') + (i % 2 ? 'r' : 'l') }));
   return {
     v2Face: PX.U[o.face] || PX.U.pemandu, v2Name: o.name,

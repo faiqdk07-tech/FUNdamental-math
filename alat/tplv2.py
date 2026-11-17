@@ -18,7 +18,7 @@ NEXT='''<sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button 
 
 def common(t, name):
     # root class
-    t=t.replace('<div class="px-screen ', '<div class="px-screen px-v2 ',1)
+    t=t.replace('<div class="px-screen ', '<div class="px-screen px-v2 {{v2Wait}} ',1)
     # header row -> hud2 (first flex row inside wall)
     t=re.sub(r'<div style="display: flex; align-items: center; gap: 6px">', '<div class="px-hud2">', t, count=1)
     t=re.sub(r'<div class="px-fw px-ttl"[^>]*>.*?</div>(?=\s*(<button type="button" onClick="\{\{toggleHelp\}\}"|\n<sc-if value="\{\{gmShowMenu))', TITLE%name, t, count=1, flags=re.S)
