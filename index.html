@@ -643,8 +643,8 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-tier.on::after{color:#B23A34}
 /* ===== Evaluasi Faiq 17 Nov, bagian A: papan kayu pixel, tombol pixel, tab bawah cerah ===== */
 /* papan nama kayu: bingkai pixel bersudut tangga, bukan kotak + bayangan; dibuat ringkas */
-.px-signplate,.px-lab,.px-bed-sign,.px-farm-sign,.px-bench-h,.px-inv-h,.px-ctl-h,.px-hall-lab{border:0!important;box-shadow:none!important;background:none!important;border-image:var(--px-fPanel) 40 fill / 8px!important;image-rendering:pixelated;color:#3B2414!important;padding:3px 10px 4px!important;font-size:13px!important}
-.px-signplate b{font-size:14px!important}
+.px-signplate,.px-lab,.px-bed-sign,.px-farm-sign,.px-bench-h,.px-inv-h,.px-ctl-h,.px-hall-lab{border:0!important;box-shadow:none!important;background:none!important;border-image:var(--px-fPanel) 40 fill / 8px!important;image-rendering:pixelated;color:#3B2414!important;padding:6px 12px 7px!important;font-size:13px!important;line-height:1.2}
+.px-signplate b{font-size:14px!important;line-height:1.15}.px-signplate small{line-height:1.1}
 .px-shopboard,.px-tiers,.px-starboard,.px-cart,.px-bench{box-shadow:none!important;background:none!important;border-image:var(--px-fPanel) 40 fill / 8px!important;image-rendering:pixelated}
 .px-matbtn{box-shadow:none!important;border-image:var(--px-fPanel) 40 / 8px!important;image-rendering:pixelated;padding:12px 10px 8px!important}
 .px-lab::before,.px-lab::after{top:-10px;height:10px}
@@ -5986,7 +5986,7 @@ const PX = (() => {
     daftar: ['kk.kkkkkkk', 'kk.kkkkkkk', '..........', 'kk.kkkkk..', 'kk.kkkkk..', '..........', 'kk.kkkkkkk', 'kk.kkkkkkk'],
     seru: ['..kkkkk..', '.kyyyyyk.', 'kyykkkyyk', 'kyykkkyyk', 'kyykkkyyk', 'kyyykyyyk', 'kyyyyyyyk', 'kyyykyyyk', '.kyyyyyk.', '..kkykk..', '....k....'],
     orang: ['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.', '.kBffffffBk.', '.kfkffffkfk.', '.kffffffffk.', '..kffppffk..', '...kkkkkk...', '..krrrrrrk..', '.kfrrrrrrfk.', '.kfrrrrrrfk.', '..krrrrrrk..', '..kUUkkUUk..', '..kUUkkUUk..', '..kkk..kkk..'],
-    fPanel: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttttk', 'kTttbbtttk', 'kttttttbtk', 'ktbttttttk', 'kttttbbttk', 'kbbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
+    fPanel: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttbbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
     fWhite: ['..kkkkkk..', '.kwwwwwwk.', 'kwwwwwwwwk', 'kwwwwwwwwk', 'kwwwwwwwwk', 'kwwwwwwwwk', 'kwwwwwwwEk', 'kEEEEEEEEk', '.keeeeeek.', '..kkkkkk..'],
     fRed: ['..kkkkkk..', '.kqqqqqqk.', 'kqqrrrrrRk', 'kqrrrrrrRk', 'krrrrrrrRk', 'krrrrrrrRk', 'krrrrrrRRk', 'kRRRRRRRRk', '.kRRRRRRk.', '..kkkkkk..'],
     fOrange: ['..kkkkkk..', '.khhhhhhk.', 'khhggggggk', 'khgggggggk', 'kgggggggGk', 'kgggggggGk', 'kggggggGGk', 'kGGGGGGGGk', '.kGGGGGGk.', '..kkkkkk..'],
