@@ -15,7 +15,7 @@ html:has(body.fm-framed){background:#DDE3D6}
 #fm-bg{display:none}
 body.fm-framed #fm-bg{display:block;position:fixed;inset:0;z-index:-1;image-rendering:pixelated}
 body.fm-framed #root{box-shadow:none}
-/* Layar lebar: latar penuh, isi di kolom tengah selebar 470 px */
+/* Layar lebar: latar penuh, isi di kolom tengah selebar 560 px */
 #root{--padX:0px}
 body.fm-framed .px-wall,body.fm-framed .px-page{padding-left:calc(16px + var(--padX))!important;padding-right:calc(16px + var(--padX))!important}
 body.fm-framed .px-counter,body.fm-framed .px-cab{padding-left:calc(14px + var(--padX));padding-right:calc(14px + var(--padX))}
@@ -736,7 +736,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-xpbar{display:block;width:100%;height:12px;background:#2D3250;box-shadow:0 0 0 2px #2B1D1A;overflow:hidden}
 /* ===== Beranda (evaluasi B, 17 Nov): peta lebih luas, kartu pemain, api hari beruntun, panel cerah ===== */
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 250px) * 195 / 330) * 355 / 195);aspect-ratio:355 / 330}
-body.fm-framed .px-map{width:calc(min(470px, (var(--appH,100dvh) - 250px) * 195 / 330) * 355 / 195)}
+body.fm-framed .px-map{width:calc(min(560px, (var(--appH,100dvh) - 250px) * 195 / 330) * 355 / 195)}
 .px-map .px-hud{left:calc(80 / 355 * 100% + 6px);right:calc(80 / 355 * 100% + 6px);top:6px}
 .px-map .px-target{left:calc(80 / 355 * 100% + 6px);top:60px}
 .px-map .px-hud{z-index:4}.px-map .px-target{z-index:4}
@@ -789,7 +789,7 @@ body.fm-framed .px-topbar{padding-left:calc(8px + var(--padX));padding-right:cal
 .px-tgt b{font-family:Inter,system-ui,sans-serif}
 .px-world .px-wscroll{padding-top:58px}
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 308px) * 195 / 330) * 355 / 195)}
-body.fm-framed .px-map{width:calc(min(470px, (var(--appH,100dvh) - 308px) * 195 / 330) * 355 / 195)}
+body.fm-framed .px-map{width:calc(min(560px, (var(--appH,100dvh) - 308px) * 195 / 330) * 355 / 195)}
 /* ===== Mini Games (evaluasi C, 17 Nov): peta pilih subject, rak game, pita judul ===== */
 .px-mghead{position:absolute;top:8px;left:8px;right:8px;z-index:6;display:flex;align-items:center;gap:6px}
 body.fm-framed .px-mghead{left:calc(8px + var(--padX));right:calc(8px + var(--padX))}
@@ -828,7 +828,7 @@ body.fm-framed .px-mgmap{width:calc(min(100%, (var(--appH,100dvh) - 110px) * 195
 .px-mgbottom .px-dlg{min-height:0!important}
 .px-mgstreet{position:relative;flex:none;margin:0;left:50%;transform:translateX(-50%);background-size:100% 100%;image-rendering:pixelated}
 .px-mgpage .px-mgstreet{width:calc((100% + 32px) * 355 / 195);max-width:none}
-body.fm-framed .px-mgpage .px-mgstreet{width:calc(470px * 355 / 195)}
+body.fm-framed .px-mgpage .px-mgstreet{width:calc(560px * 355 / 195)}
 .px-gsign{position:absolute;transform:translateX(-50%);z-index:2;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:1px 6px 2px;background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #8CC0F5,0 3px 0 rgba(43,29,26,.25);white-space:nowrap}
 .px-gsign.on{background:#FFF1A8;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #FFC83D,0 3px 0 rgba(43,29,26,.25)}
 .px-gsign-n{display:flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;color:#2B1D1A}
@@ -16466,17 +16466,17 @@ show(current());
 </script>
 <script>
 /* Layar lebar (iPad, tablet): latar tiap layar memenuhi seluruh lebar, isinya tetap kolom
-   470 px di tengah (padding --padX), dan semuanya sedikit diperbesar (maks. 1,2x). */
+   560 px di tengah (padding --padX), dan sedikit diperbesar (maks. 1,05x; masukan Faiq 17 Nov). */
 (function () {
   function fit() {
     var W = window.innerWidth, H = window.innerHeight, r = document.getElementById('root');
     if (!r) return;
     var wide = W >= 600, z = 1, cw = W;
-    if (wide) { z = Math.max(1, Math.min(1.2, W / 520, H / 760)); cw = W / z; }
+    if (wide) { z = Math.max(1, Math.min(1.05, W / 600, H / 900)); cw = W / z; }
     r.style.zoom = z === 1 ? '' : String(z);
     r.style.maxWidth = wide ? 'none' : '';
-    /* latar memenuhi layar; isi tetap di kolom 470 px di tengah (lihat --padX di CSS fm-framed) */
-    r.style.setProperty('--padX', wide ? Math.max(0, Math.floor((cw - 470) / 2)) + 'px' : '0px');
+    /* latar memenuhi layar; isi tetap di kolom 560 px di tengah (lihat --padX di CSS fm-framed) */
+    r.style.setProperty('--padX', wide ? Math.max(0, Math.floor((cw - 560) / 2)) + 'px' : '0px');
     document.body.classList.toggle('fm-framed', wide);
     if (z === 1) document.documentElement.style.removeProperty('--appH');
     else document.documentElement.style.setProperty('--appH', (H / z) + 'px');

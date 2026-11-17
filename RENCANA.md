@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **17 Nov: ukuran iPad diubah** atas permintaan Faiq (ia lebih suka tampilan jendela iPad ±555 pt): kolom isi 470 → 560 px, perbesaran maks. 1,2× → 1,05×. Peta Beranda/Mini Games ikut batas 560 px.
 - **17 Nov: evaluasi D (layar Pilih mode) selesai** untuk 26 template game.
   - D2: gambar Intermediate jadi semak (`SPR.semak`), papan tingkat diperkecil.
   - D3/D5: papan gantung "Pilih mode" dihapus; 4 mode dalam satu panel putih bertepi biru berlabel kuning (`.px-modes`), tiap mode tombol pendek dengan blok warna + ikon (`.px-mode2`, `.px-m-Misi` oranye, Harian biru, Lab hijau, Aturan ungu).
