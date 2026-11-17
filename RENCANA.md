@@ -3,6 +3,11 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **17 Nov: evaluasi D (layar Pilih mode) selesai** untuk 26 template game.
+  - D2: gambar Intermediate jadi semak (`SPR.semak`), papan tingkat diperkecil.
+  - D3/D5: papan gantung "Pilih mode" dihapus; 4 mode dalam satu panel putih bertepi biru berlabel kuning (`.px-modes`), tiap mode tombol pendek dengan blok warna + ikon (`.px-mode2`, `.px-m-Misi` oranye, Harian biru, Lab hijau, Aturan ungu).
+  - D7: kotak tombol "?" (menu dan saat bermain) jadi `.px-helpbox`: label kuning "Cara main · …", tombol tutup ×, tiap petunjuk satu baris berpenanda, tombol "Ulangi hari pertama". Isi petunjuk tidak berubah.
+  - Catatan teknis "Timbangan Balon membuka game Timbangan…" di Mini Games Aljabar dihapus (pemain tidak perlu tahu).
 - **17 Nov: evaluasi C (Mini Games) selesai**, disetujui Faiq.
   - Langkah 1 jadi peta pilih subject (`PX.mgMap`, 195 × 300 + tepi 80): langit, bukit, air mancur, kolam bebek, kebun bunga, gapura desa; 4 gedung dengan papan nama (nama + jumlah game tuntas, tanpa tali). Tokoh berjalan dari gapura ke gedung yang diketuk (`MG_NODES`), lalu masuk ke langkah 2.
   - Langkah 2: pemandangan gedung subject di atas (`PX.mgTop`), rak game ala tas RPG (`.px-gslot`, ikon besar, nama, bintang ★1 tiap tingkat), panel bawah cerah berisi tugas singkat, bintang F/I/E, dan tombol Main.
