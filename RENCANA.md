@@ -6,7 +6,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
 - **17 Nov: evaluasi D (layar Pilih mode) selesai** untuk 26 template game.
   - D2: gambar Intermediate jadi semak (`SPR.semak`), papan tingkat diperkecil.
   - D3/D5: papan gantung "Pilih mode" dihapus; 4 mode dalam satu panel putih bertepi biru berlabel kuning (`.px-modes`), tiap mode tombol pendek dengan blok warna + ikon (`.px-mode2`, `.px-m-Misi` oranye, Harian biru, Lab hijau, Aturan ungu).
-  - Masukan lanjutan: panel Pilih mode, kartu Pengenalan games, dan kotak "?" di layar Pilih mode dibatasi 320 px di tengah (tidak melebar), tombol mode sedikit lebih kecil.
+  - Masukan lanjutan: panel Pilih mode, kartu Pengenalan games, dan kotak "?" di layar Pilih mode dibatasi 362 px di tengah (tidak melebar); jarak antartombol mode 12–14 px dan ruang dalam panel lebih lega supaya tidak berdempetan.
   - D7: kotak tombol "?" (menu dan saat bermain) jadi `.px-helpbox`: label kuning "Cara main · …", tombol tutup ×, tiap petunjuk satu baris berpenanda, tombol "Ulangi hari pertama". Isi petunjuk tidak berubah.
   - Catatan teknis "Timbangan Balon membuka game Timbangan…" di Mini Games Aljabar dihapus (pemain tidak perlu tahu).
 - **17 Nov: evaluasi C (Mini Games) selesai**, disetujui Faiq.
