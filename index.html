@@ -1034,6 +1034,30 @@ html.fm-pxtext #root,html.fm-pxtext #root *{font-family:"Jersey 15",Inter,sans-s
 html.fm-pxtext #root svg text{font-size-adjust:none}
 html.fm-pxtext #root .px-ttl2 b{font-size:21px!important}
 html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root .px-ribbon2 b,html.fm-pxtext #root .px-lvhead,html.fm-pxtext #root .px-task-h,html.fm-pxtext #root .px-talk-tag,html.fm-pxtext #root .px-talk-name,html.fm-pxtext #root .px-pop-body b,html.fm-pxtext #root .px-rulehead,html.fm-pxtext #root .px-modes::before,html.fm-pxtext #root .px-helpbox-h,html.fm-pxtext #root .px-dlg .s,html.fm-pxtext #root .px-dlg .t,html.fm-pxtext #root .px-me-name b,html.fm-pxtext #root .px-flag,html.fm-pxtext #root .px-gsign-n,html.fm-pxtext #root .px-tiers::before,html.fm-pxtext #root .px-lvdot,html.fm-pxtext #root .px-lvname,html.fm-pxtext #root .px-qboard-h,html.fm-pxtext #root .px-qnote-t b{font-size-adjust:none!important}
+/* Revisi Faiq 17 Nov (6): jendela hasil jadi dialog RPG: bingkai kayu, pita judul, bintang/hati, tombol sejajar */
+.px-pop-card{position:relative;display:flex!important;flex-direction:column!important;gap:14px!important;max-width:460px!important;padding:30px 12px 10px!important;border:14px solid transparent!important;border-image:var(--px-fWood) 40 / 14px!important;background:#FFFCF2!important;background-clip:padding-box!important}
+.px-pop.ok .px-pop-card{border-image-source:var(--px-fWood)!important}
+.px-pop-card::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 23px,rgba(207,226,247,.7) 23px 25px)}
+.px-pop-rib{position:absolute;top:-34px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;white-space:nowrap;padding:0 16px;border:11px solid transparent;border-image:var(--px-fGreen) 40 fill / 11px;image-rendering:pixelated;filter:drop-shadow(0 4px 0 rgba(43,29,26,.35))}
+.px-pop.warn .px-pop-rib{border-image-source:var(--px-fOrange)}
+.px-pop-rib b{font:400 26px "Jersey 15",sans-serif!important;color:#FFFFFF;text-shadow:0 2px 0 #2F7A36;font-size-adjust:none!important}
+.px-pop.warn .px-pop-rib b{text-shadow:0 2px 0 #C0602A}
+.px-pop-rib i{width:22px;height:22px;background:var(--px-bintang) center/100% 100% no-repeat;image-rendering:pixelated}
+.px-pop.warn .px-pop-rib i{background-image:var(--px-hati0)}
+.px-pop.warn .px-pop-rib i:first-child{background-image:var(--px-hati)}
+.px-pop.ok .px-pop-rib i:last-child{animation:px-hop .6s steps(2) infinite}
+.px-pop-main{position:relative;display:flex;align-items:flex-start;gap:14px}
+.px-pop-fw{flex:none;width:76px;height:76px;display:flex;align-items:flex-end;justify-content:center;border:9px solid transparent;border-image:var(--px-fWhite) 40 fill / 9px;image-rendering:pixelated;background:linear-gradient(#8FD3F5 0 68%,#75BF4C 68%) content-box}
+.px-pop-face{width:46px!important;height:auto!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;margin-bottom:-2px}
+.px-pop-body{gap:4px!important;font-size:16px!important;line-height:1.45!important}
+.px-pop-body b{display:none}
+.px-pop-who{align-self:flex-start;font:400 15px "Jersey 15",sans-serif;color:#FFFFFF;padding:0 4px;border:6px solid transparent;border-image:var(--px-fWood) 40 fill / 6px;image-rendering:pixelated;text-shadow:0 1px 0 #5E3B20;font-size-adjust:none!important}
+.px-pop-act{position:relative;display:flex!important;align-items:stretch!important;justify-content:flex-end;gap:10px!important;flex-wrap:nowrap!important;padding-top:4px}
+.px-pop-act>button{min-height:52px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.px-pop-act .px-btn2{flex:none;min-width:88px}
+.px-pop-act .px-cta{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.px-pop.warn .px-pop-act .px-btn2{min-width:140px;border-image-source:var(--px-fGold)}
+@media (max-width:520px){.px-pop-act{flex-wrap:wrap!important}.px-pop-act .px-cta{order:-1;flex:1 1 100%}.px-pop-act .px-btn2{flex:1 1 100%}}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -2649,7 +2673,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 <div class="px-floor"></div>
 </sc-if>
 </div>
-<sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><img alt="" class="px-pop-face" src="{{v2Face}}"><div class="px-pop-body"><b class="px-f">{{v2MsgTitle}}</b><div>{{msg}}</div></div>
+<sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
 <template id="tpl-KebunPagar"><div class="px-screen px-al-kebun" style="width: 100%; height: 844px; position: relative; overflow: hidden">
@@ -3549,7 +3573,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 </div>
 <div class="px-floor" style="flex: 0 0 48px; margin-top: auto; background: #C99A5B"></div>
 </div>
-<sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><img alt="" class="px-pop-face" src="{{v2Face}}"><div class="px-pop-body"><b class="px-f">{{v2MsgTitle}}</b><div>{{msg}}</div></div>
+<sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
 <template id="tpl-MesinMinuman"><div class="px-screen px-al-mesin" style="width: 100%; height: 844px; position: relative; overflow: hidden">
