@@ -871,6 +871,12 @@ body.fm-framed .px-mgpage .px-mgstreet{width:calc(560px * 355 / 195)}
 .px-mode2-t b{font-size:14px}
 .px-mode2-t small{font-size:10.5px}
 body.fm-framed .px-mid:has(> .px-modes){zoom:1.25}
+.px-mgscroll{flex:none;overflow-x:auto;overflow-y:hidden;margin:0 calc(-16px - var(--padX));-webkit-overflow-scrolling:touch;scrollbar-width:thin;--stU:calc(100vw / 195 * 1.15)}
+body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
+.px-mgscroll .px-mgstreet{left:auto;transform:none;max-width:none}
+.px-mghint2{text-align:center;font-size:12px;color:#FFFFFF;text-shadow:0 2px 0 #2F7A36;margin-top:-6px}
+.px-mgstreet .px-gslot-new{width:auto;height:calc(var(--stU) * 14)}
+.px-gsign-n{font-size:12px}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -3594,13 +3600,15 @@ body.fm-framed .px-mid:has(> .px-modes){zoom:1.25}
 </sc-if>
 <sc-if value="{{isGame}}" hint-placeholder-val="{{ false }}">
 <div class="px-page px-mgpage">
-<div class="px-mgstreet" style="{{streetStyle}}">
+<div class="px-mgscroll"><div class="px-mgstreet" style="{{streetStyle}}">
 <sc-for list="{{games}}" as="g" hint-placeholder-count="7">
 <button type="button" onClick="{{g.pick}}" class="px-mgspot {{g.on}}" aria-label="{{g.name}}" style="{{g.box}}"></button>
 <span class="px-gsign {{g.on}}" style="{{g.signAt}}"><span class="px-gsign-n px-f"><img alt="" src="{{g.icon}}">{{g.name}}</span><sc-if value="{{g.played}}" hint-placeholder-val="{{ false }}"><span class="px-gslot-s"><sc-for list="{{g.mini}}" as="t" hint-placeholder-count="3"><i class="px-star sm {{t}}"></i></sc-for></span></sc-if></span>
 <sc-if value="{{g.isNew}}" hint-placeholder-val="{{ false }}"><img alt="Baru" class="px-gslot-new" style="{{g.newAt}}" src="{{px.seru}}"></sc-if>
 </sc-for>
 </div>
+</div>
+<div class="px-mghint2 px-f">Geser ke kiri atau kanan untuk melihat semua tempat</div>
 </div>
 <div class="px-bottom px-grass px-mgbottom">
 <div class="px-dlg"><img alt="" class="px-dlg-face icon" src="{{sel.icon}}"><div class="px-dlg-body">
@@ -6348,8 +6356,9 @@ const PX = (() => {
   })());
   /* Mini Games langkah 2: jalan berisi tempat tiap game. Tempat tiap game = bangunan 40 x 34 kotak di (a, b),
      boleh menjulang sampai b - 10 dan melebar 6 kotak ke kiri-kanan. Letak: PLACE_AT, dipakai juga layar MiniGames. */
-  const PLACE_AT = (i, n) => { const c = i % 3, r = Math.floor(i / 3); return [[12, 78, 143][c], 40 + r * 74]; };
-  const streetH = n => 40 + Math.ceil(n / 3) * 74 + 4;
+  const PLACE_AT = (i, n) => i % 2 === 0 ? [22 + (i / 2) * 76, 50] : [60 + ((i - 1) / 2) * 76, 124];
+  const streetW = n => PLACE_AT(n - 1, n)[0] + 70;
+  const streetH = n => 196;
   const PAL = { red: ['#E8554E', '#B23A34', '#FF9C8F', '#FFF6E0', '#EDE2C4'], blue: ['#4C8FDD', '#2F64B0', '#8CC0F5', '#F3D9A6', '#D9B57A'], green: ['#57A843', '#2F7A36', '#93D65F', '#FFF6E0', '#EDE2C4'],
     purple: ['#7C6CC4', '#5A4AA0', '#A99BEA', '#FFF6E0', '#EDE2C4'], orange: ['#F0963A', '#B56A22', '#F9BE74', '#FFF6E0', '#EDE2C4'], teal: ['#57B8A0', '#2F8672', '#93DCC8', '#FFF6E0', '#EDE2C4'],
     brown: ['#A8773F', '#6E4626', '#D2A56A', '#F3D9A6', '#D9B57A'], gray: ['#8C97A8', '#5A6278', '#C9D3E0', '#FFF6E0', '#EDE2C4'] };
@@ -6409,23 +6418,27 @@ const PX = (() => {
     'Grafik Viral': (t, a, b) => { t.house(a, b, 40, PAL.gray, false); const R = t.R; R(P.k, a + 41, b + 18, 10, 9); R('#2D3250', a + 42, b + 19, 8, 6); R(P.y, a + 43, b + 22, 1, 2); R(P.a, a + 45, b + 21, 1, 3); R(P.r, a + 47, b + 20, 1, 4); R(P.k, a + 45, b + 27, 2, 3); }
   };
   const mgStreet = (mat, names) => memo['st' + mat] || (memo['st' + mat] = (() => {
-    const n = names.length, W = 195, H = streetH(n), M = 80, TW = W + 2 * M, t = pen(TW, H, mat.length * 9 + n), R = t.R, rnd = t.rnd; let i;
-    grass(t, TW, 0, H); t.x.translate(M, 0);
-    R('#8FD3F5', -M, 0, TW, 26); R('#A3DCF7', -M, 16, TW, 6); t.cloud(-50, 4); t.cloud(30, 7); t.cloud(150, 3); t.cloud(230, 8);
-    for (i = -M; i < W + M; i++) { const hh = Math.round(7 + 3 * Math.sin(i / 12 + n) + 2 * Math.sin(i / 5)); R('#57A843', i, 30 - hh, 1, hh); R('#2F7A36', i, 30 - hh, 1, 1); }
-    R('#3F7A32', -M, 30, TW, 1);
-    for (i = 0; i < 160; i++) { const tx = (rnd() * TW | 0) - M, ty = 34 + rnd() * (H - 36) | 0; R('#4E9E3E', tx, ty, 1, 2); R('#A5E070', tx + 1, ty - 1, 1, 1); }
-    const rows = Math.ceil(n / 3), roads = [];
-    for (let r = 0; r < rows; r++) { const y = 40 + r * 74 + 54; roads.push([-M - 3, y, TW + 6, 8]); }
-    roads.push([62, 94, 8, (rows - 1) * 74 + 8]); roads.push([127, 94, 8, (rows - 1) * 74 + 8]);
-    names.forEach((nm, k) => { const p = PLACE_AT(k, n); roads.push([p[0] + 16, p[1] + 34, 8, 20]); });
+    const n = names.length, W = streetW(n), H = streetH(n), t = pen(W, H, mat.length * 9 + n), R = t.R, rnd = t.rnd; let i, k;
+    grass(t, W, 0, H);
+    R('#8FD3F5', 0, 0, W, 26); R('#A3DCF7', 0, 16, W, 8);
+    for (i = 0; i < W; i += 70) t.cloud(i + (i * 7 % 30), 2 + (i * 3 % 8));
+    for (i = 0; i < W; i++) { const hh = Math.round(7 + 3 * Math.sin(i / 13 + n) + 2 * Math.sin(i / 5)); R('#57A843', i, 34 - hh, 1, hh); R('#2F7A36', i, 34 - hh, 1, 1); R('#7CC95A', i, 35 - hh, 1, 1); }
+    R('#3F7A32', 0, 34, W, 1);
+    for (i = 0; i < W * 1.1; i++) { const tx = rnd() * W | 0, ty = 38 + rnd() * (H - 40) | 0; R('#4E9E3E', tx, ty, 1, 2); R('#A5E070', tx + 1, ty - 1, 1, 1); }
+    const roads = [[-3, 100, W + 6, 9], [-3, 170, W + 6, 8]];
+    for (k = 0; 117 + 76 * k < W - 10; k++) roads.push([117 + 76 * k, 108, 8, 62]);
+    roads.push([8, 108, 8, 62]);
+    names.forEach((nm, j) => { const p = PLACE_AT(j, n); roads.push(j % 2 === 0 ? [p[0] + 16, p[1] + 34, 8, 16] : [p[0] + 16, p[1] + 34, 8, 12]); });
     roads.forEach(r => R('#4E9E3E', r[0] - 2, r[1] - 2, r[2] + 4, r[3] + 4));
     roads.forEach(r => R('#A8773F', r[0] - 1, r[1] - 1, r[2] + 2, r[3] + 2));
     roads.forEach(r => R('#E3BD86', r[0], r[1], r[2], r[3]));
     roads.forEach(r => { for (let q = 0; q < r[2] * r[3] / 28; q++) R(rnd() < .5 ? '#CDA066' : '#F0D3A2', r[0] + (rnd() * (r[2] - 2) | 0), r[1] + (rnd() * r[3] | 0), 2, 1); });
-    names.forEach((nm, k) => { const p = PLACE_AT(k, n); (PLACES[nm] || PLACES['Kasir Kilat'])(t, p[0], p[1]); });
-    for (let k = n; k < rows * 3; k++) { const p = PLACE_AT(k, n); t.tree(p[0] + 4, p[1] + 10); t.tree(p[0] + 22, p[1] + 16); t.flower(p[0] + 8, p[1] + 36, k); }
-    for (let r = 0; r < rows; r++) { const y = 40 + r * 74; [[-30, y + 4], [-70, y + 20], [-50, y + 40], [208, y + 6], [250, y + 24], [224, y + 44]].forEach(q => t.tree(q[0], q[1])); [-16, 190].forEach(x0 => t.flower(x0, y + 30, r)); }
+    names.forEach((nm, j) => { const p = PLACE_AT(j, n); (PLACES[nm] || PLACES['Kasir Kilat'])(t, p[0], p[1]); });
+    for (k = 0; 74 + 76 * k < W - 16; k++) { if (!names[2 * k + 2] && 74 + 76 * k > PLACE_AT(n - 1, n)[0] + 46) continue; t.tree(74 + 76 * k, 58); }
+    t.tree(W - 18, 60); t.tree(W - 18, 130);
+    for (k = 0; 128 + 76 * k < W - 10; k++) { t.flower(130 + 76 * k, 120, k); t.flower(132 + 76 * k, 150, k + 1); }
+    for (i = 0; i < W; i += 30) { const q = (i / 30) | 0; if (q % 3 === 0) t.fence(i + 4, 182, 2); else if (q % 3 === 1) t.tree(i + 6, 178); else { t.flower(i + 8, 188, q); t.flower(i + 18, 190, q + 1); } }
+    for (i = 0; i < 30; i++) t.flower(rnd() * W | 0, 38 + rnd() * 6 | 0, i);
     return t.cv.toDataURL();
   })());
   /* Dinding warung dengan jendela dan rak, 195 x 50 kotak. Bagian bawahnya menempel ke meja kasir. */
@@ -6711,7 +6724,7 @@ const PX = (() => {
     }
     return t.cv.toDataURL();
   })());
-  return { topView: topView, U: U, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
+  return { topView: topView, U: U, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
@@ -11866,7 +11879,7 @@ const games = list.map(g => {
     starLabel: tiers.map(t => LVN[t.lab] + ' ' + t.arr.filter(Boolean).length + ' dari 3 bintang').join('. ') };
 });
 const selG = games.find(g => g.name === s.sel) || games[0] || {};
-const SH = PX.streetH(games.length), sx = v => ((v + 80) / 355 * 100).toFixed(2) + '%', sy = v => (v / SH * 100).toFixed(2) + '%', sw = v => (v / 355 * 100).toFixed(2) + '%';
+const SH = PX.streetH(games.length), SW = PX.streetW(games.length), sx = v => (v / SW * 100).toFixed(2) + '%', sy = v => (v / SH * 100).toFixed(2) + '%', sw = v => (v / SW * 100).toFixed(2) + '%';
 games.forEach((g, k) => { const at = PX.PLACE_AT(k, games.length); g.on = g === selG ? 'on' : ''; g.pick = () => this.setState({ sel: g.name });
   g.box = 'left: ' + sx(at[0] - 6) + '; top: ' + sy(at[1] - 10) + '; width: ' + sw(52) + '; height: ' + sy(46);
   g.signAt = 'left: ' + sx(at[0] + 20) + '; top: ' + sy(at[1] + 37);
@@ -11877,7 +11890,7 @@ return {
   isMat: s.step === 'mat', isGame: s.step === 'game', canBack: s.step !== 'mat',
   back: () => { clearTimeout(this._wt); this._at = 'S'; this.setState({ step: 'mat', at: 'S', dur: 0, going: null, info: false }); },
   crumb: s.step === 'mat' ? 'Langkah 1/2 · pilih subject' : 'Langkah 2/2 · ' + mat.label,
-  px: PX.U, mapImg: PX.mgMap(), mats: mats, streetStyle: 'background-image: url(\'' + PX.mgStreet(s.mat, list.map(g => g.name)) + '\'); aspect-ratio: 355 / ' + PX.streetH(list.length),
+  px: PX.U, mapImg: PX.mgMap(), mats: mats, streetStyle: 'background-image: url(\'' + PX.mgStreet(s.mat, list.map(g => g.name)) + '\'); width: calc(var(--stU) * ' + PX.streetW(list.length) + '); aspect-ratio: ' + PX.streetW(list.length) + ' / ' + PX.streetH(list.length),
   heroStyle: 'left: ' + px(hp[0] - 6) + '; top: ' + py(hp[1] - 15) + '; transition-duration: ' + this.state.dur + 'ms', heroFlip: this.state.flip ? 'flip' : '',
   matLabel: mat.label, gameCount: list.length + ' game', games: games, sel: selG, selTag: mat.label + ' · tingkat dipilih di dalam game',
   hasNote: !!NOTE[s.mat], gamesNote: NOTE[s.mat] || '',
