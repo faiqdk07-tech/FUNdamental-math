@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id"><head>
+<html lang="id" class="fm-pxtext"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2D3250">
@@ -1029,6 +1029,11 @@ body.fm-framed .px-qboard{max-width:520px}
 .px-tier span{align-self:center;line-height:1.1}
 .px-tier::after{align-self:start;line-height:12px!important}
 .px-task::before{left:auto!important;right:14px!important;margin-left:0!important}
+/* Percobaan Faiq 17 Nov: seluruh teks memakai huruf pixel Jersey 15 (hapus kelas fm-pxtext di <html> untuk kembali) */
+html.fm-pxtext #root,html.fm-pxtext #root *{font-family:"Jersey 15",Inter,sans-serif!important;font-size-adjust:0.56;font-synthesis:none;letter-spacing:.3px}
+html.fm-pxtext #root svg text{font-size-adjust:none}
+html.fm-pxtext #root .px-ttl2 b{font-size:21px!important}
+html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root .px-ribbon2 b,html.fm-pxtext #root .px-lvhead,html.fm-pxtext #root .px-task-h,html.fm-pxtext #root .px-talk-tag,html.fm-pxtext #root .px-talk-name,html.fm-pxtext #root .px-pop-body b,html.fm-pxtext #root .px-rulehead,html.fm-pxtext #root .px-modes::before,html.fm-pxtext #root .px-helpbox-h,html.fm-pxtext #root .px-dlg .s,html.fm-pxtext #root .px-dlg .t,html.fm-pxtext #root .px-me-name b,html.fm-pxtext #root .px-flag,html.fm-pxtext #root .px-gsign-n,html.fm-pxtext #root .px-tiers::before,html.fm-pxtext #root .px-lvdot,html.fm-pxtext #root .px-lvname,html.fm-pxtext #root .px-qboard-h,html.fm-pxtext #root .px-qnote-t b{font-size-adjust:none!important}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
