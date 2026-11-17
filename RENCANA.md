@@ -3,6 +3,11 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **17 Nov: evaluasi C (Mini Games) selesai**, disetujui Faiq.
+  - Langkah 1 jadi peta pilih subject (`PX.mgMap`, 195 × 300 + tepi 80): langit, bukit, air mancur, kolam bebek, kebun bunga, gapura desa; 4 gedung dengan papan nama (nama + jumlah game tuntas, tanpa tali). Tokoh berjalan dari gapura ke gedung yang diketuk (`MG_NODES`), lalu masuk ke langkah 2.
+  - Langkah 2: pemandangan gedung subject di atas (`PX.mgTop`), rak game ala tas RPG (`.px-gslot`, ikon besar, nama, bintang ★1 tiap tingkat), panel bawah cerah berisi tugas singkat, bintang F/I/E, dan tombol Main.
+  - Judul jadi pita biru bertulisan putih bergaris tepi (`.px-ribbon2`) dengan ikon stik game; ikon tab Mini Games di semua layar diganti stik (`SPR.stik`).
+  - Pita merah "Baru" diganti gelembung "!" kuning. Baris aturan bintang dipindah ke tombol bintang di samping judul (kotak keterangan kecil).
 - **17 Nov: evaluasi A dan B Faiq selesai** (dokumen "Urutan App Fundamental Math", tab Evaluasi per bagian). Bagian C–J belum dinilai Faiq.
   - A4/A5 iPad: latar penuh selebar layar, isi di kolom 470 px tengah (`--padX`), gambar ruangan atas ikut melebar (maks. 260/170 px tinggi supaya tidak raksasa saat mendatar).
   - B1/B10 peta desa baru (`PX.world`, 195 × 330 + tepi 80): alun-alun dengan papan pengumuman, 4 gedung, gudang dan menara di baris bawah, peti di taman kecil; tambahan dermaga, perahu nelayan, sumur, jemuran, sawah + orang-orangan, kolam bebek; di tepi (iPad) kandang ayam, padang sapi, jerami, gerobak sayur, kebun wortel, kincir.

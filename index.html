@@ -156,7 +156,7 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 #root.px-skin nav a svg{display:none}
 #root.px-skin nav a::before{content:"";width:24px;height:24px;background:center / 24px 24px no-repeat;image-rendering:pixelated}
 #root.px-skin nav a[href="Main.dc.html"]::before{background-image:var(--px-i-rumah)}
-#root.px-skin nav a[href="MiniGames.dc.html"]::before{background-image:var(--px-i-dadu)}
+#root.px-skin nav a[href="MiniGames.dc.html"]::before{background-image:var(--px-i-stik)}
 #root.px-skin nav a[href="Progres.dc.html"]::before{background-image:var(--px-i-grafik)}
 #root.px-skin nav a[href="Jurnal.dc.html"]::before{background-image:var(--px-i-buku)}
 #root.px-skin nav a[href="PohonTemuan.dc.html"]::before{background-image:var(--px-i-pohon)}
@@ -790,7 +790,43 @@ body.fm-framed .px-topbar{padding-left:calc(8px + var(--padX));padding-right:cal
 .px-world .px-wscroll{padding-top:58px}
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 308px) * 195 / 330) * 355 / 195)}
 body.fm-framed .px-map{width:calc(min(470px, (var(--appH,100dvh) - 308px) * 195 / 330) * 355 / 195)}
-@media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
+/* ===== Mini Games (evaluasi C, 17 Nov): peta pilih subject, rak game, pita judul ===== */
+.px-mghead{position:absolute;top:8px;left:8px;right:8px;z-index:6;display:flex;align-items:center;gap:6px}
+body.fm-framed .px-mghead{left:calc(8px + var(--padX));right:calc(8px + var(--padX))}
+.px-ribbon2{flex:1;min-width:0;position:relative;display:flex;align-items:center;gap:8px;height:42px;padding:0 12px 2px 8px;background:#4C8FDD;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #8CC0F5,inset 0 -4px 0 #2F64B0,0 4px 0 rgba(43,29,26,.25)}
+.px-ribbon2 img{flex:none;width:30px;height:auto;image-rendering:pixelated;filter:drop-shadow(0 2px 0 rgba(0,0,0,.25))}
+.px-ribbon2 span{min-width:0;display:flex;flex-direction:column}
+.px-ribbon2 b{font-size:18px;line-height:1.05;color:#FFFFFF;text-shadow:2px 0 0 #1E3F7A,-2px 0 0 #1E3F7A,0 2px 0 #1E3F7A,0 -2px 0 #1E3F7A,2px 2px 0 #1E3F7A}
+.px-ribbon2 small{font-size:11px;color:#E6F2FF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.px-infobtn img{width:20px;height:20px;image-rendering:pixelated}
+.px-infobtn.on{border-image-source:var(--px-fGold)!important}
+.px-infobox{position:absolute;top:58px;right:8px;z-index:7;display:flex;flex-direction:column;gap:5px;padding:10px 12px;background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A,inset 0 0 0 3px #FFC83D,0 4px 0 rgba(43,29,26,.25)}
+body.fm-framed .px-infobox{right:calc(8px + var(--padX))}
+.px-infobox b{font-size:13px}
+.px-infobox .px-starrule{font-size:12px!important;color:#2B1D1A}
+.px-mgworld{flex:1;min-height:0;position:relative;overflow:hidden}
+.px-mgmap{position:relative;left:50%;transform:translateX(-50%);width:calc(min(100%, (var(--appH,100dvh) - 110px) * 195 / 300) * 355 / 195);aspect-ratio:355 / 300;background-size:100% 100%;image-rendering:pixelated}
+body.fm-framed .px-mgmap{width:calc(min(100%, (var(--appH,100dvh) - 110px) * 195 / 300) * 355 / 195)}
+.px-mgspot{position:absolute;background:none;border:0;padding:0;cursor:pointer}
+.px-mgspot.on{background:linear-gradient(#FFF,#FFF) 0 0/9px 3px no-repeat,linear-gradient(#FFF,#FFF) 0 0/3px 9px no-repeat,linear-gradient(#FFF,#FFF) 100% 0/9px 3px no-repeat,linear-gradient(#FFF,#FFF) 100% 0/3px 9px no-repeat,linear-gradient(#FFF,#FFF) 0 100%/9px 3px no-repeat,linear-gradient(#FFF,#FFF) 0 100%/3px 9px no-repeat,linear-gradient(#FFF,#FFF) 100% 100%/9px 3px no-repeat,linear-gradient(#FFF,#FFF) 100% 100%/3px 9px no-repeat}
+.px-flag{position:absolute;transform:translate(-50%,-2px);pointer-events:none;z-index:2;display:flex;flex-direction:column;align-items:center;padding:1px 8px 2px;font-size:13px;font-weight:700;color:#2B1D1A;background:#FFFFFF;white-space:nowrap;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #FFC83D,0 3px 0 rgba(43,29,26,.25)}
+.px-flag small{font:500 10.5px Inter,system-ui,sans-serif;color:#4B4B57}
+.px-mghint{position:absolute;left:0;right:0;bottom:70px;z-index:3;text-align:center;font-size:13px;color:#FFFFFF;text-shadow:0 2px 0 #2F7A36;padding:4px 0 8px}
+.px-mgpage{padding-top:0!important;gap:14px!important}
+.px-mgpage .px-topscene{margin-top:0!important;max-height:190px;object-fit:cover;object-position:center bottom}
+.px-shelf2{position:relative;margin:10px 2px 6px;padding:20px 10px 12px;background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A,inset 0 0 0 4px #4C8FDD,inset 0 0 0 6px #2B1D1A,0 5px 0 2px rgba(43,29,26,.2)}
+.px-shelf2-tag{position:absolute;top:-11px;left:12px;padding:1px 10px 2px;font-size:12px;font-weight:700;background:#FFC83D;box-shadow:0 0 0 2px #2B1D1A,inset 0 -2px 0 #E39A1C}
+.px-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.px-gslot{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px 6px;border:0;background:#EAF5FD;cursor:pointer;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #C9DDEE;color:#2B1D1A}
+.px-gslot.on{background:#FFF1A8;box-shadow:0 0 0 2px #2B1D1A,0 0 0 4px #FFC83D,0 0 0 6px #2B1D1A,inset 0 -4px 0 #F2C035}
+.px-gslot-ic{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A}
+.px-gslot-ic img{width:34px;height:34px;object-fit:contain;image-rendering:pixelated}
+.px-gslot-n{font-size:12px;line-height:1.15;font-weight:600;text-align:center;min-height:28px;display:flex;align-items:center}
+.px-gslot-s{display:flex;min-height:12px}
+.px-gslot-new{position:absolute;top:-10px;right:-6px;width:18px;height:auto;image-rendering:pixelated;filter:drop-shadow(1px 0 0 #FFF) drop-shadow(-1px 0 0 #FFF) drop-shadow(0 1px 0 #FFF) drop-shadow(0 -1px 0 #FFF)}
+.px-mgbottom{padding-top:4px!important}
+.px-mgbottom .px-dlg{min-height:0!important}
+@media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
 <body>
@@ -3015,7 +3051,7 @@ body.fm-framed .px-map{width:calc(min(470px, (var(--appH,100dvh) - 308px) * 195 
 <div class="act"><span style="display: flex; gap: 4px; align-items: center"><sc-if value="{{dHasLv}}" hint-placeholder-val="{{ false }}"><sc-for list="{{dLv}}" as="l" hint-placeholder-count="3"><span class="px-lv {{l.on}}">{{l.t}}</span></sc-for></sc-if><sc-if value="{{dHasVal}}" hint-placeholder-val="{{ false }}"><span class="px-val px-f">{{dVal}}</span></sc-if></span><a href="{{dHref}}" onClick="{{dTap}}" class="px-fg px-btn">{{dBtn}}</a></div>
 </div></div>
 </div>
-<nav class="px-nav"><a href="Main.dc.html" class="px-slot on"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot"><img alt="" src="{{px.dadu}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
+<nav class="px-nav"><a href="Main.dc.html" class="px-slot on"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot"><img alt="" src="{{px.stik}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
 </div>
 </div></template>
 <template id="tpl-MartabakTopping"><div class="px-screen px-al-mart" style="width: 100%; height: 844px; position: relative; overflow: hidden">
@@ -3603,68 +3639,44 @@ body.fm-framed .px-map{width:calc(min(470px, (var(--appH,100dvh) - 308px) * 195 
 </div></template>
 <template id="tpl-MiniGames"><div class="px-screen px-grass" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-col">
-<div class="px-page">
-<div style="display: flex; align-items: center; gap: 6px">
+<div class="px-mghead">
 <sc-if value="{{canBack}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{back}}" aria-label="Kembali" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></button></sc-if>
-<div class="px-fw px-ttl"><b class="px-f">Mini Games</b><small>{{crumb}}</small></div>
-<div class="px-fw px-f" style="padding: 0 4px 1px; font-size: 13px">{{stepTxt}}</div>
+<div class="px-ribbon2"><img alt="" src="{{px.stik}}"><span><b class="px-f">Mini Games</b><small>{{crumb}}</small></span></div>
+<button type="button" onClick="{{toggleInfo}}" aria-label="Aturan bintang" class="px-fw px-sq px-infobtn {{infoOn}}"><img alt="" src="{{px.bintang}}"></button>
 </div>
+<sc-if value="{{showInfo}}" hint-placeholder-val="{{ false }}"><div class="px-infobox"><b class="px-f">Bintang tiap tingkat</b><sc-for list="{{starRules}}" as="sr" hint-placeholder-count="3"><span class="px-starrule"><i></i><span>{{sr}}</span></span></sc-for></div></sc-if>
 <sc-if value="{{isMat}}" hint-placeholder-val="{{ true }}">
-<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px">
-<div class="px-fw px-lab px-f">Pilih subject</div>
-<div class="px-grid2">
+<div class="px-mgworld"><div class="px-mgmap" style="background-image: url('{{mapImg}}')">
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<button type="button" onClick="{{m.tap}}" class="px-matbtn"><img alt="" src="{{m.img}}"><span class="px-signplate"><b class="px-f">{{m.label}}</b><small>{{m.sub}}</small></span></button>
+<button type="button" onClick="{{m.tap}}" class="px-mgspot {{m.on}}" aria-label="{{m.label}}" style="{{m.box}}"></button>
+<span class="px-flag px-f" style="{{m.flag}}">{{m.label}}<small>{{m.sub}}</small></span>
 </sc-for>
-</div>
-</div>
-</sc-if>
-<sc-if value="{{isLvl}}" hint-placeholder-val="{{ false }}">
-<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px">
-<div class="px-fw px-lab px-f">Pilih tingkat</div>
-<sc-for list="{{lvls}}" as="v" hint-placeholder-count="3">
-<button type="button" onClick="{{v.tap}}" class="px-fw px-menu"><span><b class="px-f">{{v.label}}</b><small>{{v.hint}}</small></span></button>
-</sc-for>
-</div>
+<div class="px-hero {{heroFlip}}" style="{{heroStyle}}"><img alt="" src="{{px.orang}}"></div>
+</div></div>
+<div class="px-mghint px-f">Ketuk gedung untuk masuk</div>
 </sc-if>
 <sc-if value="{{isGame}}" hint-placeholder-val="{{ false }}">
-<div class="px-fw px-lab px-f">Pilih game</div>
-<div class="px-grid2">
+<div class="px-page px-mgpage">
+<img alt="" class="px-topscene" src="{{topImg}}">
+<div class="px-shelf2"><span class="px-shelf2-tag px-f">{{matLabel}} · {{gameCount}}</span>
+<div class="px-slots">
 <sc-for list="{{games}}" as="g" hint-placeholder-count="7">
-<a href="{{g.href}}" onClick="{{g.go}}" class="px-game px-shopboard">
-<div>
-<div style="display: flex; align-items: center; gap: 8px"><span class="px-gic"><img alt="" src="{{g.icon}}"></span><div class="px-f px-gname">{{g.name}}</div></div>
-<div class="px-gtask">{{g.task}}</div>
-</div>
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 6px">
-<div style="display: flex; align-items: center; min-height: 18px">
-<sc-if value="{{g.played}}" hint-placeholder-val="{{ true }}">
-<div role="img" aria-label="{{g.starLabel}}" style="display: flex; flex-direction: column; gap: 1px">
-<sc-for list="{{g.tiers}}" as="tr" hint-placeholder-count="3">
-<div style="display: flex; align-items: center; gap: 2px"><span class="px-f" style="width: 11px; font-size: 10px; font-weight: 700; color: #4B4B57">{{tr.lab}}</span>
-<sc-for list="{{tr.stars}}" as="t" hint-placeholder-count="3">
-<i class="px-star sm {{t.on}}"></i>
-</sc-for>
-</div>
-</sc-for>
-</div>
-</sc-if>
-<sc-if value="{{g.isNew}}" hint-placeholder-val="{{ false }}"><span class="px-ribbon px-f">Baru</span></sc-if>
-</div>
-<span class="px-fg px-f" style="display: flex; align-items: center; gap: 5px; padding: 0 6px 1px; font-size: 13px; font-weight: 700"><img alt="" src="{{px.main}}" width="10" height="11">Main</span>
-</div>
-</a>
-</sc-for>
-</div>
-<div class="px-starboard">
-<sc-for list="{{starRules}}" as="sr" hint-placeholder-count="3">
-<span class="px-starrule"><i></i><span>{{sr}}</span></span>
+<button type="button" onClick="{{g.pick}}" class="px-gslot {{g.on}}" aria-label="{{g.name}}"><span class="px-gslot-ic"><img alt="" src="{{g.icon}}"></span><span class="px-gslot-n px-f">{{g.name}}</span><span class="px-gslot-s"><sc-for list="{{g.mini}}" as="t" hint-placeholder-count="3"><i class="px-star sm {{t}}"></i></sc-for></span><sc-if value="{{g.isNew}}" hint-placeholder-val="{{ false }}"><img alt="Baru" class="px-gslot-new" src="{{px.seru}}"></sc-if></button>
 </sc-for>
 </div>
 <sc-if value="{{hasNote}}" hint-placeholder-val="{{ false }}"><div class="px-pinnote">{{gamesNote}}</div></sc-if>
-</sc-if>
 </div>
-<nav class="px-nav"><a href="Main.dc.html" class="px-slot"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot on"><img alt="" src="{{px.dadu}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
+</div>
+<div class="px-bottom px-grass px-mgbottom">
+<div class="px-dlg"><img alt="" class="px-dlg-face icon" src="{{sel.icon}}"><div class="px-dlg-body">
+<div class="s px-f">{{selTag}}</div>
+<div class="t px-f">{{sel.name}}</div>
+<div class="d">{{sel.task}}</div>
+<div class="act"><span><sc-if value="{{sel.played}}" hint-placeholder-val="{{ true }}"><span role="img" aria-label="{{sel.starLabel}}" style="display: flex; gap: 8px"><sc-for list="{{sel.tiers}}" as="tr" hint-placeholder-count="3"><span style="display: flex; align-items: center; gap: 1px"><span class="px-f" style="font-size: 11px; font-weight: 700; color: #4B4B57; margin-right: 2px">{{tr.lab}}</span><sc-for list="{{tr.stars}}" as="t" hint-placeholder-count="3"><i class="px-star sm {{t.on}}"></i></sc-for></span></sc-for></span></sc-if><sc-if value="{{sel.isNew}}" hint-placeholder-val="{{ false }}"><span class="px-val px-f">Belum dimainkan</span></sc-if></span><a href="{{sel.href}}" onClick="{{sel.go}}" class="px-fg px-btn" style="display: flex; align-items: center; gap: 6px"><img alt="" src="{{px.main}}" width="10" height="11">Main</a></div>
+</div></div>
+</div>
+</sc-if>
+<nav class="px-nav"><a href="Main.dc.html" class="px-slot"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot on"><img alt="" src="{{px.stik}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
 </div>
 </div></template>
 <template id="tpl-PasangLantai"><div class="px-screen px-ge-lantai" style="width: 100%; height: 844px; position: relative; overflow: hidden">
@@ -6057,6 +6069,7 @@ const PX = (() => {
     kisi: ['kkkkk.kkkkk', 'kwwwk.kwwwk', 'kwwwk.kwwwk', 'kkkkk.kkkkk', '...........', 'kkkkk.kkkkk', 'kwwwk.kwwwk', 'kwwwk.kwwwk', 'kkkkk.kkkkk'],
     daftar: ['kk.kkkkkkk', 'kk.kkkkkkk', '..........', 'kk.kkkkk..', 'kk.kkkkk..', '..........', 'kk.kkkkkkk', 'kk.kkkkkkk'],
     api: ['....k.....', '...kgk....', '..kghgk.k.', '..kghgkkgk', '.kgghhgggk', '.kghhYhhgk', 'kghhYYYhgk', 'kghYYwYYhk', 'kghYwwwYhk', '.kghYYYhk.', '..kkkkkk..'],
+    stik: ['..kkkkkkkkkk..', '.kssssssssssk.', 'kuukuuuuuuruuk', 'kukkkuuuuryruk', 'kuukuuuuuuyuuk', 'kuuuuukkuuuuuk', 'kuuuukUUkuuuuk', '.kuukk..kkuuk.', '..kk......kk..'],
     seru: ['..kkkkk..', '.kyyyyyk.', 'kyykkkyyk', 'kyykkkyyk', 'kyykkkyyk', 'kyyykyyyk', 'kyyyyyyyk', 'kyyykyyyk', '.kyyyyyk.', '..kkykk..', '....k....'],
     orang: ['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.', '.kBffffffBk.', '.kfkffffkfk.', '.kffffffffk.', '..kffppffk..', '...kkkkkk...', '..krrrrrrk..', '.kfrrrrrrfk.', '.kfrrrrrrfk.', '..krrrrrrk..', '..kUUkkUUk..', '..kUUkkUUk..', '..kkk..kkk..'],
     fPanel: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttbbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
@@ -6421,6 +6434,59 @@ const PX = (() => {
     return t.cv.toDataURL();
   });
 
+  /* Mini Games langkah 1: peta pilih subject, inti 195 x 230 + 80 kotak kiri-kanan. Cocokkan dengan MG_NODES di layar MiniGames. */
+  const MGW = { W: 195, H: 300, M: 80 };
+  const mgMap = once('mgmap', () => {
+    const W = MGW.W, H = MGW.H, M = MGW.M, TW = W + 2 * M, t = pen(TW, H, 23), R = t.R, rnd = t.rnd; let i, j;
+    grass(t, TW, 0, H); t.x.translate(M, 0);
+    R('#8FD3F5', -M, 0, TW, 46); R('#A3DCF7', -M, 30, TW, 10); R('#B8E5FA', -M, 38, TW, 8);
+    [[-70, 8], [-10, 16], [60, 6], [130, 14], [200, 9], [250, 18]].forEach(q => t.cloud(q[0], q[1]));
+    for (i = -M; i < W + M; i++) { const hh = Math.round(9 + 4 * Math.sin(i / 13) + 3 * Math.sin(i / 5 + 2)); R('#57A843', i, 50 - hh, 1, hh); R('#2F7A36', i, 50 - hh, 1, 1); R('#7CC95A', i, 51 - hh, 1, 1); }
+    R('#3F7A32', -M, 50, TW, 1);
+    for (i = 0; i < 200; i++) { const tx = (rnd() * TW | 0) - M, ty = 54 + rnd() * (H - 56) | 0; R('#4E9E3E', tx, ty, 1, 2); R('#4E9E3E', tx + 2, ty + 1, 1, 1); R('#A5E070', tx + 1, ty - 1, 1, 1); }
+    const roads = [[-M - 3, 110, TW + 6, 10], [-M - 3, 196, TW + 6, 10], [93, 110, 8, 192], [25, 96, 8, 15], [162, 96, 8, 15], [25, 182, 8, 15], [162, 182, 8, 15], [80, 124, 34, 26]];
+    roads.forEach(r => R('#4E9E3E', r[0] - 2, r[1] - 2, r[2] + 4, r[3] + 4));
+    roads.forEach(r => R('#A8773F', r[0] - 1, r[1] - 1, r[2] + 2, r[3] + 2));
+    roads.forEach(r => R('#E3BD86', r[0], r[1], r[2], r[3]));
+    roads.forEach(r => { for (let q = 0; q < r[2] * r[3] / 28; q++) R(rnd() < .5 ? '#CDA066' : '#F0D3A2', r[0] + (rnd() * (r[2] - 2) | 0), r[1] + (rnd() * r[3] | 0), 2, 1); });
+    /* air mancur di tengah */
+    R('rgba(43,29,26,.25)', 87, 146, 20, 2);
+    R(P.k, 87, 130, 20, 16); R(P.k, 85, 133, 24, 10); R(P.E, 88, 131, 18, 14); R(P.E, 86, 134, 22, 8); R('#4C8FDD', 89, 133, 16, 10); R('#7CC0F2', 90, 134, 6, 1);
+    R(P.k, 95, 126, 4, 12); R(P.E, 96, 125, 2, 12); R(P.w, 96, 121, 2, 4); R(P.w, 93, 123, 2, 2); R(P.w, 99, 123, 2, 2);
+    t.building('bil', 10, 62); t.building('alj', 147, 62); t.building('geo', 10, 148); t.building('dat', 147, 148);
+    t.fence(54, 100, 3); t.fence(118, 100, 3); t.fence(54, 186, 3); t.fence(118, 186, 3);
+    ((a, b) => { /* papan petunjuk jalan */
+      R(P.k, a + 5, b + 6, 3, 18); R(P.b, a + 6, b + 7, 1, 16);
+      R(P.k, a, b, 16, 7); R(P.t, a + 1, b + 1, 14, 5); R(P.T, a + 1, b + 1, 14, 1); R(P.k, a + 3, b + 3, 9, 1);
+      R(P.k, a - 2, b + 9, 16, 6); R(P.t, a - 1, b + 10, 14, 4); R(P.k, a + 1, b + 12, 9, 1);
+    })(124, 274);
+    const kolam = (a, b, w, h) => { R('#4E9E3E', a - 2, b, w + 4, h); R('#4E9E3E', a, b - 2, w, h + 4); R('#A8773F', a - 1, b + 1, w + 2, h - 2); R('#A8773F', a + 1, b - 1, w - 2, h + 2); R('#3F93DD', a, b + 2, w, h - 4); R('#3F93DD', a + 2, b, w - 4, h); R('#7CC0F2', a + 2, b + 1, w - 6, 2); for (i = 0; i < w * h / 70; i++) R('#7CC0F2', a + 3 + (rnd() * (w - 10) | 0), b + 4 + (rnd() * (h - 8) | 0), 3 + (rnd() * 3 | 0), 1); };
+    kolam(14, 234, 58, 34); [[24, 242], [52, 256]].forEach(q => { R(P.A, q[0], q[1], 7, 4); R(P.a, q[0] + 1, q[1], 5, 3); R(P.p, q[0] + 3, q[1] + 1, 2, 1); });
+    ((a, b) => { R('rgba(20,60,110,.35)', a, b + 5, 9, 1); R(P.k, a, b + 1, 9, 5); R(P.w, a + 1, b + 2, 7, 3); R(P.k, a + 5, b - 2, 4, 4); R(P.w, a + 6, b - 1, 2, 2); R(P.g, a + 9, b, 2, 1); })(36, 248);
+    for (j = 0; j < 3; j++) { R('#8A5A32', 130, 236 + j * 9, 48, 5); R('#6E4626', 130, 240 + j * 9, 48, 1); for (i = 0; i < 48; i += 6) { R(P.a, 132 + i, 234 + j * 9, 1, 3); R(P.c, 133 + i, 234 + j * 9, 1, 2); R([P.r, P.y, P.p][(i / 6 + j) % 3], 132 + i, 233 + j * 9, 2, 2); } }
+    t.fence(126, 226, 7);
+    ((a, b) => { /* gapura desa */
+      R('rgba(43,29,26,.25)', a - 2, b + 30, 34, 2);
+      [a, a + 24].forEach(x0 => { R(P.k, x0, b + 6, 7, 25); R('#F0963A', x0 + 1, b + 7, 5, 23); for (j = 0; j < 23; j += 4) R('#B56A22', x0 + 1, b + 7 + j, 5, 1); });
+      R(P.k, a - 3, b, 37, 8); R(P.r, a - 2, b + 1, 35, 6); R(P.w, a - 2, b + 1, 35, 1); R(P.k, a + 6, b + 2, 19, 3); R(P.Y, a + 7, b + 3, 17, 1);
+    })(82, 268);
+    [[56, 64], [124, 66], [-8, 140], [186, 140], [56, 150], [122, 150], [-30, 70], [-74, 96], [-50, 170], [-20, 206], [-70, 212], [204, 66], [252, 100], [220, 170], [258, 214], [200, 210], [34, 208], [150, 206], [-12, 250], [-60, 270], [200, 252], [250, 280], [74, 282], [-40, 230], [230, 236]].forEach(q => t.tree(q[0], q[1]));
+    t.stamp('tunggul', 70, 210); t.stamp('batu', 8, 128); t.stamp('batu', 182, 128); t.stamp('batu', -40, 124); t.stamp('batu', 230, 130);
+    for (i = 0; i < 70; i++) { const fx = -M + 4 + rnd() * (TW - 8) | 0, fy = 56 + rnd() * (H - 60) | 0; if ((fy > 104 && fy < 126) || (fy > 190 && fy < 212) || (fx > 76 && fx < 118)) continue; t.flower(fx, fy, i); }
+    return t.cv.toDataURL();
+  });
+  /* Mini Games langkah 2: pemandangan gedung subject, 195 x 64 kotak */
+  const mgTop = id => memo['mgt' + id] || (memo['mgt' + id] = (() => {
+    const W = 195, H = 64, t = pen(W, H, id.length * 5 + 7), R = t.R; let i;
+    R('#8FD3F5', 0, 0, W, H); R('#A3DCF7', 0, 18, W, 8); t.cloud(14, 6); t.cloud(150, 10);
+    for (i = 0; i < W; i++) { const hh = Math.round(8 + 3 * Math.sin(i / 11) + 2 * Math.sin(i / 4)); R('#57A843', i, 36 - hh, 1, hh); R('#2F7A36', i, 36 - hh, 1, 1); }
+    grass(t, W, 36, H);
+    R('#4E9E3E', 88, 54, 20, 10); R('#A8773F', 89, 55, 18, 9); R('#E3BD86', 90, 56, 16, 8);
+    t.building(HOUSE[id] ? id : 'bil', 79, 22);
+    t.tree(40, 34); t.tree(140, 34); t.tree(14, 40); t.tree(166, 42); t.fence(58, 50, 2); t.fence(122, 50, 2);
+    [[30, 58], [70, 60], [126, 58], [184, 60], [8, 60]].forEach((q, n) => t.flower(q[0], q[1], n));
+    return t.cv.toDataURL();
+  })());
   /* Dinding warung dengan jendela dan rak, 195 x 50 kotak. Bagian bawahnya menempel ke meja kasir. */
   const shop = once('shop', () => {
     const W = 195, H = 50, t = pen(W, H, 9), R = t.R; let i;
@@ -6704,11 +6770,11 @@ const PX = (() => {
     }
     return t.cv.toDataURL();
   })());
-  return { topView: topView, U: U, P: P, pen: pen, world: world, WORLD: WORLD, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
+  return { topView: topView, U: U, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
-  ['rumah', 'dadu', 'grafik', 'buku', 'pohon'].forEach(n => document.documentElement.style.setProperty('--px-i-' + n, 'url("' + PX.U[n] + '")'));
+  ['rumah', 'dadu', 'grafik', 'buku', 'pohon', 'stik'].forEach(n => document.documentElement.style.setProperty('--px-i-' + n, 'url("' + PX.U[n] + '")'));
   const P = PX.P, memo = {};
   /* Pemandangan 195 x 422 kotak: langit, awan, bukit, rumput, jalan, lalu benda utama sesuai cerita game. */
   function scene(key, mat) {
@@ -11756,14 +11822,33 @@ return Component;
 })();
 GAMES["MiniGames"] = (function () {
 
+const MG_NODES = { S: [97, 288], C1: [97, 115], C2: [97, 201], L1: [29, 115], R1: [166, 115], L2: [29, 201], R2: [166, 201], bil: [29, 100], alj: [166, 100], geo: [29, 186], dat: [166, 186] };
+const MG_EDGES = [['S', 'C2'], ['C2', 'C1'], ['C1', 'L1'], ['L1', 'bil'], ['C1', 'R1'], ['R1', 'alj'], ['C2', 'L2'], ['L2', 'geo'], ['C2', 'R2'], ['R2', 'dat']];
+const MG_B = { bil: [10, 62], alj: [147, 62], geo: [10, 148], dat: [147, 148] };
+const MG_ADJ = {}; MG_EDGES.forEach(e => { (MG_ADJ[e[0]] = MG_ADJ[e[0]] || []).push(e[1]); (MG_ADJ[e[1]] = MG_ADJ[e[1]] || []).push(e[0]); });
+const mgRoute = (a, b) => { const prev = { [a]: null }, q = [a]; while (q.length) { const n = q.shift(); if (n === b) break; (MG_ADJ[n] || []).forEach(m => { if (!(m in prev)) { prev[m] = n; q.push(m); } }); } const out = []; for (let n = b; n !== null && n !== undefined; n = prev[n]) out.unshift(n); return out[0] === a ? out : [a]; };
 class Component extends DCLogic {
+walkTo(target, done) {
+  clearTimeout(this._wt);
+  const path = mgRoute(this._at || 'S', target);
+  const step = k => {
+    if (window.__fmComp !== this) return;
+    if (k >= path.length) { if (done) this._wt = setTimeout(done, 150); return; }
+    const a = MG_NODES[this._at || 'S'], b = MG_NODES[path[k]], ms = Math.round(Math.hypot(b[0] - a[0], b[1] - a[1]) * 9);
+    this._at = path[k];
+    this.setState({ at: path[k], dur: ms, flip: b[0] < a[0] ? true : (b[0] > a[0] ? false : this.state.flip) });
+    this._wt = setTimeout(() => step(k + 1), ms);
+  };
+  step(1);
+}
 constructor(props) {
 super(props);
-this.state = { step: 'mat', mat: 'bil', lvl: 'F' };
+this.state = { step: 'mat', mat: 'bil', lvl: 'F', at: 'S', dur: 0, flip: false, sel: null, info: false };
+this._at = 'S';
 try {
 const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null');
 window.localStorage.removeItem('fm.minigames.return');
-if (r && r.mat && r.lvl && Date.now() - r.t < 6 * 60 * 60 * 1000) this.state = { step: 'game', mat: r.mat, lvl: r.lvl };
+if (r && r.mat && r.lvl && Date.now() - r.t < 6 * 60 * 60 * 1000) this.state = Object.assign({}, this.state, { step: 'game', mat: r.mat, lvl: r.lvl, sel: r.g || null });
 } catch (e) {}
 }
 renderVals() {
@@ -11817,29 +11902,42 @@ dat: [
 ]
 };
 const mat = MATS.find(m => m.id === s.mat);
-const lv = LV.find(v => v.id === s.lvl);
 const list = GAMES[s.mat] || [];
-const mats = MATS.map(m => ({ label: m.label, sub: m.sub, img: PX.house(m.id), tap: () => this.setState({ mat: m.id, step: 'game' }) }));
-const lvls = LV.map(v => ({ label: v.label, hint: v.hint, tap: () => this.setState({ lvl: v.id, step: 'game' }) }));
 let lastMap = {};
 try { lastMap = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; } catch (e) {}
 const LVN = { F: 'Fundamental', I: 'Intermediate', E: 'Expert' };
-const games = list.map(g => {
-const last = /^[FIE]$/.test(lastMap[g.name] || '') ? lastMap[g.name] : 'F';
-const tiers = ['F', 'I', 'E'].map(l => { const arr = FMP.stars(g.name, l); return { lab: l, arr: arr, stars: arr.map(on => ({ fill: on ? '#E8A317' : 'none', stroke: on ? '#E8A317' : '#B9B8B2', on: on ? 'on' : '' })) }; });
-const n = tiers.reduce((a, t) => a + t.arr.filter(Boolean).length, 0);
-const go = () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: s.mat, lvl: last, g: g.name, t: Date.now() })); } catch (e) {} };
-const pl = FMP.played(g.name);
-return { go: go, icon: PX.gameIcon(g.name), name: g.name, href: g.href, task: g[last], played: pl, isNew: !pl, tiers: tiers, starLabel: tiers.map(t => LVN[t.lab] + ' ' + t.arr.filter(Boolean).length + ' dari 3 bintang').join('. ') };
+const G = PX.MGW, TW = G.W + 2 * G.M, px = v => ((v + G.M) / TW * 100).toFixed(2) + '%', py = v => (v / G.H * 100).toFixed(2) + '%', pw = v => (v / TW * 100).toFixed(2) + '%';
+const mats = MATS.map(m => {
+  const gl = GAMES[m.id] || [], done = gl.filter(g => ['F', 'I', 'E'].some(l => FMP.stars(g.name, l)[0])).length, b = MG_B[m.id];
+  return { label: m.label, sub: done + '/' + gl.length + ' tuntas', on: this.state.at === m.id && s.going === m.id ? 'on' : '',
+    box: 'left: ' + px(b[0] - 3) + '; top: ' + py(b[1] - 14) + '; width: ' + pw(44) + '; height: ' + py(50),
+    flag: 'left: ' + px(b[0] + 19) + '; top: ' + py(b[1] + 36),
+    tap: () => { if (s.going) return; this.setState({ going: m.id }); this.walkTo(m.id, () => { this._at = 'S'; this.setState({ mat: m.id, step: 'game', going: null, sel: null, at: 'S', dur: 0 }); }); } };
 });
+const games = list.map(g => {
+  const last = /^[FIE]$/.test(lastMap[g.name] || '') ? lastMap[g.name] : 'F';
+  const tiers = ['F', 'I', 'E'].map(l => { const arr = FMP.stars(g.name, l); return { lab: l, arr: arr, stars: arr.map(on => ({ on: on ? 'on' : '' })) }; });
+  const n = tiers.reduce((a, t) => a + t.arr.filter(Boolean).length, 0);
+  const go = () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: s.mat, lvl: last, g: g.name, t: Date.now() })); } catch (e) {} };
+  const pl = FMP.played(g.name);
+  return { go: go, icon: PX.gameIcon(g.name), name: g.name, href: g.href, task: g[last], played: pl, isNew: !pl, tiers: tiers, n: n,
+    mini: pl ? ['F', 'I', 'E'].map((l, i) => tiers[i].arr[0] ? 'on' : '') : [],
+    starLabel: tiers.map(t => LVN[t.lab] + ' ' + t.arr.filter(Boolean).length + ' dari 3 bintang').join('. ') };
+});
+const selG = games.find(g => g.name === s.sel) || games[0] || {};
+games.forEach(g => { g.on = g === selG ? 'on' : ''; g.pick = () => this.setState({ sel: g.name }); });
 const NOTE = { alj: 'Timbangan Balon membuka game Timbangan dengan misi dan kasus balon.' };
-const crumb = s.step === 'mat' ? 'Pilih subject, lalu game' : mat.label + ' · tingkat dipilih di dalam game';
+const hp = MG_NODES[this.state.at] || MG_NODES.S;
 return {
-isMat: s.step === 'mat', isLvl: s.step === 'lvl', isGame: s.step === 'game',
-canBack: s.step !== 'mat',
-back: () => this.setState({ step: 'mat' }),
-crumb: crumb, stepTxt: (s.step === 'mat' ? 1 : 2) + '/2',
-px: PX.U, hasNote: !!NOTE[s.mat], mats: mats, lvls: lvls, games: games, gamesNote: NOTE[s.mat] || '', starRules: ['1 semua misi selesai', '2 tepat 8 dari 10 kasus', '3 satu aturan lolos uji']
+  isMat: s.step === 'mat', isGame: s.step === 'game', canBack: s.step !== 'mat',
+  back: () => { clearTimeout(this._wt); this._at = 'S'; this.setState({ step: 'mat', at: 'S', dur: 0, going: null, info: false }); },
+  crumb: s.step === 'mat' ? 'Langkah 1/2 · pilih subject' : 'Langkah 2/2 · ' + mat.label,
+  px: PX.U, mapImg: PX.mgMap(), topImg: PX.mgTop(s.mat), mats: mats,
+  heroStyle: 'left: ' + px(hp[0] - 6) + '; top: ' + py(hp[1] - 15) + '; transition-duration: ' + this.state.dur + 'ms', heroFlip: this.state.flip ? 'flip' : '',
+  matLabel: mat.label, gameCount: list.length + ' game', games: games, sel: selG, selTag: mat.label + ' · tingkat dipilih di dalam game',
+  hasNote: !!NOTE[s.mat], gamesNote: NOTE[s.mat] || '',
+  showInfo: !!s.info, infoOn: s.info ? 'on' : '', toggleInfo: () => this.setState({ info: !s.info }),
+  starRules: ['1 · semua misi selesai', '2 · tepat 8 dari 10 kasus terakhir', '3 · satu aturan lolos uji']
 };
 }
 }
