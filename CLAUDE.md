@@ -72,7 +72,7 @@ Satu file, tanpa build.
 - **Sebelum menyisipkan kode yang sama ke banyak game, cek nama variabel di tiap game.** Game Aljabar, Geometri, dan Data dibuat terpisah, jadi strukturnya berbeda.
 
 ## Cara menguji
-- **Faiq memakai iPad mini 7 (744 × 1133).** Uji di ukuran itu dan di ukuran ponsel (390 × 844). Di layar ≥ 600 px (iPad), app tampil sebagai **kolom seperti layar ponsel yang sedikit lebih lebar** (470 px, diperbesar maks. 1,2×) di tengah; latar di luar kolom = latar layar yang sedang dibuka, diburamkan (`#fm-bg`, skrip di akhir `index.html`). Jangan merentang elemen melebar dan jangan mengunci lebar 390 px (permintaan Faiq 16 Nov: tidak gepeng, tidak terlalu sempit, mirip contoh Nalar Harian). Peta Beranda 255 px lebar dengan inti 195 px; tepi 30 px boleh terpotong di ponsel.
+- **Faiq memakai iPad mini 7 (744 × 1133).** Uji di ukuran itu dan di ukuran ponsel (390 × 844). Di layar ≥ 600 px (`body.fm-framed`), app diperbesar sedikit (maks. 1,2×); **latar tiap layar memenuhi seluruh lebar**, sedangkan isi (kartu, tombol, papan) tetap di kolom 470 px di tengah lewat padding `var(--padX)` (dihitung skrip di akhir `index.html`). Jangan merentang kartu dan jangan menyempitkan latar (masukan Faiq 17 Nov). Bagian baru yang selebar layar perlu aturan `body.fm-framed …{padding: … var(--padX)}`. Peta Beranda: inti 195 × 330 kotak (lebar ponsel) + 80 kotak di kiri-kanan yang hanya terlihat di layar lebar (`PX.WORLD`); letak tempat, jalan, dan titik jalan tokoh ada di `NODES`/`SPOTS` layar Main.
 - Buka `index.html` di browser. Pastikan setiap layar tampil (tidak muncul kotak merah "Layar … gagal dibuka").
 - Ketuk tombol-tombolnya. Tidak boleh ada error di console.
 - Periksa juga aturan anti-clue di atas.

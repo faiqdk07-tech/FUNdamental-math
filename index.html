@@ -15,6 +15,16 @@ html:has(body.fm-framed){background:#DDE3D6}
 #fm-bg{display:none}
 body.fm-framed #fm-bg{display:block;position:fixed;inset:0;z-index:-1;image-rendering:pixelated}
 body.fm-framed #root{box-shadow:none}
+/* Layar lebar: latar penuh, isi di kolom tengah selebar 470 px */
+#root{--padX:0px}
+body.fm-framed .px-wall,body.fm-framed .px-page{padding-left:calc(16px + var(--padX))!important;padding-right:calc(16px + var(--padX))!important}
+body.fm-framed .px-counter,body.fm-framed .px-cab{padding-left:calc(14px + var(--padX));padding-right:calc(14px + var(--padX))}
+body.fm-framed .px-bottom{padding-left:calc(8px + var(--padX));padding-right:calc(8px + var(--padX))}
+body.fm-framed .px-nav,body.fm-framed #root.px-skin nav{padding-left:calc(6px + var(--padX))!important;padding-right:calc(6px + var(--padX))!important}
+body.fm-framed #root.px-skin>div>div>div:first-child{padding-left:calc(16px + var(--padX))!important;padding-right:calc(16px + var(--padX))!important}
+body.fm-framed .px-topscene,body.fm-framed #root.px-room>div>div>div:first-child::before{width:calc(100% + 32px + 2 * var(--padX));margin-left:calc(-16px - var(--padX));margin-right:calc(-16px - var(--padX))}
+body.fm-framed .px-topscene{max-height:260px;object-fit:cover;object-position:center bottom}
+body.fm-framed #root.px-room>div>div>div:first-child::before{max-height:170px;background-size:cover!important}
 a{color:#2F5BD3}a:hover{color:#1E3F9E}
 button{font:inherit}
 #root{max-width:834px;margin:0 auto;background:#F7F7F5;min-height:100vh;min-height:var(--appH,100vh)}
@@ -724,7 +734,53 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 #root.px-p-Progres div[style*="grid-template-columns: repeat(3"]>div:nth-child(3)::before{background-image:var(--px-buah)}
 .px-matimg{width:48px;height:auto;flex:none;image-rendering:pixelated;box-shadow:0 0 0 2px #2B1D1A}
 .px-xpbar{display:block;width:100%;height:12px;background:#2D3250;box-shadow:0 0 0 2px #2B1D1A;overflow:hidden}
-@media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button{animation:none}.px-hero{transition:none}}
+/* ===== Beranda (evaluasi B, 17 Nov): peta lebih luas, kartu pemain, api hari beruntun, panel cerah ===== */
+.px-map{width:calc(min(100%, (var(--appH,100dvh) - 250px) * 195 / 330) * 355 / 195);aspect-ratio:355 / 330}
+body.fm-framed .px-map{width:calc(min(470px, (var(--appH,100dvh) - 250px) * 195 / 330) * 355 / 195)}
+.px-map .px-hud{left:calc(80 / 355 * 100% + 6px);right:calc(80 / 355 * 100% + 6px);top:6px}
+.px-map .px-target{left:calc(80 / 355 * 100% + 6px);top:60px}
+.px-map .px-hud{z-index:4}.px-map .px-target{z-index:4}
+.px-spot.on{box-shadow:none;border-radius:0;filter:drop-shadow(0 0 0 #2B1D1A) drop-shadow(1px 1px 0 rgba(43,29,26,.6));
+  background:linear-gradient(#FFF,#FFF) 0 0/9px 3px no-repeat,linear-gradient(#FFF,#FFF) 0 0/3px 9px no-repeat,linear-gradient(#FFF,#FFF) 100% 0/9px 3px no-repeat,linear-gradient(#FFF,#FFF) 100% 0/3px 9px no-repeat,
+  linear-gradient(#FFF,#FFF) 0 100%/9px 3px no-repeat,linear-gradient(#FFF,#FFF) 0 100%/3px 9px no-repeat,linear-gradient(#FFF,#FFF) 100% 100%/9px 3px no-repeat,linear-gradient(#FFF,#FFF) 100% 100%/3px 9px no-repeat!important;
+  animation:px-pulse 1s steps(2) infinite}
+@keyframes px-pulse{50%{transform:scale(1.04)}}
+.px-hero{width:calc(13 / 355 * 100%);transition-property:left,top;transition-timing-function:linear}
+.px-hero.flip{transform:scaleX(-1)}
+.px-mark{width:calc(12 / 355 * 100%);z-index:3;filter:drop-shadow(1px 0 0 #FFF) drop-shadow(-1px 0 0 #FFF) drop-shadow(0 1px 0 #FFF) drop-shadow(0 -1px 0 #FFF) drop-shadow(0 3px 0 rgba(43,29,26,.35));animation:px-hop .6s steps(2) infinite}
+@keyframes px-hop{50%{transform:translateY(-5px)}}
+.px-me{display:flex;align-items:center;filter:drop-shadow(0 3px 0 rgba(43,29,26,.25))}
+.px-me-face{position:relative;z-index:1;width:44px;height:44px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:#8FD3F5;box-shadow:0 0 0 2px #2B1D1A,inset 0 0 0 2px #FFFFFF,inset 0 -9px 0 #75BF4C}
+.px-me-face img{width:36px;height:auto;margin-bottom:5px;image-rendering:pixelated}
+.px-me-name{display:flex;flex-direction:column;justify-content:center;min-height:38px;margin-left:2px;padding:1px 12px 3px 9px;background:#FFFFFF;box-shadow:0 0 0 2px #2B1D1A,inset 0 3px 0 #FFC83D,inset 0 -3px 0 #E3E8EF}
+.px-me-name b{font-size:17px;line-height:1.1;color:#2B1D1A;padding-top:2px}
+.px-me-star{display:flex;align-items:center;gap:3px;font:600 12px/1.2 Inter,system-ui,sans-serif;color:#8A5A00}
+.px-me-star img{width:13px;height:13px;image-rendering:pixelated}
+.px-fire{width:auto!important;gap:3px;padding:0 7px 0 5px!important}
+.px-fire img{width:17px;height:19px;image-rendering:pixelated;filter:grayscale(1) opacity(.45)}
+.px-fire.on img{filter:none;animation:px-bob .7s steps(2) infinite}
+.px-fire b{font:700 14px Inter,system-ui,sans-serif;color:#2B1D1A}
+.px-bottom{gap:10px;padding-top:8px}
+.px-scroll{margin:2px 12px!important;padding:3px 8px 4px!important}
+.px-scroll::before,.px-scroll::after{width:9px;top:-3px;bottom:-3px}
+.px-scroll::before{left:-11px}.px-scroll::after{right:-11px}
+.px-quest{gap:6px!important}
+.px-quest .px-tag{background:#FFC83D;font-size:10.5px;padding:0 5px 1px}
+.px-quest b{font-size:13px!important;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.px-quest small{font-size:11px!important;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.px-dlg{position:relative;background:#FFFFFF!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 0 0 4px #4C8FDD,inset 0 0 0 6px #2B1D1A,inset 0 -10px 0 6px #EAF5FD,0 5px 0 2px rgba(43,29,26,.25)!important;padding:16px 14px 14px 14px!important;margin:10px 4px 4px!important;min-height:108px!important;gap:12px!important}
+.px-dlg-face{width:50px!important;background:#BDE7FA!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 -7px 0 #75BF4C!important}
+.px-dlg-face.icon{padding:7px!important;background:#FFE9B0!important;box-shadow:0 0 0 2px #2B1D1A,inset 0 -4px 0 #F2C035!important}
+.px-dlg-body{color:#2B1D1A!important}
+.px-dlg .s{position:absolute;top:-11px;left:12px;padding:1px 10px 2px;font-size:12px!important;font-weight:700;color:#2B1D1A!important;background:#FFC83D;box-shadow:0 0 0 2px #2B1D1A,inset 0 -2px 0 #E39A1C;white-space:nowrap;max-width:calc(100% - 60px);overflow:hidden;text-overflow:ellipsis}
+.px-dlg .t{color:#2F64B0!important;font-size:17px!important;line-height:1.2}
+.px-dlg .t .n{font:500 12px Inter,system-ui,sans-serif;color:#4B4B57;margin-left:6px}
+.px-dlg .d{color:#3A3A45!important;font-size:13px!important;line-height:1.35}
+.px-dlg .px-lv{background:#EAF5FD!important;color:#2B1D1A!important;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A!important;margin:2px 3px}
+.px-dlg .px-lv.on{background:#FFC83D!important}
+.px-dlg .px-val{background:#EAF5FD!important;color:#2B1D1A!important;box-shadow:0 -2px 0 #2B1D1A,0 2px 0 #2B1D1A,-2px 0 0 #2B1D1A,2px 0 0 #2B1D1A!important}
+.px-dlg-x{position:absolute;top:8px;right:10px;width:24px;height:24px;padding:0;border:0;background:none;font:700 18px/1 Inter,system-ui,sans-serif;color:#4B4B57;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
 <body>
@@ -2924,27 +2980,27 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 <div class="px-world px-grass"><div class="px-wscroll">
 <div class="px-map" style="background-image: url('{{mapImg}}')">
 <sc-for list="{{spots}}" as="s" hint-placeholder-count="8">
-<button type="button" class="px-spot {{s.on}}" onClick="{{s.tap}}" aria-label="{{s.aria}}" style="{{s.style}}"><span class="px-fs">{{s.name}}<b>{{s.val}}</b></span></button>
+<button type="button" class="px-spot {{s.on}}" onClick="{{s.tap}}" aria-label="{{s.aria}}" style="{{s.style}}"></button>
 </sc-for>
 <sc-if value="{{hasMark}}" hint-placeholder-val="{{ true }}"><div class="px-mark" style="{{markStyle}}"><img alt="" src="{{px.seru}}"></div></sc-if>
-<div class="px-hero" style="{{heroStyle}}"><img alt="" src="{{px.orang}}"></div>
+<div class="px-hero {{heroFlip}}" style="{{heroStyle}}"><img alt="" src="{{px.orang}}"></div>
 <div class="px-hud">
-<div class="px-fw px-who"><img alt="" src="{{px.wajah}}" width="36" height="24"><div><small class="px-f">Fundamental Math</small><b class="px-f">Halo, Faiq</b></div></div>
-<div style="display: flex; gap: 6px; align-items: center"><div class="px-fw px-f" style="font-size: 12px; padding: 3px 4px 4px">{{streakTxt}}</div><a href="Pengaturan.dc.html" aria-label="Pengaturan" class="px-fw px-sq"><img alt="" src="{{px.gir}}" width="24" height="24"></a></div>
+<div class="px-me"><span class="px-me-face"><img alt="" src="{{px.wajah}}"></span><span class="px-me-name"><b class="px-f">Faiq</b><span class="px-me-star" aria-label="Bintang terkumpul"><img alt="" src="{{px.bintang}}">{{starTotal}}</span></span></div>
+<div style="display: flex; gap: 6px; align-items: center"><button type="button" onClick="{{streakTap}}" aria-label="{{streakAria}}" class="px-fw px-sq px-fire {{streakOn}}"><img alt="" src="{{px.api}}"><b>{{streak}}</b></button><a href="Pengaturan.dc.html" aria-label="Pengaturan" class="px-fw px-sq"><img alt="" src="{{px.gir}}" width="24" height="24"></a></div>
 </div>
 <a href="Pengaturan.dc.html" class="px-fw px-target px-f"><span>Target hari ini · <b style="font-family: Inter, system-ui, sans-serif">{{targetTxt}}</b></span><span style="display: flex"><sc-for list="{{pips}}" as="d" hint-placeholder-count="2"><i class="px-star {{d}}"></i></sc-for></span></a>
 </div>
 </div></div>
 <div class="px-bottom px-grass">
 <sc-if value="{{hasRec}}" hint-placeholder-val="{{ true }}">
-<a href="{{recHref}}" onClick="{{recTap}}" class="px-quest px-scroll"><span class="px-tag px-f" style="background: #FFC83D">Coba berikutnya</span><span style="flex: 1; min-width: 0"><b class="px-f">{{recTitle}}</b><small>{{recSub}}</small></span><img alt="" src="{{px.kanan}}" width="12" height="14"></a>
+<a href="{{recHref}}" onClick="{{recTap}}" class="px-quest px-scroll"><span class="px-tag px-f">Coba berikutnya</span><span style="flex: 1; min-width: 0"><b class="px-f">{{recTitle}}</b><small>{{recSub}}</small></span><img alt="" src="{{px.kanan}}" width="10" height="12"></a>
 </sc-if>
-<div class="px-dlg"><img alt="" class="px-dlg-face" src="{{dFace}}"><div class="px-dlg-body">
+<div class="px-dlg"><img alt="" class="px-dlg-face {{dIcon}}" src="{{dFace}}"><div class="px-dlg-body">
 <sc-if value="{{dHasS}}" hint-placeholder-val="{{ true }}"><div class="s px-f">{{dS}}</div></sc-if>
-<div class="t px-f">{{dT}}<sc-if value="{{dHasN}}" hint-placeholder-val="{{ false }}"><span style="font-family: Inter, system-ui, sans-serif; font-size: 14px; margin-left: 6px">{{dN}}</span></sc-if></div>
+<sc-if value="{{dHasClose}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-dlg-x" onClick="{{dClose}}" aria-label="Tutup">×</button></sc-if>
+<div class="t px-f">{{dT}}<sc-if value="{{dHasN}}" hint-placeholder-val="{{ false }}"><span class="n">{{dN}}</span></sc-if></div>
 <sc-if value="{{dHasD}}" hint-placeholder-val="{{ true }}"><div class="d">{{dD}}</div></sc-if>
-<sc-if value="{{dHasLv}}" hint-placeholder-val="{{ false }}"><div style="display: flex; margin-top: 4px"><sc-for list="{{dLv}}" as="l" hint-placeholder-count="3"><span class="px-lv {{l.on}}">{{l.t}}</span></sc-for></div></sc-if>
-<div class="act"><span><sc-if value="{{dHasVal}}" hint-placeholder-val="{{ false }}"><span class="px-val px-f">{{dVal}}</span></sc-if></span><a href="{{dHref}}" onClick="{{dTap}}" class="px-fg px-btn">{{dBtn}}</a></div>
+<div class="act"><span style="display: flex; gap: 4px; align-items: center"><sc-if value="{{dHasLv}}" hint-placeholder-val="{{ false }}"><sc-for list="{{dLv}}" as="l" hint-placeholder-count="3"><span class="px-lv {{l.on}}">{{l.t}}</span></sc-for></sc-if><sc-if value="{{dHasVal}}" hint-placeholder-val="{{ false }}"><span class="px-val px-f">{{dVal}}</span></sc-if></span><a href="{{dHref}}" onClick="{{dTap}}" class="px-fg px-btn">{{dBtn}}</a></div>
 </div></div>
 </div>
 <nav class="px-nav"><a href="Main.dc.html" class="px-slot on"><img alt="" src="{{px.rumah}}" width="24" height="24">Beranda</a><a href="MiniGames.dc.html" class="px-slot"><img alt="" src="{{px.dadu}}" width="24" height="24">Mini Games</a><a href="Progres.dc.html" class="px-slot"><img alt="" src="{{px.grafik}}" width="24" height="24">Progres</a><a href="Jurnal.dc.html" class="px-slot"><img alt="" src="{{px.buku}}" width="24" height="24">Jurnal</a><a href="PohonTemuan.dc.html" class="px-slot"><img alt="" src="{{px.pohon}}" width="24" height="24">Temuan</a></nav>
@@ -5988,6 +6044,7 @@ const PX = (() => {
     kiri: ['...kk.', '..kkk.', '.kkkkk', 'kkkkkk', '.kkkkk', '..kkk.', '...kk.'],
     kisi: ['kkkkk.kkkkk', 'kwwwk.kwwwk', 'kwwwk.kwwwk', 'kkkkk.kkkkk', '...........', 'kkkkk.kkkkk', 'kwwwk.kwwwk', 'kwwwk.kwwwk', 'kkkkk.kkkkk'],
     daftar: ['kk.kkkkkkk', 'kk.kkkkkkk', '..........', 'kk.kkkkk..', 'kk.kkkkk..', '..........', 'kk.kkkkkkk', 'kk.kkkkkkk'],
+    api: ['....k.....', '...kgk....', '..kghgk.k.', '..kghgkkgk', '.kgghhgggk', '.kghhYhhgk', 'kghhYYYhgk', 'kghYYwYYhk', 'kghYwwwYhk', '.kghYYYhk.', '..kkkkkk..'],
     seru: ['..kkkkk..', '.kyyyyyk.', 'kyykkkyyk', 'kyykkkyyk', 'kyykkkyyk', 'kyyykyyyk', 'kyyyyyyyk', 'kyyykyyyk', '.kyyyyyk.', '..kkykk..', '....k....'],
     orang: ['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.', '.kBffffffBk.', '.kfkffffkfk.', '.kffffffffk.', '..kffppffk..', '...kkkkkk...', '..krrrrrrk..', '.kfrrrrrrfk.', '.kfrrrrrrfk.', '..krrrrrrk..', '..kUUkkUUk..', '..kUUkkUUk..', '..kkk..kkk..'],
     fPanel: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttbbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
@@ -6199,42 +6256,58 @@ const PX = (() => {
   const once = (k, f) => () => memo[k] || (memo[k] = f());
   const grass = (t, W, y0, H) => { for (let j = y0; j < H; j += 10) for (let i = 0; i < W; i += 10) t.R(((i + j - y0) / 10) % 2 ? '#75BF4C' : '#71BB49', i, j, 10, 10); };
 
-  /* Peta desa Beranda, 195 x 290 kotak. Letak benda harus cocok dengan SPOTS di layar Main. */
+  /* Peta desa Beranda: inti 195 x 330 kotak (lebar layar ponsel) + 80 kotak di kiri-kanan yang terlihat
+     di layar lebar. Letak tempat, jalan, dan titik jalan harus cocok dengan WORLD di layar Main. */
+  const WORLD = { W: 195, H: 330, M: 80 };
   const world = once('world', () => {
-    const W = 195, H = 290, M = 30, t = pen(W + 2 * M, H, 11), R = t.R, rnd = t.rnd; let i, j;
-    grass(t, W + 2 * M, 0, H); t.x.translate(M, 0); /* peta inti 195 px, ditambah 30 px rumput di kiri-kanan */
-    for (i = 0; i < 120; i++) { const tx = (rnd() * (W + 2 * M) | 0) - M, ty = 56 + rnd() * (H - 60) | 0; R('#4E9E3E', tx, ty, 1, 2); R('#4E9E3E', tx + 2, ty + 1, 1, 1); R('#A5E070', tx + 1, ty - 1, 1, 1); }
-    R('#3F93DD', -M, 0, W + 2 * M, 48);
-    for (i = 0; i < 90; i++) R('#7CC0F2', (rnd() * (W + 2 * M) | 0) - M, 1 + (rnd() * 45 | 0), 3 + (rnd() * 6 | 0), 1);
-    R(P.w, -M, 48, W + 2 * M, 1); for (i = 0; i < 20; i++) R('#3F93DD', (rnd() * (W + 2 * M) | 0) - M, 48, 2 + (rnd() * 3 | 0), 1);
-    for (i = 0; i < 18; i++) R(P.w, (rnd() * (W + 2 * M) | 0) - M, 47, 2, 1);
-    R('#C08A52', -M, 49, W + 2 * M, 2); R(P.b, -M, 51, W + 2 * M, 1); R('#3F7A32', -M, 52, W + 2 * M, 1);
-    for (i = 3 - 36; i < W + M; i += 9) R(P.b, i, 50, 2, 1);
-    [[150, 40], [166, 44], [20, 43]].forEach(q => { R(P.A, q[0], q[1], 6, 3); R(P.a, q[0] + 1, q[1], 4, 2); R('#3F93DD', q[0] + 3, q[1], 1, 1); });
-    R(P.k, 89, 34, 16, 19); R(P.T, 90, 35, 14, 17); for (j = 37; j < 52; j += 3) R(P.t, 90, j, 14, 1);
-    [88, 103].forEach(a => { R(P.k, a, 33, 3, 5); R(P.b, a + 1, 34, 1, 3); R(P.k, a, 46, 3, 5); R(P.b, a + 1, 47, 1, 3); });
-    const roads = [[-M - 3, 114, W + 2 * M + 6, 12], [-M - 3, 196, W + 2 * M + 6, 12], [93, 52, 8, 150], [82, 66, 30, 26], [35, 96, 8, 20], [152, 96, 8, 20], [35, 174, 8, 24], [152, 174, 8, 24], [20, 206, 8, 14], [66, 206, 8, 14], [120, 206, 8, 8], [166, 206, 8, 28]];
+    const W = WORLD.W, H = WORLD.H, M = WORLD.M, TW = W + 2 * M, t = pen(TW, H, 11), R = t.R, rnd = t.rnd; let i, j;
+    grass(t, TW, 0, H); t.x.translate(M, 0);
+    for (i = 0; i < 260; i++) { const tx = (rnd() * TW | 0) - M, ty = 48 + rnd() * (H - 50) | 0; R('#4E9E3E', tx, ty, 1, 2); R('#4E9E3E', tx + 2, ty + 1, 1, 1); R('#A5E070', tx + 1, ty - 1, 1, 1); }
+    /* laut, buih, pantai */
+    R('#3F93DD', -M, 0, TW, 40);
+    for (i = 0; i < 150; i++) R('#7CC0F2', (rnd() * TW | 0) - M, 1 + (rnd() * 37 | 0), 3 + (rnd() * 6 | 0), 1);
+    R(P.w, -M, 40, TW, 1); for (i = 0; i < 40; i++) R('#3F93DD', (rnd() * TW | 0) - M, 40, 2 + (rnd() * 3 | 0), 1);
+    for (i = 0; i < 30; i++) R(P.w, (rnd() * TW | 0) - M, 39, 2, 1);
+    R('#F0D3A2', -M, 41, TW, 3); R('#C08A52', -M, 44, TW, 1); R('#3F7A32', -M, 45, TW, 1);
+    /* dermaga kayu dan perahu nelayan */
+    R(P.k, 89, 16, 17, 29); R(P.T, 90, 17, 15, 27); for (j = 19; j < 44; j += 3) R(P.t, 90, j, 15, 1);
+    [88, 103].forEach(a => { R(P.k, a, 15, 3, 5); R(P.b, a + 1, 16, 1, 3); R(P.k, a, 30, 3, 5); R(P.b, a + 1, 31, 1, 3); });
+    const boat = (a, b, sail) => {
+      R('rgba(20,60,110,.35)', a + 1, b + 7, 22, 2);
+      R(P.k, a, b + 3, 24, 5); R(P.r, a + 1, b + 3, 22, 2); R(P.w, a + 1, b + 5, 22, 1); R(P.b, a + 3, b + 6, 18, 1); R(P.k, a + 2, b + 8, 20, 1);
+      if (sail) { R(P.k, a + 11, b - 12, 1, 15); for (j = 0; j < 12; j++) R(P.w, a + 12, b - 11 + j, Math.max(1, j - 1), 1); R(P.E, a + 12, b + 0, 10, 1); }
+      else { t.stamp('orang', a + 8, b - 11); R(P.r, a + 1, b + 3, 22, 2); R(P.k, a, b + 2, 24, 1); }
+    };
+    boat(122, 18, false); R(P.k, 145, 9, 1, 12); R(P.e, 146, 10, 1, 1); for (j = 0; j < 9; j++) R(P.w, 146 + (j % 3 === 0 ? 1 : 0), 11 + j, 1, 1);
+    boat(30, 14, true); boat(-60, 20, true); boat(205, 12, true);
+    [[60, 30], [176, 34], [-20, 28], [240, 26]].forEach(q => { R(P.A, q[0], q[1], 6, 3); R(P.a, q[0] + 1, q[1], 4, 2); R('#3F93DD', q[0] + 3, q[1], 1, 1); });
+    /* jalan tanah */
+    const roads = [[-M - 3, 112, TW + 6, 10], [-M - 3, 196, TW + 6, 10], [12, 258, 172, 8], [93, 46, 8, 220], [72, 50, 50, 40],
+      [23, 92, 8, 22], [164, 92, 8, 22], [23, 176, 8, 22], [164, 176, 8, 22], [23, 250, 8, 10], [171, 250, 8, 10], [93, 250, 8, 10], [-M - 3, 288, 98, 6], [100, 288, M + 98, 6]];
     roads.forEach(r => R('#4E9E3E', r[0] - 2, r[1] - 2, r[2] + 4, r[3] + 4));
     roads.forEach(r => R('#A8773F', r[0] - 1, r[1] - 1, r[2] + 2, r[3] + 2));
     roads.forEach(r => R('#E3BD86', r[0], r[1], r[2], r[3]));
     roads.forEach(r => { for (let q = 0; q < r[2] * r[3] / 28; q++) R(rnd() < .5 ? '#CDA066' : '#F0D3A2', r[0] + (rnd() * (r[2] - 2) | 0), r[1] + (rnd() * r[3] | 0), 2, 1); });
-    R('rgba(43,29,26,.25)', 88, 88, 20, 2);
-    R(P.k, 88, 72, 18, 16); R(P.k, 86, 75, 22, 10); R(P.E, 89, 73, 16, 14); R(P.E, 87, 76, 20, 8); R('#4C8FDD', 90, 75, 14, 10); R('#7CC0F2', 91, 76, 5, 1); R(P.k, 95, 77, 4, 6); R(P.E, 96, 76, 2, 6); R(P.w, 96, 73, 2, 3); R(P.w, 94, 75, 1, 2); R(P.w, 99, 75, 1, 2);
-    t.building('bil', 20, 62); t.building('alj', 137, 62); t.building('geo', 20, 140); t.building('dat', 137, 140);
-    ((ox, oy) => { /* papan pengumuman */
+    /* batu pijakan di alun-alun */
+    for (i = 0; i < 6; i++) { R('#D2B07C', 76 + i * 7, 52, 5, 2); R('#D2B07C', 76 + i * 7, 86, 5, 2); }
+    /* empat gedung materi */
+    t.building('bil', 8, 58); t.building('alj', 149, 58); t.building('geo', 8, 142); t.building('dat', 149, 142);
+    ((ox, oy) => { /* papan pengumuman di alun-alun */
       R('rgba(43,29,26,.25)', ox + 3, oy + 28, 28, 2);
       R(P.k, ox + 5, oy + 7, 3, 22); R(P.b, ox + 6, oy + 7, 1, 21); R(P.k, ox + 25, oy + 7, 3, 22); R(P.b, ox + 26, oy + 7, 1, 21);
       R(P.k, ox, oy, 33, 20); R(P.b, ox + 1, oy + 1, 31, 18); R(P.T, ox + 1, oy + 1, 31, 1); R(P.t, ox + 3, oy + 3, 27, 14);
       R(P.w, ox + 5, oy + 4, 9, 11); R(P.k, ox + 6, oy + 6, 6, 1); R(P.k, ox + 6, oy + 8, 5, 1); R(P.k, ox + 6, oy + 10, 6, 1); R(P.r, ox + 9, oy + 3, 1, 2);
       R(P.Y, ox + 17, oy + 5, 10, 8); R(P.k, ox + 18, oy + 7, 7, 1); R(P.k, ox + 18, oy + 9, 5, 1); R(P.r, ox + 21, oy + 4, 1, 2);
-    })(8, 220);
-    ((ox, oy) => { /* gudang bengkel */
+    })(81, 57);
+    [[74, 60], [114, 60]].forEach(q => { R(P.k, q[0], q[1], 7, 9); R('#C9D3E0', q[0] + 1, q[1] + 1, 5, 7); R(P.w, q[0] + 1, q[1] + 1, 2, 2); });
+    ((ox, oy) => { /* gudang perbaikan */
       R('rgba(43,29,26,.25)', ox + 1, oy + 29, 34, 2);
       for (i = 0; i < 8; i++) R(P.k, ox + Math.max(0, 3 - i), oy + i, 34 - 2 * Math.max(0, 3 - i), 1);
       for (i = 1; i < 7; i++) R(i === 1 ? P.E : (i % 3 === 0 ? '#7C879A' : P.e), ox + 1 + Math.max(0, 3 - i), oy + i, 32 - 2 * Math.max(0, 3 - i), 1);
       R(P.k, ox + 2, oy + 8, 30, 22); R(P.b, ox + 3, oy + 8, 28, 21); for (i = 0; i < 28; i += 4) R(P.B, ox + 3 + i, oy + 8, 1, 21);
       R(P.k, ox + 10, oy + 14, 14, 16); R('#3A2A22', ox + 11, oy + 15, 12, 15); t.stamp('palu', ox + 11, oy + 16);
-    })(53, 218);
+      R(P.k, ox + 33, oy + 20, 8, 10); R(P.t, ox + 34, oy + 21, 6, 8); R(P.b, ox + 34, oy + 24, 6, 1);
+    })(10, 220);
     ((cx, oy) => { /* menara teropong */
       R('rgba(43,29,26,.25)', cx - 8, oy + 40, 18, 2);
       R(P.k, cx - 7, oy + 8, 14, 33); R(P.E, cx - 6, oy + 8, 12, 32); R(P.e, cx + 3, oy + 8, 3, 32);
@@ -6243,12 +6316,95 @@ const PX = (() => {
       R(P.k, cx - 3, oy + 30, 6, 11); R(P.b, cx - 2, oy + 31, 4, 10);
       R(P.k, cx - 2, oy + 16, 4, 6); R('#8FD0F2', cx - 1, oy + 17, 2, 4);
       for (i = 0; i < 6; i++) { R(P.k, cx - 4 + i * 2, oy - 2 - i, 4, 3); R(P.u, cx - 3 + i * 2, oy - 1 - i, 2, 1); } R(P.s, cx + 8, oy - 7, 2, 2);
-    })(124, 206);
-    R('rgba(43,29,26,.25)', 160, 247, 22, 2); R(P.k, 160, 239, 20, 9); R(P.E, 161, 240, 18, 4); R(P.e, 161, 244, 18, 3); t.stamp('peti', 164, 231);
-    t.fence(0, 104, 2); t.fence(178, 104, 2); t.fence(62, 186, 3); t.fence(108, 186, 3);
-    [[62, 58], [116, 58], [-8, 66], [182, 64], [62, 134], [116, 136], [-9, 146], [183, 146], [92, 222], [184, 216], [4, 270], [150, 272], [84, 274], [-27, 82], [204, 84], [-26, 160], [205, 162], [-25, 226], [206, 250], [-22, 268]].forEach(q => t.tree(q[0], q[1]));
-    t.stamp('tunggul', 68, 100); t.stamp('tunggul', 118, 180); t.stamp('tunggul', 40, 274); t.stamp('batu', 8, 130); t.stamp('batu', 124, 104); t.stamp('batu', 182, 184); t.stamp('batu', 118, 270);
-    for (i = 0; i < 40; i++) { const fx = 4 + rnd() * (W - 8) | 0, fy = 58 + rnd() * (H - 64) | 0; if ((fy > 108 && fy < 130) || (fy > 190 && fy < 212) || (fx > 78 && fx < 116 && fy < 200)) continue; t.flower(fx, fy, i); }
+    })(175, 210);
+    /* peti lencana di atas alas batu, di taman kecil */
+    R('#4E9E3E', 78, 226, 40, 26); R('#A8773F', 79, 227, 38, 24); R('#D9CBB0', 80, 228, 36, 22); for (i = 0; i < 36; i += 6) for (j = 0; j < 22; j += 5) R('#C4B496', 80 + i + (j % 10 ? 3 : 0), 228 + j, 1, 5);
+    R('rgba(43,29,26,.25)', 87, 247, 22, 2); R(P.k, 87, 239, 22, 9); R(P.E, 88, 240, 20, 4); R(P.e, 88, 244, 20, 3); t.stamp('peti', 92, 231);
+    [[80, 229], [111, 229]].forEach(q => t.flower(q[0] + 2, q[1] + 2, 1));
+    /* sumur timba */
+    ((a, b) => {
+      R('rgba(43,29,26,.25)', a, b + 19, 20, 2);
+      R(P.k, a + 2, b, 2, 12); R(P.B, a + 3, b + 1, 1, 10); R(P.k, a + 16, b, 2, 12); R(P.B, a + 17, b + 1, 1, 10);
+      for (j = 0; j < 5; j++) R(j === 0 ? P.k : (j % 2 ? P.r : P.R), a - 1 + j, b - 5 + j, 22 - 2 * j, 1); R(P.k, a - 1, b - 1, 22, 1);
+      R(P.k, a + 4, b + 2, 12, 1); R(P.k, a + 9, b + 3, 1, 4); R(P.k, a + 7, b + 6, 5, 4); R('#9AA7BA', a + 8, b + 7, 3, 2);
+      R(P.k, a, b + 10, 20, 10); R('#B8AFA0', a + 1, b + 11, 18, 8); for (i = 0; i < 18; i += 5) R('#8C8478', a + 1 + i, b + 11, 1, 8); R('#8C8478', a + 1, b + 15, 18, 1); R('#3F93DD', a + 2, b + 11, 16, 2);
+    })(52, 132);
+    /* jemuran baju */
+    ((a, b) => {
+      R(P.k, a, b, 2, 18); R(P.b, a + 1, b + 1, 1, 16); R(P.k, a + 30, b, 2, 18); R(P.b, a + 31, b + 1, 1, 16); R(P.k, a + 1, b + 2, 30, 1);
+      [[3, P.u, 7, 8], [11, P.y, 6, 9], [18, P.r, 5, 7], [24, P.w, 5, 6]].forEach(c => { R(P.k, a + c[0] - 1, b + 2, c[2] + 2, c[3] + 1); R(c[1], a + c[0], b + 3, c[2], c[3] - 1); R(P.E, a + c[0], b + 3, 1, 1); });
+      R('rgba(43,29,26,.2)', a, b + 18, 32, 2);
+    })(108, 136);
+    /* sawah: petak hijau berair, pematang, padi, orang-orangan */
+    const sawah = (a, b, w, h) => {
+      R(P.k, a - 1, b - 1, w + 2, h + 2); R('#B68A52', a, b, w, h);
+      for (let py = b + 2; py < b + h - 2; py += 13) for (let px = a + 2; px < a + w - 2; px += 21) {
+        const pw = Math.min(19, a + w - 2 - px), ph = Math.min(11, b + h - 2 - py); if (pw < 6 || ph < 5) continue;
+        R('#6FAFC9', px, py, pw, ph); R('#8CC6DA', px, py, pw, 1);
+        for (let q = 0; q < pw - 2; q += 4) for (let r = 1; r < ph - 2; r += 4) { R('#3F8F3A', px + 1 + q, py + r, 1, 3); R('#7CC95A', px + 2 + q, py + r, 1, 2); R('#3F8F3A', px + 3 + q, py + r + 1, 1, 2); }
+      }
+    };
+    sawah(6, 276, 78, 48); sawah(-M + 4, 214, 70, 64);
+    ((a, b) => { /* orang-orangan sawah */
+      R(P.k, a + 5, b + 6, 2, 16); R(P.B, a + 5, b + 7, 1, 14); R(P.k, a, b + 9, 12, 2); R(P.t, a + 1, b + 9, 10, 1);
+      R(P.k, a + 2, b - 1, 8, 3); R('#E8C58C', a + 3, b - 1, 6, 2); R(P.k, a + 3, b + 2, 6, 5); R('#F0D3A2', a + 4, b + 2, 4, 4); R(P.k, a + 5, b + 3, 1, 1); R(P.k, a + 7, b + 3, 1, 1);
+      R(P.k, a + 3, b + 7, 6, 7); R(P.u, a + 4, b + 7, 4, 6); R(P.r, a + 4, b + 10, 4, 1);
+    })(40, 290);
+    t.stamp('orang', 62, 298);
+    /* kolam ikan dengan teratai dan bebek */
+    const kolam = (a, b, w, h) => {
+      R('#4E9E3E', a - 2, b, w + 4, h); R('#4E9E3E', a, b - 2, w, h + 4);
+      R('#A8773F', a - 1, b + 1, w + 2, h - 2); R('#A8773F', a + 1, b - 1, w - 2, h + 2);
+      R('#3F93DD', a, b + 2, w, h - 4); R('#3F93DD', a + 2, b, w - 4, h); R('#7CC0F2', a + 2, b + 1, w - 6, 2);
+      for (i = 0; i < w * h / 60; i++) R('#7CC0F2', a + 3 + (rnd() * (w - 10) | 0), b + 4 + (rnd() * (h - 8) | 0), 3 + (rnd() * 3 | 0), 1);
+    };
+    kolam(114, 278, 70, 42); kolam(-M + 10, 296, 50, 28);
+    [[124, 286], [170, 306], [-M + 20, 304]].forEach(q => { R(P.A, q[0], q[1], 7, 4); R(P.a, q[0] + 1, q[1], 5, 3); R(P.p, q[0] + 3, q[1] + 1, 2, 1); });
+    const bebek = (a, b) => { R('rgba(20,60,110,.35)', a, b + 5, 9, 1); R(P.k, a, b + 1, 9, 5); R(P.w, a + 1, b + 2, 7, 3); R(P.k, a + 5, b - 2, 4, 4); R(P.w, a + 6, b - 1, 2, 2); R(P.g, a + 9, b, 2, 1); R(P.k, a + 7, b - 1, 1, 1); };
+    bebek(140, 292); bebek(152, 298); bebek(160, 289);
+    /* kandang ayam dan ayam */
+    const ayam = (a, b, flip) => { R(P.k, a, b + 1, 7, 5); R(P.w, a + 1, b + 2, 5, 3); R(P.k, a + (flip ? 0 : 5), b - 1, 3, 3); R(P.w, a + (flip ? 1 : 5), b, 1, 1); R(P.r, a + (flip ? 1 : 6), b - 2, 1, 1); R(P.g, a + (flip ? -1 : 8), b, 1, 1); R(P.y, a + 2, b + 6, 1, 1); R(P.y, a + 4, b + 6, 1, 1); };
+    ((a, b) => {
+      R('rgba(43,29,26,.25)', a, b + 19, 26, 2);
+      for (j = 0; j < 6; j++) R(j === 0 ? P.k : (j % 2 ? P.r : P.R), a - 1 + j, b + j, 28 - 2 * j, 1);
+      R(P.k, a, b + 6, 26, 14); R(P.t, a + 1, b + 6, 24, 13); for (i = 0; i < 24; i += 4) R(P.b, a + 1 + i, b + 6, 1, 13);
+      R(P.k, a + 9, b + 11, 8, 9); R('#3A2A22', a + 10, b + 12, 6, 8); R(P.k, a + 13, b + 20, 1, 1);
+    })(-62, 64);
+    t.fence(-72, 92, 6); ayam(-58, 100, false); ayam(-44, 104, true); ayam(-30, 98, false); ayam(-8, 70, true);
+    /* padang sapi */
+    t.fence(206, 62, 7); t.fence(206, 98, 7);
+    const sapi = (a, b) => {
+      R('rgba(43,29,26,.25)', a + 1, b + 11, 16, 2);
+      R(P.k, a, b, 16, 9); R(P.w, a + 1, b + 1, 14, 7); R(P.k, a + 4, b + 2, 4, 3); R(P.k, a + 10, b + 5, 3, 2);
+      R(P.k, a + 13, b - 3, 7, 7); R(P.w, a + 14, b - 2, 5, 5); R(P.p, a + 15, b + 1, 4, 2); R(P.k, a + 15, b - 1, 1, 1); R(P.k, a + 13, b - 4, 2, 1); R(P.k, a + 18, b - 4, 2, 1);
+      [1, 4, 10, 13].forEach(x0 => R(P.k, a + x0, b + 9, 2, 3));
+    };
+    sapi(214, 78); sapi(236, 84);
+    [[210, 112], [222, 116], [234, 110]].forEach(q => { R(P.k, q[0], q[1], 10, 8); R(P.y, q[0] + 1, q[1] + 1, 8, 6); R(P.o, q[0] + 1, q[1] + 3, 8, 1); R(P.Y, q[0] + 2, q[1] + 1, 3, 1); });
+    /* gerobak sayur dan kebun wortel di sisi kiri */
+    ((a, b) => {
+      R('rgba(43,29,26,.25)', a, b + 14, 26, 2);
+      R(P.k, a, b + 2, 24, 9); R(P.t, a + 1, b + 3, 22, 7); R(P.b, a + 1, b + 7, 22, 1);
+      [[3, P.r], [7, P.g], [11, P.a], [15, P.r], [19, P.g]].forEach(c => { R(P.k, a + c[0] - 1, b - 1, 5, 4); R(c[1], a + c[0], b, 3, 3); });
+      R(P.k, a + 24, b + 4, 8, 2); [[4], [16]].forEach(c => { R(P.k, a + c[0], b + 9, 6, 6); R(P.e, a + c[0] + 1, b + 10, 4, 4); R(P.k, a + c[0] + 2, b + 11, 2, 2); });
+    })(-64, 152);
+    for (j = 0; j < 3; j++) { R('#8A5A32', -70, 168 + j * 9, 56, 5); R('#6E4626', -70, 172 + j * 9, 56, 1); for (i = 0; i < 56; i += 6) { R(P.a, -68 + i, 166 + j * 9, 1, 3); R(P.c, -67 + i, 166 + j * 9, 1, 2); R(P.g, -68 + i, 169 + j * 9, 2, 1); } }
+    /* kincir di sisi kanan */
+    ((cx, b) => {
+      R('rgba(43,29,26,.25)', cx - 9, b + 34, 20, 2);
+      for (j = 0; j < 22; j++) { const hw = 4 + (j >> 2); R(P.k, cx - hw - 1, b + 12 + j, 2 * hw + 2, 1); R(j % 5 === 0 ? '#C4B496' : '#E8DFCB', cx - hw, b + 12 + j, 2 * hw, 1); }
+      R(P.k, cx - 3, b + 26, 6, 8); R(P.b, cx - 2, b + 27, 4, 7);
+      for (i = 0; i < 12; i++) { R(P.k, cx - 1 - i, b + 10 - i, 3, 3); R(P.k, cx + i - 1, b + 10 - i, 3, 3); R(P.k, cx - 1 - i, b + 10 + i, 3, 3); R(P.k, cx + i - 1, b + 10 + i, 3, 3); }
+      for (i = 1; i < 12; i++) { R(P.w, cx - i, b + 11 - i, 1, 1); R(P.w, cx + i, b + 11 - i, 1, 1); R(P.w, cx - i, b + 11 + i, 1, 1); R(P.w, cx + i, b + 11 + i, 1, 1); }
+      R(P.k, cx - 2, b + 9, 4, 4); R(P.r, cx - 1, b + 10, 2, 2);
+    })(232, 146);
+    /* pagar, pohon, dan hiasan */
+    t.fence(52, 100, 2); t.fence(124, 100, 2); t.fence(52, 184, 2); t.fence(124, 184, 2);
+    [[52, 70], [128, 70], [-6, 150], [184, 150], [48, 218], [130, 218], [-8, 240], [186, 232],
+     [-30, 52], [-12, 128], [-78, 120], [-40, 190], [-24, 254], [-76, 270], [196, 50], [262, 60], [200, 134], [258, 192], [210, 222], [250, 246], [196, 280], [262, 300], [-40, 316], [230, 318]].forEach(q => t.tree(q[0], q[1]));
+    t.stamp('tunggul', 68, 160); t.stamp('tunggul', 136, 236); t.stamp('tunggul', -50, 132); t.stamp('tunggul', 222, 176);
+    t.stamp('batu', 8, 128); t.stamp('batu', 124, 104); t.stamp('batu', 182, 212); t.stamp('batu', 60, 240); t.stamp('batu', 214, 260); t.stamp('batu', -64, 246);
+    for (i = 0; i < 90; i++) { const fx = -M + 4 + rnd() * (TW - 8) | 0, fy = 50 + rnd() * (H - 54) | 0; if ((fy > 106 && fy < 128) || (fy > 190 && fy < 212) || (fy > 252 && fy < 270) || (fx > 66 && fx < 126 && fy < 266) || (fy > 270 && fx > -M && fx < 190 && !(fx > 86 && fx < 110))) continue; t.flower(fx, fy, i); }
     return t.cv.toDataURL();
   });
 
@@ -6535,7 +6691,7 @@ const PX = (() => {
     }
     return t.cv.toDataURL();
   })());
-  return { topView: topView, U: U, P: P, pen: pen, world: world, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
+  return { topView: topView, U: U, P: P, pen: pen, world: world, WORLD: WORLD, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
@@ -10488,18 +10644,43 @@ return Component;
 })();
 GAMES["Main"] = (function () {
 
+/* Peta desa (PX.world): titik jalan (kaki tokoh) dan jalan penghubungnya. Tokoh hanya berjalan di jalan tanah. */
+const NODES = {
+  P: [97, 97], C1: [97, 117], L1: [27, 117], R1: [168, 117], bil: [27, 100], alj: [168, 100],
+  C2: [97, 201], L2: [27, 201], R2: [168, 201], geo: [27, 184], dat: [168, 184],
+  C3: [97, 262], L3: [27, 262], R3: [175, 262], ben: [27, 256], cek: [175, 256], len: [97, 257]
+};
+const EDGES = [['P', 'C1'], ['C1', 'L1'], ['L1', 'bil'], ['C1', 'R1'], ['R1', 'alj'], ['C1', 'C2'], ['C2', 'L2'], ['L2', 'geo'], ['C2', 'R2'], ['R2', 'dat'],
+  ['C2', 'C3'], ['C3', 'L3'], ['L3', 'ben'], ['C3', 'R3'], ['R3', 'cek'], ['C3', 'len']];
+/* Tempat yang bisa diketuk: kotak [x, y, lebar, tinggi] di peta, titik tujuan tokoh, dan letak tanda seru */
 const SPOTS = [
-{ id: 'bil', mat: 'bil', cx: 39, sy: 96 }, { id: 'alj', mat: 'alj', cx: 156, sy: 96 }, { id: 'geo', mat: 'geo', cx: 39, sy: 174 }, { id: 'dat', mat: 'dat', cx: 156, sy: 174 },
-{ id: 'tan', cx: 25, sy: 249, hx: 25, hy: 214 }, { id: 'ben', cx: 70, sy: 249, hx: 70, hy: 214 }, { id: 'cek', cx: 124, sy: 249, hx: 110, hy: 248 }, { id: 'len', cx: 170, sy: 249, hx: 170, hy: 236 }
+  { id: 'bil', mat: 'bil', box: [6, 44, 42, 50], node: 'bil', mark: [50, 68] }, { id: 'alj', mat: 'alj', box: [147, 44, 42, 50], node: 'alj', mark: [189, 68] },
+  { id: 'geo', mat: 'geo', box: [6, 128, 42, 50], node: 'geo', mark: [50, 152] }, { id: 'dat', mat: 'dat', box: [147, 128, 42, 50], node: 'dat', mark: [189, 152] },
+  { id: 'tan', box: [78, 54, 39, 34], node: 'P' }, { id: 'ben', box: [8, 216, 44, 36], node: 'ben' },
+  { id: 'cek', box: [163, 200, 24, 52], node: 'cek' }, { id: 'len', box: [84, 226, 28, 24], node: 'len' }
 ];
-/* koordinat di peta desa (PX.world, 195 x 290 kotak) diubah ke persen */
-const pc = (v, d) => (v / d * 100).toFixed(2) + '%';
+const ADJ = {}; EDGES.forEach(e => { (ADJ[e[0]] = ADJ[e[0]] || []).push(e[1]); (ADJ[e[1]] = ADJ[e[1]] || []).push(e[0]); });
+const route = (a, b) => { const prev = { [a]: null }, q = [a]; while (q.length) { const n = q.shift(); if (n === b) break; (ADJ[n] || []).forEach(m => { if (!(m in prev)) { prev[m] = n; q.push(m); } }); } const out = []; for (let n = b; n !== null && n !== undefined; n = prev[n]) out.unshift(n); return out[0] === a ? out : [a]; };
+/* koordinat peta inti diubah ke persen gambar peta (inti + tepi kiri-kanan) */
+const WD = PX.WORLD, px = v => ((v + WD.M) / (WD.W + 2 * WD.M) * 100).toFixed(2) + '%', py = v => (v / WD.H * 100).toFixed(2) + '%', pw = v => (v / (WD.W + 2 * WD.M) * 100).toFixed(2) + '%';
 class Component extends DCLogic {
+constructor(props) { super(props); this.state = { spot: null, at: 'C1', dur: 0, flip: false }; this._at = 'C1'; }
+walkTo(target) {
+  clearTimeout(this._wt);
+  const path = route(this._at, target);
+  const step = k => {
+    if (k >= path.length || window.__fmComp !== this) return;
+    const a = NODES[this._at], b = NODES[path[k]], ms = Math.round(Math.hypot(b[0] - a[0], b[1] - a[1]) * 16);
+    this._at = path[k];
+    this.setState({ at: path[k], dur: ms, flip: b[0] < a[0] ? true : (b[0] > a[0] ? false : this.state.flip) });
+    this._wt = setTimeout(() => step(k + 1), ms);
+  };
+  step(1);
+}
 renderVals() {
 const p = FMP.load(), LVN = FMP.LVN;
 let target = 2; try { target = (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}).target || 2; } catch (e) {}
 const n = FMP.todayOk(), st = FMP.streak();
-const dots = []; for (let i = 0; i < target; i++) dots.push({ style: 'width: 18px; height: 6px; border-radius: 3px; background: ' + (i < n ? '#2F5BD3' : '#DDDCD7') });
 const L = p.last;
 const tant = p.ev.length ? FMP.tantangan() : null, tDone = tant ? tant.items.filter(x => x.done).length : 0;
 const ready = p.bengkel.filter(x => FMP.dayDiff(x.t) >= 1).length;
@@ -10510,62 +10691,62 @@ FMP.MATS.forEach(m => m[2].forEach(g => order.push([g[0], g[1], m[1]])));
 if (L) { ['F', 'I', 'E'].forEach(l => { if (!rec && FMP.played(L.g, l) && !FMP.stars(L.g, l)[0]) rec = { g: L.g, key: L.key, l: l, why: 'Selesaikan ketiga misinya untuk bintang pertama.' }; }); }
 if (!rec && L) { const i = ['F', 'I', 'E'].findIndex(l => !FMP.stars(L.g, l)[0]); if (i >= 0) rec = { g: L.g, key: L.key, l: ['F', 'I', 'E'][i], why: 'Tingkat berikutnya di game yang sama.' }; }
 if (!rec) { const mat = L && FMP.GAME[L.g] ? FMP.GAME[L.g].mat : 'bil'; const c = order.find(o => o[2] === mat && !FMP.played(o[0])) || order.find(o => !FMP.played(o[0])); if (c) rec = { g: c[0], key: c[1], l: 'F', why: 'Game yang belum pernah kamu coba.' }; }
-const mats = FMP.MATS.map((m, mi) => {
-const got = m[2].filter(g => ['F', 'I', 'E'].some(l => FMP.stars(g[0], l)[0])).length;
-return { name: m[0], count: got + '/' + m[2].length, row: 'display: flex; justify-content: space-between; align-items: center; padding: 5px 0' + (mi < 3 ? '; border-bottom: 1px solid #ECEBE7' : ''),
-lv: ['F', 'I', 'E'].map(l => { const on = m[2].some(g => FMP.stars(g[0], l)[0]); return { t: l, style: 'padding: 0 5px; border-radius: 3px; ' + (on ? 'background: #2F5BD3; color: #FFFFFF; border: 1px solid #2F5BD3' : 'border: 1px solid #DDDCD7; color: #66655F') }; }) }; });
+let starTotal = 0;
+const mats = FMP.MATS.map(m => {
+  const got = m[2].filter(g => ['F', 'I', 'E'].some(l => FMP.stars(g[0], l)[0])).length;
+  m[2].forEach(g => ['F', 'I', 'E'].forEach(l => { starTotal += FMP.stars(g[0], l).filter(Boolean).length; }));
+  return { name: m[0], count: got + '/' + m[2].length, lv: ['F', 'I', 'E'].map(l => ({ t: l, on: m[2].some(g => FMP.stars(g[0], l)[0]) ? 'on' : '' })) };
+});
 const bs = FMP.badges().filter(b => b[2]);
 const celah = FMP.MATS.find(m => !m[2].some(g => FMP.played(g[0])));
-const streakTxt = st > 0 ? st + ' hari beruntun' : 'Mulai hari ini';
-const targetTxt = Math.min(n, target) + '/' + target;
 const tantSub = tant ? (tant.items.length ? tant.items.length + ' kasus campuran dari game yang pernah kamu mainkan' : 'Belum ada kasus untuk hari ini') : 'Mainkan satu game dulu';
 const tantCount = tant && tant.items.length ? tDone + '/' + tant.items.length : '–';
-const celahTxt = celah ? celah[0] : 'Semua dicoba';
-const badgeTxt = bs.length ? bs[bs.length - 1][0] : 'Belum ada';
-const matOf = id => { const i = FMP.MATS.findIndex(m => m[1] === id); return i >= 0 ? mats[i] : null; };
 const INFO = {
-tan: { name: 'Tantangan', val: tantCount, t: 'Tantangan harian', d: tantSub, v: tantCount, btn: 'Buka', href: 'Tantangan.dc.html' },
-ben: { name: 'Bengkel', val: String(ready), t: 'Bengkel kesalahan', d: 'Kasus yang pernah gagal muncul lagi', v: ready + ' kasus', btn: 'Buka', href: 'Bengkel.dc.html' },
-cek: { name: 'Cek celah', val: '', t: 'Cek celah', d: 'Saran tingkat dari progresmu', v: celahTxt, btn: 'Buka', href: 'CekCelah.dc.html' },
-len: { name: 'Lencana', val: '', t: 'Lencana', d: badgeTxt, v: '', btn: 'Lihat semua', href: 'Progres.dc.html' }
+  tan: { t: 'Tantangan harian', d: tantSub, v: tantCount, btn: 'Buka', href: 'Tantangan.dc.html' },
+  ben: { t: 'Bengkel kesalahan', d: 'Kasus yang pernah gagal muncul lagi', v: ready + ' kasus', btn: 'Buka', href: 'Bengkel.dc.html' },
+  cek: { t: 'Cek celah', d: 'Saran tingkat dari progresmu', v: celah ? celah[0] : 'Semua dicoba', btn: 'Buka', href: 'CekCelah.dc.html' },
+  len: { t: 'Lencana', d: bs.length ? 'Terakhir: ' + bs[bs.length - 1][0] : 'Belum ada lencana', v: bs.length + ' lencana', btn: 'Lihat semua', href: 'Progres.dc.html' }
 };
-const sp = SPOTS.find(o => o.id === this.state.spot) || null;
+const matOf = id => { const i = FMP.MATS.findIndex(m => m[1] === id); return i >= 0 ? mats[i] : null; };
+const sid = this.state.spot, sp = SPOTS.find(o => o.id === sid) || null;
 const spots = SPOTS.map(o => {
-const m = o.mat ? matOf(o.mat) : null, inf = INFO[o.id] || {};
-const top = o.mat ? o.sy - 40 : o.sy - 46, h = o.mat ? 55 : 61;
-return { name: m ? m.name : inf.name, val: m ? m.count : inf.val, aria: m ? m.name : inf.t, on: sp === o ? 'on' : '',
-style: 'left: ' + pc(o.cx - 22 + 30, 255) + '; top: ' + pc(top, 290) + '; width: ' + pc(44, 255) + '; height: ' + pc(h, 290),
-tap: () => this.setState({ spot: sp === o ? null : o.id }) };
+  const m = o.mat ? matOf(o.mat) : null;
+  return { aria: m ? m.name : INFO[o.id].t, on: sp === o ? 'on' : '',
+    style: 'left: ' + px(o.box[0]) + '; top: ' + py(o.box[1]) + '; width: ' + pw(o.box[2]) + '; height: ' + py(o.box[3]),
+    tap: () => { const off = sp === o; this.setState({ spot: off ? null : o.id }); if (!off) this.walkTo(o.node); } };
 });
-const hx = sp ? (sp.mat ? sp.cx + 12 : sp.hx) : 97, hy = sp ? (sp.mat ? sp.sy + 1 : sp.hy) : 122;
+const hp = NODES[this.state.at] || NODES.C1;
 const recMat = rec && FMP.GAME[rec.g] ? SPOTS.find(o => o.mat === FMP.GAME[rec.g].mat) : null;
-let d;
 const GUIDE = {
-bil: ['ratna', 'Bu Ratna, pedagang pasar', 'Ini pasar desa. Pedagang di sini butuh bantuan menghitung kembalian, menimbang, dan membagi barang. Ketuk tombol di bawah untuk melihat gamenya.'],
-alj: ['udin', 'Pak Udin, montir bengkel', 'Ini bengkel desa. Di sini ada struk, mesin, dan catatan yang angkanya hilang atau berubah-ubah. Bantu warga menemukan hubungannya.'],
-geo: ['lina', 'Mbak Lina, mandor proyek', 'Ini proyek bangunan. Tukang di sini mengukur lantai, kardus, tangga, dan jarak di peta. Coba bantu pekerjaan mereka.'],
-dat: ['dimas', 'Mas Dimas, penjaga observatorium', 'Ini observatorium. Warga di sini mengurutkan, mengundi, dan membaca catatan nilai. Ayo lihat apa yang mereka butuhkan.'],
-tan: ['pakrt', 'Pak RT', 'Ini papan pengumuman desa. Tiap hari aku menempel kasus campuran dari game yang pernah kamu mainkan.'],
-ben: ['harun', 'Pak Harun, penjaga gudang', 'Ini gudang perbaikan. Misi atau kasus yang kesempatannya habis kusimpan di sini, lalu bisa kamu coba lagi paling cepat besok.'],
-cek: ['pemandu', 'Penjaga menara', 'Dari menara ini aku bisa melihat bagian desa yang belum kamu jelajahi. Aku akan menyarankan tingkat untuk tiap game.'],
-len: ['sinta', 'Mbak Sinta, penjaga peti', 'Peti ini menyimpan lencanamu. Lencana didapat dari kebiasaan bermain, misalnya bermain beberapa hari berturut-turut.']
+  bil: ['ratna', 'Bu Ratna, pedagang pasar', 'Ini pasar desa. Pedagang di sini butuh bantuan menghitung kembalian, menimbang, dan membagi barang.'],
+  alj: ['udin', 'Pak Udin, montir bengkel', 'Ini bengkel desa. Di sini ada struk, mesin, dan catatan yang angkanya hilang atau berubah-ubah.'],
+  geo: ['lina', 'Mbak Lina, mandor proyek', 'Ini proyek bangunan. Tukang di sini mengukur lantai, kardus, tangga, dan jarak di peta.'],
+  dat: ['dimas', 'Mas Dimas, penjaga observatorium', 'Ini observatorium. Warga di sini mengurutkan, mengundi, dan membaca catatan nilai.'],
+  tan: ['pakrt', 'Pak RT', 'Ini papan pengumuman di alun-alun. Tiap hari aku menempel kasus campuran dari game yang pernah kamu mainkan.'],
+  ben: ['harun', 'Pak Harun, penjaga gudang', 'Ini gudang perbaikan. Misi atau kasus yang kesempatannya habis kusimpan di sini dan bisa dicoba lagi paling cepat besok.'],
+  cek: ['pemandu', 'Penjaga menara', 'Dari menara ini aku bisa melihat bagian desa yang belum kamu jelajahi, lalu menyarankan tingkat untuk tiap game.'],
+  len: ['sinta', 'Mbak Sinta, penjaga peti', 'Peti ini menyimpan lencanamu. Lencana didapat dari kebiasaan bermain, misalnya bermain beberapa hari berturut-turut.'],
+  api: ['pemandu', 'Pemandu desa', 'Api ini menyala selama kamu bermain minimal satu kasus setiap hari. Kalau satu hari terlewat, hitungannya mulai dari awal.']
 };
-const gd = sp ? GUIDE[sp.id] : null;
-if (sp && sp.mat) {
-const m = matOf(sp.mat);
-d = { s: gd[1], d: gd[2], t: m.name, n: m.count, lv: m.lv.map(l => ({ t: l.t, on: l.on ? 'on' : '' })), btn: 'Buka Mini Games', href: 'MiniGames.dc.html',
-tap: () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: sp.mat, lvl: 'F', t: Date.now() })); } catch (e) {} } };
-} else if (sp) { const inf = INFO[sp.id]; d = { s: gd[1], t: inf.t, d: gd[2] + ' ' + inf.d + '.', v: inf.v, btn: inf.btn, href: inf.href }; }
-else if (L) d = { s: 'Lanjutkan', t: L.g + ' · ' + L.label, d: LVN[L.l] + ' · ' + (L.mode === 'misi' ? 'Misi ' + (L.idx + 1) : 'Kasus harian'), btn: 'Main', href: L.key + '.dc.html', tap: () => FMP.go(L) };
-else d = { s: 'Selamat datang, peneliti', t: 'Belum ada kasus yang dimainkan', d: 'Pilih satu game di Mini Games. Semua temuanmu akan tercatat di sini.', btn: 'Buka Mini Games', href: 'MiniGames.dc.html' };
+let d, face = 'pemandu';
+if (sid === 'api') { const g = GUIDE.api; d = { s: g[1], t: st > 0 ? st + ' hari beruntun' : 'Api belum menyala', d: g[2], btn: 'Atur target', href: 'Pengaturan.dc.html' }; }
+else if (sp && sp.mat) {
+  const m = matOf(sp.mat), g = GUIDE[sp.id]; face = g[0];
+  d = { s: g[1], d: g[2], t: m.name, n: m.count + ' game tuntas', lv: m.lv, btn: 'Lihat game', href: 'MiniGames.dc.html',
+    tap: () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: sp.mat, lvl: 'F', t: Date.now() })); } catch (e) {} } };
+} else if (sp) { const inf = INFO[sp.id], g = GUIDE[sp.id]; face = g[0]; d = { s: g[1], t: inf.t, d: g[2], v: inf.v, btn: inf.btn, href: inf.href }; }
+else if (L) d = { s: 'Lanjutkan', t: L.g, d: LVN[L.l] + ' · ' + (L.mode === 'misi' ? 'Misi ' + (L.idx + 1) : 'Kasus harian'), btn: 'Main', href: L.key + '.dc.html', tap: () => FMP.go(L), icon: PX.gameIcon(L.g) };
+else d = { s: 'Selamat datang, peneliti', t: 'Desa ini butuh bantuanmu', d: 'Ketuk tempat di peta untuk berkenalan dengan warganya, atau langsung pilih game.', btn: 'Pilih game', href: 'MiniGames.dc.html' };
 return {
-px: PX.U, mapImg: PX.world(), spots: spots,
-heroStyle: 'left: ' + pc(hx - 6 + 30, 255) + '; top: ' + pc(hy - 15, 290),
-hasMark: !!recMat, markStyle: recMat ? 'left: ' + pc(recMat.cx - 5.5 + 30, 255) + '; top: ' + pc(recMat.sy - 48, 290) : '',
-streakTxt: streakTxt, targetTxt: targetTxt, pips: dots.map((_, i) => i < n ? 'on' : ''),
-hasRec: !!rec, recTitle: rec ? rec.g + ' · ' + LVN[rec.l] : '', recSub: rec ? rec.why : '', recHref: rec ? rec.key + '.dc.html' : 'MiniGames.dc.html', recTap: () => { if (rec) FMP.go(rec); },
-dHasS: !!d.s, dS: d.s || '', dT: d.t, dHasN: !!d.n, dN: d.n || '', dHasD: !!d.d, dD: d.d || '', dHasLv: !!d.lv, dLv: d.lv || [],
-dFace: PX.U[gd ? gd[0] : 'pemandu'] || PX.U.pemandu, dHasVal: !!d.v, dVal: d.v || '', dBtn: d.btn, dHref: d.href, dTap: d.tap || (() => {})
+  px: PX.U, mapImg: PX.world(), spots: spots,
+  heroStyle: 'left: ' + px(hp[0] - 6) + '; top: ' + py(hp[1] - 15) + '; transition-duration: ' + this.state.dur + 'ms', heroFlip: this.state.flip ? 'flip' : '',
+  hasMark: !!recMat, markStyle: recMat ? 'left: ' + px(recMat.mark[0] - 6) + '; top: ' + py(recMat.mark[1] - 16) : '',
+  starTotal: String(starTotal), streak: String(st), streakOn: st > 0 ? 'on' : '', streakAria: st + ' hari beruntun', streakTap: () => { clearTimeout(this._wt); this.setState({ spot: sid === 'api' ? null : 'api' }); },
+  targetTxt: Math.min(n, target) + '/' + target, pips: Array.from({ length: target }, (_, i) => i < n ? 'on' : ''),
+  hasRec: !!rec && !sid, recTitle: rec ? rec.g + ' · ' + LVN[rec.l] : '', recSub: rec ? rec.why : '', recHref: rec ? rec.key + '.dc.html' : 'MiniGames.dc.html', recTap: () => { if (rec) FMP.go(rec); },
+  dHasS: !!d.s, dS: d.s || '', dT: d.t, dHasN: !!d.n, dN: d.n || '', dHasD: !!d.d, dD: d.d || '', dHasLv: !!d.lv, dLv: d.lv || [],
+  dFace: d.icon || PX.U[face] || PX.U.pemandu, dIcon: d.icon ? 'icon' : '', dHasVal: !!d.v, dVal: d.v || '', dBtn: d.btn, dHref: d.href, dTap: d.tap || (() => {}),
+  dHasClose: !!sid, dClose: () => this.setState({ spot: null })
 };
 }
 }
@@ -16229,16 +16410,18 @@ window.addEventListener('hashchange', () => show(current()));
 show(current());
 </script>
 <script>
-/* Layar lebar (iPad, tablet): app tampil sebagai kolom seperti layar ponsel yang sedikit lebih lebar
-   (470 px) dan sedikit diperbesar (maks. 1,2x), di tengah latar langit dan bukit. */
+/* Layar lebar (iPad, tablet): latar tiap layar memenuhi seluruh lebar, isinya tetap kolom
+   470 px di tengah (padding --padX), dan semuanya sedikit diperbesar (maks. 1,2x). */
 (function () {
   function fit() {
     var W = window.innerWidth, H = window.innerHeight, r = document.getElementById('root');
     if (!r) return;
     var wide = W >= 600, z = 1, cw = W;
-    if (wide) { z = Math.max(1, Math.min(1.2, W / 520, H / 760)); cw = Math.min(470, W / z); }
+    if (wide) { z = Math.max(1, Math.min(1.2, W / 520, H / 760)); cw = W / z; }
     r.style.zoom = z === 1 ? '' : String(z);
-    r.style.maxWidth = wide ? cw + 'px' : '';
+    r.style.maxWidth = wide ? 'none' : '';
+    /* latar memenuhi layar; isi tetap di kolom 470 px di tengah (lihat --padX di CSS fm-framed) */
+    r.style.setProperty('--padX', wide ? Math.max(0, Math.floor((cw - 470) / 2)) + 'px' : '0px');
     document.body.classList.toggle('fm-framed', wide);
     if (z === 1) document.documentElement.style.removeProperty('--appH');
     else document.documentElement.style.setProperty('--appH', (H / z) + 'px');

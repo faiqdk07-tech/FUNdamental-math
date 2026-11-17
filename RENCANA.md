@@ -3,6 +3,12 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **17 Nov: evaluasi A dan B Faiq selesai** (dokumen "Urutan App Fundamental Math", tab Evaluasi per bagian). Bagian C–J belum dinilai Faiq.
+  - A4/A5 iPad: latar penuh selebar layar, isi di kolom 470 px tengah (`--padX`), gambar ruangan atas ikut melebar (maks. 260/170 px tinggi supaya tidak raksasa saat mendatar).
+  - B1/B10 peta desa baru (`PX.world`, 195 × 330 + tepi 80): alun-alun dengan papan pengumuman, 4 gedung, gudang dan menara di baris bawah, peti di taman kecil; tambahan dermaga, perahu nelayan, sumur, jemuran, sawah + orang-orangan, kolam bebek; di tepi (iPad) kandang ayam, padang sapi, jerami, gerobak sayur, kebun wortel, kincir.
+  - B12 tokoh berjalan menyusuri jalan tanah (graf `NODES`/`EDGES`, rute terpendek), menghadap arah jalan; tempat terpilih diberi siku putih; tanda seru lebih besar, bertepi putih, di pojok kanan atas gedung.
+  - B2 sapaan jadi kartu pemain (wajah, nama, jumlah bintang asli). B3 "Mulai hari ini" jadi tombol api hari beruntun (abu-abu bila 0); diketuk, pemandu menjelaskan.
+  - B13/B15 panel bawah cerah: kotak putih bertepi biru, nama pembicara di label kuning, tombol tutup; "Lanjutkan" memakai ikon game. B14 gulungan "Coba berikutnya" lebih kecil, disembunyikan saat tempat dipilih.
 - **16 Nov:** Faiq menolak hasil tahap 2–3 ("cuma ditambah kotak-kotak, masih format prototipe"). **Arah baru: tiap game dirancang ulang jadi adegan game pixel sungguhan** (template baru seperti Kasir Kilat), isi tetap. Kulit umum (`px-skin`) hanya sementara untuk layar yang belum dirancang ulang.
   - **Masukan Faiq (16 Nov): kotak soal di tengah, lebar, huruf lebih besar, jarak antar kotak lega.** Diterapkan: `.px-npc` jadi kolom (tokoh di atas, balon dialog lebar penuh, teks rata tengah 15px), jarak antar bagian 14–16px; Kasir Kilat disamakan. Pakai pola ini di semua game berikutnya.
   - **Latar dibuat tenang (permintaan Faiq 16 Nov):** lantai Kasir Kilat dari kotak-kotak jadi kayu polos, dinding warung tanpa garis, rumput dan dinding gudang lebih samar, petunjuk "ketuk = taruh" Timbangan jadi satu baris di bawah timbangan (tadinya dua kali dan tertimpa barang), pemandangan Jadwal Bus dipindah ke ujung bawah (`.px-endscene`) supaya tidak di belakang tombol.
