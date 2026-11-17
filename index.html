@@ -1058,6 +1058,49 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-pop-act .px-cta{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
 .px-pop.warn .px-pop-act .px-btn2{min-width:140px;border-image-source:var(--px-fGold)}
 @media (max-width:520px){.px-pop-act{flex-wrap:wrap!important}.px-pop-act .px-cta{order:-1;flex:1 1 100%}.px-pop-act .px-btn2{flex:1 1 100%}}
+/* Revisi Faiq 17 Nov (7): kotak dirampingkan supaya pas dengan teksnya; teks tombol hijau putih */
+.px-cta,.px-cta *{color:#FFFFFF!important}
+.px-next2,.px-next2 *{color:#5E3B20!important}
+.px-cta,.px-btn2{border-width:7px!important;border-image-width:7px!important;padding:1px 10px 3px!important;font-size:14.5px!important}
+.px-alt{border-width:7px!important;border-image-width:7px!important;padding:1px 8px 3px!important}
+.px-pop-act>button{min-height:0!important;height:auto}
+.px-pop-act .px-btn2{min-width:72px!important}
+.px-pop.warn .px-pop-act .px-btn2{min-width:110px!important}
+.px-pop-card{padding:24px 10px 8px!important;gap:10px!important;border-width:11px!important;border-image-width:11px!important}
+.px-pop-rib{top:-28px!important;padding:0 10px!important;border-width:8px!important;border-image-width:8px!important;gap:6px!important}
+.px-pop-rib b{font-size:21px!important}
+.px-pop-rib i{width:17px!important;height:17px!important}
+.px-pop-fw{width:60px!important;height:60px!important;border-width:7px!important;border-image-width:7px!important}
+.px-pop-face{width:36px!important}
+.px-pop-main{gap:10px!important}
+.px-pop-body{font-size:15px!important}
+.px-pop-who{font-size:13px!important;border-width:5px!important;border-image-width:5px!important}
+.px-talk-bubble{border-width:7px!important;border-image-width:7px!important;padding:10px 6px 4px!important;gap:4px!important}
+.px-talk-tag{border-width:5px!important;border-image-width:5px!important;font-size:13px!important;top:-20px!important;line-height:1.2}
+.px-talk-name{border-width:5px!important;border-image-width:5px!important;font-size:13px!important;line-height:1.2}
+.px-talk-face{width:72px!important;height:72px!important;border-width:7px!important;border-image-width:7px!important}
+.px-talk-face img{width:46px!important}
+.px-talk-who{width:76px!important}
+.px-task{border-width:7px!important;border-image-width:7px!important;padding:12px 10px 4px 24px!important}
+.px-task-h{border-width:5px!important;border-image-width:5px!important;font-size:13px!important;top:-17px!important;line-height:1.2;padding:0 5px 0 2px!important}
+.px-task-h img{width:13px!important;height:13px!important}
+.px-ttl2{min-height:38px!important;border-width:7px!important;border-image-width:7px!important}
+.px-ttl2 b{font-size:20px!important}
+.px-v2 .px-hud2 .px-sq{width:38px!important;height:38px!important}
+.px-v2 .px-hud2 .px-sq[aria-label="Pilih mode"]{width:auto!important;padding:0 6px!important}
+.px-heart{width:17px!important;height:17px!important}
+.px-qboard{gap:14px!important;padding:28px 12px 16px!important;border-width:10px!important;border-image-width:10px!important}
+.px-qboard-h{font-size:19px!important;border-width:8px!important;border-image-width:8px!important;top:-22px!important}
+.px-qnote{min-height:0!important;padding:2px 8px 2px 4px!important;gap:10px!important;border-width:8px!important;border-image-width:8px!important}
+.px-qnote .px-lvdot{width:42px!important;height:42px!important;font-size:23px!important}
+.px-qnote-t b{font-size:19px!important}
+.px-qnote-t small{font-size:11px!important}
+.px-qnote-ic{width:30px!important;height:30px!important}
+.px-qnote::before{top:-18px!important;width:15px!important;height:18px!important}
+.px-tier{min-height:70px!important;row-gap:4px!important;padding:6px 4px 8px!important}
+.px-v2 .px-clip button[aria-label],.px-v2 .px-calc button[aria-label]{min-height:36px!important;border-width:6px!important;border-image-width:6px!important;font-size:16px!important}
+.px-modes{padding:20px 12px 14px!important}
+.px-dlg{padding:24px 16px 14px 16px!important}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -6923,7 +6966,7 @@ PX.v2 = (comp, v, o) => {
   const pick = (v.gmPickItems || []).map((pk, i) => Object.assign({}, pk, { cls: (pk.done ? 'done ' : '') + (i % 2 ? 'r' : 'l') }));
   return {
     v2Face: PX.U[o.face] || PX.U.pemandu, v2Name: o.name,
-    v2Hearts: useH, v2HeartList: hearts, v2StatusTxt: useH ? '' : [v.statusLabel, v.status].filter(Boolean).join(' · '),
+    v2Hearts: useH, v2HeartList: hearts, v2StatusTxt: useH ? '' : (/^status$/i.test(String(v.statusLabel || '')) ? String(v.status || '') : [v.statusLabel, v.status].filter(Boolean).join(' · ')),
     v2Pick: pick, v2LvlName: ({ F: 'Fundamental', I: 'Intermediate', E: 'Expert' })[comp.curLvl ? comp.curLvl() : ''] || '', v2GameIc: PX.gameIcon(o.game || ''),
     v2ShowTask: !needTap || x.open, v2NeedTap: needTap && !x.open, v2Wait: needTap && !x.open ? 'v2wait' : '', v2Lanjut: () => { x.open = true; comp.setState({}); },
     v2Msg: !!st.msg, v2MsgOk: st.kind === 'ok' ? 'ok' : 'warn', v2MsgTitle: st.kind === 'ok' ? 'Berhasil!' : 'Coba lagi',
