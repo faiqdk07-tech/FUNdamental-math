@@ -20,6 +20,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
 - **17 Nov: evaluasi A dan B Faiq selesai** (dokumen "Urutan App Fundamental Math", tab Evaluasi per bagian). Bagian C–J belum dinilai Faiq.
   - A4/A5 iPad: latar penuh selebar layar, isi di kolom 470 px tengah (`--padX`), gambar ruangan atas ikut melebar (maks. 260/170 px tinggi supaya tidak raksasa saat mendatar).
   - B1/B10 peta desa baru (`PX.world`, 195 × 330 + tepi 80): alun-alun dengan papan pengumuman, 4 gedung, gudang dan menara di baris bawah, peti di taman kecil; tambahan dermaga, perahu nelayan, sumur, jemuran, sawah + orang-orangan, kolam bebek; di tepi (iPad) kandang ayam, padang sapi, jerami, gerobak sayur, kebun wortel, kincir.
+  - Masukan lanjutan: pohon di peta Beranda dikurangi dari 24 jadi 7 dan tidak ada yang menempel ke bangunan, sawah, atau menara.
   - B12 tokoh berjalan menyusuri jalan tanah (graf `NODES`/`EDGES`, rute terpendek), menghadap arah jalan; tempat terpilih diberi siku putih; tanda seru lebih besar, bertepi putih, di pojok kanan atas gedung.
   - B2 sapaan jadi kartu pemain (wajah, nama, jumlah bintang asli). B3 "Mulai hari ini" jadi tombol api hari beruntun (abu-abu bila 0); diketuk, pemandu menjelaskan.
   - Masukan lanjutan 17 Nov: kartu pemain, target, api, dan pengaturan dipindah ke bilah atas kuning muda (`.px-topbar`, serasi dengan tab bawah) supaya tidak menyatu dengan laut; peta tidak ikut tertutup. Tokoh latar dibedakan sesuai peran dan hanya dua: nelayan bercaping di perahu (`SPR.nelayan`), petani (Bu Wati) di sawah.

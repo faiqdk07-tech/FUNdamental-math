@@ -6293,8 +6293,8 @@ const PX = (() => {
     })(232, 146);
     /* pagar, pohon, dan hiasan */
     t.fence(52, 100, 2); t.fence(124, 100, 2); t.fence(52, 184, 2); t.fence(124, 184, 2);
-    [[52, 70], [128, 70], [-6, 150], [184, 150], [48, 218], [130, 218], [-8, 240], [186, 232],
-     [-30, 52], [-12, 128], [-78, 120], [-40, 190], [-24, 254], [-76, 270], [196, 50], [262, 60], [200, 134], [258, 192], [210, 222], [250, 246], [196, 280], [262, 300], [-40, 316], [230, 318]].forEach(q => t.tree(q[0], q[1]));
+    /* pohon sedikit saja dan tidak menempel ke bangunan (masukan Faiq 17 Nov) */
+    [[54, 72], [128, 72], [134, 222], [-28, 128], [258, 196], [-44, 318], [232, 316]].forEach(q => t.tree(q[0], q[1]));
     t.stamp('tunggul', 68, 160); t.stamp('tunggul', 136, 236); t.stamp('tunggul', -50, 132); t.stamp('tunggul', 222, 176);
     t.stamp('batu', 8, 128); t.stamp('batu', 124, 104); t.stamp('batu', 182, 212); t.stamp('batu', 60, 240); t.stamp('batu', 214, 260); t.stamp('batu', -64, 246);
     for (i = 0; i < 90; i++) { const fx = -M + 4 + rnd() * (TW - 8) | 0, fy = 50 + rnd() * (H - 54) | 0; if ((fy > 106 && fy < 128) || (fy > 190 && fy < 212) || (fy > 252 && fy < 270) || (fx > 66 && fx < 126 && fy < 266) || (fy > 270 && fx > -M && fx < 190 && !(fx > 86 && fx < 110))) continue; t.flower(fx, fy, i); }
