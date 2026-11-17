@@ -1115,12 +1115,12 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
 /* Bingkai HP di layar lebar (permintaan Faiq 17 Nov) */
 body.fm-phone{background:#1C1A22;overflow:hidden;height:100vh}
-body.fm-phone #root{position:fixed;left:50%;top:50%;z-index:1;margin:0;min-height:0;height:874px;overflow:hidden;border-radius:34px;box-shadow:0 0 0 2px rgba(255,255,255,.18),0 18px 50px rgba(0,0,0,.55)}
+body.fm-phone #root{position:fixed;left:50%;top:50%;z-index:1;margin:0;min-height:0;height:874px;overflow:hidden;border-radius:46px;clip-path:inset(0 round 46px);box-shadow:0 0 0 2px rgba(255,255,255,.18),0 18px 50px rgba(0,0,0,.55)}
 body.fm-phone #root>div{height:874px!important}
 body.fm-phone #fm-bg{display:block;position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#1C1A22}
-body.fm-phone .fm-bgcopy{position:absolute;left:50%;top:50%;width:402px;height:874px;margin:-437px 0 0 -201px;transform:scale(3.2);filter:blur(7px) brightness(.72) saturate(1.1);border-radius:0!important;box-shadow:none!important}
+body.fm-phone .fm-bgcopy{position:absolute;left:50%;top:50%;width:430px;height:874px;margin:-437px 0 0 -215px;transform:scale(3.2);filter:blur(7px) brightness(.72) saturate(1.1);border-radius:0!important;box-shadow:none!important}
 body.fm-phone .fm-bgcopy *{animation:none!important;transition:none!important}
-body.fm-phone .px-mgscroll{--stU:calc(402px / 195 * 1.15)!important}
+body.fm-phone .px-mgscroll{--stU:calc(430px / 195 * 1.15)!important}
 body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px-cta{order:-1;flex:1 1 100%}body.fm-phone .px-pop-act .px-btn2{flex:1 1 100%}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
@@ -16848,7 +16848,7 @@ show(current());
    (ukuran iPhone 17 Pro, dipakai untuk iPhone 18 Pro), diperbesar sampai setinggi layar, di tengah.
    Di kiri-kanan tampil salinan layar yang sedang dibuka, diperbesar dan diburamkan (#fm-bg). */
 (function () {
-  var PW = 402, PH = 874;
+  var PW = 430, PH = 874;
   function fit() {
     var W = window.innerWidth, H = window.innerHeight, r = document.getElementById('root');
     if (!r) return;
