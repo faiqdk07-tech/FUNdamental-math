@@ -999,6 +999,26 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 .px-lvnode.r .px-lvname{margin-left:0;margin-right:-8px;padding:0 12px 0 6px!important;text-align:right}
 .px-lvname::after{content:"";display:block;height:0}
 .px-lvnode.done .px-lvname{border-image-source:var(--px-fGreen)!important;color:#FFFFFF!important;text-shadow:0 1px 0 #2F7A36}
+/* Revisi Faiq 17 Nov (4): pilih misi jadi papan misi kayu berisi kertas misi berpaku */
+.px-qboard{position:relative;width:100%;max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:18px;padding:34px 14px 20px;border:12px solid transparent;border-image:var(--px-fWood) 40 fill / 12px;image-rendering:pixelated;background:#B98A55 padding-box;box-shadow:inset 0 0 0 0 transparent;filter:drop-shadow(0 6px 0 rgba(43,29,26,.35))}
+.px-qboard::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(94,59,32,.35) 46px 48px);pointer-events:none}
+.px-qboard::after{content:"";position:absolute;left:24%;right:24%;bottom:-40px;height:30px;background:linear-gradient(90deg,#5E3B20 0 10px,transparent 10px calc(100% - 10px),#5E3B20 calc(100% - 10px));z-index:-1}
+.px-qboard-h{position:absolute;top:-28px;left:50%;transform:translateX(-50%);white-space:nowrap;font:400 22px "Jersey 15","Fredoka",sans-serif;color:#FFFFFF;padding:0 14px;border:10px solid transparent;border-image:var(--px-fRed) 40 fill / 10px;image-rendering:pixelated;text-shadow:0 2px 0 #B23A34;filter:drop-shadow(0 3px 0 rgba(43,29,26,.35))}
+.px-qnote{position:relative;display:flex;align-items:center;gap:12px;width:100%;min-height:84px;padding:6px 10px 6px 6px;cursor:pointer;text-align:left;color:#2B1D1A;border:10px solid transparent;border-image:var(--px-fPaper) 40 fill / 10px;image-rendering:pixelated;background:none;filter:drop-shadow(3px 4px 0 rgba(43,29,26,.3));transform:rotate(-1.2deg)}
+.px-qnote.r{transform:rotate(1.3deg)}
+.px-qnote:active{transform:translateY(2px) rotate(0deg)}
+.px-qnote::before{content:"";position:absolute;top:-22px;left:50%;width:18px;height:22px;margin-left:-9px;background:var(--px-paku) center/100% 100% no-repeat;image-rendering:pixelated;transform:rotate(10deg);filter:drop-shadow(2px 2px 0 rgba(43,29,26,.3))}
+.px-qnote .px-lvdot{width:56px!important;height:56px!important;font-size:30px!important;flex:none}
+.px-qnote-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.px-qnote-t b{font:400 22px/1.05 "Jersey 15","Fredoka",sans-serif;color:#2B1D1A}
+.px-qnote-t small{font:600 12px Inter,system-ui,sans-serif;color:#8A5A32}
+.px-qnote-ic{flex:none;width:40px;height:40px;object-fit:contain;image-rendering:pixelated;opacity:.9}
+.px-qstamp{display:none;position:absolute;right:52px;top:50%;margin-top:-16px;font:400 20px "Jersey 15",sans-serif;color:#2F9A57;padding:0 8px;border:3px solid #2F9A57;transform:rotate(-12deg);background:rgba(255,255,255,.6)}
+.px-qnote.done .px-qstamp{display:block}
+.px-qnote.done .px-lvdot{background-image:var(--px-lvB)}
+.px-qstamp{right:-6px!important;top:-8px!important;margin-top:0!important;font-size:17px!important;transform:rotate(12deg)!important;z-index:2}
+body.fm-framed .px-qboard{max-width:520px}
+.px-qnote.done .px-lvdot{color:#FFFFFF!important;text-shadow:0 1px 0 #2F7A36!important}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -2501,8 +2521,8 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 </sc-for>
 </div>
 </sc-if>
-<div class="px-lvhead px-f">{{gmPickTitle}}</div>
-<div class="px-lvpath"><sc-for list="{{v2Pick}}" as="pk" hint-placeholder-count="3"><button type="button" onClick="{{pk.tap}}" class="px-lvnode {{pk.cls}}"><span class="px-lvdot px-f">{{pk.num}}</span><span class="px-lvname px-f">{{pk.name}}</span></button></sc-for></div>
+<div class="px-qboard"><div class="px-qboard-h">{{gmPickTitle}}</div>
+<sc-for list="{{v2Pick}}" as="pk" hint-placeholder-count="3"><button type="button" onClick="{{pk.tap}}" class="px-qnote {{pk.cls}}"><span class="px-lvdot">{{pk.num}}</span><span class="px-qnote-t"><b>{{pk.name}}</b><small>{{v2LvlName}}</small></span><img alt="" class="px-qnote-ic" src="{{v2GameIc}}"><span class="px-qstamp">Selesai</span></button></sc-for></div>
 </div>
 </sc-if>
 
@@ -3352,8 +3372,8 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <sc-for list="{{gmHelpLines}}" as="hl" hint-placeholder-count="3"><div class="px-helpbox-l">{{hl}}</div>
 </sc-for>
 </div></sc-if>
-<div class="px-lvhead px-f">{{gmPickTitle}}</div>
-<div class="px-lvpath"><sc-for list="{{v2Pick}}" as="pk" hint-placeholder-count="3"><button type="button" onClick="{{pk.tap}}" class="px-lvnode {{pk.cls}}"><span class="px-lvdot px-f">{{pk.num}}</span><span class="px-lvname px-f">{{pk.name}}</span></button></sc-for></div>
+<div class="px-qboard"><div class="px-qboard-h">{{gmPickTitle}}</div>
+<sc-for list="{{v2Pick}}" as="pk" hint-placeholder-count="3"><button type="button" onClick="{{pk.tap}}" class="px-qnote {{pk.cls}}"><span class="px-lvdot">{{pk.num}}</span><span class="px-qnote-t"><b>{{pk.name}}</b><small>{{v2LvlName}}</small></span><img alt="" class="px-qnote-ic" src="{{v2GameIc}}"><span class="px-qstamp">Selesai</span></button></sc-for></div>
 </div>
 </sc-if>
 <sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}">
@@ -6865,7 +6885,7 @@ PX.v2 = (comp, v, o) => {
   return {
     v2Face: PX.U[o.face] || PX.U.pemandu, v2Name: o.name,
     v2Hearts: useH, v2HeartList: hearts, v2StatusTxt: useH ? '' : [v.statusLabel, v.status].filter(Boolean).join(' · '),
-    v2Pick: pick,
+    v2Pick: pick, v2LvlName: ({ F: 'Fundamental', I: 'Intermediate', E: 'Expert' })[comp.curLvl ? comp.curLvl() : ''] || '', v2GameIc: PX.gameIcon(o.game || ''),
     v2ShowTask: !needTap || x.open, v2NeedTap: needTap && !x.open, v2Wait: needTap && !x.open ? 'v2wait' : '', v2Lanjut: () => { x.open = true; comp.setState({}); },
     v2Msg: !!st.msg, v2MsgOk: st.kind === 'ok' ? 'ok' : 'warn', v2MsgTitle: st.kind === 'ok' ? 'Berhasil!' : 'Coba lagi',
     v2CloseMsg: () => comp.setState({ msg: '' })
@@ -9681,7 +9701,7 @@ if (t === 'tray') return ['Kembalian', ['Ketuk koin di kotak koin untuk menaruhn
 if (t === 'struk') return ['Struk', ['Ketuk dua harga: yang pertama diketuk memberi, yang kedua menerima.', 'Ketuk angka di baris Geser untuk memindahkan nilai.', 'Ketik total di mesin kasir, lalu tekan Cek. Setiap cek memakai satu kesempatan.']];
 return ['Laci', ['Ketuk dua koin apa saja untuk menggabungkannya, lalu tulis nilai koin gabungannya di mesin kasir. Pakai − untuk utang.', 'Ketuk satu koin lalu Pecah untuk membaginya jadi dua koin sejenis. Tulis kedua bagiannya; tombol "dan" pindah ke bagian kedua.', 'Gabung atau pecah yang tidak cocok memakai satu kesempatan. Ketuk koin terpilih sekali lagi untuk batal memilih.', 'Ketik nilai bersih laci di mesin kasir, lalu tekan Cek. Setiap cek memakai satu kesempatan.']];
 }
-renderVals() { const v = this.pxVals(this.gmWrap(this.gmRender())); return Object.assign(v, PX.v2(this, v, { face: 'ratna', name: 'Bu Ratna' })); }
+renderVals() { const v = this.pxVals(this.gmWrap(this.gmRender())); return Object.assign(v, PX.v2(this, v, { face: 'ratna', name: 'Bu Ratna', game: 'Kasir Kilat' })); }
 pxVals(v) {
 const board = v.gmInPlay && v.showBoard;
 return Object.assign(PX.modeIcons(v), { px: PX.U, pxShop: PX.shop(), pxShowBoard: board, pxWallCls: board ? '' : 'px-grow', pxHasTag: !!v.gmTagLine,
@@ -11390,7 +11410,7 @@ return ['Meja sambung', ['Ketuk angka di baris Sambung meja untuk menyambung seb
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Meja Hajatan'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('tenda') }, PX.v2(this, v, { face: 'harun', name: 'Pak Harun' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('tenda') }, PX.v2(this, v, { face: 'harun', name: 'Pak Harun', game: 'Meja Hajatan' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
