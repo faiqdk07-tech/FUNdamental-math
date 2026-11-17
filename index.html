@@ -13,8 +13,8 @@ body{-webkit-tap-highlight-color:transparent}
 body.fm-framed{background:transparent}
 html:has(body.fm-framed){background:#DDE3D6}
 #fm-bg{display:none}
-body.fm-framed #fm-bg{display:block;position:fixed;inset:-60px;z-index:-1;filter:blur(22px) saturate(.9) brightness(.97);transform:scale(1.15);image-rendering:auto}
-body.fm-framed #root{box-shadow:0 8px 30px rgba(43,60,90,.18)}
+body.fm-framed #fm-bg{display:block;position:fixed;inset:0;z-index:-1;image-rendering:pixelated}
+body.fm-framed #root{box-shadow:none}
 a{color:#2F5BD3}a:hover{color:#1E3F9E}
 button{font:inherit}
 #root{max-width:834px;margin:0 auto;background:#F7F7F5;min-height:100vh;min-height:var(--appH,100vh)}
@@ -36,9 +36,9 @@ button{font:inherit}
 .px-screen img{image-rendering:pixelated;display:block;flex:none}
 .px-f{font-family:"Fredoka",Inter,system-ui,sans-serif}
 .px-fw,.px-fg,.px-fs{border:6px solid transparent;background:none}
-.px-fw{border-image:var(--px-fWhite) 30 fill / 6px}
-.px-fg{border-image:var(--px-fGold) 30 fill / 6px}
-.px-fs{border-image:var(--px-fPanel) 30 fill / 6px}
+.px-fw{border-image:var(--px-fWhite) 40 fill / 8px;image-rendering:pixelated}
+.px-fg{border-image:var(--px-fGold) 40 fill / 8px;image-rendering:pixelated}
+.px-fs{border-image:var(--px-fPanel) 40 fill / 8px;image-rendering:pixelated}
 button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:active,.px-press:active{transform:translateY(2px)}
 .px-btn{display:block;text-align:center;font-family:"Fredoka",Inter,sans-serif;font-weight:700;font-size:15px;padding:4px 14px 6px}
 .px-sq{width:36px;height:36px;display:flex;align-items:center;justify-content:center;padding:0;font-family:"Fredoka",Inter,sans-serif;font-weight:700;font-size:16px}
@@ -641,6 +641,26 @@ button.px-fw:active,button.px-fg:active,a.px-fg:active,a.px-fw:active,.px-slot:a
 .px-tier:nth-child(1)::after{content:"★"}.px-tier:nth-child(2)::after{content:"★★"}.px-tier:nth-child(3)::after{content:"★★★"}
 .px-tier.on{background:#FFC83D!important;box-shadow:0 0 0 3px #2B1D1A,inset 0 -4px 0 #E39A1C,0 0 0 6px #FFF6E0!important;transform:translateY(-4px)!important}
 .px-tier.on::after{color:#B23A34}
+/* ===== Evaluasi Faiq 17 Nov, bagian A: papan kayu pixel, tombol pixel, tab bawah cerah ===== */
+/* papan nama kayu: bingkai pixel bersudut tangga, bukan kotak + bayangan; dibuat ringkas */
+.px-signplate,.px-lab,.px-bed-sign,.px-farm-sign,.px-bench-h,.px-inv-h,.px-ctl-h,.px-hall-lab{border:0!important;box-shadow:none!important;background:none!important;border-image:var(--px-fPanel) 40 fill / 8px!important;image-rendering:pixelated;color:#3B2414!important;padding:3px 10px 4px!important;font-size:13px!important}
+.px-signplate b{font-size:14px!important}
+.px-shopboard,.px-tiers,.px-starboard,.px-cart,.px-bench{box-shadow:none!important;background:none!important;border-image:var(--px-fPanel) 40 fill / 8px!important;image-rendering:pixelated}
+.px-matbtn{box-shadow:none!important;border-image:var(--px-fPanel) 40 / 8px!important;image-rendering:pixelated;padding:12px 10px 8px!important}
+.px-lab::before,.px-lab::after{top:-10px;height:10px}
+.px-tiers::before{box-shadow:none!important;border-image:var(--px-fWhite) 40 fill / 8px;background:none!important;padding:2px 10px 3px}
+/* tombol utama: bingkai emas pixel, lebih kecil */
+.px-btn{font-size:14px!important;padding:3px 12px 5px!important}
+.px-pbtn{box-shadow:none!important;background:none!important;border:0!important;border-image:var(--px-fGold) 40 fill / 8px!important;image-rendering:pixelated;padding:3px 12px 5px!important;color:#3B2414!important}
+.px-pbtn.px-red{border-image:var(--px-fRed) 40 fill / 8px!important;color:#FFFFFF!important}
+.px-pbtn.px-light{border-image:var(--px-fWhite) 40 fill / 8px!important}
+#root .px-inner button[style*="background: #2F5BD3"]:not(.px-cart button):not(.px-calcbody button),#root.px-skin button[style*="background: #2F5BD3"]:not(.px-cart button):not(.px-calcbody button),#root .px-inner a[style*="background: #2F5BD3"]{border:0!important;border-radius:0!important;box-shadow:none!important;background:none!important;border-image:var(--px-fGold) 40 fill / 8px!important;image-rendering:pixelated;color:#3B2414!important;padding:3px 12px 5px!important;font-family:"Fredoka",Inter,sans-serif!important}
+/* tab bawah: cerah dan bersemangat */
+.px-nav a.px-slot img{width:24px!important;height:24px!important;object-fit:contain}
+.px-nav a.px-slot{font-size:11px!important;gap:1px!important}
+#root.px-skin nav[style*="position: absolute"],.px-nav{gap:4px;padding:6px 6px 4px;background:#FFE9B0!important;border-top:0!important;box-shadow:inset 0 3px 0 #C99A5B,inset 0 5px 0 #FFF6E0!important}
+#root.px-skin nav a[href],.px-nav a.px-slot{color:#5E3B20!important;background:none!important;box-shadow:none!important;border-image:var(--px-fWhite) 40 fill / 8px;image-rendering:pixelated}
+#root.px-skin nav a[style*="color: #2F5BD3"],.px-nav a.px-slot.on{color:#FFFFFF!important;border-image:var(--px-fOrange) 40 fill / 8px!important;transform:translateY(-3px);text-shadow:0 1px 0 #A34A16}
 /* ===== Layar lebar (iPad mini 7, 744 px) ===== */
 .px-map{width:calc(min(100%, (var(--appH,100dvh) - 300px) * 195 / 290) * 255 / 195)}
 @media (min-width:600px){
@@ -5966,9 +5986,11 @@ const PX = (() => {
     daftar: ['kk.kkkkkkk', 'kk.kkkkkkk', '..........', 'kk.kkkkk..', 'kk.kkkkk..', '..........', 'kk.kkkkkkk', 'kk.kkkkkkk'],
     seru: ['..kkkkk..', '.kyyyyyk.', 'kyykkkyyk', 'kyykkkyyk', 'kyykkkyyk', 'kyyykyyyk', 'kyyyyyyyk', 'kyyykyyyk', '.kyyyyyk.', '..kkykk..', '....k....'],
     orang: ['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.', '.kBffffffBk.', '.kfkffffkfk.', '.kffffffffk.', '..kffppffk..', '...kkkkkk...', '..krrrrrrk..', '.kfrrrrrrfk.', '.kfrrrrrrfk.', '..krrrrrrk..', '..kUUkkUUk..', '..kUUkkUUk..', '..kkk..kkk..'],
-    fPanel: ['.kkkkk.', 'kTTTTtk', 'kTBBBtk', 'kTBwBtk', 'kTBBBtk', 'kttttbk', '.kkkkk.'],
-    fWhite: ['.kkkkk.', 'kwwwwwk', 'kwwwwwk', 'kwwwwwk', 'kwwwwwk', 'kEEEEEk', '.kkkkk.'],
-    fGold: ['.kkkkk.', 'kYYYYYk', 'kYyyyyk', 'kyyyyok', 'kyyyyok', 'koooook', '.kkkkk.'],
+    fPanel: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttttk', 'kTttbbtttk', 'kttttttbtk', 'ktbttttttk', 'kttttbbttk', 'kbbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
+    fWhite: ['..kkkkkk..', '.kwwwwwwk.', 'kwwwwwwwwk', 'kwwwwwwwwk', 'kwwwwwwwwk', 'kwwwwwwwwk', 'kwwwwwwwEk', 'kEEEEEEEEk', '.keeeeeek.', '..kkkkkk..'],
+    fRed: ['..kkkkkk..', '.kqqqqqqk.', 'kqqrrrrrRk', 'kqrrrrrrRk', 'krrrrrrrRk', 'krrrrrrrRk', 'krrrrrrRRk', 'kRRRRRRRRk', '.kRRRRRRk.', '..kkkkkk..'],
+    fOrange: ['..kkkkkk..', '.khhhhhhk.', 'khhggggggk', 'khgggggggk', 'kgggggggGk', 'kgggggggGk', 'kggggggGGk', 'kGGGGGGGGk', '.kGGGGGGk.', '..kkkkkk..'],
+    fGold: ['..kkkkkk..', '.kYYYYYYk.', 'kYYyyyyyok', 'kYyyyyyyok', 'kyyyyyyyok', 'kyyyyyyyok', 'kyyyyyyook', 'kooooooook', '.kGGGGGGk.', '..kkkkkk..'],
     beban: ['..kkkkkk..', '..k....k..', '.kkkkkkkk.', 'kEEEEEEEek', 'kEEeeeeeek', 'keeeeeeeek', 'keeeeeeeek', 'keeeeeeeNk', 'keeeeeeNNk', 'kkkkkkkkkk'],
     kardus: ['kkkkkkkkkk', 'kTTTyyTTTk', 'kTttyyttbk', 'kkkkyykkkk', 'ktttyytttk', 'kttttttttk', 'kttttttttk', 'ktttttttbk', 'kkkkkkkkkk'],
     misi: ['..kkkkkkkk..', '.kTTTTTTTTk.', 'kTkwwwwwwkTk', '.kkwkkkkwkk.', '..kwwwwwwk..', '..kwkkkkwk..', '..kwwwwwwk..', '..kwkkkwwk..', '..kwwwwwwk..', '.kkkkkkkkkk.', 'kTTTTTTTTTTk', '.kkkkkkkkkk.'],
@@ -6077,14 +6099,24 @@ const PX = (() => {
   SPR.medali0 = SPR.medali.map(r => r.replace(/Y/g, 'w').replace(/[yo]/g, 'E').replace(/[ru]/g, 'e'));
   SPR.coinB = SPR.coin.map(r => r.replace(/Y/g, 's').replace(/y/g, 'u').replace(/o/g, 'U'));
   const dims = rows => [Math.max.apply(null, rows.map(r => r.length)), rows.length];
+  /* Garis tepi selektif: piksel garis (k) diberi warna gelap dari benda di sebelahnya, bukan selalu hitam */
+  const darken = (hex, f) => { const n = parseInt(hex.slice(1), 16); const ch = sh => Math.round(((n >> sh) & 255) * f); return '#' + ((1 << 24) + (ch(16) << 16) + (ch(8) << 8) + ch(0)).toString(16).slice(1); };
+  const OUT = {};
+  function outl(rows, x, y) {
+    const ch = rows[y][x]; if (ch !== 'k') return P[ch];
+    const cnt = {}; let best = null, bn = 0;
+    [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(d => { const r = rows[y + d[1]]; const c = r ? r[x + d[0]] : undefined; if (c && c !== '.' && c !== 'k' && P[c]) { cnt[c] = (cnt[c] || 0) + 1; if (cnt[c] > bn) { bn = cnt[c]; best = c; } } });
+    if (!best) return P.k;
+    return OUT[best] || (OUT[best] = darken(P[best], best === 'w' || best === 'E' || best === 'Y' || best === 's' ? 0.42 : 0.5));
+  }
   function uri(name) {
     const rows = SPR[name], d = dims(rows); let s = '';
-    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const c = P[r[x]]; if (c) s += '<rect x="' + x + '" y="' + y + '" width="1" height="1" fill="' + c + '"/>'; } });
+    rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const c = outl(rows, x, y); if (c) s += '<rect x="' + x + '" y="' + y + '" width="1" height="1" fill="' + c + '"/>'; } });
     return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + d[0] * 10 + '" height="' + d[1] * 10 + '" viewBox="0 0 ' + d[0] + ' ' + d[1] + '" shape-rendering="crispEdges">' + s + '</svg>');
   }
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
-  ['coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
+  ['coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
   css('bunting', (() => { const t = pen(80, 20, 2); t.R(P.k, 0, 2, 80, 1); [P.r, P.y, P.u, P.a].forEach((c, n) => { const x0 = n * 20 + 3; for (let j = 0; j < 9; j++) { t.R(P.k, x0 + j, 3 + j, 15 - 2 * j, 1); if (j < 8) t.R(c, x0 + j + 1, 3 + j, Math.max(0, 13 - 2 * j), 1); } }); return t.cv.toDataURL(); })());
 
   function pen(W, H, seed) {
@@ -6092,7 +6124,7 @@ const PX = (() => {
     const x = cv.getContext('2d'), t = { cv: cv, x: x };
     t.rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
     t.R = (col, a, b, w, h) => { x.fillStyle = col; x.fillRect(a, b, w, h); };
-    t.stamp = (name, a, b) => SPR[name].forEach((r, j) => { for (let i = 0; i < r.length; i++) { const c = P[r[i]]; if (c) { x.fillStyle = c; x.fillRect(a + i, b + j, 1, 1); } } });
+    t.stamp = (name, a, b) => SPR[name].forEach((r, j, rows) => { for (let i = 0; i < r.length; i++) { const c = outl(rows, i, j); if (c) { x.fillStyle = c; x.fillRect(a + i, b + j, 1, 1); } } });
     t.tree = (a, b) => { t.R('rgba(43,29,26,.25)', a + 2, b + 16, 12, 2); t.stamp('pohonB', a, b); };
     t.flower = (a, b, n) => { const col = n % 4 === 3 ? '#F7A8B0' : (n % 4 === 1 ? P.Y : P.w); t.R('#3F7A32', a, b + 2, 1, 1); t.R(col, a - 1, b, 3, 1); t.R(col, a, b - 1, 1, 3); t.R(n % 4 === 1 ? P.o : P.y, a, b, 1, 1); };
     t.fence = (a, b, n) => { t.R(P.k, a, b + 2, n * 7 + 3, 3); t.R(P.t, a, b + 3, n * 7 + 3, 1); for (let q = 0; q <= n; q++) { t.R(P.k, a + q * 7, b, 3, 8); t.R(P.T, a + q * 7 + 1, b + 1, 1, 6); } };
