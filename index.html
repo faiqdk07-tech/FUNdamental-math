@@ -987,6 +987,18 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 .px-tiers::before{font-size:15px!important}
 .px-lvdot{font-size:32px!important}
 .px-lvname{font-size:17px!important}
+/* Revisi Faiq 17 Nov (3): paku lebih alami, lencana misi lebih kecil dan berhias */
+.px-task::before{top:-16px!important;width:22px!important;height:27px!important;margin-left:-11px!important;transform:rotate(14deg);filter:drop-shadow(3px 3px 0 rgba(43,29,26,.28))}
+.px-lvpath{gap:16px!important;max-width:320px!important}
+.px-lvpath::before{width:4px!important;margin-left:-2px!important;background:repeating-linear-gradient(#A8773F 0 4px,transparent 4px 10px)!important}
+.px-lvnode{gap:0!important;width:66%!important}
+.px-lvdot{width:46px!important;height:46px!important;padding:0 0 2px!important;font-size:24px!important;color:#7A4A10!important;text-shadow:0 1px 0 #FFE680!important;position:relative;z-index:1}
+.px-lvnode.done .px-lvdot{color:#FFFFFF!important;text-shadow:0 1px 0 #2F7A36!important}
+.px-lvnode.done .px-lvdot::after{top:-16px!important;margin-left:30px!important;width:16px!important;height:21px!important}
+.px-lvname{flex:1;min-width:0;margin-left:-8px;padding:0 6px 0 12px!important;border-image-source:var(--px-fPaper)!important;font-size:16px!important}
+.px-lvnode.r .px-lvname{margin-left:0;margin-right:-8px;padding:0 12px 0 6px!important;text-align:right}
+.px-lvname::after{content:"";display:block;height:0}
+.px-lvnode.done .px-lvname{border-image-source:var(--px-fGreen)!important;color:#FFFFFF!important;text-shadow:0 1px 0 #2F7A36}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -6046,11 +6058,11 @@ const PX = (() => {
     fGreen: ['..kkkkkk..', '.kcccccck.', 'kccaaaaaAk', 'kcaaaaaaAk', 'kaaaaaaaAk', 'kaaaaaaaAk', 'kaaaaaaAAk', 'kAAAAAAAAk', '.kAAAAAAk.', '..kkkkkk..'],
     fPaper: ['..kkkkkk..', '.kwwwwwwk.', 'kwwYYYYYTk', 'kwYYYYYYTk', 'kYYYYYYYTk', 'kYYYYYYYTk', 'kYYYYYYTTk', 'kTTTTTTTTk', '.kttttttk.', '..kkkkkk..'],
     fWood: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttbBk', 'kTtbbttttk', 'kTttttbbtk', 'kTtttttttk', 'kTtbbbtttk', 'kbbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
-    lvA: ['....kkkkk....', '..kkYYYYYkk..', '.kYYyyyyyyok.', '.kYyyyyyyyok.', 'kYyyyyyyyyyok', 'kYyyyyyyyyyok', 'kyyyyyyyyyyok', 'kyyyyyyyyyook', 'kyyyyyyyyyook', '.kyyyyyyyook.', '.kooooooooGk.', '..kkGGGGGkk..', '....kkkkk....'],
-    lvB: ['....kkkkk....', '..kkcccccck..', '.kccaaaaaaAk.', '.kcaaaaaaaAk.', 'kcaaaaaaaaaAk', 'kcaaaaaaaaaAk', 'kaaaaaaaaaaAk', 'kaaaaaaaaaAAk', 'kaaaaaaaaaAAk', '.kaaaaaaaAAk.', '.kAAAAAAAAAk.', '..kkAAAAAkk..', '....kkkkk....'],
+    lvA: ['.....kkkkk.....', '...kkYYYYYkk...', '..kkYYoooYokk..', '.kkYwoyyyoookk.', '.kYoyyyyyyyook.', 'kYYoyyyyyyyoook', 'kYoyyyyyyyyyook', 'kYoyyyyyyyyyook', 'kYoyyyyyyyyyook', 'kYYoyyyyyyyoook', '.kooyyyyyyyook.', '.kkoooyyyoookk.', '..kkoooooookk..', '...kkoooookk...', '.....kkkkk.....'],
+    lvB: ['.....kkkkk.....', '...kkccccckk...', '..kkccAAAcAkk..', '.kkcwAaaaAAAkk.', '.kcAaaaaaaaAAk.', 'kccAaaaaaaaAAAk', 'kcAaaaaaaaaaAAk', 'kcAaaaaaaaaaAAk', 'kcAaaaaaaaaaAAk', 'kccAaaaaaaaAAAk', '.kAAaaaaaaaAAk.', '.kkAAAaaaAAAkk.', '..kkAAAAAAAkk..', '...kkAAAAAkk...', '.....kkkkk.....'],
     bendera: ['kk.....', 'krrrrk.', 'krqrrrk', 'krrrrk.', 'kkkkk..', 'k......', 'k......', 'k......', 'k......'],
     panah: ['kk....', 'kwk...', 'kwwk..', 'kwwwk.', 'kwwwwk', 'kwwwk.', 'kwwk..', 'kwk...', 'kk....'],
-    paku: ['.kkkk.', 'kqqrrk', 'kqrrRk', 'krrrRk', 'kRRRRk', '.kkkk.', '..kk..', '..ke..', '...k..'],
+    paku: ['..kkkkk..', '.kqqrrrk.', '.kqwrrRk.', '.krrrrRk.', '..kRRRk..', '...krk...', '..kqrRk..', '.kkkkkkk.', '....e....', '....e....', '....k....'],
     seru: ['..kkkkk..', '.kyyyyyk.', 'kyykkkyyk', 'kyykkkyyk', 'kyykkkyyk', 'kyyykyyyk', 'kyyyyyyyk', 'kyyykyyyk', '.kyyyyyk.', '..kkykk..', '....k....'],
     orang: ['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.', '.kBffffffBk.', '.kfkffffkfk.', '.kffffffffk.', '..kffppffk..', '...kkkkkk...', '..krrrrrrk..', '.kfrrrrrrfk.', '.kfrrrrrrfk.', '..krrrrrrk..', '..kUUkkUUk..', '..kUUkkUUk..', '..kkk..kkk..'],
     fPanel: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttbbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
