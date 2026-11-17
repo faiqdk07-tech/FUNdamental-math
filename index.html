@@ -877,6 +877,82 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 .px-mghint2{text-align:center;font-size:12px;color:#FFFFFF;text-shadow:0 2px 0 #2F7A36;margin-top:-6px}
 .px-mgstreet .px-gslot-new{width:auto;height:calc(var(--stU) * 14)}
 .px-gsign-n{font-size:12px}
+/* ===== Layar bermain gaya pixel (evaluasi E, 17 Nov; arah dikoreksi Faiq: tetap pixel sungguhan seperti referensi).
+   Bingkai = sprite 9-potong (fWhite, fGold, fGreen, fWood, fPaper, fRed, fOrange), hati/lencana/panah = sprite. Kelas px-v2 di .px-screen. ===== */
+.px-pxf{border:9px solid transparent;border-image:var(--px-fWhite) 40 fill / 9px;image-rendering:pixelated;background:none}
+.px-v2 .px-hud2{display:flex;align-items:center;gap:6px}
+.px-v2 .px-hud2 .px-sq{width:42px;height:42px;display:flex;align-items:center;justify-content:center;font:700 18px "Fredoka",Inter,sans-serif;color:#2B1D1A;filter:drop-shadow(0 3px 0 rgba(43,29,26,.35))}
+.px-v2 .px-hud2 .px-sq[aria-label="Pilih mode"]{border-image-source:var(--px-fGold)!important;width:auto;padding:0 8px!important;gap:6px;font-size:13px!important}
+.px-ttl2{flex:1;min-width:0;min-height:44px;display:flex;flex-direction:column;justify-content:center;padding:0 8px;border:9px solid transparent;border-image:var(--px-fWood) 40 fill / 9px;image-rendering:pixelated;filter:drop-shadow(0 3px 0 rgba(43,29,26,.35))}
+.px-ttl2 b{font-size:18px;line-height:1.05;color:#FFFFFF;text-shadow:2px 0 0 #5E3B20,-2px 0 0 #5E3B20,0 2px 0 #5E3B20,0 -2px 0 #5E3B20,2px 2px 0 #5E3B20;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:-6px 0 -2px}
+.px-ttl2-s{display:flex;align-items:center;gap:6px;font:700 11.5px Inter,system-ui,sans-serif;color:#FFF6E0;text-shadow:0 1px 0 #5E3B20;margin-bottom:-6px}
+.px-hearts{display:flex;gap:3px;margin-top:3px}
+.px-heart{display:block;width:18px;height:18px;background:var(--px-hati0) center/100% 100% no-repeat;image-rendering:pixelated}
+.px-heart.on{background-image:var(--px-hati)}
+.px-lvhead{align-self:center;font-size:15px;font-weight:700;color:#FFFFFF;padding:0 14px;border:9px solid transparent;border-image:var(--px-fWood) 40 fill / 9px;image-rendering:pixelated;text-shadow:0 2px 0 #5E3B20;filter:drop-shadow(0 3px 0 rgba(43,29,26,.35))}
+.px-lvpath{position:relative;display:flex;flex-direction:column;gap:20px;padding:14px 0;width:100%;max-width:340px;margin:0 auto}
+.px-lvpath::before{content:"";position:absolute;left:50%;top:36px;bottom:36px;width:6px;margin-left:-3px;background:repeating-linear-gradient(#E3BD86 0 6px,#A8773F 6px 8px,transparent 8px 14px);image-rendering:pixelated}
+.px-lvnode{position:relative;display:flex;align-items:center;gap:10px;padding:0;border:0;background:none;cursor:pointer;width:64%}
+.px-lvnode.l{align-self:flex-start}
+.px-lvnode.r{align-self:flex-end;flex-direction:row-reverse}
+.px-lvdot{flex:none;width:65px;height:65px;display:flex;align-items:center;justify-content:center;padding-bottom:6px;font-size:26px;font-weight:700;color:#5E3B20;text-shadow:0 2px 0 #FFE680;background:var(--px-lvA) center/100% 100% no-repeat;image-rendering:pixelated;filter:drop-shadow(0 4px 0 rgba(43,29,26,.35))}
+.px-lvnode.done .px-lvdot{background-image:var(--px-lvB);color:#FFFFFF;text-shadow:0 2px 0 #2F7A36}
+.px-lvnode.done .px-lvdot::after{content:"";position:absolute;top:-14px;margin-left:36px;width:21px;height:27px;background:var(--px-bendera) center/100% 100% no-repeat;image-rendering:pixelated}
+.px-lvname{font-size:14px;font-weight:600;color:#2B1D1A;padding:0 4px;border:9px solid transparent;border-image:var(--px-fWhite) 40 fill / 9px;image-rendering:pixelated;line-height:1.25}
+.px-talk{display:flex;align-items:flex-start;gap:8px}
+.px-talk-who{flex:none;display:flex;flex-direction:column;align-items:center;width:86px}
+.px-talk-face{width:84px;height:84px;display:flex;align-items:flex-end;justify-content:center;border:9px solid transparent;border-image:var(--px-fWhite) 40 fill / 9px;image-rendering:pixelated;background:linear-gradient(transparent 0 6px,#8FD3F5 6px 70%,#75BF4C 70% calc(100% - 6px),transparent calc(100% - 6px)) content-box}
+.px-talk-face img{width:54px;height:auto;image-rendering:pixelated;animation:px-bob 1.2s steps(2) infinite;margin-bottom:-3px}
+.px-talk-name{margin-top:-8px;font-size:11.5px;font-weight:700;color:#FFFFFF;padding:0 4px;border:7px solid transparent;border-image:var(--px-fWood) 40 fill / 7px;image-rendering:pixelated;text-shadow:0 1px 0 #5E3B20;white-space:nowrap;max-width:100px;overflow:hidden;text-overflow:ellipsis;position:relative;z-index:1}
+.px-talk-bubble{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;padding:4px 6px 4px;border:9px solid transparent;border-image:var(--px-fWhite) 40 fill / 9px;image-rendering:pixelated;font-size:15px;line-height:1.5;color:#2B1D1A;filter:drop-shadow(0 3px 0 rgba(43,29,26,.3))}
+.px-talk-bubble::before{content:"";position:absolute;left:-17px;top:20px;width:10px;height:16px;background:#2B1D1A;clip-path:polygon(100% 0,100% 100%,0 50%);clip-path:polygon(100% 0,60% 0,60% 20%,20% 20%,20% 40%,0 40%,0 60%,20% 60%,20% 80%,60% 80%,60% 100%,100% 100%)}
+.px-talk-bubble::after{content:"";position:absolute;left:-11px;top:24px;width:6px;height:8px;background:#FFFFFF}
+.px-talk-tag{align-self:flex-start;font-size:11px;font-weight:700;color:#2B1D1A;padding:0 4px;border:6px solid transparent;border-image:var(--px-fGold) 40 fill / 6px;image-rendering:pixelated}
+.px-talk-next{align-self:flex-end;display:flex;align-items:center;gap:6px;border:0;background:none;padding:0;cursor:pointer;font-size:13px;font-weight:700;color:#2F64B0}
+.px-talk-next::after{content:"";width:12px;height:18px;background:var(--px-panah) center/100% 100% no-repeat;image-rendering:pixelated;filter:drop-shadow(0 0 0 #2F64B0) brightness(.4) sepia(1) hue-rotate(180deg) saturate(4);animation:px-blink 1s steps(2) infinite}
+@keyframes px-blink{50%{transform:translateX(3px)}}
+.px-linkbtn{border:0;background:none;color:#4B4B57;font:inherit;font-size:12px;text-decoration:underline;cursor:pointer}
+.px-task{position:relative;display:flex;flex-direction:column;gap:4px;padding:10px 8px 4px;border:9px solid transparent;border-image:var(--px-fPaper) 40 fill / 9px;image-rendering:pixelated;margin-top:8px;filter:drop-shadow(0 3px 0 rgba(43,29,26,.3))}
+.px-task-h{position:absolute;top:-20px;left:4px;display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:#FFFFFF;padding:0 6px 0 2px;border:7px solid transparent;border-image:var(--px-fOrange) 40 fill / 7px;image-rendering:pixelated;text-shadow:0 1px 0 #C0602A}
+.px-task-h img{width:16px;height:16px;image-rendering:pixelated}
+.px-task-t{font-size:15px;line-height:1.5;font-weight:700;color:#2B1D1A;text-align:center}
+.px-cta{display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-size:15px;font-weight:700;color:#FFFFFF;padding:2px 12px 4px;border:9px solid transparent;border-image:var(--px-fGreen) 40 fill / 9px;image-rendering:pixelated;background:none;text-shadow:0 2px 0 #2F7A36;filter:drop-shadow(0 3px 0 rgba(43,29,26,.35))}
+.px-cta:active,.px-btn2:active,.px-alt:active{transform:translateY(2px);filter:none}
+.px-cek{align-self:flex-end;min-width:108px}
+.px-next2{width:100%;margin-top:4px;border-image-source:var(--px-fGold);color:#5E3B20;text-shadow:0 1px 0 #FFE680}
+.px-btn2{cursor:pointer;font-size:15px;font-weight:700;color:#2B1D1A;padding:2px 12px 4px;border:9px solid transparent;border-image:var(--px-fWhite) 40 fill / 9px;image-rendering:pixelated;background:none;filter:drop-shadow(0 3px 0 rgba(43,29,26,.35))}
+.px-alt{display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;padding:2px 8px 4px!important;font-size:13.5px!important;font-weight:700;color:#5E3B20!important;background:none!important;border:9px solid transparent!important;border-image:var(--px-fGold) 40 fill / 9px!important;image-rendering:pixelated;filter:drop-shadow(0 3px 0 rgba(43,29,26,.35))}
+.px-alt i{font-style:normal;flex:none;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#FFFFFF;border:5px solid transparent;border-image:var(--px-fOrange) 40 fill / 5px;image-rendering:pixelated;box-sizing:border-box;line-height:1}
+.px-pop{position:absolute;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center;padding:16px 16px 28px;background:rgba(43,29,26,.3);animation:px-fade .15s steps(3)}
+.px-pop-card{width:100%;max-width:440px;display:flex;flex-wrap:wrap;gap:10px;padding:6px 6px 4px;border:12px solid transparent;border-image:var(--px-fWhite) 40 fill / 12px;image-rendering:pixelated;filter:drop-shadow(0 5px 0 rgba(43,29,26,.4));animation:px-up .2s steps(4)}
+.px-pop.ok .px-pop-card{border-image-source:var(--px-fPaper)}
+.px-pop.warn .px-pop-card{animation:px-shake .35s steps(4)}
+.px-pop-face{flex:none;width:66px;height:66px;padding:4px 8px 0;border:9px solid transparent;border-image:var(--px-fWhite) 40 fill / 9px;image-rendering:pixelated;background:#8FD3F5 content-box;object-fit:contain;object-position:bottom;box-sizing:border-box}
+.px-pop-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;font-size:14.5px;line-height:1.45;color:#2B1D1A}
+.px-pop-body b{font-size:19px;color:#2F7A36}
+.px-pop.warn .px-pop-body b{color:#C0602A}
+.px-pop.ok .px-pop-body b::after{content:"";display:inline-block;width:20px;height:20px;margin-left:6px;vertical-align:-3px;background:var(--px-bintang) center/100% 100% no-repeat;image-rendering:pixelated}
+.px-pop.warn .px-pop-body b::after{content:"";display:inline-block;width:18px;height:18px;margin-left:6px;vertical-align:-3px;background:var(--px-hati0) center/100% 100% no-repeat;image-rendering:pixelated}
+.px-pop-act{width:100%;display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+@keyframes px-fade{from{opacity:0}}
+@keyframes px-up{from{transform:translateY(24px)}}
+@keyframes px-shake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+.px-v2 .px-clip button[aria-label],.px-v2 .px-calc button[aria-label]{border:8px solid transparent!important;border-image:var(--px-fWood) 40 fill / 8px!important;image-rendering:pixelated;background:none!important;border-radius:0!important;box-shadow:none!important;color:#FFFFFF!important;text-shadow:0 2px 0 #5E3B20;font:700 17px "Fredoka",Inter,sans-serif!important;padding:0 0 2px!important;min-height:42px;margin:1px;filter:drop-shadow(0 3px 0 rgba(43,29,26,.3))}
+.px-v2 .px-clip button[aria-label="Hapus"],.px-v2 .px-calc button[aria-label="Hapus"]{border-image-source:var(--px-fRed)!important;text-shadow:0 2px 0 #B23A34}
+.px-v2 .px-clip button[aria-label]:active,.px-v2 .px-calc button[aria-label]:active{transform:translateY(2px);filter:none}
+.px-v2 .px-clip>div[style*="grid-template-columns"],.px-v2 .px-calc>div[style*="grid-template-columns"]{gap:5px!important}
+.px-v2 .px-inner button[style*="background: #2F5BD3"]{border:8px solid transparent!important;border-image:var(--px-fGold) 40 fill / 8px!important;image-rendering:pixelated;background:none!important;color:#5E3B20!important;font-weight:700!important;border-radius:0!important;box-shadow:none!important;padding:0 8px 2px!important}
+.px-v2 button[style*="border-image: var(--px-fGold)"]{border-image-source:var(--px-fGreen)!important;color:#FFFFFF!important;text-shadow:0 2px 0 #2F7A36;font-size:15px!important;filter:drop-shadow(0 3px 0 rgba(43,29,26,.35))}
+.px-log2{display:flex;flex-direction:column;gap:6px;margin-top:8px;padding:4px 6px 4px;border:9px solid transparent;border-image:var(--px-fPaper) 40 fill / 9px;image-rendering:pixelated}
+.px-log2-h{font-size:12.5px;font-weight:700;color:#5E3B20}
+.px-log2-l{display:flex;flex-wrap:wrap;gap:6px}
+.px-log2-l span{font:600 12.5px ui-monospace,Menlo,monospace;color:#2B1D1A;padding:0 4px;border:6px solid transparent;border-image:var(--px-fWhite) 40 fill / 6px;image-rendering:pixelated}
+.px-chalk2{cursor:pointer;padding:0 6px 2px;font:600 15px ui-monospace,Menlo,monospace;color:#2B1D1A;border:8px solid transparent;border-image:var(--px-fWhite) 40 fill / 8px;image-rendering:pixelated;background:none;filter:drop-shadow(0 3px 0 rgba(0,0,0,.35))}
+.px-chalk2:active{transform:translateY(2px);filter:none}
+.px-rulehead{align-self:flex-start;font-size:13px;font-weight:700;color:#FFFFFF;padding:0 6px;border:8px solid transparent;border-image:var(--px-fWood) 40 fill / 8px;image-rendering:pixelated;text-shadow:0 1px 0 #5E3B20}
+.px-v2 .px-rulenote{position:relative;background:none!important;border:9px solid transparent!important;border-image:var(--px-fPaper) 40 fill / 9px!important;image-rendering:pixelated;box-shadow:none!important;border-radius:0!important;padding:4px 6px 2px!important;font:600 14px ui-monospace,Menlo,monospace;filter:drop-shadow(2px 3px 0 rgba(43,29,26,.25))}
+.px-v2 .px-rulenote::before{content:"";position:absolute;top:-14px;left:50%;width:30px;height:10px;margin-left:-15px;background:#8FD3F5;box-shadow:0 0 0 2px #2B1D1A;opacity:.9}
+.px-v2.v2wait .px-inner,.px-v2.v2wait .px-counter,.px-v2.v2wait .px-cab,.px-v2.v2wait .px-cfront,.px-v2.v2wait .px-scene,.px-v2.v2wait .px-next2{display:none!important}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -2334,18 +2410,18 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <a href="PohonTemuan.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #66655F"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M12 7v4M12 11l-5 5M12 11l5 5"></path></svg>Temuan</a>
 </nav>
 </div></template>
-<template id="tpl-KasirKilat"><div class="px-screen px-shop" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-KasirKilat"><div class="px-screen px-v2 {{v2Wait}} px-shop" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll">
 <div class="px-wall {{pxWallCls}}">
 
-<div style="display: flex; align-items: center; gap: 6px">
+<div class="px-hud2">
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}">
 <a href="MiniGames.dc.html" aria-label="Kembali ke Mini Games" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
 </sc-if>
 <sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}">
 <button type="button" onClick="{{gmBack}}" aria-label="Kembali" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></button>
 </sc-if>
-<div class="px-fw px-ttl" style="display: flex; align-items: center; min-height: 36px"><b class="px-f">Kasir Kilat</b></div>
+<div class="px-ttl2"><b class="px-f">Kasir Kilat</b><sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}"><span class="px-ttl2-s"><sc-if value="{{v2Hearts}}" hint-placeholder-val="{{ true }}"><span class="px-hearts" aria-label="Kesempatan"><sc-for list="{{v2HeartList}}" as="h" hint-placeholder-count="2"><i class="px-heart {{h}}"></i></sc-for></span></sc-if><span>{{v2StatusTxt}}</span></span></sc-if></div>
 <button type="button" onClick="{{toggleHelp}}" aria-label="Cara main" class="px-fw px-sq">?</button>
 <sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}">
 <button type="button" onClick="{{gmOpen}}" aria-label="Pilih mode" class="px-fw px-sq px-f" style="width: auto; gap: 5px; padding: 0 5px; font-size: 13px; font-weight: 400"><img alt="" src="{{px.kisi}}" width="16" height="14">{{gmMode}}</button>
@@ -2373,15 +2449,14 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 
 <sc-if value="{{gmShowPick}}" hint-placeholder-val="{{ false }}">
 <div class="px-mid">
-<div class="px-fw px-lab px-f">{{gmPickTitle}}</div>
+
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}"><div class="px-helpbox"><div class="px-helpbox-h px-f">Cara main · {{gmHelpTitle}}</div><button type="button" class="px-helpbox-x" onClick="{{toggleHelp}}" aria-label="Tutup">×</button>
 <sc-for list="{{gmHelpLines}}" as="hl" hint-placeholder-count="3"><div class="px-helpbox-l">{{hl}}</div>
 </sc-for>
 </div>
 </sc-if>
-<sc-for list="{{gmPickItems}}" as="pk" hint-placeholder-count="3">
-<button type="button" onClick="{{pk.tap}}" class="px-fw px-menu"><span class="px-tag px-f" style="background: #FFC83D; font-size: 14px; min-width: 26px; text-align: center">{{pk.num}}</span><span style="flex: 1"><b class="px-f">{{pk.name}}</b></span><span class="px-f" style="font-size: 12px; color: #1F7A4D">{{pk.done}}</span></button>
-</sc-for>
+<div class="px-lvhead px-f">{{gmPickTitle}}</div>
+<div class="px-lvpath"><sc-for list="{{v2Pick}}" as="pk" hint-placeholder-count="3"><button type="button" onClick="{{pk.tap}}" class="px-lvnode {{pk.cls}}"><span class="px-lvdot px-f">{{pk.num}}</span><span class="px-lvname px-f">{{pk.name}}</span></button></sc-for></div>
 </div>
 </sc-if>
 
@@ -2393,33 +2468,25 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div>
 </sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}">
-<div class="px-fw px-card">
-<sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-tag px-f" style="background: #7CCBF2">{{gmTagLine}}</span></sc-if>
-<div style="font-size: 15px; line-height: 1.5">{{story}}</div>
-<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-size: 15px; line-height: 1.5; font-weight: 700">{{goal}}</div></sc-if>
-<sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; gap: 6px; align-items: center">
-<sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if>
-<button type="button" onClick="{{skipTut}}" style="padding: 7px 10px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button>
-</div>
-</sc-if>
-</div>
-</sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<div class="px-talk-text">{{story}}</div>
+<sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut ▸</button></sc-if>
+<sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
+<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><sc-if value="{{v2ShowTask}}" hint-placeholder-val="{{ true }}"><div class="px-task"><span class="px-task-h px-f"><img alt="" src="{{px.misi}}">Tugas</span><div class="px-task-t">{{goal}}</div></div></sc-if></sc-if></sc-if>
 <sc-if value="{{isRumus}}" hint-placeholder-val="{{ false }}">
 <sc-for list="{{builders}}" as="b" hint-placeholder-count="1">
-<div class="px-fw" style="padding: 4px 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
+<div class="px-rulecard"><div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 15px">{{b.lhs}} =</span>
-<button type="button" onClick="{{b.cyc}}" style="padding: 4px 8px; border: 2px solid #2B1D1A; background: #4C8FDD; color: #FFFFFF; font-family: ui-monospace, Menlo, monospace; font-size: 15px; box-shadow: inset 0 -3px 0 #2F64B0">{{b.rhs}}</button>
-<button type="button" onClick="{{b.test}}" class="px-fg px-btn" style="margin-left: auto; font-size: 13px">Uji</button>
-</div>
+<button type="button" onClick="{{b.cyc}}" class="px-chalk2">{{b.rhs}}</button>
+<button type="button" onClick="{{b.test}}" class="px-cta px-f" style="margin-left: auto">Uji</button>
+</div></div>
 </sc-for>
-<div class="px-fw px-f" style="align-self: flex-start; font-size: 13px; padding: 0 6px 1px">Buku catatan kasir ({{ruleCount}})</div>
+<div class="px-rulehead px-f">Buku catatan kasir ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
-<div class="px-fw" style="padding: 1px 6px 3px; font-family: ui-monospace, Menlo, monospace; font-size: 13px">{{r}}</div>
+<div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
-<sc-if value="{{pxMsgWall}}" hint-placeholder-val="{{ false }}"><div class="px-msg" style="background: {{msgBg}}; color: {{msgFg}}">{{msg}}</div></sc-if>
+
 <sc-if value="{{pxShowBoard}}" hint-placeholder-val="{{ true }}">
 <div class="px-scene" style="background-image: url('{{pxShop}}')"><img alt="" class="px-bob" src="{{px.pembeli}}"></div>
 </sc-if>
@@ -2465,10 +2532,8 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 </div>
 </div>
 </sc-if>
-<sc-if value="{{pxMsgBoard}}" hint-placeholder-val="{{ false }}"><div class="px-msg" style="background: {{msgBg}}; color: {{msgFg}}">{{msg}}</div></sc-if>
-<sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{gmNext}}" class="px-fg px-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px">{{gmNextLabel}}<img alt="" src="{{px.kanan}}" width="9" height="11"></button>
-</sc-if>
+
+<sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmNext}}" class="px-cta px-f px-next2">{{gmNextLabel}} ▸</button></sc-if>
 </div>
 <div class="px-cfront"></div>
 <sc-if value="{{pxHasCab}}" hint-placeholder-val="{{ true }}">
@@ -2489,20 +2554,22 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <div style="display: flex; align-items: center; gap: 8px">
 <span style="font-size: 12px; color: #4B4B57; flex: 1">{{answerLabel}}</span>
 <span style="min-width: 80px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span>
-<button type="button" onClick="{{checkAns}}" class="px-fg px-btn" style="font-size: 14px">Cek</button>
+<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px">
 <sc-for list="{{keys}}" as="q" hint-placeholder-count="12"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for>
 </div>
 </div>
 </sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-fo px-f" style="padding: 2px 8px 4px; font-size: 14px">Tidak bisa ditentukan dengan informasi ini</button></sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-fo px-f" style="padding: 2px 8px 4px; font-size: 14px">Tidak mungkin</button></sc-if>
+<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if>
+<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if>
 </div>
 </sc-if>
 <div class="px-floor"></div>
 </sc-if>
 </div>
+<sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><img alt="" class="px-pop-face" src="{{v2Face}}"><div class="px-pop-body"><b class="px-f">{{v2MsgTitle}}</b><div>{{msg}}</div></div>
+<div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
 <template id="tpl-KebunPagar"><div class="px-screen px-al-kebun" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-kebun">
@@ -3211,13 +3278,13 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <div class="px-floor" style="flex: 0 0 48px; margin-top: auto; background: #B98A6B"></div>
 </div>
 </div></template>
-<template id="tpl-MejaHajatan"><div class="px-screen px-al-meja" style="width: 100%; height: 844px; position: relative; overflow: hidden">
+<template id="tpl-MejaHajatan"><div class="px-screen px-v2 {{v2Wait}} px-al-meja" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-meja">
 <div class="px-wall px-grow" style="gap: 16px; padding-top: 10px">
-<div style="display: flex; align-items: center; gap: 6px">
+<div class="px-hud2">
 <sc-if value="{{gmShowMenu}}" hint-placeholder-val="{{ true }}"><a href="MiniGames.dc.html" aria-label="Kembali ke Mini Games" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a></sc-if>
 <sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmBack}}" aria-label="Kembali" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></button></sc-if>
-<div class="px-fw px-ttl" style="display: flex; flex-direction: column; justify-content: center; min-height: 36px"><b class="px-f">Meja Hajatan</b><sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}"><small>{{statusLabel}} <span style="font-weight: 600; color: {{statusColor}}">{{status}}</span></small></sc-if></div>
+<div class="px-ttl2"><b class="px-f">Meja Hajatan</b><sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}"><span class="px-ttl2-s"><sc-if value="{{v2Hearts}}" hint-placeholder-val="{{ true }}"><span class="px-hearts" aria-label="Kesempatan"><sc-for list="{{v2HeartList}}" as="h" hint-placeholder-count="2"><i class="px-heart {{h}}"></i></sc-for></span></sc-if><span>{{v2StatusTxt}}</span></span></sc-if></div>
 <button type="button" onClick="{{toggleHelp}}" aria-label="Cara main" class="px-fw px-sq">?</button>
 <sc-if value="{{gmNotMenu}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmOpen}}" aria-label="Pilih mode" class="px-fw px-sq px-f" style="width: auto; gap: 5px; padding: 0 5px; font-size: 13px; font-weight: 400"><img alt="" src="{{px.kisi}}" width="16" height="14">{{gmMode}}</button></sc-if>
 </div>
@@ -3234,12 +3301,13 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 </sc-if>
 <sc-if value="{{gmShowPick}}" hint-placeholder-val="{{ false }}">
 <div class="px-mid">
-<div class="px-fw px-lab px-f">{{gmPickTitle}}</div>
+
 <sc-if value="{{gmHelpMenu}}" hint-placeholder-val="{{ false }}"><div class="px-helpbox"><div class="px-helpbox-h px-f">Cara main · {{gmHelpTitle}}</div><button type="button" class="px-helpbox-x" onClick="{{toggleHelp}}" aria-label="Tutup">×</button>
 <sc-for list="{{gmHelpLines}}" as="hl" hint-placeholder-count="3"><div class="px-helpbox-l">{{hl}}</div>
 </sc-for>
 </div></sc-if>
-<sc-for list="{{gmPickItems}}" as="pk" hint-placeholder-count="3"><button type="button" onClick="{{pk.tap}}" class="px-fw px-menu"><span class="px-tag px-f" style="background: #FFC83D; font-size: 14px; min-width: 26px; text-align: center">{{pk.num}}</span><span style="flex: 1"><b class="px-f">{{pk.name}}</b></span><span class="px-f" style="font-size: 12px; color: #1F7A4D">{{pk.done}}</span></button></sc-for>
+<div class="px-lvhead px-f">{{gmPickTitle}}</div>
+<div class="px-lvpath"><sc-for list="{{v2Pick}}" as="pk" hint-placeholder-count="3"><button type="button" onClick="{{pk.tap}}" class="px-lvnode {{pk.cls}}"><span class="px-lvdot px-f">{{pk.num}}</span><span class="px-lvname px-f">{{pk.name}}</span></button></sc-for></div>
 </div>
 </sc-if>
 <sc-if value="{{gmInPlay}}" hint-placeholder-val="{{ false }}">
@@ -3249,10 +3317,11 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-npc"><img alt="" class="px-npc-face" src="{{px.harun}}"><div class="px-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-tag px-f" style="background: #7CCBF2">{{gmTagLine}}</span></sc-if>
-<div>{{story}}</div>
-<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><div style="font-weight: 700">{{goal}}</div></sc-if>
-<sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; align-items: center"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-fg px-btn" style="font-size: 14px">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" style="padding: 6px 8px; border: 0; background: transparent; color: #4B4B57; font: inherit; font-size: 12px; text-decoration: underline">Lewati</button></div></sc-if></div></div></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<div class="px-talk-text">{{story}}</div>
+<sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut ▸</button></sc-if>
+<sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
+<sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><sc-if value="{{v2ShowTask}}" hint-placeholder-val="{{ true }}"><div class="px-task"><span class="px-task-h px-f"><img alt="" src="{{px.misi}}">Tugas</span><div class="px-task-t">{{goal}}</div></div></sc-if></sc-if></sc-if>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
 <div class="px-hall">
 <div class="px-hall-roof"></div>
@@ -3307,11 +3376,10 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <div style="font-size: 12px; color: #B9B8B2">Belum ada yang dipasang.</div>
 </sc-if>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}">
-<div style="border-top: 1px solid #ECEBE7; padding-top: 6px; display: flex; flex-direction: column; gap: 2px">
-<div style="font-size: 11px; color: #66655F">Catatan percobaan</div>
-<div style="display: flex; flex-wrap: wrap; gap: 4px">
+<div class="px-log2"><div class="px-log2-h px-f">Catatan percobaan</div>
+<div class="px-log2-l">
 <sc-for list="{{log}}" as="l" hint-placeholder-count="3">
-<span style="font-size: 12px; font-family: ui-monospace, Menlo, monospace; background: #F0EFEB; border-radius: 4px; padding: 2px 6px">{{l}}</span>
+<span>{{l}}</span>
 </sc-for>
 </div>
 </div>
@@ -3355,13 +3423,13 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button>
 </sc-for>
 </div>
-<button type="button" onClick="{{checkAns}}" style="align-self: flex-end; padding: 6px 14px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-weight: 500; cursor: pointer">Cek</button>
+<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px">
-<button type="button" onClick="{{sayKurang}}" style="padding: 8px 4px; border: 1px solid #C98A2B; background: #FFF3DF; color: #8A5200; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer">Tidak bisa ditentukan</button>
-<button type="button" onClick="{{sayMustahil}}" style="padding: 8px 4px; border: 1px solid #C98A2B; background: #FFF3DF; color: #8A5200; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer">Tidak mungkin</button>
+<button type="button" onClick="{{sayKurang}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan</button>
+<button type="button" onClick="{{sayMustahil}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button>
 </div>
 </sc-if>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
@@ -3382,24 +3450,26 @@ body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 <div class="px-rulecard-n">{{b.note}}</div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 14px">{{b.lhs}} =</span>
-<button type="button" onClick="{{b.cyc}}" style="padding: 6px 8px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; cursor: pointer">{{b.rhs}}</button>
-<button type="button" onClick="{{b.test}}" style="margin-left: auto; padding: 6px 10px; border: 0; background: #2F5BD3; color: #FFFFFF; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer">Uji</button>
+<button type="button" onClick="{{b.cyc}}" class="px-chalk2">{{b.rhs}}</button>
+<button type="button" onClick="{{b.test}}" class="px-cta px-f" style="margin-left: auto">Uji</button>
 </div>
 </div>
 </sc-for>
-<div style="font-size: 12px; color: #66655F">Catatan untuk Pak Harun ({{ruleCount}})</div>
+<div class="px-rulehead px-f">Catatan untuk Pak Harun ({{ruleCount}})</div>
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="1">
 <div class="px-rulenote">{{r}}</div>
 </sc-for>
 </sc-if>
 </div>
 
-<sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}"><div class="px-msg" style="background: {{msgBg}}; color: {{msgFg}}">{{msg}}</div></sc-if>
-<sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmNext}}" class="px-fg px-btn" style="display: flex; align-items: center; justify-content: center; gap: 8px">{{gmNextLabel}}<img alt="" src="{{px.kanan}}" width="9" height="11"></button></sc-if>
+
+<sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{gmNext}}" class="px-cta px-f px-next2">{{gmNextLabel}} ▸</button></sc-if>
 </sc-if>
 </div>
 <div class="px-floor" style="flex: 0 0 48px; margin-top: auto; background: #C99A5B"></div>
 </div>
+<sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><img alt="" class="px-pop-face" src="{{v2Face}}"><div class="px-pop-body"><b class="px-f">{{v2MsgTitle}}</b><div>{{msg}}</div></div>
+<div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
 <template id="tpl-MesinMinuman"><div class="px-screen px-al-mesin" style="width: 100%; height: 844px; position: relative; overflow: hidden">
 <div class="px-gscroll px-al-mesin">
@@ -5937,6 +6007,15 @@ const PX = (() => {
     api: ['....k.....', '...kgk....', '..kghgk.k.', '..kghgkkgk', '.kgghhgggk', '.kghhYhhgk', 'kghhYYYhgk', 'kghYYwYYhk', 'kghYwwwYhk', '.kghYYYhk.', '..kkkkkk..'],
     stik: ['..kkkkkkkkkk..', '.kssssssssssk.', 'kuukuuuuuuruuk', 'kukkkuuuuryruk', 'kuukuuuuuuyuuk', 'kuuuuukkuuuuuk', 'kuuuukUUkuuuuk', '.kuukk..kkuuk.', '..kk......kk..'],
     semak: ['....kkkkk.....', '..kkcccccak...', '.kcccaccaaak..', 'kccaccaaaaaakk', 'kcaccaaaaacaak', 'kaccaaaaaaaaAk', 'kaaaaaAaaaaAAk', '.kaAaaAAaAAAk.', '..kkkkkkkkkk..'],
+    hati: ['.kk...kk.', 'kqqk.krrk', 'kqwrkrrRk', 'krrrrrrRk', 'krrrrrrRk', '.krrrrRk.', '..krrRk..', '...kRk...', '....k....'],
+    hati0: ['.kk...kk.', 'kEEk.kEEk', 'kEeeeeeek', 'keeeeeeek', 'keeeeeeek', '.keeeeek.', '..keeek..', '...kek...', '....k....'],
+    fGreen: ['..kkkkkk..', '.kcccccck.', 'kccaaaaaAk', 'kcaaaaaaAk', 'kaaaaaaaAk', 'kaaaaaaaAk', 'kaaaaaaAAk', 'kAAAAAAAAk', '.kAAAAAAk.', '..kkkkkk..'],
+    fPaper: ['..kkkkkk..', '.kwwwwwwk.', 'kwwYYYYYTk', 'kwYYYYYYTk', 'kYYYYYYYTk', 'kYYYYYYYTk', 'kYYYYYYTTk', 'kTTTTTTTTk', '.kttttttk.', '..kkkkkk..'],
+    fWood: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttbBk', 'kTtbbttttk', 'kTttttbbtk', 'kTtttttttk', 'kTtbbbtttk', 'kbbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
+    lvA: ['....kkkkk....', '..kkYYYYYkk..', '.kYYyyyyyyok.', '.kYyyyyyyyok.', 'kYyyyyyyyyyok', 'kYyyyyyyyyyok', 'kyyyyyyyyyyok', 'kyyyyyyyyyook', 'kyyyyyyyyyook', '.kyyyyyyyook.', '.kooooooooGk.', '..kkGGGGGkk..', '....kkkkk....'],
+    lvB: ['....kkkkk....', '..kkcccccck..', '.kccaaaaaaAk.', '.kcaaaaaaaAk.', 'kcaaaaaaaaaAk', 'kcaaaaaaaaaAk', 'kaaaaaaaaaaAk', 'kaaaaaaaaaAAk', 'kaaaaaaaaaAAk', '.kaaaaaaaAAk.', '.kAAAAAAAAAk.', '..kkAAAAAkk..', '....kkkkk....'],
+    bendera: ['kk.....', 'krrrrk.', 'krqrrrk', 'krrrrk.', 'kkkkk..', 'k......', 'k......', 'k......', 'k......'],
+    panah: ['kk....', 'kwk...', 'kwwk..', 'kwwwk.', 'kwwwwk', 'kwwwk.', 'kwwk..', 'kwk...', 'kk....'],
     seru: ['..kkkkk..', '.kyyyyyk.', 'kyykkkyyk', 'kyykkkyyk', 'kyykkkyyk', 'kyyykyyyk', 'kyyyyyyyk', 'kyyykyyyk', '.kyyyyyk.', '..kkykk..', '....k....'],
     orang: ['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.', '.kBffffffBk.', '.kfkffffkfk.', '.kffffffffk.', '..kffppffk..', '...kkkkkk...', '..krrrrrrk..', '.kfrrrrrrfk.', '.kfrrrrrrfk.', '..krrrrrrk..', '..kUUkkUUk..', '..kUUkkUUk..', '..kkk..kkk..'],
     fPanel: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttbbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
@@ -6070,7 +6149,7 @@ const PX = (() => {
   }
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
-  ['semak', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
+  ['semak', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
   css('bunting', (() => { const t = pen(80, 20, 2); t.R(P.k, 0, 2, 80, 1); [P.r, P.y, P.u, P.a].forEach((c, n) => { const x0 = n * 20 + 3; for (let j = 0; j < 9; j++) { t.R(P.k, x0 + j, 3 + j, 15 - 2 * j, 1); if (j < 8) t.R(c, x0 + j + 1, 3 + j, Math.max(0, 13 - 2 * j), 1); } }); return t.cv.toDataURL(); })());
 
   function pen(W, H, seed) {
@@ -6726,6 +6805,25 @@ const PX = (() => {
   })());
   return { topView: topView, U: U, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
+/* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
+   o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
+PX.v2 = (comp, v, o) => {
+  const st = comp.state || {}, x = comp._v2 || (comp._v2 = { key: null, open: false });
+  const m = String(v.status || '').match(/(\d+)\s*\/\s*(\d+)/), useH = !!m && /kesempatan/i.test(String(v.statusLabel || ''));
+  const hearts = useH ? Array.from({ length: +m[2] }, (_, i) => i < +m[1] ? 'on' : '') : [];
+  const key = String(v.story || '') + '|' + String(v.goal || '');
+  if (x.key !== key) { x.key = key; x.open = false; }
+  const needTap = !!v.hasGoal && !v.isTut;
+  const pick = (v.gmPickItems || []).map((pk, i) => Object.assign({}, pk, { cls: (pk.done ? 'done ' : '') + (i % 2 ? 'r' : 'l') }));
+  return {
+    v2Face: PX.U[o.face] || PX.U.pemandu, v2Name: o.name,
+    v2Hearts: useH, v2HeartList: hearts, v2StatusTxt: useH ? '' : [v.statusLabel, v.status].filter(Boolean).join(' · '),
+    v2Pick: pick,
+    v2ShowTask: !needTap || x.open, v2NeedTap: needTap && !x.open, v2Wait: needTap && !x.open ? 'v2wait' : '', v2Lanjut: () => { x.open = true; comp.setState({}); },
+    v2Msg: !!st.msg, v2MsgOk: st.kind === 'ok' ? 'ok' : 'warn', v2MsgTitle: st.kind === 'ok' ? 'Berhasil!' : 'Coba lagi',
+    v2CloseMsg: () => comp.setState({ msg: '' })
+  };
+};
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
   ['rumah', 'dadu', 'grafik', 'buku', 'pohon', 'stik'].forEach(n => document.documentElement.style.setProperty('--px-i-' + n, 'url("' + PX.U[n] + '")'));
@@ -9536,7 +9634,7 @@ if (t === 'tray') return ['Kembalian', ['Ketuk koin di kotak koin untuk menaruhn
 if (t === 'struk') return ['Struk', ['Ketuk dua harga: yang pertama diketuk memberi, yang kedua menerima.', 'Ketuk angka di baris Geser untuk memindahkan nilai.', 'Ketik total di mesin kasir, lalu tekan Cek. Setiap cek memakai satu kesempatan.']];
 return ['Laci', ['Ketuk dua koin apa saja untuk menggabungkannya, lalu tulis nilai koin gabungannya di mesin kasir. Pakai − untuk utang.', 'Ketuk satu koin lalu Pecah untuk membaginya jadi dua koin sejenis. Tulis kedua bagiannya; tombol "dan" pindah ke bagian kedua.', 'Gabung atau pecah yang tidak cocok memakai satu kesempatan. Ketuk koin terpilih sekali lagi untuk batal memilih.', 'Ketik nilai bersih laci di mesin kasir, lalu tekan Cek. Setiap cek memakai satu kesempatan.']];
 }
-renderVals() { return this.pxVals(this.gmWrap(this.gmRender())); }
+renderVals() { const v = this.pxVals(this.gmWrap(this.gmRender())); return Object.assign(v, PX.v2(this, v, { face: 'ratna', name: 'Bu Ratna' })); }
 pxVals(v) {
 const board = v.gmInPlay && v.showBoard;
 return Object.assign(PX.modeIcons(v), { px: PX.U, pxShop: PX.shop(), pxShowBoard: board, pxWallCls: board ? '' : 'px-grow', pxHasTag: !!v.gmTagLine,
@@ -11245,7 +11343,7 @@ return ['Meja sambung', ['Ketuk angka di baris Sambung meja untuk menyambung seb
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Meja Hajatan'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('tenda') }); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('tenda') }, PX.v2(this, v, { face: 'harun', name: 'Pak Harun' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
