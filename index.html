@@ -1117,7 +1117,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 body.fm-phone{background:#1C1A22;overflow:hidden;height:100vh}
 body.fm-phone #root{position:fixed;left:50%;top:50%;z-index:1;margin:0;min-height:0;height:874px;overflow:hidden;border-radius:0;isolation:isolate;will-change:transform;box-shadow:0 0 0 2px rgba(255,255,255,.18),0 18px 50px rgba(0,0,0,.55)}
 body.fm-phone #root>div{height:874px!important}
-body.fm-phone #fm-bg{display:block;position:fixed;inset:-20%;z-index:0;pointer-events:none;background:#1C1A22 center/100% 100% no-repeat;image-rendering:auto;filter:blur(40px)}
+body.fm-phone #fm-bg{display:block;position:fixed;inset:0;z-index:0;pointer-events:none;background:#6FB948;transition:background-color .3s}
 body.fm-phone .px-mgscroll{--stU:calc(430px / 195 * 1.15)!important}
 body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px-cta{order:-1;flex:1 1 100%}body.fm-phone .px-pop-act .px-btn2{flex:1 1 100%}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
@@ -16865,39 +16865,30 @@ show(current());
     r.style.setProperty('--padX', '0px');
     syncBg();
   }
-  /* Latar luar bingkai = gambar utama layar yang sedang dibuka, diburamkan sekali lewat kanvas
-     (gambar diam: tidak membebani saat menggulir; blur langsung lewat CSS membuat gerakan patah-patah). */
-  var t = null, last = 0, lastSrc = '';
-  function pickImg(r) {
-    var best = null, area = 0;
+  /* Latar luar bingkai = warna latar yang paling luas di layar yang sedang dibuka (mis. hijau rumput, cokelat kayu),
+     dibuat gradasi lembut terang-gelap dari warna itu sendiri. Tanpa gambar dan tanpa penggelap hitam (permintaan Faiq 17 Nov). */
+  var t = null, last = 0, lastCol = '';
+  function domColor(r) {
+    var R = r.getBoundingClientRect(), full = R.width * R.height, best = null;
     r.querySelectorAll('*').forEach(function (e) {
-      var src = '';
-      if (e.tagName === 'IMG') src = e.currentSrc || e.src;
-      else { var bi = getComputedStyle(e).backgroundImage; var m = bi && bi.match(/url\("?(data:image[^")]+)"?\)/); if (m) src = m[1]; }
-      if (!src || src.indexOf('data:image') !== 0) return;
-      var bb = e.getBoundingClientRect(), a = bb.width * bb.height;
-      if (a > area) { area = a; best = src; }
+      var cs = getComputedStyle(e); if (cs.display === 'none' || cs.visibility === 'hidden') return;
+      var c = cs.backgroundColor, m = c.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+      if (!m || (m[4] !== undefined && +m[4] < 0.9)) return;
+      var b = e.getBoundingClientRect(), w = Math.max(0, Math.min(b.right, R.right) - Math.max(b.left, R.left)), h = Math.max(0, Math.min(b.bottom, R.bottom) - Math.max(b.top, R.top));
+      if (w * h >= full * 0.45) best = [+m[1], +m[2], +m[3]];
     });
-    return best;
+    return best || [111, 185, 72];
   }
+  function mix(c, k) { return 'rgb(' + c.map(function (v) { return Math.round(k > 0 ? v + (255 - v) * k : v * (1 + k)); }).join(',') + ')'; }
   function syncBg() {
     if (!document.body.classList.contains('fm-phone')) return;
     var r = document.getElementById('root'); if (!r) return;
     var bg = document.getElementById('fm-bg');
     if (!bg) { bg = document.createElement('div'); bg.id = 'fm-bg'; bg.setAttribute('aria-hidden', 'true'); document.body.insertBefore(bg, document.body.firstChild); }
     last = Date.now();
-    var el = r.querySelector('.px-screen') || r.firstElementChild;
-    bg.style.backgroundColor = el ? getComputedStyle(el).backgroundColor : '#1C1A22';
-    var src = pickImg(r); if (!src || src === lastSrc) return; lastSrc = src;
-    var im = new Image();
-    im.onload = function () {
-      /* diperkecil jadi 4 x 6 titik: yang tersisa hanya sebaran warna dominan, lalu diperhalus saat diperbesar */
-      var W = 4, H = 6, c = document.createElement('canvas'); c.width = W; c.height = H;
-      var x = c.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(im, 0, 0, W, H);
-      x.fillStyle = 'rgba(20,16,28,.22)'; x.fillRect(0, 0, W, H);
-      bg.style.backgroundImage = 'url(' + c.toDataURL() + ')';
-    };
-    im.src = src;
+    var c = domColor(r), key = c.join(','); if (key === lastCol) return; lastCol = key;
+    bg.style.backgroundColor = mix(c, 0);
+    bg.style.backgroundImage = 'radial-gradient(ellipse 70% 60% at 50% 45%, ' + mix(c, 0.18) + ' 0%, ' + mix(c, 0.06) + ' 45%, ' + mix(c, -0.1) + ' 100%)';
   }
   function later() { if (t) return; t = setTimeout(function () { t = null; syncBg(); }, Math.max(0, 400 - (Date.now() - last))); }
   var rt = document.getElementById('root');
