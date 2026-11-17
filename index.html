@@ -1113,6 +1113,15 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
+/* Bingkai HP di layar lebar (permintaan Faiq 17 Nov) */
+body.fm-phone{background:#1C1A22;overflow:hidden;height:100vh}
+body.fm-phone #root{position:fixed;left:50%;top:50%;z-index:1;margin:0;min-height:0;height:874px;overflow:hidden;border-radius:34px;box-shadow:0 0 0 2px rgba(255,255,255,.18),0 18px 50px rgba(0,0,0,.55)}
+body.fm-phone #root>div{height:874px!important}
+body.fm-phone #fm-bg{display:block;position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#1C1A22}
+body.fm-phone .fm-bgcopy{position:absolute;left:50%;top:50%;width:402px;height:874px;margin:-437px 0 0 -201px;transform:scale(3.2);filter:blur(7px) brightness(.72) saturate(1.1);border-radius:0!important;box-shadow:none!important}
+body.fm-phone .fm-bgcopy *{animation:none!important;transition:none!important}
+body.fm-phone .px-mgscroll{--stU:calc(402px / 195 * 1.15)!important}
+body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px-cta{order:-1;flex:1 1 100%}body.fm-phone .px-pop-act .px-btn2{flex:1 1 100%}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -16835,43 +16844,44 @@ window.addEventListener('hashchange', () => show(current()));
 show(current());
 </script>
 <script>
-/* Layar lebar (iPad, tablet): latar tiap layar memenuhi seluruh lebar, isinya tetap kolom
-   560 px di tengah (padding --padX), dan sedikit diperbesar (maks. 1,05x; masukan Faiq 17 Nov). */
+/* Layar lebar (iPad, tablet; permintaan Faiq 17 Nov): app dikunci ke bingkai HP 402 x 874
+   (ukuran iPhone 17 Pro, dipakai untuk iPhone 18 Pro), diperbesar sampai setinggi layar, di tengah.
+   Di kiri-kanan tampil salinan layar yang sedang dibuka, diperbesar dan diburamkan (#fm-bg). */
 (function () {
+  var PW = 402, PH = 874;
   function fit() {
     var W = window.innerWidth, H = window.innerHeight, r = document.getElementById('root');
     if (!r) return;
-    var wide = W >= 600, z = 1, cw = W;
-    if (wide) { z = Math.max(1, Math.min(1.05, W / 600, H / 900)); cw = W / z; }
-    r.style.zoom = z === 1 ? '' : String(z);
-    r.style.maxWidth = wide ? 'none' : '';
-    /* latar memenuhi layar; isi tetap di kolom 560 px di tengah (lihat --padX di CSS fm-framed) */
-    r.style.setProperty('--padX', wide ? Math.max(0, Math.floor((cw - 560) / 2)) + 'px' : '0px');
-    document.body.classList.toggle('fm-framed', wide);
-    if (z === 1) document.documentElement.style.removeProperty('--appH');
-    else document.documentElement.style.setProperty('--appH', (H / z) + 'px');
+    var wide = W >= 600;
+    document.body.classList.toggle('fm-phone', wide);
+    document.body.classList.remove('fm-framed');
+    if (wide) {
+      var z = Math.min((H - 24) / PH, (W - 24) / PW);
+      r.style.zoom = ''; r.style.transform = 'translate(-50%, -50%) scale(' + z + ')';
+      r.style.width = PW + 'px'; r.style.maxWidth = PW + 'px';
+      document.documentElement.style.setProperty('--appH', PH + 'px');
+    } else {
+      r.style.zoom = ''; r.style.transform = ''; r.style.width = ''; r.style.maxWidth = '';
+      document.documentElement.style.removeProperty('--appH');
+    }
+    r.style.setProperty('--padX', '0px');
+    syncBg();
   }
-  /* Latar luar kolom = latar layar yang sedang dibuka, diperbesar dan diburamkan */
+  /* Latar luar bingkai = salinan layar yang sedang dibuka, diburamkan (diperbarui paling cepat tiap 0,4 detik) */
+  var t = null, last = 0;
   function syncBg() {
+    if (!document.body.classList.contains('fm-phone')) return;
     var r = document.getElementById('root'); if (!r) return;
     var bg = document.getElementById('fm-bg');
-    if (!bg) { bg = document.createElement('div'); bg.id = 'fm-bg'; document.body.insertBefore(bg, document.body.firstChild); }
-    var el = r.firstElementChild, pick = null;
-    for (var d = 0; el && d < 4; d++) {
-      var cs = getComputedStyle(el);
-      if (cs.backgroundImage !== 'none' || (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent')) { pick = cs; break; }
-      el = el.firstElementChild;
-    }
-    if (!pick) pick = getComputedStyle(r);
-    bg.style.backgroundColor = pick.backgroundColor;
-    bg.style.backgroundImage = pick.backgroundImage;
-    bg.style.backgroundSize = pick.backgroundSize;
-    bg.style.backgroundRepeat = pick.backgroundRepeat;
-    bg.style.backgroundPosition = 'center';
+    if (!bg) { bg = document.createElement('div'); bg.id = 'fm-bg'; bg.setAttribute('aria-hidden', 'true'); bg.inert = true; document.body.insertBefore(bg, document.body.firstChild); }
+    var c = r.cloneNode(true); c.removeAttribute('id'); c.className = 'fm-bgcopy ' + r.className;
+    c.style.cssText = r.style.cssText; c.style.transform = '';
+    bg.replaceChildren(c);
+    last = Date.now();
   }
+  function later() { if (t) return; t = setTimeout(function () { t = null; syncBg(); }, Math.max(0, 400 - (Date.now() - last))); }
   var rt = document.getElementById('root');
-  if (rt && window.MutationObserver) new MutationObserver(function () { syncBg(); }).observe(rt, { childList: true, attributes: true, attributeFilter: ['class', 'style'] });
-  syncBg();
+  if (rt && window.MutationObserver) new MutationObserver(later).observe(rt, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'src'] });
   window.addEventListener('resize', fit);
   fit();
 })();

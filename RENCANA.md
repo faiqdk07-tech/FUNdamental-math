@@ -3,6 +3,7 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **17 Nov: bingkai HP di iPad** (permintaan Faiq): app dikunci 402 × 874 (iPhone 17/18 Pro), diperbesar setinggi layar, sudut membulat; latar luar = salinan layar yang sedang dibuka, diburamkan dan digelapkan (membalik keputusan A5 "latar polos" dan kolom 560 px, disetujui Faiq).
 - **17 Nov: evaluasi E tahap 1 selesai di semua 26 template game** (dicoba dulu di Meja Hajatan dan Kasir Kilat, lalu disebar setelah Faiq setuju). Faiq menolak versi gaya "game kasual" (sudut membulat): **semua harus tetap pixel art sungguhan** seperti referensinya (tombol kayu/emas bersudut tangga, hati pixel, kotak dialog pixel, papan nama kayu).
   - Kerangka baru (kelas `px-v2` di `.px-screen`, nilai dari `PX.v2(comp, v, {face, name})`): bilah judul papan kayu (`fWood`) dengan hati pixel (`SPR.hati`/`hati0`) pengganti teks kesempatan; pilih misi jadi jalur level (lencana emas `lvA`, selesai = hijau `lvB` + bendera); tokoh berbingkai + papan nama kayu, balon putih pixel, tombol "Lanjut ▶"; papan permainan baru tampil setelah Lanjut (`v2wait`); kartu Tugas kertas kuning (`fPaper`); tombol angka keping kayu, hapus merah, Cek hijau (`fGreen`); jendela hasil dialog pixel dengan wajah tokoh + tombol Misi berikutnya; catatan percobaan, papan kapur, kertas tempel bergaya pixel.
   - Revisi Faiq: jarak antarkotak 26 px, hati di kanan papan judul, label misi menempel di tepi atas balon, kartu tugas jadi kertas bergaris dengan garis tepi merah, paku merah, dan sudut terlipat.
