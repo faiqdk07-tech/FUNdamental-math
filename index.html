@@ -1503,6 +1503,18 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .ds-gun>div[style*="grid-template-columns"] button[aria-label]:active{transform:translateY(3px)}
 #root .ds-gun>div:nth-child(3){gap:8px!important}
 #root .px-calcbody>div[style*="repeat(6"]{grid-template-columns:repeat(4,minmax(0,1fr)) repeat(2,minmax(0,1.5fr))!important;gap:5px!important}
+/* Lapisan bersama tombol di papan game Aljabar/Geometri/Data (Faiq 18 Nov): tombol prototipe putih -> tombol krem timbul; dipilih -> oranye; utama -> hijau; label kecil -> tag kertas */
+#root .px-v2 .px-inner button[style*="border: 1px solid #DDDCD7"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]),#root .px-v2 .px-inner button[style*="border: 1px solid #ECEBE7"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]){border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 6px 6px 9px 6px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF;min-height:30px}
+#root .px-v2 .px-inner button[style*="border: 1px solid #DDDCD7"]:active,#root .px-v2 .px-inner button[style*="border: 1px solid #ECEBE7"]:active{transform:translateY(2px)}
+#root .px-v2 .px-inner button[style*="background: #1C1C1A"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]),#root .px-v2 .px-inner button[style*="border: 2px solid #1C1C1A"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]){border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kOrange) 5 5 7 5 fill / 6px 6px 9px 6px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#3A2410!important;text-shadow:0 1px 0 #FFD98A!important;transform:translateY(1px);min-height:30px}
+#root .px-v2 .px-inner button[style*="background: #2F5BD3"]:not(.px-cart button):not(.px-calcbody button){border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kGreen) 5 5 7 5 fill / 6px 6px 9px 6px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#FFFFFF!important;text-shadow:0 2px 0 #2C6A26!important;min-height:30px}
+#root .px-v2 .px-inner span[style*="background: #F0EFEB"],#root .px-v2 .px-inner span[style*="background: #F2F5FD"]{background:#FFF6E0!important;color:#2B1D1A!important;border-radius:0!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -2px 0 #E8D5B5!important}
+/* Pesanan Martabak: kartu pesanan = kotak martabak dari kardus */
+#root .px-st-mart button[style*="flex-direction: column"]{border:0!important;border-image:none!important;border-radius:0!important;background:#E8C58C linear-gradient(#C99A5B 0 6px,#8A5A32 6px 8px,transparent 8px)!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #C99A5B,0 4px 0 rgba(26,28,44,.3)!important;color:#3B2414!important;text-shadow:none!important;padding:10px 2px 6px!important;transform:none}
+#root .px-st-mart button[style*="flex-direction: column"][style*="border: 2px solid #1C1C1A"]{background:#FFE38A linear-gradient(#E3A81C 0 6px,#8A5A32 6px 8px,transparent 8px)!important;box-shadow:0 0 0 2px #1A1C2C,0 0 0 5px #FFC83D,0 6px 0 rgba(26,28,44,.3)!important;transform:translateY(-3px)!important}
+#root .px-st-mart>div>div[style*="border: 1px solid #DDDCD7"]{border:0!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 rgba(0,0,0,.12)!important}
+#root .px-st-mart div[style*="repeat(4, minmax(0, 1fr))"]{gap:9px 8px!important;padding:4px 2px 2px}
+#root .px-st-mart div[style*="flex-wrap: wrap; gap: 3px"]{gap:8px!important;padding:4px 2px}
 </style>
 </head>
 <body>
@@ -4030,8 +4042,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip pj">
-<div class="pj-h px-f">Persewaan Meja &amp; Kursi</div>
+<div class="px-clip pj {{devCls}}">
+<div class="pj-h px-f">{{devLabel}}</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.sel}}" style="{{f.style}}"><span style="flex: 1; font-size: 13px; text-align: left">{{f.label}}</span><span style="{{f.disp}}">{{f.show}}</span></button>
 </sc-for>
@@ -12308,7 +12320,7 @@ if (/gudang/i.test(t)) return { place: 'gudang', face: 'harun', role: 'Pemilik p
 if (/\barisan\b|ruangan|tembok|pengajian|\brapat\b/i.test(t)) return { place: 'ruang', face: 'harun', role: 'Tuan rumah' };
 return { place: 'tenda', face: 'harun', role: 'Tuan rumah' };
 }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.mhLook(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('tenda'), mhPlace: 'mh-' + k.place }, PX.v2(this, v, { face: k.face, name: 'Pak Harun', role: k.role, game: 'Meja Hajatan' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.mhLook(), dv = ({ undangan: ['HP panitia', 'b'], aula: ['Kalkulator panitia acara', 'p'], lapangan: ['Kalkulator panitia acara', 'p'] })[k.place] || ['Persewaan Meja & Kursi', 'c']; return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('tenda'), mhPlace: 'mh-' + k.place, devLabel: dv[0], devCls: 'devc-' + dv[1] }, PX.v2(this, v, { face: k.face, name: 'Pak Harun', role: k.role, game: 'Meja Hajatan' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
