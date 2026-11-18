@@ -1114,10 +1114,10 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
 /* Bingkai HP di layar lebar (permintaan Faiq 17 Nov) */
-body.fm-phone{background:#1C1A22;overflow:hidden;height:100vh}
-body.fm-phone #root{position:fixed;left:50%;top:50%;z-index:1;margin:0;min-height:0;height:874px;overflow:hidden;border-radius:0;isolation:isolate;will-change:transform;box-shadow:none}
+body.fm-phone{background:#EFE9DE;overflow:hidden;height:100vh}
+body.fm-phone #root{position:fixed;left:50%;top:50%;z-index:1;margin:0;min-height:0;height:874px;overflow:hidden;border-radius:0;isolation:isolate;will-change:transform;box-shadow:0 0 0 3px #2B1D1A,0 0 0 7px #C99A5B,0 0 0 10px #2B1D1A,0 14px 0 6px rgba(43,29,26,.18)}
 body.fm-phone #root>div{height:874px!important}
-body.fm-phone #fm-bg{display:block;position:fixed;inset:0;z-index:0;pointer-events:none;background:#6FB948}
+body.fm-phone #fm-bg{display:block;position:fixed;inset:0;z-index:0;pointer-events:none;background:#EFE9DE radial-gradient(circle,rgba(94,59,32,.10) 1px,transparent 1.5px) 0 0/18px 18px}
 body.fm-phone .px-mgscroll{--stU:calc(430px / 195 * 1.15)!important}
 body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px-cta{order:-1;flex:1 1 100%}body.fm-phone .px-pop-act .px-btn2{flex:1 1 100%}
 /* Tombol "Tidak bisa ditentukan" dan "Tidak mungkin" ringkas, berjajar (Faiq 18 Nov) */
@@ -16925,99 +16925,11 @@ show(current());
   }
   /* Latar luar bingkai = warna latar yang paling luas di layar yang sedang dibuka (mis. hijau rumput, cokelat kayu),
      dibuat gradasi lembut terang-gelap dari warna itu sendiri. Tanpa gambar dan tanpa penggelap hitam (permintaan Faiq 17 Nov). */
-  var t = null, last = 0, lastCol = '';
-  function domColor(r) {
-    var R = r.getBoundingClientRect(), full = R.width * R.height, best = null;
-    r.querySelectorAll('*').forEach(function (e) {
-      var cs = getComputedStyle(e); if (cs.display === 'none' || cs.visibility === 'hidden') return;
-      var c = cs.backgroundColor, m = c.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
-      if (!m || (m[4] !== undefined && +m[4] < 0.9)) return;
-      var b = e.getBoundingClientRect(), w = Math.max(0, Math.min(b.right, R.right) - Math.max(b.left, R.left)), h = Math.max(0, Math.min(b.bottom, R.bottom) - Math.max(b.top, R.top));
-      if (w * h >= full * 0.45) best = [+m[1], +m[2], +m[3]];
-    });
-    return best || [111, 185, 72];
-  }
-  function mix(c, k) { return 'rgb(' + c.map(function (v) { return Math.round(k > 0 ? v + (255 - v) * k : v * (1 + k)); }).join(',') + ')'; }
-  /* Latar luar = perpanjangan tepi layar ke kiri-kanan (permintaan Faiq 18 Nov: "ditambahkan, bukan dilebarkan"):
-     warna di tepi kiri dan kanan bingkai diambil per pita setinggi 6 px, lalu diteruskan mendatar sampai ujung layar,
-     jadi dinding, lantai, rumput, dan langit terlihat bersambung. Diperbarui saat layar berganti, digulir, atau diketuk. */
-  /* warna piksel gambar (peta, adegan) di titik itu, bila elemennya bergambar data: yang direntang penuh */
-  var IMG = {};
-  function imgColor(e, x, y) {
-    for (var d = 0; e && d < 4; d++, e = e.parentElement) {
-      var src = '', cs = getComputedStyle(e);
-      if (e.tagName === 'IMG') src = e.currentSrc || e.src;
-      else if (/100% 100%/.test(cs.backgroundSize)) { var m = cs.backgroundImage.match(/url\("?(data:image[^")]+)"?\)/); if (m) src = m[1]; }
-      if (!src || src.indexOf('data:image') !== 0) continue;
-      var o = IMG[src];
-      if (!o) { o = IMG[src] = { im: new Image(), ok: false }; o.im.onload = function () { var c = document.createElement('canvas'); c.width = this.width; c.height = this.height; c.getContext('2d').drawImage(this, 0, 0); IMG[this.src].cx = c.getContext('2d'); IMG[this.src].ok = true; lastBg = ''; later(); }; o.im.src = src; }
-      if (!o.ok) return null;
-      var b = e.getBoundingClientRect(); if (!b.width || !b.height) return null;
-      var px = Math.floor((x - b.left) / b.width * o.im.width), py = Math.floor((y - b.top) / b.height * o.im.height);
-      if (px < 0 || py < 0 || px >= o.im.width || py >= o.im.height) return null;
-      var d4 = o.cx.getImageData(px, py, 1, 1).data; if (d4[3] < 200) return null;
-      return 'rgb(' + d4[0] + ',' + d4[1] + ',' + d4[2] + ')';
-    }
-    return null;
-  }
-  function colorAt(x, y) {
-    var e = document.elementFromPoint(x, y), c = imgColor(e, x, y);
-    while (!c && e && e !== document.body) {
-      var m = getComputedStyle(e).backgroundColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
-      if (m && (m[4] === undefined || +m[4] >= 0.9)) { c = 'rgb(' + m[1] + ',' + m[2] + ',' + m[3] + ')'; break; }
-      e = e.parentElement;
-    }
-    return c;
-  }
-  /* x0 = tepi bingkai, dir = arah ke dalam. Tiap pita: warna terbanyak dari 4 titik; pita yang lebih tipis dari 22 px
-     (pagar, pohon kecil) dilebur ke pita sebelumnya supaya tidak menjadi garis panjang. */
-  function edgeStops(R, x0, dir, k, H) {
-    var rows = [];
-    for (var y = R.top + 1; y < R.bottom - 1; y += 6) {
-      var cs = [];
-      [1, 4, 7, 10, 13].forEach(function (dx) { var c = colorAt(x0 + dir * dx * k, y); if (c) cs.push(c); });
-      rows.push({ y: y, cs: cs });
-    }
-    /* warna terbanyak dalam jendela 5 baris (±12 px): benda kecil di tepi (pagar, sapi, perahu) tidak jadi garis panjang */
-    var bands = [];
-    rows.forEach(function (r, i) {
-      var cnt = {}, best = null, bn = 0;
-      for (var j = Math.max(0, i - 2); j <= Math.min(rows.length - 1, i + 2); j++) rows[j].cs.forEach(function (c) {
-        var v = c.match(/\d+/g).map(Number), w = (v[0] * .3 + v[1] * .59 + v[2] * .11) < 70 ? 0.2 : 1; w *= (j === i ? 1.5 : 1);
-        cnt[c] = (cnt[c] || 0) + w; if (cnt[c] > bn) { bn = cnt[c]; best = c; } });
-      best = best || (bands.length ? bands[bands.length - 1].c : 'rgb(111,185,72)');
-      if (bands.length && bands[bands.length - 1].c === best) bands[bands.length - 1].y1 = r.y + 6;
-      else bands.push({ c: best, y0: r.y, y1: r.y + 6 });
-    });
-    if (!bands.length) return null;
-    var g = [];
-    bands.forEach(function (b, i) { var p0 = i ? (b.y0 / H * 100).toFixed(2) : '0', p1 = i === bands.length - 1 ? '100' : (b.y1 / H * 100).toFixed(2); g.push(b.c + ' ' + p0 + '%', b.c + ' ' + p1 + '%'); });
-    return 'linear-gradient(180deg,' + g.join(',') + ')';
-  }
-  var lastBg = '';
+  /* Latar luar bingkai: warna netral tetap (Faiq 18 Nov), tidak mengikuti isi layar dan tidak dihitung ulang. */
   function syncBg() {
     if (!document.body.classList.contains('fm-phone')) return;
-    var r = document.getElementById('root'); if (!r) return;
-    var bg = document.getElementById('fm-bg');
-    if (!bg) { bg = document.createElement('div'); bg.id = 'fm-bg'; bg.setAttribute('aria-hidden', 'true'); document.body.insertBefore(bg, document.body.firstChild); }
-    last = Date.now();
-    var R = r.getBoundingClientRect(), H = window.innerHeight, k = R.width / PW;
-    var L = edgeStops(R, R.left, 1, k, H), Rt = edgeStops(R, R.right - 1, -1, k, H);
-    var c = domColor(r), key = (L || '') + '|' + (Rt || '');
-    if (key === lastBg) return; lastBg = key;
-    bg.style.backgroundColor = mix(c, 0);
-    bg.style.backgroundImage = (L || 'none') + ',' + (Rt || L || 'none');
-    bg.style.backgroundSize = '50% 100%,50% 100%';
-    bg.style.backgroundPosition = 'left top,right top';
-    bg.style.backgroundRepeat = 'no-repeat,no-repeat';
+    if (!document.getElementById('fm-bg')) { var bg = document.createElement('div'); bg.id = 'fm-bg'; bg.setAttribute('aria-hidden', 'true'); document.body.insertBefore(bg, document.body.firstChild); }
   }
-  function later() { if (t) return; t = setTimeout(function () { t = null; syncBg(); }, Math.max(0, 400 - (Date.now() - last))); }
-  var rt = document.getElementById('root');
-  /* hanya saat layar berganti (anak langsung #root), supaya tidak menyalin ulang saat bermain atau menggulir */
-  if (rt && window.MutationObserver) new MutationObserver(function () { later(); setTimeout(later, 900); }).observe(rt, { childList: true });
-  /* dihitung ulang hanya setelah gulir berhenti (0,25 detik), supaya tidak membebani saat menggulir */
-  var st = null; document.addEventListener('scroll', function () { clearTimeout(st); st = setTimeout(syncBg, 250); }, true);
-  document.addEventListener('click', function () { setTimeout(syncBg, 400); }, true);
   window.addEventListener('resize', fit);
   fit();
 })();
