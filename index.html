@@ -1113,21 +1113,22 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
-/* Contoh papan jawab baru (Faiq 18 Nov, dicoba di Meja Hajatan): alat nyata sesuai tempat. Meja Hajatan = kalkulator saku plastik berbayang (bukan kayu) */
-.px-v2 .px-clip.pj{width:100%;max-width:300px;align-self:center;margin:8px auto 0;padding:12px 12px 14px!important;gap:9px;background:#3E424C!important;border:0;border-image:none;clip-path:polygon(0 6px,3px 6px,3px 3px,6px 3px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 3px,calc(100% - 3px) 3px,calc(100% - 3px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 3px) calc(100% - 6px),calc(100% - 3px) calc(100% - 3px),calc(100% - 6px) calc(100% - 3px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 3px),3px calc(100% - 3px),3px calc(100% - 6px),0 calc(100% - 6px));box-shadow:inset 0 0 0 3px #15161A,inset 0 6px 0 #5A5F6B,inset 0 -8px 0 #2A2D34,inset 6px 0 0 #4C515C,inset -6px 0 0 #33363E!important}
+/* Contoh papan jawab baru (Faiq 18 Nov, dicoba di Meja Hajatan): kalkulator saku bergaya benda referensi (garis biru tua tebal, sisi depan 3D, kilau berlapis) */
+.px-v2 .px-clip.pj{width:100%;max-width:300px;align-self:center;margin:8px auto 4px;padding:4px 4px 6px!important;gap:10px;background:none!important;border:16px solid transparent;border-bottom-width:18px;border-image:var(--px-cBody) 8 8 9 8 fill / 16px 16px 18px 16px;image-rendering:pixelated;clip-path:none;box-shadow:none!important;filter:drop-shadow(0 4px 0 rgba(26,28,44,.25))}
 .px-v2 .px-clip.pj::before{display:none}
-.pj-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px;color:#C9CDD6;letter-spacing:1px;padding:0 2px}
-.pj-h::after{content:"";width:58px;height:12px;background:repeating-linear-gradient(90deg,#4A3A2C 0 12px,#6A5644 12px 14px);box-shadow:0 0 0 2px #15161A,inset 0 2px 0 #7E6A54}
-.px-v2 .pj>button[style*="display: flex"]{flex-direction:column!important;align-items:stretch!important;gap:3px!important;border:0!important;border-image:none!important;background:#A9B79A!important;padding:5px 8px 6px!important;box-shadow:inset 0 0 0 3px #2B1D1A,inset 0 6px 0 #8E9C80,inset 0 -3px 0 #C3D0B4!important;min-height:0!important}
-.px-v2 .pj>button[style*="2px solid #1C1C1A"]{background:#B9C8A6!important;box-shadow:inset 0 0 0 3px #2B1D1A,inset 0 6px 0 #9AAA8A,inset 0 -3px 0 #D3DFC4,0 0 0 3px #FFC83D!important}
+.pj-h{display:flex;align-items:center;gap:8px;font-size:13px;color:#DDE2EC;letter-spacing:.5px;padding:0 2px;text-shadow:0 2px 0 #1A1C2C}
+.pj-h::before{content:"";flex:none;width:10px;height:10px;background:#E25D3A;box-shadow:0 0 0 2px #1A1C2C,inset -3px -3px 0 #A63A1E,inset 2px 2px 0 #FF9A72}
+.pj-h::after{content:"";margin-left:auto;flex:none;width:56px;height:14px;background:linear-gradient(115deg,transparent 0 55%,rgba(255,255,255,.35) 55% 62%,transparent 62%),repeating-linear-gradient(90deg,#4A3A2C 0 12px,#6E5A46 12px 14px);box-shadow:0 0 0 2px #1A1C2C,inset 0 2px 0 #8A7258}
+.px-v2 .pj>button[style*="display: flex"]{flex-direction:column!important;align-items:stretch!important;gap:2px!important;border:16px solid transparent!important;border-image:var(--px-lcdBez) 6 / 16px!important;image-rendering:pixelated;background:#A9B79A linear-gradient(115deg,transparent 0 58%,rgba(255,255,255,.5) 58% 66%,transparent 66% 72%,rgba(255,255,255,.35) 72% 75%,transparent 75%)!important;background-clip:padding-box!important;padding:2px 4px 3px!important;box-shadow:none!important;min-height:0!important}
+.px-v2 .pj>button[style*="2px solid #1C1C1A"]{filter:drop-shadow(0 0 0 #FFC83D) drop-shadow(0 0 2px #FFC83D)}
 .px-v2 .pj>button[style*="display: flex"] span:first-child{font-size:12px!important;color:#3D4A35!important;text-align:left!important}
-.px-v2 .pj>button[style*="display: flex"] span:last-child{align-self:flex-end;min-width:0!important;padding:0!important;background:none!important;box-shadow:none!important;color:#1F2A1C!important;font:700 26px/1 ui-monospace,Menlo,monospace!important;letter-spacing:2px;text-align:right!important;text-shadow:2px 2px 0 rgba(31,42,28,.18)}
-.px-v2 .pj>div[style*="grid-template-columns"]{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important}
-.px-v2 .pj button[aria-label]{min-height:0!important;height:36px;padding:0!important;border:0!important;border-image:none!important;border-radius:0!important;background:#22242B!important;color:#FFFFFF!important;text-shadow:none!important;font:700 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;box-shadow:inset 0 0 0 2px #0E0F12,inset 0 4px 0 #454954,inset 0 -5px 0 #15161A!important;clip-path:polygon(0 3px,3px 3px,3px 0,calc(100% - 3px) 0,calc(100% - 3px) 3px,100% 3px,100% calc(100% - 3px),calc(100% - 3px) calc(100% - 3px),calc(100% - 3px) 100%,3px 100%,3px calc(100% - 3px),0 calc(100% - 3px))}
-.px-v2 .pj button[aria-label]:active{box-shadow:inset 0 0 0 2px #0E0F12,inset 0 -2px 0 #15161A!important;transform:translateY(2px)}
-.px-v2 .pj button[aria-label="Hapus"]{background:#D9673A!important;box-shadow:inset 0 0 0 2px #1E2028,inset 0 4px 0 #F08A5C,inset 0 -5px 0 #A84A24!important}
-.px-screen .pj-cek{height:36px;padding:0;border:0;border-radius:0;background:#E8A23A;color:#2B1D1A;font-size:18px;cursor:pointer;box-shadow:inset 0 0 0 2px #1E2028,inset 0 4px 0 #FFD27A,inset 0 -5px 0 #B87A1E;clip-path:polygon(0 3px,3px 3px,3px 0,calc(100% - 3px) 0,calc(100% - 3px) 3px,100% 3px,100% calc(100% - 3px),calc(100% - 3px) calc(100% - 3px),calc(100% - 3px) 100%,3px 100%,3px calc(100% - 3px),0 calc(100% - 3px))}
-.px-screen .pj-cek:active{box-shadow:inset 0 0 0 2px #1E2028,inset 0 -2px 0 #B87A1E;transform:translateY(2px)}
+.px-v2 .pj>button[style*="display: flex"] span:last-child{align-self:flex-end;min-width:0!important;padding:0!important;background:none!important;box-shadow:none!important;color:#1F2A1C!important;font:700 26px/1 ui-monospace,Menlo,monospace!important;letter-spacing:2px;text-align:right!important;text-shadow:2px 2px 0 rgba(31,42,28,.2)}
+.px-v2 .pj>div[style*="grid-template-columns"]{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+.px-v2 .pj button[aria-label],.px-screen .pj-cek{min-height:0!important;height:42px;padding:0 0 6px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kDark) 5 5 7 5 fill / 10px 10px 14px 10px!important;image-rendering:pixelated;border-radius:0!important;background:none!important;color:#FFFFFF!important;text-shadow:0 2px 0 #14151B!important;font:700 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;box-shadow:none!important;clip-path:none!important;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:0}
+.px-v2 .pj button[aria-label]>*,.px-screen .pj-cek>*{margin-top:-8px}
+.px-v2 .pj button[aria-label]:active,.px-screen .pj-cek:active{transform:translateY(3px);border-bottom-width:11px!important;height:39px}
+.px-v2 .pj button[aria-label="Hapus"]{border-image-source:var(--px-kRed)!important;text-shadow:0 2px 0 #8E2E18!important}
+.px-screen .pj-cek{border-image-source:var(--px-kOrange)!important;color:#3A2410!important;text-shadow:0 1px 0 #FFD98A!important;font-size:19px!important}
 .pj-pad>span{font-size:13px!important;color:#FFF6E0!important}
 #root .px-cart .pj-pad button,.px-v2 .pj-pad button{height:34px!important;min-height:0!important;padding:0!important;border:3px solid #2B1D1A!important;border-image:none!important;border-radius:0!important;background:#FFF6E0!important;color:#2B1D1A!important;text-shadow:none!important;font:700 17px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;box-shadow:inset 0 -4px 0 #D9B57A,inset 0 3px 0 #FFFFFF!important}
 #root .px-cart .pj-pad button[style*="background: #1C1C1A"],.px-v2 .pj-pad button[style*="background: #1C1C1A"]{background:#FFC83D!important;box-shadow:inset 0 -4px 0 #E39A1C,inset 0 3px 0 #FFE680!important;transform:translateY(1px)}
@@ -6611,6 +6612,20 @@ const PX = (() => {
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
   ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
   ['tb_karung', 'tb_semen', 'tb_pupuk', 'tb_galon', 'tb_panci', 'tb_keranjang', 'tb_kue', 'tb_buku', 'hadiah'].forEach(n => css(n, U[n]));
+  /* Benda bergaya referensi Faiq (18 Nov): garis tepi biru tua tebal, sisi depan terlihat (tebal 3D), bayangan dan kilau berlapis. Dipakai sebagai bingkai 9-potong. */
+  {
+    const O = '#1A1C2C';
+    const rr = (t, c, x, y, w, h) => { t.R(c, x + 2, y, w - 4, h); t.R(c, x + 1, y + 1, w - 2, h - 2); t.R(c, x, y + 2, w, h - 4); };
+    const body = (F, L, S, E, E2) => { const t = pen(30, 34, 3); rr(t, O, 0, 0, 30, 34); rr(t, E, 1, 1, 28, 32); rr(t, F, 1, 1, 28, 26); t.R(L, 3, 2, 24, 2); t.R(L, 2, 4, 2, 20); t.R(S, 26, 4, 2, 21); t.R(S, 3, 25, 24, 1); t.R(O, 2, 27, 26, 1); t.R(E2, 3, 28, 24, 1); return t.cv.toDataURL(); };
+    const key = (F, L, S, E) => { const t = pen(14, 14, 3); rr(t, O, 0, 0, 14, 14); rr(t, E, 1, 1, 12, 12); rr(t, F, 1, 1, 12, 9); t.R(L, 3, 2, 8, 1); t.R(L, 2, 3, 1, 5); t.R(S, 11, 3, 1, 6); t.R(O, 2, 10, 10, 1); return t.cv.toDataURL(); };
+    const lcd = () => { const t = pen(16, 16, 3); rr(t, O, 0, 0, 16, 16); rr(t, '#2C303B', 1, 1, 14, 14); t.R('#1E2128', 2, 2, 12, 2); t.R(O, 3, 4, 10, 1); t.R(O, 3, 4, 1, 9); t.R(O, 12, 4, 1, 9); t.R(O, 3, 12, 10, 1); t.R('#A9B79A', 4, 5, 8, 7); t.R('#8E9C80', 4, 5, 8, 1); return t.cv.toDataURL(); };
+    css('cBody', body('#3F4452', '#5E6475', '#2E323D', '#252830', '#30343F'));
+    css('kDark', key('#2B2E38', '#4E5363', '#20222A', '#14151B'));
+    css('kOrange', key('#F2A33A', '#FFD98A', '#D88A28', '#9C5E16'));
+    css('kRed', key('#E25D3A', '#FF9A72', '#C24A2A', '#8E2E18'));
+    css('kGreen', key('#5DB848', '#A4E27A', '#46993A', '#2C6A26'));
+    css('lcdBez', lcd());
+  }
   css('bunting', (() => { const t = pen(80, 20, 2); t.R(P.k, 0, 2, 80, 1); [P.r, P.y, P.u, P.a].forEach((c, n) => { const x0 = n * 20 + 3; for (let j = 0; j < 9; j++) { t.R(P.k, x0 + j, 3 + j, 15 - 2 * j, 1); if (j < 8) t.R(c, x0 + j + 1, 3 + j, Math.max(0, 13 - 2 * j), 1); } }); return t.cv.toDataURL(); })());
 
   function pen(W, H, seed) {
