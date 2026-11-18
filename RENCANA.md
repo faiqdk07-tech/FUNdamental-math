@@ -20,6 +20,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
     - Pentas Seni: jabatan → `rapat` (ruang rapat, papan daftar jabatan); lainnya panggung.
     - Rekap Grosir: urai (mesin label) → `label` (mesin cetak label, karung berlabel).
     - Karung digambar berbentuk karung (leher terikat, badan menggembung), bukan kotak.
+  - Timbangan dan Timbangan Balon: benda di piringan ikut cerita (`itemSpr` di render Timbangan; sprite `tb_karung`, `tb_semen`, `tb_pupuk`, `tb_galon`, `tb_panci`, `tb_keranjang`, `tb_kue`, `tb_buku`, `hadiah`; lainnya tetap kardus). Isi tetap "?" (anti-clue).
   - Judul semua game: hati tidak pernah terpotong; bila sempit, hati turun ke baris kedua dan judul tetap utuh.
 - **18 Nov: evaluasi F1–F3, bagian yang berlaku di semua game** (Faiq setuju semua usulan):
   - Label di atas balon hanya mode: "Pengenalan", "Misi n", "Kasus harian n" (`v2Tag` di `PX.v2`); nama kasus dan tingkat dihapus.
