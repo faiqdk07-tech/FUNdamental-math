@@ -1113,6 +1113,24 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
+/* Kasir Kilat (Faiq 18 Nov, gaya benda referensi): mesin kasir logam 3D, layar hijau menyala, tombol krem timbul, struk kertas zig-zag, nampan logam, laci bersekat */
+.px-shop .px-calc{width:100%;max-width:350px;align-self:center;margin:0 auto;padding:2px 2px 4px!important;border:16px solid transparent!important;border-bottom-width:18px!important;border-image:var(--px-cBody) 8 8 9 8 fill / 16px 16px 18px 16px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important}
+.px-shop .px-calc>div:first-child>span:first-child{color:#DDE2EC!important;font-size:13px!important;text-shadow:0 2px 0 #1A1C2C}
+.px-shop .px-calc>div:first-child>span:nth-child(2){min-width:96px!important;padding:5px 10px 6px!important;background:#0F2418 linear-gradient(115deg,transparent 0 60%,rgba(255,255,255,.16) 60% 68%,transparent 68%)!important;color:#7CF0A6!important;font:700 22px/1 ui-monospace,Menlo,monospace!important;text-shadow:0 0 6px rgba(124,240,166,.6);box-shadow:0 0 0 3px #1A1C2C,inset 0 4px 0 #06120B!important}
+.px-shop .px-calc>div[style*="grid-template-columns"]{gap:5px!important}
+.px-v2.px-shop .px-calc button[aria-label],.px-shop .px-calc button[aria-label]{min-height:0!important;height:40px;padding:0 0 6px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 14px 10px!important;border-radius:0!important;background:none!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF!important;font:700 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;box-shadow:none!important;display:flex;align-items:center;justify-content:center}
+.px-shop .px-calc button[aria-label]:active{transform:translateY(3px);border-bottom-width:11px!important;height:37px}
+.px-v2.px-shop .px-calc button[aria-label="Hapus"],.px-shop .px-calc button[aria-label="Hapus"]{border-image-source:var(--px-kRed)!important;color:#FFFFFF!important;text-shadow:0 2px 0 #8E2E18!important}
+.px-v2.px-shop .px-calc button[aria-label="Tanda minus"],.px-shop .px-calc button[aria-label="Tanda minus"]{border-image-source:var(--px-kOrange)!important}
+.px-shop .px-calc .px-cek{height:40px;padding:0 10px 6px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kGreen) 5 5 7 5 fill / 10px 10px 14px 10px!important;background:none!important;box-shadow:none!important;color:#FFFFFF!important;text-shadow:0 2px 0 #2C6A26!important;font-size:17px!important;display:flex;align-items:center}
+.px-shop .px-calc .px-cek:active{transform:translateY(3px)}
+.px-shop .px-counter .px-items.px-tray{background:#B7C1CF!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 7px 0 #7C879A,inset 0 -4px 0 #E8EEF4,inset 5px 0 0 #9AA7BA,inset -5px 0 0 #D5DDE8!important;border-radius:0}
+.px-shop .px-counter .px-items.px-tray>span{color:#5A6278!important}
+.px-shop .px-counter .px-items.px-laci{background:#4A3426 repeating-linear-gradient(90deg,transparent 0 62px,#2B1D1A 62px 65px)!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 6px 0 #2B1D1A,inset 0 -3px 0 #6E4C36!important}
+.px-shop .px-counter .px-items.px-struk{position:relative;margin:2px 4px 12px!important;padding:8px 12px 6px!important;background:#FFFFFF repeating-linear-gradient(#FFFFFF 0 22px,#EEF1F5 22px 23px)!important;box-shadow:-3px 0 0 #1A1C2C,3px 0 0 #1A1C2C,0 -3px 0 #1A1C2C!important;font-family:ui-monospace,Menlo,monospace}
+.px-shop .px-counter .px-items.px-struk::after{content:"";position:absolute;left:-3px;right:-3px;bottom:-10px;height:10px;background:linear-gradient(135deg,#FFFFFF 5px,transparent 0) 0 0 / 10px 10px,linear-gradient(-135deg,#FFFFFF 5px,transparent 0) 0 0 / 10px 10px;filter:drop-shadow(0 2px 0 #1A1C2C)}
+.px-shop .px-drawer{background:#5A6278!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 5px 0 #7C879A,inset 0 -5px 0 #3E4552!important}
+.px-shop .px-cell{background:#2E3340!important;box-shadow:inset 0 0 0 3px #1A1C2C,inset 0 8px 0 #1E222B,inset 0 -3px 0 #4A5060!important}
 /* Contoh papan jawab baru (Faiq 18 Nov, dicoba di Meja Hajatan): kalkulator saku bergaya benda referensi (garis biru tua tebal, sisi depan 3D, kilau berlapis) */
 .px-v2 .px-clip.pj{width:100%;max-width:300px;align-self:center;margin:8px auto 4px;padding:4px 4px 6px!important;gap:10px;background:none!important;border:16px solid transparent;border-bottom-width:18px;border-image:var(--px-cBody) 8 8 9 8 fill / 16px 16px 18px 16px;image-rendering:pixelated;clip-path:none;box-shadow:none!important;filter:drop-shadow(0 4px 0 rgba(26,28,44,.25))}
 .px-v2 .px-clip.pj::before{display:none}
@@ -6426,7 +6444,7 @@ const PX = (() => {
     c: '#93D65F', a: '#57A843', A: '#2F7A36', b: '#8A5A32', B: '#5E3B20', t: '#C99A5B', T: '#E8C58C',
     u: '#4C8FDD', U: '#2F64B0', s: '#A5DBF2', e: '#9AA7BA', E: '#D5DDE8', f: '#F7CDA4', p: '#E58C8C', n: '#2D3250', N: '#474E78', m: '#57B8A0', g: '#F08A3C', G: '#C0602A', h: '#FFB36B' };
   const SPR = {
-    coin: ['...kkkkk...', '.kkYYYYYkk.', '.kYwYyyyok.', 'kYwyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', 'kYyyyyyyyok', '.kyyyyyyok.', '.kkoooookk.', '...kkkkk...'],
+    coin: ['....kkkkkk....', '..kkYYYYYYkk..', '.kYYyyyyyyyok.', '.kYyooooooyok.', 'kYyoYYyyyyoyok', 'kYyoYwyyyyoyok', 'kYyoYyyyyyoyok', 'kYyoyyyyyyoyok', 'kYyoyyyyyyoyok', '.kyoyyyyyyoyk.', '.kyyooooooyok.', '.kooyyyyyyook.', '..kkooooookk..', '....kkkkkk....'],
     rumah: ['.....kk.....', '....krrk....', '...krrrrk...', '..krrrrrrk..', '.krrrrrrrrk.', 'kkkkkkkkkkkk', '.kwwwwwwwwk.', '.kwwkkwwssk.', '.kwkbbkwssk.', '.kwkbbkwwwk.', '.kkkkkkkkkk.'],
     dadu: ['.kkkkkkkkkk.', 'kwwwwwwwwwwk', 'kwkkwwwwkkwk', 'kwkkwwwwkkwk', 'kwwwwwwwwwwk', 'kwwwwkkwwwwk', 'kwwwwkkwwwwk', 'kwwwwwwwwwwk', 'kwkkwwwwkkwk', 'kwkkwwwwkkwk', 'kEEEEEEEEEEk', '.kkkkkkkkkk.'],
     grafik: ['............', '........kkkk', '........kaak', '....kkkkkaak', '....kyykkaak', 'kkkkkyykkaak', 'kuukkyykkaak', 'kuukkyykkaak', 'kuukkyykkaak', 'kuukkyykkaak', 'kkkkkkkkkkkk'],
@@ -6586,7 +6604,8 @@ const PX = (() => {
   SPR.rara = tokoh(['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.'], 'r', 'n');
   SPR.mandor = ['...kkkkkk...', '..kyyyyyyk..', '.kyYyyyyyok.', 'kkkkkkkkkkkk'].concat(SPR.orang.slice(3, 8)).concat(SPR.orang.slice(8).map(r => r.replace(/r/g, 'u')));
   SPR.pembeli = SPR.orang.map(r => r.replace(/B/g, 'o').replace(/r/g, 'm').replace(/U/g, 'e'));
-  SPR.coinR = SPR.coin.map(r => r.replace(/Y/g, 'q').replace(/y/g, 'r').replace(/o/g, 'R'));
+  /* Bon utang = kertas bon (Faiq 18 Nov: benda harus seperti aslinya), bukan koin merah */
+  SPR.coinR = ['kkkkkkkkkkkkkk', 'kwwwwwwwwwwwwk', 'krrrrrrrrrrrrk', 'kRRRRRRRRRRRRk', 'kwwwwwwwwwwwwk', 'kwwwwwwwwwwwwk', 'kwEEEEEEEEEEwk', 'kwwwwwwwwwwwwk', 'kwwwwwwwwwwwwk', 'kwEEEEEEEEEEwk', 'kwwwwwwwwwwwwk', 'kwwwwwwwwwwwwk', 'kwwkwwwkwwwkwk', 'kk.kkk.kkk.kkk'];
   SPR.pialaP = SPR.piala.map(r => r.replace(/Y/g, 'w').replace(/y/g, 'E').replace(/o/g, 'e'));
   SPR.pialaB = SPR.piala.map(r => r.replace(/Y/g, 'T').replace(/y/g, 't').replace(/o/g, 'b'));
   SPR.bintang0 = SPR.bintang.map(r => r.replace(/[Yyo]/g, 'E'));
@@ -6624,6 +6643,7 @@ const PX = (() => {
     css('kOrange', key('#F2A33A', '#FFD98A', '#D88A28', '#9C5E16'));
     css('kRed', key('#E25D3A', '#FF9A72', '#C24A2A', '#8E2E18'));
     css('kGreen', key('#5DB848', '#A4E27A', '#46993A', '#2C6A26'));
+    css('kCream', key('#EFE7D2', '#FFFFFF', '#D8CDB2', '#A3977C'));
     css('lcdBez', lcd());
   }
   css('bunting', (() => { const t = pen(80, 20, 2); t.R(P.k, 0, 2, 80, 1); [P.r, P.y, P.u, P.a].forEach((c, n) => { const x0 = n * 20 + 3; for (let j = 0; j < 9; j++) { t.R(P.k, x0 + j, 3 + j, 15 - 2 * j, 1); if (j < 8) t.R(c, x0 + j + 1, 3 + j, Math.max(0, 13 - 2 * j), 1); } }); return t.cv.toDataURL(); })());
@@ -10456,7 +10476,7 @@ if (P.type === 'struk' && P.nums.some(v => v === null)) return this.setState(Obj
 this.spend('Belum tepat.');
 };
 const TUT = [
-'Hari pertama kerja di warung Bu Ani. Di laci ada koin emas (uang) dan koin merah (bon utang). Angkanya menunjukkan nilai dalam ribuan.',
+'Hari pertama kerja di warung Bu Ani. Di laci ada koin emas (uang) dan kertas bon merah (utang). Angkanya menunjukkan nilai dalam ribuan.',
 'Bu Ani memintamu menaruh koin ke laci. Pilih Uang atau Utang, lalu ketuk koin di kotak koin.',
 'Sekarang ketuk dua koin di laci untuk menggabungkannya, atau satu koin lalu Pecah. Kamu sendiri yang menulis hasilnya di mesin kasir.',
 'Bagus. Pelanggan pertama sudah menunggu di depan kasir.'
