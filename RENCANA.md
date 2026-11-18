@@ -12,6 +12,14 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Meja Hajatan: papan (`.px-hall`) berganti tempat lewat `mhLook()` → kelas `mh-tenda` (hajatan), `mh-ruang` (arisan, ruangan sempit), `mh-gudang` (kursi terbatas), `mh-aula` (aula/gedung, tirai panggung), `mh-lapangan` (layar tancap), `mh-undangan` (undangan berantai, papan gabus). Kursi bergambar kursi (bukan titik biru; label jadi "Barisan meja dan kursinya"), baris kursi/gelombang tamu jadi deretan gambar kursi/orang (`.mh-row`, `.mh-strip`). Tokoh: Tuan rumah, Pemilik persewaan, Panitia acara, Panitia.
   - Mesin Minuman: `mmLook()` memilih adegan: soal kabel di peron/stasiun → `PX.kbScene({kind:'peronvend'})`, kabel lain → ruang mesin minuman lama, soal rantai (I/E) → `kbScene({kind:'kios'})` (kios kopi stasiun dengan mesin pengubah harga). Tokoh: Petugas stasiun/Petugas (Bu Rina), Pemilik kios/Penjaga kantin (barista). Mesin berantai jadi ban berjalan logam (`.mm-belt`), modul komponen logam (`.mm-comp`, `.mm-op`), tabel kertas (`.mm-tab`).
   - Kebun & Lintasan: `kpPlace()` → kebun (lama), `kbScene({kind:'roket'})` untuk semua soal roket air (tokoh Panitia lomba), `kandang` (cerita kandang ayam, Pemilik kandang, label papan "Kandang · 1 kotak = 1 m²"), `kolam` (kolam ikan). Label papan tidak lagi menyebut "Bu Wati".
+  - Enam game parah lain lewat metode `lk()` (adegan + tokoh per jenis soal), adegan baru di `PX.kbScene`:
+    - Pasang Lantai: petak → ruangan lama; miring/segi → `teras` (teras toko, pojok taman); bundar → `kaca` (meja bundar berkaca).
+    - Isi Wadah: kardus → gudang lama; prisma → `akuarium` (atau `kolam` bila ceritanya kolam); lancip → `takar` (toko sembako, wadah tegak/lancip, karung).
+    - Perbesar Gambar: bayangan → `bayangan` (lapangan, pohon, tiang bendera, bayangan); lainnya percetakan.
+    - Pilihan OSIS: menu → `kantin`; outfit/PIN → ruang OSIS lama.
+    - Pentas Seni: jabatan → `rapat` (ruang rapat, papan daftar jabatan); lainnya panggung.
+    - Rekap Grosir: urai (mesin label) → `label` (mesin cetak label, karung berlabel).
+    - Karung digambar berbentuk karung (leher terikat, badan menggembung), bukan kotak.
   - Judul semua game: hati tidak pernah terpotong; bila sempit, hati turun ke baris kedua dan judul tetap utuh.
 - **18 Nov: evaluasi F1–F3, bagian yang berlaku di semua game** (Faiq setuju semua usulan):
   - Label di atas balon hanya mode: "Pengenalan", "Misi n", "Kasus harian n" (`v2Tag` di `PX.v2`); nama kasus dan tingkat dihapus.
