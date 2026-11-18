@@ -1432,6 +1432,14 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .rr-coupons>button[style*="opacity"]{filter:grayscale(1);opacity:.55}
 .px-kedaiteh .px-receipt{position:relative;background:#FFFFFF repeating-linear-gradient(#FFFFFF 0 22px,#EEF1F5 22px 23px)!important;box-shadow:-3px 0 0 #1A1C2C,3px 0 0 #1A1C2C,0 -3px 0 #1A1C2C!important;margin-bottom:12px!important;border:0!important}
 .px-kedaiteh .px-receipt::after{content:"";position:absolute;left:-3px;right:-3px;bottom:-10px;height:10px;background:linear-gradient(135deg,#FFFFFF 5px,transparent 0) 0 0 / 10px 10px,linear-gradient(-135deg,#FFFFFF 5px,transparent 0) 0 0 / 10px 10px;filter:drop-shadow(0 2px 0 #1A1C2C)}
+/* Lipat Kertas (gaya benda referensi): panel mesin lipat toska 3D dengan tombol oranye timbul, meja dan tumpukan kertas bertepi */
+#root .px-machine{background:none!important;box-shadow:none!important;border:16px solid transparent;border-bottom-width:18px;border-image:var(--px-tBody) 8 8 9 8 fill / 16px 16px 18px 16px;image-rendering:pixelated;padding:0 2px 2px!important;margin:3px}
+#root .px-machine>span{color:#FFFFFF!important;text-shadow:0 2px 0 #1F5A4C;font-size:14px!important}
+#root .px-machine button{height:42px!important;padding:0!important;margin:0!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kOrange) 5 5 7 5 fill / 10px 10px 14px 10px!important;background:none!important;box-shadow:none!important;color:#3A2410!important;text-shadow:0 1px 0 #FFD98A!important;font-size:17px!important;display:flex;align-items:center;justify-content:center}
+#root .px-machine button:active{transform:translateY(3px)}
+#root .px-desk{box-shadow:0 0 0 3px #1A1C2C,inset 0 4px 0 #A8773F,0 6px 0 #5E3B20,0 9px 0 #1A1C2C!important;margin-bottom:10px!important}
+#root .px-desk>span:first-child{gap:0!important;box-shadow:0 0 0 2px #1A1C2C,3px 3px 0 2px rgba(26,28,44,.35)}
+#root .px-desk>span:first-child>span{border:0!important;border-bottom:1px solid #D5DDE8!important;box-shadow:inset -4px 0 0 rgba(26,28,44,.08)!important}
 </style>
 </head>
 <body>
@@ -3352,7 +3360,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div style="display: grid; grid-template-columns: repeat({{foldCols}}, minmax(0, 1fr)); gap: 4px"><sc-for list="{{foldKeys}}" as="f" hint-placeholder-count="2"><button type="button" onClick="{{f.tap}}" aria-label="{{f.aria}}" style="{{f.style}}">{{f.label}}</button></sc-for></div>
 </div>
 </sc-if>
-<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw px-calc" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
+<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-calc devcalc" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">{{keyLabel}}</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div></sc-if>
@@ -6771,6 +6779,7 @@ const PX = (() => {
     const key = (F, L, S, E) => { const t = pen(14, 14, 3); rr(t, O, 0, 0, 14, 14); rr(t, E, 1, 1, 12, 12); rr(t, F, 1, 1, 12, 9); t.R(L, 3, 2, 8, 1); t.R(L, 2, 3, 1, 5); t.R(S, 11, 3, 1, 6); t.R(O, 2, 10, 10, 1); return t.cv.toDataURL(); };
     const lcd = () => { const t = pen(16, 16, 3); rr(t, O, 0, 0, 16, 16); rr(t, '#2C303B', 1, 1, 14, 14); t.R('#1E2128', 2, 2, 12, 2); t.R(O, 3, 4, 10, 1); t.R(O, 3, 4, 1, 9); t.R(O, 12, 4, 1, 9); t.R(O, 3, 12, 10, 1); t.R('#A9B79A', 4, 5, 8, 7); t.R('#8E9C80', 4, 5, 8, 1); return t.cv.toDataURL(); };
     css('cBody', body('#3F4452', '#5E6475', '#2E323D', '#252830', '#30343F'));
+    css('tBody', body('#4FAE96', '#8ED8C2', '#2F8672', '#246B5C', '#2C7A68'));
     css('kDark', key('#2B2E38', '#4E5363', '#20222A', '#14151B'));
     css('kOrange', key('#F2A33A', '#FFD98A', '#D88A28', '#9C5E16'));
     css('kRed', key('#E25D3A', '#FF9A72', '#C24A2A', '#8E2E18'));
