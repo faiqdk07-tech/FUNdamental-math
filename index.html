@@ -1113,6 +1113,32 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
+/* Meja Hajatan (Faiq 18 Nov): papan berganti tempat sesuai cerita; kursi dan tamu bergambar */
+.px-hall .px-stool{width:10px!important;height:11px!important;border-radius:0!important;box-shadow:none!important;background:var(--px-kursi) center / 100% 100% no-repeat!important;image-rendering:pixelated}
+.px-hall .px-htable{background:#FFFFFF linear-gradient(#FFFFFF 0 60%,#E8554E 60% 100%)!important;box-shadow:0 0 0 1.5px #2B1D1A,inset 0 2px 0 #FFF6E0!important}
+.px-hall.mh-ruang{background:#F3E6D2;background-image:linear-gradient(#E9D7BC 1px,transparent 1px);background-size:100% 22px;background-position:0 46px}
+.px-hall.mh-ruang .px-hall-roof,.px-hall.mh-gudang .px-hall-roof,.px-hall.mh-aula .px-hall-roof,.px-hall.mh-lapangan .px-hall-roof,.px-hall.mh-undangan .px-hall-roof{-webkit-mask:none;mask:none;height:30px}
+.px-hall.mh-ruang .px-hall-roof{background:#8A5A32 repeating-linear-gradient(90deg,#8A5A32 0 30px,#7A4E2A 30px 32px);box-shadow:inset 0 -4px 0 #5E3B20,0 3px 0 #2B1D1A}
+.px-hall.mh-ruang::before,.px-hall.mh-ruang::after,.px-hall.mh-gudang::before,.px-hall.mh-gudang::after,.px-hall.mh-undangan::before,.px-hall.mh-undangan::after,.px-hall.mh-lapangan::before,.px-hall.mh-lapangan::after{display:none}
+.px-hall.mh-gudang{background:#D5DDE8;background-image:linear-gradient(#C0C8D6 1px,transparent 1px);background-size:100% 22px;background-position:0 46px}
+.px-hall.mh-gudang .px-hall-roof{background:repeating-linear-gradient(90deg,#9AA7BA 0 8px,#C0C8D6 8px 16px);box-shadow:inset 0 -3px 0 #6B7488,0 3px 0 #2B1D1A}
+.px-hall.mh-aula{background:#C99A5B;background-image:linear-gradient(#B88A50 2px,transparent 2px);background-size:100% 30px;background-position:0 40px}
+.px-hall.mh-aula .px-hall-roof{height:36px;background:repeating-linear-gradient(90deg,#B23A34 0 6px,#E8554E 6px 18px);-webkit-mask:radial-gradient(10px 7px at 10px 29px,#000 98%,transparent) 0 0/20px 36px repeat-x,linear-gradient(#000 0 29px,transparent 29px);mask:radial-gradient(10px 7px at 10px 29px,#000 98%,transparent) 0 0/20px 36px repeat-x,linear-gradient(#000 0 29px,transparent 29px)}
+.px-hall.mh-aula::before,.px-hall.mh-aula::after{background:#B23A34}
+.px-hall.mh-lapangan{background:#57A843;background-image:radial-gradient(#2F7A36 1px,transparent 1.5px);background-size:14px 12px}
+.px-hall.mh-lapangan .px-hall-roof{height:46px;background:linear-gradient(90deg,transparent 30%,#2B1D1A 30% 31%,#FFFFFF 31% 69%,#2B1D1A 69% 70%,transparent 70%) 0 6px / 100% 28px no-repeat,#1F2442;box-shadow:inset 0 -3px 0 #2F7A36}
+.px-hall.mh-undangan{background:#C99A5B;background-image:radial-gradient(#A8773F 1px,transparent 1.5px),radial-gradient(#E8C58C 1px,transparent 1.5px);background-size:9px 9px,13px 11px;background-position:0 0,4px 5px;box-shadow:0 0 0 3px #2B1D1A,inset 0 0 0 6px #8A5A32}
+.px-hall.mh-undangan .px-hall-roof{height:22px;background:repeating-linear-gradient(90deg,#FFF6E0 0 34px,#E8554E 34px 40px,#4C8FDD 40px 46px);box-shadow:inset 0 -3px 0 #8A5A32}
+.px-screen .mh-row{display:flex;align-items:center;gap:6px;width:100%;padding:4px 6px;font:inherit;cursor:pointer;color:#2B1D1A;border:5px solid transparent;border-image:var(--px-fWhite) 30 fill / 5px;background:none;border-radius:0}
+.px-screen .mh-row.on{border-image-source:var(--px-fGold)}
+.mh-row-l{width:52px;flex:none;font-size:12.5px;text-align:left}
+.mh-row-s{flex:1;min-width:0;height:14px;display:block;background:rgba(43,29,26,.08)}
+.mh-strip{display:block;height:14px;max-width:100%;image-rendering:pixelated}
+.mh-strip.kursi{background:var(--px-kursi) 0 0 / 11px 13px repeat-x}
+.mh-strip.orang{background:var(--px-orang) 0 0 / 9px 13px repeat-x}
+.mh-strip.unk{background:repeating-linear-gradient(90deg,#9AA7BA 0 5px,transparent 5px 8px);opacity:.7}
+.mh-row-v{width:72px;flex:none;text-align:right;font-size:12.5px;font-weight:600}
+.mh-row-b{width:14px;flex:none;font-size:12px;color:#8A5200;font-weight:700}
 /* Judul: hati tidak pernah terpotong; bila sempit, hati turun ke baris kedua (Faiq 18 Nov, F4) */
 .px-ttl2{flex-wrap:wrap!important;row-gap:0!important}
 .px-ttl2-s:has(.px-hearts){overflow:visible!important;flex:1 0 auto!important}
@@ -3659,7 +3685,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
 <sc-if value="{{hasGoal}}" hint-placeholder-val="{{ true }}"><sc-if value="{{v2ShowTask}}" hint-placeholder-val="{{ true }}"><div class="px-task"><span class="px-task-h px-f"><img alt="" src="{{px.misi}}">Tugas</span><div class="px-task-t">{{goal}}</div></div></sc-if></sc-if></sc-if>
 <div class="px-inner"><sc-if value="{{showBoard}}" hint-placeholder-val="{{ true }}">
-<div class="px-hall">
+<div class="px-hall {{mhPlace}}">
 <div class="px-hall-roof"></div>
 <div class="px-hall-lab">{{boardLabel}}</div>
 
@@ -3698,11 +3724,11 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{isBaris}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; gap: 4px">
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
-<button type="button" onClick="{{r.tap}}" aria-label="{{r.lab}}" style="{{r.style}}">
-<span style="width: 58px; flex: none; font-size: 12px; text-align: left">{{r.lab}}</span>
-<span style="flex: 1; height: 10px; background: #F0EFEB; border-radius: 3px; overflow: hidden; display: block"><span style="display: block; height: 10px; width: {{r.pct}}%; background: #2F5BD3"></span></span>
-<span style="width: 70px; flex: none; text-align: right; font-size: 12px; font-weight: 600">{{r.val}}</span>
-<span style="width: 14px; flex: none; font-size: 11px; color: #66655F">{{r.badge}}</span>
+<button type="button" onClick="{{r.tap}}" aria-label="{{r.lab}}" class="mh-row {{r.on}}">
+<span class="mh-row-l">{{r.lab}}</span>
+<span class="mh-row-s"><span class="mh-strip {{r.kind}}" style="width: max(14px, {{r.pct}}%)"></span></span>
+<span class="mh-row-v">{{r.val}}</span>
+<span class="mh-row-b">{{r.badge}}</span>
 </button>
 </sc-for>
 </div>
@@ -11848,7 +11874,17 @@ return ['Meja sambung', ['Ketuk angka di baris Sambung meja untuk menyambung seb
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Meja Hajatan'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('tenda') }, PX.v2(this, v, { face: 'harun', name: 'Pak Harun', game: 'Meja Hajatan' })); }
+/* Meja Hajatan (Faiq 18 Nov): tempat di papan dan tokoh mengikuti cerita */
+mhLook() {
+const s = this.state, P = s.P || {}, t = String(P.cerita || '') + ' ' + String(P.konteks || '');
+if (s.mode === 'lab' || s.mode === 'rumus') return { place: 'tenda', face: 'harun', role: 'Pemilik persewaan' };
+if (P.type === 'baris' && P.r) return { place: 'undangan', face: 'ketua', role: 'Panitia' };
+if (P.type === 'baris') return /lapangan|layar tancap/i.test(t) ? { place: 'lapangan', face: 'ketua', role: 'Panitia acara' } : { place: 'aula', face: 'ketua', role: 'Panitia acara' };
+if (/gudang/i.test(t)) return { place: 'gudang', face: 'harun', role: 'Pemilik persewaan' };
+if (/\barisan\b|ruangan|tembok|pengajian|\brapat\b/i.test(t)) return { place: 'ruang', face: 'harun', role: 'Tuan rumah' };
+return { place: 'tenda', face: 'harun', role: 'Tuan rumah' };
+}
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.mhLook(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('tenda'), mhPlace: 'mh-' + k.place }, PX.v2(this, v, { face: k.face, name: 'Pak Harun', role: k.role, game: 'Meja Hajatan' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -11883,7 +11919,7 @@ rows = vals.map((v, i) => {
 const on = s.sel.indexOf(i);
 const lab = nm + ' ' + (i + 1);
 const val = v === null ? (i === 0 ? '?' : '? + ' + (B.d * i)) : v + ' ' + (B.r ? 'tamu' : 'kursi');
-return { lab: lab, val: val, pct: v === null ? 40 : Math.max(4, Math.round(v / mx * 100)), badge: on >= 0 ? String(on + 1) : '',
+return { lab: lab, val: val, pct: v === null ? 40 : Math.max(4, Math.round(v / mx * 100)), badge: on >= 0 ? String(on + 1) : '', on: on >= 0 ? 'on' : '', kind: v === null ? 'unk' : B.r ? 'orang' : 'kursi',
 tap: () => { const sel = on >= 0 ? s.sel.filter(x => x !== i) : s.sel.concat([i]).slice(-2); this.setState({ sel: sel, msg: '' }); },
 style: 'display: flex; align-items: center; gap: 6px; width: 100%; padding: 4px 6px; border-radius: 5px; font: inherit; cursor: pointer; color: #1C1C1A; background: ' + (on >= 0 ? '#E8EDFB' : '#FFFFFF') + '; border: 1px solid ' + (on >= 0 ? '#1C1C1A' : '#ECEBE7') };
 });
@@ -11906,7 +11942,7 @@ act('Jadikan tantangan', () => this.setState({ customs: s.customs.concat([{ s: L
 statusLabel = 'Kursi di pratinjau'; status = this.kursi(L, Math.min(L.order, 9)) + ' kursi';
 } else if (s.mode !== 'rumus') {
 if (isMeja) {
-boardLabel = 'Barisan meja · titik biru = kursi';
+boardLabel = 'Barisan meja dan kursinya';
 padLabel = 'Sambung meja';
 padKeys = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(kk => ({ label: String(kk), tap: () => {
 if (doneStage || verdictStage) return;
