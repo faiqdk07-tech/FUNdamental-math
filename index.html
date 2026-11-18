@@ -7324,6 +7324,30 @@ const PX = (() => {
       R(P.k, 126, 18, 14, 4); R('#C0C8D6', 127, 19, 12, 2); R(P.k, 70, 22, 14, 4); R('#C0C8D6', 70, 23, 13, 2);
       [148, 160, 172].forEach((a, q) => { R(P.k, a, 24, 9, 10); R(P.w, a + 1, 25, 7, 8); R([P.B, P.b, '#D9B57A'][q], a + 1, 25, 7, 3); R(P.k, a + 8, 27, 3, 4); });
       R(P.k, 30, 26, 10, 8); R(P.w, 31, 27, 8, 6); R(P.B, 31, 27, 8, 2);
+    } else if (o.kind === 'roket') {
+      /* lapangan desa: lomba roket air, peluncur, penonton, bendera */
+      R('#9ED7F5', 0, 0, W, 50); R('#B8E5FA', 0, 18, W, 12); t.cloud(20, 5); t.cloud(150, 9);
+      R(P.k, 0, 3, W, 1); for (i = 2; i < W; i += 12) for (let j = 0; j < 4; j++) R(Math.floor(i / 12) % 2 ? P.w : P.r, i + j, 4 + j, Math.max(0, 8 - j * 2), 1);
+      R(P.a, 0, 34, W, 16); R(P.A, 0, 34, W, 1); for (i = 3; i < W; i += 9) R('#4C9A3A', i, 38 + (i % 4), 2, 1);
+      R(P.k, 30, 28, 18, 7); R('#C0C8D6', 31, 29, 16, 5); R(P.k, 38, 22, 2, 7); R(P.k, 32, 34, 2, 4); R(P.k, 44, 34, 2, 4);
+      /* roket botol melesat */
+      t.x.save(); t.x.translate(0, 8); R('rgba(255,255,255,.8)', 104, 22, 3, 6); R(P.k, 101, 8, 9, 16); R('#B8E5FA', 102, 9, 7, 14); R(P.r, 102, 6, 7, 4); R(P.k, 103, 4, 5, 2); R(P.r, 104, 4, 3, 1); R(P.k, 99, 18, 3, 6); R(P.r, 100, 19, 1, 4); R(P.k, 109, 18, 3, 6); R(P.r, 110, 19, 1, 4); t.x.restore();
+      [[150, 'u'], [162, 'g'], [174, 'a']].forEach(q => { R(P.k, q[0], 26, 8, 9); R(P[q[1]], q[0] + 1, 27, 6, 7); R(P.k, q[0] + 1, 20, 6, 6); R(P.f, q[0] + 2, 21, 4, 4); R(P.k, q[0] + 1, 35, 2, 3); R(P.k, q[0] + 5, 35, 2, 3); });
+      R(P.k, 70, 14, 2, 22); R(P.k, 72, 14, 12, 8); R(P.y, 72, 15, 11, 6);
+    } else if (o.kind === 'kandang') {
+      /* kandang ayam berpagar di halaman, menempel tembok rumah */
+      R('#9ED7F5', 0, 0, W, 50); t.cloud(130, 6); R('#E8C58C', 0, 6, 70, 30); R(P.k, 0, 5, 72, 2); R(P.k, 70, 5, 2, 31); for (i = 8; i < 36; i += 6) R('#D9B57A', 0, i, 70, 1); R(P.k, 20, 14, 14, 12); R('#B8E5FA', 21, 15, 12, 10); R(P.k, 26, 15, 1, 10);
+      R(P.a, 0, 36, W, 14); R('#C99A5B', 72, 33, 123, 17); R(P.A, 0, 36, 72, 1);
+      t.fence(74, 26, 17);
+      const ayam = (a, b, c) => { R(P.k, a, b, 9, 6); R(c, a + 1, b + 1, 7, 4); R(P.k, a + 6, b - 4, 4, 5); R(c, a + 7, b - 3, 2, 3); R(P.r, a + 7, b - 5, 2, 1); R(P.y, a + 10, b - 2, 2, 1); R(P.k, a + 3, b + 6, 1, 2); R(P.k, a + 5, b + 6, 1, 2); };
+      ayam(92, 38, P.w); ayam(118, 41, '#C98A1B'); ayam(146, 37, P.w); ayam(170, 42, '#C98A1B');
+    } else if (o.kind === 'kolam') {
+      /* kolam ikan persegi diperluas: tepi batu, air, ikan */
+      R('#9ED7F5', 0, 0, W, 50); t.cloud(24, 5); t.cloud(140, 8); R(P.a, 0, 22, W, 28); R(P.A, 0, 22, W, 1);
+      R(P.k, 34, 26, 128, 22); R('#9AA7BA', 35, 27, 126, 20); R(P.k, 38, 29, 120, 16); R(P.u, 39, 30, 118, 14); R('#8CC0F5', 39, 30, 118, 2); for (i = 44; i < 152; i += 13) R('#CFE7FA', i, 35 + (i % 3) * 2, 6, 1);
+      R(P.k, 118, 29, 1, 16); for (i = 30; i < 45; i += 3) R('#CFE7FA', 118, i, 1, 1);
+      const ikan = (a, b, c) => { R(P.k, a, b, 7, 4); R(c, a + 1, b + 1, 5, 2); R(P.k, a + 7, b - 1, 1, 6); R(c, a + 7, b, 1, 4); };
+      ikan(60, 36, P.g); ikan(88, 33, P.r); ikan(132, 38, P.g);
     } else {
       /* kantor terminal: kalender dinding besar, jam, jendela dengan bus, meja */
       R('#E4EEF6', 0, 0, W, 50); R('#D2DEEA', 0, 30, W, 8);
@@ -10465,7 +10489,10 @@ show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(M
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Kebun Pagar'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('kebun') }, PX.v2(this, v, { face: 'wati', name: 'Bu Wati', game: 'Kebun Pagar' })); }
+/* Kebun & Lintasan (Faiq 18 Nov): adegan dan tokoh ikut cerita (kebun, kandang, kolam, lapangan roket air) */
+kpPlace() { const s = this.state, P = s.P || {}, t = String(P.cerita || ''); if (s.mode === 'rumus' || s.mode === 'lab') return 'kebun'; if (P.type === 'lempar') return 'roket'; if (/kandang/i.test(t)) return 'kandang'; if (/kolam/i.test(t)) return 'kolam'; return 'kebun'; }
+kpLook() { const k = this.kpPlace(); return ({ kebun: { view: PX.alView('kebun'), face: 'wati', role: 'Pemilik kebun' }, roket: { view: PX.kbScene({ kind: 'roket' }), face: 'ketua', role: 'Panitia lomba' }, kandang: { view: PX.kbScene({ kind: 'kandang' }), face: 'darto', role: 'Pemilik kandang' }, kolam: { view: PX.kbScene({ kind: 'kolam' }), face: 'wati', role: 'Pemilik kolam' } })[k]; }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: this.kpLook().view }, PX.v2(this, v, { face: this.kpLook().face, role: this.kpLook().role, name: 'Bu Wati', game: 'Kebun Pagar' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -10692,7 +10719,7 @@ if (!ctx.isTut && P.triesLeft <= 0) return ctx.warn('Jatah pasang sudah habis.')
 ctx.setP({ tries: this.addLog(P.tries, e, 9), cur: [p, w], triesLeft: P.triesLeft - (ctx.isTut ? 0 : 1) }, first ? ctx.tutNext(1) : ctx.tutNext(2));
 };
 const info = P.area ? 'Luas kebun tetap ' + P.area + ' m².' : 'Pagar tersedia ' + P.K + ' m' + (P.wall ? ', satu sisi panjang menempel tembok.' : '.');
-return { vals: vals, actions: [act('Pasang pagar', pasang, true)], boardLabel: 'Kebun Bu Wati · 1 kotak = 1 m²', log: P.tries, info: info, picker: false, statusLabel: ctx.isTut ? 'Hari pertama' : 'Kesempatan · jatah pasang', status: ctx.isTut ? 'Latihan' : P.left + ' / ' + P.budget + ' · ' + P.triesLeft };
+return { vals: vals, actions: [act('Pasang pagar', pasang, true)], boardLabel: (/kandang/i.test(String(P.cerita || '')) ? 'Kandang' : 'Kebun') + ' · 1 kotak = 1 m²', log: P.tries, info: info, picker: false, statusLabel: ctx.isTut ? 'Hari pertama' : 'Kesempatan · jatah pasang', status: ctx.isTut ? 'Latihan' : P.left + ' / ' + P.budget + ' · ' + P.triesLeft };
 }
 if (P.type === 'lempar') {
 vals.isLempar = true;
