@@ -1113,6 +1113,18 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
+/* Mesin Minuman (Faiq 18 Nov): mesin pengubah harga jadi modul logam di ban berjalan */
+.mm-belt{display:flex;flex-wrap:wrap;align-items:center;gap:4px;min-height:40px;padding:6px 8px;background:#5A6278 repeating-linear-gradient(90deg,#5A6278 0 10px,#4B5268 10px 12px);border:3px solid #2B1D1A;box-shadow:inset 0 3px 0 #6B7488}
+.mm-io{font-size:13px;color:#FFF6E0;padding:1px 6px 2px;background:#2D3250;border:2px solid #2B1D1A}
+.mm-arrow{font-size:10px;color:#FFC83D}
+.px-screen .mm-part{font:inherit;font-size:15px;font-weight:700;color:#2B1D1A;cursor:pointer;padding:3px 9px 5px;border:6px solid transparent;border-image:var(--px-fGold) 30 fill / 6px;background:none;border-radius:0}
+.mm-slot{display:block;width:44px;height:30px;border:2px dashed #C0C8D6}
+.mm-comps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding-top:4px}
+.mm-comp{display:flex;flex-direction:column;align-items:center;gap:6px;padding:7px 4px 8px;background:#C0C8D6;border:3px solid #2B1D1A;box-shadow:inset 0 3px 0 #E8EEF4,inset 0 -4px 0 #9AA7BA}
+.mm-comp>button:first-child{border-radius:0!important;border:3px solid #2B1D1A!important;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2)!important}
+.px-screen .mm-op{width:100%;padding:3px 0 5px;font-size:20px;color:#9FE0B5;cursor:pointer;background:#2D3250;border:3px solid #2B1D1A;border-radius:0;box-shadow:inset 0 3px 0 #474E78}
+.mm-tab{display:flex;flex-direction:column;gap:2px;padding:6px 8px;background:#FFF6E0;border:3px solid #2B1D1A;font-family:ui-monospace,Menlo,monospace}
+.mm-tab-h{display:flex;font-size:11.5px;color:#4B4B57;font-family:inherit;border-bottom:2px dashed #D9B57A;padding-bottom:2px}
 /* Meja Hajatan (Faiq 18 Nov): papan berganti tempat sesuai cerita; kursi dan tamu bergambar */
 .px-hall .px-stool{width:10px!important;height:11px!important;border-radius:0!important;box-shadow:none!important;background:var(--px-kursi) center / 100% 100% no-repeat!important;image-rendering:pixelated}
 .px-hall .px-htable{background:#FFFFFF linear-gradient(#FFFFFF 0 60%,#E8554E 60% 100%)!important;box-shadow:0 0 0 1.5px #2B1D1A,inset 0 2px 0 #FFF6E0!important}
@@ -3899,28 +3911,28 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 
 <sc-if value="{{isRantai}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-height: 34px">
-<span style="font-size: 12px; color: #66655F">masuk</span>
+<div class="mm-belt">
+<span class="mm-io px-f">masuk</span>
 <sc-for list="{{chain}}" as="pt" hint-placeholder-count="2">
-<span style="font-size: 12px; color: #66655F">→</span>
-<button type="button" onClick="{{pt.tap}}" aria-label="{{pt.aria}}" style="font-family: ui-monospace, Menlo, monospace; font-size: 13px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; border-radius: 5px; padding: 5px 9px; cursor: pointer">{{pt.label}}</button>
+<span class="mm-arrow">▶</span>
+<button type="button" onClick="{{pt.tap}}" aria-label="{{pt.aria}}" class="mm-part">{{pt.label}}</button>
 </sc-for>
 <sc-if value="{{chainEmpty}}" hint-placeholder-val="{{ true }}">
-<span style="font-size: 12px; color: #66655F">→</span>
-<span style="display: block; width: 44px; height: 28px; border: 1px dashed #B9B8B2; border-radius: 5px"></span>
+<span class="mm-arrow">▶</span>
+<span class="mm-slot"></span>
 </sc-if>
-<span style="font-size: 12px; color: #66655F">→ keluar</span>
+<span class="mm-arrow">▶</span><span class="mm-io px-f">keluar</span>
 </div>
-<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-top: 1px solid #ECEBE7; padding-top: 8px">
+<div class="mm-comps">
 <sc-for list="{{comps}}" as="cp" hint-placeholder-count="4">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FAFAF8">
+<div class="mm-comp">
 <button type="button" onClick="{{cp.turn}}" aria-label="{{cp.turnAria}}" style="{{cp.knob}}">{{cp.k}}</button>
-<button type="button" onClick="{{cp.attach}}" aria-label="{{cp.attachAria}}" style="width: 100%; padding: 5px 0; border-radius: 5px; border: 1px solid #2F5BD3; background: #FFFFFF; color: #1E3F9E; font-family: ui-monospace, Menlo, monospace; font-size: 16px; cursor: pointer">{{cp.op}}</button>
+<button type="button" onClick="{{cp.attach}}" aria-label="{{cp.attachAria}}" class="mm-op px-f">{{cp.op}}</button>
 </div>
 </sc-for>
 </div>
-<div style="display: flex; flex-direction: column; gap: 2px; border-top: 1px solid #ECEBE7; padding-top: 6px">
-<div style="display: flex; font-size: 11px; color: #66655F"><span style="flex: 1">Masuk</span><span style="flex: 1">Pesanan keluar</span><span style="flex: 1">Mesinmu (uji)</span></div>
+<div class="mm-tab">
+<div class="mm-tab-h"><span style="flex: 1">Masuk</span><span style="flex: 1">Pesanan keluar</span><span style="flex: 1">Mesinmu (uji)</span></div>
 <sc-for list="{{trows2}}" as="q" hint-placeholder-count="3">
 <div style="display: flex; font-family: ui-monospace, Menlo, monospace; font-size: 13px"><span style="flex: 1">{{q.inp}}</span><span style="flex: 1">{{q.out}}</span><span style="flex: 1; color: {{q.col}}">{{q.mine}}</span></div>
 </sc-for>
@@ -7295,6 +7307,23 @@ const PX = (() => {
         R(P.k, 66, 12, 62, 25); R('#B8E5FA', 68, 14, 58, 21); R('#DDF1FB', 68, 14, 58, 6); R(P.k, 96, 14, 2, 21); R(P.k, 80, 10, 34, 6); R(P.u, 81, 11, 32, 4); R(P.w, 85, 12, 24, 1);
         spool(28, P.r, P.R); spool(146, P.r, P.R); spool(162, '#4C8FDD', P.U);
       }
+    } else if (o.kind === 'peronvend') {
+      /* peron stasiun: dua mesin minuman, garis kuning, rel */
+      R('#E4EEF6', 0, 0, W, 50); R(P.k, 0, 0, W, 4); R('#474E78', 0, 1, W, 2);
+      R(P.k, 150, 6, 36, 10); R(P.u, 151, 7, 34, 8); R(P.w, 155, 9, 18, 1); R(P.w, 155, 12, 12, 1); R(P.k, 166, 16, 2, 6);
+      const vm = (a, c, d) => { R(P.k, a, 6, 30, 30); R(c, a + 1, 7, 28, 28); R(d, a + 1, 31, 28, 4); R(P.k, a + 3, 9, 16, 17); R('#DDF1FB', a + 4, 10, 14, 15); for (let r = 0; r < 3; r++) for (let q = 0; q < 3; q++) R([P.r, P.y, P.a][(r + q) % 3], a + 5 + q * 4, 11 + r * 5, 3, 3); R(P.k, a + 21, 10, 6, 2); R(P.w, a + 21, 14, 6, 1); R(P.w, a + 21, 17, 6, 1); R(P.k, a + 21, 21, 6, 3); R('#3A3A45', a + 6, 28, 12, 2); };
+      vm(30, P.r, P.R); vm(70, P.u, P.U);
+      R(P.k, 0, 36, W, 2); R('#C0C8D6', 0, 38, W, 5); for (i = 0; i < W; i += 6) R(P.y, i, 38, 4, 2); R(P.k, 0, 43, W, 1); R('#6B5B4B', 0, 44, W, 6); for (i = 3; i < W; i += 9) R('#8A7A68', i, 45, 4, 4); R('#9AA7BA', 0, 46, W, 1);
+    } else if (o.kind === 'kios') {
+      /* kios kopi stasiun: papan harga, meja kios, mesin pengubah harga, gelas */
+      R('#FBEFD9', 0, 0, W, 50); R(P.k, 0, 0, W, 8); for (i = 0; i < W; i += 16) R(Math.floor(i / 16) % 2 ? P.w : P.g, i, 1, 16, 6);
+      R(P.k, 12, 12, 50, 22); R('#2D3250', 13, 13, 48, 20); for (let r = 0; r < 4; r++) { R('#FFF6E0', 16, 15 + r * 4, 20, 1); R(P.Y, 46, 15 + r * 4, 11, 1); }
+      R(P.k, 0, 34, W, 2); R(P.b, 0, 36, W, 14); R('#A8773F', 0, 36, W, 2); for (i = 10; i < W; i += 30) R(P.B, i, 40, 1, 10);
+      R(P.k, 84, 10, 44, 25); R('#C0C8D6', 85, 11, 42, 23); R('#9AA7BA', 85, 30, 42, 4); R(P.k, 89, 14, 22, 9); R('#9FE0B5', 90, 15, 20, 7); R('#2F7A36', 92, 18, 10, 1);
+      R(P.k, 115, 14, 8, 8); R(P.y, 116, 15, 6, 6); R(P.k, 118, 15, 1, 4); R(P.k, 89, 25, 4, 3); R(P.r, 90, 26, 2, 1); R(P.k, 95, 25, 4, 3); R(P.a, 96, 26, 2, 1); R(P.k, 101, 25, 4, 3); R(P.u, 102, 26, 2, 1);
+      R(P.k, 126, 18, 14, 4); R('#C0C8D6', 127, 19, 12, 2); R(P.k, 70, 22, 14, 4); R('#C0C8D6', 70, 23, 13, 2);
+      [148, 160, 172].forEach((a, q) => { R(P.k, a, 24, 9, 10); R(P.w, a + 1, 25, 7, 8); R([P.B, P.b, '#D9B57A'][q], a + 1, 25, 7, 3); R(P.k, a + 8, 27, 3, 4); });
+      R(P.k, 30, 26, 10, 8); R(P.w, 31, 27, 8, 6); R(P.B, 31, 27, 8, 2);
     } else {
       /* kantor terminal: kalender dinding besar, jam, jendela dengan bus, meja */
       R('#E4EEF6', 0, 0, W, 50); R('#D2DEEA', 0, 30, W, 8);
@@ -12132,7 +12161,9 @@ show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(M
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Mesin Minuman'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('vending') }, PX.v2(this, v, { face: 'rina', name: 'Bu Rina', game: 'Mesin Minuman' })); }
+/* Mesin Minuman (Faiq 18 Nov): kabel = mesin minuman (di peron bila ceritanya di peron/stasiun); rantai = kios pengubah harga */
+mmLook() { const s = this.state, P = s.P || {}, t = String(P.cerita || ''); if (s.mode !== 'rumus' && P.type === 'rantai') return { view: PX.kbScene({ kind: 'kios' }), face: 'barista', role: /kantin/i.test(t) ? 'Penjaga kantin' : 'Pemilik kios' }; if (/peron|stasiun/i.test(t)) return { view: PX.kbScene({ kind: 'peronvend' }), face: 'rina', role: 'Petugas stasiun' }; return { view: PX.alView('vending'), face: 'rina', role: 'Petugas' }; }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: this.mmLook().view }, PX.v2(this, v, { face: this.mmLook().face, role: this.mmLook().role, name: 'Bu Rina', game: 'Mesin Minuman' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
