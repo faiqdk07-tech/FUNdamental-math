@@ -1504,9 +1504,9 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .ds-gun>div:nth-child(3){gap:8px!important}
 #root .px-calcbody>div[style*="repeat(6"]{grid-template-columns:repeat(4,minmax(0,1fr)) repeat(2,minmax(0,1.5fr))!important;gap:5px!important}
 /* Lapisan bersama tombol di papan game Aljabar/Geometri/Data (Faiq 18 Nov): tombol prototipe putih -> tombol krem timbul; dipilih -> oranye; utama -> hijau; label kecil -> tag kertas */
-#root .px-v2 .px-inner button[style*="border: 1px solid #DDDCD7"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]),#root .px-v2 .px-inner button[style*="border: 1px solid #ECEBE7"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]){border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 6px 6px 9px 6px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF;min-height:30px}
+#root .px-v2 .px-inner button[style*="border: 1px solid #DDDCD7"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]):not(.dr-grid button),#root .px-v2 .px-inner button[style*="border: 1px solid #ECEBE7"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]):not(.dr-grid button){border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 6px 6px 9px 6px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF;min-height:30px}
 #root .px-v2 .px-inner button[style*="border: 1px solid #DDDCD7"]:active,#root .px-v2 .px-inner button[style*="border: 1px solid #ECEBE7"]:active{transform:translateY(2px)}
-#root .px-v2 .px-inner button[style*="background: #1C1C1A"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]),#root .px-v2 .px-inner button[style*="border: 2px solid #1C1C1A"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]){border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kOrange) 5 5 7 5 fill / 6px 6px 9px 6px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#3A2410!important;text-shadow:0 1px 0 #FFD98A!important;transform:translateY(1px);min-height:30px}
+#root .px-v2 .px-inner button[style*="background: #1C1C1A"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]):not(.dr-grid button),#root .px-v2 .px-inner button[style*="border: 2px solid #1C1C1A"]:not([aria-label^="Titik"]):not(.pj button):not(.devcalc button):not(.px-calcbody button):not(.ds-gun button):not(.px-st-mart button[style*="flex-direction: column"]):not(.dr-grid button){border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kOrange) 5 5 7 5 fill / 6px 6px 9px 6px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#3A2410!important;text-shadow:0 1px 0 #FFD98A!important;transform:translateY(1px);min-height:30px}
 #root .px-v2 .px-inner button[style*="background: #2F5BD3"]:not(.px-cart button):not(.px-calcbody button){border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kGreen) 5 5 7 5 fill / 6px 6px 9px 6px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#FFFFFF!important;text-shadow:0 2px 0 #2C6A26!important;min-height:30px}
 #root .px-v2 .px-inner span[style*="background: #F0EFEB"],#root .px-v2 .px-inner span[style*="background: #F2F5FD"]{background:#FFF6E0!important;color:#2B1D1A!important;border-radius:0!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -2px 0 #E8D5B5!important}
 /* Pesanan Martabak: kartu pesanan = kotak martabak dari kardus */
@@ -1546,6 +1546,18 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .kp-graph>span[style*="background: #2F5BD3"]{width:10px!important;height:10px!important;margin-left:-5px!important;margin-bottom:-5px!important;background:#E8554E!important;box-shadow:0 0 0 2px #1A1C2C,inset 2px 2px 0 #FF9C8F!important}
 #root .kp-graph>span:not([style*="border-radius: 50%"]){color:#2B1D1A!important;font-size:11px!important;padding:0 3px}
 #root .kp-tiles>button{border-radius:0!important;box-shadow:inset 0 0 0 2px #1A1C2C,inset 4px 4px 0 rgba(255,255,255,.28),inset -4px -4px 0 rgba(0,0,0,.18)!important}
+/* Dapur Roti (gaya benda referensi): papan rencana = loyang logam berlubang datar, timbangan dapur dengan layar hijau dan bilah takar */
+#root .dr-grid{padding:5px;background:#7C879A;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #9AA7BA,inset 0 -3px 0 #5A6278,0 4px 0 rgba(26,28,44,.25);gap:3px!important}
+#root .dr-grid>button{border-radius:0!important;min-height:0!important}
+#root .dr-grid>button[style*="border: 1px solid #DDDCD7"]{border:0!important;border-image:none!important;background:#5A6278!important;box-shadow:inset 0 3px 0 #3E4552,inset 0 -1px 0 #9AA7BA!important}
+#root .dr-grid>button[style*="3px solid #C98A2B"]{box-shadow:0 0 0 3px #FFC83D,0 0 0 5px #1A1C2C!important;z-index:1;position:relative}
+#root .dr-scale{padding:8px 10px 10px!important;background:#E9E2CF;border-top:0!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 4px 0 #FFFFFF,inset 0 -5px 0 #C9BFA6,0 4px 0 rgba(26,28,44,.2)}
+#root .dr-scale>div:first-child{color:#2B1D1A!important;font-size:13px!important}
+#root .dr-scale>div>div:first-child span:last-child{padding:1px 6px 2px;background:#1A2418;color:#7CF0A6!important;box-shadow:0 0 0 2px #1A1C2C;text-shadow:0 0 5px rgba(124,240,166,.5)}
+#root .dr-scale div[role="img"]{height:14px!important;margin-top:5px!important;border-radius:0!important;background:#3E4552!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 3px 0 #2A2E38}
+#root .dr-scale div[role="img"]>span:first-child{border-radius:0!important}
+#root .dr-scale div[role="img"]>span:first-child[style*="#85A5E8"]{background:#5DB848!important;box-shadow:inset 0 3px 0 #A4E27A,inset 0 -3px 0 #2C6A26}
+#root .dr-scale div[role="img"]>span:last-child{border-left:3px solid #E8554E!important;top:-5px!important;bottom:-5px!important}
 </style>
 </head>
 <body>
@@ -2146,7 +2158,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{isProd}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; gap: 4px">
 <div style="writing-mode: vertical-rl; transform: rotate(180deg); font-size: 10px; color: #66655F; text-align: center">{{nameB}} ↑</div>
-<div style="flex: 1; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 2px">
+<div class="dr-grid" style="flex: 1; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 2px">
 <sc-for list="{{grid}}" as="gd" hint-placeholder-count="100">
 <button type="button" onClick="{{gd.tap}}" aria-label="{{gd.aria}}" style="{{gd.style}}"></button>
 </sc-for>
@@ -2154,7 +2166,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 <div style="font-size: 10px; color: #66655F; text-align: right">{{nameA}} → (0–9)</div>
 <sc-if value="{{hasScale}}" hint-placeholder-val="{{ true }}">
-<div style="display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #ECEBE7; padding-top: 6px">
+<div class="dr-scale" style="display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #ECEBE7; padding-top: 6px">
 <div style="font-size: 11px; color: #66655F">Timbangan dapur</div>
 <sc-for list="{{scales}}" as="sc" hint-placeholder-count="2">
 <div>
