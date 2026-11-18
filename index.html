@@ -1113,6 +1113,12 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
+/* Rak Timbangan: beban lebih besar dan rata, angka huruf pixel putih bergaris tepi di tengah badan beban */
+.px-gudang .px-rack{gap:5px!important;padding:10px 2px 4px!important;min-height:48px}
+.px-gudang .px-rack>button{max-width:34px!important;width:100%!important;height:34px!important;padding:9px 0 0!important;font:400 16px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;color:#FFFFFF!important;text-shadow:1px 0 0 #1A1C2C,-1px 0 0 #1A1C2C,0 1px 0 #1A1C2C,0 -1px 0 #1A1C2C,0 2px 0 #1A1C2C!important;filter:drop-shadow(0 3px 0 rgba(26,28,44,.35))}
+.px-gudang .px-rack>button[style*="balon"]{height:44px!important;padding:0 0 14px!important}
+.px-gudang .px-rack>button[style*="--px-tb_"],.px-gudang .px-rack>button[style*="--px-kardus"],.px-gudang .px-rack>button[style*="--px-hadiah"]{padding:12px 0 0!important}
+.px-gudang .px-shelf>div:first-child>span{font-size:14px!important}
 /* Timbangan (Faiq 18 Nov, gaya benda referensi): batang dan piringan kuningan bersisi tebal, tali kuningan, layar penunjuk menyala, tombol timbul */
 .px-gudang .px-beam{height:14px!important;background:#E0B040!important;border:3px solid #1A1C2C!important;box-shadow:inset 0 3px 0 #FFE680,inset 0 -4px 0 #A87A18!important}
 .px-gudang .px-drop{border:0!important}
@@ -1120,19 +1126,20 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-gudang .px-pan::before{bottom:13px!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='100' viewBox='0 0 120 100' preserveAspectRatio='none'%3E%3Cpath d='M60 2 L6 86 M60 2 L114 86' stroke='%231A1C2C' stroke-width='4' fill='none'/%3E%3Cpath d='M60 2 L6 86 M60 2 L114 86' stroke='%23E0B040' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat!important}
 .px-gudang .px-pan::after{width:10px!important;height:10px!important;margin-left:-5px!important;top:-6px!important;background:#E0B040!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 2px 0 #FFE680!important}
 .px-gudang .px-sign{border:0!important;border-image:none!important;padding:3px 12px 5px!important;background:#1A2418 linear-gradient(115deg,transparent 0 62%,rgba(255,255,255,.14) 62% 70%,transparent 70%)!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #0C120B,0 4px 0 rgba(26,28,44,.35)!important;color:#FFC83D!important;text-shadow:0 0 6px rgba(255,200,61,.55)}
-.px-gudang .px-shelf>div:last-child{flex-wrap:nowrap!important;gap:4px!important}
+.px-gudang .px-shelf>div:last-child{flex-wrap:wrap!important;gap:6px 5px!important}
+.px-gudang .px-shelf>div:last-child>span{width:100%;margin:0!important;font-size:13px!important}
 .px-gudang .px-shelf>div:last-child .tb-key{flex:1 1 0}
 .px-gudang .px-shelf{background:#5A6278!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 5px 0 #7C879A,inset 0 -5px 0 #3E4552!important}
 .px-gudang .px-plank{background:#C99A5B!important;border-top:3px solid #1A1C2C!important;border-bottom:3px solid #1A1C2C!important;box-shadow:inset 0 2px 0 #E8C58C,inset 0 -2px 0 #8A5A32!important}
-.px-screen .tb-key{height:36px;padding:0 4px 6px;min-width:0;border:10px solid transparent;border-bottom-width:13px;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 13px 10px;image-rendering:pixelated;background:none;border-radius:0;color:#2B1D1A;font-size:14px;text-shadow:0 1px 0 #FFFFFF;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
-.px-screen .tb-key:active{transform:translateY(3px);border-bottom-width:10px;height:33px}
+.px-screen .tb-key{height:38px;padding:0 4px;min-width:0;line-height:1;border:10px solid transparent;border-bottom-width:13px;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 13px 10px;image-rendering:pixelated;background:none;border-radius:0;color:#2B1D1A;font-size:14px;text-shadow:0 1px 0 #FFFFFF;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+.px-screen .tb-key:active{transform:translateY(3px);border-bottom-width:10px;height:35px}
 .tb-count{margin-left:auto;padding:4px 10px 5px;font-size:13px;background:#1A2418;color:#7CF0A6;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #0C120B;text-shadow:0 0 5px rgba(124,240,166,.5)}
 /* Kasir Kilat (Faiq 18 Nov, gaya benda referensi): mesin kasir logam 3D, layar hijau menyala, tombol krem timbul, struk kertas zig-zag, nampan logam, laci bersekat */
 .px-shop .px-calc{width:100%;max-width:350px;align-self:center;margin:0 auto;padding:2px 2px 4px!important;border:16px solid transparent!important;border-bottom-width:18px!important;border-image:var(--px-cBody) 8 8 9 8 fill / 16px 16px 18px 16px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important}
 .px-shop .px-calc>div:first-child>span:first-child{color:#DDE2EC!important;font-size:13px!important;text-shadow:0 2px 0 #1A1C2C}
 .px-shop .px-calc>div:first-child>span:nth-child(2){min-width:96px!important;padding:5px 10px 6px!important;background:#0F2418 linear-gradient(115deg,transparent 0 60%,rgba(255,255,255,.16) 60% 68%,transparent 68%)!important;color:#7CF0A6!important;font:700 22px/1 ui-monospace,Menlo,monospace!important;text-shadow:0 0 6px rgba(124,240,166,.6);box-shadow:0 0 0 3px #1A1C2C,inset 0 4px 0 #06120B!important}
 .px-shop .px-calc>div[style*="grid-template-columns"]{gap:5px!important}
-.px-v2.px-shop .px-calc button[aria-label],.px-shop .px-calc button[aria-label]{min-height:0!important;height:40px;padding:0 0 6px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 14px 10px!important;border-radius:0!important;background:none!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF!important;font:700 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;box-shadow:none!important;display:flex;align-items:center;justify-content:center}
+.px-v2.px-shop .px-calc button[aria-label],.px-shop .px-calc button[aria-label]{min-height:0!important;height:40px;padding:0 0 1px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 14px 10px!important;border-radius:0!important;background:none!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF!important;font:700 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;box-shadow:none!important;display:flex;align-items:center;justify-content:center}
 .px-shop .px-calc button[aria-label]:active{transform:translateY(3px);border-bottom-width:11px!important;height:37px}
 .px-v2.px-shop .px-calc button[aria-label="Hapus"],.px-shop .px-calc button[aria-label="Hapus"]{border-image-source:var(--px-kRed)!important;color:#FFFFFF!important;text-shadow:0 2px 0 #8E2E18!important}
 .px-v2.px-shop .px-calc button[aria-label="Tanda minus"],.px-shop .px-calc button[aria-label="Tanda minus"]{border-image-source:var(--px-kOrange)!important}
@@ -1156,8 +1163,8 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2 .pj>button[style*="display: flex"] span:first-child{font-size:12px!important;color:#3D4A35!important;text-align:left!important}
 .px-v2 .pj>button[style*="display: flex"] span:last-child{align-self:flex-end;min-width:0!important;padding:0!important;background:none!important;box-shadow:none!important;color:#1F2A1C!important;font:700 26px/1 ui-monospace,Menlo,monospace!important;letter-spacing:2px;text-align:right!important;text-shadow:2px 2px 0 rgba(31,42,28,.2)}
 .px-v2 .pj>div[style*="grid-template-columns"]{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
-.px-v2 .pj button[aria-label],.px-screen .pj-cek{min-height:0!important;height:42px;padding:0 0 6px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kDark) 5 5 7 5 fill / 10px 10px 14px 10px!important;image-rendering:pixelated;border-radius:0!important;background:none!important;color:#FFFFFF!important;text-shadow:0 2px 0 #14151B!important;font:700 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;box-shadow:none!important;clip-path:none!important;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:0}
-.px-v2 .pj button[aria-label]>*,.px-screen .pj-cek>*{margin-top:-8px}
+.px-v2 .pj button[aria-label],.px-screen .pj-cek{min-height:0!important;height:42px;padding:0!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kDark) 5 5 7 5 fill / 10px 10px 14px 10px!important;image-rendering:pixelated;border-radius:0!important;background:none!important;color:#FFFFFF!important;text-shadow:0 2px 0 #14151B!important;font:700 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;box-shadow:none!important;clip-path:none!important;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:0}
+.px-v2 .pj button[aria-label]>*,.px-screen .pj-cek>*{margin-top:-3px}
 .px-v2 .pj button[aria-label]:active,.px-screen .pj-cek:active{transform:translateY(3px);border-bottom-width:11px!important;height:39px}
 .px-v2 .pj button[aria-label="Hapus"]{border-image-source:var(--px-kRed)!important;text-shadow:0 2px 0 #8E2E18!important}
 .px-screen .pj-cek{border-image-source:var(--px-kOrange)!important;color:#3A2410!important;text-shadow:0 1px 0 #FFD98A!important;font-size:19px!important}
