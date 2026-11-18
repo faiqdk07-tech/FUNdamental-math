@@ -1415,6 +1415,23 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 .bp-board{position:relative;background:#FFFFFF;box-shadow:0 0 0 3px #1A1C2C,inset 0 0 0 6px #C0C8D6,inset 0 0 0 8px #7C879A,0 5px 0 rgba(26,28,44,.25);padding:14px 14px 10px!important;margin-bottom:10px}
 .bp-board::after{content:"";position:absolute;left:24%;right:24%;bottom:-10px;height:8px;background:#C0C8D6;box-shadow:0 0 0 3px #1A1C2C,inset 0 2px 0 #E8EEF4}
 #root .px-loyang{background:#F7D774!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #E09A4A!important;color:#5E3B20!important}
+/* Racik Resep (gaya benda referensi): kartu resep kertas, bahan bergambar, tombol takar timbul, kartu rasa, kupon tiket berlubang, struk zig-zag */
+.rr-card{background:#FFFDF6;box-shadow:0 0 0 3px #1A1C2C,inset 0 6px 0 #E8554E,inset 0 9px 0 #1A1C2C,inset 0 -4px 0 #E8E2D4,0 5px 0 rgba(26,28,44,.25);padding-top:14px!important}
+.rr-card>button{border:0!important;border-image:none!important;background:transparent!important;border-bottom:2px dashed #E8D5B5!important;min-height:0!important}
+.rr-card>button[style*="fGold"]{background:#FFF0B8!important;box-shadow:inset 0 0 0 3px #FFC83D!important;border-bottom-color:transparent!important}
+.rr-card>button .px-f{font-size:14px!important}
+.rr-card>button *{color:#2B1D1A!important;text-shadow:none!important}
+.rr-padbox{background:#FFF6E0;box-shadow:0 0 0 3px #1A1C2C,inset 0 -4px 0 #E8D5B5,0 4px 0 rgba(26,28,44,.2)}
+.rr-pad{gap:4px!important}
+#root .rr-pad>button{height:38px!important;min-height:0!important;padding:0!important;border:8px solid transparent!important;border-bottom-width:12px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 8px 8px 12px 8px!important;background:none!important;box-shadow:none!important;border-radius:0!important;color:#2B1D1A!important;font:400 16px/1 "Jersey 15",Inter,sans-serif!important;font-size-adjust:.56!important;display:flex;align-items:center;justify-content:center}
+#root .rr-pad>button[style*="#B9B8B2"],#root .rr-pad>button[style*="opacity"],#root .rr-pad>button:disabled{opacity:.45}
+#root .rr-pad>button:active{transform:translateY(3px)}
+.rr-taste{background:#FFFDF6;box-shadow:0 0 0 3px #1A1C2C,inset 0 -4px 0 #E8E2D4,0 4px 0 rgba(26,28,44,.2);padding:6px 4px 6px!important}
+.rr-taste .px-f{font-size:13px!important;color:#2B1D1A!important}
+#root .rr-coupons>button{position:relative;border:0!important;padding:10px 4px 10px!important;font-size:14px!important;color:#5E1F14!important;background:#FFE38A radial-gradient(circle at 0 50%,#E6F0DC 0 6px,transparent 6.5px) 0 0 / 100% 100% no-repeat,#FFE38A!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 5px 0 #E8554E,inset 0 -4px 0 #E3A81C,0 4px 0 rgba(26,28,44,.25)!important;-webkit-mask:radial-gradient(circle 6px at 0 50%,transparent 98%,#000) left / 51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,transparent 98%,#000) right / 51% 100% no-repeat;mask:radial-gradient(circle 6px at 0 50%,transparent 98%,#000) left / 51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,transparent 98%,#000) right / 51% 100% no-repeat}
+#root .rr-coupons>button[style*="opacity"]{filter:grayscale(1);opacity:.55}
+.px-kedaiteh .px-receipt{position:relative;background:#FFFFFF repeating-linear-gradient(#FFFFFF 0 22px,#EEF1F5 22px 23px)!important;box-shadow:-3px 0 0 #1A1C2C,3px 0 0 #1A1C2C,0 -3px 0 #1A1C2C!important;margin-bottom:12px!important;border:0!important}
+.px-kedaiteh .px-receipt::after{content:"";position:absolute;left:-3px;right:-3px;bottom:-10px;height:10px;background:linear-gradient(135deg,#FFFFFF 5px,transparent 0) 0 0 / 10px 10px,linear-gradient(-135deg,#FFFFFF 5px,transparent 0) 0 0 / 10px 10px;filter:drop-shadow(0 2px 0 #1A1C2C)}
 </style>
 </head>
 <body>
@@ -5075,7 +5092,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{showPlay}}" hint-placeholder-val="{{ true }}">
 <div class="px-view" style="background-image: url('{{pxView}}')"></div>
 <sc-if value="{{isResep}}" hint-placeholder-val="{{ true }}">
-<div class="px-fw" style="padding: 4px 4px 6px; display: flex; flex-direction: column; gap: 6px">
+<div class="rr-card" style="padding: 4px 4px 6px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: grid; grid-template-columns: 70px minmax(0, 1fr) minmax(0, 1fr); gap: 6px; padding: 0 8px; font-size: 12px; color: #4B4B57"><span></span><span class="px-f">{{baseTitle}}</span><span class="px-f">{{curTitle}}</span></div>
 <sc-for list="{{ingr}}" as="g" hint-placeholder-count="3">
 <button type="button" onClick="{{g.sel}}" aria-label="{{g.aria}}" style="{{g.rowStyle}}">
@@ -5086,21 +5103,21 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-for>
 </div>
 <sc-if value="{{hasPad}}" hint-placeholder-val="{{ true }}">
-<div class="px-fw" style="display: flex; flex-direction: column; gap: 6px; padding: 2px 6px 5px">
+<div class="rr-padbox" style="display: flex; flex-direction: column; gap: 6px; padding: 2px 6px 5px">
 <span class="px-f" style="font-size: 13px">{{padLabel}}</span>
-<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{pad}}" as="q" hint-placeholder-count="6"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
+<div class="rr-pad" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{pad}}" as="q" hint-placeholder-count="6"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div>
 </sc-if>
 <sc-if value="{{showTaste}}" hint-placeholder-val="{{ true }}">
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><sc-for list="{{taste}}" as="t" hint-placeholder-count="3"><div class="px-fw" style="padding: 1px 6px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px"><img alt="" src="{{px.cangkir}}" width="30" height="24"><div class="px-f" style="font-size: 12px; color: #4B4B57">{{t.label}}</div><div style="font-size: 14px; font-weight: 700; color: {{t.color}}">{{t.val}}</div></div></sc-for></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><sc-for list="{{taste}}" as="t" hint-placeholder-count="3"><div class="rr-taste" style="padding: 1px 6px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px"><img alt="" src="{{px.cangkir}}" width="30" height="24"><div class="px-f" style="font-size: 12px; color: #4B4B57">{{t.label}}</div><div style="font-size: 14px; font-weight: 700; color: {{t.color}}">{{t.val}}</div></div></sc-for></div>
 </sc-if>
 </sc-if>
 <sc-if value="{{isKupon}}" hint-placeholder-val="{{ false }}"><div class="px-receipt"><sc-for list="{{receipt}}" as="r" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; font-size: 14px; font-family: ui-monospace, Menlo, monospace"><span>{{r.label}}</span><span>{{r.val}}</span></div></sc-for></div>
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><sc-for list="{{coupons}}" as="c" hint-placeholder-count="3"><button type="button" onClick="{{c.tap}}" style="{{c.style}}">{{c.label}}</button></sc-for></div>
+<div class="rr-coupons" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px"><sc-for list="{{coupons}}" as="c" hint-placeholder-count="3"><button type="button" onClick="{{c.tap}}" style="{{c.style}}">{{c.label}}</button></sc-for></div>
 </sc-if>
 <sc-if value="{{isTumpuk}}" hint-placeholder-val="{{ false }}"><div class="px-receipt"><sc-for list="{{receipt}}" as="r" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; font-size: 14px; font-family: ui-monospace, Menlo, monospace"><span>{{r.label}}</span><span>{{r.val}}</span></div></sc-for></div></sc-if>
 <sc-if value="{{showPicker}}" hint-placeholder-val="{{ false }}"><div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px"><sc-for list="{{nums}}" as="n" hint-placeholder-count="9"><button type="button" onClick="{{n.tap}}" style="{{n.style}}">{{n.label}}</button></sc-for></div></sc-if>
-<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-fw px-calc" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
+<sc-if value="{{hasKeypad}}" hint-placeholder-val="{{ false }}"><div class="px-calc devcalc" style="padding: 2px 4px 4px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">Total diskon</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div></sc-if>
@@ -6700,6 +6717,10 @@ const PX = (() => {
   SPR.tb_keranjang = ['..kkk.kkk.kkk.', '.kgggkgggkgggk', '.kghgkghgkghgk', 'kkkkkkkkkkkkkk', 'kbtbtbtbtbtbtk', 'ktbtbtbtbtbtbk', 'kbtbtbtbtbtbtk', '.kkkkkkkkkkkk.'];
   SPR.tb_kue = ['kkkkkkkkkkkk', 'kwwwwppwwwwk', 'kkkkkppkkkkk', 'kwwwwppwwwwk', 'kwwwwppwwwwk', 'kppppppppppk', 'kwwwwppwwwwk', 'kwwwwppwwwwk', 'kkkkkkkkkkkk'];
   SPR.tb_buku = ['.kkkkkkkkkk.', '.krkukykakk.', 'kkkkkkkkkkkk', 'kttttttttttk', 'kttTTTTTTttk', 'kttttttttttk', 'kttttttttttk', 'kkkkkkkkkkkk'];
+  /* Racik Resep: sendok teh, kubus gula, gelas air */
+  SPR.rr_teh = ['.kkkk.......', 'kBbbBk......', 'kbBbbkkkkkkk', 'kbbBbkEEEEEk', '.kkkk.kkkkkk'];
+  SPR.rr_gula = ['kkkkkkk', 'kwwwwEk', 'kwEwwEk', 'kwwwwEk', 'kwwEwEk', 'kEEEEEk', 'kkkkkkk'];
+  SPR.rr_air = ['kkkkkkk', 'kEwwwEk', 'kEwwwEk', 'ksssssk', 'kswsssk', 'ksssssk', 'ksssUsk', '.kkkkk.'];
   SPR.wati = tokoh(['.kkkkkkkkkk.', 'kTTTTTTTTTTk', '.kkkkkkkkkk.'], 'c', 'b');
   SPR.mira = tokoh(['..kkkkkkkk..', '..kwwwwwwk..', '..kkkkkkkk..'], 'w', 'e');
   SPR.kurir = tokoh(['...kkkkkk...', '..kooooook..', '.kooooooookk'], 'o', 'n');
@@ -6741,7 +6762,7 @@ const PX = (() => {
   ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
   /* Tata Barisan: kursi berwarna sesuai blok (biru, oranye, hijau, ungu) */
   [['kursiG', 'h', 'g', 'G'], ['kursiH', 'c', 'a', 'A'], ['kursiV', 'x', 'v', 'V']].forEach(q => { SPR[q[0]] = SPR.kursi.map(r => r.replace(/s/g, q[1]).replace(/u/g, q[2]).replace(/U/g, q[3])); U[q[0]] = uri(q[0]); css(q[0], U[q[0]]); });
-  ['tb_karung', 'tb_semen', 'tb_pupuk', 'tb_galon', 'tb_panci', 'tb_keranjang', 'tb_kue', 'tb_buku', 'hadiah'].forEach(n => css(n, U[n]));
+  ['tb_karung', 'tb_semen', 'tb_pupuk', 'tb_galon', 'tb_panci', 'tb_keranjang', 'tb_kue', 'tb_buku', 'hadiah', 'rr_teh', 'rr_gula', 'rr_air'].forEach(n => css(n, U[n]));
   /* Benda bergaya referensi Faiq (18 Nov): garis tepi biru tua tebal, sisi depan terlihat (tebal 3D), bayangan dan kilau berlapis. Dipakai sebagai bingkai 9-potong. */
   {
     const O = '#1A1C2C';
@@ -14143,7 +14164,7 @@ setP({ cur: o }, isTut && s.tut === 1 ? { tut: 2 } : {});
 };
 const sk = s.ing || 't';
 const ICOL = { t: ['#8A5A32', '#D9C3AE'], g: ['#FFFFFF', '#F1ECE2'], a: ['#4C8FDD', '#CFE6FA'] };
-const ishape = (k, pale) => 'display: inline-block; box-sizing: border-box; border: 2px solid ' + (pale ? 'rgba(43, 29, 26, .3)' : '#2B1D1A') + '; ' + (k === 't' ? 'width: 9px; height: 9px; border-radius: 0 6px 0 6px' : k === 'g' ? 'width: 9px; height: 9px; box-shadow: inset -2px -2px 0 rgba(0, 0, 0, .12)' : 'width: 8px; height: 12px; box-shadow: inset 0 3px 0 rgba(255, 255, 255, .6)') + '; background: ' + ICOL[k][pale ? 1 : 0];
+const ishape = (k, pale) => 'display: inline-block; image-rendering: pixelated; ' + (k === 't' ? 'width: 22px; height: 10px' : k === 'g' ? 'width: 12px; height: 12px' : 'width: 11px; height: 13px') + '; background: var(--px-' + ({ t: 'rr_teh', g: 'rr_gula', a: 'rr_air' })[k] + ') center / 100% 100% no-repeat' + (pale ? '; opacity: .42' : '');
 const icons = (k, n, pale) => Array.from({ length: Math.min(n, 24) }, () => ishape(k, pale));
 const NM = { t: 'Teh (sdk)', g: 'Gula (sdk)', a: 'Air (gelas)' };
 const baseO = isLab ? null : P.base;
