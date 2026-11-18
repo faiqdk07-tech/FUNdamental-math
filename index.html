@@ -1531,6 +1531,21 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .ao-radius button>span:last-child{font-size:10.5px!important;color:#2B1D1A!important}
 #root .ao-radius button>span:nth-child(2){width:4px!important;background:#FFFFFF!important;box-shadow:0 0 0 1.5px #1A1C2C}
 #root .ao-radius button>span:first-child>span{background:#2F7A36!important;box-shadow:0 0 0 2px #1A1C2C;border-radius:0!important;width:16px!important;height:16px!important;line-height:16px!important;font-size:10px!important}
+/* Kebun & Lintasan (gaya benda referensi): petak tanah berpagar bambu, mistar kuning, kertas grafik roket, ubin bertepi */
+#root .kp-plotbox>div[role="img"]{background-color:#8A5A32!important;border-left-color:#D9B57A!important;border-right-color:#D9B57A!important;border-bottom-color:#D9B57A!important;border-width:5px!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 0 0 2px #1A1C2C,0 5px 0 rgba(26,28,44,.25)}
+#root .kp-plotbox>div[role="img"]:not([style*="border-top: 6px"]){border-top-color:#D9B57A!important}
+#root .kp-plotbox>div[role="img"][style*="border-top: 6px"]{border-top:10px solid #9AA7BA!important}
+#root .kp-plotbox>span{color:#5E3B20!important;font-size:13px!important}
+#root .kp-ruler{border-top:0!important;margin-top:4px!important}
+#root .kp-ruler::before{content:"";position:absolute;left:-10px;right:-10px;top:-4px;height:14px;background:#FFD23F;box-shadow:0 0 0 2px #1A1C2C,inset 0 3px 0 #FFE680,inset 0 -3px 0 #E3A81C}
+#root .kp-ruler>button{position:relative;z-index:1}
+#root .kp-ruler>button>span:first-child{background:#1A1C2C!important;height:9px!important;margin-top:-3px!important}
+#root .kp-ruler>button>span:last-child{margin-top:4px;font-size:12px!important;color:#2B1D1A!important}
+#root .kp-ruler>span[style*="border-radius: 50%"]{z-index:2;top:-16px!important;width:14px!important;height:14px!important;margin-left:-7px!important;border-radius:0!important;background:#E8554E!important;border:0!important;box-shadow:0 0 0 2px #1A1C2C,inset 2px 2px 0 #FF9C8F!important;clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%)}
+#root .kp-graph{border:0!important;background:linear-gradient(rgba(76,143,221,.35) 1px,transparent 1px) 0 0 / 13px 13px,linear-gradient(90deg,rgba(76,143,221,.35) 1px,transparent 1px) 0 0 / 13px 13px,#FFFDF6!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 -6px 0 #57A843,inset 0 -8px 0 #2F7A36,0 4px 0 rgba(26,28,44,.2)}
+#root .kp-graph>span[style*="background: #2F5BD3"]{width:10px!important;height:10px!important;margin-left:-5px!important;margin-bottom:-5px!important;background:#E8554E!important;box-shadow:0 0 0 2px #1A1C2C,inset 2px 2px 0 #FF9C8F!important}
+#root .kp-graph>span:not([style*="border-radius: 50%"]){color:#2B1D1A!important;font-size:11px!important;padding:0 3px}
+#root .kp-tiles>button{border-radius:0!important;box-shadow:inset 0 0 0 2px #1A1C2C,inset 4px 4px 0 rgba(255,255,255,.28),inset -4px -4px 0 rgba(0,0,0,.18)!important}
 </style>
 </head>
 <body>
@@ -3246,7 +3261,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isPagar}}" hint-placeholder-val="{{ true }}">
-<div style="min-height: 150px; display: flex; align-items: center; justify-content: center">
+<div class="kp-plotbox" style="min-height: 150px; display: flex; align-items: center; justify-content: center">
 <sc-if value="{{hasPlot}}" hint-placeholder-val="{{ true }}">
 <div role="img" aria-label="{{plotAria}}" style="{{plotStyle}}"></div>
 </sc-if>
@@ -3255,7 +3270,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 </div>
 <div style="font-size: 11px; color: #66655F">{{rulerLabel}}</div>
-<div style="position: relative; height: 40px; margin: 0 12px; border-top: 3px solid #8C6A3E">
+<div class="kp-ruler" style="position: relative; height: 40px; margin: 0 12px; border-top: 3px solid #8C6A3E">
 <sc-for list="{{ruler}}" as="ru" hint-placeholder-count="9">
 <button type="button" onClick="{{ru.tap}}" aria-label="{{ru.aria}}" style="{{ru.style}}"><span style="display: block; width: 2px; height: 8px; margin: 0 auto 2px; background: #8C6A3E"></span><span style="display: block; font-size: 11px; color: #444441">{{ru.label}}</span></button>
 </sc-for>
@@ -3266,7 +3281,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 
 <sc-if value="{{isLempar}}" hint-placeholder-val="{{ false }}">
-<div style="position: relative; height: 130px; margin-left: 4px; border-left: 1px solid #B9B8B2; border-bottom: 1px solid #B9B8B2" aria-label="Grafik tinggi roket terhadap waktu">
+<div class="kp-graph" style="position: relative; height: 130px; margin-left: 4px; border-left: 1px solid #B9B8B2; border-bottom: 1px solid #B9B8B2" aria-label="Grafik tinggi roket terhadap waktu">
 <sc-for list="{{dots}}" as="dt" hint-placeholder-count="3">
 <span style="position: absolute; left: {{dt.x}}%; bottom: {{dt.y}}%; width: 8px; height: 8px; margin-left: -4px; margin-bottom: -4px; border-radius: 50%; background: #2F5BD3; display: block"></span>
 </sc-for>
@@ -3278,7 +3293,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 
 <sc-if value="{{isUbin}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; gap: 10px; align-items: flex-start">
-<div style="position: relative; width: 132px; height: 132px; flex: none">
+<div class="kp-tiles" style="position: relative; width: 132px; height: 132px; flex: none">
 <sc-for list="{{pieces}}" as="pc" hint-placeholder-count="2">
 <button type="button" onClick="{{pc.tap}}" aria-label="{{pc.aria}}" style="{{pc.style}}">{{pc.label}}</button>
 </sc-for>
