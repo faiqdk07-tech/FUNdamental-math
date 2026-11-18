@@ -1152,6 +1152,12 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 .px-gudang .px-pan::before{top:0!important;bottom:-7px;height:auto!important;left:0!important;right:0;width:auto!important;margin:0!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='100' viewBox='0 0 120 100' preserveAspectRatio='none'%3E%3Cpath d='M3 100 L60 1 L117 100' fill='none' stroke='%232B1D1A' stroke-width='3' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M3 100 L60 1 L117 100' fill='none' stroke='%239AA7BA' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat!important;z-index:-1}
 .px-gudang .px-pan::after{content:"";display:block!important;position:absolute;left:50%;top:-4px;width:8px;height:8px;margin-left:-4px;background:#C9D3E0;box-shadow:0 0 0 2px #2B1D1A;right:auto}
 .px-gudang .px-drop{top:44px;height:104px}
+/* Tata Barisan: alas sesuai benda (meja untuk kotak nasi, lapangan untuk siswa), latar gedung serbaguna lebih hidup */
+.px-table-board{align-self:center;padding:12px;background:#E8C58C;box-shadow:0 0 0 3px #2B1D1A,inset 0 4px 0 #F4DDB2,inset 0 -5px 0 #C99A5B,0 8px 0 rgba(43,29,26,.2);margin:6px auto 0;min-width:120px;min-height:80px;display:flex;align-items:center;justify-content:center}
+.px-field-board{align-self:center;padding:12px;background:#75BF4C repeating-linear-gradient(90deg,#6FB948 0 12px,#78C24E 12px 24px);box-shadow:0 0 0 3px #2B1D1A,inset 0 0 0 3px #FFFFFF,0 8px 0 rgba(43,29,26,.2);margin:6px auto 0;min-width:120px;min-height:80px;display:flex;align-items:center;justify-content:center}
+.px-aula .px-gscroll,.px-aula.px-screen{background:#F7E8C6 var(--px-bunting) 0 0 / 160px 40px repeat-x!important}
+.px-aula .px-wall{background:linear-gradient(transparent 0 40px,rgba(201,154,91,.10) 40px)!important}
+.px-aula .px-floor{background:#C99A5B repeating-linear-gradient(90deg,#B98448 0 2px,#C99A5B 2px 40px)!important}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -6305,6 +6311,8 @@ const PX = (() => {
     bendera: ['kk.....', 'krrrrk.', 'krqrrrk', 'krrrrk.', 'kkkkk..', 'k......', 'k......', 'k......', 'k......'],
     panah: ['kk....', 'kwk...', 'kwwk..', 'kwwwk.', 'kwwwwk', 'kwwwk.', 'kwwk..', 'kwk...', 'kk....'],
     paku: ['..kkkkk..', '.kqqrrrk.', '.kqwrrRk.', '.krrrrRk.', '..kRRRk..', '...krk...', '..kqrRk..', '.kkkkkkk.', '....e....', '....e....', '....k....'],
+    tumpeng: ['....kk....', '...kYYk...', '...kYyk...', '..kYyyyk..', '..kyryyk..', '.kYyyyyok.', '.kyyyyyyok', 'kaaaaaaaak', 'kAAAAAAAAk', '.kkkkkkkk.'],
+    nasibox: ['kkkkkkkkkk', 'kwwwwwwwEk', 'kwEEEEEEEk', 'kkkkkkkkkk', 'kwwwwwwwEk', 'kwwwrwwwEk', 'kwwwwwwwEk', 'kEEEEEEEEk', 'kkkkkkkkkk'],
     seru: ['..kkkkk..', '.kyyyyyk.', 'kyykkkyyk', 'kyykkkyyk', 'kyykkkyyk', 'kyyykyyyk', 'kyyyyyyyk', 'kyyykyyyk', '.kyyyyyk.', '..kkykk..', '....k....'],
     orang: ['...kkkkkk...', '..kBBBBBBk..', '.kBBBBBBBBk.', '.kBffffffBk.', '.kfkffffkfk.', '.kffffffffk.', '..kffppffk..', '...kkkkkk...', '..krrrrrrk..', '.kfrrrrrrfk.', '.kfrrrrrrfk.', '..krrrrrrk..', '..kUUkkUUk..', '..kUUkkUUk..', '..kkk..kkk..'],
     fPanel: ['..kkkkkk..', '.kTTTTTTk.', 'kTTttttbbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTttttttbk', 'kTbbbbbbbk', '.kBBBBBBk.', '..kkkkkk..'],
@@ -6438,7 +6446,7 @@ const PX = (() => {
   }
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
-  ['semak', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
+  ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
   css('bunting', (() => { const t = pen(80, 20, 2); t.R(P.k, 0, 2, 80, 1); [P.r, P.y, P.u, P.a].forEach((c, n) => { const x0 = n * 20 + 3; for (let j = 0; j < 9; j++) { t.R(P.k, x0 + j, 3 + j, 15 - 2 * j, 1); if (j < 8) t.R(c, x0 + j + 1, 3 + j, Math.max(0, 13 - 2 * j), 1); } }); return t.cv.toDataURL(); })());
 
   function pen(W, H, seed) {
@@ -15742,7 +15750,9 @@ if (t === 'nampan') return ['Menata nampan', ['Ketuk meteran Baris dan Kolom unt
 if (t === 'perluas') return ['Menambah kursi', ['Ketuk meteran untuk mengatur tambahan kolom dan baris.', 'Pasang kursi menunjukkan total kursi. Total yang tidak tepat memakai satu kesempatan meleset.', 'Setiap cara berbeda yang tepat tercatat.']];
 return ['Menghitung aula', ['Meteran Potong kolom dan Potong baris membagi aula menjadi blok berwarna. Nilai 0 berarti tidak dipotong.', 'Ketuk satu blok, ketik jumlah kursinya, lalu tekan Cek hitungan.', 'Setiap cek yang salah memakai satu kesempatan.']];
 }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxBoardCls: this.state.P && this.state.P.type === 'nampan' ? 'px-tray-board' : 'px-floor-board' }, PX.v2(this, v, { face: 'darto', name: 'Pak Darto', game: 'Ubin' })); }
+/* benda di papan mengikuti cerita (Faiq 18 Nov): kue, tumpeng, kotak nasi, siswa, atau kursi */
+uItem() { const P = this.state.P || {}, t = String(P.cerita || '') + ' ' + String(P.tujuan || ''); if (/tumpeng/i.test(t)) return 'tumpeng'; if (/kotak nasi/i.test(t)) return 'nasibox'; if (/siswa|berbaris|murid/i.test(t)) return 'orang'; if (/kue/i.test(t) || P.type === 'nampan') return 'kue'; return 'kursi'; }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const it = this.uItem(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxBoardCls: { kue: 'px-tray-board', tumpeng: 'px-tray-board', nasibox: 'px-table-board', orang: 'px-field-board' }[it] || 'px-floor-board' }, PX.v2(this, v, { face: 'darto', name: 'Pak Darto', game: 'Ubin' })); }
 gmRender() {
 const s = this.state, P = s.P;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -15849,8 +15859,8 @@ const rows = Math.max(1, Math.ceil(kinds.length / cols));
 const cell = Math.max(5, Math.min(22, Math.floor(300 / Math.max(cols, 1)) - 1, Math.floor(180 / rows) - 1));
 const cells = kinds.map(k => {
 const b = 'width: ' + cell + 'px; height: ' + cell + 'px; box-sizing: border-box; image-rendering: pixelated; ';
-const spr = P.type === 'nampan' ? 'kue' : 'kursi';
-if (k === 'fill') return b + (cell >= 10 ? 'background: var(--px-' + spr + ') center / 100% 100% no-repeat' : 'background: ' + (spr === 'kue' ? '#F7A8B0' : '#4C8FDD') + '; box-shadow: inset 0 0 0 1px rgba(43, 29, 26, .6)');
+const spr = this.uItem();
+if (k === 'fill') return b + (cell >= 10 ? 'background: var(--px-' + spr + ') center / ' + (spr === 'orang' ? 'contain' : '100% 100%') + ' no-repeat' : 'background: ' + ({ kue: '#F7A8B0', tumpeng: '#F2C035', nasibox: '#FFFFFF', orang: '#E8554E' }[spr] || '#4C8FDD') + '; box-shadow: inset 0 0 0 1px rgba(43, 29, 26, .6)');
 if (k === 'empty') return b + 'border: 2px dashed rgba(43, 29, 26, .4)';
 if (k === 'plan') return b + 'border: 2px dashed #E39A1C; background: rgba(255, 200, 61, .18)';
 return b + 'background: ' + COL[Number(k[1])] + '; box-shadow: inset 0 0 0 1px rgba(43, 29, 26, .55), inset 0 -2px 0 rgba(0, 0, 0, .18)';
