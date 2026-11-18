@@ -1160,6 +1160,11 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 .px-aula .px-floor{background:#C99A5B repeating-linear-gradient(90deg,#B98448 0 2px,#C99A5B 2px 40px)!important}
 /* Semua animasi dimatikan sementara (Faiq 18 Nov; animasi akan dirancang ulang). Hapus kelas fm-noanim di <html> untuk menyalakan lagi. */
 html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none!important;transition:none!important}
+/* Teks status di bilah judul (mis. "Jalur ditemukan 0/6") tidak dipotong: bila ada teks, judul dan status jadi dua baris (Faiq 18 Nov) */
+.px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)){flex-direction:column!important;align-items:flex-start!important;justify-content:center;gap:0;padding-top:1px!important;padding-bottom:2px!important}
+.px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)) b{max-width:100%!important;font-size:17px!important;line-height:1.05}
+.px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)) .px-ttl2-s{flex:none!important;justify-content:flex-start;max-width:100%}
+.px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)) .px-ttl2-s>span:last-child{white-space:normal!important;overflow:visible!important;font-size:11.5px;line-height:1.15}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -7117,7 +7122,10 @@ PX.v2 = (comp, v, o) => {
   /* Label di atas balon hanya menyebut mode (Faiq 18 Nov): tanpa nama kasus dan tanpa tingkat */
   const isTut = !!v.isTut || (st.mode === 'misi' && typeof st.tut === 'number') || !!v.tutStep && v.isTut !== false;
   const tag = isTut ? 'Pengenalan' : (st.mode === 'harian' || v.isHarian) ? 'Kasus harian ' + ((st.hi || st.hIdx || 0) + 1) : (st.mode === 'misi' || v.isGoal) ? 'Misi ' + ((st.mi || 0) + 1) : '';
-  const stTxt = v.statusLabel ? String(v.status || '') : String(v.gmStatusLine || ''), stLab = v.statusLabel ? String(v.statusLabel) : String(v.gmStatusLine || ''); const m = stTxt.match(/(\d+)\s*\/\s*(\d+)/), useH = !!m && /kesempatan/i.test(stLab);
+  const stTxt = v.statusLabel ? String(v.status || '') : String(v.gmStatusLine || ''), stLab = v.statusLabel ? String(v.statusLabel) : String(v.gmStatusLine || ''); let m = stTxt.match(/(\d+)\s*\/\s*(\d+)/), useH = !!m && /kesempatan/i.test(stLab);
+  /* bagian "Kesempatan … x / y" di teks status gabungan juga jadi hati, sisanya tetap teks (Faiq 18 Nov: teks status terpotong) */
+  const full = [v.statusLabel, v.status].filter(Boolean).join(' · ') || String(v.gmStatusLine || ''); let rest = '';
+  { const parts = full.split(/\s*·\s*/), k = parts.findIndex(x => /kesempatan[^\d]*\d+\s*\/\s*\d+/i.test(x)); if (k >= 0) { m = parts[k].match(/(\d+)\s*\/\s*(\d+)/); useH = true; rest = parts.filter((_, i) => i !== k).join(' · '); } }
   const hearts = useH ? Array.from({ length: +m[2] }, (_, i) => i < +m[1] ? 'on' : '') : [];
   const story = o.story !== undefined ? o.story : v.story, goal = o.goal !== undefined ? o.goal : v.goal, hasGoal = o.hasGoal !== undefined ? o.hasGoal : v.hasGoal; const key = String(story || '') + '|' + String(goal || '');
   if (x.key !== key) { x.key = key; x.open = false; }
@@ -7125,7 +7133,7 @@ PX.v2 = (comp, v, o) => {
   const pick = (v.gmPickItems || []).map((pk, i) => Object.assign({}, pk, { cls: (pk.done ? 'done ' : '') + (i % 2 ? 'r' : 'l') }));
   return {
     v2Face: PX.U[o.face] || PX.U.pemandu, v2Name: PX.V2ROLE[o.game] || o.name, v2Tag: tag, v2HasTag: !!tag,
-    v2Hearts: useH, v2HeartList: hearts, v2StatusTxt: useH ? '' : (v.statusLabel ? (/^status$/i.test(String(v.statusLabel)) ? String(v.status || '') : [v.statusLabel, v.status].filter(Boolean).join(' · ')) : String(v.gmStatusLine || '')),
+    v2Hearts: useH, v2HeartList: hearts, v2StatusTxt: useH ? rest : (v.statusLabel ? (/^status$/i.test(String(v.statusLabel)) ? String(v.status || '') : [v.statusLabel, v.status].filter(Boolean).join(' · ')) : String(v.gmStatusLine || '')),
     v2Pick: pick, v2LvlName: ({ F: 'Fundamental', I: 'Intermediate', E: 'Expert' })[comp.curLvl ? comp.curLvl() : ''] || '', v2GameIc: PX.gameIcon(o.game || ''),
     v2ShowTask: !needTap || x.open, v2NeedTap: needTap && !x.open, v2Wait: needTap && !x.open ? 'v2wait' : '', v2Lanjut: () => { x.open = true; comp.setState({}); },
     v2Msg: !!st.msg, v2MsgOk: st.kind === 'ok' ? 'ok' : 'warn', v2MsgTitle: st.kind === 'ok' ? 'Berhasil!' : 'Coba lagi',
