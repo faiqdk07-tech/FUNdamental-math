@@ -16809,6 +16809,18 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
 /* ===== Navigasi: tautan "Nama.dc.html" dibuka sebagai #Nama ===== */
 const TITLES = {"Main": "Beranda", "KasusBaru": "Kasus harian baru", "MiniGames": "Mini Games", "Timbangan": "Game Timbangan + lanjutan Balon (bisa dimainkan)", "Ubin": "Game Ubin (bisa dimainkan)", "KasirKilat": "Game Kasir Kilat (bisa dimainkan)", "PohonTemuan": "Pohon Temuan", "Jurnal": "Jurnal Peneliti", "CekCelah": "Cek celah", "Tantangan": "Tantangan harian", "Bengkel": "Bengkel kesalahan", "Progres": "Progres", "Pengaturan": "Pengaturan", "JadwalBus": "Game Jadwal Bus (bisa dimainkan)", "BagiPizza": "Game Bagi Pizza (bisa dimainkan)", "RacikResep": "Game Racik Resep (bisa dimainkan)", "LipatKertas": "Game Lipat Kertas (bisa dimainkan)", "DuaStruk": "Game Dua Struk (bisa dimainkan)", "MejaHajatan": "Game Meja Hajatan (bisa dimainkan)", "MartabakTopping": "Game Martabak Topping (bisa dimainkan)", "MesinMinuman": "Game Mesin Minuman (bisa dimainkan)", "ArgoOjek": "Game Argo Ojek (bisa dimainkan)", "RekapGrosir": "Game Rekap Grosir (bisa dimainkan)", "KebunPagar": "Game Kebun Pagar (bisa dimainkan)", "DapurRoti": "Game Dapur Roti (bisa dimainkan)", "RuteKurir": "Game Rute Kurir (bisa dimainkan)", "PasangLantai": "Game Pasang Lantai (bisa dimainkan)", "GudangKardus": "Game Gudang Kardus (bisa dimainkan)", "CetakSpanduk": "Game Cetak Spanduk (bisa dimainkan)", "TanggaBangunan": "Game Tangga Bangunan (bisa dimainkan)", "Pelabuhan": "Game Pelabuhan (bisa dimainkan)", "LokerOSIS": "Game Loker OSIS (bisa dimainkan)", "PentasSeni": "Game Pentas Seni (bisa dimainkan)", "UndianDoorprize": "Game Undian Doorprize (bisa dimainkan)", "RaporKelas": "Game Rapor Kelas (bisa dimainkan)", "GrafikViral": "Game Grafik Viral (bisa dimainkan)"};
 const ROOT = document.getElementById('root');
+/* Nama tampilan game (Faiq 18 Nov). Nama lama tetap dipakai sebagai kunci progres dan kode; hanya teks di layar yang diganti. */
+const GAME_DN = { 'Ubin': 'Tata Barisan', 'Jadwal Bus': 'Kapan Bareng?', 'Martabak Topping': 'Pesanan Martabak', 'Kebun Pagar': 'Kebun & Lintasan', 'Gudang Kardus': 'Isi Wadah', 'Cetak Spanduk': 'Perbesar Gambar', 'Loker OSIS': 'Pilihan OSIS' };
+const GAME_RX = Object.keys(GAME_DN).map(k => [new RegExp('(^|· |di |Main |: )' + k.replace(/[?]/g, '\\?') + '(?= ·|$|\\s*·)'), k]);
+function relabel(root) {
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  for (let n = w.nextNode(); n; n = w.nextNode()) {
+    const t = n.data; if (!t || t.length > 80) continue;
+    let u = t.trim(); if (GAME_DN[u]) { n.data = t.replace(u, GAME_DN[u]); continue; }
+    for (const [rx, k] of GAME_RX) if (rx.test(u)) { n.data = t.replace(rx, (m, a) => a + GAME_DN[k]); break; }
+  }
+  root.querySelectorAll('[aria-label]').forEach(e => { const a = e.getAttribute('aria-label'); if (GAME_DN[a]) e.setAttribute('aria-label', GAME_DN[a]); });
+}
 function show(name) {
   if (!GAMES[name]) name = 'Main';
   ROOT.innerHTML = ''; ROOT.className = '';
@@ -16817,7 +16829,8 @@ function show(name) {
   try {
     const Cls = FMP.isGame(name) ? FMP.wrap(name, GAMES[name]) : GAMES[name];
     const m = DC.mount(box, document.getElementById('tpl-' + name), Cls, {
-      onError: e => { ROOT.innerHTML = '<div id="err">Layar ' + name + ' gagal dibuka.\n' + (e && e.message || e) + '</div>'; }
+      onError: e => { ROOT.innerHTML = '<div id="err">Layar ' + name + ' gagal dibuka.\n' + (e && e.message || e) + '</div>'; },
+      onRender: () => { try { relabel(box); } catch (e) {} }
     });
     FMP.applyOpen(name, m.comp);
     PX.skin(ROOT, name);
