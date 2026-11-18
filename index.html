@@ -1440,6 +1440,50 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-desk{box-shadow:0 0 0 3px #1A1C2C,inset 0 4px 0 #A8773F,0 6px 0 #5E3B20,0 9px 0 #1A1C2C!important;margin-bottom:10px!important}
 #root .px-desk>span:first-child{gap:0!important;box-shadow:0 0 0 2px #1A1C2C,3px 3px 0 2px rgba(26,28,44,.35)}
 #root .px-desk>span:first-child>span{border:0!important;border-bottom:1px solid #D5DDE8!important;box-shadow:inset -4px 0 0 rgba(26,28,44,.08)!important}
+/* Alat jawab per game (Faiq 18 Nov): bentuk sama dengan kalkulator Meja Hajatan, alat dan warna sesuai tempat */
+.px-v2 .pj>button[style*="1px solid #1C1C1A"]{filter:drop-shadow(0 0 0 #FFC83D) drop-shadow(0 0 2px #FFC83D)}
+.px-v2 .pj>button[style*="display: flex"]>span:last-child[style]{border:0!important;border-radius:0!important}
+.px-v2 .pj.dev-cetak,.px-v2 .pj.dev-pentas{border-image-source:var(--px-pBody)!important}
+.px-v2 .pj.dev-dapur,.px-v2 .pj.dev-grosir{border-image-source:var(--px-wBody)!important}
+.px-v2 .pj.dev-kebun,.px-v2 .pj.dev-lantai,.px-v2 .pj.dev-tangga{border-image-source:var(--px-yBody)!important}
+.px-v2 .pj.dev-loker,.px-v2 .pj.dev-mesin{border-image-source:var(--px-bBody)!important}
+.px-v2 .pj.dev-mart,.px-v2 .pj.dev-undian{border-image-source:var(--px-rBody)!important}
+.px-v2 .pj.dev-pelab{border-image-source:var(--px-gBody)!important}
+.px-v2 .pj.dev-kurir{border-image-source:var(--px-oBody)!important}
+.pj.dev-dapur .pj-h,.pj.dev-grosir .pj-h,.pj.dev-kebun .pj-h,.pj.dev-lantai .pj-h,.pj.dev-tangga .pj-h{color:#2B1D1A!important;text-shadow:0 1px 0 rgba(255,255,255,.6)!important}
+.px-v2 .pj.dev-argo>button[style*="display: flex"],.px-v2 .pj.dev-pelab>button[style*="display: flex"],.px-v2 .pj.dev-grafik>button[style*="display: flex"]{background:#0C0E12 linear-gradient(115deg,transparent 0 58%,rgba(255,255,255,.14) 58% 66%,transparent 66%)!important}
+.px-v2 .pj.dev-argo>button span{color:#FF5A4E!important;text-shadow:0 0 6px rgba(255,90,78,.6)!important}
+.px-v2 .pj.dev-pelab>button span{color:#7CF0A6!important;text-shadow:0 0 6px rgba(124,240,166,.6)!important}
+.px-v2 .pj.dev-grafik>button span{color:#8CC0F5!important;text-shadow:0 0 6px rgba(140,192,245,.5)!important}
+.px-v2 .pj.dev-loker>button[style*="display: flex"],.px-v2 .pj.dev-kurir>button[style*="display: flex"]{background:#DDEBF7 linear-gradient(115deg,transparent 0 58%,rgba(255,255,255,.6) 58% 66%,transparent 66%)!important}
+.px-v2 .pj.dev-loker>button span,.px-v2 .pj.dev-kurir>button span{color:#1A2A44!important;text-shadow:none!important}
+/* Warna badan alat jawab sesuai cerita (PX.devOf) */
+.px-v2 .pj.devc-c{border-image-source:var(--px-cBody)!important}
+.px-v2 .pj.devc-y{border-image-source:var(--px-yBody)!important}
+.px-v2 .pj.devc-w{border-image-source:var(--px-wBody)!important}
+.px-v2 .pj.devc-b{border-image-source:var(--px-bBody)!important}
+.px-v2 .pj.devc-p{border-image-source:var(--px-pBody)!important}
+.px-v2 .pj.devc-r{border-image-source:var(--px-rBody)!important}
+.px-v2 .pj.devc-g{border-image-source:var(--px-gBody)!important}
+.px-v2 .pj.devc-o{border-image-source:var(--px-oBody)!important}
+.pj.devc-y .pj-h,.pj.devc-w .pj-h{color:#2B1D1A!important;text-shadow:0 1px 0 rgba(255,255,255,.6)!important}
+.pj.devc-c .pj-h,.pj.devc-b .pj-h,.pj.devc-p .pj-h,.pj.devc-r .pj-h,.pj.devc-g .pj-h,.pj.devc-o .pj-h{color:#DDE2EC!important;text-shadow:0 2px 0 #1A1C2C!important}
+/* Layar kolom jawaban alat (berlaku juga untuk kolom bertanda aria-label di game Aljabar/Geometri/Data) */
+#root .pj>button[style*="display: flex"]{flex-direction:column!important;align-items:stretch!important;gap:2px!important;min-height:0!important;padding:2px 4px 3px!important;border:16px solid transparent!important;border-image:var(--px-lcdBez) 6 / 16px!important;image-rendering:pixelated;background:#A9B79A linear-gradient(115deg,transparent 0 58%,rgba(255,255,255,.5) 58% 66%,transparent 66% 72%,rgba(255,255,255,.35) 72% 75%,transparent 75%)!important;background-clip:padding-box!important;box-shadow:none!important;border-radius:0!important;text-shadow:none!important;font-size:13px!important}
+#root .pj>button[style*="display: flex"]>span:first-child{flex:none!important;font-size:12px!important;color:#3D4A35!important;text-align:left!important;white-space:normal!important}
+#root .pj>button[style*="display: flex"]>span:last-child{align-self:flex-end!important;min-width:0!important;width:auto!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:#1F2A1C!important;font:700 24px/1 ui-monospace,Menlo,monospace!important;letter-spacing:2px;text-align:right!important;text-shadow:2px 2px 0 rgba(31,42,28,.2)!important}
+#root .pj.dev-argo>button[style*="display: flex"],#root .pj.dev-pelab>button[style*="display: flex"],#root .pj.dev-grafik>button[style*="display: flex"]{background:#0C0E12 linear-gradient(115deg,transparent 0 58%,rgba(255,255,255,.14) 58% 66%,transparent 66%)!important;background-clip:padding-box!important}
+#root .pj.dev-argo>button span{color:#FF5A4E!important;text-shadow:0 0 6px rgba(255,90,78,.6)!important}
+#root .pj.dev-pelab>button span{color:#7CF0A6!important;text-shadow:0 0 6px rgba(124,240,166,.6)!important}
+#root .pj.dev-grafik>button span{color:#8CC0F5!important;text-shadow:0 0 6px rgba(140,192,245,.5)!important}
+#root .pj.dev-loker:not(.devc-w)>button[style*="display: flex"],#root .pj.dev-kurir>button[style*="display: flex"]{background:#DDEBF7 linear-gradient(115deg,transparent 0 58%,rgba(255,255,255,.6) 58% 66%,transparent 66%)!important;background-clip:padding-box!important}
+#root .pj.dev-loker:not(.devc-w)>button span,#root .pj.dev-kurir>button span{color:#1A2A44!important;text-shadow:none!important}
+#root .pj>button[style*="1px solid #1C1C1A"],#root .pj>button[style*="2px solid #1C1C1A"]{filter:drop-shadow(0 0 0 #FFC83D) drop-shadow(0 0 2px #FFC83D)}
+#root .pj>button[style*="display: flex"]{border-width:16px!important;border-image-width:16px!important;height:auto!important;min-height:64px!important;justify-content:space-between!important}
+#root .pj>button[style*="display: flex"]>*{position:static!important}
+#root .pj.dev-argo>button[style*="display: flex"]>span:first-child{color:#FFB0A8!important;text-shadow:none!important}
+#root .pj.dev-pelab>button[style*="display: flex"]>span:first-child{color:#B8F5CF!important;text-shadow:none!important}
+#root .pj.dev-grafik>button[style*="display: flex"]>span:first-child{color:#C9DFF7!important;text-shadow:none!important}
 </style>
 </head>
 <body>
@@ -1592,7 +1636,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-argo">
+<div class="px-clip px-clip-argo pj dev-argo">
+<div class="pj-h px-f">Argometer</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -1600,8 +1645,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -1930,7 +1975,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-cetak">
+<div class="px-clip px-clip-cetak pj dev-cetak {{devCls}}">
+<div class="pj-h px-f">{{devLabel}}</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -1938,8 +1984,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -2118,7 +2164,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-dapur">
+<div class="px-clip px-clip-dapur pj dev-dapur">
+<div class="pj-h px-f">Timbangan dapur</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -2126,8 +2173,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -2511,7 +2558,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-grafik">
+<div class="px-clip px-clip-grafik pj dev-grafik">
+<div class="pj-h px-f">Laptop admin</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -2519,8 +2567,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -2693,7 +2741,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-gudang">
+<div class="px-clip px-clip-gudang pj dev-gudang {{devCls}}">
+<div class="pj-h px-f">{{devLabel}}</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -2701,8 +2750,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -3244,7 +3293,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-kebun">
+<div class="px-clip px-clip-kebun pj dev-kebun {{devCls}}">
+<div class="pj-h px-f">{{devLabel}}</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -3252,8 +3302,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -3535,7 +3585,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-loker">
+<div class="px-clip px-clip-loker pj dev-loker {{devCls}}">
+<div class="pj-h px-f">{{devLabel}}</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -3543,8 +3594,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -3765,7 +3816,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-mart">
+<div class="px-clip px-clip-mart pj dev-mart">
+<div class="pj-h px-f">Kalkulator gerobak</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.sel}}" style="{{f.style}}"><span style="flex: 1; font-size: 13px; text-align: left">{{f.label}}</span><span style="{{f.disp}}">{{f.show}}</span></button>
 </sc-for>
@@ -3773,8 +3825,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{akeys}}" as="q" hint-placeholder-count="11">
 <button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -4142,7 +4194,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-mesin">
+<div class="px-clip px-clip-mesin pj dev-mesin">
+<div class="pj-h px-f">Panel mesin</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -4150,8 +4203,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -4379,7 +4432,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-lantai">
+<div class="px-clip px-clip-lantai pj dev-lantai {{devCls}}">
+<div class="pj-h px-f">{{devLabel}}</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -4387,8 +4441,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -4561,7 +4615,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-pelab">
+<div class="px-clip px-clip-pelab pj dev-pelab">
+<div class="pj-h px-f">Layar radar</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -4569,8 +4624,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -4889,7 +4944,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-pentas">
+<div class="px-clip px-clip-pentas pj dev-pentas {{devCls}}">
+<div class="pj-h px-f">{{devLabel}}</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -4897,8 +4953,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -5300,7 +5356,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-rapor">
+<div class="px-clip px-clip-rapor pj dev-rapor">
+<div class="pj-h px-f">Kalkulator guru</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -5308,8 +5365,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -5519,7 +5576,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-grosir">
+<div class="px-clip px-clip-grosir pj dev-grosir {{devCls}}">
+<div class="pj-h px-f">{{devLabel}}</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -5527,8 +5585,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -5725,7 +5783,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-kurir">
+<div class="px-clip px-clip-kurir pj dev-kurir">
+<div class="pj-h px-f">HP kurir</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -5733,8 +5792,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -5907,7 +5966,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-tangga">
+<div class="px-clip px-clip-tangga pj dev-tangga">
+<div class="pj-h px-f">Kalkulator mandor</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -5915,8 +5975,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -6385,7 +6445,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-undian">
+<div class="px-clip px-clip-undian pj dev-undian">
+<div class="pj-h px-f">Papan skor undian</div>
 <sc-for list="{{ansFields}}" as="f" hint-placeholder-count="1">
 <button type="button" onClick="{{f.pick}}" aria-label="{{f.aria}}" style="{{f.style}}"><span style="flex: 1; text-align: left">{{f.label}}</span><span style="{{f.boxStyle}}">{{f.shown}}</span></button>
 </sc-for>
@@ -6393,8 +6454,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{keys}}" as="ky" hint-placeholder-count="12">
 <button type="button" onClick="{{ky.tap}}" aria-label="{{ky.aria}}" style="{{ky.style}}">{{ky.label}}</button>
 </sc-for>
+<button type="button" onClick="{{checkAns}}" class="pj-cek px-f">Cek</button>
 </div>
-<button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
 </div>
 </sc-if>
 <sc-if value="{{hasSpecial}}" hint-placeholder-val="{{ false }}">
@@ -6780,6 +6841,13 @@ const PX = (() => {
     const lcd = () => { const t = pen(16, 16, 3); rr(t, O, 0, 0, 16, 16); rr(t, '#2C303B', 1, 1, 14, 14); t.R('#1E2128', 2, 2, 12, 2); t.R(O, 3, 4, 10, 1); t.R(O, 3, 4, 1, 9); t.R(O, 12, 4, 1, 9); t.R(O, 3, 12, 10, 1); t.R('#A9B79A', 4, 5, 8, 7); t.R('#8E9C80', 4, 5, 8, 1); return t.cv.toDataURL(); };
     css('cBody', body('#3F4452', '#5E6475', '#2E323D', '#252830', '#30343F'));
     css('tBody', body('#4FAE96', '#8ED8C2', '#2F8672', '#246B5C', '#2C7A68'));
+    css('yBody', body('#F2C035', '#FFE680', '#C98A1B', '#9C6A12', '#B07A16'));
+    css('rBody', body('#D9483E', '#F27B6E', '#A8322A', '#7E241E', '#93291F'));
+    css('bBody', body('#3F78C8', '#78A8E8', '#2B5A9C', '#1F4478', '#26508A'));
+    css('wBody', body('#E9E2CF', '#FFFFFF', '#C9BFA6', '#9C9178', '#B0A58A'));
+    css('pBody', body('#7C6CC4', '#A99BEA', '#5A4AA0', '#433580', '#4E3F90'));
+    css('oBody', body('#E8873A', '#FFB36B', '#B8641E', '#8A4814', '#9E5418'));
+    css('gBody', body('#2F5A3A', '#4E8A5C', '#20402A', '#152A1C', '#1A3322'));
     css('kDark', key('#2B2E38', '#4E5363', '#20222A', '#14151B'));
     css('kOrange', key('#F2A33A', '#FFD98A', '#D88A28', '#9C5E16'));
     css('kRed', key('#E25D3A', '#FF9A72', '#C24A2A', '#8E2E18'));
@@ -7650,6 +7718,18 @@ PX.v2 = (comp, v, o) => {
     v2CloseMsg: () => comp.setState({ msg: '' })
   };
 };
+/* Alat jawab mengikuti jenis cerita, bukan per game (Faiq 18 Nov). Hasil: [nama alat, warna badan] */
+PX.devOf = (g, comp) => {
+  const s = comp.state || {}, P = s.P || {}, t = String(P.cerita || ''), ty = P.type;
+  if (g === 'PasangLantai') return ty === 'bundar' ? ['Nota bengkel kaca', 'c'] : ty === 'miring' ? ['Kalkulator tukang teras', 'y'] : ty === 'segi' ? ['Kalkulator tukang taman', 'y'] : ['Kalkulator tukang', 'y'];
+  if (g === 'GudangKardus') return ty === 'lancip' ? ['Kalkulator toko sembako', 'w'] : ty === 'prisma' ? (/kolam/i.test(t) ? ['Catatan pemilik kolam', 'g'] : ['Kalkulator toko ikan', 'b']) : ['Kalkulator gudang', 'c'];
+  if (g === 'CetakSpanduk') return ty === 'bayangan' ? ['Meteran panitia', 'y'] : ['Panel mesin cetak', 'p'];
+  if (g === 'LokerOSIS') return ty === 'menu' ? ['Mesin kasir kantin', 'w'] : ['HP pengurus OSIS', 'b'];
+  if (g === 'PentasSeni') return ty === 'jabatan' ? ['Kalkulator rapat', 'c'] : ['Papan skor panitia', 'p'];
+  if (g === 'RekapGrosir') return ty === 'urai' ? ['Panel mesin label', 'c'] : ['Kalkulator grosir', 'w'];
+  if (g === 'KebunPagar') return ty === 'lempar' ? ['Pencatat lomba roket', 'r'] : /kandang/i.test(t) ? ['Meteran pemilik kandang', 'y'] : /kolam/i.test(t) ? ['Meteran pemilik kolam', 'y'] : ['Meteran kebun', 'y'];
+  return null;
+};
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
   ['rumah', 'dadu', 'grafik', 'buku', 'pohon', 'stik'].forEach(n => document.documentElement.style.setProperty('--px-i-' + n, 'url("' + PX.U[n] + '")'));
@@ -8423,7 +8503,7 @@ curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl());
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Cetak Spanduk'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Cetak Spanduk (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
 lk() { const s = this.state, P = s.P || {}; if (s.mode !== 'rumus' && s.mode !== 'lab' && P.type === 'bayangan') return { view: PX.kbScene({ kind: 'bayangan' }), face: 'ketua', role: 'Panitia' }; return { view: PX.alView('spanduk'), face: 'desainer', role: 'Pemesan' }; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Perancang', game: 'Cetak Spanduk' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('CetakSpanduk', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Perancang', game: 'Cetak Spanduk' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -9771,7 +9851,7 @@ curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl());
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Gudang Kardus'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Gudang Kardus (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
 lk() { const s = this.state, P = s.P || {}, t = String(P.cerita || ''); if (s.mode === 'rumus' || s.mode === 'lab') return { view: PX.alView('gudangk'), face: 'ratna', role: 'Petugas gudang' }; if (P.type === 'lancip') return { view: PX.kbScene({ kind: 'takar' }), face: 'lina', role: /kopi/i.test(t) ? 'Penjual kopi' : 'Penjual sembako' }; if (P.type === 'prisma') return /kolam/i.test(t) ? { view: PX.kbScene({ kind: 'kolam' }), face: 'wati', role: 'Pemilik kolam' } : { view: PX.kbScene({ kind: 'akuarium' }), face: 'ratna', role: 'Pemilik toko ikan' }; return { view: PX.alView('gudangk'), face: 'ratna', role: 'Petugas gudang' }; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Bu Ratna', game: 'Gudang Kardus' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('GudangKardus', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Bu Ratna', game: 'Gudang Kardus' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -10758,7 +10838,7 @@ setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false
 /* Kebun & Lintasan (Faiq 18 Nov): adegan dan tokoh ikut cerita (kebun, kandang, kolam, lapangan roket air) */
 kpPlace() { const s = this.state, P = s.P || {}, t = String(P.cerita || ''); if (s.mode === 'rumus' || s.mode === 'lab') return 'kebun'; if (P.type === 'lempar') return 'roket'; if (/kandang/i.test(t)) return 'kandang'; if (/kolam/i.test(t)) return 'kolam'; return 'kebun'; }
 kpLook() { const k = this.kpPlace(); return ({ kebun: { view: PX.alView('kebun'), face: 'wati', role: 'Pemilik kebun' }, roket: { view: PX.kbScene({ kind: 'roket' }), face: 'ketua', role: 'Panitia lomba' }, kandang: { view: PX.kbScene({ kind: 'kandang' }), face: 'darto', role: 'Pemilik kandang' }, kolam: { view: PX.kbScene({ kind: 'kolam' }), face: 'wati', role: 'Pemilik kolam' } })[k]; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: this.kpLook().view }, PX.v2(this, v, { face: this.kpLook().face, role: this.kpLook().role, name: 'Bu Wati', game: 'Kebun Pagar' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const dv = PX.devOf('KebunPagar', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: this.kpLook().view }, PX.v2(this, v, { face: this.kpLook().face, role: this.kpLook().role, name: 'Bu Wati', game: 'Kebun Pagar' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -11362,7 +11442,7 @@ curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl());
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Loker OSIS'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Loker OSIS (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
 lk() { const s = this.state, P = s.P || {}; if (s.mode !== 'rumus' && s.mode !== 'lab' && P.type === 'menu') return { view: PX.kbScene({ kind: 'kantin' }), face: 'mira', role: 'Penjaga kantin' }; return { view: PX.alView('osis'), face: 'wina', role: 'Pengurus OSIS' }; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Bu Wina', game: 'Loker OSIS' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('LokerOSIS', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Bu Wina', game: 'Loker OSIS' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -12936,7 +13016,7 @@ curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl());
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Pasang Lantai'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Pasang Lantai (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
 lk() { const s = this.state, P = s.P || {}, t = String(P.cerita || ''); if (s.mode === 'rumus' || s.mode === 'lab') return { view: PX.alView('lantai'), face: 'darto', role: 'Pemilik rumah' }; if (P.type === 'bundar') return { view: PX.kbScene({ kind: 'kaca' }), face: 'darto', role: 'Pemesan kaca' }; if (P.type === 'miring' || P.type === 'segi') return { view: PX.kbScene({ kind: 'teras' }), face: 'darto', role: /taman|masjid/i.test(t) ? 'Pengurus taman' : 'Pemilik toko' }; return { view: PX.alView('lantai'), face: 'darto', role: 'Pemilik rumah' }; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Pak Darto', game: 'Pasang Lantai' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('PasangLantai', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Pak Darto', game: 'Pasang Lantai' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -13664,7 +13744,7 @@ curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl());
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Pentas Seni'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Pentas Seni (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
 lk() { const s = this.state, P = s.P || {}; if (s.mode !== 'rumus' && s.mode !== 'lab' && P.type === 'jabatan') return { view: PX.kbScene({ kind: 'rapat' }), face: 'dimas', role: 'Panitia' }; return { view: PX.alView('panggung'), face: 'dimas', role: 'Panitia' }; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Kak Dimas', game: 'Pentas Seni' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('PentasSeni', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Kak Dimas', game: 'Pentas Seni' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -14706,7 +14786,7 @@ curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl());
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Rekap Grosir'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Rekap Grosir (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
 lk() { const s = this.state, P = s.P || {}; if (s.mode !== 'rumus' && s.mode !== 'lab' && P.type === 'urai') return { view: PX.kbScene({ kind: 'label' }), face: 'lina', role: 'Pemilik toko' }; return { view: PX.alView('grosir'), face: 'lina', role: 'Pemilik toko' }; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Bu Lina', game: 'Rekap Grosir' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('RekapGrosir', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Bu Lina', game: 'Rekap Grosir' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
