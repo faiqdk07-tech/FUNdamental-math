@@ -1515,6 +1515,22 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-st-mart>div>div[style*="border: 1px solid #DDDCD7"]{border:0!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 rgba(0,0,0,.12)!important}
 #root .px-st-mart div[style*="repeat(4, minmax(0, 1fr))"]{gap:9px 8px!important;padding:4px 2px 2px}
 #root .px-st-mart div[style*="flex-wrap: wrap; gap: 3px"]{gap:8px!important;padding:4px 2px}
+/* Argo Ojek (gaya benda referensi): argometer LED merah, kertas grafik berpetak, jalan aspal dengan patok km dan motor */
+#root .ao-meter{width:104px!important;background:#0C0E12!important;border-radius:0!important;border:12px solid transparent;border-bottom-width:14px;border-image:var(--px-cBody) 8 8 9 8 fill / 12px 12px 14px 12px;image-rendering:pixelated;padding:4px 6px!important}
+#root .ao-meter>span:nth-child(1),#root .ao-meter>span:nth-child(3){color:#9AA7BA!important;font-size:11px!important}
+#root .ao-meter>span:nth-child(2){color:#FF5A4E!important;text-shadow:0 0 6px rgba(255,90,78,.7);font-size:22px!important;background:#120607;padding:2px 4px;box-shadow:0 0 0 2px #1A1C2C}
+#root .ao-graph{border:0!important;background:linear-gradient(rgba(76,143,221,.35) 1px,transparent 1px) 0 0 / 12px 12px,linear-gradient(90deg,rgba(76,143,221,.35) 1px,transparent 1px) 0 0 / 12px 12px,#FFFDF6!important;box-shadow:0 0 0 3px #1A1C2C,inset 3px -3px 0 #2B1D1A,0 4px 0 rgba(26,28,44,.2)}
+#root .ao-graph>span[style*="border-radius: 50%"]{width:10px!important;height:10px!important;margin-left:-5px!important;margin-bottom:-5px!important;background:#E8554E!important;box-shadow:0 0 0 2px #1A1C2C,inset 2px 2px 0 #FF9C8F!important}
+#root .ao-graph>span:not([style*="border-radius: 50%"]){color:#2B1D1A!important;font-size:11px!important;padding:0 3px}
+#root .ao-road>span:first-child{top:24px!important;height:16px!important;border-radius:0!important;background:#5A6278 linear-gradient(90deg,#FFC83D 50%,transparent 50%) 0 50% / 16px 2px repeat-x!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 2px 0 #6B7488}
+#root .ao-road>span:nth-child(2){width:26px!important;height:16px!important;top:6px!important;margin-left:-13px!important;background:var(--px-motor) center / 100% 100% no-repeat;image-rendering:pixelated}
+#root .ao-road>span:nth-child(2) svg{display:none}
+#root .ao-road button>span:first-child{width:6px!important;height:14px!important;border-radius:0!important;background:#FFFFFF linear-gradient(#E8554E 0 4px,#FFFFFF 4px)!important;box-shadow:0 0 0 2px #1A1C2C!important}
+#root .ao-road button>span:last-child{font-size:11px!important;color:#2B1D1A!important}
+#root .ao-radius>span:first-child{top:22px!important;height:12px!important;background:#5A6278 linear-gradient(90deg,#FFC83D 50%,transparent 50%) 0 50% / 12px 2px repeat-x!important;box-shadow:0 0 0 2px #1A1C2C}
+#root .ao-radius button>span:last-child{font-size:10.5px!important;color:#2B1D1A!important}
+#root .ao-radius button>span:nth-child(2){width:4px!important;background:#FFFFFF!important;box-shadow:0 0 0 1.5px #1A1C2C}
+#root .ao-radius button>span:first-child>span{background:#2F7A36!important;box-shadow:0 0 0 2px #1A1C2C;border-radius:0!important;width:16px!important;height:16px!important;line-height:16px!important;font-size:10px!important}
 </style>
 </head>
 <body>
@@ -1571,12 +1587,12 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isArgo}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; gap: 8px; align-items: stretch">
-<div style="flex: none; width: 92px; border-radius: 6px; background: #1C1C1A; color: #FFFFFF; padding: 8px; display: flex; flex-direction: column; justify-content: center; gap: 2px">
+<div class="ao-meter" style="flex: none; width: 92px; border-radius: 6px; background: #1C1C1A; color: #FFFFFF; padding: 8px; display: flex; flex-direction: column; justify-content: center; gap: 2px">
 <span style="font-size: 10px; color: #B9B8B2">ARGO</span>
 <span style="font-family: ui-monospace, Menlo, monospace; font-size: 20px; font-weight: 600">{{meter}}</span>
 <span style="font-size: 10px; color: #B9B8B2">{{meterKm}}</span>
 </div>
-<div style="flex: 1; position: relative; height: 110px; border-left: 1px solid #B9B8B2; border-bottom: 1px solid #B9B8B2" aria-label="Grafik tarif terhadap jarak">
+<div class="ao-graph" style="flex: 1; position: relative; height: 110px; border-left: 1px solid #B9B8B2; border-bottom: 1px solid #B9B8B2" aria-label="Grafik tarif terhadap jarak">
 <sc-for list="{{dots}}" as="dt" hint-placeholder-count="3">
 <span style="position: absolute; left: {{dt.x}}%; bottom: {{dt.y}}%; width: 8px; height: 8px; margin-left: -4px; margin-bottom: -4px; border-radius: 50%; background: #2F5BD3; display: block"></span>
 </sc-for>
@@ -1587,7 +1603,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 
 <sc-if value="{{isRadius}}" hint-placeholder-val="{{ false }}">
-<div style="position: relative; display: grid; grid-template-columns: repeat(19, minmax(0, 1fr)); gap: 1px; align-items: end">
+<div class="ao-radius" style="position: relative; display: grid; grid-template-columns: repeat(19, minmax(0, 1fr)); gap: 1px; align-items: end">
 <span style="position: absolute; left: 0; right: 0; top: 24px; height: 3px; background: #44443F; display: block"></span>
 <sc-for list="{{pts}}" as="pt" hint-placeholder-count="19">
 <button type="button" onClick="{{pt.tap}}" aria-label="{{pt.aria}}" style="{{pt.style}}">
@@ -1614,7 +1630,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 
 <sc-if value="{{hasRoad}}" hint-placeholder-val="{{ true }}">
-<div style="position: relative; height: 56px; margin: 0 14px">
+<div class="ao-road" style="position: relative; height: 56px; margin: 0 14px">
 <span style="position: absolute; left: -8px; right: -8px; top: 30px; height: 4px; background: #44443F; border-radius: 2px; display: block"></span>
 <span style="position: absolute; left: {{motorX}}%; top: 6px; margin-left: -12px; display: block; width: 24px; height: 18px"><svg width="24" height="18" viewBox="0 0 24 18" fill="none" stroke="#1C1C1A" stroke-width="1.6" aria-hidden="true"><circle cx="5" cy="13" r="3.5"></circle><circle cx="19" cy="13" r="3.5"></circle><path d="M5 13l5-6h5l4 6M10 7l-2-3h-3M15 7l2-3h2"></path></svg></span>
 <sc-for list="{{posts}}" as="po" hint-placeholder-count="10">
@@ -6863,7 +6879,7 @@ const PX = (() => {
   ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
   /* Tata Barisan: kursi berwarna sesuai blok (biru, oranye, hijau, ungu) */
   [['kursiG', 'h', 'g', 'G'], ['kursiH', 'c', 'a', 'A'], ['kursiV', 'x', 'v', 'V']].forEach(q => { SPR[q[0]] = SPR.kursi.map(r => r.replace(/s/g, q[1]).replace(/u/g, q[2]).replace(/U/g, q[3])); U[q[0]] = uri(q[0]); css(q[0], U[q[0]]); });
-  ['tb_karung', 'tb_semen', 'tb_pupuk', 'tb_galon', 'tb_panci', 'tb_keranjang', 'tb_kue', 'tb_buku', 'hadiah', 'rr_teh', 'rr_gula', 'rr_air'].forEach(n => css(n, U[n]));
+  ['tb_karung', 'tb_semen', 'tb_pupuk', 'tb_galon', 'tb_panci', 'tb_keranjang', 'tb_kue', 'tb_buku', 'hadiah', 'rr_teh', 'rr_gula', 'rr_air', 'motor'].forEach(n => css(n, U[n]));
   /* Benda bergaya referensi Faiq (18 Nov): garis tepi biru tua tebal, sisi depan terlihat (tebal 3D), bayangan dan kilau berlapis. Dipakai sebagai bingkai 9-potong. */
   {
     const O = '#1A1C2C';
