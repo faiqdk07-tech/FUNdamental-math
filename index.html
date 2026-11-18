@@ -1564,6 +1564,17 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .mm-wire>button[style*="border-radius: 50%"]{box-shadow:0 0 0 2px #1A1C2C,inset 3px 3px 0 rgba(255,255,255,.45),inset -3px -4px 0 rgba(0,0,0,.25),0 3px 0 #0E0F16!important;border:0!important;color:#2B1D1A!important;font-weight:700}
 #root .mm-wire>button:not([style*="border-radius: 50%"]){max-width:92px;border:0!important;border-image:none!important;border-radius:0!important;background:#C0C8D6!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 3px 0 #E8EEF4,inset 0 -3px 0 #8C97A8!important;color:#1A1C2C!important;text-shadow:none!important}
 #root .mm-wire>span:not([style*="transform"]){background:#1F2442!important;border:2px dashed #5A6290!important;color:#C9CDD6!important;border-radius:0!important}
+/* Rute Kurir (gaya benda referensi): peta kompleks dilihat dari atas (jalan paving, atap bangunan abu-abu 3D, rute bertitik merah), gang berlantai batu, busur sudut */
+#root .rk-map{padding:4px;gap:3px!important;background:#C9B79A;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #D9C7A8,0 4px 0 rgba(26,28,44,.2)}
+#root .rk-map>div{border-radius:0!important;border:0!important}
+#root .rk-map>div[style*="#F7F7F5"]{background:#EADCC0!important;box-shadow:inset 0 -2px 0 #D2BF9C!important}
+#root .rk-map>div[style*="#DCE5FA"]{background:#EADCC0 radial-gradient(circle,#E8554E 0 3px,#1A1C2C 3px 4px,transparent 4.5px) center / 100% 100% no-repeat!important;box-shadow:inset 0 -2px 0 #D2BF9C!important}
+#root .rk-map>div[style*="#D9D6CC"]{background:#9AA7BA!important;box-shadow:inset 0 0 0 2px #1A1C2C,inset 0 5px 0 #C0C8D6,inset 0 -6px 0 #6B7488!important;color:#FFFFFF!important;text-shadow:0 1px 0 #1A1C2C}
+#root .rk-map>div:not([style*="#D9D6CC"]){color:#B23A34!important;font-size:15px!important}
+#root .rk-gang{height:38px!important;border:0!important;border-radius:0!important;background:#B7AE9C linear-gradient(90deg,rgba(0,0,0,.12) 2px,transparent 2px) 0 0 / 14px 100%,linear-gradient(rgba(0,0,0,.12) 2px,transparent 2px) 0 0 / 100% 13px!important;box-shadow:0 -6px 0 #C99A5B,0 6px 0 #C99A5B,0 -9px 0 #1A1C2C,0 9px 0 #1A1C2C!important;margin:10px 0}
+#root .rk-gang>span{width:3px!important;background:#FFFFFF!important;box-shadow:0 0 0 1px #1A1C2C}
+#root .rk-dial>span:first-child{border-radius:110px 110px 0 0!important;border:8px solid #F2C035!important;border-bottom:0!important;background:rgba(255,230,128,.25);box-shadow:0 -2px 0 #1A1C2C,inset 0 2px 0 #1A1C2C;width:204px!important;left:28px!important}
+#root .rk-dial>span:nth-child(2){border-color:#1A1C2C!important;background:#E8554E!important}
 </style>
 </head>
 <body>
@@ -5764,7 +5775,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isAntar}}" hint-placeholder-val="{{ true }}">
-<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px" role="img" aria-label="{{mapAria}}">
+<div class="rk-map" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px" role="img" aria-label="{{mapAria}}">
 <sc-for list="{{cells}}" as="c" hint-placeholder-count="49">
 <div style="{{c.style}}">{{c.label}}</div>
 </sc-for>
@@ -5777,7 +5788,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{isUkur}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; gap: 4px">
 <div style="font-size: 12px; font-weight: 500">{{sampleName}}</div>
-<div style="position: relative; height: 30px; background: #EFE6D2; border: 1px solid #C9BFA8; border-radius: 4px">
+<div class="rk-gang" style="position: relative; height: 30px; background: #EFE6D2; border: 1px solid #C9BFA8; border-radius: 4px">
 <sc-for list="{{ticks}}" as="tk" hint-placeholder-count="4">
 <span style="position: absolute; top: 0; bottom: 0; left: {{tk.x}}%; width: 2px; background: #2F5BD3; display: block"></span>
 </sc-for>
@@ -5797,7 +5808,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 <sc-if value="{{hasDial}}" hint-placeholder-val="{{ false }}">
 <div style="font-size: 11px; color: #66655F; border-top: 1px solid #ECEBE7; padding-top: 6px">{{dialLabel}}</div>
-<div style="position: relative; width: 260px; height: 136px; margin: 0 auto">
+<div class="rk-dial" style="position: relative; width: 260px; height: 136px; margin: 0 auto">
 <span style="position: absolute; left: 30px; top: 20px; width: 200px; height: 100px; border: 3px solid #B9B8B2; border-bottom: 0; border-radius: 100px 100px 0 0; box-sizing: border-box; display: block"></span>
 <span style="position: absolute; left: 118px; top: 108px; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #1C1C1A; background: #FFFFFF; box-sizing: border-box; display: block"></span>
 <sc-for list="{{dial}}" as="dl" hint-placeholder-count="9">
