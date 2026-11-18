@@ -1113,6 +1113,20 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
+/* Timbangan (Faiq 18 Nov, gaya benda referensi): batang dan piringan kuningan bersisi tebal, tali kuningan, layar penunjuk menyala, tombol timbul */
+.px-gudang .px-beam{height:14px!important;background:#E0B040!important;border:3px solid #1A1C2C!important;box-shadow:inset 0 3px 0 #FFE680,inset 0 -4px 0 #A87A18!important}
+.px-gudang .px-drop{border:0!important}
+.px-gudang .px-pan{border-bottom:0!important;box-shadow:none!important;padding:0 6px 16px!important;background:linear-gradient(#1A1C2C,#1A1C2C) 3px 100% / calc(100% - 6px) 3px no-repeat,linear-gradient(#A87A18,#A87A18) 3px calc(100% - 3px) / calc(100% - 6px) 4px no-repeat,linear-gradient(#E0B040,#E0B040) 0 calc(100% - 7px) / 100% 4px no-repeat,linear-gradient(#FFE680,#FFE680) 0 calc(100% - 11px) / 100% 2px no-repeat,linear-gradient(#1A1C2C,#1A1C2C) 0 calc(100% - 13px) / 100% 3px no-repeat,linear-gradient(#1A1C2C,#1A1C2C) 0 calc(100% - 13px) / 3px 13px no-repeat,linear-gradient(#1A1C2C,#1A1C2C) 100% calc(100% - 13px) / 3px 13px no-repeat!important}
+.px-gudang .px-pan::before{bottom:13px!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='100' viewBox='0 0 120 100' preserveAspectRatio='none'%3E%3Cpath d='M60 2 L6 86 M60 2 L114 86' stroke='%231A1C2C' stroke-width='4' fill='none'/%3E%3Cpath d='M60 2 L6 86 M60 2 L114 86' stroke='%23E0B040' stroke-width='1.6' fill='none'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat!important}
+.px-gudang .px-pan::after{width:10px!important;height:10px!important;margin-left:-5px!important;top:-6px!important;background:#E0B040!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 2px 0 #FFE680!important}
+.px-gudang .px-sign{border:0!important;border-image:none!important;padding:3px 12px 5px!important;background:#1A2418 linear-gradient(115deg,transparent 0 62%,rgba(255,255,255,.14) 62% 70%,transparent 70%)!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #0C120B,0 4px 0 rgba(26,28,44,.35)!important;color:#FFC83D!important;text-shadow:0 0 6px rgba(255,200,61,.55)}
+.px-gudang .px-shelf>div:last-child{flex-wrap:nowrap!important;gap:4px!important}
+.px-gudang .px-shelf>div:last-child .tb-key{flex:1 1 0}
+.px-gudang .px-shelf{background:#5A6278!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 5px 0 #7C879A,inset 0 -5px 0 #3E4552!important}
+.px-gudang .px-plank{background:#C99A5B!important;border-top:3px solid #1A1C2C!important;border-bottom:3px solid #1A1C2C!important;box-shadow:inset 0 2px 0 #E8C58C,inset 0 -2px 0 #8A5A32!important}
+.px-screen .tb-key{height:36px;padding:0 4px 6px;min-width:0;border:10px solid transparent;border-bottom-width:13px;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 13px 10px;image-rendering:pixelated;background:none;border-radius:0;color:#2B1D1A;font-size:14px;text-shadow:0 1px 0 #FFFFFF;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+.px-screen .tb-key:active{transform:translateY(3px);border-bottom-width:10px;height:33px}
+.tb-count{margin-left:auto;padding:4px 10px 5px;font-size:13px;background:#1A2418;color:#7CF0A6;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #0C120B;text-shadow:0 0 5px rgba(124,240,166,.5)}
 /* Kasir Kilat (Faiq 18 Nov, gaya benda referensi): mesin kasir logam 3D, layar hijau menyala, tombol krem timbul, struk kertas zig-zag, nampan logam, laci bersekat */
 .px-shop .px-calc{width:100%;max-width:350px;align-self:center;margin:0 auto;padding:2px 2px 4px!important;border:16px solid transparent!important;border-bottom-width:18px!important;border-image:var(--px-cBody) 8 8 9 8 fill / 16px 16px 18px 16px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important}
 .px-shop .px-calc>div:first-child>span:first-child{color:#DDE2EC!important;font-size:13px!important;text-shadow:0 2px 0 #1A1C2C}
@@ -5899,7 +5913,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div style="color: #4B4B57">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan misi.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f" style="align-self: flex-start; padding: 2px 10px 4px; font-size: 13px">Ulangi latihan</button>
 </div></sc-if>
-<sc-if value="{{isGoal}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if><div class="px-talk-text">{{misiStory}}</div><div class="px-legend"><img alt="" src="{{px.kardus}}" width="15" height="14">? = satu kardus</div><sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if></div></div>
+<sc-if value="{{isGoal}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if><div class="px-talk-text">{{misiStory}}</div><div class="px-legend"><img alt="" src="{{tbLegIc}}" width="16" height="16">{{tbLegTxt}}</div><sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if></div></div>
 <sc-if value="{{v2ShowTask}}" hint-placeholder-val="{{ true }}"><div class="px-task"><span class="px-task-h px-f"><img alt="" src="{{px.misi}}">Tugas</span><div class="px-task-t">{{misiGoal}}</div></div></sc-if></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><span class="px-talk-tag px-f">{{v2Tag}}</span><div class="px-talk-text">{{tutText}}</div>
 <div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati latihan</button></div></div></div></sc-if>
@@ -5957,13 +5971,13 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div class="px-plank"></div>
 <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap">
 <span class="px-f" style="font-size: 12px; color: #FFF6E0; margin-right: 2px">Kedua sisi</span>
-<sc-for list="{{both}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.tap}}" class="px-fw" style="padding: 1px 8px 3px; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 700; color: #1E3F9E">{{o.label}}</button></sc-for>
+<sc-for list="{{both}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.tap}}" class="tb-key px-f">{{o.label}}</button></sc-for>
 </div>
 </div>
 <div style="display: flex; gap: 6px; align-items: center">
-<button type="button" onClick="{{undo}}" class="px-fw px-f" style="padding: 2px 10px 4px; font-size: 13px">Batal langkah</button>
-<button type="button" onClick="{{reset}}" class="px-fw px-f" style="padding: 2px 10px 4px; font-size: 13px">Ulang</button>
-<div class="px-fw px-f" style="margin-left: auto; font-size: 12px; padding: 0 6px 1px">{{opsText}}</div>
+<button type="button" onClick="{{undo}}" class="tb-key px-f">Batal langkah</button>
+<button type="button" onClick="{{reset}}" class="tb-key px-f">Ulang</button>
+<div class="tb-count px-f">{{opsText}}</div>
 </div>
 </sc-if>
 
@@ -7051,15 +7065,20 @@ const PX = (() => {
   })());
   /* Latar panggung timbangan, 181 x 107 kotak: dinding gudang, jendela, tiang timbangan, lantai. */
   const stage = once('stage', () => {
-    const W = 181, H = 107, t = pen(W, H, 21), R = t.R; let i;
-    R('#7E5A3A', 0, 0, W, H); for (i = 0; i < W; i += 15) { R('#6E4C30', i, 0, 1, 90); R('#8A6442', i + 1, 0, 1, 90); }
-    R(P.k, 10, 8, 30, 22); R('#8FD3F5', 11, 9, 28, 20); R(P.w, 12, 10, 8, 3); R(P.k, 24, 9, 1, 20); R(P.k, 11, 18, 28, 1);
-    R(P.k, 141, 8, 30, 22); R('#8FD3F5', 142, 9, 28, 20); R(P.w, 143, 10, 8, 3); R(P.k, 155, 9, 1, 20); R(P.k, 142, 18, 28, 1);
-    R(P.k, 0, 90, W, 2); R('#5E3B20', 0, 92, W, 15); for (i = 0; i < W; i += 23) R('#4A2E18', i, 92, 1, 15);
-    R('rgba(43,29,26,.35)', 74, 97, 34, 3);
-    R(P.k, 76, 86, 30, 10); R('#9AA7BA', 77, 87, 28, 8); R('#C9D3E0', 77, 87, 28, 2);
-    R(P.k, 86, 29, 10, 58); R('#9AA7BA', 87, 29, 8, 58); R('#C9D3E0', 87, 29, 2, 58); R('#7C879A', 93, 29, 2, 58);
-    R(P.k, 84, 24, 14, 7); R(P.y, 85, 25, 12, 5); R(P.Y, 85, 25, 12, 1);
+    /* Timbangan (Faiq 18 Nov, gaya benda referensi): dinding papan berbayang, jendela berkilap, timbangan tiang besi cor biru tua beralas tebal, kepala kuningan */
+    const W = 181, H = 107, t = pen(W, H, 21), R = t.R, O = '#1A1C2C'; let i;
+    R('#8A6442', 0, 0, W, H); for (i = 0; i < W; i += 15) { R('#7A5638', i, 0, 2, 90); R('#9C754E', i + 2, 0, 1, 90); }
+    const win = a => { R(O, a, 7, 32, 24); R('#5E3B20', a + 1, 8, 30, 22); R('#8FD3F5', a + 3, 10, 26, 18); R('#B8E5FA', a + 3, 10, 26, 6); R(O, a + 15, 10, 2, 18); R(O, a + 3, 18, 26, 1); R('rgba(255,255,255,.7)', a + 6, 21, 2, 5); R('rgba(255,255,255,.7)', a + 8, 19, 2, 2); R('#A87A50', a - 1, 30, 34, 3); R(O, a - 1, 33, 34, 1); };
+    win(8); win(141);
+    R(O, 0, 89, W, 2); R('#6E4626', 0, 91, W, 16); R('#8A5A32', 0, 91, W, 2); for (i = 0; i < W; i += 23) R('#4A2E18', i, 93, 1, 14);
+    R('rgba(26,28,44,.35)', 62, 99, 58, 3);
+    /* alas besi cor tebal dengan kaki */
+    R(O, 64, 84, 54, 14); R('#3E5A7A', 65, 85, 52, 8); R('#5E7EA0', 65, 85, 52, 2); R('#2A3E56', 65, 93, 52, 4); R(O, 66, 97, 8, 3); R(O, 108, 97, 8, 3); R('#2A3E56', 67, 97, 6, 2); R('#2A3E56', 109, 97, 6, 2);
+    R(O, 74, 79, 34, 6); R('#4C6E92', 75, 80, 32, 4); R('#7FA2C4', 75, 80, 32, 1);
+    /* tiang dengan cincin kuningan */
+    R(O, 84, 28, 14, 52); R('#4C6E92', 85, 28, 12, 52); R('#7FA2C4', 86, 28, 2, 52); R('#2F4A66', 94, 28, 3, 52);
+    [44, 64].forEach(y => { R(O, 82, y, 18, 5); R('#E0B040', 83, y + 1, 16, 3); R('#FFE680', 83, y + 1, 16, 1); R('#A87A18', 83, y + 3, 16, 1); });
+    R(O, 80, 20, 22, 10); R('#E0B040', 81, 21, 20, 8); R('#FFE680', 81, 21, 20, 2); R('#A87A18', 81, 27, 20, 2); R(O, 89, 17, 4, 4); R('#FFE680', 90, 18, 2, 2);
     return t.cv.toDataURL();
   });
   /* Ikon mode (gmItems) dan ikon tiap game di Mini Games */
@@ -15937,7 +15956,7 @@ const balonOps = [
 const mNow = this.all()[s.mi] || {};
 const hasBalon = (s.mode === 'misi' && s.tut === null && !!mNow.balon) || (!!hc && !!hc.balon) || s.mode === 'lab';
 const hb = !!s.hb, balM = hasBalon && !!s.balM, kk = s.n;
-const rackSt = (on, kind) => 'width: 100%; max-width: 32px; height: ' + (kind === 'p' ? '44px; padding: 0 0 16px; ' : '30px; padding: 6px 0 0; ') + 'border: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 800; cursor: pointer; ' + (kind === 'b' ? 'background: var(--px-kardus) center / 100% 100% no-repeat; image-rendering: pixelated; color: #3B2414; ' : kind === 'p' ? 'background: var(--px-balon) center / 100% 100% no-repeat; image-rendering: pixelated; color: #FFFFFF; ' : 'background: var(--px-beban) center / 100% 100% no-repeat; image-rendering: pixelated; color: #2B1D1A; ') + (on ? 'transform: translateY(-8px); filter: drop-shadow(0 0 0 #FFC83D) drop-shadow(2px 0 0 #FFC83D) drop-shadow(-2px 0 0 #FFC83D) drop-shadow(0 -2px 0 #FFC83D)' : 'filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .35))');
+const rackSt = (on, kind) => 'width: 100%; max-width: 32px; height: ' + (kind === 'p' ? '44px; padding: 0 0 16px; ' : '30px; padding: 6px 0 0; ') + 'border: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-weight: 800; cursor: pointer; ' + (kind === 'b' ? 'background: var(--px-' + (itemSpr || 'kardus') + ') center / 100% 100% no-repeat; image-rendering: pixelated; color: #3B2414; ' : kind === 'p' ? 'background: var(--px-balon) center / 100% 100% no-repeat; image-rendering: pixelated; color: #FFFFFF; ' : 'background: var(--px-beban) center / 100% 100% no-repeat; image-rendering: pixelated; color: #2B1D1A; ') + (on ? 'transform: translateY(-8px); filter: drop-shadow(0 0 0 #FFC83D) drop-shadow(2px 0 0 #FFC83D) drop-shadow(-2px 0 0 #FFC83D) drop-shadow(0 -2px 0 #FFC83D)' : 'filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .35))');
 const rack = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(v => ({ label: String(v), aria: (balM ? 'Pegang balon ' : 'Pegang beban ') + v, tap: () => this.setState({ n: v, hb: false }), style: rackSt(!hb && kk === v, balM ? 'p' : 'w') })).concat([{ label: '?', aria: 'Pegang kardus', tap: () => this.setState({ hb: true }), style: rackSt(hb, 'b') }]);
 const kinds = [['Beban', false], ['Balon', true]].map(g => ({ label: g[0], tap: () => this.setState({ balM: g[1], hb: false }), style: 'padding: 0 6px 1px; font-family: \"Fredoka\", Inter, sans-serif; font-size: 12px; color: #2B1D1A; cursor: pointer; ' + (balM === g[1] ? 'border: 6px solid transparent; border-image: var(--px-fGold) 30 fill / 6px; background: none; font-weight: 700' : 'border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; ') }));
 const heldLabel = hb ? 'kardus' : (balM ? 'balon ' : 'beban ') + kk;
@@ -16014,7 +16033,7 @@ const no = s.customs.length + 1;
 this.setState({ customs: s.customs.concat([{ name: 'Misi buatanmu ' + no, bag: s.labBag, balon: !!(this.sumP(s.L) || this.sumP(s.R) || s.L.b < 0 || s.R.b < 0), L: this.cp(s.L), R: this.cp(s.R) }]), msg: 'Tersimpan sebagai "Misi buatanmu ' + no + '". Buka tab Misi untuk memecahkannya.', kind: 'ok' });
 },
 deg: deg, ly: -offY, ry: offY,
-leftItems: items(s.L, 'L'), rightItems: items(s.R, 'R'), leftExpr: expr(s.L), rightExpr: expr(s.R),
+tbLegIc: PX.U[itemSpr || 'kardus'], tbLegTxt: '? = satu ' + (((itemTxt.match(/(kotak [a-z]+|karung [a-z]+|sak semen|keranjang [a-z]+|keranjang|galon|panci|paket|kardus|kotak)/) || [])[0]) || 'kardus'), leftItems: items(s.L, 'L'), rightItems: items(s.R, 'R'), leftExpr: expr(s.L), rightExpr: expr(s.R),
 status: bal ? 'Seimbang' : (diff > 0 ? 'Kiri berat' : 'Kanan berat'), statusColor: balM ? '#66655F' : '#8A5200',
 rack: rack, place: place, both: both, putL: () => put('L'), putR: () => put('R'), panHint: 'ketuk = taruh ' + heldLabel, modes: modes, placeLabel: placeLabel, kinds: kinds, heldLabel: heldLabel, nums: nums, leftOps: this.sideOps('L'), rightOps: this.sideOps('R'), bothOps: hc && hc.noDiv ? bothOps.filter(o => o.label.charAt(0) !== '÷') : bothOps,
 undo: () => { if (!s.hist.length) return; const h = s.hist[s.hist.length - 1]; this.setState({ L: h.L, R: h.R, hist: s.hist.slice(0, -1), found: null, msg: '', kind: '', tut: s.tut === 2 ? 3 : s.tut }); },
