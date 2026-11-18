@@ -1120,6 +1120,12 @@ body.fm-phone #root>div{height:874px!important}
 body.fm-phone #fm-bg{display:block;position:fixed;inset:0;z-index:0;pointer-events:none;background:#6FB948}
 body.fm-phone .px-mgscroll{--stU:calc(430px / 195 * 1.15)!important}
 body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px-cta{order:-1;flex:1 1 100%}body.fm-phone .px-pop-act .px-btn2{flex:1 1 100%}
+/* Tombol "Tidak bisa ditentukan" dan "Tidak mungkin" ringkas, berjajar (Faiq 18 Nov) */
+.px-alt{font-size:12px!important;line-height:1.2!important;padding:1px 6px 3px!important;gap:6px!important;white-space:normal;text-align:left;min-height:0}
+.px-alt i{width:18px!important;height:18px!important;font-size:12px!important;border-width:4px!important;border-image-width:4px!important}
+.px-altrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.px-cab:has(> .px-alt){display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.px-cab:has(> .px-alt)>:not(.px-alt){grid-column:1 / -1}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>
@@ -1166,7 +1172,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -1369,7 +1375,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -1408,8 +1414,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 </div></sc-if>
 <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if>
+<div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
 <div class="px-fg" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center">
 <div style="font-size: 15px; font-weight: 700">{{verdictQ}}</div>
@@ -1526,7 +1531,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -1708,7 +1713,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -1896,7 +1901,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -2087,7 +2092,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -2289,7 +2294,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -2471,7 +2476,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -2523,8 +2528,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 </sc-if>
 <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if>
+<div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
 <div class="px-fg" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center">
 <div style="font-size: 15px; font-weight: 700">{{verdictQ}}</div>
@@ -2667,7 +2671,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div>
 </sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -2760,8 +2764,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 </div>
 </div>
 </sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if>
+<div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 </div>
 </sc-if>
 <div class="px-floor"></div>
@@ -2809,7 +2812,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -3010,7 +3013,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -3036,8 +3039,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 </div></sc-if>
 <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if>
+<div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
 <div class="px-fg" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center">
 <div style="font-size: 15px; font-weight: 700">{{verdictQ}}</div>
@@ -3100,7 +3102,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -3335,7 +3337,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -3532,7 +3534,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -3725,7 +3727,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -3950,7 +3952,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -4146,7 +4148,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -4454,7 +4456,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -4763,7 +4765,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -4802,8 +4804,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 </div></sc-if>
 <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if>
+<div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
 <div class="px-fg" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center">
 <div style="font-size: 15px; font-weight: 700">{{verdictQ}}</div>
@@ -4866,7 +4867,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -5068,7 +5069,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -5287,7 +5288,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -5493,7 +5494,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -5706,10 +5707,9 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 </div></sc-if>
 <sc-if value="{{isGoal}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><div class="px-talk-text">{{misiStory}}</div><div class="px-legend"><img alt="" src="{{px.kardus}}" width="15" height="14">? = satu kardus</div><sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if></div></div>
 <sc-if value="{{v2ShowTask}}" hint-placeholder-val="{{ true }}"><div class="px-task"><span class="px-task-h px-f"><img alt="" src="{{px.misi}}">Tugas</span><div class="px-task-t">{{misiGoal}}</div></div></sc-if></sc-if>
-<sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><span class="px-talk-tag px-f">{{tutStep}}</span><div class="px-talk-text">{{tutText}}</div>
+<sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><span class="px-talk-tag px-f">{{v2Tag}}</span><div class="px-talk-text">{{tutText}}</div>
 <div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati latihan</button></div></div></div></sc-if>
-<sc-if value="{{isHarian}}" hint-placeholder-val="{{ false }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><span class="px-talk-tag px-f">{{hCase.konteks}}</span><div style="display: flex; gap: 4px; flex-wrap: wrap"><sc-for list="{{hCase.tags}}" as="g" hint-placeholder-count="1"><span class="px-tag px-f" style="background: #FFC58A">{{g}}</span></sc-for></div>
-<div class="px-talk-text">{{hCase.cerita}}</div><div class="px-legend">{{hCase.legend}}</div><sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if></div></div>
+<sc-if value="{{isHarian}}" hint-placeholder-val="{{ false }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><span class="px-talk-tag px-f">{{v2Tag}}</span><div class="px-talk-text">{{hCase.cerita}}</div><div class="px-legend">{{hCase.legend}}</div><sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if></div></div>
 <sc-if value="{{v2ShowTask}}" hint-placeholder-val="{{ true }}"><div class="px-task"><span class="px-task-h px-f"><img alt="" src="{{px.misi}}">Tugas</span><div class="px-task-t">{{hCase.tujuan}}</div></div></sc-if></sc-if>
 <sc-if value="{{isLab}}" hint-placeholder-val="{{ false }}">
 <div class="px-fw" style="display: flex; align-items: center; gap: 6px; font-size: 12px; flex-wrap: wrap; padding: 2px 6px 4px">
@@ -5745,8 +5745,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 </div>
 </sc-if>
 <sc-if value="{{isHarian}}" hint-placeholder-val="{{ false }}">
-<sc-if value="{{hAskCukup}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Isinya tidak bisa ditentukan pasti</button></sc-if>
-<sc-if value="{{hAskCukup}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if>
+<div class="px-altrow"><sc-if value="{{hAskCukup}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Isinya tidak bisa ditentukan pasti</button></sc-if><sc-if value="{{hAskCukup}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hVerdict}}" hint-placeholder-val="{{ false }}">
 <div class="px-fg" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px">
 <div style="font-size: 14px; font-weight: 700">{{hVerdictQ}}</div>
@@ -5848,7 +5847,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -5884,8 +5883,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 
 <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasFound}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{found}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
-<sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if>
-<sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin dilakukan</button></sc-if>
+<div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin dilakukan</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
 <div class="px-fg" style="padding: 2px 6px 5px; display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center">
 <div style="font-size: 15px; font-weight: 700">{{verdictQ}}</div>
@@ -5953,7 +5951,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 <div class="px-helpbox-note">Petunjuk ini hanya menjelaskan tombol, bukan cara memecahkan masalah.</div>
 <button type="button" onClick="{{replayTut}}" class="px-fw px-f px-helpbox-b">Ulangi hari pertama</button>
 </div></sc-if>
-<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{pxHasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{gmTagLine}}</span></sc-if>
+<sc-if value="{{hasStory}}" hint-placeholder-val="{{ true }}"><div class="px-talk"><div class="px-talk-who"><span class="px-talk-face"><img alt="" src="{{v2Face}}"></span><span class="px-talk-name px-f">{{v2Name}}</span></div><div class="px-talk-bubble"><sc-if value="{{v2HasTag}}" hint-placeholder-val="{{ true }}"><span class="px-talk-tag px-f">{{v2Tag}}</span></sc-if>
 <div class="px-talk-text">{{story}}</div>
 <sc-if value="{{v2NeedTap}}" hint-placeholder-val="{{ true }}"><button type="button" class="px-talk-next px-f" onClick="{{v2Lanjut}}">Lanjut</button></sc-if>
 <sc-if value="{{isTut}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 8px; align-items: center; margin-top: 4px"><sc-if value="{{hasTutBtn}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{tutTap}}" class="px-cta px-f">{{tutBtn}}</button></sc-if><button type="button" onClick="{{skipTut}}" class="px-linkbtn">Lewati</button></div></sc-if></div></div>
@@ -7072,8 +7070,12 @@ const PX = (() => {
 })();
 /* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
    o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
+PX.V2ROLE = {"Kasir Kilat": "Pelanggan", "Timbangan": "Mandor gudang", "Ubin": "Panitia", "Jadwal Bus": "Petugas terminal", "Bagi Pizza": "Panitia", "Racik Resep": "Pemesan", "Lipat Kertas": "Pemesan", "Dua Struk": "Pembeli", "Meja Hajatan": "Tuan rumah", "Martabak Topping": "Pembeli", "Mesin Minuman": "Petugas", "Argo Ojek": "Penumpang", "Rekap Grosir": "Pemilik toko", "Kebun Pagar": "Pemilik kebun", "Dapur Roti": "Pemilik dapur", "Rute Kurir": "Pengirim paket", "Pasang Lantai": "Pemilik rumah", "Gudang Kardus": "Petugas gudang", "Cetak Spanduk": "Pemesan", "Tangga Bangunan": "Mandor", "Pelabuhan": "Petugas pelabuhan", "Loker OSIS": "Pengurus OSIS", "Pentas Seni": "Panitia", "Undian Doorprize": "Panitia", "Rapor Kelas": "Wali kelas", "Grafik Viral": "Pengelola data"};
 PX.v2 = (comp, v, o) => {
   const st = comp.state || {}, x = comp._v2 || (comp._v2 = { key: null, open: false });
+  /* Label di atas balon hanya menyebut mode (Faiq 18 Nov): tanpa nama kasus dan tanpa tingkat */
+  const isTut = !!v.isTut || (st.mode === 'misi' && typeof st.tut === 'number') || !!v.tutStep && v.isTut !== false;
+  const tag = isTut ? 'Pengenalan' : (st.mode === 'harian' || v.isHarian) ? 'Kasus harian ' + ((st.hi || st.hIdx || 0) + 1) : (st.mode === 'misi' || v.isGoal) ? 'Misi ' + ((st.mi || 0) + 1) : '';
   const stTxt = v.statusLabel ? String(v.status || '') : String(v.gmStatusLine || ''), stLab = v.statusLabel ? String(v.statusLabel) : String(v.gmStatusLine || ''); const m = stTxt.match(/(\d+)\s*\/\s*(\d+)/), useH = !!m && /kesempatan/i.test(stLab);
   const hearts = useH ? Array.from({ length: +m[2] }, (_, i) => i < +m[1] ? 'on' : '') : [];
   const story = o.story !== undefined ? o.story : v.story, goal = o.goal !== undefined ? o.goal : v.goal, hasGoal = o.hasGoal !== undefined ? o.hasGoal : v.hasGoal; const key = String(story || '') + '|' + String(goal || '');
@@ -7081,7 +7083,7 @@ PX.v2 = (comp, v, o) => {
   const needTap = !!hasGoal && !v.isTut && v.gmInPlay !== false;
   const pick = (v.gmPickItems || []).map((pk, i) => Object.assign({}, pk, { cls: (pk.done ? 'done ' : '') + (i % 2 ? 'r' : 'l') }));
   return {
-    v2Face: PX.U[o.face] || PX.U.pemandu, v2Name: o.name,
+    v2Face: PX.U[o.face] || PX.U.pemandu, v2Name: PX.V2ROLE[o.game] || o.name, v2Tag: tag, v2HasTag: !!tag,
     v2Hearts: useH, v2HeartList: hearts, v2StatusTxt: useH ? '' : (v.statusLabel ? (/^status$/i.test(String(v.statusLabel)) ? String(v.status || '') : [v.statusLabel, v.status].filter(Boolean).join(' · ')) : String(v.gmStatusLine || '')),
     v2Pick: pick, v2LvlName: ({ F: 'Fundamental', I: 'Intermediate', E: 'Expert' })[comp.curLvl ? comp.curLvl() : ''] || '', v2GameIc: PX.gameIcon(o.game || ''),
     v2ShowTask: !needTap || x.open, v2NeedTap: needTap && !x.open, v2Wait: needTap && !x.open ? 'v2wait' : '', v2Lanjut: () => { x.open = true; comp.setState({}); },
@@ -9918,7 +9920,7 @@ let chips = [];
 if (s.mode === 'misi' && !isTut) chips = this.T[this.curLvl()].map(m => m.name).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 const toggleSel = i => { const sel = s.sel.indexOf(i) >= 0 ? s.sel.filter(x => x !== i) : s.sel.concat([i]).slice(-2); this.setState({ sel: sel, msg: '' }); };
-const coinSt = (v, on) => { const size = 40 + Math.min(Math.abs(v), 12); return 'width: ' + size + 'px; height: ' + size + 'px; padding: 0 0 2px; border: 0; background: var(--px-' + (v < 0 ? 'coinR' : 'coinB') + ') center / 100% 100% no-repeat; image-rendering: pixelated; font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: ' + (size > 46 ? 17 : 15) + 'px; color: ' + (v < 0 ? '#3B0F0B' : '#FFFFFF') + '; text-shadow: 0 1px 0 rgba(0, 0, 0, .35); cursor: pointer; ' + (on ? 'transform: translateY(-5px); filter: drop-shadow(0 0 2px #FFFFFF) drop-shadow(0 4px 0 #2B1D1A)' : 'filter: drop-shadow(0 3px 0 rgba(20, 23, 43, .35))'); };
+const coinSt = (v, on) => { const size = 38; return 'width: ' + size + 'px; height: ' + size + 'px; padding: 0 0 2px; border: 0; background: var(--px-' + (v < 0 ? 'coinR' : 'coin') + ') center / 100% 100% no-repeat; image-rendering: pixelated; font-family: Inter, system-ui, sans-serif; font-weight: 800; font-size: 15px; color: ' + (v < 0 ? '#3B0F0B' : '#5E3B20') + '; text-shadow: 0 1px 0 rgba(255, 255, 255, .45); cursor: pointer; ' + (on ? 'transform: translateY(-5px); filter: drop-shadow(0 0 2px #FFFFFF) drop-shadow(0 4px 0 #2B1D1A)' : 'filter: drop-shadow(0 3px 0 rgba(20, 23, 43, .35))'); };
 const act = (label, tap, primary) => ({ label: label, tap: tap, style: 'padding: 1px 10px 3px; font-family: \"Fredoka\", Inter, sans-serif; font-size: 14px; color: #2B1D1A; cursor: pointer; ' + (primary ? 'border: 6px solid transparent; border-image: var(--px-fGold) 30 fill / 6px; background: none; font-weight: 700' : 'border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; ') });
 const setP = (patch, extra) => this.setState(Object.assign({ P: Object.assign({}, P, patch), msg: '', kind: '' }, extra || {}));
 const isLab = s.mode === 'lab';
@@ -10013,7 +10015,7 @@ hasAnswer = true; answerLabel = 'Total belanja (ribu)';
 if (s.mode === 'misi' && s.mi < 3) next = () => { const arr = [0, 0, 0, 0].map(() => this.rnd(11, 49)); setP({ nums: arr, nums0: arr.slice(), left: P.budget }, { stage: 'main', ans: '', sel: [] }); };
 }
 if (doneStage && next) actions = actions.concat([act('Pelanggan berikutnya', next, true)]);
-const miniCoin = v => 'width: 44px; height: 44px; padding: 0 0 2px; border: 0; background: var(--px-' + (v < 0 ? 'coinR' : 'coinB') + ') center / 100% 100% no-repeat; image-rendering: pixelated; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-weight: 800; color: ' + (v < 0 ? '#3B0F0B' : '#FFFFFF') + '; text-shadow: 0 1px 0 rgba(0, 0, 0, .35); cursor: pointer; filter: drop-shadow(0 3px 0 rgba(20, 23, 43, .45))';
+const miniCoin = v => 'width: 36px; height: 36px; padding: 0 0 2px; border: 0; background: var(--px-' + (v < 0 ? 'coinR' : 'coin') + ') center / 100% 100% no-repeat; image-rendering: pixelated; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 800; color: ' + (v < 0 ? '#3B0F0B' : '#5E3B20') + '; text-shadow: 0 1px 0 rgba(255, 255, 255, .45); cursor: pointer; filter: drop-shadow(0 3px 0 rgba(20, 23, 43, .45))';
 const sg0 = hasSign ? s.cs : 1;
 const boxCoins = boxAdd ? [1, 2, 3, 4, 5, 6, 7, 8, 9].map(v => ({ label: String(v), aria: (sg0 < 0 ? 'Taruh utang ' : 'Taruh koin ') + v, style: miniCoin(sg0 * v), tap: () => boxAdd(v) })) : [];
 const signs = [[1, 'Uang'], [-1, 'Utang']].map(g => ({ label: g[1], tap: () => this.setState({ cs: g[0] }), style: 'padding: 0 6px 1px; font-family: \"Fredoka\", Inter, sans-serif; font-size: 12px; color: #2B1D1A; cursor: pointer; ' + (s.cs === g[0] ? 'border: 6px solid transparent; border-image: var(--px-fGold) 30 fill / 6px; background: none; font-weight: 700' : 'border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; ') }));
@@ -10037,7 +10039,7 @@ if (P.type === 'struk' && P.nums.some(v => v === null)) return this.setState(Obj
 this.spend('Belum tepat.');
 };
 const TUT = [
-'Hari pertama kerja di warung Bu Ani. Di laci ada koin biru (uang) dan koin merah (bon utang). Angkanya menunjukkan nilai dalam ribuan.',
+'Hari pertama kerja di warung Bu Ani. Di laci ada koin emas (uang) dan koin merah (bon utang). Angkanya menunjukkan nilai dalam ribuan.',
 'Bu Ani memintamu menaruh koin ke laci. Pilih Uang atau Utang, lalu ketuk koin di kotak koin.',
 'Sekarang ketuk dua koin di laci untuk menggabungkannya, atau satu koin lalu Pecah. Kamu sendiri yang menulis hasilnya di mesin kasir.',
 'Bagus. Pelanggan pertama sudah menunggu di depan kasir.'
