@@ -1115,7 +1115,7 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
 /* Bingkai HP di layar lebar (permintaan Faiq 17 Nov) */
 body.fm-phone{background:#1C1A22;overflow:hidden;height:100vh}
-body.fm-phone #root{position:fixed;left:50%;top:50%;z-index:1;margin:0;min-height:0;height:874px;overflow:hidden;border-radius:0;isolation:isolate;will-change:transform;box-shadow:none}
+body.fm-phone #root{position:fixed;left:50%;top:50%;z-index:1;margin:0;min-height:0;height:874px;overflow:hidden;border-radius:0;isolation:isolate;will-change:transform;box-shadow:0 0 0 2px rgba(255,255,255,.18),0 18px 50px rgba(0,0,0,.55)}
 body.fm-phone #root>div{height:874px!important}
 body.fm-phone #fm-bg{display:block;position:fixed;inset:0;z-index:0;pointer-events:none;background:#6FB948}
 body.fm-phone .px-mgscroll{--stU:calc(430px / 195 * 1.15)!important}
@@ -16880,85 +16880,20 @@ show(current());
     return best || [111, 185, 72];
   }
   function mix(c, k) { return 'rgb(' + c.map(function (v) { return Math.round(k > 0 ? v + (255 - v) * k : v * (1 + k)); }).join(',') + ')'; }
-  /* Latar luar = perpanjangan tepi layar ke kiri-kanan (permintaan Faiq 18 Nov: "ditambahkan, bukan dilebarkan"):
-     warna di tepi kiri dan kanan bingkai diambil per pita setinggi 6 px, lalu diteruskan mendatar sampai ujung layar,
-     jadi dinding, lantai, rumput, dan langit terlihat bersambung. Diperbarui saat layar berganti, digulir, atau diketuk. */
-  /* warna piksel gambar (peta, adegan) di titik itu, bila elemennya bergambar data: yang direntang penuh */
-  var IMG = {};
-  function imgColor(e, x, y) {
-    for (var d = 0; e && d < 4; d++, e = e.parentElement) {
-      var src = '', cs = getComputedStyle(e);
-      if (e.tagName === 'IMG') src = e.currentSrc || e.src;
-      else if (/100% 100%/.test(cs.backgroundSize)) { var m = cs.backgroundImage.match(/url\("?(data:image[^")]+)"?\)/); if (m) src = m[1]; }
-      if (!src || src.indexOf('data:image') !== 0) continue;
-      var o = IMG[src];
-      if (!o) { o = IMG[src] = { im: new Image(), ok: false }; o.im.onload = function () { var c = document.createElement('canvas'); c.width = this.width; c.height = this.height; c.getContext('2d').drawImage(this, 0, 0); IMG[this.src].cx = c.getContext('2d'); IMG[this.src].ok = true; lastBg = ''; later(); }; o.im.src = src; }
-      if (!o.ok) return null;
-      var b = e.getBoundingClientRect(); if (!b.width || !b.height) return null;
-      var px = Math.floor((x - b.left) / b.width * o.im.width), py = Math.floor((y - b.top) / b.height * o.im.height);
-      if (px < 0 || py < 0 || px >= o.im.width || py >= o.im.height) return null;
-      var d4 = o.cx.getImageData(px, py, 1, 1).data; if (d4[3] < 200) return null;
-      return 'rgb(' + d4[0] + ',' + d4[1] + ',' + d4[2] + ')';
-    }
-    return null;
-  }
-  function colorAt(x, y) {
-    var e = document.elementFromPoint(x, y), c = imgColor(e, x, y);
-    while (!c && e && e !== document.body) {
-      var m = getComputedStyle(e).backgroundColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
-      if (m && (m[4] === undefined || +m[4] >= 0.9)) { c = 'rgb(' + m[1] + ',' + m[2] + ',' + m[3] + ')'; break; }
-      e = e.parentElement;
-    }
-    return c;
-  }
-  /* x0 = tepi bingkai, dir = arah ke dalam. Tiap pita: warna terbanyak dari 4 titik; pita yang lebih tipis dari 22 px
-     (pagar, pohon kecil) dilebur ke pita sebelumnya supaya tidak menjadi garis panjang. */
-  function edgeStops(R, x0, dir, k, H) {
-    var rows = [];
-    for (var y = R.top + 1; y < R.bottom - 1; y += 6) {
-      var cs = [];
-      [1, 4, 7, 10, 13].forEach(function (dx) { var c = colorAt(x0 + dir * dx * k, y); if (c) cs.push(c); });
-      rows.push({ y: y, cs: cs });
-    }
-    /* warna terbanyak dalam jendela 5 baris (±12 px): benda kecil di tepi (pagar, sapi, perahu) tidak jadi garis panjang */
-    var bands = [];
-    rows.forEach(function (r, i) {
-      var cnt = {}, best = null, bn = 0;
-      for (var j = Math.max(0, i - 2); j <= Math.min(rows.length - 1, i + 2); j++) rows[j].cs.forEach(function (c) {
-        var v = c.match(/\d+/g).map(Number), w = (v[0] * .3 + v[1] * .59 + v[2] * .11) < 70 ? 0.2 : 1; w *= (j === i ? 1.5 : 1);
-        cnt[c] = (cnt[c] || 0) + w; if (cnt[c] > bn) { bn = cnt[c]; best = c; } });
-      best = best || (bands.length ? bands[bands.length - 1].c : 'rgb(111,185,72)');
-      if (bands.length && bands[bands.length - 1].c === best) bands[bands.length - 1].y1 = r.y + 6;
-      else bands.push({ c: best, y0: r.y, y1: r.y + 6 });
-    });
-    if (!bands.length) return null;
-    var g = [];
-    bands.forEach(function (b, i) { var p0 = i ? (b.y0 / H * 100).toFixed(2) : '0', p1 = i === bands.length - 1 ? '100' : (b.y1 / H * 100).toFixed(2); g.push(b.c + ' ' + p0 + '%', b.c + ' ' + p1 + '%'); });
-    return 'linear-gradient(180deg,' + g.join(',') + ')';
-  }
-  var lastBg = '';
   function syncBg() {
     if (!document.body.classList.contains('fm-phone')) return;
     var r = document.getElementById('root'); if (!r) return;
     var bg = document.getElementById('fm-bg');
     if (!bg) { bg = document.createElement('div'); bg.id = 'fm-bg'; bg.setAttribute('aria-hidden', 'true'); document.body.insertBefore(bg, document.body.firstChild); }
     last = Date.now();
-    var R = r.getBoundingClientRect(), H = window.innerHeight, k = R.width / PW;
-    var L = edgeStops(R, R.left, 1, k, H), Rt = edgeStops(R, R.right - 1, -1, k, H);
-    var c = domColor(r), key = (L || '') + '|' + (Rt || '');
-    if (key === lastBg) return; lastBg = key;
+    var c = domColor(r), key = c.join(','); if (key === lastCol) return; lastCol = key;
     bg.style.backgroundColor = mix(c, 0);
-    bg.style.backgroundImage = (L || 'none') + ',' + (Rt || L || 'none');
-    bg.style.backgroundSize = '50% 100%,50% 100%';
-    bg.style.backgroundPosition = 'left top,right top';
-    bg.style.backgroundRepeat = 'no-repeat,no-repeat';
+    bg.style.backgroundImage = 'radial-gradient(ellipse 70% 60% at 50% 45%, ' + mix(c, 0.18) + ' 0%, ' + mix(c, 0.06) + ' 45%, ' + mix(c, -0.1) + ' 100%)';
   }
   function later() { if (t) return; t = setTimeout(function () { t = null; syncBg(); }, Math.max(0, 400 - (Date.now() - last))); }
   var rt = document.getElementById('root');
   /* hanya saat layar berganti (anak langsung #root), supaya tidak menyalin ulang saat bermain atau menggulir */
   if (rt && window.MutationObserver) new MutationObserver(function () { later(); setTimeout(later, 900); }).observe(rt, { childList: true });
-  var st = null; document.addEventListener('scroll', function () { if (st) return; st = setTimeout(function () { st = null; syncBg(); }, 120); }, true);
-  document.addEventListener('click', function () { setTimeout(syncBg, 400); }, true);
   window.addEventListener('resize', fit);
   fit();
 })();
