@@ -1484,6 +1484,25 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .pj.dev-argo>button[style*="display: flex"]>span:first-child{color:#FFB0A8!important;text-shadow:none!important}
 #root .pj.dev-pelab>button[style*="display: flex"]>span:first-child{color:#B8F5CF!important;text-shadow:none!important}
 #root .pj.dev-grafik>button[style*="display: flex"]>span:first-child{color:#C9DFF7!important;text-shadow:none!important}
+/* Dua Struk (gaya benda referensi): kalkulator struk logam 3D, alat label harga oranye 3D, tombol timbul */
+#root .px-calcbody{background:none!important;box-shadow:none!important;border:16px solid transparent;border-bottom-width:18px;border-image:var(--px-cBody) 8 8 9 8 fill / 16px 16px 18px 16px;image-rendering:pixelated;padding:0 2px 2px!important}
+#root .px-calcbody span{color:#DDE2EC!important;text-shadow:0 2px 0 #1A1C2C;font-size:13px!important}
+#root .px-calcbody button{height:40px!important;min-height:0!important;padding:0!important;border:10px solid transparent!important;border-left-width:7px!important;border-right-width:7px!important;border-bottom-width:13px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 7px 13px 7px!important;background:none!important;box-shadow:none!important;border-radius:0!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF!important;font:400 15px/1 "Jersey 15",Inter,sans-serif!important;font-size-adjust:.56!important;display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden}
+#root .px-calcbody button[style*="background: #1C1C1A"],#root .px-calcbody button[style*="background: #2F5BD3"]{border-image-source:var(--px-kOrange)!important;color:#3A2410!important;text-shadow:0 1px 0 #FFD98A!important;transform:translateY(2px)}
+#root .px-calcbody button:active{transform:translateY(3px)}
+#root .ds-toggle{height:34px!important;font-size:13px!important;padding:0 6px!important;flex:none}
+#root .px-st-dua>div:nth-child(2){gap:8px}
+#root .px-st-dua>div:nth-child(2)>span{font-size:12.5px!important;color:#3B2414!important;line-height:1.25}
+#root .px-clip-dua.ds-gun{max-width:350px;width:100%;align-self:center;margin:8px auto 0!important;padding:0 2px 2px!important;background:none!important;box-shadow:none!important;border:16px solid transparent!important;border-bottom-width:18px!important;border-image:var(--px-oBody) 8 8 9 8 fill / 16px 16px 18px 16px!important;image-rendering:pixelated;gap:10px!important}
+#root .ds-gun .pj-h{color:#FFFFFF!important;text-shadow:0 2px 0 #8A4814!important}
+#root .ds-gun>div:nth-child(2)>span{color:#FFFFFF!important;text-shadow:0 2px 0 #8A4814;font-size:13px!important}
+#root .ds-gun .px-cek{height:40px;padding:0 12px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kGreen) 5 5 7 5 fill / 10px 10px 14px 10px!important;background:none!important;box-shadow:none!important;color:#FFFFFF!important;text-shadow:0 2px 0 #2C6A26!important;font-size:16px!important;display:flex;align-items:center}
+#root .ds-gun>div[style*="grid-template-columns"]{gap:5px!important}
+#root .ds-gun>div[style*="grid-template-columns"] button[aria-label]{height:40px!important;min-height:0!important;padding:0!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 14px 10px!important;background:none!important;box-shadow:none!important;border-radius:0!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF!important;font:400 18px/1 "Jersey 15",Inter,sans-serif!important;font-size-adjust:.56!important;display:flex;align-items:center;justify-content:center}
+#root .ds-gun>div[style*="grid-template-columns"] button[aria-label="Hapus"]{border-image-source:var(--px-kRed)!important;color:#FFFFFF!important;text-shadow:0 2px 0 #8E2E18!important}
+#root .ds-gun>div[style*="grid-template-columns"] button[aria-label]:active{transform:translateY(3px)}
+#root .ds-gun>div:nth-child(3){gap:8px!important}
+#root .px-calcbody>div[style*="repeat(6"]{grid-template-columns:repeat(4,minmax(0,1fr)) repeat(2,minmax(0,1.5fr))!important;gap:5px!important}
 </style>
 </head>
 <body>
@@ -2271,7 +2290,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="display: flex; align-items: center; justify-content: space-between">
 <span style="font-size: 11px; color: #66655F">{{boardLabel}}</span>
-<button type="button" onClick="{{toggleView}}" style="padding: 3px 8px; border: 1px solid #DDDCD7; background: #FFFFFF; border-radius: 5px; font: inherit; font-size: 11px; cursor: pointer; color: #444441">{{viewLabel}}</button>
+<button type="button" onClick="{{toggleView}}" class="tb-key px-f ds-toggle">{{viewLabel}}</button>
 </div>
 <sc-if value="{{isCards}}" hint-placeholder-val="{{ true }}">
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
@@ -2344,14 +2363,15 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 </sc-if>
 </div>
-<div style="display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap">
+<div class="px-acts" style="display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap">
 <sc-for list="{{actions}}" as="a" hint-placeholder-count="8">
 <button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button>
 </sc-for>
 </div>
 
 <sc-if value="{{hasAnswer}}" hint-placeholder-val="{{ false }}">
-<div class="px-clip px-clip-dua">
+<div class="px-clip px-clip-dua ds-gun">
+<div class="pj-h px-f">Alat label harga</div>
 <div style="display: flex; align-items: center; justify-content: space-between">
 <span style="font-size: 12px; color: #66655F">Harga satuan (ribu)</span>
 <button type="button" onClick="{{checkAns}}" class="px-cta px-f px-cek">✓ Cek</button>
