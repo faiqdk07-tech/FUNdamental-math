@@ -3,6 +3,13 @@
 Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Faiq.
 
 ## Sudah selesai
+- **18 Nov: evaluasi F4 Kapan Bareng? + peninjauan gambar vs cerita** (Faiq setuju cara A + C: gambar per tingkat, benda ikut cerita; satu game per putaran). Peninjauan semua game ada di dokumen evaluasi, tab "Peninjauan F: gambar vs cerita" (10 game parah, 3 sedang, 6 ringan, 8 cocok). Urutan kerja berikutnya: 9 game parah lainnya (Meja Hajatan, Mesin Minuman, Kebun & Lintasan, Pasang Lantai, Isi Wadah, Perbesar Gambar, Pilihan OSIS, Pentas Seni, Rekap Grosir), lalu Timbangan dan Timbangan Balon, lalu yang ringan.
+  - Kapan Bareng?: adegan atas dari `PX.kbScene(o)` (terminal siang/malam, dermaga untuk feri, meja kerja per bahan pita/kain/tali/kabel, kantor terminal dengan kalender untuk tingkat E). Pemilihnya `kbLook()` di game: jenis kendaraan dari nama lajur (`vk()`: bus, angkot, feri), malam dari kata "malam", bahan dari cerita (`kbMat`), satuan m/cm dari cerita (`kbUnit`; sebelumnya tali 42 m tertulis cm).
+  - Tokoh ikut cerita lewat `PX.v2(..., {role})`: Petugas terminal, Petugas pelabuhan (feri), Panitia, Penjahit (`SPR.penjahit`), Panitia mudik, Teknisi (`SPR.teknisi`).
+  - Papan keberangkatan baru (`.kb-board`): tiap lajur bergambar kendaraannya (sprite `kb_<bus|angkot|feri>_<u|g>[n]`, biru = lajur A, oranye = lajur B, versi malam berjendela menyala); feri melaju di laut. Berangkat = kendaraan berwarna, tidak = bayangan pudar.
+  - Garis waktu jadi 24 petak (`.kb-slots`), angka tiap 6 menit, titik kecil = menit yang sudah dicek. Meteran potong diberi angka tiap 5/10.
+  - Tingkat E: kalender dinding (`.kb-cal`) dan panel lompat baru (`.kb-jump`): pilih jenis (Maju hari/Maju minggu/Mundur hari) + jumlah 1–9 + tombol Lompat, pratinjau ukuran lompatan, jejak lompatan. Mundur melewati hari ini kini memberi pesan.
+  - Judul semua game: hati tidak pernah terpotong; bila sempit, hati turun ke baris kedua dan judul tetap utuh.
 - **18 Nov: evaluasi F1–F3, bagian yang berlaku di semua game** (Faiq setuju semua usulan):
   - Label di atas balon hanya mode: "Pengenalan", "Misi n", "Kasus harian n" (`v2Tag` di `PX.v2`); nama kasus dan tingkat dihapus.
   - Papan nama tokoh = peran umum per game (`PX.V2ROLE`, mis. Pelanggan, Panitia, Tuan rumah) supaya selalu cocok dengan cerita.
