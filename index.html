@@ -1348,6 +1348,48 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)) .px-ttl2-s{flex:none!important;justify-content:flex-start;max-width:100%}
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)) .px-ttl2-s>span:last-child{white-space:normal!important;overflow:visible!important;font-size:11.5px;line-height:1.15}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
+/* Tombol aksi bersama (game Bilangan, Faiq 18 Nov): utama = tombol hijau timbul, lainnya = tombol krem timbul */
+#root .px-acts>button{min-height:0!important;height:42px;padding:0 14px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 14px 10px!important;image-rendering:pixelated;background:none!important;border-radius:0!important;box-shadow:none!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF!important;font:400 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+#root .px-acts>button[style*="fGold"],#root .px-acts>button[style*="#2F5BD3"],#root .px-acts>button[style*="fGreen"]{border-image-source:var(--px-kGreen)!important;color:#FFFFFF!important;text-shadow:0 2px 0 #2C6A26!important}
+#root .px-acts>button{font-size-adjust:.56!important;font-size:17px!important}
+#root .px-acts>button:active{transform:translateY(3px);border-bottom-width:11px!important;height:39px}
+/* Kapan Bareng? (gaya benda referensi): papan jadwal LED bergantung, jalur LED menit, meteran gulung, kalender kertas bercincin, panel lompat */
+.kb-board{position:relative;margin:22px 3px 3px!important;border:14px solid transparent!important;border-bottom-width:16px!important;border-image:var(--px-cBody) 8 8 9 8 / 14px 14px 16px 14px!important;image-rendering:pixelated;background:#14161F!important;box-shadow:inset 0 0 0 2px #0A0B10!important;padding:8px 8px 10px!important}
+.kb-board::before{content:"";position:absolute;top:-36px;left:18%;right:18%;height:22px;background:linear-gradient(90deg,#1A1C2C 0 3px,#7C879A 3px 7px,#1A1C2C 7px 10px,transparent 10px calc(100% - 10px),#1A1C2C calc(100% - 10px) calc(100% - 7px),#7C879A calc(100% - 7px) calc(100% - 3px),#1A1C2C calc(100% - 3px))}
+.kb-board.night{background:#0E0F16!important}
+.kb-board-h{color:#FFB52E!important;text-shadow:0 0 6px rgba(255,181,46,.7);background:radial-gradient(rgba(255,181,46,.12) 1px,transparent 1.5px) 0 0 / 4px 4px;border-bottom:2px dashed #2E3240!important;letter-spacing:3px!important}
+.kb-lane-h{color:#F3E2BF!important}
+.kb-lane-h>span:last-child{color:#FFB52E!important}
+.kb-board-f{color:#9AA7BA!important}
+.kb-clock{border:14px solid transparent!important;border-bottom-width:16px!important;border-image:var(--px-cBody) 8 8 9 8 fill / 14px 14px 16px 14px!important;image-rendering:pixelated;padding:0 2px 2px!important}
+.kb-clock-h span{color:#DDE2EC!important;text-shadow:0 2px 0 #1A1C2C}
+.kb-clock-h b{padding:2px 8px 3px;background:#1A2418;color:#7CF0A6;font:700 15px/1 ui-monospace,Menlo,monospace;box-shadow:0 0 0 2px #1A1C2C;text-shadow:0 0 5px rgba(124,240,166,.5)}
+.kb-slots{background:#0A0B10!important;padding:4px!important;gap:2px!important;box-shadow:0 0 0 2px #1A1C2C}
+.px-screen .kb-slot{background:#262A35!important;box-shadow:inset 0 -3px 0 #1B1E26,inset 0 2px 0 #353A47!important;height:30px}
+.px-screen .kb-slot.six{background:#323745!important}
+.px-screen .kb-slot.chk::after{width:6px!important;height:6px!important;margin-left:-3px!important;top:10px!important;background:#FFB52E!important;box-shadow:0 0 6px #FFB52E}
+.px-screen .kb-slot.on{background:#E8554E!important;box-shadow:inset 0 -3px 0 #B23A34,inset 0 3px 0 #FF9C8F,0 0 8px rgba(232,85,78,.8)!important}
+.px-screen .kb-slot.on.chk::after{background:#FFF6E0!important;box-shadow:none}
+.kb-slot span{color:#C9CDD6!important}
+.kb-clock-row>button{border:10px solid transparent!important;border-bottom-width:13px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 13px 10px!important;background:none!important;box-shadow:none!important;width:38px!important;height:38px!important;padding:0!important}
+.ub-tapebox .kb-tapenums{margin-left:16px}
+.kb-cal{background:#FFFDF6!important;border:0!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 -4px 0 #E8E2D4,0 5px 0 rgba(26,28,44,.25)!important;margin-top:8px}
+.kb-cal-top{height:22px!important;background:#E8554E!important;border-bottom:3px solid #1A1C2C!important;box-shadow:inset 0 3px 0 #FF9C8F,inset 0 -3px 0 #B23A34!important}
+.kb-cal-top i{display:none}
+.kb-cal-top::before{content:"";position:absolute;left:10%;right:10%;top:-9px;height:16px;background:repeating-linear-gradient(90deg,transparent 0 10px,#1A1C2C 10px 13px,#9AA7BA 13px 16px,#1A1C2C 16px 19px,transparent 19px 30px)}
+.kb-cal-days{gap:0!important;border-left:2px solid #D5DDE8;border-top:2px solid #D5DDE8}
+.kb-day{border:0!important;border-image:none!important;border-right:2px solid #D5DDE8!important;border-bottom:2px solid #D5DDE8!important;background:none!important;padding:10px 0 12px!important;font-size:15px!important}
+.kb-day.start{background:#E3EEFA!important;outline:2px dashed #2F64B0;outline-offset:-5px}
+.kb-day.cur{background:#FFF0B8!important;box-shadow:inset 0 0 0 4px #E8554E!important;font-weight:400!important;color:#B23A34!important}
+.kb-jump{border:14px solid transparent!important;border-bottom-width:16px!important;border-image:var(--px-cBody) 8 8 9 8 fill / 14px 14px 16px 14px!important;image-rendering:pixelated;padding:0 2px 2px!important}
+.px-screen .kb-jtab{height:40px;padding:0 2px!important;white-space:nowrap;font-size:13px!important;border:10px solid transparent!important;border-bottom-width:13px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 13px 10px!important;display:flex;align-items:center;justify-content:center}
+.px-screen .kb-jtab.on.kb-jt-h,.px-screen .kb-jtab.on.kb-jt-w{border-image-source:var(--px-kOrange)!important;transform:translateY(2px)}
+.px-screen .kb-jtab.on.kb-jt-b{border-image-source:var(--px-kRed)!important;transform:translateY(2px)}
+.kb-prev{background:#1A2418!important;border:0!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #0C120B}
+.kb-prev>span{color:#7CF0A6!important;text-shadow:0 0 5px rgba(124,240,166,.5)}
+.px-screen .kb-num{height:38px!important;border:8px solid transparent!important;border-bottom-width:12px!important;border-image:var(--px-kDark) 5 5 7 5 fill / 8px 8px 12px 8px!important;color:#FFFFFF!important;text-shadow:0 2px 0 #14151B!important;font-size:16px!important;display:flex;align-items:center;justify-content:center;padding:0!important}
+.px-screen .kb-num.on{border-image-source:var(--px-kOrange)!important;color:#3A2410!important;text-shadow:0 1px 0 #FFD98A!important;transform:translateY(2px)}
+.kb-trail span{color:#DDE2EC}
 </style>
 </head>
 <body>
@@ -1633,7 +1675,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">Jumlah porsi</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div></sc-if>
-<div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
+<div class="px-acts" style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
 <div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
@@ -2743,7 +2785,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 </sc-if>
 <sc-if value="{{hasRuler}}" hint-placeholder-val="{{ true }}">
-<div class="px-tapebox">
+<div class="px-tapebox ub-tapebox">
 <div style="display: flex; justify-content: space-between; align-items: center"><span class="px-f" style="font-size: 13px">{{rulerLabel}}</span><b style="font-size: 16px">{{rulerVal}}</b></div>
 <div style="display: flex; align-items: center; gap: 6px">
 <sc-if value="{{hasShift}}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{shiftL}}" aria-label="Geser ke menit lebih awal" class="px-fw px-sq" style="width: 34px; height: 34px"><img alt="" src="{{px.kiri}}" width="9" height="11"></button></sc-if>
@@ -2761,7 +2803,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasTrail}}" hint-placeholder-val="{{ false }}"><div class="kb-trail"><span>Jejak:</span><sc-for list="{{trail}}" as="h" hint-placeholder-count="2"><b>{{h}}</b></sc-for></div></sc-if>
 </div>
 </sc-if>
-<div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
+<div class="px-acts" style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
 <div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
@@ -3272,7 +3314,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">{{keyLabel}}</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div></sc-if>
-<div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
+<div class="px-acts" style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
 <div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
@@ -5037,7 +5079,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div style="display: flex; align-items: center; gap: 8px"><span class="px-f" style="font-size: 13px; color: #4B4B57; flex: 1">Total diskon</span><span style="min-width: 70px; padding: 4px 8px; background: #1C1C1A; color: #9FE0B5; font-family: ui-monospace, Menlo, monospace; font-size: 17px; text-align: right; box-shadow: inset 0 3px 0 #000">{{ansShow}}</span></div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{keys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div></sc-if>
-<div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
+<div class="px-acts" style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasLog}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{log}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
 <div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
@@ -6117,7 +6159,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div>
 </sc-if>
 
-<div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
+<div class="px-acts" style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap"><sc-for list="{{actions}}" as="a" hint-placeholder-count="2"><button type="button" onClick="{{a.tap}}" style="{{a.style}}">{{a.label}}</button></sc-for></div>
 <sc-if value="{{hasFound}}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 6px; flex-wrap: wrap; justify-content: center"><sc-for list="{{found}}" as="h" hint-placeholder-count="2"><span class="px-tag" style="background: #FFFFFF; font-size: 13px; padding: 2px 8px">{{h}}</span></sc-for></div></sc-if>
 <div class="px-altrow"><sc-if value="{{hasNotEnough}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayNotEnough}}" class="px-alt px-f"><i>?</i>Tidak bisa ditentukan dengan informasi ini</button></sc-if><sc-if value="{{hasImpossible}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{sayImpossible}}" class="px-alt px-f"><i>⊘</i>Tidak mungkin dilakukan</button></sc-if></div>
 <sc-if value="{{hasVerdict}}" hint-placeholder-val="{{ false }}">
