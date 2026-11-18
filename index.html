@@ -1575,6 +1575,15 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .rk-gang>span{width:3px!important;background:#FFFFFF!important;box-shadow:0 0 0 1px #1A1C2C}
 #root .rk-dial>span:first-child{border-radius:110px 110px 0 0!important;border:8px solid #F2C035!important;border-bottom:0!important;background:rgba(255,230,128,.25);box-shadow:0 -2px 0 #1A1C2C,inset 0 2px 0 #1A1C2C;width:204px!important;left:28px!important}
 #root .rk-dial>span:nth-child(2){border-color:#1A1C2C!important;background:#E8554E!important}
+/* Pasang Lantai (gaya benda referensi): ubin keramik bernat, perabot abu-abu 3D, garis bidang biru tua tebal, kaca meja berkilap */
+#root .pl-floor{gap:2px!important;background:#8C7A5A!important;border:0!important;padding:2px;box-shadow:0 0 0 3px #1A1C2C,0 4px 0 rgba(26,28,44,.25)}
+#root .pl-floor>button{border:0!important;border-image:none!important;border-radius:0!important;min-height:0!important}
+#root .pl-floor>button:not([style*="#B9B8B2"]):not([style*="#C9C2B0"]){box-shadow:inset 2px 2px 0 rgba(255,255,255,.55),inset -2px -2px 0 rgba(0,0,0,.08)!important}
+#root .pl-floor>button[style*="#B9B8B2"],#root .pl-floor>button[style*="#C9C2B0"]{background-color:#9AA7BA!important;box-shadow:inset 0 0 0 2px #1A1C2C,inset 0 4px 0 #C0C8D6,inset 0 -4px 0 #6B7488!important;color:#FFFFFF!important;text-shadow:0 1px 0 #1A1C2C;font-size:9.5px!important;padding:3px 4px!important}
+#root .px-st-lantai svg path[stroke="#2F5BD3"],#root .px-st-lantai svg path[stroke="#8C6A3E"]{stroke:#1A1C2C!important;stroke-width:2.5!important}
+#root .px-st-lantai svg path[stroke="#E2E1DC"]{stroke:#CFC6B2!important}
+#root .pl-glass{position:relative}
+#root .pl-glass::after{content:"";position:absolute;left:50%;top:22px;width:46px;height:12px;margin-left:-40px;background:linear-gradient(90deg,rgba(255,255,255,.75) 0 40%,transparent 40% 55%,rgba(255,255,255,.55) 55% 70%,transparent 70%);transform:skewX(-30deg);pointer-events:none}
 </style>
 </head>
 <body>
@@ -4434,7 +4443,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div class="px-scn-top" style="background-image: url('{{pxView}}')"></div>
 <div style="font-size: 11px; color: #66655F">{{boardLabel}}</div>
 <sc-if value="{{isPetak}}" hint-placeholder-val="{{ true }}">
-<div style="display: grid; grid-template-columns: {{petakCols}}; gap: 1px; background: #B9B8B2; border: 2px solid #8C6A3E" role="group" aria-label="{{petakAria}}">
+<div class="pl-floor" style="display: grid; grid-template-columns: {{petakCols}}; gap: 1px; background: #B9B8B2; border: 2px solid #8C6A3E" role="group" aria-label="{{petakAria}}">
 <sc-for list="{{pcells}}" as="c" hint-placeholder-count="40">
 <button type="button" onClick="{{c.tap}}" aria-label="{{c.aria}}" style="{{c.style}}">{{c.label}}</button>
 </sc-for>
@@ -4458,7 +4467,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 
 <sc-if value="{{isBundar}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; justify-content: center">
+<div class="pl-glass" style="display: flex; justify-content: center">
 <svg width="240" height="160" viewBox="0 0 240 160" role="img" aria-label="{{bundarAria}}">
 <path d="{{wedgeA}}" fill="#DCE5FA" stroke="#2F5BD3" stroke-width="1"></path>
 <path d="{{wedgeB}}" fill="#EFE6D2" stroke="#8C6A3E" stroke-width="1"></path>
