@@ -1113,6 +1113,25 @@ html.fm-pxtext #root .px-hf,html.fm-pxtext #root .px-ttl2 b,html.fm-pxtext #root
 .px-v2.v2wait .px-wall>:not(.px-hud2):not(.px-talk):not(.px-helpbox){display:none!important}
 .px-v2.v2wait .px-gscroll>:not(.px-wall){display:none!important}
 .px-v2.v2wait .px-gscroll{justify-content:flex-start}
+/* Tata Barisan (Faiq 18 Nov, gaya benda referensi): alas nyata bersisi tebal, kursi bergambar, meteran gulung, kertas rencana, kalkulator panitia */
+#root .px-tray-board{background:#D5DDE8!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 0 0 6px #B7C1CF,inset 0 7px 0 #8C97A8,inset 0 -3px 0 #FFFFFF,0 7px 0 #7C879A,0 10px 0 #1A1C2C,0 13px 0 rgba(26,28,44,.2)!important;padding:16px!important;margin-bottom:12px!important}
+#root .px-tray-board{position:relative;background:#C9D3E0 radial-gradient(ellipse at 30% 25%,rgba(255,255,255,.55) 0 18%,transparent 40%)!important}
+#root .px-tray-board::before,#root .px-tray-board::after{content:"";position:absolute;top:50%;width:12px;height:26px;margin-top:-13px;background:#B7C1CF;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #FFFFFF,inset 0 -3px 0 #7C879A}
+#root .px-tray-board::before{left:-15px}#root .px-tray-board::after{right:-15px}
+#root .px-table-board{background:#FFF6E0 linear-gradient(90deg,rgba(232,85,78,.18) 50%,transparent 50%) 0 0 / 24px 24px,linear-gradient(rgba(232,85,78,.18) 50%,transparent 50%) 0 0 / 24px 24px!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 4px 0 #FFFFFF,0 8px 0 #A8773F,0 11px 0 #1A1C2C,0 14px 0 rgba(26,28,44,.2)!important;margin-bottom:14px!important}
+#root .px-floor-board{background:#C99A5B repeating-linear-gradient(0deg,#B98448 0 2px,#C99A5B 2px 22px,#D2A56A 22px 24px)!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 4px 0 #E8C58C,inset 0 -4px 0 #8A5A32,0 6px 0 rgba(26,28,44,.25)!important}
+#root .px-field-board{box-shadow:0 0 0 3px #1A1C2C,inset 0 0 0 4px #FFFFFF,inset 0 0 0 7px #57A843,0 6px 0 rgba(26,28,44,.25)!important}
+.ub-note{position:relative;align-self:center;padding:6px 14px 7px 22px;font-size:14px;background:#FFF6E0;color:#2B1D1A;box-shadow:0 0 0 3px #1A1C2C,inset 0 -3px 0 #E8D5B5,0 4px 0 rgba(26,28,44,.25)}
+.ub-note::before{content:"";position:absolute;left:7px;top:50%;width:8px;height:8px;margin-top:-4px;background:#E8554E;box-shadow:0 0 0 2px #1A1C2C,inset 2px 2px 0 #FF9C8F}
+.ub-tapebox{border:0!important;border-image:none!important;background:#FFFFFF!important;padding:6px 8px 8px!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 -4px 0 #D5DDE8,0 4px 0 rgba(26,28,44,.2)!important}
+.ub-val{min-width:34px;padding:2px 8px 3px;text-align:center;font:700 16px/1 ui-monospace,Menlo,monospace;background:#1A2418;color:#7CF0A6;box-shadow:0 0 0 2px #1A1C2C}
+.px-screen .ub-pm{width:40px;flex:none;font-size:20px!important}
+.ub-tapebox .px-tape{position:relative;height:30px!important;margin-left:10px;background:#FFD23F!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #FFE680,inset 0 -4px 0 #E3A81C!important;padding:2px 4px 4px!important}
+.ub-tapebox .px-tape::before{content:"";position:absolute;left:-16px;top:-5px;width:16px;height:34px;background:#E8554E;box-shadow:0 0 0 3px #1A1C2C,inset 3px 3px 0 #FF9C8F,inset -3px -3px 0 #B23A34}
+.ub-tapebox .px-tape button:not([style*="#E8554E"]){background:#1A1C2C!important}
+.ub-calc{max-width:330px!important}
+.px-v2 .ub-calc>button{flex-direction:row!important;align-items:center!important;gap:8px!important}
+.px-v2 .ub-calc>button>span:nth-child(2){flex:1;font-size:14px!important;color:#1F2A1C!important;text-align:left}
 /* Rak Timbangan: beban lebih besar dan rata, angka huruf pixel putih bergaris tepi di tengah badan beban */
 .px-gudang .px-rack{gap:5px!important;padding:10px 2px 4px!important;min-height:48px}
 .px-gudang .px-rack>button{max-width:34px!important;width:100%!important;height:34px!important;padding:9px 0 0!important;font:400 16px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;color:#FFFFFF!important;text-shadow:1px 0 0 #1A1C2C,-1px 0 0 #1A1C2C,0 1px 0 #1A1C2C,0 -1px 0 #1A1C2C,0 2px 0 #1A1C2C!important;filter:drop-shadow(0 3px 0 rgba(26,28,44,.35))}
@@ -6074,21 +6093,22 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{cells}}" as="c" hint-placeholder-count="12"><div style="{{c}}"></div></sc-for>
 </div>
 </div>
-<div class="px-fw px-f" style="align-self: center; font-size: 13px; padding: 0 8px 1px; text-align: center">{{boardNote}}</div>
+<div class="ub-note px-f">{{boardNote}}</div>
 
 <sc-for list="{{steppers}}" as="s" hint-placeholder-count="2">
-<div class="px-tapebox">
-<div style="display: flex; justify-content: space-between; align-items: center"><span class="px-f" style="font-size: 13px">{{s.label}}</span><b style="font-size: 16px">{{s.val}}</b></div>
+<div class="px-tapebox ub-tapebox">
+<div style="display: flex; justify-content: space-between; align-items: center"><span class="px-f" style="font-size: 14px">{{s.label}}</span><b class="ub-val">{{s.val}}</b></div>
 <div style="display: flex; align-items: center; gap: 6px">
-<button type="button" onClick="{{s.down}}" aria-label="Kurangi {{s.label}}" class="px-fw px-sq" style="width: 34px; height: 34px">−</button>
+<button type="button" onClick="{{s.down}}" aria-label="Kurangi {{s.label}}" class="tb-key ub-pm px-f">−</button>
 <div class="px-tape"><sc-for list="{{s.ticks}}" as="t" hint-placeholder-count="12"><button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" style="{{t.style}}"></button></sc-for></div>
-<button type="button" onClick="{{s.up}}" aria-label="Tambah {{s.label}}" class="px-fw px-sq" style="width: 34px; height: 34px">+</button>
+<button type="button" onClick="{{s.up}}" aria-label="Tambah {{s.label}}" class="tb-key ub-pm px-f">+</button>
 </div>
 </div>
 </sc-for>
 
 <sc-if value="{{hasBlocks}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 6px">
+<div class="px-clip pj ub-calc">
+<div class="pj-h px-f">Hitungan panitia</div>
 <sc-for list="{{blocks}}" as="b" hint-placeholder-count="2">
 <button type="button" onClick="{{b.sel}}" style="{{b.rowStyle}}"><span style="width: 14px; height: 14px; background: {{b.color}}; box-shadow: 0 0 0 2px #2B1D1A"></span><span class="px-f" style="flex: 1">Blok {{b.w}} × {{b.h}}</span><span style="{{b.dispStyle}}">{{b.show}}</span></button>
 </sc-for>
@@ -6463,7 +6483,7 @@ const DC = (() => {
 const PX = (() => {
   const P = { k: '#2B1D1A', w: '#FFFFFF', y: '#F2C035', Y: '#FFE680', o: '#C98A1B', r: '#E8554E', R: '#B23A34', q: '#FF9C8F',
     c: '#93D65F', a: '#57A843', A: '#2F7A36', b: '#8A5A32', B: '#5E3B20', t: '#C99A5B', T: '#E8C58C',
-    u: '#4C8FDD', U: '#2F64B0', s: '#A5DBF2', e: '#9AA7BA', E: '#D5DDE8', f: '#F7CDA4', p: '#E58C8C', n: '#2D3250', N: '#474E78', m: '#57B8A0', g: '#F08A3C', G: '#C0602A', h: '#FFB36B' };
+    u: '#4C8FDD', U: '#2F64B0', s: '#A5DBF2', e: '#9AA7BA', E: '#D5DDE8', f: '#F7CDA4', p: '#E58C8C', n: '#2D3250', N: '#474E78', m: '#57B8A0', g: '#F08A3C', G: '#C0602A', h: '#FFB36B', v: '#A98BE0', V: '#7C6CC4', x: '#D3C4F5' };
   const SPR = {
     coin: ['....kkkkkk....', '..kkYYYYYYkk..', '.kYYyyyyyyyok.', '.kYyooooooyok.', 'kYyoYYyyyyoyok', 'kYyoYwyyyyoyok', 'kYyoYyyyyyoyok', 'kYyoyyyyyyoyok', 'kYyoyyyyyyoyok', '.kyoyyyyyyoyk.', '.kyyooooooyok.', '.kooyyyyyyook.', '..kkooooookk..', '....kkkkkk....'],
     rumah: ['.....kk.....', '....krrk....', '...krrrrk...', '..krrrrrrk..', '.krrrrrrrrk.', 'kkkkkkkkkkkk', '.kwwwwwwwwk.', '.kwwkkwwssk.', '.kwkbbkwssk.', '.kwkbbkwwwk.', '.kkkkkkkkkk.'],
@@ -6572,7 +6592,7 @@ const PX = (() => {
     kuncup: ['....kk...', '...kAk...', '..kaak...', '.kcaaak..', 'kcaaaaAk.', 'kcaaaaAk.', '.kaaaAk..', '..kkkk...'],
     medali: ['kkk....kkk', 'krrk..kuuk', '.krrkkuuk.', '..krrkuk..', '...kkkk...', '..kkkkkk..', '.kYyyyyok.', 'kYyyYyyyok', 'kyYYYYYyok', 'kyyYYYyyok', 'kyyYyYyyok', '.koyyyyok.', '..kkkkkk..'],
     kue: ['..kkkk..', '.kwwwwk.', 'kwwrwwwk', 'kqqqqqqk', 'kppppppk', 'kqqqqqqk', 'kTTTTTTk', '.kkkkkk.'],
-    kursi: ['.kkkkkk.', '.kuuuuk.', '.kuUUuk.', '.kkkkkk.', 'kuuuuuuk', 'kkkkkkkk', '.k....k.', '.k....k.'],
+    kursi: ['.kkkkkkkk.', '.ksuuuuuk.', '.kuuuuuUk.', '.kuuuuuUk.', '.kkkkkkkk.', 'kssuuuuuUk', 'kUUUUUUUUk', 'kkkkkkkkkk', '.kk....kk.', '.kk....kk.'],
     balon: ['..kkkkk..', '.krrrrrk.', 'krqrrrrrk', 'krqrrrrRk', 'krrrrrrRk', 'krrrrrrRk', '.krrrrRk.', '..kRRRk..', '...kkk...', '....k....', '...k.....', '....k....', '.....k...']
   };
   SPR.kanan = SPR.kiri.map(r => r.split('').reverse().join(''));
@@ -6651,6 +6671,8 @@ const PX = (() => {
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
   ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
+  /* Tata Barisan: kursi berwarna sesuai blok (biru, oranye, hijau, ungu) */
+  [['kursiG', 'h', 'g', 'G'], ['kursiH', 'c', 'a', 'A'], ['kursiV', 'x', 'v', 'V']].forEach(q => { SPR[q[0]] = SPR.kursi.map(r => r.replace(/s/g, q[1]).replace(/u/g, q[2]).replace(/U/g, q[3])); U[q[0]] = uri(q[0]); css(q[0], U[q[0]]); });
   ['tb_karung', 'tb_semen', 'tb_pupuk', 'tb_galon', 'tb_panci', 'tb_keranjang', 'tb_kue', 'tb_buku', 'hadiah'].forEach(n => css(n, U[n]));
   /* Benda bergaya referensi Faiq (18 Nov): garis tepi biru tua tebal, sisi depan terlihat (tebal 3D), bayangan dan kilau berlapis. Dipakai sebagai bingkai 9-potong. */
   {
@@ -16313,7 +16335,8 @@ const spr = this.uItem();
 if (k === 'fill') return b + (cell >= 10 ? 'background: var(--px-' + spr + ') center / ' + (spr === 'orang' ? 'contain' : '100% 100%') + ' no-repeat' : 'background: ' + ({ kue: '#F7A8B0', tumpeng: '#F2C035', nasibox: '#FFFFFF', orang: '#E8554E' }[spr] || '#4C8FDD') + '; box-shadow: inset 0 0 0 1px rgba(43, 29, 26, .6)');
 if (k === 'empty') return b + 'border: 2px dashed rgba(43, 29, 26, .4)';
 if (k === 'plan') return b + 'border: 2px dashed #E39A1C; background: rgba(255, 200, 61, .18)';
-return b + 'background: ' + COL[Number(k[1])] + '; box-shadow: inset 0 0 0 1px rgba(43, 29, 26, .55), inset 0 -2px 0 rgba(0, 0, 0, .18)';
+if (cell >= 9 && !/kue|tumpeng|nasibox|orang/.test(spr)) return b + 'background: var(--px-' + ['kursi', 'kursiG', 'kursiH', 'kursiV'][Number(k[1])] + ') center / 100% 100% no-repeat';
+return b + 'background: ' + COL[Number(k[1])] + '; box-shadow: inset 0 0 0 1px rgba(26, 28, 44, .7), inset 0 -2px 0 rgba(0, 0, 0, .2), inset 0 2px 0 rgba(255, 255, 255, .35)';
 });
 const TUT = [
 'Hari pertama membantu Pak Darto di gedung serbaguna. Ini contoh 12 kue yang tertata pas di nampan: 3 baris, 4 kolom, tanpa sisa.',
