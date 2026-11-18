@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="fm-pxtext"><head>
+<html lang="id" class="fm-pxtext fm-noanim"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2D3250">
@@ -1158,6 +1158,8 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 .px-aula .px-gscroll,.px-aula.px-screen{background:#F7E8C6 var(--px-bunting) 0 0 / 160px 40px repeat-x!important}
 .px-aula .px-wall{background:linear-gradient(transparent 0 40px,rgba(201,154,91,.10) 40px)!important}
 .px-aula .px-floor{background:#C99A5B repeating-linear-gradient(90deg,#B98448 0 2px,#C99A5B 2px 40px)!important}
+/* Semua animasi dimatikan sementara (Faiq 18 Nov; animasi akan dirancang ulang). Hapus kelas fm-noanim di <html> untuk menyalakan lagi. */
+html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none!important;transition:none!important}
 @media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 </style>
 </head>

@@ -71,6 +71,7 @@ Satu file, tanpa build.
 - **Latar tenang (permintaan Faiq 16 Nov):** jangan pakai pola yang bikin pusing (kotak-kotak kontras, garis rapat). Lantai dan dinding polos atau bergaris samar. Tidak ada elemen yang tumpang tindih (pemandangan tidak boleh di belakang tombol; taruh di ujung bawah). Tiap layar sederhana, tidak terlihat penuh.
 - **Tema pixel (sudah di Beranda, Mini Games, Kasir Kilat):** kelas CSS `.px-*`, bingkai `px-fw` (putih), `px-fg` (emas), `px-fs` (kayu); gambar dari modul `PX` (`{{px.nama}}` lewat `px: PX.U` di `renderVals`). Angka dan cerita soal selalu Inter; judul dan label Fredoka (kelas `px-f`). Desain boleh diubah bebas, isi tidak.
 - **Nama tampilan game (Faiq 18 Nov):** Ubin → Tata Barisan, Jadwal Bus → Kapan Bareng?, Martabak Topping → Pesanan Martabak, Kebun Pagar → Kebun & Lintasan, Gudang Kardus → Isi Wadah, Cetak Spanduk → Perbesar Gambar, Loker OSIS → Pilihan OSIS. **Nama lama tetap kunci di kode dan progres tersimpan**; teks di layar diganti oleh `relabel()` (peta `GAME_DN`, dipanggil tiap render di `show()`). Tambah nama baru di `GAME_DN`, jangan ganti kunci.
+- **Animasi dimatikan sementara (Faiq 18 Nov):** kelas `fm-noanim` di `<html>` mematikan semua `animation` dan `transition`. Faiq akan merancang animasi di chat lain; jangan menambah animasi sebelum itu.
 - **Sebelum menyisipkan kode yang sama ke banyak game, cek nama variabel di tiap game.** Game Aljabar, Geometri, dan Data dibuat terpisah, jadi strukturnya berbeda.
 
 ## Cara menguji
