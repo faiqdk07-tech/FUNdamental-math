@@ -21,6 +21,7 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
     - Rekap Grosir: urai (mesin label) → `label` (mesin cetak label, karung berlabel).
     - Karung digambar berbentuk karung (leher terikat, badan menggembung), bukan kotak.
   - Timbangan dan Timbangan Balon: benda di piringan ikut cerita (`itemSpr` di render Timbangan; sprite `tb_karung`, `tb_semen`, `tb_pupuk`, `tb_galon`, `tb_panci`, `tb_keranjang`, `tb_kue`, `tb_buku`, `hadiah`; lainnya tetap kardus). Isi tetap "?" (anti-clue).
+  - **Contoh papan jawab baru (menunggu persetujuan Faiq), baru di Meja Hajatan:** kelas `.pj` pada `.px-clip` (kertas berbingkai kayu, pita merah "Jawabanmu", kolom jawaban kuning saat dipilih, layar LCD berpetak, tombol kalkulator pixel 4 kolom dengan Cek di dalam kisi `.pj-cek`) dan `.pj-pad` untuk pemilih angka di papan ilustrasi. Bila disetujui, sebar ke semua game (cek nama variabel tiap template) sekalian merapikan papan ilustrasi per game.
   - Judul semua game: hati tidak pernah terpotong; bila sempit, hati turun ke baris kedua dan judul tetap utuh.
 - **18 Nov: evaluasi F1–F3, bagian yang berlaku di semua game** (Faiq setuju semua usulan):
   - Label di atas balon hanya mode: "Pengenalan", "Misi n", "Kasus harian n" (`v2Tag` di `PX.v2`); nama kasus dan tingkat dihapus.
