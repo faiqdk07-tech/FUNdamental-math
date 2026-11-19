@@ -1906,6 +1906,35 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root.px-p-Tantangan .px-cnote.done .px-cst{color:#2E8B4E;border-color:#2E8B4E;font-weight:700}
 #root.px-p-Tantangan .px-pinnote{transform:none;margin:4px 0 0}
 #root.px-p-Tantangan .px-pbtn{background:#5DC46A!important;color:#FFFFFF!important;border:0!important;border-image:none!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -5px 0 #2F8A43,inset 0 3px 0 #9BE6A4!important;text-shadow:0 1px 0 #1F5E2E;padding:10px 10px 12px!important}
+
+/* kepala halaman bersama untuk halaman J: satu papan nama */
+#root .tg-head{align-items:stretch!important}
+#root .tg-head .px-sq{align-self:center}
+#root .tg-plate{flex:1;min-width:0;display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:6px 10px 7px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C,0 3px 0 rgba(26,28,44,.2)}
+#root .tg-plate b{font-size:18px;line-height:1.2;color:#2B1D1A;white-space:nowrap}
+#root .tg-plate small{font-size:11px;color:#5A5048;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#root .tg-intro{font-size:12.5px;line-height:1.45;color:#3B2414;padding:0 2px}
+/* Bengkel (19 Nov): bengkel terang, papan berlubang berisi tiket servis seragam */
+#root.px-p-Bengkel>div>div{background-color:#F1EBDD!important}
+#root .bk-board{display:flex;flex-direction:column;gap:10px;padding:10px 12px 14px;background:#DDE3EE;box-shadow:0 0 0 2px #1A1C2C,inset 0 0 0 4px #9AA7BA,0 4px 0 rgba(26,28,44,.2)}
+#root .bk-board.wait{background:#E8E3D6;box-shadow:0 0 0 2px #1A1C2C,inset 0 0 0 4px #B9AE96,0 4px 0 rgba(26,28,44,.2)}
+#root .bk-h{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#2B1D1A;padding:3px 10px;background:#F4F6F8;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #C9D3E0}
+#root .bk-h b{min-width:22px;text-align:center;font-size:12px;color:#FFFFFF;background:#2B1D1A;padding:0 6px}
+#root .bk-tix{position:relative;display:grid;grid-template-columns:26px minmax(0,1fr) 78px;align-items:center;column-gap:10px;height:62px;box-sizing:border-box;padding:6px 10px 6px 22px;background:#FFE98A;color:#2B1D1A;text-decoration:none;box-shadow:0 0 0 2px #1A1C2C,0 3px 0 rgba(26,28,44,.2)}
+#root .bk-tix::before{content:"";position:absolute;left:8px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#DDE3EE;box-shadow:0 0 0 2px #1A1C2C}
+#root .bk-tix::after{content:"";position:absolute;left:17px;top:6px;bottom:6px;border-left:2px dashed rgba(26,28,44,.35)}
+#root .bk-tix.wait{background:#FFFDF5}
+#root .bk-tix.wait::before{background:#E8E3D6}
+#root .bk-tix img{width:26px;height:26px;image-rendering:pixelated}
+#root .bk-txt{min-width:0;display:flex;flex-direction:column;gap:1px}
+#root .bk-txt b{font-size:15px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#root .bk-txt small{font-size:11px;line-height:13px;color:#5A5048;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#root .bk-cap{text-align:center;font-size:10px;line-height:16px;text-transform:uppercase;letter-spacing:.03em;font-weight:700;color:#B23A34;border:2px solid #B23A34}
+#root .bk-tix.wait .bk-cap{color:#5A5048;border-color:#8A8780;font-weight:600}
+#root .bk-empty{font-size:12.5px;line-height:1.4;color:#5A5048;padding:8px 10px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C}
+#root .bk-go{display:block;text-align:center;font-size:16px;text-decoration:none;color:#FFFFFF;padding:10px 10px 12px;background:#5DC46A;box-shadow:0 0 0 2px #1A1C2C,inset 0 -5px 0 #2F8A43,inset 0 3px 0 #9BE6A4;text-shadow:0 1px 0 #1F5E2E}
+#root .bk-week{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#2B1D1A;padding:5px 10px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C}
+#root .bk-week b{font-size:12px}
 </style>
 </head>
 <body>
@@ -2220,31 +2249,30 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div></template>
 <template id="tpl-Bengkel"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
-<div style="display: flex; align-items: center; gap: 10px">
+<div class="tg-head" style="display: flex; align-items: center; gap: 10px">
 <a href="Main.dc.html" aria-label="Kembali ke beranda" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
-<div class="px-f" style="font-size: 20px; font-weight: 700">Bengkel kesalahan</div>
+<div class="tg-plate"><b class="px-f">Bengkel kesalahan</b></div>
 </div>
-<div style="font-size: 13px; color: #3B2414">Misi atau kasus yang kesempatannya habis kembali paling cepat besok. Misi datang dengan angka baru, jadi yang dilatih caranya, bukan hafalan jawaban.</div>
-<div class="px-bench">
-<div class="px-bench-h px-f">Siap diperbaiki hari ini · {{readyCount}}</div>
+<div class="tg-intro">Misi atau kasus yang kesempatannya habis kembali paling cepat besok. Misi datang dengan angka baru, jadi yang dilatih caranya, bukan hafalan jawaban.</div>
+<div class="bk-board">
+<div class="bk-h px-f"><span>Siap diperbaiki hari ini</span><b>{{readyCount}}</b></div>
 <sc-for list="{{ready}}" as="r" hint-placeholder-count="2">
-<a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="px-rtag"><img alt="" src="{{r.ic}}" class="px-cic"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f" style="font-size: 15px">{{r.game}}</b><small>{{r.level}}</small></span><span class="px-rdate">gagal {{r.date}} ›</span></a>
+<a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="bk-tix"><img alt="" src="{{r.ic}}"><span class="bk-txt"><b class="px-f">{{r.game}}</b><small>{{r.level}}</small></span><span class="bk-cap">gagal {{r.date}}</span></a>
 </sc-for>
 <sc-if value="{{noReady}}" hint-placeholder-val="{{ false }}">
-<div class="px-rtag empty">Belum ada kasus yang perlu diperbaiki hari ini.</div>
+<div class="bk-empty">Belum ada kasus yang perlu diperbaiki hari ini.</div>
 </sc-if>
-<div class="px-bench-top"></div>
 </div>
-<div class="px-rack">
-<div class="px-bench-h px-f">Menunggu</div>
-<sc-if value="{{noWaiting}}" hint-placeholder-val="{{ false }}"><div class="px-rtag empty">Tidak ada.</div></sc-if>
+<div class="bk-board wait">
+<div class="bk-h px-f"><span>Menunggu</span><b>{{waitCount}}</b></div>
+<sc-if value="{{noWaiting}}" hint-placeholder-val="{{ false }}"><div class="bk-empty">Tidak ada.</div></sc-if>
 <sc-for list="{{waiting}}" as="w" hint-placeholder-count="1">
-<div class="px-rtag wait"><img alt="" src="{{w.ic}}" class="px-cic"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f">{{w.game}}</b><small>{{w.level}}</small></span><span class="px-rdate">{{w.when}}</span></div>
+<div class="bk-tix wait"><img alt="" src="{{w.ic}}"><span class="bk-txt"><b class="px-f">{{w.game}}</b><small>{{w.level}}</small></span><span class="bk-cap">{{w.when}}</span></div>
 </sc-for>
 </div>
-<div style="font-size: 12px; color: #3B2414">Diperbaiki minggu ini: {{weekFixed}} kasus</div>
+<div class="bk-week"><span>Diperbaiki minggu ini</span><b>{{weekFixed}}</b></div>
 <sc-if value="{{hasReady}}" hint-placeholder-val="{{ true }}">
-<a href="{{firstHref}}" onClick="{{firstTap}}" class="px-pbtn px-f" style="display: block; text-align: center; font-size: 16px; padding: 10px; text-decoration: none">Perbaiki sekarang ({{readyCount}})</a>
+<a href="{{firstHref}}" onClick="{{firstTap}}" class="bk-go px-f">Perbaiki sekarang ({{readyCount}})</a>
 </sc-if>
 </div>
 
@@ -7884,6 +7912,17 @@ const PX = (() => {
       R(P.k, 140, 34, 22, 3); R(P.t, 141, 35, 20, 1); R(P.k, 142, 37, 2, 5); R(P.k, 158, 37, 2, 5); R(P.k, 140, 30, 22, 2); R(P.b, 141, 30, 20, 1);
       for (i = 0; i < 8; i++) t.flower(52 + i * 3 + (i % 2), 41 + (i % 3), i);
     }],
+    bengkelterang: ['#F1EBDD', t => { const R = t.R; let i, j;
+      /* bengkel terang: jendela, papan berlubang berisi perkakas rapi, meja kerja, kotak perkakas merah */
+      R(P.k, 8, 6, 36, 26); R('#9ED7F5', 10, 8, 32, 22); R('#B8E5FA', 10, 16, 32, 5); R(P.k, 25, 8, 2, 22); R(P.k, 10, 18, 32, 1); R('#F4F6F8', 10, 8, 15, 1);
+      R(P.k, 54, 4, 92, 30); R('#C9D3E0', 55, 5, 90, 28); for (j = 8; j < 32; j += 5) for (i = 59; i < 144; i += 5) R('#AEB9C8', i, j, 1, 1);
+      t.stamp('palu', 60, 10); t.stamp('gir', 82, 12);
+      R(P.k, 104, 9, 3, 18); R('#9AA7BA', 105, 9, 1, 18); R(P.k, 101, 7, 9, 4); R('#9AA7BA', 102, 8, 7, 2);
+      R(P.k, 116, 8, 4, 20); R(P.r, 117, 9, 2, 8); R('#9AA7BA', 117, 17, 2, 10);
+      R(P.k, 126, 10, 14, 4); R('#9AA7BA', 127, 11, 12, 2); R(P.k, 130, 14, 6, 12); R(P.y, 131, 15, 4, 10);
+      R(P.k, 0, 34, 195, 3); R(P.t, 0, 35, 195, 1); R(P.b, 0, 37, 195, 10); R(P.B, 0, 37, 195, 1); for (i = 6; i < 195; i += 30) R('#7A4E2A', i, 39, 18, 1);
+      R(P.k, 156, 20, 30, 15); R(P.r, 157, 21, 28, 13); R(P.R, 157, 30, 28, 4); R('#FF9C8F', 157, 21, 28, 1); R(P.k, 166, 16, 12, 5); R(P.e, 167, 17, 10, 3); R(P.k, 169, 25, 6, 2);
+    }],
     papan: ['#F2EAD9', t => { const R = t.R; let i; R(P.k, 24, 4, 148, 42); R(P.b, 25, 5, 146, 40); R('#D8B07A', 29, 9, 138, 32);
       [[36, 12, P.w, P.r], [66, 16, P.Y, P.u], [98, 11, P.w, P.a], [130, 15, '#F7A8B0', P.r]].forEach(q => { R(P.k, q[0], q[1], 24, 20); R(q[2], q[0] + 1, q[1] + 1, 22, 18); for (i = 0; i < 3; i++) R('#9AA7BA', q[0] + 4, q[1] + 7 + i * 4, 16, 1); R(P.k, q[0] + 10, q[1] - 2, 4, 4); R(q[3], q[0] + 11, q[1] - 1, 2, 2); }); }],
     bengkel: ['#EFE8DC', t => { const R = t.R; let i; R(P.k, 20, 4, 155, 26); R('#C9A47A', 21, 5, 153, 24); for (i = 0; i < 12; i++) R('#B48E62', 26 + i * 12, 8, 2, 2);
@@ -8408,7 +8447,7 @@ PX.devOf = (g, comp) => {
     return memo[key] = t.cv.toDataURL();
   }
   PX.scene = scene;
-  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'panel', Tantangan: 'alunalun', Bengkel: 'bengkel', CekCelah: 'teropong', KasusBaru: 'pos' };
+  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'panel', Tantangan: 'alunalun', Bengkel: 'bengkelterang', CekCelah: 'teropong', KasusBaru: 'pos' };
   const DONE = { LokerOSIS: 1, PentasSeni: 1, UndianDoorprize: 1, RaporKelas: 1, GrafikViral: 1, RuteKurir: 1, PasangLantai: 1, GudangKardus: 1, CetakSpanduk: 1, TanggaBangunan: 1, Pelabuhan: 1, Main: 1, MiniGames: 1, KasirKilat: 1, Timbangan: 1, Ubin: 1, JadwalBus: 1, BagiPizza: 1, RacikResep: 1, LipatKertas: 1, DuaStruk: 1, MejaHajatan: 1, MartabakTopping: 1, MesinMinuman: 1, ArgoOjek: 1, RekapGrosir: 1, KebunPagar: 1, DapurRoti: 1 };
   PX.skin = (root, name) => {
     if (DONE[name]) { root.className = ''; return; }
@@ -9011,7 +9050,7 @@ const open = b => FMP.go({ key: b.key, g: b.g, l: b.l, mode: b.k, idx: b.k === '
 const R = p.bengkel.filter(b => FMP.dayDiff(b.t) >= 1), W = p.bengkel.filter(b => FMP.dayDiff(b.t) < 1);
 const ready = R.map(b => ({ ic: PX.gameIcon(b.g), game: b.g, level: what(b), date: fmt(b.t), href: b.key + '.dc.html', tap: () => open(b), aria: b.g + ' ' + what(b) + ', gagal ' + fmt(b.t) + ', ketuk untuk memperbaiki' }));
 const waiting = W.map(b => ({ ic: PX.gameIcon(b.g), game: b.g, level: what(b), when: 'besok' }));
-return { px: PX.U, ready: ready, waiting: waiting, hasWaiting: waiting.length > 0, noWaiting: !waiting.length, readyCount: String(ready.length), noReady: !ready.length, hasReady: ready.length > 0, firstHref: R.length ? R[0].key + '.dc.html' : 'Main.dc.html', firstTap: () => { if (R.length) open(R[0]); }, weekFixed: String(p.fixed.filter(t => FMP.dayDiff(t) < 7).length) };
+return { px: PX.U, ready: ready, waiting: waiting, hasWaiting: waiting.length > 0, noWaiting: !waiting.length, readyCount: String(ready.length), waitCount: String(waiting.length), noReady: !ready.length, hasReady: ready.length > 0, firstHref: R.length ? R[0].key + '.dc.html' : 'Main.dc.html', firstTap: () => { if (R.length) open(R[0]); }, weekFixed: p.fixed.filter(t => FMP.dayDiff(t) < 7).length + ' kasus' };
 }
 }
 
