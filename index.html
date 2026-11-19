@@ -1366,6 +1366,10 @@ html.fm-noanim .px-pop.warn:not(.info) .px-pop-rib i:first-child{animation:fm-be
 html.fm-noanim .px-talk-face img{animation:fm-hop2 240ms steps(2,end)!important}
 html.fm-noanim .px-talk-bubble{transform-origin:left 28px;animation:fm-grow 150ms steps(3,end)!important}
 html.fm-noanim .px-talk-next::after{animation:fm-nudge 240ms steps(2,end) 300ms!important}
+/* Kelompok 8: kilau bintang baru (tersembunyi; dimunculkan sekali oleh FMA.newStars) */
+html.fm-noanim [data-fmstar],html.fm-noanim [data-fmtotal]{position:relative}
+html.fm-noanim [data-fmstar]::after,html.fm-noanim [data-fmtotal]::after{content:"";position:absolute;left:calc(100% - 4px);top:-5px;width:10px;height:10px;opacity:0;pointer-events:none;background:linear-gradient(#FFF,#FFF) center/2px 100% no-repeat,linear-gradient(#FFF,#FFF) center/100% 2px no-repeat;filter:drop-shadow(0 0 0 #C98A1B) drop-shadow(1px 1px 0 #C98A1B)}
+html.fm-noanim [data-fmtotal]::after{left:9px;top:-6px}
 /* Kelompok 7: penanda "!" di peta Beranda melompat 2 kali saat peta dibuka, lalu diam. Tokoh berjalan: lihat FMA.afterRender. */
 html.fm-noanim .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
 }
@@ -4238,7 +4242,7 @@ html.fm-noanim .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
 </div>
 </div>
 <div class="px-topbar">
-<div class="px-me"><span class="px-me-face"><img alt="" src="{{px.wajah}}"></span><span class="px-me-name"><b class="px-f">Faiq</b><span class="px-me-star" aria-label="Bintang terkumpul"><img alt="" src="{{px.bintang}}">{{starTotal}}</span></span></div>
+<div class="px-me"><span class="px-me-face"><img alt="" src="{{px.wajah}}"></span><span class="px-me-name"><b class="px-f">Faiq</b><span class="px-me-star" aria-label="Bintang terkumpul" data-fmtotal="{{starTotal}}"><img alt="" src="{{px.bintang}}">{{starTotal}}</span></span></div>
 <a href="Pengaturan.dc.html" class="px-fw px-tgt px-f" aria-label="Target hari ini"><span>Target <b>{{targetTxt}}</b></span><span style="display: flex"><sc-for list="{{pips}}" as="d" hint-placeholder-count="2"><i class="px-star {{d}}"></i></sc-for></span></a>
 <span style="flex: 1"></span>
 <button type="button" onClick="{{streakTap}}" aria-label="{{streakAria}}" class="px-fw px-sq px-fire {{streakOn}}"><img alt="" src="{{px.api}}"><b>{{streak}}</b></button><a href="Pengaturan.dc.html" aria-label="Pengaturan" class="px-fw px-sq"><img alt="" src="{{px.gir}}" width="24" height="24"></a>
@@ -4869,7 +4873,7 @@ html.fm-noanim .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
 <div class="s px-f">{{selTag}}</div>
 <div class="t px-f">{{sel.name}}</div>
 <div class="d">{{sel.task}}</div>
-<div class="act"><span><sc-if value="{{sel.played}}" hint-placeholder-val="{{ true }}"><span role="img" aria-label="{{sel.starLabel}}" style="display: flex; gap: 8px"><sc-for list="{{sel.tiers}}" as="tr" hint-placeholder-count="3"><span style="display: flex; align-items: center; gap: 1px"><span class="px-f" style="font-size: 11px; font-weight: 700; color: #4B4B57; margin-right: 2px">{{tr.lab}}</span><sc-for list="{{tr.stars}}" as="t" hint-placeholder-count="3"><i class="px-star sm {{t.on}}"></i></sc-for></span></sc-for></span></sc-if><sc-if value="{{sel.isNew}}" hint-placeholder-val="{{ false }}"><span class="px-val px-f">Belum dimainkan</span></sc-if></span><a href="{{sel.href}}" onClick="{{sel.go}}" class="px-fg px-btn" style="display: flex; align-items: center; gap: 6px"><img alt="" src="{{px.main}}" width="10" height="11">Main</a></div>
+<div class="act"><span><sc-if value="{{sel.played}}" hint-placeholder-val="{{ true }}"><span role="img" aria-label="{{sel.starLabel}}" style="display: flex; gap: 8px"><sc-for list="{{sel.tiers}}" as="tr" hint-placeholder-count="3"><span style="display: flex; align-items: center; gap: 1px"><span class="px-f" style="font-size: 11px; font-weight: 700; color: #4B4B57; margin-right: 2px">{{tr.lab}}</span><sc-for list="{{tr.stars}}" as="t" hint-placeholder-count="3"><i class="px-star sm {{t.on}}" data-fmstar="{{t.key}}"></i></sc-for></span></sc-for></span></sc-if><sc-if value="{{sel.isNew}}" hint-placeholder-val="{{ false }}"><span class="px-val px-f">Belum dimainkan</span></sc-if></span><a href="{{sel.href}}" onClick="{{sel.go}}" class="px-fg px-btn" style="display: flex; align-items: center; gap: 6px"><img alt="" src="{{px.main}}" width="10" height="11">Main</a></div>
 </div></div>
 </div>
 </sc-if>
@@ -13769,7 +13773,7 @@ const mats = MATS.map(m => {
 });
 const games = list.map(g => {
   const last = /^[FIE]$/.test(lastMap[g.name] || '') ? lastMap[g.name] : 'F';
-  const tiers = ['F', 'I', 'E'].map(l => { const arr = FMP.stars(g.name, l); return { lab: l, arr: arr, stars: arr.map(on => ({ on: on ? 'on' : '' })) }; });
+  const tiers = ['F', 'I', 'E'].map(l => { const arr = FMP.stars(g.name, l); return { lab: l, arr: arr, stars: arr.map((on, i) => ({ on: on ? 'on' : '', key: g.name + '|' + l + '|' + i })) }; });
   const n = tiers.reduce((a, t) => a + t.arr.filter(Boolean).length, 0);
   const go = () => { try { window.localStorage.setItem('fm.minigames.return', JSON.stringify({ mat: s.mat, lvl: last, g: g.name, t: Date.now() })); } catch (e) {} };
   const pl = FMP.played(g.name);
@@ -18486,7 +18490,35 @@ const FMA = (() => {
     } catch (err) {}
   }
   function enter(box) { if (on()) try { box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, easing: 'steps(3, start)' }); } catch (err) {} }
+  /* Kelompok 8: bintang yang baru didapat sejak terakhir terlihat membesar 0 -> 1,4 -> 1 dan berkilau sekali.
+     Catatan bintang yang sudah pernah terlihat: localStorage fm.anim.seen ({ stars: [kunci game|tingkat|urutan], total: n }).
+     Saat catatan belum ada (pertama kali), semua bintang yang sudah didapat hanya dicatat, tidak dianimasikan. */
+  const STAR = [{ scale: 0, easing: 'step-end' }, { scale: 0.6, offset: 0.25, easing: 'step-end' }, { scale: 1.4, offset: 0.5, easing: 'step-end' }, { scale: 1, offset: 0.75, easing: 'step-end' }, { scale: 1 }];
+  const GLINT = [{ opacity: 0, scale: 0.4, easing: 'step-end' }, { opacity: 1, scale: 1, offset: 0.4, easing: 'step-end' }, { opacity: 0.5, scale: 1.4, offset: 0.7, easing: 'step-end' }, { opacity: 0, scale: 1.4 }];
+  function newStars(box) {
+    const stars = box.querySelectorAll('[data-fmstar]'), tot = box.querySelector('[data-fmtotal]');
+    if (!stars.length && !tot) return;
+    let seen = null;
+    try { seen = JSON.parse(window.localStorage.getItem('fm.anim.seen') || 'null'); } catch (e) {}
+    const first = !seen;
+    if (first) { seen = { stars: [], total: null }; try { Object.keys(FMP.GAME).forEach(g => ['F', 'I', 'E'].forEach(l => FMP.stars(g, l).forEach((on, i) => { if (on) seen.stars.push(g + '|' + l + '|' + i); }))); } catch (e) {} }
+    let changed = first, k = 0;
+    const play = (el, glintEl, delay) => { if (!on()) return; try { el.animate(STAR, { duration: 240, delay: delay, fill: 'backwards' }); glintEl.animate(GLINT, { duration: 300, delay: delay + 120, pseudoElement: '::after' }); } catch (e) {} };
+    stars.forEach(el => {
+      if (!el.classList.contains('on')) return;
+      const key = el.getAttribute('data-fmstar');
+      if (seen.stars.indexOf(key) >= 0) return;
+      seen.stars.push(key); changed = true;
+      if (!first) play(el, el, 120 * k++);
+    });
+    if (tot) {
+      const n = Number(tot.getAttribute('data-fmtotal')) || 0;
+      if (seen.total !== n) { if (!first && seen.total !== null && n > seen.total) play(tot.querySelector('img') || tot, tot, 0); seen.total = n; changed = true; }
+    }
+    if (changed) try { window.localStorage.setItem('fm.anim.seen', JSON.stringify(seen)); } catch (e) {}
+  }
   function afterRender(box) {
+    newStars(box);
     box.querySelectorAll('.px-hero').forEach(walkHero);
     box.querySelectorAll('.px-talk').forEach(t => {
       const tx = t.querySelector('.px-talk-text'), k = tx ? tx.textContent : '';

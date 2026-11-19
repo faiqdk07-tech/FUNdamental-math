@@ -58,6 +58,7 @@ Satu file, tanpa build.
   - `fm.lastLvl` {namaGame: lvl}
   - `fm.settings`
   - `fm.progress` (progres pemain, lihat modul `FMP` dan RENCANA.md)
+  - `fm.anim.seen` (bintang yang sudah pernah dianimasikan, lihat RENCANA.md bagian "Animasi")
 - **Pola tingkat (contoh di 7 game Bilangan):**
   - `this.T = {F:[...3 misi], I:[...], E:[...]}`;
   - `initLvl()`, `curLvl()`, `setLvl(l)`;
