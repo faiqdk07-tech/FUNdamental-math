@@ -1678,6 +1678,20 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-ge-tangga .px-st-tangga:has(button[aria-label^="Peta"]) path[stroke="#E2E1DC"]{stroke:#C9B48E!important}
 #root .px-ge-tangga .px-st-tangga:has(button[aria-label^="Bingkai"]) div[style*="width: 240px; height: 170px"]{background:#EFE3C8}
 #root .px-ge-tangga .px-st-tangga:has(button[aria-label^="Bingkai"]) svg{background:transparent!important}
+/* Pelabuhan (Faiq 18 Nov): peta laut berbingkai, layar radar hijau gelap, garis pantai berpasir; alat garis bergambar */
+#root .px-ge-laut .px-inner div[style*="width: 240px; height: 170px"]{box-shadow:0 0 0 3px #1A1C2C,0 6px 0 3px rgba(26,28,44,.18);margin:12px auto 10px!important}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:radar"]) div[style*="width: 240px; height: 170px"]{background:#12301F;box-shadow:0 0 0 5px #3F4452,0 0 0 8px #1A1C2C,0 8px 0 8px rgba(26,28,44,.18)}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:radar"]) svg{background:transparent!important}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:radar"]) path[stroke="#E2E1DC"]{stroke:#1E4A31!important}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:radar"]) path[stroke="#1C1C1A"]{stroke:#5DE07A!important}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:radar"]) path[fill="#DCE5FA"],#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:radar"]) path[fill="#EFE6D2"]{fill:#9FF0B0!important;stroke:#12301F!important}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:radar"]) path[stroke="#C0392B"]{stroke:#F2C035!important}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:radar"]) text{fill:#9FF0B0!important}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:menara"]) div[style*="width: 240px; height: 170px"]{background:linear-gradient(#9ED7F5 0 75%,#F2D59A 75%)}
+#root .px-ge-laut .px-st-pelab:has(button[style*="--pl:menara"]) svg{background:transparent!important}
+#root .px-ge-laut .px-inner div:has(> button[style*="--gl"]){gap:10px!important;padding:3px}
+#root .px-ge-laut .px-inner button[style*="--gl:"]{min-width:84px;height:78px;border:0!important;border-radius:0!important;padding:50px 8px 0!important;font-size:13px!important;color:#2B1D1A!important;background-color:#FFF6E0!important;background-repeat:no-repeat!important;background-position:center 5px!important;background-size:40px 43px!important;image-rendering:pixelated;box-shadow:0 0 0 2px #1A1C2C,inset 0 -5px 0 #E8D5B5,0 3px 0 rgba(26,28,44,.25)!important;cursor:pointer}
+#root .px-ge-laut .px-inner button[style*="--gl:on"]{background-color:#FFD98A!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -5px 0 #D88A28,0 3px 0 rgba(26,28,44,.25)!important}
 </style>
 </head>
 <body>
@@ -7944,6 +7958,8 @@ const PX = (() => {
       for (let y = 0; y < 24; y++) for (let x = 0; x < 24; x++) { const dx = x - 11.5, dy = y - 11.5, d = dx * dx + dy * dy; if (d <= 120) F(d <= 72 ? '#4E5363' : '#2B2E38', x, y, 1, 1); }
       for (let a = 0; a < 12; a++) { const t = a * Math.PI / 6; D('#14151B', Math.round(11.5 + 10 * Math.cos(t)), Math.round(11.5 + 10 * Math.sin(t)), 1, 1); }
       const ang = (Number(colName) || 0) * Math.PI / 180; for (let r = 2; r <= 9; r++) { const px = Math.round(11.5 + r * Math.sin(ang) - 0.5), py = Math.round(11.5 - r * Math.cos(ang) - 0.5); D('#F2A33A', px, py, 2, 2); } D('#6E7486', 6, 6, 2, 2);
+    } else if (kind === 'gtegak' || kind === 'gdatar' || kind === 'ghubung') { F('#F2EFE6', 2, 3, 20, 20); for (let q = 6; q < 22; q += 5) { D('#D5DDE8', q, 4, 1, 18); D('#D5DDE8', 3, q, 18, 1); }
+      if (kind === 'gtegak') for (let y = 5; y < 22; y += 3) D('#2F64B0', 11, y, 2, 2); else if (kind === 'gdatar') for (let x = 4; x < 21; x += 3) D('#2F64B0', x, 12, 2, 2); else for (let q = 0; q < 15; q++) D('#E8554E', 5 + q, 19 - q, 2, 2);
     } else { /* gelas minuman */
       F(mixW(col, 0.35), 7, 8, 10, 15); D(col, 8, 12, 8, 10); D('#FFFFFF', 8, 9, 2, 3);
     }
@@ -13884,7 +13900,7 @@ return ['Peta laut', ['Satu kotak di peta = 1 km.', 'Alat garis menggambar garis
 boardView(ctx) {
 const P = ctx.P, act = ctx.act;
 const G = P.garis || [];
-const mk = (id, ic, nm) => ({ label: ic + ' ' + nm, aria: nm + (G.indexOf(id) >= 0 ? ', tergambar' : ''), style: this.tb(G.indexOf(id) >= 0, 'font-weight: 500; font-size: 12px'), tap: () => { if (ctx.locked) return; ctx.setP({ garis: G.indexOf(id) >= 0 ? G.filter(x => x !== id) : G.concat([id]), tk: P.tk + 1 }, P.tk === 0 ? ctx.tutNext(1) : ctx.tutNext(2)); } });
+const mk = (id, ic, nm) => ({ label: nm, aria: nm + (G.indexOf(id) >= 0 ? ', tergambar' : ''), style: '--gl:' + (G.indexOf(id) >= 0 ? 'on' : 'off') + '; --pl:' + P.type + '; background-image: url(' + PX.obj('g' + id) + ')', tap: () => { if (ctx.locked) return; ctx.setP({ garis: G.indexOf(id) >= 0 ? G.filter(x => x !== id) : G.concat([id]), tk: P.tk + 1 }, P.tk === 0 ? ctx.tutNext(1) : ctx.tutNext(2)); } });
 const tools = [];
 const kit = { hasTools: true, tools: [{ label: 'Alat garis · ketuk untuk menggambar atau menghapus', items: [mk('tegak', '┆', 'tegak'), mk('datar', '┄', 'mendatar'), mk('hubung', '╱', P.type === 'menara' ? 'ke menara A' : 'A ke B')] }] };
 if (P.type === 'grid') return { vals: Object.assign(this.gridScene(P.a, P.p, P.q, P.garis, true), kit), boardLabel: 'Peta laut · 1 kotak = 1 km', picker: false, actions: tools };
