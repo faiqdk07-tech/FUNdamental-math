@@ -1953,10 +1953,14 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .cc-row img{width:22px;height:22px;image-rendering:pixelated}
 #root .cc-name{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #root .cc-st{font-size:11px;color:var(--c);padding:1px 6px;border:2px solid var(--c);font-weight:600}
-#root .cc-note{font-size:10.5px;color:#8A8780;padding-top:4px}
-#root .cc-legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:10.5px;color:#5A5048}
-#root .cc-legend span{display:flex;align-items:center;gap:4px}
-#root .cc-legend .px-moon{width:12px;height:12px;background:conic-gradient(#FFC83D var(--p),#D5DDE8 0);box-shadow:0 0 0 1.5px #1A1C2C}
+#root .cc-info{align-self:flex-start;display:flex;align-items:center;gap:6px;padding:4px 10px 5px;border:0;cursor:pointer;font-size:12px;color:#2B1D1A;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C,0 2px 0 rgba(26,28,44,.18)}
+#root .cc-info .px-moon{width:14px;height:14px;background:conic-gradient(#FFC83D var(--p),#D5DDE8 0);box-shadow:0 0 0 1.5px #1A1C2C}
+#root .cc-info b{font-size:10px;color:#5A5048}
+#root .cc-info.on{background:#FFE98A}
+#root .cc-legend{display:grid;grid-template-columns:1fr;gap:6px;padding:10px 12px;font-size:12px;color:#2B1D1A;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C}
+#root .cc-legend span{display:flex;align-items:center;gap:8px}
+#root .cc-legend small{font-size:10.5px;color:#5A5048;padding-top:2px;border-top:1px dashed #D9CBB0}
+#root .cc-legend .px-moon{width:14px;height:14px;background:conic-gradient(#FFC83D var(--p),#D5DDE8 0);box-shadow:0 0 0 1.5px #1A1C2C}
 </style>
 </head>
 <body>
@@ -2319,11 +2323,14 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
 <a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="cc-row"><i class="px-moon" style="--p: {{r.ph}}"></i><img alt="" src="{{r.ic}}"><span class="cc-name px-f">{{r.name}}</span><span class="cc-st" style="--c: {{r.col}}">{{r.status}}</span></a>
 </sc-for>
-<div class="cc-note">{{when}}</div>
 </div>
+<button type="button" onClick="{{toggleLegend}}" class="cc-info {{legendOn}}" aria-label="Arti bulan"><i class="px-moon" style="--p: 50%"></i><span class="px-f">Arti bulan</span><b>{{legendArrow}}</b></button>
+<sc-if value="{{showLegend}}" hint-placeholder-val="{{ false }}">
 <div class="cc-legend">
 <sc-for list="{{legend}}" as="lg" hint-placeholder-count="5"><span><i class="px-moon" style="--p: {{lg.ph}}"></i>{{lg.t}}</span></sc-for>
+<small>{{when}}</small>
 </div>
+</sc-if>
 <a href="{{startHref}}" onClick="{{startTap}}" class="bk-go px-f">{{startLabel}}</a>
 </div>
 
@@ -9119,7 +9126,7 @@ return { ph: (m.rank * 25) + '%', ic: PX.gameIcon(g[0]), name: g[0], href: g[1] 
 const first = rows.find(r => r.rank > 0 && r.rank < 4) || rows.find(r => r.rank === 0) || rows[0];
 return {
 px: PX.U,
-mat: mat, rows: rows, face: PX.U.dimas || PX.U.kepala, solid: rows.filter(r => r.rank === 4).length + ' / ' + rows.length, legend: [['100%', 'ketiga tingkat berbintang'], ['75%', 'lanjut Expert'], ['50%', 'lanjut Intermediate'], ['25%', 'mulai Fundamental'], ['0%', 'belum dicoba']].map(x => ({ ph: x[0], t: x[1] })), when: 'Dihitung dari bintang ★1 di setiap tingkat', startHref: first.href, startTap: () => FMP.go({ g: first.name, key: first.key, l: first.l }), startLabel: 'Main ' + first.name + ' · ' + FMP.LVN[first.l],
+mat: mat, rows: rows, face: PX.U.dimas || PX.U.kepala, solid: rows.filter(r => r.rank === 4).length + ' / ' + rows.length, legend: [['100%', 'Kokoh: semua tingkat berbintang'], ['75%', 'Lanjut Expert'], ['50%', 'Lanjut Intermediate'], ['25%', 'Mulai Fundamental'], ['0%', 'Belum dicoba']].map(x => ({ ph: x[0], t: x[1] })), showLegend: !!s.legend, legendOn: s.legend ? 'on' : '', legendArrow: s.legend ? '▴' : '▾', toggleLegend: () => this.setState({ legend: !s.legend }), when: 'Bulan terisi dari bintang ★1 di tiap tingkat.', startHref: first.href, startTap: () => FMP.go({ g: first.name, key: first.key, l: first.l }), startLabel: 'Main ' + first.name + ' · ' + FMP.LVN[first.l],
 mats: Object.keys(this.G).map(m => ({ on: m === mat ? 'on' : '', img: PX.labBench({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m] || 'bil'), label: m, aria: 'Materi ' + m + (m === mat ? ', dipilih' : ''), tap: () => this.setState({ mat: m }),
 style: 'padding: 5px 12px; border-radius: 14px; font: inherit; font-size: 13px; cursor: pointer; ' + (m === mat ? 'background: #1C1C1A; color: #FFFFFF; border: 1px solid #1C1C1A' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7') }))
 };
