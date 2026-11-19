@@ -1344,7 +1344,8 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none!important;transition:none!important}
 /* Animasi yang sudah disetujui Faiq (dirancang 19 Nov). Hanya yang ada di blok ini yang jalan; semua yang lain tetap mati oleh fm-noanim.
    Aturan: gerak patah-patah (steps), pendek (< 400 ms), hanya saat ada aksi, hanya translate/scale/opacity, tidak pernah sebelum pemain menjawab (anti-clue).
-   Kelompok 1 (ketuk tombol) ada di skrip FMA di akhir file. Kelompok 2-3: kartu hasil Cek. */
+   Kelompok 1 (ketuk tombol) ada di skrip FMA di akhir file. Kelompok 2-3: kartu hasil Cek.
+   Saklar Pengaturan > Tampilan > Animasi Mati memberi kelas fm-animoff di <html> (FMA.apply) dan mematikan semuanya. */
 @keyframes fm-fade{from{opacity:0}}
 @keyframes fm-up{from{translate:0 24px}}
 @keyframes fm-shake{25%{translate:-4px 0}50%{translate:4px 0}75%{translate:-2px 0}100%{translate:0 0}}
@@ -1355,23 +1356,23 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 @keyframes fm-grow{from{scale:.9}}
 @keyframes fm-nudge{50%{translate:3px 0}}
 @media (prefers-reduced-motion:no-preference){
-html.fm-noanim .px-pop{animation:fm-fade 150ms steps(3,end)!important}
-html.fm-noanim .px-pop .px-pop-card{animation:fm-up 160ms steps(4,end)!important}
-html.fm-noanim .px-pop.ok .px-pop-rib{animation:fm-hop 200ms steps(2,end) 160ms!important}
-html.fm-noanim .px-pop.ok .px-pop-rib i{animation:fm-star 180ms steps(3,end) 200ms backwards!important}
-html.fm-noanim .px-pop.ok .px-pop-rib i:last-child{animation-delay:300ms!important}
-html.fm-noanim .px-pop.warn:not(.info) .px-pop-card{animation:fm-up 160ms steps(4,end),fm-shake 200ms steps(4,end) 160ms!important}
-html.fm-noanim .px-pop.warn:not(.info) .px-pop-rib i:first-child{animation:fm-beat 200ms steps(2,end) 160ms!important}
+html.fm-noanim:not(.fm-animoff) .px-pop{animation:fm-fade 150ms steps(3,end)!important}
+html.fm-noanim:not(.fm-animoff) .px-pop .px-pop-card{animation:fm-up 160ms steps(4,end)!important}
+html.fm-noanim:not(.fm-animoff) .px-pop.ok .px-pop-rib{animation:fm-hop 200ms steps(2,end) 160ms!important}
+html.fm-noanim:not(.fm-animoff) .px-pop.ok .px-pop-rib i{animation:fm-star 180ms steps(3,end) 200ms backwards!important}
+html.fm-noanim:not(.fm-animoff) .px-pop.ok .px-pop-rib i:last-child{animation-delay:300ms!important}
+html.fm-noanim:not(.fm-animoff) .px-pop.warn:not(.info) .px-pop-card{animation:fm-up 160ms steps(4,end),fm-shake 200ms steps(4,end) 160ms!important}
+html.fm-noanim:not(.fm-animoff) .px-pop.warn:not(.info) .px-pop-rib i:first-child{animation:fm-beat 200ms steps(2,end) 160ms!important}
 /* Kelompok 4: tokoh dan balon, sekali saat cerita baru tampil (diputar ulang oleh FMA.afterRender bila cerita berganti) */
-html.fm-noanim .px-talk-face img{animation:fm-hop2 240ms steps(2,end)!important}
-html.fm-noanim .px-talk-bubble{transform-origin:left 28px;animation:fm-grow 150ms steps(3,end)!important}
-html.fm-noanim .px-talk-next::after{animation:fm-nudge 240ms steps(2,end) 300ms!important}
+html.fm-noanim:not(.fm-animoff) .px-talk-face img{animation:fm-hop2 240ms steps(2,end)!important}
+html.fm-noanim:not(.fm-animoff) .px-talk-bubble{transform-origin:left 28px;animation:fm-grow 150ms steps(3,end)!important}
+html.fm-noanim:not(.fm-animoff) .px-talk-next::after{animation:fm-nudge 240ms steps(2,end) 300ms!important}
 /* Kelompok 8: kilau bintang baru (tersembunyi; dimunculkan sekali oleh FMA.newStars) */
-html.fm-noanim [data-fmstar],html.fm-noanim [data-fmtotal]{position:relative}
-html.fm-noanim [data-fmstar]::after,html.fm-noanim [data-fmtotal]::after{content:"";position:absolute;left:calc(100% - 4px);top:-5px;width:10px;height:10px;opacity:0;pointer-events:none;background:linear-gradient(#FFF,#FFF) center/2px 100% no-repeat,linear-gradient(#FFF,#FFF) center/100% 2px no-repeat;filter:drop-shadow(0 0 0 #C98A1B) drop-shadow(1px 1px 0 #C98A1B)}
-html.fm-noanim [data-fmtotal]::after{left:9px;top:-6px}
+html.fm-noanim:not(.fm-animoff) [data-fmstar],html.fm-noanim:not(.fm-animoff) [data-fmtotal]{position:relative}
+html.fm-noanim:not(.fm-animoff) [data-fmstar]::after,html.fm-noanim:not(.fm-animoff) [data-fmtotal]::after{content:"";position:absolute;left:calc(100% - 4px);top:-5px;width:10px;height:10px;opacity:0;pointer-events:none;background:linear-gradient(#FFF,#FFF) center/2px 100% no-repeat,linear-gradient(#FFF,#FFF) center/100% 2px no-repeat;filter:drop-shadow(0 0 0 #C98A1B) drop-shadow(1px 1px 0 #C98A1B)}
+html.fm-noanim:not(.fm-animoff) [data-fmtotal]::after{left:9px;top:-6px}
 /* Kelompok 7: penanda "!" di peta Beranda melompat 2 kali saat peta dibuka, lalu diam. Tokoh berjalan: lihat FMA.afterRender. */
-html.fm-noanim .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
+html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
 }
 /* Teks status di bilah judul (mis. "Jalur ditemukan 0/6") tidak dipotong: bila ada teks, judul dan status jadi dua baris (Faiq 18 Nov) */
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)){flex-direction:column!important;align-items:flex-start!important;justify-content:center;gap:0;padding-top:1px!important;padding-bottom:2px!important}
@@ -2001,6 +2002,7 @@ html.fm-noanim .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
 #root .st-sec+.st-sec{border-top:2px solid #D9CBB0;box-shadow:inset 0 2px 0 #FFFDF5}
 #root .st-ic{width:18px;height:18px;image-rendering:pixelated}
 #root .st-keys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#root .st-keys2{grid-template-columns:repeat(2,minmax(0,1fr))}
 #root .st-key{display:flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 6px 3px;border:0;cursor:pointer;background:#FFFDF5;color:#2B1D1A;font-size:12.5px;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #D9CBB0}
 #root .st-key i{flex:none;width:9px;height:9px;border-radius:50%;background:#B9AE96;box-shadow:0 0 0 1.5px #1A1C2C}
 #root .st-key.on{background:#FFE29A;box-shadow:0 0 0 2px #1A1C2C,inset 0 -2px 0 #E8B53A;transform:translateY(2px);font-weight:700}
@@ -5356,6 +5358,15 @@ html.fm-noanim .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
 <div class="st-keys">
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="3">
 <button type="button" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="st-key {{r.on}}"><i></i><span class="px-f">{{r.label}}</span></button>
+</sc-for>
+</div>
+</div>
+<div class="st-sec">
+<div class="bk-lab px-f"><img alt="" class="st-ic" src="{{px.orang}}">Tampilan</div>
+<div class="st-sub">Animasi</div>
+<div class="st-keys st-keys2">
+<sc-for list="{{anims}}" as="a" hint-placeholder-count="2">
+<button type="button" onClick="{{a.tap}}" aria-label="{{a.aria}}" class="st-key {{a.on}}"><i></i><span class="px-f">{{a.label}}</span></button>
 </sc-for>
 </div>
 </div>
@@ -14499,11 +14510,12 @@ constructor(props) {
 super(props);
 let saved = {};
 try { saved = JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}; } catch (e) { saved = {}; }
-this.state = Object.assign({ target: 2, per: 5, rule: 8, autoLog: true, sendPH: true }, saved, { askWipe: false, msg: '' });
+this.state = Object.assign({ target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, anim: true }, saved, { askWipe: false, msg: '' });
 }
 save(patch, msg) {
 const next = Object.assign({}, this.state, patch);
-try { window.localStorage.setItem('fm.settings', JSON.stringify({ target: next.target, per: next.per, rule: next.rule, autoLog: next.autoLog, sendPH: next.sendPH })); } catch (e) {}
+try { window.localStorage.setItem('fm.settings', JSON.stringify({ target: next.target, per: next.per, rule: next.rule, autoLog: next.autoLog, sendPH: next.sendPH, anim: next.anim })); } catch (e) {}
+try { FMA.apply(); } catch (e) {}
 this.setState(Object.assign({}, patch, { msg: msg || '' }));
 }
 renderVals() {
@@ -14521,11 +14533,12 @@ per: String(s.per), perUp: () => { if (s.per < 10) this.save({ per: s.per + 1 })
 perUpCol: s.per < 10 ? '#1C1C1A' : '#B9B8B2', perDownCol: s.per > 3 ? '#1C1C1A' : '#B9B8B2',
 rules: [7, 8, 9].map(r => ({ on: s.rule === r ? 'on' : '', label: r + ' dari 10', aria: 'Syarat bintang kedua: ' + r + ' dari 10 kasus harian tepat' + (s.rule === r ? ', dipilih' : ''), style: seg(s.rule === r), tap: () => this.save({ rule: r }) })),
 toggles: [],
+anims: [[true, 'Nyala'], [false, 'Mati']].map(a => ({ on: (s.anim !== false) === a[0] ? 'on' : '', label: a[1], aria: 'Animasi ' + a[1].toLowerCase() + ((s.anim !== false) === a[0] ? ', dipilih' : ''), tap: () => this.save({ anim: a[0] }) })),
 doCopy: () => { const txt = FMP.exportText(), d = new Date(), fn = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; const cl = window.claude; if (cl && typeof cl.use === 'function') { cl.use('downloads').then(dl => { if (!dl) return this.setState({ msg: 'Unduhan tidak tersedia di tampilan ini.' }); return dl.save({ filename: fn, data: txt }).then(() => this.setState({ msg: 'File cadangan diunduh. Simpan di tempat aman.' }), e => this.setState({ msg: e && e.code === 'declined' ? 'Unduhan dibatalkan.' : 'Unduhan tidak tersedia di tampilan ini.' })); }); return; } (() => { try { const txt = FMP.exportText(), a = document.createElement('a'), d = new Date(); a.href = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.download = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; document.body.appendChild(a); a.click(); a.remove(); this.setState({ msg: 'File cadangan diunduh. Simpan baik-baik.' }); } catch (e) { this.setState({ msg: 'Gagal membuat file cadangan.' }); } })(); },
 doImport: ev => { const f = ev && ev.target && ev.target.files && ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { try { FMP.importText(String(r.result)); this.setState({ msg: 'Progres dari file cadangan sudah dipulihkan.' }); } catch (e) { this.setState({ msg: 'File itu bukan cadangan Fundamental Math.' }); } }; r.readAsText(f); ev.target.value = ''; },
 askWipe: s.askWipe, showWipeBtn: !s.askWipe,
 startWipe: () => this.setState({ askWipe: true, msg: '' }), cancelWipe: () => this.setState({ askWipe: false }),
-confirmWipe: () => { try { window.localStorage.removeItem('fm.settings'); window.localStorage.removeItem('fm.lastLvl'); } catch (e) {} FMP.reset(); this.setState({ askWipe: false, target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, msg: 'Semua data dihapus. Pengaturan kembali ke awal.' }); },
+confirmWipe: () => { try { window.localStorage.removeItem('fm.settings'); window.localStorage.removeItem('fm.lastLvl'); } catch (e) {} FMP.reset(); try { FMA.apply(); } catch (e) {} this.setState({ askWipe: false, target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, anim: true, msg: 'Semua data dihapus. Pengaturan kembali ke awal.' }); },
 hasMsg: !!s.msg, msg: s.msg
 };
 }
@@ -18436,7 +18449,11 @@ function relabel(root) {
    afterRender: kartu hasil Cek yang tetap terbuka tapi isinya berganti (mis. salah lagi) memutar ulang animasinya. */
 const FMA = (() => {
   const rm = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-  const on = () => !(rm && rm.matches) && typeof Element.prototype.animate === 'function';
+  const setOn = () => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}).anim !== false; } catch (e) { return true; } };
+  const on = () => !(rm && rm.matches) && setOn() && typeof Element.prototype.animate === 'function';
+  /* Saklar Animasi di Pengaturan (fm.settings.anim, bawaan nyala) */
+  function apply() { document.documentElement.classList.toggle('fm-animoff', !setOn()); }
+  apply();
   const TAP = [{ translate: '0 2px', easing: 'step-end' }, { translate: '0 1px', offset: 0.55, easing: 'step-end' }, { translate: '0 0' }];
   let lastTap = -1e9;
   document.addEventListener('click', e => {
@@ -18533,7 +18550,7 @@ const FMA = (() => {
       p.__fmk = k;
     });
   }
-  return { afterRender, watch, enter };
+  return { afterRender, watch, enter, apply };
 })();
 function show(name) {
   if (!GAMES[name]) name = 'Main';
