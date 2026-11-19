@@ -1727,6 +1727,24 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-st-mart button[style*="flex-direction: column"]>span:nth-child(2){gap:3px!important}
 /* Dapur Roti (Faiq 19 Nov): hanya titik rencana yang dipilih bergambar roti */
 #root .dr-grid>button[style*="3px solid #C98A2B"]{background:var(--px-roti) center / 80% auto no-repeat,#FFF6E0!important;image-rendering:pixelated}
+
+/* Dapur Roti I: buku catatan dan stempel karet */
+#root .dr-book{display:flex;flex-direction:column;padding:6px 8px 8px 22px;background:repeating-linear-gradient(#FFFDF5 0 27px,#BFD3EA 27px 28px) 0 4px,#FFFDF5;box-shadow:0 0 0 3px #1A1C2C,inset 18px 0 0 #FFFDF5,inset 19px 0 0 #E8554E,inset 0 -4px 0 #E8DFC8,0 4px 0 rgba(26,28,44,.22);position:relative}
+#root .dr-book .dr-line{display:flex!important;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;padding:6px 6px 7px!important;margin:0;border:0!important;border-bottom:1px dashed #C9BFA6!important;border-image:none!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:#2B1D1A!important;font:inherit;cursor:pointer;min-height:0}
+#root .dr-book .dr-line:last-child{border-bottom:0!important}
+#root .dr-book .dr-line.on{background:linear-gradient(transparent 8%,#FFE98A 8%,#FFE98A 92%,transparent 92%)!important;box-shadow:-4px 0 0 #E8B53A!important}
+#root .dr-line-t{font-size:12.5px;line-height:1.35}
+#root .dr-ink{font-size:11px;font-weight:700;line-height:1;letter-spacing:.02em}
+#root .dr-ink.none{color:#8A8780;font-weight:400;font-style:italic}
+#root .dr-ink.cap{color:var(--ink);padding:3px 6px 4px;border:2px solid var(--ink);border-radius:3px;transform:rotate(-3deg);opacity:.88;text-transform:uppercase;font-size:10px;background:color-mix(in srgb,var(--ink) 7%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ink) 25%,transparent)}
+#root .dr-stamps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:10px 8px 8px;background:#B9855A;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #D9A577,inset 0 -4px 0 #8C5E3A,0 4px 0 rgba(26,28,44,.22)}
+#root .dr-stamps .dr-stamp{display:flex!important;flex-direction:column;align-items:center;align-self:stretch;gap:0;padding:0!important;border:0!important;border-image:none!important;background:none!important;box-shadow:none!important;cursor:pointer;min-height:0;font:inherit}
+#root .dr-stamp-h{display:block;width:18px;height:16px;border-radius:9px 9px 3px 3px;background:#7A4A2A;box-shadow:0 0 0 2px #1A1C2C,inset 3px 3px 0 #A8693E,inset -2px -2px 0 #5A3418}
+#root .dr-stamp-h::after{content:"";display:block;margin:16px auto 0;width:8px;height:5px;background:#5A3418;box-shadow:0 0 0 2px #1A1C2C}
+#root .dr-stamp-f{flex:1;margin-top:7px;width:100%;justify-content:flex-start;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:1px;padding:4px 2px 5px;background:#3A3A40;color:#FFFFFF;font-size:9.5px;line-height:1.15;text-align:center;box-shadow:0 0 0 2px #1A1C2C,inset 0 2px 0 #5A5A62,inset 0 -4px 0 var(--ink),0 3px 0 rgba(26,28,44,.3)}
+#root .dr-stamp-f b{font-size:15px;line-height:1;color:var(--ink);background:#FFFDF5;width:20px;height:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #1A1C2C;margin-bottom:2px}
+#root .dr-stamp.ready .dr-stamp-h{transform:translateY(-2px)}
+#root .dr-stamp:active .dr-stamp-f,#root .dr-stamp:active .dr-stamp-h{transform:translateY(3px)}
 </style>
 </head>
 <body>
@@ -2336,7 +2354,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div style="font-size: 10px; color: #66655F; text-align: right">{{nameA}} → (0–9)</div>
 <sc-if value="{{hasScale}}" hint-placeholder-val="{{ true }}">
 <div class="dr-scale" style="display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #ECEBE7; padding-top: 6px">
-<div style="font-size: 11px; color: #66655F">Timbangan dapur</div>
+<div style="font-size: 11px; color: #66655F">Bahan terpakai · garis merah = stok</div>
 <sc-for list="{{scales}}" as="sc" hint-placeholder-count="2">
 <div>
 <div style="display: flex; justify-content: space-between; font-size: 11px; color: #444441"><span>{{sc.name}}</span><span style="font-family: ui-monospace, Menlo, monospace">{{sc.txt}}</span></div>
@@ -2348,17 +2366,17 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 
 <sc-if value="{{isKomp}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 4px">
+<div class="dr-book">
 <sc-for list="{{stmts}}" as="st" hint-placeholder-count="4">
-<button type="button" onClick="{{st.tap}}" style="{{st.style}}">
-<span style="display: block; font-size: 12px">{{st.text}}</span>
-<span style="display: block; font-size: 11px; color: #1E3F9E; font-weight: 600">{{st.cat}}</span>
+<button type="button" onClick="{{st.tap}}" class="dr-line {{st.on}}">
+<span class="dr-line-t">{{st.text}}</span>
+<span class="dr-ink {{st.inkCls}}" style="--ink: {{st.ink}}">{{st.cat}}</span>
 </button>
 </sc-for>
 </div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; border-top: 1px solid #ECEBE7; padding-top: 6px">
+<div class="dr-stamps">
 <sc-for list="{{cats}}" as="ct" hint-placeholder-count="4">
-<button type="button" onClick="{{ct.tap}}" style="padding: 7px 4px; border-radius: 5px; border: 1px solid #2F5BD3; background: #F2F5FD; color: #1E3F9E; font: inherit; font-size: 12px; cursor: pointer">{{ct.label}}</button>
+<button type="button" onClick="{{ct.tap}}" class="dr-stamp {{ct.on}}" style="--ink: {{ct.ink}}" aria-label="Stempel {{ct.label}}"><i class="dr-stamp-h"></i><span class="dr-stamp-f"><b>{{ct.sym}}</b>{{ct.label}}</span></button>
 </sc-for>
 </div>
 </sc-if>
@@ -9212,7 +9230,7 @@ show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(M
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Dapur Roti'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('dapur') }, PX.v2(this, v, { face: 'mira', name: 'Bu Mira', game: 'Dapur Roti' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('dapur') }, PX.v2(this, v, Object.assign({ name: 'Bu Mira', game: 'Dapur Roti' }, PX.cast(v.story, { face: 'mira', role: 'Bu Mira' })))); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -9317,7 +9335,7 @@ this.MN = ['Satu bahan', 'Catatan produksi', 'Dua bahan'];
 const T = (name, a, b, stok) => ({ name: name, a: a, b: b, stok: stok });
 this.M = [
 { tingkat: 'F', type: 'prod', nameA: 'roti manis', nameB: 'roti tawar', res: [T('tepung (kg)', 2, 1, 8)], pA: 3, pB: 2, checks: 3, budget: 2, cerita: 'Tepung di dapur tinggal 8 kg. Satu loyang roti manis butuh 2 kg dan memberi untung 3 ribu; roti tawar butuh 1 kg dan memberi untung 2 ribu.', tujuan: 'Pilih rencana dengan untung terbesar, lalu Serahkan. Kamu punya 3 hitung dan 2 kesempatan.' },
-{ tingkat: 'I', type: 'komp', items: [['x = banyak bolu yang dibuat hari ini', 0], ['y = banyak kue lapis yang dibuat hari ini', 0], ['Satu bolu butuh 1 kg tepung, satu kue lapis 2 kg, dan tepung tersedia 10 kg', 1], ['Oven hanya muat 6 loyang sehari', 1], ['Bu Mira ingin untung sebesar-besarnya: bolu 4 ribu, kue lapis 7 ribu per loyang', 2], ['Toko buka pukul 6 pagi', 3]], budget: 2, cerita: 'Bu Mira menulis rencana produksi besok dalam beberapa kalimat. Sebelum menghitung, ia ingin catatannya dipilah dulu.', tujuan: 'Beri label pada setiap kalimat, lalu Periksa. Kamu punya 2 kesempatan.' },
+{ tingkat: 'I', type: 'komp', items: [['x = banyak loyang bolu yang dibuat besok', 0], ['y = banyak loyang kue lapis yang dibuat besok', 0], ['Satu loyang bolu butuh 1 kg tepung, satu loyang kue lapis 2 kg, dan tepung tersedia 10 kg', 1], ['Oven hanya muat 6 loyang sehari', 1], ['Bu Mira ingin untung sebesar-besarnya: bolu 4 ribu, kue lapis 7 ribu per loyang', 2], ['Toko buka pukul 6 pagi', 3]], budget: 2, cerita: 'Bu Mira menulis rencana produksi besok dalam beberapa kalimat. Sebelum menghitung, ia ingin catatannya dipilah dulu.', tujuan: 'Beri label pada setiap kalimat, lalu Periksa. Kamu punya 2 kesempatan.' },
 { tingkat: 'E', type: 'prod', nameA: 'roti keju', nameB: 'roti cokelat', res: [T('tepung (kg)', 2, 1, 10), T('telur (butir)', 1, 2, 11)], pA: 5, pB: 4, checks: 3, budget: 2, cerita: 'Tersedia 10 kg tepung dan 11 butir telur. Roti keju butuh 2 kg tepung dan 1 telur per loyang (untung 5 ribu); roti cokelat butuh 1 kg tepung dan 2 telur (untung 4 ribu).', tujuan: 'Pilih rencana dengan untung terbesar, lalu Serahkan. Kamu punya 3 hitung dan 2 kesempatan.' }
 ];
 this.TN = { F: ['Satu bahan', 'Mentega terbatas', 'Mentega 13 ons'], I: ['Catatan produksi', 'Catatan kue sus', 'Catatan nasi kotak'], E: ['Dua bahan', 'Tepung dan gula', 'Telur dan mentega'] };
@@ -9353,7 +9371,7 @@ this.H = [
 this.TUT = [
 'Hari pertama sebagai asisten dapur di UMKM roti Bu Mira. Setiap pagi kamu menyusun rencana berapa loyang yang dipanggang.',
 'Ketuk satu titik di papan. Titik itu adalah rencanamu: ke kanan banyak roti pertama, ke atas banyak roti kedua.',
-'Tekan Hitung untung untuk mencatat untung rencanamu. Timbangan di bawah papan menunjukkan bahan yang terpakai.',
+'Tekan Hitung untung untuk mencatat untung rencanamu. Meteran bahan di bawah papan menunjukkan bahan yang terpakai.',
 'Bagus. Rencana pertama hari ini sudah ditunggu.'
 ];
 this.LAB_STORY = 'Bu Mira memintamu membuat soal rencana produksi untuk asisten baru. Atur stok dan untungnya, lalu jadikan tantangan.';
@@ -9378,7 +9396,23 @@ genMission(i) {
 const R = (a, b) => this.rnd(a, b);
 const T = (name, a, b, stok) => ({ name: name, a: a, b: b, stok: stok });
 const mi = i; i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
-if (i === 1) return { items: this.shuffle(this.clone(this.curM()[mi].items)) };
+if (i === 1) {
+/* catatan baru (bukan acakan catatan misi): pasangan kue, batasan, keinginan, dan kalimat tak terpakai dipilih acak */
+const mix = n => (R(0, 9999) * 31 + R(0, 9999) * 7 + R(0, 9999)) % n; /* beberapa tarikan dicampur supaya dua kasus sehari jarang sama */
+const pr = [['roti keju', 'roti cokelat'], ['donat', 'bakpao'], ['bolu', 'brownies'], ['pastel', 'risoles'], ['roti sobek', 'roti sisir'], ['kue sus', 'lemper']][mix(6)];
+const vv = [['x', 'y'], ['a', 'b'], ['p', 'q'], ['m', 'n']][mix(4)];
+const sat = /pastel|risoles|sus|lemper|donat|bakpao/.test(pr[0]) ? 'buah' : 'loyang';
+const lim = this.shuffle([
+'Tepung yang tersisa hanya ' + R(8, 20) + ' kg',
+'Telur di kulkas tinggal ' + R(12, 30) + ' butir',
+sat === 'loyang' ? 'Oven hanya muat ' + R(5, 9) + ' loyang sehari' : 'Wajan hanya cukup untuk ' + R(20, 40) + ' buah sebelum siang',
+'Pemesan minta paling sedikit ' + R(4, 9) + ' ' + sat + ' ' + pr[0]
+]).slice(0, 2);
+const want = ['Bu Mira ingin untung sebesar-besarnya', 'Bu Mira ingin pemasukan sebesar-besarnya', 'Bu Mira ingin biaya bahan serendah mungkin'][R(0, 2)];
+const noise = this.shuffle(['Toko buka pukul 6 pagi', 'Kurir datang pukul 8', 'Pelanggan paling ramai datang hari Sabtu', 'Harga gas naik bulan lalu', 'Kotak kue dibeli di pasar', pr[1][0].toUpperCase() + pr[1].slice(1) + ' lebih disukai anak-anak']).slice(0, R(1, 2));
+const items = [[vv[0] + ' = banyak ' + (sat === 'loyang' ? 'loyang ' : '') + pr[0] + ' yang dibuat', 0], [vv[1] + ' = banyak ' + (sat === 'loyang' ? 'loyang ' : '') + pr[1] + ' yang dibuat', 0]].concat(lim.map(t => [t, 1]), [[want, 2]], noise.map(t => [t, 3]));
+return { items: this.shuffle(items), cerita: 'Bu Mira menulis catatan baru untuk pesanan ' + pr[0] + ' dan ' + pr[1] + '. Catatannya perlu dipilah dulu.' };
+}
 if (i === 0) { const a = R(2, 3), st = a * R(3, 4), pA = R(3, 6), pB = R(1, 3); return { nameA: 'roti manis', nameB: 'roti tawar', res: [T('tepung (kg)', a, 1, Math.min(st, 9))], pA: pA, pB: pB, cerita: 'Tepung tinggal ' + Math.min(st, 9) + ' kg. Roti manis butuh ' + a + ' kg (untung ' + pA + ' ribu), roti tawar 1 kg (untung ' + pB + ' ribu).' }; }
 if (i === 1) return { items: this.shuffle(this.clone(this.M[1].items)) };
 const s1 = R(10, 16), s2 = R(10, 16), pA = R(3, 7), pB = R(3, 7);
@@ -9389,7 +9423,7 @@ helpFor(s) {
 if (s.mode === 'rumus') return ['Catatan aturan', ['Ketuk kotak biru untuk mengganti isinya.', 'Uji mencoba aturanmu dengan 16 data acak. Kalau gagal, contohnya ditampilkan.', 'Aturan yang lolos masuk catatan untuk Bu Mira.']];
 if (s.mode === 'lab') return ['Soal produksi', ['Putar gulungan ▲ ▼ untuk mengatur stok bahan dan untung tiap roti.', 'Titik gelap di papan adalah rencana yang bahannya cukup.', 'Jadikan tantangan menyimpan soal ini sebagai misi untuk rekan.']];
 if (s.P.type === 'komp') return ['Memilah catatan', ['Ketuk satu kalimat, lalu ketuk stempel untuk mengecapnya: ○ yang diputuskan Bu Mira, □ batasan yang harus dipatuhi, ☆ yang ingin dikejar, ✕ tidak dipakai.', 'Stempel bisa diganti dengan cara yang sama.', 'Periksa mengecek semua label sekaligus dan memakai satu kesempatan.']];
-return ['Papan rencana', ['Setiap titik adalah satu rencana: ke kanan banyak roti pertama, ke atas banyak roti kedua.', 'Titik gelap berarti bahannya cukup; titik pucat berarti bahannya kurang. Timbangan menunjukkan bahan terpakai; garis putus adalah stok.', 'Hitung untung mencatat untung titik yang dipilih (jatahnya terbatas). Serahkan memakai satu kesempatan.']];
+return ['Papan rencana', ['Setiap titik adalah satu rencana: ke kanan banyak roti pertama, ke atas banyak roti kedua.', 'Meteran di bawah papan menunjukkan bahan yang terpakai; garis merah adalah stok.', 'Hitung untung mencatat untung titik yang dipilih (jatahnya terbatas). Serahkan memakai satu kesempatan.']];
 }
 gridVals(P, pick, onTap) {
 const grid = [];
@@ -9434,9 +9468,9 @@ return { vals: vals, actions: actions, boardLabel: 'Papan rencana · ketuk satu 
 }
 vals.isKomp = true;
 const SYM = ['○', '□', '☆', '✕'];
-vals.stmts = P.items.map((it, i) => ({ text: it[0], cat: P.assign[i] === undefined ? '· belum distempel' : SYM[P.assign[i]] + ' ' + this.CAT[P.assign[i]], tap: () => ctx.setP({ selS: P.selS === i ? null : i }),
-style: 'text-align: left; padding: 6px 8px; border-radius: 5px; font: inherit; cursor: pointer; color: #1C1C1A; background: #FFFFFF; border: 2px solid ' + (P.selS === i ? '#1C1C1A' : '#DDDCD7') }));
-vals.cats = this.CAT.map((c, ci) => ({ label: SYM[ci] + ' ' + c, tap: () => { if (ctx.locked) return; if (P.selS === null) return ctx.warn('Ketuk satu kalimat dulu.'); ctx.setP({ assign: Object.assign({}, P.assign, { [P.selS]: ci }), selS: null }); } }));
+const INK = ['#2F64B0', '#B23A34', '#2E8B4E', '#6B6A66'];
+vals.stmts = P.items.map((it, i) => { const a = P.assign[i]; return { text: it[0], on: P.selS === i ? 'on' : '', cat: a === undefined ? 'belum distempel' : SYM[a] + ' ' + this.CAT[a], inkCls: a === undefined ? 'none' : 'cap', ink: a === undefined ? '#8A8780' : INK[a], tap: () => ctx.setP({ selS: P.selS === i ? null : i }) }; });
+vals.cats = this.CAT.map((c, ci) => ({ label: c, sym: SYM[ci], ink: INK[ci], on: P.selS === null ? '' : 'ready', tap: () => { if (ctx.locked) return; if (P.selS === null) return ctx.warn('Ketuk satu kalimat dulu.'); ctx.setP({ assign: Object.assign({}, P.assign, { [P.selS]: ci }), selS: null }); } }));
 return { vals: vals, picker: false, boardLabel: 'Catatan rencana Bu Mira', actions: [act('Periksa', () => {
 if (ctx.locked) return;
 if (Object.keys(P.assign).length < P.items.length) return ctx.warn('Masih ada kalimat yang belum distempel.');
