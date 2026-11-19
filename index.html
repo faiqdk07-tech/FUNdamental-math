@@ -748,6 +748,9 @@ body.fm-framed .px-map{width:calc(min(560px, (var(--appH,100dvh) - 250px) * 195 
 @keyframes px-pulse{50%{transform:scale(1.04)}}
 .px-hero{width:calc(13 / 355 * 100%);transition-property:left,top;transition-timing-function:linear}
 .px-hero.flip{transform:scaleX(-1)}
+.px-critter{position:absolute;height:auto;image-rendering:pixelated;pointer-events:none;z-index:1}
+.px-critter.flip{transform:scaleX(-1)}
+#root .tm-twigs .px-plot i{transform-origin:center bottom}
 .px-mark{width:calc(12 / 355 * 100%);z-index:3;filter:drop-shadow(1px 0 0 #FFF) drop-shadow(-1px 0 0 #FFF) drop-shadow(0 1px 0 #FFF) drop-shadow(0 -1px 0 #FFF) drop-shadow(0 3px 0 rgba(43,29,26,.35));animation:px-hop .6s steps(2) infinite}
 @keyframes px-hop{50%{transform:translateY(-5px)}}
 .px-me{display:flex;align-items:center;filter:drop-shadow(0 3px 0 rgba(43,29,26,.25))}
@@ -1368,6 +1371,9 @@ html.fm-noanim:not(.fm-animoff) .px-pop.warn:not(.info) .px-pop-rib i:first-chil
 html.fm-noanim:not(.fm-animoff) .px-talk-face img{animation:fm-hop2 240ms steps(2,end)!important}
 html.fm-noanim:not(.fm-animoff) .px-talk-bubble{transform-origin:left 28px;animation:fm-grow 150ms steps(3,end)!important}
 html.fm-noanim:not(.fm-animoff) .px-talk-next::after{animation:fm-nudge 240ms steps(2,end) 300ms!important}
+/* Tokoh non-game (Faiq 19 Nov): balon tokoh halaman, wajah warga di dialog Beranda, wajah pemain; sekali saat muncul */
+html.fm-noanim:not(.fm-animoff) #root .bk-face img,html.fm-noanim:not(.fm-animoff) .px-dlg-face:not(.icon),html.fm-noanim:not(.fm-animoff) .px-me-face img{animation:fm-hop2 240ms steps(2,end)!important}
+html.fm-noanim:not(.fm-animoff) #root .bk-bubble{transform-origin:left 18px;animation:fm-grow 150ms steps(3,end)!important}
 /* Kelompok 8: kilau bintang baru (tersembunyi; dimunculkan sekali oleh FMA.newStars) */
 html.fm-noanim:not(.fm-animoff) [data-fmstar],html.fm-noanim:not(.fm-animoff) [data-fmtotal]{position:relative}
 html.fm-noanim:not(.fm-animoff) [data-fmstar]::after,html.fm-noanim:not(.fm-animoff) [data-fmtotal]::after{content:"";position:absolute;left:calc(100% - 4px);top:-5px;width:10px;height:10px;opacity:0;pointer-events:none;background:linear-gradient(#FFF,#FFF) center/2px 100% no-repeat,linear-gradient(#FFF,#FFF) center/100% 2px no-repeat;filter:drop-shadow(0 0 0 #C98A1B) drop-shadow(1px 1px 0 #C98A1B)}
@@ -4238,6 +4244,7 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 <sc-for list="{{spots}}" as="s" hint-placeholder-count="8">
 <button type="button" class="px-spot {{s.on}}" onClick="{{s.tap}}" aria-label="{{s.aria}}" style="{{s.style}}"></button>
 </sc-for>
+<sc-for list="{{critters}}" as="cr" hint-placeholder-count="2"><img alt="" class="px-critter {{cr.kind}} {{cr.flip}}" src="{{cr.src}}" style="{{cr.style}}"></sc-for>
 <sc-if value="{{hasMark}}" hint-placeholder-val="{{ true }}"><div class="px-mark" style="{{markStyle}}"><img alt="" src="{{px.seru}}"></div></sc-if>
 <div class="px-hero {{heroFlip}}" style="{{heroStyle}}"><img alt="" src="{{px.orang}}"></div>
 </div>
@@ -7429,6 +7436,9 @@ const PX = (() => {
     rows.forEach((r, y) => { for (let x = 0; x < r.length; x++) { const c = outl(rows, x, y); if (c) s += '<rect x="' + x + '" y="' + y + '" width="1" height="1" fill="' + c + '"/>'; } });
     return 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + d[0] * 10 + '" height="' + d[1] * 10 + '" viewBox="0 0 ' + d[0] + ' ' + d[1] + '" shape-rendering="crispEdges">' + s + '</svg>');
   }
+  /* Hewan di peta Beranda jadi gambar sendiri supaya bisa bergerak sesekali (Faiq 19 Nov); bentuknya sama dengan yang dulu digambar langsung di peta */
+  SPR.bebek = ['.....kkkk..', '.....kwkk..', '.....kwwkgg', 'kkkkkkkkk..', 'kwwwwwwwk..', 'kwwwwwwwk..', 'kwwwwwwwk..', 'kkkkkkkkk..'];
+  SPR.ayam = ['......r..', '.....kkk.', '.....wkkg', 'kkkkkkkk.', 'kwwwwwk..', 'kwwwwwk..', 'kwwwwwk..', 'kkkkkkk..', '..y.y....'];
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
   ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas', 'centang', 'kertas', 'piala'].forEach(n => css(n, U[n]));
@@ -7641,7 +7651,7 @@ const PX = (() => {
     kolam(114, 278, 70, 42); kolam(-M + 10, 296, 50, 28);
     [[124, 286], [170, 306], [-M + 20, 304]].forEach(q => { R(P.A, q[0], q[1], 7, 4); R(P.a, q[0] + 1, q[1], 5, 3); R(P.p, q[0] + 3, q[1] + 1, 2, 1); });
     const bebek = (a, b) => { R('rgba(20,60,110,.35)', a, b + 5, 9, 1); R(P.k, a, b + 1, 9, 5); R(P.w, a + 1, b + 2, 7, 3); R(P.k, a + 5, b - 2, 4, 4); R(P.w, a + 6, b - 1, 2, 2); R(P.g, a + 9, b, 2, 1); R(P.k, a + 7, b - 1, 1, 1); };
-    bebek(140, 292); bebek(152, 298); bebek(160, 289);
+    /* bebek digambar sebagai gambar terpisah (PX.CRITTERS) */
     /* kandang ayam dan ayam */
     const ayam = (a, b, flip) => { R(P.k, a, b + 1, 7, 5); R(P.w, a + 1, b + 2, 5, 3); R(P.k, a + (flip ? 0 : 5), b - 1, 3, 3); R(P.w, a + (flip ? 1 : 5), b, 1, 1); R(P.r, a + (flip ? 1 : 6), b - 2, 1, 1); R(P.g, a + (flip ? -1 : 8), b, 1, 1); R(P.y, a + 2, b + 6, 1, 1); R(P.y, a + 4, b + 6, 1, 1); };
     ((a, b) => {
@@ -7650,7 +7660,7 @@ const PX = (() => {
       R(P.k, a, b + 6, 26, 14); R(P.t, a + 1, b + 6, 24, 13); for (i = 0; i < 24; i += 4) R(P.b, a + 1 + i, b + 6, 1, 13);
       R(P.k, a + 9, b + 11, 8, 9); R('#3A2A22', a + 10, b + 12, 6, 8); R(P.k, a + 13, b + 20, 1, 1);
     })(-62, 64);
-    t.fence(-72, 92, 6); ayam(-58, 100, false); ayam(-44, 104, true); ayam(-30, 98, false); ayam(-8, 70, true);
+    t.fence(-72, 92, 6); /* ayam digambar sebagai gambar terpisah (PX.CRITTERS) */
     /* padang sapi */
     t.fence(206, 62, 7); t.fence(206, 98, 7);
     const sapi = (a, b) => {
@@ -8533,7 +8543,9 @@ const PX = (() => {
     R(P.k, 24, 8, 14, 9); R('#C0602A', 25, 9, 12, 7); R('#F08A3C', 25, 9, 12, 2);
     t.stamp(it[1], 25, -4 + 0);
     return t.cv.toDataURL(); })());
-  return { treeCrown: treeCrown, treeLeaf: treeLeaf, treePot: treePot, labBench: labBench, obj: obj, topView: topView, U: U, kbScene: kbScene, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
+  /* letak hewan di peta Beranda (satuan kotak peta): kiri-atas gambar, lebar, cermin */
+  const CRITTERS = [['bebek', 140, 290, 11], ['bebek', 152, 296, 11], ['bebek', 160, 287, 11], ['ayam', -58, 98, 9], ['ayam', -46, 102, 9, 1], ['ayam', -30, 96, 9], ['ayam', -10, 68, 9, 1]];
+  return { CRITTERS: CRITTERS, treeCrown: treeCrown, treeLeaf: treeLeaf, treePot: treePot, labBench: labBench, obj: obj, topView: topView, U: U, kbScene: kbScene, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
 /* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
    o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
@@ -12683,6 +12695,7 @@ else d = { s: 'Selamat datang, peneliti', t: 'Desa ini butuh bantuanmu', d: 'Ket
 return {
   px: PX.U, mapImg: PX.world(), spots: spots,
   heroStyle: 'left: ' + px(hp[0] - 6) + '; top: ' + py(hp[1] - 15) + '; transition-duration: ' + this.state.dur + 'ms', heroFlip: this.state.flip ? 'flip' : '',
+  critters: PX.CRITTERS.map(c => ({ kind: 'c-' + c[0], src: PX.U[c[0]], flip: c[4] ? 'flip' : '', style: 'left: ' + px(c[1]) + '; top: ' + py(c[2]) + '; width: ' + pw(c[3]) })),
   hasMark: !!recMat, markStyle: recMat ? 'left: ' + px(recMat.mark[0] - 6) + '; top: ' + py(recMat.mark[1] - 16) : '',
   starTotal: String(starTotal), streak: String(st), streakOn: st > 0 ? 'on' : '', streakAria: st + ' hari beruntun', streakTap: () => { clearTimeout(this._wt); this.setState({ spot: sid === 'api' ? null : 'api' }); },
   targetTxt: Math.min(n, target) + '/' + target, pips: Array.from({ length: target }, (_, i) => i < n ? 'on' : ''),
@@ -18877,12 +18890,13 @@ const FMA = (() => {
   function afterRender(box) {
     newStars(box);
     box.querySelectorAll('.px-hero').forEach(walkHero);
-    box.querySelectorAll('.px-talk').forEach(t => {
-      const tx = t.querySelector('.px-talk-text'), k = tx ? tx.textContent : '';
-      if (k && t.__fmk !== k) FMS.play('blip', 0.12); // cerita baru tampil (sesudah desir pindah layar)
-      if (t.__fmk !== undefined && t.__fmk !== k && on()) restart(Array.from(t.querySelectorAll('.px-talk-face img, .px-talk-bubble')));
+    /* tokoh berbalon: game (.px-talk), halaman non-game (.bk-npc), dialog warga Beranda (.px-dlg dengan wajah, bukan ikon) */
+    [['.px-talk', '.px-talk-text', '.px-talk-face img, .px-talk-bubble'], ['.bk-npc', '.bk-bubble', '.bk-face img, .bk-bubble'], ['.px-dlg', '.px-dlg-body', '.px-dlg-face:not(.icon)']].forEach(q => box.querySelectorAll(q[0]).forEach(t => {
+      const tx = t.querySelector(q[1]), k = tx ? tx.textContent : '', who = t.querySelector(q[2]);
+      if (k && t.__fmk !== k && who) FMS.play('blip', 0.12); // cerita/sapaan baru tampil (sesudah desir pindah layar)
+      if (t.__fmk !== undefined && t.__fmk !== k && on()) restart(Array.from(t.querySelectorAll(q[2])));
       t.__fmk = k;
-    });
+    }));
     /* Suara hasil Cek: sekali tiap kartu hasil baru (atau isinya berganti). Pesan biasa (kelas info) tidak berbunyi. */
     const pop = box.querySelector('.px-pop');
     const pk = pop ? pop.className + '|' + pop.textContent : null;
@@ -18900,7 +18914,24 @@ const FMA = (() => {
       p.__fmk = k;
     });
   }
-  return { afterRender, watch, enter, apply };
+  /* Gerak sesekali makhluk hidup (Faiq 19 Nov): tiap 6-10 detik SATU makhluk di layar bergerak kecil, patah-patah, lalu diam.
+     Bebek terayun 2x, ayam mematuk 2x (peta Beranda), tanaman temuan bergoyang (Temuan). Tidak jalan saat Animasi Mati atau app di latar belakang. */
+  const IDLE = [
+    ['.px-critter.c-bebek', [{ translate: '0 0', easing: 'step-end' }, { translate: '0 -12%', offset: 0.25, easing: 'step-end' }, { translate: '0 0', offset: 0.5, easing: 'step-end' }, { translate: '0 -12%', offset: 0.75, easing: 'step-end' }, { translate: '0 0' }], 640],
+    ['.px-critter.c-ayam', [{ translate: '0 0', easing: 'step-end' }, { translate: '0 12%', offset: 0.25, easing: 'step-end' }, { translate: '0 0', offset: 0.5, easing: 'step-end' }, { translate: '0 12%', offset: 0.75, easing: 'step-end' }, { translate: '0 0' }], 560],
+    ['.tm-twigs .px-plot i', [{ rotate: '0deg', easing: 'step-end' }, { rotate: '-6deg', offset: 0.25, easing: 'step-end' }, { rotate: '5deg', offset: 0.5, easing: 'step-end' }, { rotate: '-3deg', offset: 0.75, easing: 'step-end' }, { rotate: '0deg' }], 720]
+  ];
+  function idle() {
+    setTimeout(idle, 6000 + Math.random() * 4000);
+    if (document.hidden || !on()) return;
+    const pool = [];
+    IDLE.forEach(d => document.querySelectorAll('#root ' + d[0]).forEach(el => pool.push([el, d])));
+    if (!pool.length) return;
+    const pick = pool[Math.floor(Math.random() * pool.length)], el = pick[0];
+    try { el.animate(pick[1][1], { duration: pick[1][2] }); } catch (e) {}
+  }
+  setTimeout(idle, 6000 + Math.random() * 4000);
+  return { afterRender, watch, enter, apply, idle };
 })();
 function show(name) {
   if (!GAMES[name]) name = 'Main';
