@@ -18532,29 +18532,74 @@ const FMS = (() => {
      desa: Beranda, Mini Games, dan halaman lain (riang santai, 104 bpm, desis ringan di ketukan lemah).
      kerja: di dalam game (tenang, 72 bpm, arpeggio lembut, tanpa drum, tanpa melodi menonjol). */
   const mf = m => 440 * Math.pow(2, (m - 69) / 12);
+  const L = str => str.trim().split(/\s+/);
+  const C = (...x) => x;
+  /* Resep lagu. lead/bass = gaya melodi; chords/arp = gaya petikan akor. perc: 8 huruf per birama (h desis, k dentum lembut, c dentang logam, t ketuk kayu, . diam).
+     leadType: pulse | square | triangle. arp: indeks nada akor per ketukan, -1 = diam. bells: denting kecil tiap 2 birama. */
   const SONGS = {
-    desa: { bpm: 104, vol: 0.55, shaker: true,
-      lead: ('76 . 79 . 81 79 76 . 72 . 76 . 74 . 72 . 69 . 72 . 77 76 74 . 74 . . . 71 . 74 . ' +
-             '76 . 79 . 84 . 81 79 81 . 76 . 79 . 76 . 77 76 74 . 74 76 79 . 72 . . . 0 . 0 .').split(' '),
+    // Beranda: desa ceria
+    desa: { bpm: 104, vol: 0.55, perc: '.h.h.h.h',
+      lead: L('76 . 79 . 81 79 76 . 72 . 76 . 74 . 72 . 69 . 72 . 77 76 74 . 74 . . . 71 . 74 . 76 . 79 . 84 . 81 79 81 . 76 . 79 . 76 . 77 76 74 . 74 76 79 . 72 . . . 0 . 0 .'),
       bass: [48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 41, 48, 43, 50, 43, 50, 48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 43, 50, 48, 55, 48, 43] },
+    // Mini Games: jalan desa, langkah santai (sol mayor)
+    jalan: { bpm: 112, vol: 0.5, perc: 't...t.h.', leadType: 'pulse',
+      lead: L('71 . 74 . 79 . 74 . 74 . 78 . 76 . 74 . 71 . 76 . 74 71 69 . 67 . . . 69 . 71 . 71 . 74 . 79 . 81 . 78 . 76 . 74 . 78 . 79 . 76 . 74 . 71 . 72 . 71 . 69 . 74 .'),
+      bass: [43, 50, 43, 50, 38, 45, 38, 45, 40, 47, 40, 47, 36, 43, 36, 43, 43, 50, 43, 50, 38, 45, 38, 45, 40, 47, 40, 47, 36, 43, 38, 45] },
+    // Progres: ruang piala, megah kecil
+    piala: { bpm: 92, vol: 0.36, perc: 'k...k...', leadType: 'square', leadV: 0.035,
+      lead: L('72 . 76 . 79 . . . 77 . 76 . 74 . 72 . 74 . 79 . 77 . 74 . 76 . . . 72 . . . 76 . 81 . 79 . 76 . 77 . 81 . 84 . 81 . 79 . 77 . 76 . 74 . 72 . . . . . 0 .'),
+      bass: [48, 55, 48, 55, 41, 48, 41, 48, 43, 50, 43, 50, 48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 41, 48, 43, 50, 43, 50, 48, 48, 43, 43] },
+    // Jurnal: meja belajar, lembut (re mayor)
+    jurnal: { bpm: 80, vol: 0.6, arp: [0, 2, 1, 3, 2, 1, 3, 2],
+      chords: [C(50, 54, 57, 61), C(47, 50, 54, 57), C(43, 47, 50, 54), C(45, 49, 52, 57), C(50, 54, 57, 61), C(47, 50, 54, 57), C(43, 47, 50, 54), C(45, 49, 52, 55)] },
+    // Temuan: rumah kaca, mengalun dengan denting
+    kaca: { bpm: 76, vol: 0.6, arp: [0, 1, 2, 3, 2, 3, 1, 2], bells: true, arpType: 'pulse', arpV: 0.03,
+      chords: [C(53, 57, 60, 67), C(50, 53, 57, 62), C(46, 50, 53, 58), C(48, 52, 55, 60), C(53, 57, 60, 67), C(50, 53, 57, 62), C(46, 50, 53, 58), C(48, 52, 55, 58)] },
+    // Tantangan: alun-alun, semangat (la minor)
+    alun: { bpm: 120, vol: 0.35, perc: 'k.h.k.hh', leadType: 'square', leadV: 0.032,
+      lead: L('69 . 72 . 76 . 72 . 77 . 76 . 72 . 69 . 72 . 76 . 79 . 76 . 74 . 71 . 67 . 71 . 76 . 74 . 72 . 76 . 77 . 79 . 81 . 77 . 79 . 76 . 72 . 76 . 74 . . . 71 . 74 .'),
+      bass: [45, 52, 45, 52, 41, 48, 41, 48, 48, 55, 48, 55, 43, 50, 43, 50, 45, 52, 45, 52, 41, 48, 41, 48, 48, 55, 48, 55, 43, 50, 43, 50] },
+    // Bengkel: ritmis seperti ketukan alat (mi minor)
+    bengkel: { bpm: 100, vol: 0.34, perc: 'k.c.k.ct', leadType: 'triangle', leadV: 0.09,
+      lead: L('64 . 0 0 67 . 0 0 64 . 0 0 72 . 71 . 69 . 0 0 66 . 0 0 64 . . . 0 0 0 0 71 . 0 0 69 . 0 0 67 . 0 0 64 . 0 0 66 . 69 . 71 . 69 . 64 . . . 0 0 0 0'),
+      bass: [40, 40, 47, 40, 36, 36, 43, 36, 38, 38, 45, 38, 40, 40, 47, 40, 40, 40, 47, 40, 36, 36, 43, 36, 38, 38, 45, 38, 40, 40, 47, 40] },
+    // Cek celah: malam berbintang
+    malam: { bpm: 66, vol: 0.6, arp: [0, 2, 3, 2, 1, 2, 3, 2], bells: true, arpOct: 24, arpV: 0.04,
+      chords: [C(45, 48, 52, 59), C(41, 45, 48, 52), C(48, 52, 55, 59), C(40, 43, 47, 50), C(45, 48, 52, 59), C(41, 45, 48, 52), C(48, 52, 55, 59), C(40, 44, 47, 50)] },
+    // Pengaturan: dengung tenang
+    atur: { bpm: 60, vol: 0.6, arp: [0, -1, 2, -1, 1, -1, 3, -1], arpV: 0.05,
+      chords: [C(48, 52, 55, 59), C(45, 48, 52, 55), C(41, 45, 48, 52), C(43, 47, 50, 52), C(48, 52, 55, 59), C(45, 48, 52, 55), C(41, 45, 48, 52), C(43, 47, 50, 53)] },
+    // Kasus baru: kantor pos, santai (fa mayor)
+    pos: { bpm: 96, vol: 0.5, perc: '..h...h.', leadType: 'triangle', leadV: 0.1,
+      lead: L('72 . 69 . 72 . 77 . 74 . . . 72 . 69 . 70 . 74 . 77 . 74 . 72 . . . 0 . 67 . 69 . 72 . 77 . 81 . 79 . 77 . 74 . 72 . 70 . 69 . 67 . 72 . 77 . . . 0 . 0 .'),
+      bass: [41, 48, 41, 48, 38, 45, 38, 45, 43, 50, 43, 50, 36, 43, 36, 43, 41, 48, 41, 48, 38, 45, 38, 45, 43, 50, 36, 43, 41, 48, 41, 41] },
+    // Semua game (sementara, sampai langkah C): meja kerja tenang
     kerja: { bpm: 72, vol: 0.6,
-      chords: [[53, 57, 60, 64], [52, 55, 59, 62], [50, 53, 57, 60], [48, 52, 55, 59], [53, 57, 60, 64], [52, 55, 59, 62], [50, 53, 57, 60], [43, 47, 50, 53]],
-      arp: [0, 1, 2, 3, 2, 1, 2, 1] }
+      chords: [C(53, 57, 60, 64), C(52, 55, 59, 62), C(50, 53, 57, 60), C(48, 52, 55, 59), C(53, 57, 60, 64), C(52, 55, 59, 62), C(50, 53, 57, 60), C(43, 47, 50, 53)],
+      arp: [0, 1, 2, 3, 2, 1, 2, 1], bells: true }
   };
+  // halaman -> lagu
+  const PAGE_SONG = { Main: 'desa', MiniGames: 'jalan', Progres: 'piala', Jurnal: 'jurnal', PohonTemuan: 'kaca', Tantangan: 'alun', Bengkel: 'bengkel', CekCelah: 'malam', Pengaturan: 'atur', KasusBaru: 'pos' };
+  function perc(c, dst, ch, t) {
+    if (ch === 'h') noise(c, dst, t, { d: 0.04, f: 6000, f2: 8000, v: 0.025 });
+    else if (ch === 'k') tone(c, dst, t, { type: 'triangle', f: 120, f2: 50, d: 0.09, v: 0.16, decay: 0.2 });
+    else if (ch === 'c') { noise(c, dst, t, { d: 0.035, f: 3200, f2: 2800, v: 0.04 }); tone(c, dst, t, { type: 'square', f: 1480, d: 0.03, v: 0.008 }); }
+    else if (ch === 't') tone(c, dst, t, { type: 'triangle', f: 820, f2: 700, d: 0.025, v: 0.05 });
+  }
   // satu ketukan lagu ke tujuan dst pada waktu t (dipakai pemutar dan perekam)
   function songStep(c, dst, S, i, t, sd) {
     const bar = Math.floor(i / 8), k = i % 8;
     if (S.lead) {
       const tk = S.lead[i];
-      if (tk !== '.' && tk !== '0') { let len = 1; while (S.lead[i + len] === '.') len++; tone(c, dst, t, { type: 'pulse', f: mf(+tk), d: len * sd * 0.92, v: 0.05, decay: 0.6 }); }
+      if (tk !== '.' && tk !== '0') { let len = 1; while (S.lead[i + len] === '.') len++; const lt = S.leadType || 'pulse'; tone(c, dst, t, { type: lt, f: mf(+tk), d: len * sd * 0.92, v: S.leadV || 0.05, decay: 0.6 }); }
       if (k % 2 === 0) tone(c, dst, t, { type: 'triangle', f: mf(S.bass[bar * 4 + k / 2]), d: sd * 1.7, v: 0.11, decay: 0.5 });
-      if (S.shaker && k % 2 === 1) noise(c, dst, t, { d: 0.04, f: 6000, f2: 8000, v: 0.025 });
     } else {
-      const ch = S.chords[bar];
-      tone(c, dst, t, { type: 'triangle', f: mf(ch[S.arp[k]] + 12), d: sd * 1.6, v: 0.06, a: 0.02, decay: 0.3 });
+      const ch = S.chords[bar], ai = S.arp[k];
+      if (ai >= 0) tone(c, dst, t, { type: S.arpType || 'triangle', f: mf(ch[ai] + (S.arpOct || 12)), d: sd * 1.6, v: S.arpV || 0.06, a: 0.02, decay: 0.3 });
       if (k === 0) tone(c, dst, t, { type: 'triangle', f: mf(ch[0] - 12), d: sd * 7.6, v: 0.09, a: 0.08, decay: 0.5 });
-      if (k === 0 && bar % 2 === 1) tone(c, dst, t, { type: 'pulse', f: mf(ch[3] + 12), d: sd * 3, v: 0.012, a: 0.03, decay: 0.2 });
+      if (S.bells && k === 0 && bar % 2 === 1) tone(c, dst, t, { type: 'pulse', f: mf(ch[3] + 24), d: sd * 3, v: 0.012, a: 0.03, decay: 0.2 });
     }
+    if (S.perc) perc(c, dst, S.perc[k], t);
   }
   const stepDur = S => 60 / S.bpm / 2;
   let want = null, cur = null, bus = null, timer = null, si = 0, nextT = 0;
@@ -18628,7 +18673,7 @@ const FMS = (() => {
     if (b.closest('.px-acts')) return 'tap';
     return BOARD[place] || 'tap';
   }
-  return { play, render, names: Object.keys(SFX), setting, music, kindOf, place: n => { place = n; }, sync: syncMusic, renderSong, now: () => cur };
+  return { play, render, names: Object.keys(SFX), setting, music, pageSong: n => PAGE_SONG[n] || 'desa', songs: Object.keys(SONGS), kindOf, place: n => { place = n; }, sync: syncMusic, renderSong, now: () => cur };
 })();
 const FMA = (() => {
   const setOn = () => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}).anim !== false; } catch (e) { return true; } };
@@ -18772,7 +18817,7 @@ function show(name) {
     PX.skin(ROOT, name);
     window.__fmComp = m.comp;
     m.host.render();
-    try { FMS.place(name); FMS.music(FMP.isGame(name) ? 'kerja' : 'desa'); } catch (e) {} // BGM: di dalam game = Meja kerja, selain itu = Desa
+    try { FMS.place(name); FMS.music(FMP.isGame(name) ? 'kerja' : FMS.pageSong(name)); } catch (e) {} // BGM: tiap halaman punya lagu sendiri // BGM: di dalam game = Meja kerja, selain itu = Desa
     try { FMA.enter(box); } catch (e) {} // Kelompok 6: layar baru muncul pelan dalam 3 langkah (150 ms), tanpa bergeser
   } catch (e) {
     console.error(e);
