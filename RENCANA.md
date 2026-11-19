@@ -295,11 +295,10 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 ## Catatan
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.
 
-## Tinjauan per game (19 Nov) — SEDANG BERJALAN
+## Tinjauan per game (19 Nov) — SELESAI (27 game)
 Permintaan Faiq: mainkan tiap game satu per satu, cek ilustrasi cocok dengan cerita dan kata-kata di papan presisi (dipicu bug "1 tamu" bergambar banyak orang).
 
-**Sudah ditinjau:** Kasir Kilat, Timbangan, Tata Barisan, Kapan Bareng?, Bagi Pizza, Racik Resep, Lipat Kertas, Dua Struk, Pesanan Martabak, Meja Hajatan, Mesin Minuman, Argo Ojek, Kebun & Lintasan, Dapur Roti (F sudah; I sedang dikerjakan).
-**Belum:** Dapur Roti (I tombol stempel masih gaya prototipe: bergaris biru tipis — ubah jadi stempel karet; E belum dilihat), Rekap Grosir, Rute Kurir, Pasang Lantai, Isi Wadah, Perbesar Gambar, Tangga Bangunan, Pelabuhan, Pilihan OSIS, Pentas Seni, Undian, Rapor Kelas, Grafik Viral.
+**Sudah ditinjau:** semua 27 game (tingkat F/I/E × Misi 1-3 dan Harian 1-3).
 
 **Perubahan umum:** `PX.cast(cerita, bawaan)` memilih tokoh balon dari orang yang paling awal disebut di cerita (daftar `PX.CAST` + pola Bu/Pak/Kak/Mbak/Mas/Bang + Nama); dipakai otomatis di `PX.v2` bila game tidak memberi `role`. Kasus "Angka baru 2" dibuat ulang bila sama persis dengan "Angka baru 1".
 
@@ -324,6 +323,26 @@ Permintaan Faiq: mainkan tiap game satu per satu, cek ilustrasi cocok dengan cer
 - Pesanan Martabak: titik topping terlalu kecil -> DIPERBESAR; label 'cokelat dan keju' huruf kecil -> DIPERBAIKI. Sisa: gerobak selalu 5 toples walau cerita 3/4 topping.
 - Meja Hajatan: meja panjang digambar sama lebar dengan meja kotak -> DIPERBAIKI. (Catatan percobaan 'n meja → k kursi' menghitungkan kursi: catat untuk Faiq.)
 - Mesin Minuman: warna teh dan jeruk hampir sama -> DIPERBAIKI (teh cokelat kemerahan, jeruk oranye terang).
+
+- Dapur Roti I: tombol stempel = stempel karet bergagang (`.dr-stamp`, warna tinta per label), kalimat = baris buku catatan (`.dr-book`), kalimat bercap memakai cap tinta miring. Harian I "Angka baru" kini catatan baru (pasangan kue, batasan, keinginan, kalimat tak terpakai diacak), bukan acakan catatan misi. Misi 1 "besok/loyang" presisi; "Timbangan dapur" -> "Bahan terpakai · garis merah = stok" (telur/liter bukan ditimbang); bantuan tidak lagi menyebut titik gelap/pucat.
+- Rekap Grosir: catatan F buatan pakai nama lengkap (Hari Rabu, gudang depan, rak A, dus); judul kolom pesanan bersatuan (kg, liter) dan "Harga satuan"; setelan mesin label E = panel "Sisi bawah → ↑ / Sisi kiri → ↑" (garis tegak di kiri-kanan angka = lambang determinan, membocorkan konsep); gulungan Lab berlabel arah; Lab memakai adegan mesin label; tokoh Bu Lina.
+- Rute Kurir: "Mj/Ps/..." -> nama lengkap; CSS batu gang contoh tidak sah (warna di lapisan pertama) -> diperbaiki; keterangan "tanda putih: alat terakhir"; busur sudut di sudut sebenarnya; tokoh Admin kurir (bukan penerima paket).
+- Pasang Lantai: label "Ubin aula 15 × 12" -> "Ubin aula" (× membocorkan operasi); garis ubin di atas bidang miring; "Susun ulang" (ternyata reset) -> "Kembalikan semula"; kilap kaca hilang saat potongan disusun; tokoh Pak Darto.
+- Isi Wadah: ukuran kardus ditulis panjang/lebar/tinggi tanpa ×; adegan gudang kardus tanpa akuarium; garis petak di atas bidang; isi tuangan berwarna dan bernama sesuai cerita (beras/gula/pakan).
+- Perbesar Gambar: garis kotak di atas logo; "contoh lebar 4, tinggi 3"; matahari di kiri (bayangan ke kanan); menara air tergambar bila cerita menara; panel kenop selebar papan (koreksi Faiq).
+- Tangga Bangunan: label jawaban "Tangga 13 m, puncak di 12 m: jarak kaki (m)" (dulu terbaca kakinya 13 m); garis petak terlihat; adegan `kbScene({kind:'kampung'})` untuk kasus kabel Pak RT; tokoh Mandor Joko.
+- Pelabuhan: adegan atas gelap/berkabut bila cerita malam/kabut (`top-malam`, `top-kabut`); "timur laut" -> "utara sambil sedikit ke timur"; harian E tidak kembar.
+- Pilihan OSIS: label "nasi 5 × 4" -> "nasi (5 lauk, 4 minuman)".
+- Pentas Seni: harian I lebih bervariasi; tugas tidak lagi menyuruh "melanjutkan papan" yang tidak bisa ditulisi.
+- Undian: grafik dadu/koin berketerangan urutan, batang 0 tetap tampak tipis; misi dadu I menyebut kotak kupon yang ditanyakan; kasus "Kotak tertutup" menjelaskan kotak di papan.
+- Rapor Kelas: tumpukan buku bergaris per buku (`gridH`, garis mendatar saja); warna hasil Belah kembali terlihat (tertimpa gaya kartu baru); tokoh Bu Sinta.
+- Grafik Viral: harian F angka acak dan topik lebih beragam (dulu sama dengan misi); nama batang tidak bertumpuk; tokoh Mbak Rara.
+- **Pola umum yang ditemukan:** (1) bidang berwarna menutupi garis petak -> tambahkan `<path d="{{gridD}}" stroke-opacity>` sesudah pathB; (2) `PX.cast` memilih orang pertama di cerita, bisa membuat penerima/pelaku klaim bicara tentang dirinya sendiri -> beri `role` tetap; (3) generator kasus dengan pilihan sedikit sering kembar -> campur beberapa tarikan acak (`mix`).
+
+**Catatan untuk Faiq (belum diubah):**
+- Rute Kurir F: "(0 / 6)" batas kartu = banyak perintah minimum (memberi tahu panjang jawaban terpendek).
+- Lab Rekap Grosir di tingkat F/I juga mesin label (materi E).
+- Isi Wadah E dan Rapor Kelas I misi 3: papan contoh (wadah takar 4 × 4, tumpukan buku) tidak sama ukurannya dengan soal; dibiarkan sebagai alat percobaan.
 
 **Keputusan anti-clue (disetujui Faiq 19 Nov, sudah diterapkan):** Meja Hajatan tidak lagi mencatat "n meja → k kursi" dan "total baris"; Tata Barisan hanya menulis "pas / tidak pas" (tanpa selisih); Racik Resep E misi 2 struk menulis "…" untuk harga setelah diskon; Dapur Roti papan kosong, roti hanya di titik yang dipilih (timbangan yang menunjukkan cukup/tidak); Kebun E ubin tanpa label x²/5x, luas tambalan dan luas baru tidak dihitungkan; Kasir I tugas tanpa "tulis tanda minus". Lipat Kertas tetap mencatat banyak lapis kertas latihan (tidak bisa dihitung dengan mata).
 
