@@ -1991,6 +1991,39 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .st-warn{font-size:12.5px;line-height:1.4;color:#791F1F;padding:8px 10px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C}
 #root .st-warn-b{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 #root .st-warn-b .st-btn{justify-content:center}
+
+/* Kasus harian baru (19 Nov, gaya Bengkel v2): loket pos terang, perangko game, prompt dalam amplop, kasus tersimpan = kartu pos */
+#root.px-p-KasusBaru>div>div{background-color:#FBF3E4!important}
+#root .kb-face{background:#FFD3CF!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -6px 0 #F2A8A1!important}
+#root .kb-no{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:#FFFFFF;background:#E8554E;box-shadow:0 0 0 2px #1A1C2C}
+#root .kb-stamps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:4px}
+#root .kb-stamp{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:66px;padding:6px 4px;border:0;cursor:pointer;color:#2B1D1A;font-size:11.5px;line-height:1.15;text-align:center;background:#FFFDF5;outline:3px dotted #FFFDF5;outline-offset:2px;box-shadow:0 0 0 2px #1A1C2C,0 0 0 5px #FFFDF5,0 0 0 6px #D9CBB0}
+#root .kb-stamp img{width:26px;height:26px;image-rendering:pixelated}
+#root .kb-stamp.on{background:#FFE29A;box-shadow:0 0 0 2px #1A1C2C,0 0 0 5px #FFE29A,0 0 0 7px #1A1C2C;font-weight:700}
+#root .kb-env{display:flex;flex-direction:column;gap:8px;padding:10px;background:#F4E3BD;box-shadow:0 0 0 2px #1A1C2C,0 4px 0 rgba(26,28,44,.18)}
+#root .kb-env-h{position:relative;display:flex;align-items:center;gap:10px;padding:0;border:0;background:none;cursor:pointer;text-align:left;color:#2B1D1A}
+#root .kb-flap{flex:none;width:44px;height:30px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C;position:relative;overflow:hidden}
+#root .kb-flap::before{content:"";position:absolute;left:0;right:0;top:0;height:18px;background:#E8D5B5;clip-path:polygon(0 0,100% 0,50% 100%);border-bottom:2px solid #1A1C2C}
+#root .kb-flap::after{content:"";position:absolute;left:18px;top:11px;width:8px;height:8px;border-radius:50%;background:#E8554E;box-shadow:0 0 0 1.5px #1A1C2C}
+#root .kb-env.open .kb-flap::before{clip-path:polygon(0 100%,100% 100%,50% 0);top:-10px}
+#root .kb-env-t{display:flex;flex-direction:column;min-width:0}
+#root .kb-env-t b{font-size:13px;line-height:1.25}
+#root .kb-env-t small{font-size:11px;color:#5A5048}
+#root .kb-prompt{max-height:180px;overflow-y:auto;white-space:pre-wrap;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.45;color:#3B2414;padding:8px 10px;background:#FFFDF5 repeating-linear-gradient(transparent 0 15px,#E3EAF2 15px 16px);box-shadow:0 0 0 2px #1A1C2C}
+#root .kb-env-b{display:flex;justify-content:flex-end;gap:8px}
+#root .kb-green{display:inline-flex;align-items:center;justify-content:center;border:0;cursor:pointer;text-decoration:none;font-size:13px;color:#FFFFFF;padding:6px 12px 8px;background:#5DC46A;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #2F8A43,inset 0 2px 0 #9BE6A4;text-shadow:0 1px 0 #1F5E2E}
+#root .kb-green.sm{font-size:11.5px;padding:4px 8px 6px}
+#root .kb-paper{display:flex;flex-direction:column;gap:8px}
+#root.px-p-KasusBaru .kb-paper textarea{width:100%;box-sizing:border-box;height:110px;resize:none;padding:6px 8px;font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:16px;color:#1C1C1A;background:#FFFDF5 repeating-linear-gradient(transparent 0 15px,#E3EAF2 15px 16px) 0 6px!important;border:0!important;box-shadow:0 0 0 2px #1A1C2C,0 4px 0 rgba(26,28,44,.15)}
+#root .kb-msg{padding:8px 10px;font-size:12.5px;box-shadow:0 0 0 2px #1A1C2C}
+#root .kb-msg.ok{background:#E6F4EC;color:#1F7A4D}
+#root .kb-msg.warn{background:#FFF3C4;color:#8A5200}
+#root .kb-bad{display:flex;flex-direction:column;gap:4px;padding:8px 10px;font-size:12.5px;color:#791F1F;background:#FFFDF5;box-shadow:0 0 0 2px #B23A34}
+#root .kb-cards{display:flex;flex-direction:column;gap:10px}
+#root .kb-card{display:grid;grid-template-columns:34px minmax(0,1fr) auto auto;align-items:center;column-gap:8px;padding:8px 10px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #E8DFC8,0 3px 0 rgba(26,28,44,.15)}
+#root .kb-card-st{width:28px;height:28px;padding:2px;background:#FFE29A;outline:2px dotted #FFFDF5;outline-offset:-3px;box-shadow:0 0 0 2px #1A1C2C;image-rendering:pixelated}
+#root .kb-card-t{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#root .kb-del{border:0;cursor:pointer;font-size:11.5px;color:#FFFFFF;padding:4px 8px 6px;background:#E8554E;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #A32D2D}
 </style>
 </head>
 <body>
@@ -5181,73 +5214,67 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div></template>
 <template id="tpl-KasusBaru"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
-<div style="display: flex; align-items: center; gap: 10px">
+<div class="bk-top">
 <a href="Pengaturan.dc.html" aria-label="Kembali ke pengaturan" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
-<div style="min-width: 0"><div class="px-f" style="font-size: 20px; font-weight: 700">Kasus harian baru</div><div style="font-size: 12px; color: #3E4050">{{sub}}</div></div>
+<b class="px-f bk-title">Kasus harian baru</b>
+<span class="bk-week"><b>{{storedN}}</b>kasus tambahan</span>
 </div>
-<div style="font-size: 13px; color: #3B2414">Tiap game butuh kasus segar untuk hari-hari berikutnya. Pilih game, salin pesanannya, jalankan di proyek Claude, lalu tempel jawabannya di sini. App memeriksa tiap kasus dan menghitung kuncinya sendiri.</div>
-<div class="px-tree-tabs">
+<div class="bk-npc"><span class="bk-face kb-face"><img alt="" src="{{face}}"></span><div class="bk-bubble"><b class="px-f">Petugas pos</b>Tiap game butuh kasus segar untuk hari-hari berikutnya. Pilih game, salin pesanannya, jalankan di proyek Claude, lalu tempel jawabannya di sini. App memeriksa tiap kasus dan menghitung kuncinya sendiri.</div></div>
+<div class="bk-sec">
+<div class="bk-lab px-f"><span class="kb-no">1</span>Pilih perangko game</div>
+<div class="cc-tabs">
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" class="px-tree-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
+<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" class="cc-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
 </sc-for>
 </div>
-<div class="px-stamps">
+<div class="kb-stamps">
 <sc-for list="{{games}}" as="g" hint-placeholder-count="6">
-<button type="button" onClick="{{g.tap}}" aria-label="{{g.aria}}" class="px-stamp {{g.on}}"><img alt="" src="{{g.ic}}"><span class="px-f">{{g.label}}</span></button>
+<button type="button" onClick="{{g.tap}}" aria-label="{{g.aria}}" class="kb-stamp {{g.on}}"><img alt="" src="{{g.ic}}"><span class="px-f">{{g.label}}</span></button>
 </sc-for>
 </div>
-<div class="px-keys">
+<div class="st-keys">
 <sc-for list="{{tiers}}" as="t" hint-placeholder-count="3">
-<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" class="px-key {{t.on}}"><i></i><span class="px-f">{{t.label}}</span></button>
+<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" class="st-key {{t.on}}"><i></i><span class="px-f">{{t.label}}</span></button>
 </sc-for>
 </div>
-<div>
-<div class="px-letter">
-<div class="px-letter-h px-f">1. Salin prompt</div>
-<div class="px-letter-body">{{prompt}}</div>
-<div style="display: flex; gap: 6px; justify-content: flex-end">
-<button type="button" onClick="{{regen}}" class="px-pbtn px-light px-f">Prompt lain</button>
-<button type="button" onClick="{{copy}}" class="px-pbtn px-f">Salin prompt</button>
+</div>
+<div class="bk-sec">
+<div class="bk-lab px-f"><span class="kb-no">2</span>Salin pesanan</div>
+<div class="kb-env {{envOpen}}">
+<button type="button" onClick="{{toggleEnv}}" class="kb-env-h" aria-label="{{envAria}}"><span class="kb-flap"></span><span class="kb-env-t"><b class="px-f">Pesanan untuk {{sub}}</b><small>{{envHint}}</small></span></button>
+<sc-if value="{{showPrompt}}" hint-placeholder-val="{{ false }}"><div class="kb-prompt">{{prompt}}</div></sc-if>
+<div class="kb-env-b"><button type="button" onClick="{{regen}}" class="st-btn px-f">Prompt lain</button><button type="button" onClick="{{copy}}" class="kb-green px-f">Salin prompt</button></div>
 </div>
 </div>
-</div>
-<div>
-<div class="px-letter">
-<div class="px-letter-h px-f">2. Tempel jawaban Claude</div>
-<textarea id="kb-paste" aria-label="Tempel JSON jawaban di sini" placeholder="Tempel JSON di sini" onChange="{{typed}}" style="width: 100%; box-sizing: border-box; height: 110px; resize: none; border: 1px solid #DDDCD7; border-radius: 5px; padding: 8px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #1C1C1A; background: #FFFFFF"></textarea>
-<div style="display: flex; justify-content: flex-end">
-<button type="button" onClick="{{check}}" class="px-pbtn px-f">Periksa dan simpan</button>
-</div>
+<div class="bk-sec">
+<div class="bk-lab px-f"><span class="kb-no">3</span>Tempel jawaban Claude</div>
+<div class="kb-paper">
+<textarea id="kb-paste" aria-label="Tempel JSON jawaban di sini" placeholder="Tempel JSON di sini" onChange="{{typed}}"></textarea>
+<div class="kb-env-b"><button type="button" onClick="{{check}}" class="kb-green px-f">Periksa dan simpan</button></div>
 </div>
 </div>
 <sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}">
-<div style="{{msgStyle}}">{{msg}}</div>
+<div class="kb-msg {{msgKind}}">{{msg}}</div>
 </sc-if>
 <sc-if value="{{hasBad}}" hint-placeholder-val="{{ false }}">
-<div class="px-ctl-warn" style="gap: 4px">
+<div class="kb-bad">
 <sc-for list="{{bad}}" as="b" hint-placeholder-count="2">
-<div style="font-size: 13px"><span style="font-weight: 600">Kasus ke-{{b.no}} ditolak:</span> {{b.why}}.</div>
+<div><b>Kasus ke-{{b.no}} ditolak:</b> {{b.why}}.</div>
 </sc-for>
 </div>
 </sc-if>
-<div>
-<div class="px-bench-h px-f" style="margin-bottom: 8px">{{storedTitle}}</div>
-<sc-if value="{{noStored}}" hint-placeholder-val="{{ false }}">
-<div class="px-pcard" style="font-size: 13px; color: #5A5048">Belum ada kasus tambahan di tingkat ini.</div>
-</sc-if>
+<div class="bk-sec">
+<div class="bk-lab px-f"><img alt="" class="st-ic" src="{{px.kertas}}">{{storedTitle}}</div>
+<sc-if value="{{noStored}}" hint-placeholder-val="{{ false }}"><div class="bk-none">Belum ada kasus tambahan di tingkat ini.</div></sc-if>
 <sc-if value="{{hasStored}}" hint-placeholder-val="{{ true }}">
-<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="kb-cards">
 <sc-for list="{{stored}}" as="c" hint-placeholder-count="2">
-<div class="px-pcard">
-<span style="flex: 1; min-width: 0; font-size: 13px">{{c.label}}</span>
-<a href="{{c.href}}" onClick="{{c.play}}" class="px-pbtn px-f" style="text-decoration: none">Mainkan</a>
-<button type="button" onClick="{{c.del}}" aria-label="{{c.delAria}}" class="px-pbtn px-red px-f">Hapus</button>
-</div>
+<div class="kb-card"><img alt="" src="{{c.ic}}" class="kb-card-st"><span class="kb-card-t">{{c.label}}</span><a href="{{c.href}}" onClick="{{c.play}}" class="kb-green sm px-f">Mainkan</a><button type="button" onClick="{{c.del}}" aria-label="{{c.delAria}}" class="kb-del px-f">Hapus</button></div>
 </sc-for>
 </div>
 </sc-if>
+<div class="bk-none">Kasus yang lolos ikut bergiliran di tab Harian dan ikut tersimpan di file cadangan.</div>
 </div>
-<div style="font-size: 12px; color: #3B2414">Kasus yang lolos ikut bergiliran di tab Harian dan ikut tersimpan di file cadangan.</div>
 </div>
 </div></template>
 <template id="tpl-Pengaturan"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
@@ -8008,6 +8035,18 @@ const PX = (() => {
       R(P.k, 160, 26, 14, 14); R('#C0602A', 161, 27, 12, 13); R('#F08A3C', 161, 27, 12, 2); R(P.a, 162, 14, 4, 13); R(P.c, 167, 10, 5, 16); R(P.A, 170, 18, 4, 8);
       R(P.k, 0, 44, 195, 1); R('#D8CDB6', 0, 45, 195, 2);
     }],
+    posterang: ['#FBEFD9', t => { const R = t.R; let i;
+      /* kantor pos terang: dinding krem bergaris, loket berkaca dengan papan LOKET, rak paket, kotak surat merah, lantai */
+      for (i = 0; i < 195; i += 14) R('#F3E3C3', i, 0, 7, 40);
+      R(P.k, 62, 4, 72, 34); R('#E8554E', 63, 5, 70, 6); R(P.w, 82, 7, 32, 2);
+      R('#CDEBF5', 66, 13, 64, 20); R('#E4F5FA', 66, 13, 64, 4); R(P.k, 97, 13, 2, 20); R('rgba(255,255,255,.7)', 70, 18, 8, 1); R('rgba(255,255,255,.7)', 104, 24, 10, 1);
+      R(P.k, 56, 34, 84, 4); R(P.t, 57, 35, 82, 1); R(P.b, 56, 38, 84, 9); R(P.B, 56, 38, 84, 1);
+      R(P.k, 8, 10, 40, 2); R(P.b, 8, 11, 40, 1); R(P.k, 8, 24, 40, 2); R(P.b, 8, 25, 40, 1);
+      [[10, 3], [22, 4], [34, 3]].forEach(q => t.stamp('kardus', q[0], 10 - 9 + q[1] - 3)); [[12, 0], [28, 0]].forEach(q => t.stamp('kardus', q[0], 15));
+      R(P.k, 152, 14, 22, 32); R('#E8554E', 153, 15, 20, 31); R('#FF9C8F', 153, 15, 20, 2); R(P.k, 156, 22, 14, 3); R('#2B1D1A', 157, 23, 12, 1); R(P.y, 158, 30, 10, 6); R(P.k, 158, 30, 10, 1);
+      [[180, 8, P.w], [182, 20, '#FFE98A']].forEach(q => { R(P.k, q[0], q[1], 12, 8); R(q[2], q[0] + 1, q[1] + 1, 10, 6); R(P.r, q[0] + 8, q[1] + 2, 2, 2); });
+      R(P.k, 0, 44, 195, 1); R('#E3D3B4', 0, 45, 195, 2);
+    }],
     papan: ['#F2EAD9', t => { const R = t.R; let i; R(P.k, 24, 4, 148, 42); R(P.b, 25, 5, 146, 40); R('#D8B07A', 29, 9, 138, 32);
       [[36, 12, P.w, P.r], [66, 16, P.Y, P.u], [98, 11, P.w, P.a], [130, 15, '#F7A8B0', P.r]].forEach(q => { R(P.k, q[0], q[1], 24, 20); R(q[2], q[0] + 1, q[1] + 1, 22, 18); for (i = 0; i < 3; i++) R('#9AA7BA', q[0] + 4, q[1] + 7 + i * 4, 16, 1); R(P.k, q[0] + 10, q[1] - 2, 4, 4); R(q[3], q[0] + 11, q[1] - 1, 2, 2); }); }],
     bengkel: ['#EFE8DC', t => { const R = t.R; let i; R(P.k, 20, 4, 155, 26); R('#C9A47A', 21, 5, 153, 24); for (i = 0; i < 12; i++) R('#B48E62', 26 + i * 12, 8, 2, 2);
@@ -8532,7 +8571,7 @@ PX.devOf = (g, comp) => {
     return memo[key] = t.cv.toDataURL();
   }
   PX.scene = scene;
-  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'ruangatur', Tantangan: 'alunalun', Bengkel: 'bengkelterang', CekCelah: 'teropongpagi', KasusBaru: 'pos' };
+  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'ruangatur', Tantangan: 'alunalun', Bengkel: 'bengkelterang', CekCelah: 'teropongpagi', KasusBaru: 'posterang' };
   const DONE = { LokerOSIS: 1, PentasSeni: 1, UndianDoorprize: 1, RaporKelas: 1, GrafikViral: 1, RuteKurir: 1, PasangLantai: 1, GudangKardus: 1, CetakSpanduk: 1, TanggaBangunan: 1, Pelabuhan: 1, Main: 1, MiniGames: 1, KasirKilat: 1, Timbangan: 1, Ubin: 1, JadwalBus: 1, BagiPizza: 1, RacikResep: 1, LipatKertas: 1, DuaStruk: 1, MejaHajatan: 1, MartabakTopping: 1, MesinMinuman: 1, ArgoOjek: 1, RekapGrosir: 1, KebunPagar: 1, DapurRoti: 1 };
   PX.skin = (root, name) => {
     if (DONE[name]) { root.className = ''; return; }
@@ -17727,8 +17766,8 @@ const small = on => 'padding: 4px 9px; border-radius: 6px; font: inherit; font-s
 const list = FMP.caseStored(key).filter(c => c.tingkat === s.lvl);
 const name = FMP.KEYS[key];
 return {
-sub: name + ' · ' + FMP.LVN[s.lvl],
-px: PX.U, mats: G.map((m, i) => ({ on: s.mat === i ? 'on' : '', img: PX.house({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m[0]] || 'bil'), label: m[0], aria: 'Materi ' + m[0] + (s.mat === i ? ', dipilih' : ''), style: small(s.mat === i), tap: () => this.pick(m[1].indexOf(key) >= 0 ? key : m[1][0], s.lvl, i) })),
+sub: ((typeof GAME_DN !== 'undefined' && GAME_DN[name]) || name) + ' · ' + FMP.LVN[s.lvl], face: PX.U.sari || PX.U.sinta, storedN: String(list.length), envOpen: s.envOpen ? 'open' : '', showPrompt: !!s.envOpen, toggleEnv: () => this.setState({ envOpen: !s.envOpen }), envAria: s.envOpen ? 'Tutup amplop prompt' : 'Buka amplop untuk membaca prompt', envHint: s.envOpen ? 'Ketuk untuk melipat kembali' : 'Ketuk amplop untuk membaca isinya', msgKind: s.kind === 'ok' ? 'ok' : 'warn',
+px: PX.U, mats: G.map((m, i) => ({ on: s.mat === i ? 'on' : '', img: PX.labBench({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m[0]] || 'bil'), label: m[0], aria: 'Materi ' + m[0] + (s.mat === i ? ', dipilih' : ''), style: small(s.mat === i), tap: () => this.pick(m[1].indexOf(key) >= 0 ? key : m[1][0], s.lvl, i) })),
 games: (G[s.mat] ? G[s.mat][1] : []).map(k => ({ on: k === key ? 'on' : '', ic: PX.gameIcon(FMP.KEYS[k]), label: FMP.KEYS[k], aria: 'Game ' + FMP.KEYS[k] + (k === key ? ', dipilih' : ''), style: small(k === key), tap: () => this.pick(k, s.lvl) })),
 tiers: ['F', 'I', 'E'].map(l => ({ on: s.lvl === l ? 'on' : '', label: FMP.LVN[l], aria: 'Tingkat ' + FMP.LVN[l] + (s.lvl === l ? ', dipilih' : ''), style: chip(s.lvl === l), tap: () => this.pick(key, l) })),
 prompt: s.prompt || 'Game ini belum bisa membuat prompt untuk tingkat ini.',
@@ -17749,9 +17788,9 @@ this.setState({ msg: r.ok.length ? r.ok.length + ' kasus lolos dan tersimpan.' +
 hasMsg: !!s.msg, msg: s.msg,
 msgStyle: 'border-radius: 6px; padding: 8px 10px; font-size: 13px; ' + (s.kind === 'ok' ? 'background: #E6F4EC; color: #1F7A4D' : 'background: #FBF0DC; color: #8A5200'),
 hasBad: s.bad.length > 0, bad: s.bad,
-storedTitle: 'Kasus tambahan ' + name + ' ' + FMP.LVN[s.lvl] + ' (' + list.length + ')',
+storedTitle: 'Kartu pos tersimpan · ' + list.length,
 noStored: list.length === 0, hasStored: list.length > 0,
-stored: list.map(c => ({ label: c.konteks, href: key + '.dc.html', delAria: 'Hapus kasus ' + c.konteks,
+stored: list.map(c => ({ ic: PX.gameIcon(name), label: c.konteks, href: key + '.dc.html', delAria: 'Hapus kasus ' + c.konteks,
 play: () => FMP.go({ key: key, g: name, l: c.tingkat, mode: 'harian', id: c.id }),
 del: () => { FMP.caseRemove(key, c.id); this.setState({ tick: s.tick + 1, msg: 'Kasus "' + c.konteks + '" dihapus.', kind: 'ok', bad: [] }); } }))
 };
