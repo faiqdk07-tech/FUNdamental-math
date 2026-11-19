@@ -1344,6 +1344,7 @@ body.fm-phone .px-pop-act{flex-wrap:wrap!important}body.fm-phone .px-pop-act .px
 html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none!important;transition:none!important}
 /* Animasi yang sudah disetujui Faiq (dirancang 19 Nov). Hanya yang ada di blok ini yang jalan; semua yang lain tetap mati oleh fm-noanim.
    Aturan: gerak patah-patah (steps), pendek (< 400 ms), hanya saat ada aksi, hanya translate/scale/opacity, tidak pernah sebelum pemain menjawab (anti-clue).
+   Sejak 19 Nov animasi tetap jalan walau "Kurangi gerakan" iPad aktif; hanya saklar Animasi Mati yang mematikannya.
    Kelompok 1 (ketuk tombol) ada di skrip FMA di akhir file. Kelompok 2-3: kartu hasil Cek.
    Saklar Pengaturan > Tampilan > Animasi Mati memberi kelas fm-animoff di <html> (FMA.apply) dan mematikan semuanya. */
 @keyframes fm-fade{from{opacity:0}}
@@ -1355,7 +1356,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 @keyframes fm-hop2{50%{translate:0 -4px}}
 @keyframes fm-grow{from{scale:.9}}
 @keyframes fm-nudge{50%{translate:3px 0}}
-@media (prefers-reduced-motion:no-preference){
+/* Animasi app tidak lagi mengikuti "Kurangi gerakan" iPad (keputusan Faiq 19 Nov): saklar Animasi di Pengaturan yang menentukan. */
 html.fm-noanim:not(.fm-animoff) .px-pop{animation:fm-fade 150ms steps(3,end)!important}
 html.fm-noanim:not(.fm-animoff) .px-pop .px-pop-card{animation:fm-up 160ms steps(4,end)!important}
 html.fm-noanim:not(.fm-animoff) .px-pop.ok .px-pop-rib{animation:fm-hop 200ms steps(2,end) 160ms!important}
@@ -1373,13 +1374,11 @@ html.fm-noanim:not(.fm-animoff) [data-fmstar]::after,html.fm-noanim:not(.fm-anim
 html.fm-noanim:not(.fm-animoff) [data-fmtotal]::after{left:9px;top:-6px}
 /* Kelompok 7: penanda "!" di peta Beranda melompat 2 kali saat peta dibuka, lalu diam. Tokoh berjalan: lihat FMA.afterRender. */
 html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
-}
 /* Teks status di bilah judul (mis. "Jalur ditemukan 0/6") tidak dipotong: bila ada teks, judul dan status jadi dua baris (Faiq 18 Nov) */
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)){flex-direction:column!important;align-items:flex-start!important;justify-content:center;gap:0;padding-top:1px!important;padding-bottom:2px!important}
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)) b{max-width:100%!important;font-size:17px!important;line-height:1.05}
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)) .px-ttl2-s{flex:none!important;justify-content:flex-start;max-width:100%}
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)) .px-ttl2-s>span:last-child{white-space:normal!important;overflow:visible!important;font-size:11.5px;line-height:1.15}
-@media (prefers-reduced-motion:reduce){.px-gslot-new,.px-hero img,.px-bob,.px-mark,.px-items button,.px-spot.on,.px-fire.on img{animation:none}.px-hero{transition:none}}
 /* Tombol aksi bersama (game Bilangan, Faiq 18 Nov): utama = tombol hijau timbul, lainnya = tombol krem timbul */
 #root .px-acts>button{min-height:0!important;height:42px;padding:0 14px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 14px 10px!important;image-rendering:pixelated;background:none!important;border-radius:0!important;box-shadow:none!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF!important;font:400 18px/1 "Jersey 15","Fredoka",Inter,sans-serif!important;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
 #root .px-acts>button[style*="fGold"],#root .px-acts>button[style*="#2F5BD3"],#root .px-acts>button[style*="fGreen"]{border-image-source:var(--px-kGreen)!important;color:#FFFFFF!important;text-shadow:0 2px 0 #2C6A26!important}
@@ -18602,9 +18601,8 @@ const FMS = (() => {
   return { play, render, names: Object.keys(SFX), setting, music, sync: syncMusic, renderSong, now: () => cur };
 })();
 const FMA = (() => {
-  const rm = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   const setOn = () => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}).anim !== false; } catch (e) { return true; } };
-  const on = () => !(rm && rm.matches) && setOn() && typeof Element.prototype.animate === 'function';
+  const on = () => setOn() && typeof Element.prototype.animate === 'function'; // saklar app yang menentukan, bukan "Kurangi gerakan" iPad
   /* Saklar Animasi di Pengaturan (fm.settings.anim, bawaan nyala) */
   function apply() { document.documentElement.classList.toggle('fm-animoff', !setOn()); }
   apply();
