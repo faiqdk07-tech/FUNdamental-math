@@ -175,6 +175,12 @@ Hampir semua bagian G–J: "Ubah/Rombak total, kurang rapi dan masih mengikuti p
 - **Jurnal saat kosong (Faiq 19 Nov: "kaku sebelum ada apa-apa"):** Bu Mira menyapa dalam balon (kalimat berbeda saat kosong / berisi); halaman kiri = gambar buku + "Belum ada catatan"; halaman kanan = 3 langkah bergambar (dadu, papan, centang) + tombol hijau Ke Mini Games; pita materi yang kosong: "Pilih pita lain untuk melihat catatanmu."
 - **Bagian G–J selesai semua (19 Nov).**
 
+## Perbaikan dari uji iPad Faiq (19 Nov)
+- **Buka web > 5 detik:** penyebab utama tautan Google Fonts (Inter) yang menahan tampilan sampai unduhan selesai, padahal semua teks memakai Jersey 15 yang tertanam (Inter hanya cadangan simbol). Kini dimuat di belakang (`media="print" onload`); di uji, DOM siap 630 → 224 ms. Ukuran kiriman `index.html` terkompresi ±0,5 MB.
+- **Teks layar kalkulator menempel garis bingkai:** huruf pixel diperbesar `font-size-adjust` sementara tinggi baris 13 px, jadi meluber ke bingkai `--px-lcdBez`. Kini `.pj>button` padding 6/7/5 px dan label `line-height:1.3` (berlaku untuk 11 layar kalkulator).
+- **Ketuk cepat membuat layar membesar (iPad):** `touch-action:manipulation` di semua elemen mematikan ketuk-dua-kali-untuk-memperbesar; cubit dua jari tetap bisa.
+- **GitHub Pages:** repo public; aktifkan di Settings → Pages → Deploy from a branch → main / (root). `.nojekyll` ditambahkan. Dua rekaman uji `bgm_*.wav` yang tidak sengaja ter-commit sudah dihapus, `*.wav` masuk `.gitignore`. **Skrip uji jangan menulis file ke folder repo.**
+
 ## Animasi (dirancang bersama Faiq, mulai 19 Nov)
 - **Prinsip (disetujui):** gerak patah-patah `steps()`, pendek (umumnya < 400 ms), hanya saat ada aksi, hanya `translate`/`scale`/`opacity` (tanpa `filter: blur`, tanpa animasi bayangan), tidak ada gerak terus-menerus. Animasi tidak pernah membedakan pilihan sebelum pemain menjawab (anti-clue). `prefers-reduced-motion` mematikan semuanya.
 - **Mekanisme:** kelas `fm-noanim` tetap mematikan semua animasi lama; animasi yang disetujui ada di blok "Animasi yang sudah disetujui Faiq" (CSS, di bawah aturan `fm-noanim`, dibungkus `@media (prefers-reduced-motion:no-preference)`) dan modul `FMA` (JS, sebelum `show()`). Keyframes baru berawalan `fm-`, memakai properti `translate`/`scale` supaya tidak menimpa `transform` yang sudah ada.
