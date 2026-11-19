@@ -1583,6 +1583,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-st-lantai svg path[stroke="#2F5BD3"],#root .px-st-lantai svg path[stroke="#8C6A3E"]{stroke:#1A1C2C!important;stroke-width:2.5!important}
 #root .px-st-lantai svg path[stroke="#E2E1DC"]{stroke:#CFC6B2!important}
 #root .pl-glass{position:relative}
+#root .pl-glass.flat::after{display:none}
 #root .pl-glass::after{content:"";position:absolute;left:50%;top:22px;width:46px;height:12px;margin-left:-40px;background:linear-gradient(90deg,rgba(255,255,255,.75) 0 40%,transparent 40% 55%,rgba(255,255,255,.55) 55% 70%,transparent 70%);transform:skewX(-30deg);pointer-events:none}
 /* Bidang gambar SVG game Geometri (gaya benda referensi): garis tepi biru tua tebal, bayangan lembut, tulisan jelas */
 #root .px-scn svg path[stroke="#2F5BD3"]:not([stroke-dasharray]),#root .px-scn svg path[stroke="#8C6A3E"]:not([stroke-dasharray]),#root .px-scn svg path[stroke="#1C1C1A"]:not([stroke-dasharray]),#root .px-scn svg polygon[stroke="#8C6A3E"]{stroke:#1A1C2C!important;stroke-width:3!important;stroke-linejoin:miter}
@@ -4626,6 +4627,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <path d="{{gridD}}" stroke="#E2E1DC" stroke-width="1" fill="none"></path>
 <path d="{{pieceA}}" fill="#DCE5FA" fill-opacity="0.9" stroke="#2F5BD3" stroke-width="1.5"></path>
 <path d="{{pieceB}}" fill="#EFE6D2" fill-opacity="0.9" stroke="#8C6A3E" stroke-width="1.5"></path>
+<path d="{{gridD}}" stroke="#7A6440" stroke-opacity="0.32" stroke-width="1" fill="none" pointer-events="none"></path>
 <path d="{{cutD}}" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4 3" fill="none"></path>
 <text x="{{t1x}}" y="{{t1y}}" font-size="11" fill="#444441">{{t1}}</text>
 <text x="{{t2x}}" y="{{t2y}}" font-size="11" fill="#444441">{{t2}}</text>
@@ -4637,7 +4639,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 
 <sc-if value="{{isBundar}}" hint-placeholder-val="{{ false }}">
-<div class="pl-glass" style="display: flex; justify-content: center">
+<div class="pl-glass {{glassCls}}" style="display: flex; justify-content: center">
 <svg width="240" height="160" viewBox="0 0 240 160" role="img" aria-label="{{bundarAria}}">
 <path d="{{wedgeA}}" fill="#DCE5FA" stroke="#2F5BD3" stroke-width="1"></path>
 <path d="{{wedgeB}}" fill="#EFE6D2" stroke="#8C6A3E" stroke-width="1"></path>
@@ -13416,7 +13418,7 @@ initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Pasang Lantai'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Pasang Lantai (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
-lk() { const s = this.state, P = s.P || {}, t = String(P.cerita || ''); if (s.mode === 'rumus' || s.mode === 'lab') return { view: PX.alView('lantai'), face: 'darto', role: 'Pemilik rumah' }; if (P.type === 'bundar') return { view: PX.kbScene({ kind: 'kaca' }), face: 'darto', role: 'Pemesan kaca' }; if (P.type === 'miring' || P.type === 'segi') return { view: PX.kbScene({ kind: 'teras' }), face: 'darto', role: /taman|masjid/i.test(t) ? 'Pengurus taman' : 'Pemilik toko' }; return { view: PX.alView('lantai'), face: 'darto', role: 'Pemilik rumah' }; }
+lk() { const s = this.state, P = s.P || {}; /* wajah tokoh selalu Pak Darto (tukang), jadi namanya juga Pak Darto */ const r = { face: 'darto', role: 'Pak Darto' }; if (s.mode === 'rumus' || s.mode === 'lab') return Object.assign({ view: PX.alView('lantai') }, r); if (P.type === 'bundar') return Object.assign({ view: PX.kbScene({ kind: 'kaca' }) }, r); if (P.type === 'miring' || P.type === 'segi') return Object.assign({ view: PX.kbScene({ kind: 'teras' }) }, r); return Object.assign({ view: PX.alView('lantai') }, r); }
 renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('PasangLantai', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Pak Darto', game: 'Pasang Lantai' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -13517,7 +13519,7 @@ hasRollers: false, rollers: [], rollCols: 3, hasTools: false, tools: [], hits: [
 setup() {
 this.MN = ['Kamar kos', 'Teras miring', 'Meja bundar'];
 this.M = [
-{ tingkat: 'F', type: 'petak', W: 8, H: 5, covers: [[2, 1, 3, 2, 'lemari'], [6, 3, 2, 2, 'kasur']], asks: [{ label: 'Ubin kamar ini', key: 40 }, { label: 'Ubin aula 15 × 12', key: 180 }], budget: 2, cerita: 'Pak Darto mengecek lantai kamar kos, tetapi lemari dan kasur menutupi sebagian ubinnya. Ia juga harus memesan ubin untuk aula selebar 15 ubin dan sepanjang 12 ubin.', tujuan: 'Berapa ubin untuk kamar dan untuk aula? Kamu punya 2 kesempatan.' },
+{ tingkat: 'F', type: 'petak', W: 8, H: 5, covers: [[2, 1, 3, 2, 'lemari'], [6, 3, 2, 2, 'kasur']], asks: [{ label: 'Ubin kamar ini', key: 40 }, { label: 'Ubin aula', key: 180 }], budget: 2, cerita: 'Pak Darto mengecek lantai kamar kos, tetapi lemari dan kasur menutupi sebagian ubinnya. Ia juga harus memesan ubin untuk aula selebar 15 ubin dan sepanjang 12 ubin.', tujuan: 'Berapa ubin untuk kamar dan untuk aula? Kamu punya 2 kesempatan.' },
 { tingkat: 'I', type: 'miring', a: 7, t: 4, s: 2, asks: [{ label: 'Ubin teras ini', key: 28 }, { label: 'Ubin teras toko sebelah', key: 126 }], budget: 2, cerita: 'Teras toko ini miring: tepi atas dan bawahnya sejajar, tetapi kedua ujungnya serong. Teras toko sebelah sama bentuknya, dengan tepi bawah 14 ubin, tinggi 9 ubin, dan tepi atas bergeser 4 ubin.', tujuan: 'Berapa ubin untuk kedua teras? Kamu punya 2 kesempatan.' },
 { tingkat: 'E', type: 'bundar', r: 50, K: 314, asks: [{ label: 'Luas kaca (cm²)', key: 7850 }], budget: 2, cerita: 'Pak Darto memesan kaca penutup untuk meja bundar. Kelilingnya 314 cm diukur dengan meteran jahit, dan jarak dari titik tengah ke tepinya 50 cm.', tujuan: 'Berapa cm² luas kaca yang dipesan? Kamu punya 2 kesempatan dan 3 jatah ukur.' }
 ];
@@ -13530,15 +13532,15 @@ this.H = [
 { id: 'l6', konteks: 'Meja kecil', tingkat: 'I', type: 'bundar', r: 10, K: 62.8, asks: [{ label: 'Luas kaca (cm²)', key: 314 }], budget: 2, cerita: 'Meja bundar kecil untuk teras kafe butuh kaca penutup. Kelilingnya 62,8 cm dan jarak dari titik tengah ke tepinya 10 cm.', tujuan: 'Berapa cm² luas kacanya?' },
 { id: 'l7', konteks: 'Klaim pembeli', tingkat: 'E', type: 'bundar', r: 20, K: 125.6, asks: [{ label: 'Luas kaca (cm²)', key: 1256 }], budget: 1, verdict: { q: 'Apakah pembeli itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Meja ini kelilingnya 125,6 cm dan jarak tengah ke tepinya 20 cm. Pembeli bilang kacanya cukup dua kali kaca meja kafe yang jarak tengah ke tepinya 10 cm.', tujuan: 'Hitung luas kacanya, lalu nilai ucapan pembeli.' },
 { id: 'l8', konteks: 'Taman segitiga', tingkat: 'E', type: 'segi', a: 12, t: 7, p: 9, asks: [{ label: 'Ubin taman', key: 42 }], budget: 1, cerita: 'Taman kecil di depan masjid berbentuk segitiga. Panitia ingin tahu berapa ubin batu yang harus dibeli.', tujuan: 'Berapa ubin yang dibutuhkan?' },
-{id: "f1", konteks: "Ruang guru", tingkat: "F", type: "petak", W: 7, H: 6, covers: [[1, 1, 2, 2, "meja"], [4, 4, 2, 2, "lemari"]], asks: [{label: "Ubin ruangan ini", key: 42}, {label: "Ubin aula 18 × 15", key: 270}], budget: 2, cerita: "Ruangan lain juga tertutup perabot. Aula berikutnya selebar 18 ubin dan sepanjang 15 ubin.", tujuan: "Berapa ubin untuk kamar dan untuk aula?"},
-{id: "f2", konteks: "Kamar kos baru", tingkat: "F", type: "petak", W: 8, H: 4, covers: [[1, 1, 2, 2, "meja"], [5, 2, 2, 2, "lemari"]], asks: [{label: "Ubin ruangan ini", key: 32}, {label: "Ubin aula 12 × 12", key: 144}], budget: 2, cerita: "Ruangan lain juga tertutup perabot. Aula berikutnya selebar 12 ubin dan sepanjang 12 ubin.", tujuan: "Berapa ubin untuk kamar dan untuk aula?"},
+{id: "f1", konteks: "Ruang guru", tingkat: "F", type: "petak", W: 7, H: 6, covers: [[1, 1, 2, 2, "meja"], [4, 4, 2, 2, "lemari"]], asks: [{label: "Ubin ruangan ini", key: 42}, {label: "Ubin aula", key: 270}], budget: 2, cerita: "Ruangan lain juga tertutup perabot. Aula berikutnya selebar 18 ubin dan sepanjang 15 ubin.", tujuan: "Berapa ubin untuk kamar dan untuk aula?"},
+{id: "f2", konteks: "Kamar kos baru", tingkat: "F", type: "petak", W: 8, H: 4, covers: [[1, 1, 2, 2, "meja"], [5, 2, 2, 2, "lemari"]], asks: [{label: "Ubin ruangan ini", key: 32}, {label: "Ubin aula", key: 144}], budget: 2, cerita: "Ruangan lain juga tertutup perabot. Aula berikutnya selebar 12 ubin dan sepanjang 12 ubin.", tujuan: "Berapa ubin untuk kamar dan untuk aula?"},
 { id: 'f3', konteks: 'Pesanan kurang', tingkat: 'F', type: 'petak', W: 6, H: 5, covers: [[1, 1, 2, 2, 'meja'], [4, 2, 2, 3, 'lemari']], asks: [{ label: 'Ubin ruangan ini', key: 30 }], budget: 2, verdict: { q: 'Cukupkah 28 ubin yang dipesan?', opts: ['Cukup', 'Kurang'], correct: 'Kurang' }, cerita: 'Pemilik warung sudah memesan 28 ubin untuk ruang belakang. Meja dan lemari belum dipindah.', tujuan: 'Hitung ubinnya, lalu jawab pertanyaan pemilik warung.' }
 ];
 this.TN = { F: ['Kamar kos', 'Gudang sempit', 'Ruang rapat'], I: ['Teras miring', 'Teras toko roti', 'Taman segitiga'], E: ['Meja bundar', 'Meja kafe', 'Meja restoran'] };
 this.TM = {
 F: [this.M[0],
-{ type: 'petak', W: 9, H: 6, covers: [[1, 1, 3, 2, 'rak'], [5, 0, 3, 3, 'karung'], [2, 4, 4, 2, 'meja']], asks: [{ label: 'Ubin gudang ini', key: 54 }, { label: 'Ubin aula 20 × 14', key: 280 }], budget: 2, cerita: 'Gudang sempit di belakang toko penuh rak, karung, dan meja. Pak Darto juga harus memesan ubin untuk aula selebar 20 ubin dan sepanjang 14 ubin.', tujuan: 'Berapa ubin untuk gudang dan untuk aula? Kamu punya 2 kesempatan.' },
-{ type: 'petak', W: 8, H: 7, covers: [[0, 0, 4, 3, 'meja rapat'], [5, 1, 3, 5, 'lemari'], [1, 4, 3, 3, 'sofa']], asks: [{ label: 'Ubin ruang rapat', key: 56 }, { label: 'Ubin aula 24 × 18', key: 432 }], budget: 2, cerita: 'Ruang rapat kantor desa hampir tertutup perabot. Aula balai desa selebar 24 ubin dan sepanjang 18 ubin juga minta diganti lantainya.', tujuan: 'Berapa ubin untuk ruang rapat dan untuk aula? Kamu punya 2 kesempatan.' }
+{ type: 'petak', W: 9, H: 6, covers: [[1, 1, 3, 2, 'rak'], [5, 0, 3, 3, 'karung'], [2, 4, 4, 2, 'meja']], asks: [{ label: 'Ubin gudang ini', key: 54 }, { label: 'Ubin aula', key: 280 }], budget: 2, cerita: 'Gudang sempit di belakang toko penuh rak, karung, dan meja. Pak Darto juga harus memesan ubin untuk aula selebar 20 ubin dan sepanjang 14 ubin.', tujuan: 'Berapa ubin untuk gudang dan untuk aula? Kamu punya 2 kesempatan.' },
+{ type: 'petak', W: 8, H: 7, covers: [[0, 0, 4, 3, 'meja rapat'], [5, 1, 3, 5, 'lemari'], [1, 4, 3, 3, 'sofa']], asks: [{ label: 'Ubin ruang rapat', key: 56 }, { label: 'Ubin aula', key: 432 }], budget: 2, cerita: 'Ruang rapat kantor desa hampir tertutup perabot. Aula balai desa selebar 24 ubin dan sepanjang 18 ubin juga minta diganti lantainya.', tujuan: 'Berapa ubin untuk ruang rapat dan untuk aula? Kamu punya 2 kesempatan.' }
 ],
 I: [this.M[1],
 { type: 'miring', a: 9, t: 5, s: 3, asks: [{ label: 'Ubin teras ini', key: 45 }, { label: 'Ubin teras pasar', key: 176 }], budget: 2, cerita: 'Teras toko roti juga miring dengan tepi atas dan bawah sejajar. Teras pasar di seberangnya sama bentuknya: tepi bawah 16 ubin, tinggi 11 ubin, tepi atas bergeser 5 ubin.', tujuan: 'Berapa ubin untuk kedua teras? Kamu punya 2 kesempatan.' },
@@ -13618,13 +13620,13 @@ const minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs), minY = M
 const sc = Math.min(224 / (maxX - minX), 144 / (maxY - minY));
 const T = p => Math.round((120 + (p[0] - (minX + maxX) / 2) * sc) * 10) / 10 + ' ' + Math.round((80 + (p[1] - (minY + maxY) / 2) * sc) * 10) / 10;
 const d = arr => arr.map(ps => 'M' + ps.map(T).join(' L') + ' Z').join(' ');
-return { isBundar: true, wedgeA: d(up), wedgeB: d(down), bundarAria: !n ? 'Meja bundar utuh' : P.arranged ? n + ' potongan disusun berselang' : 'Meja dipotong menjadi ' + n + ' bagian' };
+return { isBundar: true, glassCls: P.arranged ? 'flat' : '', wedgeA: d(up), wedgeB: d(down), bundarAria: !n ? 'Meja bundar utuh' : P.arranged ? n + ' potongan disusun berselang' : 'Meja dipotong menjadi ' + n + ' bagian' };
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
 const mi = i; i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 if (i === 1 && this.curM()[mi].type === 'segi') { const a = R(6, 10), t = 2 * R(2, 3), A = R(10, 20), T = 2 * R(4, 8); return { a: a, t: t, p: R(1, a - 1), asks: [{ label: 'Ubin pojok taman ini', key: a * t / 2 }, { label: 'Ubin taman tepi ' + A + ', tinggi ' + T, key: A * T / 2 }], cerita: 'Taman segitiga lain menunggu ubin. Taman berikutnya bertepi bawah ' + A + ' ubin dan tinggi ' + T + ' ubin.' }; }
-if (i === 0) { const W = R(6, 9), H = R(4, 6), w2 = R(11, 20), h2 = R(10, 16); return { W: W, H: H, covers: [[1, 1, 2, 2, 'meja'], [W - 3, H - 2, 2, 2, 'lemari']], asks: [{ label: 'Ubin ruangan ini', key: W * H }, { label: 'Ubin aula ' + w2 + ' × ' + h2, key: w2 * h2 }], cerita: 'Ruangan lain juga tertutup perabot. Aula berikutnya selebar ' + w2 + ' ubin dan sepanjang ' + h2 + ' ubin.' }; }
+if (i === 0) { const W = R(6, 9), H = R(4, 6), w2 = R(11, 20), h2 = R(10, 16); return { W: W, H: H, covers: [[1, 1, 2, 2, 'meja'], [W - 3, H - 2, 2, 2, 'lemari']], asks: [{ label: 'Ubin ruangan ini', key: W * H }, { label: 'Ubin aula', key: w2 * h2 }], cerita: 'Ruangan lain juga tertutup perabot. Aula berikutnya selebar ' + w2 + ' ubin dan sepanjang ' + h2 + ' ubin.' }; }
 if (i === 1) { const a = R(5, 8), t = R(2, 5), s = R(1, 3), A = R(10, 20), T = R(6, 12), S = R(2, 6); return { a: a, t: t, s: s, asks: [{ label: 'Ubin teras ini', key: a * t }, { label: 'Ubin teras sebelah', key: A * T }], cerita: 'Teras miring lain sudah diberi ubin contoh. Teras sebelahnya bertepi bawah ' + A + ' ubin, tinggi ' + T + ' ubin, dan tepi atasnya bergeser ' + S + ' ubin.' }; }
 const r = [20, 30, 40, 60, 70][R(0, 4)], K = Math.round(6.28 * r * 10) / 10;
 return { r: r, K: K, asks: [{ label: 'Luas kaca (cm²)', key: Math.round(K * r / 2 * 100) / 100 }], cerita: 'Meja bundar lain kelilingnya ' + String(K).replace('.', ',') + ' cm dan jarak tengah ke tepinya ' + r + ' cm.' };
@@ -13643,11 +13645,11 @@ if (s.mode === 'lab') return ['Membuat teras', ['Putar gulungan ▲ ▼ untuk me
 const t = s.P.type;
 if (t === 'petak') return ['Lantai berperabot', ['Perabot menutupi sebagian ubin dan tidak bisa dipindah.', 'Ketuk ubin untuk menandainya sendiri.', 'Tulis jawaban lalu Cek. Setiap cek memakai satu kesempatan.']];
 if (t === 'bundar') return ['Meja bundar', ['Ketuk angka pisau untuk membagi meja menjadi sekian bagian.', 'Susun berselang menata potongan bergantian atas-bawah.', 'Ukur susunan mencatat panjang tepi bawah dan tinggi susunan. Jatah ukur terbatas.', 'Tulis jawaban lalu Cek. Setiap cek memakai satu kesempatan.']];
-const lines = ['Ketuk angka di penggaris untuk memasang garis potong tegak di kolom itu.', 'Ketuk potongan kiri (bergaris putus) untuk memindahkannya ke ujung kanan.', 'Susun ulang mengembalikan lantai seperti semula.', 'Tulis jawaban lalu Cek. Setiap cek memakai satu kesempatan.'];
+const lines = ['Ketuk angka di penggaris untuk memasang garis potong tegak di kolom itu.', 'Ketuk potongan kiri (bergaris putus) untuk memindahkannya ke ujung kanan.', 'Kembalikan semula menghapus potongan dan mengembalikan lantai seperti awal.', 'Tulis jawaban lalu Cek. Setiap cek memakai satu kesempatan.'];
 if (t === 'segi') lines.unshift('Gandakan & putar menambah salinan yang diputar setengah putaran di sebelahnya.');
 return ['Lantai miring', lines];
 }
-blank() { return { isPetak: false, pcells: [], petakCols: '', petakAria: '', isGeser: false, gridD: '', pieceA: '', pieceB: '', cutD: '', t1: '', t1x: 0, t1y: 0, t2: '', t2x: 0, t2y: 0, geserAria: '', isBundar: false, wedgeA: '', wedgeB: '', bundarAria: '' }; }
+blank() { return { glassCls: '', isPetak: false, pcells: [], petakCols: '', petakAria: '', isGeser: false, gridD: '', pieceA: '', pieceB: '', cutD: '', t1: '', t1x: 0, t1y: 0, t2: '', t2x: 0, t2y: 0, geserAria: '', isBundar: false, wedgeA: '', wedgeB: '', bundarAria: '' }; }
 boardView(ctx) {
 const s = ctx.s, P = ctx.P, act = ctx.act, vals = this.blank();
 if (P.type === 'petak') {
@@ -13693,7 +13695,7 @@ vals.hits = [this.hit(m.X(x0), m.Y(P.t), (x1 - x0) * m.S, P.t * m.S, () => { if 
 }
 const actions = [];
 if (P.type === 'segi') actions.push(act('Gandakan & putar', () => { if (ctx.locked) return; if (P.doubled) return ctx.warn('Salinan sudah ada.'); ctx.setP({ doubled: true }); }));
-actions.push(act('Susun ulang', () => ctx.setP({ cut: null, moved: false, doubled: false })));
+actions.push(act('Kembalikan semula', () => ctx.setP({ cut: null, moved: false, doubled: false })));
 const label = P.noGrid ? 'Sketsa pemilik rumah (tidak sesuai ukuran)' : (P.type === 'segi' ? 'Pojok segitiga' : 'Teras miring') + ' · 1 kotak = 1 ubin';
 return { vals: vals, boardLabel: label, picker: false, actions: actions };
 }
