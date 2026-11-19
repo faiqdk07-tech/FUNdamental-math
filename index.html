@@ -1745,6 +1745,15 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .dr-stamp-f b{font-size:15px;line-height:1;color:var(--ink);background:#FFFDF5;width:20px;height:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #1A1C2C;margin-bottom:2px}
 #root .dr-stamp.ready .dr-stamp-h{transform:translateY(-2px)}
 #root .dr-stamp:active .dr-stamp-f,#root .dr-stamp:active .dr-stamp-h{transform:translateY(3px)}
+
+/* Rekap Grosir E: setelan mesin label sebagai panel tombol putar, bukan lambang garis tegak */
+#root .rg-setel{flex:none;display:flex;flex-direction:column;gap:6px;padding:6px 6px 8px;background:#4A5266;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #6A7488,inset 0 -4px 0 #343A4A,0 4px 0 rgba(26,28,44,.25)}
+#root .rg-setel-h{font-size:10px;color:#FFE29A;text-align:center;letter-spacing:.04em}
+#root .rg-setel-c{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 4px 5px;background:#343A4A;box-shadow:inset 0 2px 0 #262B38}
+#root .rg-setel-n{font-size:9.5px;color:#DDE3EE;line-height:1}
+#root .rg-setel-v{display:flex;align-items:center;gap:4px}
+#root .rg-setel-v i{font-style:normal;font-size:11px;color:#FFC83D;width:12px;text-align:center}
+#root .rg-setel-v b{min-width:22px;padding:1px 4px 2px;background:#1A2418;color:#7CF0A6;font-family:ui-monospace,Menlo,monospace;font-size:15px;text-align:center;box-shadow:0 0 0 2px #1A1C2C;text-shadow:0 0 5px rgba(124,240,166,.5)}
 </style>
 </head>
 <body>
@@ -5776,9 +5785,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 
 <sc-if value="{{isUrai}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; gap: 10px; align-items: center">
-<div style="flex: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; padding: 6px 8px; border-left: 2px solid #1C1C1A; border-right: 2px solid #1C1C1A; font-family: ui-monospace, Menlo, monospace; font-size: 16px; text-align: center" aria-label="Setelan mesin tarik">
-<sc-for list="{{mat}}" as="me" hint-placeholder-count="4">
-<span style="width: 22px">{{me}}</span>
+<div class="rg-setel" aria-label="Setelan mesin tarik">
+<div class="rg-setel-h">Setelan</div>
+<sc-for list="{{setel}}" as="se" hint-placeholder-count="2">
+<div class="rg-setel-c"><span class="rg-setel-n">{{se.name}}</span><span class="rg-setel-v"><i>→</i><b>{{se.r}}</b></span><span class="rg-setel-v"><i>↑</i><b>{{se.u}}</b></span></div>
 </sc-for>
 </div>
 <div role="img" aria-label="Label sebelum dan sesudah ditarik" style="position: relative; width: 200px; height: 200px; flex: none; background-color: #FFFFFF; background-image: repeating-linear-gradient(0deg, #E2E1DC 0, #E2E1DC 1px, transparent 1px, transparent 25px), repeating-linear-gradient(90deg, #E2E1DC 0, #E2E1DC 1px, transparent 1px, transparent 25px); border: 1px solid #E2E1DC">
@@ -15178,8 +15188,8 @@ initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Rekap Grosir'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Rekap Grosir (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
-lk() { const s = this.state, P = s.P || {}; if (s.mode !== 'rumus' && s.mode !== 'lab' && P.type === 'urai') return { view: PX.kbScene({ kind: 'label' }), face: 'lina', role: 'Pemilik toko' }; return { view: PX.alView('grosir'), face: 'lina', role: 'Pemilik toko' }; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('RekapGrosir', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Bu Lina', game: 'Rekap Grosir' })); }
+lk() { const s = this.state, P = s.P || {}; if (s.mode === 'lab' || (s.mode !== 'rumus' && P.type === 'urai')) return { view: PX.kbScene({ kind: 'label' }), face: 'lina', role: 'Pemilik toko' }; return { view: PX.alView('grosir'), face: 'lina', role: 'Pemilik toko' }; }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('RekapGrosir', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: 'Bu Lina', name: 'Bu Lina', game: 'Rekap Grosir' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -15312,8 +15322,8 @@ this.H = [
 { id: 'g6', konteks: 'Tiga warung', tingkat: 'I', type: 'kali', rowsL: ['Warung 1', 'Warung 2', 'Warung 3'], colsL: ['gula', 'kopi'], counts: [[4, 2], [1, 6], [3, 3]], harga: [15, 9], asks: [{ label: 'Total Warung 1', key: 78 }, { label: 'Total Warung 2', key: 69 }, { label: 'Total Warung 3', key: 72 }], budget: 2, cerita: 'Tiga warung langganan mengambil gula dan kopi pagi ini. Sopir antar butuh tagihan masing-masing.', tujuan: 'Berapa tagihan tiap warung (ribu)?' },
 { id: 'g7', konteks: 'Klaim teknisi', tingkat: 'E', type: 'urai', m: [[2, 1], [1, 2]], asks: [{ label: 'Luas label baru (petak)', key: 3 }], budget: 1, verdict: { q: 'Apakah teknisi benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Teknisi bilang setelan ini membuat label empat kali lebih luas, jadi tinta harus disiapkan empat kali lipat.', tujuan: 'Hitung luasnya, lalu nilai ucapan teknisi.' },
 { id: 'g8', konteks: 'Tabel per rak', tingkat: 'E', type: 'rapikan', notes: ['Sabun: rak 1 ada 5, rak 2 ada 3, rak 3 ada 0.', 'Sampo hanya ada di rak 2 (4 botol) dan rak 3 (6 botol).'], rowsL: ['Rak 1', 'Rak 2', 'Rak 3'], colsL: ['sabun', 'sampo'], key: [[5, 0], [3, 4], [0, 6]], budget: 1, cerita: 'Kali ini Bu Lina ingin tabel per rak, bukan per barang. Toko tutup pukul 9 malam.', tujuan: 'Isi tabelnya, lalu Periksa. Sel kosong berarti 0.' },
-{id: "f1", konteks: "Stok Senin", tingkat: "F", type: "rapikan", notes: ["beras: depan 2, belakang 1.", "Gudang belakang menyimpan 2 gula dan 1 minyak.", "Di depan ada 9 minyak dan 8 gula."], rowsL: ["beras", "gula", "minyak"], colsL: ["Depan", "Belakang"], key: [[2, 1], [8, 2], [9, 1]], budget: 2, cerita: "Catatan stok hari ini ditulis berantakan oleh kurir. Bu Lina minta dirapikan ke tabel.", tujuan: "Isi tabelnya sesuai catatan, lalu Periksa."},
-{id: "f2", konteks: "Catatan kurir", tingkat: "F", type: "rapikan", notes: ["beras: depan 4, belakang 2.", "Gudang belakang menyimpan 8 gula dan 1 minyak.", "Di depan ada 3 minyak dan 1 gula."], rowsL: ["beras", "gula", "minyak"], colsL: ["Depan", "Belakang"], key: [[4, 2], [1, 8], [3, 1]], budget: 2, cerita: "Kurir menulis catatan stok sambil menyetir, jadi urutannya acak. Bu Lina minta dirapikan ke tabel.", tujuan: "Isi tabelnya sesuai catatan, lalu Periksa."},
+{id: "f1", konteks: "Stok Senin", tingkat: "F", type: "rapikan", notes: ["Beras: depan 2, belakang 1.", "Gudang belakang menyimpan 2 gula dan 1 minyak.", "Di depan ada 9 minyak dan 8 gula."], rowsL: ["beras", "gula", "minyak"], colsL: ["Depan", "Belakang"], key: [[2, 1], [8, 2], [9, 1]], budget: 2, cerita: "Catatan stok hari ini ditulis berantakan oleh kurir. Bu Lina minta dirapikan ke tabel.", tujuan: "Isi tabelnya sesuai catatan, lalu Periksa."},
+{id: "f2", konteks: "Catatan kurir", tingkat: "F", type: "rapikan", notes: ["Beras: depan 4, belakang 2.", "Gudang belakang menyimpan 8 gula dan 1 minyak.", "Di depan ada 3 minyak dan 1 gula."], rowsL: ["beras", "gula", "minyak"], colsL: ["Depan", "Belakang"], key: [[4, 2], [1, 8], [3, 1]], budget: 2, cerita: "Kurir menulis catatan stok terburu-buru, jadi urutannya acak. Bu Lina minta dirapikan ke tabel.", tujuan: "Isi tabelnya sesuai catatan, lalu Periksa."},
 { id: 'f3', konteks: 'Stok kantin', tingkat: 'F', type: 'rapikan', notes: ['Air mineral di kulkas: 9 botol.', 'Rak kering berisi 4 roti dan 6 air mineral.', 'Roti di kulkas tinggal 2.'], rowsL: ['roti', 'air mineral'], colsL: ['Kulkas', 'Rak kering'], key: [[2, 4], [9, 6]], budget: 2, cerita: 'Kantin sekolah menitipkan catatan stok ke Bu Lina sebelum libur.', tujuan: 'Isi tabelnya sesuai catatan, lalu Periksa.' }
 ];
 this.TUT = [
@@ -15328,7 +15338,7 @@ this.NEXT_STORY = 'Pekerjaan serupa datang lagi.';
 const R = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 this.OPTS = {
 A: { note: 'Satu pembeli: banyak barang (a, b), harga satuan (p, q)', lhs: 'Total =', list: ['a + b + p + q', '(a + b)·(p + q)', 'a·q + b·p', 'a·p + b·q'], vars: ['a', 'b', 'p', 'q'], gen: () => ({ a: R(0, 9), b: R(0, 9), p: R(1, 30), q: R(1, 30) }), f: v => { let t = 0; for (let i = 0; i < v.a; i++) t += v.p; for (let i = 0; i < v.b; i++) t += v.q; return t; }, g: { 'a + b + p + q': v => v.a + v.b + v.p + v.q, '(a + b)·(p + q)': v => (v.a + v.b) * (v.p + v.q), 'a·q + b·p': v => v.a * v.q + v.b * v.p, 'a·p + b·q': v => v.a * v.p + v.b * v.q } },
-B: { note: 'Label persegi 1 petak ditarik mesin [a b; c d]', lhs: 'Luas baru =', list: ['a·d + b·c', 'a·b − c·d', 'a + d', '|a·d − b·c|'], vars: ['a', 'b', 'c', 'd'], gen: () => ({ a: R(0, 6), b: R(0, 6), c: R(0, 6), d: R(0, 6) }), f: v => { const P = [[0, 0], [v.a, v.c], [v.a + v.b, v.c + v.d], [v.b, v.d]]; let s = 0; for (let i = 0; i < 4; i++) { const p = P[i], q = P[(i + 1) % 4]; s += p[0] * q[1] - q[0] * p[1]; } return Math.abs(s) / 2; }, g: { 'a·d + b·c': v => v.a * v.d + v.b * v.c, 'a·b − c·d': v => v.a * v.b - v.c * v.d, 'a + d': v => v.a + v.d, '|a·d − b·c|': v => Math.abs(v.a * v.d - v.b * v.c) } },
+B: { note: 'Label 1 petak; setelan sisi bawah → a ↑ c, sisi kiri → b ↑ d', lhs: 'Luas baru =', list: ['a·d + b·c', 'a·b − c·d', 'a + d', '|a·d − b·c|'], vars: ['a', 'b', 'c', 'd'], gen: () => ({ a: R(0, 6), b: R(0, 6), c: R(0, 6), d: R(0, 6) }), f: v => { const P = [[0, 0], [v.a, v.c], [v.a + v.b, v.c + v.d], [v.b, v.d]]; let s = 0; for (let i = 0; i < 4; i++) { const p = P[i], q = P[(i + 1) % 4]; s += p[0] * q[1] - q[0] * p[1]; } return Math.abs(s) / 2; }, g: { 'a·d + b·c': v => v.a * v.d + v.b * v.c, 'a·b − c·d': v => v.a * v.b - v.c * v.d, 'a + d': v => v.a + v.d, '|a·d − b·c|': v => Math.abs(v.a * v.d - v.b * v.c) } },
 C: { note: 'Tabel dengan m baris dan n kolom', lhs: 'Banyak sel =', list: ['m + n', '2m + 2n', 'm²', 'm·n'], vars: ['m', 'n'], gen: () => ({ m: R(1, 12), n: R(1, 12) }), f: v => { let c = 0; for (let i = 0; i < v.m; i++) for (let j = 0; j < v.n; j++) c++; return c; }, g: { 'm + n': v => v.m + v.n, '2m + 2n': v => 2 * v.m + 2 * v.n, 'm²': v => v.m * v.m, 'm·n': v => v.m * v.n } }
 };
 }
@@ -15338,8 +15348,14 @@ genMission(i) {
 const R = (a, b) => this.rnd(a, b), lv = this.curLvl(), base = this.curM()[i];
 if (lv === 'F') {
 const rows = base.rowsL, cols = base.colsL, key = rows.map(() => cols.map(() => R(1, 9)));
-const notes = [rows[0] + ': ' + cols.map((c, j) => c.toLowerCase() + ' ' + key[0][j]).join(', ') + '.'];
-cols.forEach((c, j) => { if (rows.length > 1) notes.push(c + ' menyimpan ' + rows.slice(1).map((r, k) => key[k + 1][j] + ' ' + r).join(' dan ') + '.'); });
+/* catatan memakai nama lengkap (Senin, gudang depan, rak A), bukan singkatan judul kolom */
+const FULL = { Sen: 'Senin', Sel: 'Selasa', Rab: 'Rabu', Kam: 'Kamis', Jum: 'Jumat', Depan: 'gudang depan', Tengah: 'gudang tengah', Belakang: 'gudang belakang' };
+const isDay = c => /^(Senin|Selasa|Rabu|Kamis|Jumat)$/.test(FULL[c] || c);
+const mid = c => { const f = FULL[c] || c; return isDay(c) ? f : f.charAt(0).toLowerCase() + f.slice(1); };
+const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
+const u = rows.some(r => /^(teh|kopi)$/.test(r)) ? ' dus' : '';
+const notes = [cap(rows[0]) + ': ' + cols.map((c, j) => mid(c) + ' ' + key[0][j] + u).join(', ') + '.'];
+cols.forEach((c, j) => { if (rows.length > 1) notes.push((isDay(c) ? 'Hari ' + mid(c) + ' masuk ' : cap(mid(c)) + ' menyimpan ') + rows.slice(1).map((r, k) => key[k + 1][j] + u + ' ' + r).join(' dan ') + '.'); });
 return { key: key, notes: this.shuffle(notes) };
 }
 if (lv === 'I') { const counts = base.rowsL.map(() => base.colsL.map(() => R(0, 5))), harga = base.colsL.map(() => R(8, 25)); const tot = r => r.reduce((t, c, j) => t + c * harga[j], 0); return { counts: counts, harga: harga, asks: base.rowsL.map((nm, j) => ({ label: 'Total ' + nm + ' (ribu)', key: tot(counts[j]) })) }; }
@@ -15349,11 +15365,11 @@ return { m: [[a, b], [c, d]], asks: [{ label: 'Luas label baru (petak)', key: Ma
 customMission(c) { return { tingkat: '', type: 'urai', special: true, m: [[c.a, c.b], [c.c, c.d]], asks: [{ label: 'Luas label baru (petak)', key: Math.abs(c.a * c.d - c.b * c.c) }], budget: 2, cerita: 'Rekan kerjamu menyetel mesin label rahasia.', tujuan: 'Berapa petak luas label setelah ditarik?' }; }
 helpFor(s) {
 if (s.mode === 'rumus') return ['Catatan aturan', ['Ketuk kotak biru untuk mengganti isinya.', 'Uji mencoba aturanmu dengan 16 data acak. Kalau gagal, contohnya ditampilkan.', 'Aturan yang lolos masuk catatan untuk Bu Lina.']];
-if (s.mode === 'lab') return ['Mesin label', ['Putar gulungan a, b, c, d (▲ ▼) untuk mengubah setelan mesin.', 'Garis putus adalah label semula; bentuk biru adalah hasil tarikan.', 'Jadikan tantangan menyimpan setelan ini sebagai misi untuk rekan.']];
+if (s.mode === 'lab') return ['Mesin label', ['Putar gulungan ▲ ▼ untuk mengubah setelan: ke mana ujung sisi bawah dan sisi kiri label ditarik.', 'Garis putus adalah label semula; bentuk biru adalah hasil tarikan.', 'Jadikan tantangan menyimpan setelan ini sebagai misi untuk rekan.']];
 const t = s.P.type;
 if (t === 'rapikan') return ['Tabel stok', ['Ketuk kartu angka, lalu ketuk sel untuk mengisinya. Kartu tetap terpilih sampai diketuk lagi.', 'Ketuk sel yang terisi tanpa kartu terpilih untuk mengosongkannya. Sel kosong dihitung 0.', 'Ketuk kertas catatan untuk mencoretnya sendiri. Periksa mengecek seluruh tabel dan memakai satu kesempatan.']];
 if (t === 'kali') return ['Tabel pesanan', ['Baris atas berisi banyak barang tiap pembeli; baris terakhir berisi harga satuan.', 'Ketuk angka di tabel untuk menyalinnya ke buku hitung, lalu pilih + − × sendiri. Buku hanya mencatat, tidak menghitung.', 'Tulis jawaban lalu Cek. Setiap cek memakai satu kesempatan.']];
-return ['Mesin label', ['Kolom kiri setelan mesin menunjukkan ke mana sisi bawah label ditarik; kolom kanan untuk sisi kiri.', 'Garis putus adalah label semula, satu kotak kecil = 1 petak. Ketuk petak untuk menandainya sendiri.', 'Tulis jawaban lalu Cek. Setiap cek memakai satu kesempatan.']];
+return ['Mesin label', ['Setelan menunjukkan ke mana ujung sisi bawah dan ujung sisi kiri label ditarik: → banyak kotak ke kanan, ↑ banyak kotak ke atas.', 'Garis putus adalah label semula, satu kotak kecil = 1 petak. Ketuk petak untuk menandainya sendiri.', 'Tulis jawaban lalu Cek. Setiap cek memakai satu kesempatan.']];
 }
 table(rowsL, colsL, cellFn) {
 const H = l => ({ head: true, btn: false, val: false, label: l });
@@ -15369,9 +15385,9 @@ const petak = [];
 if (onTap) for (let r = 0; r < 8; r++) for (let q = 0; q < 8; q++) { const id = r * 8 + q, on = marks.indexOf(id) >= 0;
 petak.push({ aria: 'Petak baris ' + (8 - r) + ', kolom ' + (q + 1) + (on ? ', bertanda' : ''), tap: () => onTap(id),
 style: 'position: absolute; left: ' + (q * U) + 'px; top: ' + (r * U) + 'px; width: ' + U + 'px; height: ' + U + 'px; padding: 0; border: 0; cursor: pointer; ' + (on ? 'background: radial-gradient(circle, #8A5200 0, #8A5200 2.5px, rgba(201, 138, 43, 0.28) 3px)' : 'background: transparent') }); }
-return { isUrai: true, mat: [String(a), String(b), String(c), String(d)], clip: clip, verts: pts.map(p => ({ x: p[0] * U, y: p[1] * U })), petak: petak };
+return { isUrai: true, mat: [String(a), String(b), String(c), String(d)], setel: [{ name: 'Sisi bawah', r: String(a), u: String(c) }, { name: 'Sisi kiri', r: String(b), u: String(d) }], clip: clip, verts: pts.map(p => ({ x: p[0] * U, y: p[1] * U })), petak: petak };
 }
-blank() { return { hasNotes: false, notes: [], hasTable: false, cells: [], gridStyle: '', isUrai: false, mat: [], clip: 'none', verts: [], petak: [], hasCards: false, cards: [], hasBook: false, book: [], bookOps: [] }; }
+blank() { return { hasNotes: false, notes: [], hasTable: false, cells: [], gridStyle: '', isUrai: false, mat: [], setel: [], clip: 'none', verts: [], petak: [], hasCards: false, cards: [], hasBook: false, book: [], bookOps: [] }; }
 boardInit(P) {
 if (P.type === 'rapikan') return { cells: P.key.map(r => r.map(() => null)), card: null, struck: [] };
 if (P.type === 'kali') return { book: [] };
@@ -15411,14 +15427,15 @@ const isOp = x => x === '+' || x === '−' || x === '×';
 const book = P.book || [];
 const addNum = n => { if (ctx.locked) return; const b = book.slice(); if (b.length && !isOp(b[b.length - 1])) b[b.length - 1] = String(n); else if (b.length < 15) b.push(String(n)); ctx.setP({ book: b }); };
 const addOp = o => () => { if (ctx.locked || !book.length) return; const b = book.slice(); if (isOp(b[b.length - 1])) b[b.length - 1] = o; else if (b.length < 15) b.push(o); ctx.setP({ book: b }); };
-const t = this.table(P.rowsL, P.colsL, (i, j) => ({ label: String(P.counts[i][j]), aria: P.rowsL[i] + ' membeli ' + P.counts[i][j] + ' ' + P.colsL[j] + ', ketuk untuk menyalin', style: cellSt(false, true), tap: () => addNum(P.counts[i][j]) }));
-t.cells.push({ head: true, btn: false, val: false, label: 'Harga (rb)' });
+const UN = { beras: 'beras (kg)', gula: 'gula (kg)', minyak: 'minyak (liter)', telur: 'telur (kg)', mie: 'mie (bungkus)' }; /* satuan di judul kolom supaya angka pesanan dan harga satuan jelas */
+const t = this.table(P.rowsL, P.colsL.map(c => UN[c] || c), (i, j) => ({ label: String(P.counts[i][j]), aria: P.rowsL[i] + ' membeli ' + P.counts[i][j] + ' ' + P.colsL[j] + ', ketuk untuk menyalin', style: cellSt(false, true), tap: () => addNum(P.counts[i][j]) }));
+t.cells.push({ head: true, btn: false, val: false, label: 'Harga satuan (rb)' });
 P.harga.forEach((h, j) => t.cells.push(h === null ? { head: false, btn: false, val: true, label: '?' } : { head: false, btn: true, val: false, label: String(h), aria: 'Harga ' + P.colsL[j] + ' ' + h + ' ribu, ketuk untuk menyalin', style: cellSt(false, true) + '; background: #FFFCF2', tap: () => addNum(h) }));
 vals.cells = t.cells; vals.gridStyle = t.gridStyle;
 vals.book = book.length ? book : ['·'];
 vals.bookOps = [['+', 'Tambah'], ['−', 'Kurang'], ['×', 'Kali']].map(o => ({ label: o[0], aria: o[1], tap: addOp(o[0]) })).concat([
 { label: '⌫', aria: 'Hapus satu', tap: () => ctx.setP({ book: book.slice(0, -1) }) }, { label: 'Hapus', aria: 'Kosongkan buku hitung', tap: () => ctx.setP({ book: [] }) }]);
-return { vals: vals, actions: [], boardLabel: 'Pesanan pelanggan', picker: false };
+return { vals: vals, actions: [], boardLabel: 'Pesanan pelanggan dan harga satuan', picker: false };
 }
 const marks = P.marks || [];
 Object.assign(vals, this.uraiVals(P.m, marks, id => ctx.setP({ marks: marks.indexOf(id) >= 0 ? marks.filter(x => x !== id) : marks.concat([id]) })));
@@ -15434,8 +15451,8 @@ const s = ctx.s, L = s.lab, act = ctx.act;
 const vals = Object.assign(this.blank(), this.uraiVals([[L.a, L.b], [L.c, L.d]], [], null));
 const set = key => val => { const n = Object.assign({}, L, { [key]: val }); if (n.a + n.b > 8 || n.c + n.d > 8) return ctx.warn('Label akan keluar dari kertas. Kecilkan angka lain dulu.'); this.setState({ lab: n, msg: '' }); };
 vals.hasRollers = true; vals.rollCols = 4;
-vals.rollers = [this.roller('a', L.a, 0, 8, 1, set('a')), this.roller('b', L.b, 0, 8, 1, set('b')), this.roller('c', L.c, 0, 8, 1, set('c')), this.roller('d', L.d, 0, 8, 1, set('d'))];
-return { vals: vals, boardLabel: 'Mesin label rahasiamu', picker: false, statusLabel: 'Setelan', status: '[' + L.a + ' ' + L.b + '; ' + L.c + ' ' + L.d + ']',
+vals.rollers = [this.roller('Bawah →', L.a, 0, 8, 1, set('a')), this.roller('Bawah ↑', L.c, 0, 8, 1, set('c')), this.roller('Kiri →', L.b, 0, 8, 1, set('b')), this.roller('Kiri ↑', L.d, 0, 8, 1, set('d'))];
+return { vals: vals, boardLabel: 'Mesin label rahasiamu', picker: false, statusLabel: '', status: '',
 actions: [act('Jadikan tantangan', () => this.setState({ customs: s.customs.concat([Object.assign({}, L)]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + '" di tab Misi.', kind: 'ok' }), true)] };
 }
 }
