@@ -18463,6 +18463,7 @@ function relabel(root) {
    Suara baru boleh keluar sesudah ketukan pertama (aturan browser/iPad). Anti-clue: hanya sesudah aksi pemain, semua pilihan berbunyi sama.
    Kekerasan disamakan menurut telinga (gelombang kotak terdengar lebih keras dari segitiga); bunyi salah sengaja lembut.
    BGM: FMS.music('desa' | 'kerja') dipanggil show(); saklar Musik dibaca ulang lewat FMS.sync().
+   Ketuk per benda: coin, key, heavy, paper, wood, liquid, dice, stamp, act (lihat kindOf).
    Langkah A: tap, taruh, ambil, benar, salah, habis. Langkah B: blip balon, desir pindah layar, langkah tokoh, bintang baru, fanfare aturan lolos uji. Tiap suara = fungsi (ctx, tujuan, waktu mulai) supaya bisa direkam ulang (FMS.render). */
 const FMS = (() => {
   let ctx = null, out = null;
@@ -18509,6 +18510,16 @@ const FMS = (() => {
     ok: (c, d, t) => { [N.C5, N.E5, N.G5].forEach((f, i) => tone(c, d, t + i * 0.075, { type: 'square', f: f, d: i === 2 ? 0.16 : 0.07, v: 0.09 })); },
     warn: (c, d, t) => { tone(c, d, t, { type: 'triangle', f: N.E4, d: 0.11, v: 0.14 }); tone(c, d, t + 0.12, { type: 'triangle', f: N.C4, d: 0.18, v: 0.14 }); },
     habis: (c, d, t) => { [N.G4, N.E4, N.C4].forEach((f, i) => tone(c, d, t + i * 0.13, { type: 'triangle', f: f, d: i === 2 ? 0.2 : 0.11, v: 0.14 })); },
+    // Suara ketuk per benda (disetujui Faiq 19 Nov)
+    coin: (c, d, t) => { tone(c, d, t, { type: 'square', f: 1976, d: 0.05, v: 0.035, decay: 0.3 }); tone(c, d, t + 0.045, { type: 'square', f: 2637, d: 0.12, v: 0.03, decay: 0.1 }); },
+    key: (c, d, t) => tone(c, d, t, { type: 'square', f: 880, d: 0.04, v: 0.04 }),
+    heavy: (c, d, t) => { tone(c, d, t, { type: 'triangle', f: 120, f2: 65, d: 0.13, v: 0.22, decay: 0.3 }); noise(c, d, t, { d: 0.06, f: 300, f2: 200, v: 0.08 }); },
+    paper: (c, d, t) => noise(c, d, t, { d: 0.08, f: 2400, f2: 4200, v: 0.1 }),
+    wood: (c, d, t) => { tone(c, d, t, { type: 'triangle', f: 560, f2: 430, d: 0.04, v: 0.16 }); noise(c, d, t, { d: 0.02, f: 1600, f2: 1400, v: 0.06 }); },
+    liquid: (c, d, t) => tone(c, d, t, { type: 'sine', f: 300, f2: 760, d: 0.09, v: 0.16, decay: 0.4 }),
+    dice: (c, d, t) => { [0, 0.045, 0.08].forEach((x, i) => noise(c, d, t + x, { d: 0.03, f: 2800 - i * 300, f2: 2600, v: 0.09 })); },
+    stamp: (c, d, t) => { tone(c, d, t, { type: 'triangle', f: 95, f2: 60, d: 0.1, v: 0.22, decay: 0.3 }); noise(c, d, t, { d: 0.05, f: 500, f2: 350, v: 0.07 }); },
+    act: (c, d, t) => { tone(c, d, t, { type: 'square', f: 523, d: 0.035, v: 0.045 }); tone(c, d, t + 0.04, { type: 'square', f: 784, d: 0.05, v: 0.045 }); },
     // Langkah B
     blip: (c, d, t) => { tone(c, d, t, { type: 'square', f: 660, d: 0.03, v: 0.03 }); tone(c, d, t + 0.035, { type: 'square', f: 990, d: 0.04, v: 0.03 }); },
     swish: (c, d, t) => noise(c, d, t, { d: 0.14, f: 700, f2: 2600, v: 0.12 }),
@@ -18598,7 +18609,26 @@ const FMS = (() => {
     SFX[name](oc, g, 0.01);
     return oc.startRendering().then(b => b.getChannelData(0));
   }
-  return { play, render, names: Object.keys(SFX), setting, music, sync: syncMusic, renderSong, now: () => cur };
+  /* Jenis bunyi ketuk: ditentukan jenis benda di papan tiap game, bukan nilai atau benar-salahnya (anti-clue: semua pilihan sejenis berbunyi sama).
+     Urutan: bagian kepala/balon/menu/halaman non-game = tap; tuts angka di papan jawaban = key; tombol aksi utama = act; stempel = stamp; gambar koin = coin; lainnya di papan = jenis benda game itu. */
+  const BOARD = { KasirKilat: 'coin', Timbangan: 'heavy', Ubin: 'wood', JadwalBus: 'paper', BagiPizza: 'wood', RacikResep: 'liquid', LipatKertas: 'paper',
+    DuaStruk: 'paper', MejaHajatan: 'wood', MartabakTopping: 'liquid', MesinMinuman: 'liquid', ArgoOjek: 'key', RekapGrosir: 'paper', KebunPagar: 'wood', DapurRoti: 'wood',
+    RuteKurir: 'paper', PasangLantai: 'wood', GudangKardus: 'liquid', CetakSpanduk: 'key', TanggaBangunan: 'wood', Pelabuhan: 'paper',
+    LokerOSIS: 'paper', PentasSeni: 'paper', UndianDoorprize: 'dice', RaporKelas: 'paper', GrafikViral: 'paper' };
+  const ACT = /^(✓ ?)?(Cek|Serahkan|Periksa|Cicipi|Jalankan|Lipat|Cetak|Catat|Putuskan|Pasang pagar|Lompat|Tuang|Uji)$/;
+  let place = '';
+  function kindOf(b) {
+    if (!b.closest('.px-v2') || b.tagName === 'A' || b.closest('.px-hud2, .px-talk, .px-task, .px-pop, .px-tiers, .px-modes, .px-menu, .px-qboard, nav') || b.matches('.px-menu, .px-mode2, .px-qnote')) return 'tap'; // menu pilih mode/misi
+    const txt = (b.innerText || '').trim().replace(/\s+/g, ' ');
+    if (ACT.test(txt) || b.classList.contains('px-cta') || b.classList.contains('px-cek')) return 'act';
+    if (b.closest('.dr-stamp')) return 'stamp';
+    const coins = [PX.U.coin, PX.U.coinR, PX.U.coinB];
+    if (b.closest('.px-cell, .px-tray, .px-laci') || [...b.querySelectorAll('img')].some(i => coins.indexOf(i.getAttribute('src')) >= 0)) return 'coin';
+    if (b.closest('.px-clip, .px-calc') || /^[1-9]$/.test(txt)) return 'key'; // tuts jawaban dan pemilih angka 1-9
+    if (b.closest('.px-acts')) return 'tap';
+    return BOARD[place] || 'tap';
+  }
+  return { play, render, names: Object.keys(SFX), setting, music, kindOf, place: n => { place = n; }, sync: syncMusic, renderSong, now: () => cur };
 })();
 const FMA = (() => {
   const setOn = () => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}).anim !== false; } catch (e) { return true; } };
@@ -18607,12 +18637,14 @@ const FMA = (() => {
   function apply() { document.documentElement.classList.toggle('fm-animoff', !setOn()); }
   apply();
   const TAP = [{ translate: '0 2px', easing: 'step-end' }, { translate: '0 1px', offset: 0.55, easing: 'step-end' }, { translate: '0 0' }];
-  let lastTap = -1e9, lastResult = -1e9;
+  let lastTap = -1e9, lastResult = -1e9, lastObj = -1e9;
   document.addEventListener('click', e => {
     lastTap = performance.now();
     const b = e.target && e.target.closest ? e.target.closest('#root button, #root [role="button"], #root a') : null;
     if (!b || b.disabled) return;
-    FMS.play('tap');
+    const kind = FMS.kindOf(b);
+    FMS.play(kind);
+    lastObj = ['tap', 'act', 'key'].indexOf(kind) < 0 ? performance.now() : -1e9; // bunyi benda sudah cukup; "tuk" taruh/ambil tidak ditambah
     if (!on() || b.tagName === 'A') return;
     try { b.animate(TAP, { duration: 140 }); } catch (err) {}
   }, true);
@@ -18644,7 +18676,7 @@ const FMA = (() => {
         return r.width && r.width <= 120 && r.height <= 120; // benda kecil saja; panel, menu, dan adegan besar tidak ikut
       });
       // Suara: benda kecil bertambah = "tuk" taruh; hanya berkurang (paling banyak 6) = "tuk" ambil
-      if (performance.now() - lastResult < 80) {} // kartu hasil baru saja muncul: papan yang direset tidak ikut berbunyi
+      if (performance.now() - lastResult < 80 || performance.now() - lastObj < 400) {} // kartu hasil baru saja muncul: papan yang direset tidak ikut berbunyi
       else if (small.length) FMS.play('put'); else if (!top.length && gone.length && gone.length <= 6) FMS.play('take');
       if (!on()) return;
       small.forEach(n => { try { n.animate(n instanceof SVGElement ? FADE : POP, { duration: n instanceof SVGElement ? 120 : 160 }); } catch (err) {} });
@@ -18740,7 +18772,7 @@ function show(name) {
     PX.skin(ROOT, name);
     window.__fmComp = m.comp;
     m.host.render();
-    try { FMS.music(FMP.isGame(name) ? 'kerja' : 'desa'); } catch (e) {} // BGM: di dalam game = Meja kerja, selain itu = Desa
+    try { FMS.place(name); FMS.music(FMP.isGame(name) ? 'kerja' : 'desa'); } catch (e) {} // BGM: di dalam game = Meja kerja, selain itu = Desa
     try { FMA.enter(box); } catch (e) {} // Kelompok 6: layar baru muncul pelan dalam 3 langkah (150 ms), tanpa bergeser
   } catch (e) {
     console.error(e);
