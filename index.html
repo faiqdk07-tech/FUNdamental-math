@@ -1571,7 +1571,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .rk-map>div[style*="#DCE5FA"]{background:#EADCC0 radial-gradient(circle,#E8554E 0 3px,#1A1C2C 3px 4px,transparent 4.5px) center / 100% 100% no-repeat!important;box-shadow:inset 0 -2px 0 #D2BF9C!important}
 #root .rk-map>div[style*="#D9D6CC"]{background:#9AA7BA!important;box-shadow:inset 0 0 0 2px #1A1C2C,inset 0 5px 0 #C0C8D6,inset 0 -6px 0 #6B7488!important;color:#FFFFFF!important;text-shadow:0 1px 0 #1A1C2C}
 #root .rk-map>div:not([style*="#D9D6CC"]){color:#B23A34!important;font-size:15px!important}
-#root .rk-gang{height:38px!important;border:0!important;border-radius:0!important;background:#B7AE9C linear-gradient(90deg,rgba(0,0,0,.12) 2px,transparent 2px) 0 0 / 14px 100%,linear-gradient(rgba(0,0,0,.12) 2px,transparent 2px) 0 0 / 100% 13px!important;box-shadow:0 -6px 0 #C99A5B,0 6px 0 #C99A5B,0 -9px 0 #1A1C2C,0 9px 0 #1A1C2C!important;margin:10px 0}
+#root .rk-gang{height:38px!important;border:0!important;border-radius:0!important;background:linear-gradient(90deg,rgba(0,0,0,.12) 2px,transparent 2px) 0 0 / 14px 100%,linear-gradient(rgba(0,0,0,.12) 2px,transparent 2px) 0 0 / 100% 13px,#B7AE9C!important;box-shadow:0 -6px 0 #C99A5B,0 6px 0 #C99A5B,0 -9px 0 #1A1C2C,0 9px 0 #1A1C2C!important;margin:10px 0}
 #root .rk-gang>span{width:3px!important;background:#FFFFFF!important;box-shadow:0 0 0 1px #1A1C2C}
 #root .rk-dial>span:first-child{border-radius:110px 110px 0 0!important;border:8px solid #F2C035!important;border-bottom:0!important;background:rgba(255,230,128,.25);box-shadow:0 -2px 0 #1A1C2C,inset 0 2px 0 #1A1C2C;width:204px!important;left:28px!important}
 #root .rk-dial>span:nth-child(2){border-color:#1A1C2C!important;background:#E8554E!important}
@@ -5988,9 +5988,9 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-if>
 <sc-if value="{{hasDial}}" hint-placeholder-val="{{ false }}">
 <div style="font-size: 11px; color: #66655F; border-top: 1px solid #ECEBE7; padding-top: 6px">{{dialLabel}}</div>
-<div class="rk-dial" style="position: relative; width: 260px; height: 136px; margin: 0 auto">
-<span style="position: absolute; left: 30px; top: 20px; width: 200px; height: 100px; border: 3px solid #B9B8B2; border-bottom: 0; border-radius: 100px 100px 0 0; box-sizing: border-box; display: block"></span>
-<span style="position: absolute; left: 118px; top: 108px; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #1C1C1A; background: #FFFFFF; box-sizing: border-box; display: block"></span>
+<div class="rk-dial" style="position: relative; width: 260px; height: 152px; margin: 0 auto">
+<span style="position: absolute; left: 30px; top: 36px; width: 200px; height: 100px; border: 3px solid #B9B8B2; border-bottom: 0; border-radius: 100px 100px 0 0; box-sizing: border-box; display: block"></span>
+<span style="position: absolute; left: 118px; top: 124px; width: 24px; height: 24px; border-radius: 50%; border: 3px solid #1C1C1A; background: #FFFFFF; box-sizing: border-box; display: block"></span>
 <sc-for list="{{dial}}" as="dl" hint-placeholder-count="9">
 <button type="button" onClick="{{dl.tap}}" aria-label="{{dl.aria}}" style="{{dl.style}}">{{dl.label}}</button>
 </sc-for>
@@ -15526,7 +15526,7 @@ show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(M
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Rute Kurir'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('kurir') }, PX.v2(this, v, { face: 'kurir', name: 'Kurir', game: 'Rute Kurir' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('kurir') }, PX.v2(this, v, { face: 'kurir', role: 'Admin kurir', name: 'Kurir', game: 'Rute Kurir' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -15626,7 +15626,7 @@ hasDial: false, dial: [], dialLabel: '', hasRollers: false, rollers: [], rollCol
 setup() {
 this.DX = [0, 1, 0, -1]; this.DY = [-1, 0, 1, 0];
 this.DIRN = ['utara', 'timur', 'selatan', 'barat']; this.ARROW = ['▲', '▶', '▼', '◀'];
-this.LMK = { M: 'Mj', P: 'Ps', S: 'Sk', K: 'Kt', R: 'Rt', T: 'Km', W: 'Wc' };
+this.LMK = { M: 'Masjid', P: 'Pasar', S: 'Sekolah', K: 'Kantor', R: 'R. tamu', T: 'Kamar', W: 'WC' }; /* nama lengkap, bukan singkatan yang tidak dijelaskan */
 const MAP0 = ['.......', '.##.##.', '.#M.##.', '.......', 'x##.#Px', '.##.##.', '.......'];
 const MAPB = ['.......', '.##.##.', '.#S.##.', 'x.x....', '.##.#K.', '.##.##x', '.......'];
 const MAPC = ['.......', '.##.##.', '.#M.##.', '.......', '.##.#P.', '.##.##.', '.......'];
@@ -15841,8 +15841,8 @@ return { vals: vals, boardLabel: (P.mapName || 'Peta kompleks') + ' · tujuan: '
 if (P.type === 'ukur') {
 vals.isUkur = true;
 vals.sampleName = P.sample.name;
-vals.sampleSign = P.sample.sign ? 'Ukuran tertulis: ' + P.sample.sign : 'Tidak ada ukuran tertulis.';
 const u = P.lastU === null ? null : P.units[P.lastU];
+vals.sampleSign = (P.sample.sign ? 'Ukuran tertulis: ' + P.sample.sign : 'Tidak ada ukuran tertulis.') + (u ? ' · tanda putih: ' + u.name : '');
 if (u) { const q = Math.floor(P.sample.cm / u.cm + 1e-9); for (let i = 1; i <= q; i++) vals.ticks.push({ x: Math.min(99.4, Math.round(i * u.cm / P.sample.cm * 1000) / 10) }); }
 const log = P.meas.map(i => { const un = P.units[i], q = Math.floor(P.sample.cm / un.cm + 1e-9), exact = Math.abs(q * un.cm - P.sample.cm) < 1e-9; return exact ? q + ' ' + un.name : 'lebih dari ' + q + ', kurang dari ' + (q + 1) + ' ' + un.name; });
 vals.hasTools = true;
@@ -15863,8 +15863,8 @@ if (P.cobaLeft <= 0) return ctx.warn('Jatah coba sudah habis.');
 ctx.setP({ tries: P.tries.concat([{ n: n, b: bb }]), cur: bb, cobaLeft: P.cobaLeft - 1 });
 };
 vals.hasDial = true; vals.dialLabel = 'Kemudi · ketuk tanda untuk mencoba belokan di setiap pojok';
-vals.dial = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => { const bb = 15 * i, th = (i - 1) * 22.5 * Math.PI / 180, cx = 130 + 100 * Math.cos(th), cy = 120 - 100 * Math.sin(th), tried = P.tries.some(t => t.n === n && t.b === bb);
-return { label: bb + '°', aria: 'Belok ' + bb + ' derajat' + (tried ? ', sudah dicoba di taman ini' : ''), tap: coba(bb), style: 'position: absolute; left: ' + Math.round(cx - 21) + 'px; top: ' + Math.round(cy - 12) + 'px; width: 42px; height: 24px; padding: 0; border-radius: 12px; font: inherit; font-size: 11px; font-weight: 600; cursor: pointer; ' + (tried ? 'background: #1C1C1A; color: #FFFFFF; border: 1px solid #1C1C1A' : (b === bb ? 'background: #F2F5FD; color: #1E3F9E; border: 2px solid #2F5BD3' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #B9B8B2')) }; });
+vals.dial = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(i => { const bb = 15 * i, th = bb * Math.PI / 180, rr = i % 2 ? 122 : 84, cx = 130 + rr * Math.cos(th), cy = 136 - rr * Math.sin(th), /* tanda di sudut sebenarnya (90° tepat di atas), selang-seling luar/dalam supaya tidak bertumpuk */ tried = P.tries.some(t => t.n === n && t.b === bb);
+return { label: bb + '°', aria: 'Belok ' + bb + ' derajat' + (tried ? ', sudah dicoba di taman ini' : ''), tap: coba(bb), style: 'position: absolute; left: ' + Math.round(cx - 19) + 'px; top: ' + Math.round(cy - 11) + 'px; width: 38px; height: 22px; padding: 0; border-radius: 12px; font: inherit; font-size: 11px; font-weight: 600; cursor: pointer; ' + (tried ? 'background: #1C1C1A; color: #FFFFFF; border: 1px solid #1C1C1A' : (b === bb ? 'background: #F2F5FD; color: #1E3F9E; border: 2px solid #2F5BD3' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #B9B8B2')) }; });
 vals.hasTools = true;
 vals.tools = [{ label: 'Taman latihan (banyak pojok)', items: [3, 4, 6, 8].map(t => ({ label: String(t), aria: 'Taman ' + t + ' pojok' + (n === t ? ', sekarang' : ''), style: this.tb(n === t), tap: () => { if (ctx.locked) return; ctx.setP({ nNow: t, cur: null }); } })) }];
 const log = P.tries.map(t => { const pts = this.turtle(t.n, t.b), e = pts[pts.length - 1], back = Math.abs(e[0]) < 1e-6 && Math.abs(e[1]) < 1e-6 && (t.b * t.n) % 360 === 0; return t.n + ' pojok · ' + t.b + '° → ' + (back ? 'kembali ke awal' : 'tidak kembali'); });
