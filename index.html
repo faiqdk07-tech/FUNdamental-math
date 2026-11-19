@@ -18599,13 +18599,87 @@ const FMS = (() => {
     // Lipat Kertas: halus dan tipis, nada tinggi, mi minor
     lipat: { bpm: 70, vol: 0.6, arp: [0, 1, 2, 3, -1, 2, 1, -1], arpOct: 24, arpV: 0.04,
       chords: [C(52, 55, 59, 64), C(48, 52, 55, 60), C(43, 47, 50, 55), C(50, 54, 57, 62), C(52, 55, 59, 64), C(48, 52, 55, 60), C(45, 48, 52, 57), C(47, 51, 54, 59)] },
-    // Game lain (sementara, sampai materinya dikerjakan): meja kerja tenang
+    /* ===== Lagu game Aljabar (dapur dan kios) ===== */
+    // Dua Struk: kios kecil, la minor
+    struk: { bpm: 90, vol: 0.45, perc: '....t...', leadType: 'pulse', leadV: 0.035,
+      lead: L('69 . 72 . 76 . 72 . 74 . 77 . 76 . 74 . 71 . 74 . 79 . 74 . 72 . . . 0 . 0 . 76 . 74 . 72 . 69 . 72 . 77 . 81 . 77 . 76 . 74 . 71 . 68 . 69 . . . 0 . 0 .'),
+      bass: [45, 52, 45, 52, 38, 45, 38, 45, 43, 50, 43, 50, 48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 41, 48, 40, 47, 40, 47, 45, 52, 45, 40] },
+    // Meja Hajatan: kenduri, riang pelan
+    hajatan: { bpm: 92, vol: 0.45, perc: '.h.h.h.h', leadType: 'pulse', leadV: 0.035,
+      lead: L('72 . 74 . 76 . 79 . 81 . 79 . 77 . 76 . 74 . 76 . 77 . 74 . 72 . . . 76 . 72 . 69 . 72 . 76 . 81 . 79 . 77 . 76 . 72 . 74 . 77 . 76 . 74 . 72 . . . 0 . 0 .'),
+      bass: [48, 55, 48, 55, 41, 48, 41, 48, 43, 50, 43, 50, 48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 41, 48, 38, 45, 43, 50, 48, 55, 48, 43] },
+    // Pesanan Martabak: pasar malam, re minor
+    martabak: { bpm: 86, vol: 0.43, perc: '..t..t..', leadType: 'triangle', leadV: 0.1,
+      lead: L('62 . 65 . 69 . 65 . 70 . 69 . 65 . . . 67 . 69 . 72 . 69 . 69 . . . 0 . 0 . 74 . 72 . 69 . 65 . 67 . 70 . 74 . 70 . 73 . 69 . 67 . 64 . 62 . . . 0 . 0 .'),
+      bass: [38, 45, 38, 45, 34, 41, 34, 41, 36, 43, 36, 43, 33, 40, 33, 40, 38, 45, 38, 45, 43, 50, 43, 50, 33, 40, 33, 40, 38, 45, 38, 33] },
+    // Mesin Minuman: mesin berdengung, petikan berpola
+    mesin: { bpm: 100, vol: 0.55, perc: 't...t...', arp: [0, 2, 1, 3, 0, 2, 1, 3], arpType: 'pulse', arpV: 0.026,
+      chords: [C(52, 55, 59, 62), C(48, 52, 55, 59), C(45, 48, 52, 55), C(47, 51, 54, 57), C(52, 55, 59, 62), C(48, 52, 55, 59), C(50, 54, 57, 62), C(47, 51, 54, 57)] },
+    // Argo Ojek: perjalanan, ketuk argometer
+    ojek: { bpm: 104, vol: 0.45, perc: 't.t.t.t.', leadType: 'pulse', leadV: 0.033,
+      lead: L('67 . 71 . 74 . 77 . 77 . 76 . 74 . 72 . 72 . 76 . 79 . 76 . 74 . . . 0 . 0 . 79 . 77 . 74 . 71 . 72 . 74 . 77 . 81 . 79 . 76 . 74 . 78 . 79 . . . 0 . 0 .'),
+      bass: [43, 50, 43, 50, 41, 48, 41, 48, 36, 43, 36, 43, 43, 50, 43, 50, 43, 50, 43, 50, 41, 48, 41, 48, 36, 43, 38, 45, 43, 50, 43, 38] },
+    // Rekap Grosir: buku stok, petikan rapi
+    grosir: { bpm: 88, vol: 0.6, perc: '....t...', arp: [0, 1, 2, 3, 2, 1, 0, 1],
+      chords: [C(53, 57, 60, 64), C(45, 48, 52, 55), C(46, 50, 53, 57), C(48, 52, 55, 60), C(50, 53, 57, 60), C(43, 46, 50, 53), C(48, 52, 55, 58), C(53, 57, 60, 65)] },
+    // Kebun & Lintasan: kebun pagi, re mayor
+    kebun: { bpm: 80, vol: 0.5, leadType: 'triangle', leadV: 0.1,
+      lead: L('74 . 76 . 78 . 81 . 79 . . . 78 . 76 . 78 . 76 . 74 . 71 . 73 . . . 0 . 0 . 71 . 74 . 78 . 83 . 81 . 79 . 78 . 76 . 76 . 78 . 79 . 73 . 74 . . . 0 . 0 .'),
+      bass: [38, 45, 38, 45, 43, 50, 43, 50, 38, 45, 38, 45, 45, 52, 45, 52, 47, 54, 47, 54, 43, 50, 43, 50, 40, 47, 45, 52, 38, 45, 38, 45] },
+    // Dapur Roti: dapur pagi, denting oven
+    roti: { bpm: 84, vol: 0.6, perc: '..h.....', arp: [0, 1, 2, 3, 2, 1, 2, 1], arpType: 'pulse', arpV: 0.028, bells: true,
+      chords: [C(48, 52, 55, 60), C(47, 50, 55, 62), C(45, 48, 52, 57), C(41, 45, 48, 53), C(48, 52, 55, 60), C(41, 45, 48, 53), C(43, 47, 50, 55), C(48, 52, 55, 60)] },
+    /* ===== Lagu game Geometri (bengkel dan konstruksi) ===== */
+    // Rute Kurir: melaju maju, mi dorian
+    kurir: { bpm: 104, vol: 0.45, perc: 't...t.t.', leadType: 'pulse', leadV: 0.033,
+      lead: L('64 . 67 . 71 . 74 . 73 . 71 . 69 . 66 . 64 . 67 . 71 . 76 . 74 . . . 0 . 0 . 71 . 74 . 79 . 74 . 76 . 73 . 69 . 73 . 72 . 71 . 69 . 66 . 64 . . . 0 . 0 .'),
+      bass: [40, 47, 40, 47, 45, 52, 45, 52, 40, 47, 40, 47, 38, 45, 38, 45, 43, 50, 43, 50, 45, 52, 45, 52, 36, 43, 38, 45, 40, 47, 40, 35] },
+    // Pasang Lantai: pola ubin berulang, fa lidia
+    lantai: { bpm: 88, vol: 0.6, perc: '....t...', arp: [0, 1, 2, 1, 3, 1, 2, 1],
+      chords: [C(53, 57, 60, 64), C(53, 59, 62, 67), C(53, 57, 60, 64), C(53, 59, 62, 67), C(50, 53, 57, 62), C(48, 52, 55, 60), C(46, 50, 53, 58), C(48, 52, 55, 60)] },
+    // Isi Wadah: mengalir seperti tuangan, la mayor
+    kardus: { bpm: 80, vol: 0.6, arp: [0, 2, 1, 3, 2, 1, 3, 2], arpType: 'pulse', arpV: 0.028, bells: true,
+      chords: [C(45, 49, 52, 57), C(42, 45, 49, 54), C(50, 54, 57, 62), C(52, 56, 59, 64), C(45, 49, 52, 57), C(49, 52, 56, 61), C(50, 54, 57, 62), C(52, 56, 59, 62)] },
+    // Perbesar Gambar: motif yang sama diulang makin tinggi
+    spanduk: { bpm: 92, vol: 0.45, perc: '..t...t.', leadType: 'pulse', leadV: 0.035,
+      lead: L('60 . 64 . 67 . . . 65 . 69 . 72 . . . 67 . 71 . 74 . . . 72 . . . 0 . 0 . 72 . 76 . 79 . . . 77 . 81 . 84 . . . 79 . 77 . 74 . 71 . 72 . . . 0 . 0 .'),
+      bass: [36, 43, 36, 43, 41, 48, 41, 48, 43, 50, 43, 50, 36, 43, 36, 43, 48, 55, 48, 55, 41, 48, 41, 48, 43, 50, 43, 50, 36, 43, 36, 43] },
+    // Tangga Bangunan: naik bertahap, si mol mayor
+    tangga: { bpm: 84, vol: 0.43, perc: 't.......', leadType: 'triangle', leadV: 0.1,
+      lead: L('58 . 62 . 65 . 70 . 67 . 70 . 72 . 75 . 72 . 74 . 77 . 79 . 77 . . . 0 . 0 . 74 . 72 . 70 . 67 . 70 . 67 . 63 . 67 . 65 . 69 . 72 . 69 . 70 . . . 0 . 0 .'),
+      bass: [34, 41, 34, 41, 39, 46, 39, 46, 41, 48, 41, 48, 34, 41, 34, 41, 43, 50, 43, 50, 39, 46, 39, 46, 41, 48, 41, 48, 34, 41, 34, 41] },
+    // Pelabuhan: laut tenang, petikan berayun, re minor
+    pelabuhan: { bpm: 72, vol: 0.6, arp: [0, 1, 2, 3, 2, 1, -1, -1], bells: true,
+      chords: [C(50, 53, 57, 62), C(46, 50, 53, 58), C(53, 57, 60, 65), C(48, 52, 55, 60), C(50, 53, 57, 62), C(43, 46, 50, 55), C(45, 49, 52, 57), C(50, 53, 57, 62)] },
+    /* ===== Lagu game Data (kantor dan panggung) ===== */
+    // Pilihan OSIS: lorong sekolah, fa mayor
+    osis: { bpm: 96, vol: 0.45, perc: '..t...t.', leadType: 'pulse', leadV: 0.035,
+      lead: L('65 . 69 . 72 . 69 . 67 . 72 . 76 . 72 . 74 . 72 . 69 . 65 . 70 . . . 0 . 0 . 69 . 72 . 77 . 72 . 76 . 74 . 72 . 67 . 70 . 69 . 67 . 72 . 65 . . . 0 . 0 .'),
+      bass: [41, 48, 41, 48, 36, 43, 36, 43, 38, 45, 38, 45, 34, 41, 34, 41, 41, 48, 41, 48, 36, 43, 36, 43, 34, 41, 36, 43, 41, 48, 41, 36] },
+    // Pentas Seni: panggung, riang
+    pentas: { bpm: 108, vol: 0.36, perc: 'k.h.k.h.', leadType: 'square', leadV: 0.03,
+      lead: L('67 . 71 . 74 . 79 . 76 . 79 . 76 . 72 . 74 . 78 . 81 . 78 . 79 . . . 0 . 0 . 76 . 79 . 83 . 79 . 79 . 76 . 72 . 76 . 72 . 76 . 74 . 78 . 79 . . . 0 . 0 .'),
+      bass: [43, 50, 43, 50, 36, 43, 36, 43, 38, 45, 38, 45, 43, 50, 43, 50, 40, 47, 40, 47, 36, 43, 36, 43, 45, 52, 38, 45, 43, 50, 43, 38] },
+    // Undian Doorprize: menunggu undian, la minor
+    undian: { bpm: 100, vol: 0.55, perc: '...t...t', arp: [0, 2, 1, 3, 0, 3, 1, 2], arpType: 'pulse', arpV: 0.026,
+      chords: [C(45, 48, 52, 57), C(40, 44, 47, 52), C(45, 48, 52, 57), C(43, 47, 50, 55), C(41, 45, 48, 53), C(48, 52, 55, 60), C(50, 53, 57, 62), C(40, 44, 47, 52)] },
+    // Rapor Kelas: meja guru, tenang
+    rapor: { bpm: 78, vol: 0.6, arp: [0, 1, 2, 3, 2, 1, 2, 3],
+      chords: [C(43, 47, 50, 54), C(40, 43, 47, 50), C(45, 48, 52, 55), C(50, 54, 57, 62), C(43, 47, 50, 54), C(47, 50, 54, 57), C(48, 52, 55, 59), C(50, 54, 57, 60)] },
+    // Grafik Viral: media sosial, mi mayor
+    viral: { bpm: 112, vol: 0.45, perc: '.h.h.h.h', leadType: 'pulse', leadV: 0.032,
+      lead: L('64 . 68 . 71 . 76 . 75 . 71 . 66 . 71 . 73 . 76 . 80 . 76 . 76 . . . 0 . 0 . 76 . 75 . 73 . 71 . 71 . 75 . 78 . 75 . 76 . 73 . 71 . 75 . 76 . . . 0 . 0 .'),
+      bass: [40, 47, 40, 47, 35, 42, 35, 42, 37, 44, 37, 44, 33, 40, 33, 40, 40, 47, 40, 47, 35, 42, 35, 42, 33, 40, 35, 42, 40, 47, 40, 35] },
+    // Cadangan untuk game tanpa lagu sendiri: meja kerja tenang
     kerja: { bpm: 72, vol: 0.6,
       chords: [C(53, 57, 60, 64), C(52, 55, 59, 62), C(50, 53, 57, 60), C(48, 52, 55, 59), C(53, 57, 60, 64), C(52, 55, 59, 62), C(50, 53, 57, 60), C(43, 47, 50, 53)],
       arp: [0, 1, 2, 3, 2, 1, 2, 1], bells: true }
   };
   // halaman -> lagu
-  const GAME_SONG = { KasirKilat: 'kasir', Timbangan: 'timbang', Ubin: 'barisan', JadwalBus: 'jadwal', BagiPizza: 'pizza', RacikResep: 'resep', LipatKertas: 'lipat' };
+  const GAME_SONG = { KasirKilat: 'kasir', Timbangan: 'timbang', Ubin: 'barisan', JadwalBus: 'jadwal', BagiPizza: 'pizza', RacikResep: 'resep', LipatKertas: 'lipat',
+    DuaStruk: 'struk', MejaHajatan: 'hajatan', MartabakTopping: 'martabak', MesinMinuman: 'mesin', ArgoOjek: 'ojek', RekapGrosir: 'grosir', KebunPagar: 'kebun', DapurRoti: 'roti',
+    RuteKurir: 'kurir', PasangLantai: 'lantai', GudangKardus: 'kardus', CetakSpanduk: 'spanduk', TanggaBangunan: 'tangga', Pelabuhan: 'pelabuhan',
+    LokerOSIS: 'osis', PentasSeni: 'pentas', UndianDoorprize: 'undian', RaporKelas: 'rapor', GrafikViral: 'viral' };
   const PAGE_SONG = { Main: 'desa', MiniGames: 'jalan', Progres: 'piala', Jurnal: 'jurnal', PohonTemuan: 'kaca', Tantangan: 'alun', Bengkel: 'bengkel', CekCelah: 'malam', Pengaturan: 'atur', KasusBaru: 'pos' };
   function perc(c, dst, ch, t) {
     if (ch === 'h') noise(c, dst, t, { d: 0.04, f: 6000, f2: 8000, v: 0.025 });
