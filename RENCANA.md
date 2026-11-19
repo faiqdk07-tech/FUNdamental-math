@@ -339,9 +339,11 @@ Permintaan Faiq: mainkan tiap game satu per satu, cek ilustrasi cocok dengan cer
 - Grafik Viral: harian F angka acak dan topik lebih beragam (dulu sama dengan misi); nama batang tidak bertumpuk; tokoh Mbak Rara.
 - **Pola umum yang ditemukan:** (1) bidang berwarna menutupi garis petak -> tambahkan `<path d="{{gridD}}" stroke-opacity>` sesudah pathB; (2) `PX.cast` memilih orang pertama di cerita, bisa membuat penerima/pelaku klaim bicara tentang dirinya sendiri -> beri `role` tetap; (3) generator kasus dengan pilihan sedikit sering kembar -> campur beberapa tarikan acak (`mix`).
 
-**Catatan untuk Faiq (belum diubah):**
-- Rute Kurir F: "(0 / 6)" batas kartu = banyak perintah minimum (memberi tahu panjang jawaban terpendek).
-- Lab Rekap Grosir di tingkat F/I juga mesin label (materi E).
+**Keputusan Faiq 19 Nov (sudah diterapkan):**
+- Rute Kurir: batas kartu rencana tidak ditampilkan (hanya "(n kartu)"); batas tetap berlaku, pesan "paling banyak …" muncul hanya bila dilewati.
+- Lab Rekap Grosir ikut tingkat: F = catatan stok (4 gulungan isi rak, catatan ditulis otomatis lewat `stokNotes`), I = pesanan telepon (banyak barang 0–5, harga 8–25), E = mesin label. Tantangan rekan menyimpan `lv` dan diberi nama "Tantangan rekan n (F/I/E)"; tantangan lama tanpa `lv` dianggap E.
+
+**Catatan untuk Faiq (dibiarkan, disetujui):**
 - Isi Wadah E dan Rapor Kelas I misi 3: papan contoh (wadah takar 4 × 4, tumpukan buku) tidak sama ukurannya dengan soal; dibiarkan sebagai alat percobaan.
 
 **Keputusan anti-clue (disetujui Faiq 19 Nov, sudah diterapkan):** Meja Hajatan tidak lagi mencatat "n meja → k kursi" dan "total baris"; Tata Barisan hanya menulis "pas / tidak pas" (tanpa selisih); Racik Resep E misi 2 struk menulis "…" untuk harga setelah diskon; Dapur Roti papan kosong, roti hanya di titik yang dipilih (timbangan yang menunjukkan cukup/tidak); Kebun E ubin tanpa label x²/5x, luas tambalan dan luas baru tidak dihitungkan; Kasir I tugas tanpa "tulis tanda minus". Lipat Kertas tetap mencatat banyak lapis kertas latihan (tidak bisa dihitung dengan mata).

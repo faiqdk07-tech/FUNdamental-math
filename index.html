@@ -15214,7 +15214,7 @@ initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Rekap Grosir'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Rekap Grosir (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
-lk() { const s = this.state, P = s.P || {}; if (s.mode === 'lab' || (s.mode !== 'rumus' && P.type === 'urai')) return { view: PX.kbScene({ kind: 'label' }), face: 'lina', role: 'Pemilik toko' }; return { view: PX.alView('grosir'), face: 'lina', role: 'Pemilik toko' }; }
+lk() { const s = this.state, P = s.P || {}; if ((s.mode === 'lab' && this.curLvl() === 'E') || (s.mode !== 'rumus' && s.mode !== 'lab' && P.type === 'urai')) return { view: PX.kbScene({ kind: 'label' }), face: 'lina', role: 'Pemilik toko' }; return { view: PX.alView('grosir'), face: 'lina', role: 'Pemilik toko' }; }
 renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('RekapGrosir', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: 'Bu Lina', name: 'Bu Lina', game: 'Rekap Grosir' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -15235,7 +15235,7 @@ label: t[1], style: 'padding: 6px 7px; border: 0; font: inherit; font-size: 12px
 tap: () => { if (t[0] === 'misi') this.loadMission(s.mi); else if (t[0] === 'harian') this.loadCase(s.hi); else if (t[0] === 'lab') this.setState({ mode: 'lab', sel: [], msg: '', kind: '' }); else this.setState({ mode: 'rumus', msg: '', kind: '' }); }
 }));
 let chips = [];
-if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((_, i) => 'Tantangan rekan ' + (i + 1))).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
+if (s.mode === 'misi' && !isTut) chips = (this.TN ? this.TN[this.curLvl()] : this.MN).concat(s.customs.map((c, i) => 'Tantangan rekan ' + (i + 1) + ' (' + (c.lv || 'E') + ')')).map((nm, i) => ({ label: (s.done[i] ? '✓ ' : '') + (i + 1) + '. ' + nm, style: chipSt(s.mi === i), tap: () => this.loadMission(i) }));
 if (s.mode === 'harian') chips = this.todayIdx().map((ix, i) => { const c = this.H[ix]; return { label: (s.hDone[c.id] ? '✓ ' : '') + (i + 1) + '. ' + c.konteks, style: chipSt(s.hi === i), tap: () => this.loadCase(i) }; });
 let view = { vals: {}, actions: [], boardLabel: '', statusLabel: '', status: '', log: [], info: '', picker: true };
 if (isLab) view = Object.assign(view, this.labView(ctx));
@@ -15277,7 +15277,7 @@ tags = [{ label: s.mode === 'harian' ? P.konteks : 'Misi ' + (s.mi + 1), style: 
 if (P.tingkat) tags.push({ label: lv[P.tingkat], style: tagSt(false) });
 tags.push({ label: P.budget + ' kesempatan', style: tagSt(true) });
 (P.extraTags || []).forEach(t => tags.push({ label: t, style: tagSt(true) }));
-} else if (isLab) { story = this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
+} else if (isLab) { story = ({ F: 'Bu Lina memintamu menulis catatan stok untuk menguji pegawai baru. Atur isi rak, lalu jadikan tantangan.', I: 'Bu Lina memintamu menyiapkan pesanan telepon untuk menguji pegawai baru. Atur pesanan dan harganya, lalu jadikan tantangan.' })[this.curLvl()] || this.LAB_STORY; tags = [{ label: 'Lab', style: tagSt(false) }]; }
 else { story = this.RULE_STORY; tags = [{ label: 'Aturan', style: tagSt(false) }]; }
 const builders = (this.TO ? this.TO[this.curLvl()] : Object.keys(this.OPTS)).map(id => {
 const o = this.OPTS[id], cur = s.pick[id];
@@ -15368,12 +15368,19 @@ B: { note: 'Label 1 petak; setelan sisi bawah → a ↑ c, sisi kiri → b ↑ d
 C: { note: 'Tabel dengan m baris dan n kolom', lhs: 'Banyak sel =', list: ['m + n', '2m + 2n', 'm²', 'm·n'], vars: ['m', 'n'], gen: () => ({ m: R(1, 12), n: R(1, 12) }), f: v => { let c = 0; for (let i = 0; i < v.m; i++) for (let j = 0; j < v.n; j++) c++; return c; }, g: { 'm + n': v => v.m + v.n, '2m + 2n': v => 2 * v.m + 2 * v.n, 'm²': v => v.m * v.m, 'm·n': v => v.m * v.n } }
 };
 }
-extraState() { return { lab: { a: 2, b: 1, c: 0, d: 2 } }; }
+extraState() { return { lab: { a: 2, b: 1, c: 0, d: 2, f: [5, 2, 1, 7], k: [2, 1, 1, 3], h: [12, 15] } }; }
 tutProblem() { return { type: 'rapikan', notes: ['Rak kecil: 3 kaleng susu dan 6 bungkus teh.'], rowsL: ['susu', 'teh'], colsL: ['Rak kecil'], key: [[3], [6]], budget: 0 }; }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b), lv = this.curLvl(), base = this.curM()[i];
 if (lv === 'F') {
 const rows = base.rowsL, cols = base.colsL, key = rows.map(() => cols.map(() => R(1, 9)));
+return { key: key, notes: this.stokNotes(rows, cols, key, true) };
+}
+if (lv === 'I') { const counts = base.rowsL.map(() => base.colsL.map(() => R(0, 5))), harga = base.colsL.map(() => R(8, 25)); const tot = r => r.reduce((t, c, j) => t + c * harga[j], 0); return { counts: counts, harga: harga, asks: base.rowsL.map((nm, j) => ({ label: 'Total ' + nm + ' (ribu)', key: tot(counts[j]) })) }; }
+let a, b, c, d; do { a = R(1, 4); b = R(0, 3); c = R(0, 3); d = R(1, 4); } while (a * d - b * c === 0);
+return { m: [[a, b], [c, d]], asks: [{ label: 'Luas label baru (petak)', key: Math.abs(a * d - b * c) }] };
+}
+stokNotes(rows, cols, key, mix) {
 /* catatan memakai nama lengkap (Senin, gudang depan, rak A), bukan singkatan judul kolom */
 const FULL = { Sen: 'Senin', Sel: 'Selasa', Rab: 'Rabu', Kam: 'Kamis', Jum: 'Jumat', Depan: 'gudang depan', Tengah: 'gudang tengah', Belakang: 'gudang belakang' };
 const isDay = c => /^(Senin|Selasa|Rabu|Kamis|Jumat)$/.test(FULL[c] || c);
@@ -15382,15 +15389,17 @@ const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
 const u = rows.some(r => /^(teh|kopi)$/.test(r)) ? ' dus' : '';
 const notes = [cap(rows[0]) + ': ' + cols.map((c, j) => mid(c) + ' ' + key[0][j] + u).join(', ') + '.'];
 cols.forEach((c, j) => { if (rows.length > 1) notes.push((isDay(c) ? 'Hari ' + mid(c) + ' masuk ' : cap(mid(c)) + ' menyimpan ') + rows.slice(1).map((r, k) => key[k + 1][j] + u + ' ' + r).join(' dan ') + '.'); });
-return { key: key, notes: this.shuffle(notes) };
+return mix ? this.shuffle(notes) : notes;
 }
-if (lv === 'I') { const counts = base.rowsL.map(() => base.colsL.map(() => R(0, 5))), harga = base.colsL.map(() => R(8, 25)); const tot = r => r.reduce((t, c, j) => t + c * harga[j], 0); return { counts: counts, harga: harga, asks: base.rowsL.map((nm, j) => ({ label: 'Total ' + nm + ' (ribu)', key: tot(counts[j]) })) }; }
-let a, b, c, d; do { a = R(1, 4); b = R(0, 3); c = R(0, 3); d = R(1, 4); } while (a * d - b * c === 0);
-return { m: [[a, b], [c, d]], asks: [{ label: 'Luas label baru (petak)', key: Math.abs(a * d - b * c) }] };
-}
-customMission(c) { return { tingkat: '', type: 'urai', special: true, m: [[c.a, c.b], [c.c, c.d]], asks: [{ label: 'Luas label baru (petak)', key: Math.abs(c.a * c.d - c.b * c.c) }], budget: 2, cerita: 'Rekan kerjamu menyetel mesin label rahasia.', tujuan: 'Berapa petak luas label setelah ditarik?' }; }
+customMission(c) {
+/* tantangan rekan mengikuti tingkat tempat dibuat di Lab (keputusan Faiq 19 Nov) */
+if (c.lv === 'F') { const rows = ['teh', 'kopi'], cols = ['Rak A', 'Rak B'], key = [[c.f[0], c.f[1]], [c.f[2], c.f[3]]]; return { tingkat: '', type: 'rapikan', special: true, rowsL: rows, colsL: cols, key: key, notes: this.stokNotes(rows, cols, key, true), budget: 2, cerita: 'Rekan admin menulis catatan stok minuman di kertas kecil.', tujuan: 'Isi tabelnya sesuai catatan, lalu Periksa.' }; }
+if (c.lv === 'I') { const counts = [[c.k[0], c.k[1]], [c.k[2], c.k[3]]], harga = c.h.slice(), tot = r => r[0] * harga[0] + r[1] * harga[1]; return { tingkat: '', type: 'kali', special: true, rowsL: ['Bu Ani', 'Pak Budi'], colsL: ['beras', 'gula'], counts: counts, harga: harga, asks: [{ label: 'Total Bu Ani (ribu)', key: tot(counts[0]) }, { label: 'Total Pak Budi (ribu)', key: tot(counts[1]) }], budget: 2, cerita: 'Rekan admin mencatat pesanan dua pelanggan lewat telepon.', tujuan: 'Berapa total belanja tiap pelanggan?' }; }
+return { tingkat: '', type: 'urai', special: true, m: [[c.a, c.b], [c.c, c.d]], asks: [{ label: 'Luas label baru (petak)', key: Math.abs(c.a * c.d - c.b * c.c) }], budget: 2, cerita: 'Rekan kerjamu menyetel mesin label rahasia.', tujuan: 'Berapa petak luas label setelah ditarik?' }; }
 helpFor(s) {
 if (s.mode === 'rumus') return ['Catatan aturan', ['Ketuk kotak biru untuk mengganti isinya.', 'Uji mencoba aturanmu dengan 16 data acak. Kalau gagal, contohnya ditampilkan.', 'Aturan yang lolos masuk catatan untuk Bu Lina.']];
+if (s.mode === 'lab' && this.curLvl() === 'F') return ['Catatan stok', ['Putar gulungan ▲ ▼ untuk mengatur isi tiap rak.', 'Kertas catatan di atas tabel ditulis otomatis dari isi rak; itulah yang dilihat rekanmu.', 'Jadikan tantangan menyimpan soal ini sebagai misi untuk rekan.']];
+if (s.mode === 'lab' && this.curLvl() === 'I') return ['Pesanan telepon', ['Putar gulungan ▲ ▼ untuk mengatur banyak barang tiap pembeli dan harga satuannya.', 'Tabel menunjukkan pesanan yang akan dilihat rekanmu.', 'Jadikan tantangan menyimpan soal ini sebagai misi untuk rekan.']];
 if (s.mode === 'lab') return ['Mesin label', ['Putar gulungan ▲ ▼ untuk mengubah setelan: ke mana ujung sisi bawah dan sisi kiri label ditarik.', 'Garis putus adalah label semula; bentuk biru adalah hasil tarikan.', 'Jadikan tantangan menyimpan setelan ini sebagai misi untuk rekan.']];
 const t = s.P.type;
 if (t === 'rapikan') return ['Tabel stok', ['Ketuk kartu angka, lalu ketuk sel untuk mengisinya. Kartu tetap terpilih sampai diketuk lagi.', 'Ketuk sel yang terisi tanpa kartu terpilih untuk mengosongkannya. Sel kosong dihitung 0.', 'Ketuk kertas catatan untuk mencoretnya sendiri. Periksa mengecek seluruh tabel dan memakai satu kesempatan.']];
@@ -15473,13 +15482,32 @@ return { label: label, val: String(val), upCol: up ? '#1C1C1A' : '#B9B8B2', down
 up: () => { if (up) set(val + step); }, down: () => { if (dn) set(val - step); } };
 }
 labView(ctx) {
-const s = ctx.s, L = s.lab, act = ctx.act;
+const s = ctx.s, act = ctx.act, lv = this.curLvl(), L = Object.assign({ f: [5, 2, 1, 7], k: [2, 1, 1, 3], h: [12, 15] }, s.lab);
+const save = () => this.setState({ customs: s.customs.concat([Object.assign({ lv: lv }, this.clone(L))]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + ' (' + lv + ')" di tab Misi.', kind: 'ok' });
+const arr = (k, i) => v => { const a = L[k].slice(); a[i] = v; this.setState({ lab: Object.assign({}, L, { [k]: a }), msg: '' }); };
+const show = v => ({ head: false, btn: false, val: true, label: String(v) });
+if (lv === 'F') {
+const rows = ['teh', 'kopi'], cols = ['Rak A', 'Rak B'], key = [[L.f[0], L.f[1]], [L.f[2], L.f[3]]], v = this.blank();
+v.hasNotes = true; v.notes = this.stokNotes(rows, cols, key, false).map(n => ({ text: n, aria: n, tap: () => {}, style: 'text-align: left; font: inherit; font-size: 12px; background: #FFF8E6; border: 1px solid #EADBB4; border-radius: 4px; padding: 4px 8px; color: #1C1C1A' }));
+const t = this.table(rows, cols, (i, j) => show(key[i][j])); v.hasTable = true; v.cells = t.cells; v.gridStyle = t.gridStyle;
+v.hasRollers = true; v.rollCols = 4;
+v.rollers = [this.roller('Teh rak A', L.f[0], 1, 9, 1, arr('f', 0)), this.roller('Teh rak B', L.f[1], 1, 9, 1, arr('f', 1)), this.roller('Kopi rak A', L.f[2], 1, 9, 1, arr('f', 2)), this.roller('Kopi rak B', L.f[3], 1, 9, 1, arr('f', 3))];
+return { vals: v, boardLabel: 'Catatan stok rahasiamu', picker: false, statusLabel: '', status: '', actions: [act('Jadikan tantangan', save, true)] };
+}
+if (lv === 'I') {
+const v = this.blank(), rows = ['Bu Ani', 'Pak Budi'], cols = ['beras (kg)', 'gula (kg)'], t = this.table(rows, cols, (i, j) => show(L.k[i * 2 + j]));
+t.cells.push({ head: true, btn: false, val: false, label: 'Harga satuan (rb)' }); L.h.forEach(x => t.cells.push(show(x)));
+v.hasTable = true; v.cells = t.cells; v.gridStyle = t.gridStyle;
+v.hasRollers = true; v.rollCols = 3;
+v.rollers = [this.roller('Bu Ani beras', L.k[0], 0, 5, 1, arr('k', 0)), this.roller('Bu Ani gula', L.k[1], 0, 5, 1, arr('k', 1)), this.roller('Harga beras', L.h[0], 8, 25, 1, arr('h', 0)), this.roller('Pak Budi beras', L.k[2], 0, 5, 1, arr('k', 2)), this.roller('Pak Budi gula', L.k[3], 0, 5, 1, arr('k', 3)), this.roller('Harga gula', L.h[1], 8, 25, 1, arr('h', 1))];
+return { vals: v, boardLabel: 'Pesanan telepon rahasiamu', picker: false, statusLabel: '', status: '', actions: [act('Jadikan tantangan', save, true)] };
+}
 const vals = Object.assign(this.blank(), this.uraiVals([[L.a, L.b], [L.c, L.d]], [], null));
 const set = key => val => { const n = Object.assign({}, L, { [key]: val }); if (n.a + n.b > 8 || n.c + n.d > 8) return ctx.warn('Label akan keluar dari kertas. Kecilkan angka lain dulu.'); this.setState({ lab: n, msg: '' }); };
 vals.hasRollers = true; vals.rollCols = 4;
 vals.rollers = [this.roller('Bawah →', L.a, 0, 8, 1, set('a')), this.roller('Bawah ↑', L.c, 0, 8, 1, set('c')), this.roller('Kiri →', L.b, 0, 8, 1, set('b')), this.roller('Kiri ↑', L.d, 0, 8, 1, set('d'))];
 return { vals: vals, boardLabel: 'Mesin label rahasiamu', picker: false, statusLabel: '', status: '',
-actions: [act('Jadikan tantangan', () => this.setState({ customs: s.customs.concat([Object.assign({}, L)]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + '" di tab Misi.', kind: 'ok' }), true)] };
+actions: [act('Jadikan tantangan', save, true)] };
 }
 }
 
@@ -15858,7 +15886,7 @@ this.fail(where, { run: r });
 const nm = c => c.op === 'maju' ? '↑' + c.n : c.op === 'kanan' ? '↷' : '↶';
 const card = 'min-width: 34px; padding: 6px 6px; border-radius: 5px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; ';
 vals.hasTools = true;
-vals.tools = [{ label: 'Rencana · ketuk kartu untuk membuang (' + P.plan.length + ' / ' + P.maxCmds + ')', items: P.plan.map((c, i) => ({ label: nm(c), aria: 'Perintah ' + (i + 1) + ': ' + (c.op === 'maju' ? 'maju ' + c.n : 'belok ' + c.op) + ', ketuk untuk membuang', style: card + 'background: #F2F5FD; color: #1E3F9E; border: 1px solid #2F5BD3', tap: () => { if (ctx.locked) return; ctx.setP({ plan: P.plan.filter((_, j) => j !== i), run: null }); } })) },
+vals.tools = [{ label: 'Rencana · ketuk kartu untuk membuang (' + P.plan.length + ' kartu)' /* batas tidak ditampilkan: sama dengan jumlah perintah minimum (keputusan Faiq 19 Nov) */, items: P.plan.map((c, i) => ({ label: nm(c), aria: 'Perintah ' + (i + 1) + ': ' + (c.op === 'maju' ? 'maju ' + c.n : 'belok ' + c.op) + ', ketuk untuk membuang', style: card + 'background: #F2F5FD; color: #1E3F9E; border: 1px solid #2F5BD3', tap: () => { if (ctx.locked) return; ctx.setP({ plan: P.plan.filter((_, j) => j !== i), run: null }); } })) },
 { label: 'Kartu perintah · ketuk untuk menambah', items: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => ({ label: '↑' + n, aria: 'Maju ' + n + ' kotak', style: card + 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7', tap: add({ op: 'maju', n: n }) })).concat([
 { label: '↶', aria: 'Belok kiri', style: card + 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7', tap: add({ op: 'kiri' }) },
 { label: '↷', aria: 'Belok kanan', style: card + 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7', tap: add({ op: 'kanan' }) }]) }];
