@@ -8610,7 +8610,7 @@ this.setState({ P: Pn, msg: 'Adil tanpa sisa! Tersimpan: potong ' + n + '.', kin
 };
 knives = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(k => ({ label: String(k), aria: 'Potong tiap loyang jadi ' + k, tap: () => cut(k), style: knifeSt(P.cutN === k) }));
 actions = [];
-if (playing && P.goalType === 'all') { statusLabel += ' · ditemukan ' + P.found.length; /* total disembunyikan (anti-clue) */ log = P.found.map(k => 'potong ' + k + ' → tiap orang ' + (m * k / p) + ' × 1/' + k); }
+if (playing && P.goalType === 'all') { statusLabel += ' · ditemukan ' + P.found.length; /* total disembunyikan (anti-clue) */ log = P.found.map(k => 'potong ' + k + ' · adil tanpa sisa'); }
 if (playing && shown && !locked) actions.push(act('↺ Satukan', () => setP({ cutN: null })));
 if (isLab) actions = actions.concat([act('Loyang ' + s.lab.m + ' ↻', () => { const v = s.lab.m >= 6 ? 1 : s.lab.m + 1; this.setState({ lab: Object.assign({}, s.lab, { m: v }), P: this.fresh({ type: 'bagi', m: v, p: s.lab.p, tutorial: true }) }); }), act('Orang ' + s.lab.p + ' ↻', () => { const v = s.lab.p >= 8 ? 2 : s.lab.p + 1; this.setState({ lab: Object.assign({}, s.lab, { p: v }), P: this.fresh({ type: 'bagi', m: s.lab.m, p: v, tutorial: true }) }); }),
 act('Jadikan tantangan', () => this.setState({ customs: s.customs.concat([{ m: s.lab.m, p: s.lab.p }]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + '" di tab Misi.', kind: 'ok' }), true)]);
@@ -8638,7 +8638,7 @@ this.finish('Semua kartu di tempat yang tepat!', Object.assign({}, P, { bad: {} 
 } else if (P.type === 'porsi') {
 if (P.pa !== null) knives = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(k => ({ label: String(k), aria: 'Potong tiap loyang jadi ' + k, tap: () => this.setState({ n: k, msg: '' }), style: knifeSt(n === k) }));
 if (P.pa !== null) for (let z = 0; z < P.pa; z++) pizzas.push(pz(n, i => i % 2 ? '#F0A35E' : '#F6C89A'));
-statusLabel = P.pa === null ? 'Jumlah loyang tidak tercatat' : P.pa + ' loyang · ' + P.pa * n + ' potong'; status = 'Kesempatan ' + P.left + ' / ' + P.budget;
+statusLabel = P.pa === null ? 'Jumlah loyang tidak tercatat' : P.pa + ' loyang'; /* banyak potongan tidak dihitungkan (anti-clue, Faiq 19 Nov) */ status = 'Kesempatan ' + P.left + ' / ' + P.budget;
 hasKeypad = !locked;
 keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '⌫'].map(q => ({ label: q, aria: q === '⌫' ? 'Hapus' : q, tap: () => { let a = P.ans ? String(P.ans) : ''; if (q === '⌫') a = a.slice(0, -1); else if (a.length < 2) a = a + q; setP({ ans: Number(a) || 0 }); }, style: 'padding: 3px 0 5px; border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 700; color: ' + (q === '⌫' ? '#4B4B57' : '#2B1D1A') + '; cursor: pointer' }));
 actions = [act('Sajikan', () => {
@@ -14566,7 +14566,7 @@ if (t === 'kupon') return ['Memakai kupon', ['Ketuk kupon sesuai urutan pemakaia
 if (t === 'tumpuk') return ['Diskon bertumpuk', ['Ganti harga coba untuk melihat harga setelah kedua diskon.', 'Ketik total diskon, lalu tekan Laporkan.', 'Laporan yang meleset memakai satu kesempatan.']];
 return ['Meracik teh', ['Ketuk satu bahan, lalu ubah takarannya dengan alat takar (−1, +1, ×, ÷).', 'Cicipi menilai rasa manis, kekentalan, dan cukup untuk berapa orang. Cicipan yang belum pas memakai satu kesempatan.', 'Hasil cicipan terakhir tetap tampil sampai kamu mencicipi lagi.']];
 }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.kedaiteh() }, PX.v2(this, v, { face: 'barista', name: 'Barista', game: 'Racik Resep' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.kedaiteh() }, PX.v2(this, v, { face: 'lina', name: 'Pemesan', game: 'Racik Resep' })); }
 gmRender() {
 const s = this.state, P = s.P;
 const isTut = s.mode === 'misi' && s.tut !== null, isLab = s.mode === 'lab';
