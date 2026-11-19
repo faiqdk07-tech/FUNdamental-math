@@ -14526,7 +14526,7 @@ this.state = Object.assign({ target: 2, per: 5, rule: 8, autoLog: true, sendPH: 
 save(patch, msg) {
 const next = Object.assign({}, this.state, patch);
 try { window.localStorage.setItem('fm.settings', JSON.stringify({ target: next.target, per: next.per, rule: next.rule, autoLog: next.autoLog, sendPH: next.sendPH, anim: next.anim, music: next.music, sfx: next.sfx })); } catch (e) {}
-try { FMA.apply(); } catch (e) {}
+try { FMA.apply(); FMS.sync(); } catch (e) {}
 this.setState(Object.assign({}, patch, { msg: msg || '' }));
 }
 renderVals() {
@@ -14550,7 +14550,7 @@ doCopy: () => { const txt = FMP.exportText(), d = new Date(), fn = 'cadangan-fun
 doImport: ev => { const f = ev && ev.target && ev.target.files && ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { try { FMP.importText(String(r.result)); this.setState({ msg: 'Progres dari file cadangan sudah dipulihkan.' }); } catch (e) { this.setState({ msg: 'File itu bukan cadangan Fundamental Math.' }); } }; r.readAsText(f); ev.target.value = ''; },
 askWipe: s.askWipe, showWipeBtn: !s.askWipe,
 startWipe: () => this.setState({ askWipe: true, msg: '' }), cancelWipe: () => this.setState({ askWipe: false }),
-confirmWipe: () => { try { window.localStorage.removeItem('fm.settings'); window.localStorage.removeItem('fm.lastLvl'); } catch (e) {} FMP.reset(); try { FMA.apply(); } catch (e) {} this.setState({ askWipe: false, target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, anim: true, music: true, sfx: true, msg: 'Semua data dihapus. Pengaturan kembali ke awal.' }); },
+confirmWipe: () => { try { window.localStorage.removeItem('fm.settings'); window.localStorage.removeItem('fm.lastLvl'); } catch (e) {} FMP.reset(); try { FMA.apply(); FMS.sync(); } catch (e) {} this.setState({ askWipe: false, target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, anim: true, music: true, sfx: true, msg: 'Semua data dihapus. Pengaturan kembali ke awal.' }); },
 hasMsg: !!s.msg, msg: s.msg
 };
 }
@@ -18463,6 +18463,7 @@ function relabel(root) {
    Semua suara dibuat lewat kode (Web Audio, gaya chiptune), tanpa file. Setelan: fm.settings.sfx (efek, bawaan nyala) dan fm.settings.music (BGM, bawaan nyala).
    Suara baru boleh keluar sesudah ketukan pertama (aturan browser/iPad). Anti-clue: hanya sesudah aksi pemain, semua pilihan berbunyi sama.
    Kekerasan disamakan menurut telinga (gelombang kotak terdengar lebih keras dari segitiga); bunyi salah sengaja lembut.
+   BGM: FMS.music('desa' | 'kerja') dipanggil show(); saklar Musik dibaca ulang lewat FMS.sync().
    Langkah A: tap, taruh, ambil, benar, salah, habis. Langkah B: blip balon, desir pindah layar, langkah tokoh, bintang baru, fanfare aturan lolos uji. Tiap suara = fungsi (ctx, tujuan, waktu mulai) supaya bisa direkam ulang (FMS.render). */
 const FMS = (() => {
   let ctx = null, out = null;
@@ -18470,16 +18471,25 @@ const FMS = (() => {
   // satu nada: bentuk gelombang, frekuensi awal -> akhir, lama (detik), keras
   function tone(c, dst, t, o) {
     const osc = c.createOscillator(), g = c.createGain();
-    osc.type = o.type || 'square';
+    if (o.type === 'pulse') osc.setPeriodicWave(pulse(c)); else osc.type = o.type || 'square';
     osc.frequency.setValueAtTime(o.f, t);
     if (o.f2) osc.frequency.linearRampToValueAtTime(o.f2, t + o.d);
     const v = o.v || 0.1;
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(v, t + 0.004);
-    g.gain.setValueAtTime(v, t + Math.max(0.005, o.d - 0.03));
+    const a = o.a || 0.004;
+    g.gain.linearRampToValueAtTime(v, t + a);
+    if (o.decay) g.gain.linearRampToValueAtTime(v * o.decay, t + Math.max(a + 0.001, o.d - 0.03)); else g.gain.setValueAtTime(v, t + Math.max(a + 0.001, o.d - 0.03));
     g.gain.linearRampToValueAtTime(0.0001, t + o.d);
     osc.connect(g); g.connect(dst);
     osc.start(t); osc.stop(t + o.d + 0.02);
+  }
+  // gelombang pulsa 25 % (bunyi khas konsol 8-bit), dibuat sekali per konteks
+  const PW = new WeakMap();
+  function pulse(c) {
+    let w = PW.get(c); if (w) return w;
+    const n = 32, re = new Float32Array(n), im = new Float32Array(n);
+    for (let k = 1; k < n; k++) im[k] = 2 / (k * Math.PI) * Math.sin(k * Math.PI * 0.25);
+    w = c.createPeriodicWave(re, im); PW.set(c, w); return w;
   }
   // desis: derau putih lewat penyaring yang bergeser (untuk pindah layar)
   const NB = new WeakMap();
@@ -18507,11 +18517,70 @@ const FMS = (() => {
     star: (c, d, t) => { tone(c, d, t, { type: 'square', f: 1568, d: 0.05, v: 0.04 }); tone(c, d, t + 0.06, { type: 'square', f: 2093, d: 0.09, v: 0.04 }); tone(c, d, t + 0.16, { type: 'square', f: 2093, d: 0.06, v: 0.015 }); },
     fanfare: (c, d, t) => { [N.G4, N.C5, N.E5, N.G5].forEach((f, i) => tone(c, d, t + i * 0.09, { type: 'square', f: f, d: i === 3 ? 0.3 : 0.08, v: 0.08 })); tone(c, d, t + 0.27, { type: 'triangle', f: N.C4, d: 0.3, v: 0.1 }); }
   };
+  /* ===== BGM (langkah C), lagu buatan sendiri, berulang =====
+     Lagu = 8 birama x 8 ketukan seperdelapan. lead: angka MIDI, '.' = tahan nada sebelumnya, 0 = diam. bass: 4 nada per birama.
+     desa: Beranda, Mini Games, dan halaman lain (riang santai, 104 bpm, desis ringan di ketukan lemah).
+     kerja: di dalam game (tenang, 72 bpm, arpeggio lembut, tanpa drum, tanpa melodi menonjol). */
+  const mf = m => 440 * Math.pow(2, (m - 69) / 12);
+  const SONGS = {
+    desa: { bpm: 104, vol: 0.55, shaker: true,
+      lead: ('76 . 79 . 81 79 76 . 72 . 76 . 74 . 72 . 69 . 72 . 77 76 74 . 74 . . . 71 . 74 . ' +
+             '76 . 79 . 84 . 81 79 81 . 76 . 79 . 76 . 77 76 74 . 74 76 79 . 72 . . . 0 . 0 .').split(' '),
+      bass: [48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 41, 48, 43, 50, 43, 50, 48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 43, 50, 48, 55, 48, 43] },
+    kerja: { bpm: 72, vol: 0.6,
+      chords: [[53, 57, 60, 64], [52, 55, 59, 62], [50, 53, 57, 60], [48, 52, 55, 59], [53, 57, 60, 64], [52, 55, 59, 62], [50, 53, 57, 60], [43, 47, 50, 53]],
+      arp: [0, 1, 2, 3, 2, 1, 2, 1] }
+  };
+  // satu ketukan lagu ke tujuan dst pada waktu t (dipakai pemutar dan perekam)
+  function songStep(c, dst, S, i, t, sd) {
+    const bar = Math.floor(i / 8), k = i % 8;
+    if (S.lead) {
+      const tk = S.lead[i];
+      if (tk !== '.' && tk !== '0') { let len = 1; while (S.lead[i + len] === '.') len++; tone(c, dst, t, { type: 'pulse', f: mf(+tk), d: len * sd * 0.92, v: 0.05, decay: 0.6 }); }
+      if (k % 2 === 0) tone(c, dst, t, { type: 'triangle', f: mf(S.bass[bar * 4 + k / 2]), d: sd * 1.7, v: 0.11, decay: 0.5 });
+      if (S.shaker && k % 2 === 1) noise(c, dst, t, { d: 0.04, f: 6000, f2: 8000, v: 0.025 });
+    } else {
+      const ch = S.chords[bar];
+      tone(c, dst, t, { type: 'triangle', f: mf(ch[S.arp[k]] + 12), d: sd * 1.6, v: 0.06, a: 0.02, decay: 0.3 });
+      if (k === 0) tone(c, dst, t, { type: 'triangle', f: mf(ch[0] - 12), d: sd * 7.6, v: 0.09, a: 0.08, decay: 0.5 });
+      if (k === 0 && bar % 2 === 1) tone(c, dst, t, { type: 'pulse', f: mf(ch[3] + 12), d: sd * 3, v: 0.012, a: 0.03, decay: 0.2 });
+    }
+  }
+  const stepDur = S => 60 / S.bpm / 2;
+  let want = null, cur = null, bus = null, timer = null, si = 0, nextT = 0;
+  function stopMusic() {
+    if (timer) { clearInterval(timer); timer = null; }
+    if (bus && ctx) { const b = bus, t = ctx.currentTime; b.gain.cancelScheduledValues(t); b.gain.setValueAtTime(b.gain.value, t); b.gain.linearRampToValueAtTime(0.0001, t + 0.4); setTimeout(() => { try { b.disconnect(); } catch (e) {} }, 600); }
+    bus = null; cur = null;
+  }
+  function syncMusic() {
+    if (!ctx) return;
+    const name = setting('music') ? want : null;
+    if (name === cur) return;
+    stopMusic();
+    if (!name || !SONGS[name]) return;
+    const S = SONGS[name];
+    cur = name; si = 0; nextT = ctx.currentTime + 0.45;
+    bus = ctx.createGain(); bus.gain.setValueAtTime(0.0001, ctx.currentTime); bus.gain.linearRampToValueAtTime(S.vol, ctx.currentTime + 1.2); bus.connect(out);
+    const b = bus;
+    timer = setInterval(() => {
+      if (bus !== b) return;
+      while (nextT < ctx.currentTime + 0.15) { try { songStep(ctx, b, S, si, nextT, stepDur(S)); } catch (e) {} nextT += stepDur(S); si = (si + 1) % 64; }
+    }, 30);
+  }
+  function music(name) { want = name; syncMusic(); }
+  function renderSong(name, sr) {
+    const S = SONGS[name], sd = stepDur(S), OC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    const oc = new OC(1, Math.ceil(sr * (64 * sd + 1.5)), sr); const g = oc.createGain(); g.gain.value = 0.9 * S.vol; g.connect(oc.destination);
+    for (let i = 0; i < 64; i++) songStep(oc, g, S, i, 0.05 + i * sd, sd);
+    return oc.startRendering().then(b => b.getChannelData(0));
+  }
   function unlock() {
-    if (ctx) { if (ctx.state === 'suspended') ctx.resume(); return; }
+    if (ctx) { if (ctx.state === 'suspended' && !document.hidden) ctx.resume(); return; }
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
-    try { ctx = new AC(); out = ctx.createGain(); out.gain.value = 0.9; out.connect(ctx.destination); } catch (e) { ctx = null; }
+    try { ctx = new AC(); out = ctx.createGain(); out.gain.value = 0.9; out.connect(ctx.destination); } catch (e) { ctx = null; return; }
+    syncMusic();
   }
   ['pointerdown', 'touchend', 'keydown'].forEach(ev => document.addEventListener(ev, unlock, true));
   document.addEventListener('visibilitychange', () => { if (!ctx) return; if (document.hidden) ctx.suspend(); else ctx.resume(); });
@@ -18530,7 +18599,7 @@ const FMS = (() => {
     SFX[name](oc, g, 0.01);
     return oc.startRendering().then(b => b.getChannelData(0));
   }
-  return { play, render, names: Object.keys(SFX), setting };
+  return { play, render, names: Object.keys(SFX), setting, music, sync: syncMusic, renderSong, now: () => cur };
 })();
 const FMA = (() => {
   const rm = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
@@ -18673,6 +18742,7 @@ function show(name) {
     PX.skin(ROOT, name);
     window.__fmComp = m.comp;
     m.host.render();
+    try { FMS.music(FMP.isGame(name) ? 'kerja' : 'desa'); } catch (e) {} // BGM: di dalam game = Meja kerja, selain itu = Desa
     try { FMA.enter(box); } catch (e) {} // Kelompok 6: layar baru muncul pelan dalam 3 langkah (150 ms), tanpa bergeser
   } catch (e) {
     console.error(e);
