@@ -1935,6 +1935,28 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .bk-slip.wait .bk-cap{color:#5A5048;border-color:#8A8780;font-weight:600}
 #root .bk-none{font-size:12px;color:#5A5048;padding:2px 2px}
 #root .bk-go{display:block;text-align:center;font-size:16px;text-decoration:none;color:#FFFFFF;padding:10px 10px 12px;background:#5DC46A;box-shadow:0 0 0 2px #1A1C2C,inset 0 -5px 0 #2F8A43,inset 0 3px 0 #9BE6A4;text-shadow:0 1px 0 #1F5E2E}
+
+/* Cek celah (19 Nov, gaya Bengkel v2): menara teropong pagi, pengamat berbicara, buku pengamatan krem */
+#root.px-p-CekCelah>div>div{background-color:#EEF4FA!important}
+#root .cc-face{background:#BFD6F2!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -6px 0 #8CB4E0!important}
+#root .cc-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+#root .cc-tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px 6px;border:0;cursor:pointer;background:transparent;font-size:12px;color:#2B1D1A}
+#root .cc-tab img{width:48px;image-rendering:pixelated}
+#root .cc-tab span{padding:1px 6px;border-radius:9px}
+#root .cc-tab.on span{background:#2B1D1A;color:#FFFFFF}
+#root .cc-tab.on img{transform:translateY(-2px)}
+#root .cc-book{position:relative;display:flex;flex-direction:column;padding:30px 12px 10px 14px;background:#FFFDF5 repeating-linear-gradient(transparent 0 37px,#E3EAF2 37px 38px) 0 30px;box-shadow:0 0 0 2px #1A1C2C,0 4px 0 rgba(26,28,44,.18)}
+#root .cc-book::before{content:"";position:absolute;top:-6px;left:16px;right:16px;height:12px;background:repeating-linear-gradient(90deg,transparent 0 10px,#7C879A 10px 14px,transparent 14px 22px);border-radius:4px}
+#root .cc-book-h{position:absolute;top:11px;left:14px;font-size:11px;color:#5A5048}
+#root .cc-row{display:grid;grid-template-columns:18px 22px minmax(0,1fr) auto;align-items:center;column-gap:8px;height:38px;color:#2B1D1A;text-decoration:none}
+#root .cc-row .px-moon{background:conic-gradient(#FFC83D var(--p),#D5DDE8 0);box-shadow:0 0 0 2px #1A1C2C}
+#root .cc-row img{width:22px;height:22px;image-rendering:pixelated}
+#root .cc-name{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#root .cc-st{font-size:11px;color:var(--c);padding:1px 6px;border:2px solid var(--c);font-weight:600}
+#root .cc-note{font-size:10.5px;color:#8A8780;padding-top:4px}
+#root .cc-legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:10.5px;color:#5A5048}
+#root .cc-legend span{display:flex;align-items:center;gap:4px}
+#root .cc-legend .px-moon{width:12px;height:12px;background:conic-gradient(#FFC83D var(--p),#D5DDE8 0);box-shadow:0 0 0 1.5px #1A1C2C}
 </style>
 </head>
 <body>
@@ -2281,24 +2303,28 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div></template>
 <template id="tpl-CekCelah"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
-<div style="display: flex; align-items: center; gap: 10px">
+<div class="bk-top">
 <a href="Main.dc.html" aria-label="Kembali ke beranda" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
-<div class="px-f" style="font-size: 20px; font-weight: 700">Cek celah</div>
+<b class="px-f bk-title">Cek celah</b>
+<span class="bk-week"><b>{{solid}}</b>kokoh di {{mat}}</span>
 </div>
-<div style="font-size: 13px; color: #2B2F45">Saran tingkat untuk tiap game, dihitung dari progresmu. Versi tes singkat per game menyusul.</div>
-<div class="px-tree-tabs">
+<div class="bk-npc"><span class="bk-face cc-face"><img alt="" src="{{face}}"></span><div class="bk-bubble"><b class="px-f">Pengamat</b>Saran tingkat untuk tiap game, dihitung dari progresmu. Versi tes singkat per game menyusul.</div></div>
+<div class="cc-tabs">
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="4">
-<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" class="px-tree-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
+<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" class="cc-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
 </sc-for>
 </div>
-<div class="px-sky">
-<div class="px-sky-h">{{when}}</div>
+<div class="cc-book">
+<div class="cc-book-h px-f">Buku pengamatan · {{mat}}</div>
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
-<a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="px-obs"><i class="px-moon" style="--p: {{r.ph}}"></i><span class="px-f" style="flex: 1; min-width: 0">{{r.name}}</span><span class="px-obs-st">{{r.sym}} {{r.status}}</span></a>
+<a href="{{r.href}}" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="cc-row"><i class="px-moon" style="--p: {{r.ph}}"></i><img alt="" src="{{r.ic}}"><span class="cc-name px-f">{{r.name}}</span><span class="cc-st" style="--c: {{r.col}}">{{r.status}}</span></a>
 </sc-for>
-<div class="px-sky-legend">● ketiga tingkat berbintang · ◕ lanjut Expert · ◐ lanjut Intermediate · ◔ mulai Fundamental · ○ belum dicoba</div>
+<div class="cc-note">{{when}}</div>
 </div>
-<a href="{{startHref}}" onClick="{{startTap}}" class="px-pbtn px-f" style="display: block; text-align: center; font-size: 16px; padding: 10px; text-decoration: none">{{startLabel}}</a>
+<div class="cc-legend">
+<sc-for list="{{legend}}" as="lg" hint-placeholder-count="5"><span><i class="px-moon" style="--p: {{lg.ph}}"></i>{{lg.t}}</span></sc-for>
+</div>
+<a href="{{startHref}}" onClick="{{startTap}}" class="bk-go px-f">{{startLabel}}</a>
 </div>
 
 </div></template>
@@ -7920,6 +7946,19 @@ const PX = (() => {
       R(P.k, 0, 34, 195, 3); R(P.t, 0, 35, 195, 1); R(P.b, 0, 37, 195, 10); R(P.B, 0, 37, 195, 1); for (i = 6; i < 195; i += 30) R('#7A4E2A', i, 39, 18, 1);
       R(P.k, 156, 20, 30, 15); R(P.r, 157, 21, 28, 13); R(P.R, 157, 30, 28, 4); R('#FF9C8F', 157, 21, 28, 1); R(P.k, 166, 16, 12, 5); R(P.e, 167, 17, 10, 3); R(P.k, 169, 25, 6, 2);
     }],
+    teropongpagi: ['#BFE3F7', t => { const R = t.R; let i;
+      /* pagi hari: langit cerah kekuningan, matahari terbit, bukit, menara pengamatan berkubah dengan teropong */
+      R('#FFE9C2', 0, 26, 195, 12); R('#FFF3DA', 0, 32, 195, 8); t.cloud(14, 6); t.cloud(132, 10);
+      R('#FFC83D', 28, 22, 14, 10); R('#FFE680', 30, 23, 10, 8); R('#FFF6C2', 32, 24, 4, 3);
+      for (i = 0; i < 195; i++) { const h = 6 + Math.round(4 * Math.sin(i / 17)); R(P.c, i, 40 - h, 1, h); } R(P.a, 0, 38, 195, 9); R(P.A, 0, 44, 195, 3);
+      R(P.k, 118, 16, 34, 30); R('#E9E2CF', 119, 17, 32, 29); R('#D5CCB4', 119, 17, 32, 3); for (i = 22; i < 46; i += 6) R('#D5CCB4', 119, i, 32, 1);
+      R(P.k, 128, 34, 14, 12); R(P.b, 129, 35, 12, 11); R(P.y, 138, 40, 1, 1);
+      for (i = 0; i <= 14; i++) { const w = Math.round(Math.sqrt(225 - i * i)); R(P.k, 135 - w - 1, 16 - i, 2 * w + 2, 1); R(i > 9 ? '#F4F6F8' : (i > 4 ? '#D5DDE8' : '#AEB9C8'), 135 - w, 16 - i, 2 * w, 1); }
+      R(P.k, 132, 2, 4, 14); R('#2B3A55', 133, 2, 2, 14);
+      R(P.k, 136, 3, 20, 6); R('#4C8FDD', 137, 4, 18, 4); R('#8CC0F5', 137, 4, 18, 1); R(P.k, 154, 2, 3, 8); R('#9ED7F5', 155, 3, 1, 6);
+      R(P.k, 120, 22, 8, 7); R('#9ED7F5', 121, 23, 6, 5); R(P.k, 142, 22, 8, 7); R('#9ED7F5', 143, 23, 6, 5);
+      [[60, 30], [176, 28]].forEach(q => t.tree(q[0], q[1]));
+    }],
     papan: ['#F2EAD9', t => { const R = t.R; let i; R(P.k, 24, 4, 148, 42); R(P.b, 25, 5, 146, 40); R('#D8B07A', 29, 9, 138, 32);
       [[36, 12, P.w, P.r], [66, 16, P.Y, P.u], [98, 11, P.w, P.a], [130, 15, '#F7A8B0', P.r]].forEach(q => { R(P.k, q[0], q[1], 24, 20); R(q[2], q[0] + 1, q[1] + 1, 22, 18); for (i = 0; i < 3; i++) R('#9AA7BA', q[0] + 4, q[1] + 7 + i * 4, 16, 1); R(P.k, q[0] + 10, q[1] - 2, 4, 4); R(q[3], q[0] + 11, q[1] - 1, 2, 2); }); }],
     bengkel: ['#EFE8DC', t => { const R = t.R; let i; R(P.k, 20, 4, 155, 26); R('#C9A47A', 21, 5, 153, 24); for (i = 0; i < 12; i++) R('#B48E62', 26 + i * 12, 8, 2, 2);
@@ -8444,7 +8483,7 @@ PX.devOf = (g, comp) => {
     return memo[key] = t.cv.toDataURL();
   }
   PX.scene = scene;
-  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'panel', Tantangan: 'alunalun', Bengkel: 'bengkelterang', CekCelah: 'teropong', KasusBaru: 'pos' };
+  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'panel', Tantangan: 'alunalun', Bengkel: 'bengkelterang', CekCelah: 'teropongpagi', KasusBaru: 'pos' };
   const DONE = { LokerOSIS: 1, PentasSeni: 1, UndianDoorprize: 1, RaporKelas: 1, GrafikViral: 1, RuteKurir: 1, PasangLantai: 1, GudangKardus: 1, CetakSpanduk: 1, TanggaBangunan: 1, Pelabuhan: 1, Main: 1, MiniGames: 1, KasirKilat: 1, Timbangan: 1, Ubin: 1, JadwalBus: 1, BagiPizza: 1, RacikResep: 1, LipatKertas: 1, DuaStruk: 1, MejaHajatan: 1, MartabakTopping: 1, MesinMinuman: 1, ArgoOjek: 1, RekapGrosir: 1, KebunPagar: 1, DapurRoti: 1 };
   PX.skin = (root, name) => {
     if (DONE[name]) { root.className = ''; return; }
@@ -9076,12 +9115,12 @@ if (st[0]) return { sym: '◐', status: 'Lanjut Intermediate', col: '#1E3F9E', l
 return { sym: '◔', status: 'Mulai Fundamental', col: '#8A5200', l: 'F', rank: 1 };
 };
 const rows = this.G[mat].map(g => { const m = status(g[0]);
-return { ph: (m.rank * 25) + '%', name: g[0], href: g[1] + '.dc.html', tap: () => FMP.go({ g: g[0], key: g[1], l: m.l }), sym: m.sym, status: m.status, col: m.col, rank: m.rank, l: m.l, key: g[1], aria: g[0] + ', ' + m.status + ', ketuk untuk membuka game' }; });
+return { ph: (m.rank * 25) + '%', ic: PX.gameIcon(g[0]), name: g[0], href: g[1] + '.dc.html', tap: () => FMP.go({ g: g[0], key: g[1], l: m.l }), sym: m.sym, status: m.status, col: m.col, rank: m.rank, l: m.l, key: g[1], aria: g[0] + ', ' + m.status + ', ketuk untuk membuka game' }; });
 const first = rows.find(r => r.rank > 0 && r.rank < 4) || rows.find(r => r.rank === 0) || rows[0];
 return {
 px: PX.U,
-mat: mat, rows: rows, when: 'Dihitung dari bintang ★1 di setiap tingkat', startHref: first.href, startTap: () => FMP.go({ g: first.name, key: first.key, l: first.l }), startLabel: 'Main ' + first.name + ' · ' + FMP.LVN[first.l],
-mats: Object.keys(this.G).map(m => ({ on: m === mat ? 'on' : '', img: PX.house({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m] || 'bil'), label: m, aria: 'Materi ' + m + (m === mat ? ', dipilih' : ''), tap: () => this.setState({ mat: m }),
+mat: mat, rows: rows, face: PX.U.dimas || PX.U.kepala, solid: rows.filter(r => r.rank === 4).length + ' / ' + rows.length, legend: [['100%', 'ketiga tingkat berbintang'], ['75%', 'lanjut Expert'], ['50%', 'lanjut Intermediate'], ['25%', 'mulai Fundamental'], ['0%', 'belum dicoba']].map(x => ({ ph: x[0], t: x[1] })), when: 'Dihitung dari bintang ★1 di setiap tingkat', startHref: first.href, startTap: () => FMP.go({ g: first.name, key: first.key, l: first.l }), startLabel: 'Main ' + first.name + ' · ' + FMP.LVN[first.l],
+mats: Object.keys(this.G).map(m => ({ on: m === mat ? 'on' : '', img: PX.labBench({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m] || 'bil'), label: m, aria: 'Materi ' + m + (m === mat ? ', dipilih' : ''), tap: () => this.setState({ mat: m }),
 style: 'padding: 5px 12px; border-radius: 14px; font: inherit; font-size: 13px; cursor: pointer; ' + (m === mat ? 'background: #1C1C1A; color: #FFFFFF; border: 1px solid #1C1C1A' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7') }))
 };
 }

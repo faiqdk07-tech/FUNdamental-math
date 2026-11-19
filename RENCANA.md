@@ -169,7 +169,8 @@ Hampir semua bagian G–J: "Ubah/Rombak total, kurang rapi dan masih mengikuti p
 - **Pelajaran Faiq ("lebih rapi", 2×):** tanpa elemen miring, ukuran baris/kartu seragam, kolom sejajar, teks tidak terpotong sembarangan, kepala halaman dalam satu papan.
 - **Bengkel (versi 2, 19 Nov; versi 1 kotak bersarang ditolak Faiq: "masih berantakan dan kaku"):** `ROOM.Bengkel = 'bengkelterang'`; baris atas: kembali, judul, kotak kecil "n kasus diperbaiki minggu ini"; kalimat pembuka diucapkan tokoh Teknisi dalam balon (`.bk-npc`); dua bagian berlabel ikon + angka bulat (merah = siap, abu = menunggu) tanpa bingkai; kasus = tiket kertas 2 kolom dijepit di rel logam (`.bk-rail`, `.bk-slip`, kuning = siap, putih = menunggu, cap GAGAL tanggal / BESOK); tombol hijau.
 - **Pelajaran Faiq ("kaku"):** hindari kotak di dalam kotak; pakai tokoh berbicara dan benda nyata (rel, jepitan, kertas) daripada panel berbingkai.
-- Berikutnya: J (Cek celah, Pengaturan, Kasus baru).
+- **Cek celah (selesai 19 Nov, gaya Bengkel v2):** `ROOM.CekCelah = 'teropongpagi'` (langit pagi, matahari terbit, menara berkubah dengan teropong); baris atas + kotak "n / total kokoh di materi"; Pengamat berbicara; tab materi = meja lab (`PX.labBench`) tanpa kotak; buku pengamatan krem berspiral (`.cc-book`) dengan baris bulan · ikon · nama · label status berwarna (hijau kokoh, biru lanjut, oranye mulai, abu belum); keterangan fase bulan memakai gambar bulan yang sama; tombol hijau.
+- Berikutnya: J (Pengaturan, Kasus baru).
 
 ## Berikutnya (urut)
 **SERAH TERIMA KE CHAT BARU (18 Nov):** lanjutkan evaluasi Faiq di dokumen "Urutan App Fundamental Math" (https://claude.ai/artifact/9W44dXyDPGRB4uGUxCcMPP), tab "Evaluasi per bagian". Baca tab itu lewat konektor Claude Docs (node 037452e3-da42, hasilnya besar: simpan ke file lalu urai XML-nya).
