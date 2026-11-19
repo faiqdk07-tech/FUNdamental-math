@@ -325,7 +325,7 @@ Permintaan Faiq: mainkan tiap game satu per satu, cek ilustrasi cocok dengan cer
 - Meja Hajatan: meja panjang digambar sama lebar dengan meja kotak -> DIPERBAIKI. (Catatan percobaan 'n meja → k kursi' menghitungkan kursi: catat untuk Faiq.)
 - Mesin Minuman: warna teh dan jeruk hampir sama -> DIPERBAIKI (teh cokelat kemerahan, jeruk oranye terang).
 
-**Perlu keputusan Faiq (tidak diubah sendiri):** catatan percobaan yang menghitungkan hasil (Meja Hajatan "n meja → k kursi", Lipat "lapis", Tata Barisan "x kue tidak muat"); Racik Resep E misi 2 "Harga coba 100 → 80 → 56"; Dapur Roti F papan menandai semua rencana yang muat; Kebun E ubin berlabel x² dan 10x; Kasir I misi 3 "tulis tanda minus".
+**Keputusan anti-clue (disetujui Faiq 19 Nov, sudah diterapkan):** Meja Hajatan tidak lagi mencatat "n meja → k kursi" dan "total baris"; Tata Barisan hanya menulis "pas / tidak pas" (tanpa selisih); Racik Resep E misi 2 struk menulis "…" untuk harga setelah diskon; Dapur Roti papan kosong, roti hanya di titik yang dipilih (timbangan yang menunjukkan cukup/tidak); Kebun E ubin tanpa label x²/5x, luas tambalan dan luas baru tidak dihitungkan; Kasir I tugas tanpa "tulis tanda minus". Lipat Kertas tetap mencatat banyak lapis kertas latihan (tidak bisa dihitung dengan mata).
 
 **Cara meninjau:** skrip di scratchpad tidak ikut tersimpan; buat ulang: buka tiap game (tingkat F/I/E × Misi 1-3 dan Harian 1-3), potret layar 390×844 dari atas ke bawah, baca teks balon/papan dengan `innerText`, cek jumlah gambar = angka, tokoh = cerita, warna = teks.
 

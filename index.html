@@ -1725,6 +1725,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 /* Pesanan Martabak (Faiq 19 Nov): titik topping diperbesar dan bertepi gelap supaya warnanya terbaca */
 #root .px-st-mart span[style*="border-radius: 50%"]{width:12px!important;height:12px!important;border:2px solid #1A1C2C!important;box-sizing:border-box}
 #root .px-st-mart button[style*="flex-direction: column"]>span:nth-child(2){gap:3px!important}
+/* Dapur Roti (Faiq 19 Nov): hanya titik rencana yang dipilih bergambar roti */
+#root .dr-grid>button[style*="3px solid #C98A2B"]{background:var(--px-roti) center / 80% auto no-repeat,#FFF6E0!important;image-rendering:pixelated}
 </style>
 </head>
 <body>
@@ -9393,8 +9395,9 @@ gridVals(P, pick, onTap) {
 const grid = [];
 for (let y = 9; y >= 0; y--) for (let x = 0; x <= 9; x++) {
 const f = this.feasible(P, x, y), on = pick && pick[0] === x && pick[1] === y;
-grid.push({ aria: x + ' ' + P.nameA + ', ' + y + ' ' + P.nameB + (f ? ', bahan cukup' : ', bahan kurang'), tap: () => onTap(x, y),
-style: 'height: 22px; padding: 0; border-radius: 50%; cursor: pointer; border: ' + (on ? '3px solid #C98A2B' : '1px solid ' + (f ? '#2F5BD3' : '#DDDCD7')) + '; background: ' + (f ? '#9DB3EE' : '#FFFFFF') });
+/* papan tidak lagi menandai rencana yang muat (anti-clue, keputusan Faiq 19 Nov); roti hanya muncul di titik yang dipilih, timbangan yang menunjukkan cukup atau tidak */
+grid.push({ aria: x + ' ' + P.nameA + ', ' + y + ' ' + P.nameB + (on ? ', dipilih' : ''), tap: () => onTap(x, y),
+style: 'height: 22px; padding: 0; border-radius: 50%; cursor: pointer; border: ' + (on ? '3px solid #C98A2B' : '1px solid #DDDCD7') + '; background: ' + (on ? '#9DB3EE' : '#FFFFFF') });
 }
 return grid;
 }
@@ -10845,7 +10848,7 @@ this.H = [
 { id: 'k3', konteks: 'Sabtu ramai', tingkat: 'E', type: 'struk', nums: [29, 48, 11, 32], budget: 2, cerita: 'Antrean panjang di hari Sabtu. Struk pelanggan berisi 29, 48, 11, dan 32 ribu. Pelanggan itu datang naik sepeda.', tujuan: 'Berapa total belanjanya?' },
 { id: 'k4', konteks: 'Label hilang', tingkat: 'E', type: 'struk', nums: [25, 18, null], budget: 2, cerita: 'Pelanggan membeli tiga barang: 25 ribu, 18 ribu, dan satu barang yang labelnya hilang. Ia membayar dengan uang 100 ribu.', tujuan: 'Berapa total belanjanya?' },
 { id: 'k5', konteks: 'Koin menipis', tingkat: 'F', type: 'tray', price: 73, paid: 100, budget: 2, maxCoins: 3, cerita: 'Koin di laci tinggal sedikit. Pelanggan belanja 73 ribu dan membayar 100 ribu.', tujuan: 'Siapkan kembalian yang pas dengan paling banyak 3 koin.' },
-{ id: 'k6', konteks: 'Buka pagi', tingkat: 'I', type: 'laci', coins: [-9, 4, -6, -3, 6, 9, -4], budget: 2, cerita: 'Warung baru buka dan laci berisi banyak bon utang dari kemarin.', tujuan: 'Berapa nilai bersih laci? Tulis dengan tanda minus kalau utangnya lebih besar.' },
+{ id: 'k6', konteks: 'Buka pagi', tingkat: 'I', type: 'laci', coins: [-9, 4, -6, -3, 6, 9, -4], budget: 2, cerita: 'Warung baru buka dan laci berisi banyak bon utang dari kemarin.', tujuan: 'Berapa nilai bersih laci?' },
 { id: 'k7', konteks: 'Klaim pelanggan', tingkat: 'E', type: 'struk', nums: [19, 21, 38, 22], budget: 2, cerita: 'Rudi membeli barang seharga 19, 21, 38, dan 22 ribu. Ia yakin totalnya pasti kurang dari 100 ribu.', tujuan: 'Hitung totalnya, lalu nilai keyakinan Rudi.', verdict: { q: 'Apakah Rudi benar?', opts: ['Benar', 'Salah'], correct: 'Salah' } },
 { id: 'k9', konteks: 'Klaim kembalian', tingkat: 'F', type: 'tray', price: 64, paid: 100, budget: 2, maxCoins: 4, cerita: 'Pembeli belanja 64 ribu dan membayar 100 ribu. Rani, kasir sebelah, bilang kembaliannya 46 ribu.', tujuan: 'Siapkan kembalian yang pas dengan paling banyak 4 koin, lalu nilai ucapan Rani.', verdict: { q: 'Apakah Rani benar?', opts: ['Benar', 'Salah'], correct: 'Salah' } },
 { id: 'k8', konteks: 'Terburu-buru', tingkat: 'I', type: 'laci', coins: [5, -5, 7, -2, 3, -3, 9, -9], budget: 1, cerita: 'Bu Ani harus segera ke pasar dan hanya sempat mendengar satu jawaban darimu.', tujuan: 'Hitung nilai bersih laci. Kamu hanya punya 1 kesempatan.' }
@@ -10859,7 +10862,7 @@ F: [
 I: [
 { name: 'Laci berpasangan', type: 'laci', coins: [7, -7, 5, -5, 3], budget: 2, cerita: 'Bu Ani ingin tahu isi laci pagi ini. Laci berisi uang dan bon utang.', tujuan: 'Hitung nilai bersih laci. Kamu punya 2 kesempatan menjawab.' },
 { name: 'Laci campur', type: 'laci', coins: [7, -3, 5, -7, 2, -5, 3], budget: 2, cerita: 'Siang hari, uang dan bon utang di laci makin tercampur.', tujuan: 'Hitung nilai bersih laci. Kamu punya 2 kesempatan menjawab.' },
-{ name: 'Utang menumpuk', type: 'laci', coins: [-9, 4, -6, -3, 6, -8, 2], budget: 2, cerita: 'Banyak pelanggan berutang hari ini. Bu Ani khawatir lacinya tekor.', tujuan: 'Hitung nilai bersih laci. Tulis dengan tanda minus kalau utangnya lebih besar.' }
+{ name: 'Utang menumpuk', type: 'laci', coins: [-9, 4, -6, -3, 6, -8, 2], budget: 2, cerita: 'Banyak pelanggan berutang hari ini. Bu Ani khawatir lacinya tekor.', tujuan: 'Hitung nilai bersih laci. Kamu punya 2 kesempatan menjawab.' }
 ],
 E: [
 { name: 'Struk empat harga', type: 'struk', nums: [19, 27, 31, 23], budget: 2, cerita: 'Antrean mengular. Pelanggan menyerahkan struk berisi empat harga.', tujuan: 'Hitung total belanjanya secepat mungkin. Kamu punya 2 kesempatan.' },
@@ -11366,18 +11369,18 @@ return ['Ubin kebun', ['Persegi besar adalah kebun semula; jalur di sampingnya a
 ubinVals(b, N, st, taps) {
 const h = 20, x = 80, k = st.cut || 1, m = st.down || 0, W = 2 * h, sw = W / k;
 const f = v => Number.isInteger(v) ? String(v) : String(Math.round(v * 100) / 100);
-const lab = (sz) => sz >= 14 ? f(b / k) + 'x' : '';
+const lab = () => ''; /* jalur tanpa label: notasi 5x membocorkan cara, dan '5 m' bisa terbaca sebagai panjang (Faiq 19 Nov) */
 const T = taps || {};
 const noop = () => {};
 const pc = (px, py, pw, ph, label, bg, tap, aria, dashed) => ({ label: label, aria: aria, tap: tap || noop,
 style: 'position: absolute; left: ' + px + 'px; top: ' + py + 'px; width: ' + pw + 'px; height: ' + ph + 'px; padding: 0; background: ' + bg + '; border: ' + (dashed ? '1px dashed #8C6A3E' : '1px solid #1C1C1A') + '; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 11px; font-family: ui-monospace, Menlo, monospace; color: #1C1C1A; cursor: ' + (tap ? 'pointer' : 'default') });
-const P2 = [pc(0, 0, x, x, 'x²', '#EFE6D2', null, 'Kebun semula')];
-for (let i = 0; i < k - m; i++) P2.push(pc(x + i * sw, 0, sw, x, lab(sw), '#DCE5FA', T.side, 'Potongan di samping' + (T.side ? ', ketuk untuk memindahkan ke bawah' : '')));
+const P2 = [pc(0, 0, x, x, 'semula', '#EFE6D2', null, 'Kebun semula')];
+for (let i = 0; i < k - m; i++) P2.push(pc(x + i * sw, 0, sw, x, sw >= 36 ? lab(sw) : '', '#DCE5FA', T.side, 'Potongan di samping' + (T.side ? ', ketuk untuk memindahkan ke bawah' : '')));
 for (let i = 0; i < m; i++) P2.push(pc(0, x + i * sw, x, sw, lab(sw), '#DCE5FA', T.bottom, 'Potongan di bawah' + (T.bottom ? ', ketuk untuk mengembalikan' : '')));
 let eq = 'Luas ubin: ' + N + ' m²';
 if (m > 0 && m < k) {
 const pw = (k - m) * sw, ph = m * sw;
-if (st.patched) { const pv = (b * (k - m) / k) * (b * m / k); P2.push(pc(x, x, pw, ph, pw >= 14 && ph >= 12 ? f(pv) : '', '#FFE3B8', null, 'Tambalan pojok')); eq += '\nTambalan: ' + f(pv) + ' m²\nLuas bentuk baru: ' + f(N + pv) + ' m²'; }
+if (st.patched) { P2.push(pc(x, x, pw, ph, '', '#FFE3B8', null, 'Tambalan pojok')); eq += '\nPojok sudah ditambal'; } /* luas tambalan dan luas baru tidak dihitungkan (anti-clue, Faiq 19 Nov) */
 else if (T.corner) P2.push(pc(x, x, pw, ph, '', 'repeating-linear-gradient(45deg, #FFFFFF 0, #FFFFFF 4px, #F4EBDA 4px, #F4EBDA 8px)', T.corner, 'Pojok kosong, ketuk untuk menambal', true));
 }
 return { pieces: P2, eq: eq };
@@ -12706,7 +12709,7 @@ padKeys = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(kk => ({ label: String(kk), tap: () =>
 if (doneStage || verdictStage) return;
 const extra = {};
 if (isTut && (s.tut === 1 || s.tut === 2) && kk !== P.shown) extra.tut = s.tut + 1;
-setP({ shown: kk, log: this.addLog(P, kk + ' meja → ' + this.kursi(P, kk) + ' kursi') }, extra);
+setP({ shown: kk }, extra); /* catatan tidak lagi menghitungkan banyak kursi (anti-clue, keputusan Faiq 19 Nov): pemain menghitung kursi di gambar */
 }, style: keySt(P.shown === kk) }));
 actions = [];
 statusLabel = isTut ? 'Hari pertama' : 'Kesempatan'; status = isTut ? P.shown + ' meja' : P.left + ' / ' + P.budget;
@@ -12717,7 +12720,7 @@ padLabel = P.rowName ? 'Tampilkan gelombang' : 'Tampilkan baris';
 padKeys = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(kk => ({ label: String(kk), tap: () => {
 if (doneStage || verdictStage) return;
 const tot = P.a === null ? null : Array.from({ length: kk }, (_, i) => this.rowVal(P, i + 1)).reduce((x, y) => x + y, 0);
-setP({ shown: kk, log: tot === null ? P.log : this.addLog(P, 'total ' + kk + ' → ' + tot) }, { sel: [] });
+setP({ shown: kk }, { sel: [] }); /* total baris tidak dihitungkan (anti-clue, Faiq 19 Nov) */
 }, style: keySt(P.shown === kk) }));
 actions = [
 act('Pasangkan', () => {
@@ -14661,7 +14664,7 @@ actions = paid && !locked ? [act('Atur ulang kupon', () => setP({ used: [], paid
 log = P.tries;
 } else if (view === 'tumpuk') {
 const p1 = P.testP * (100 - P.d1) / 100, p2 = p1 * (100 - P.d2) / 100;
-receipt = [{ label: 'Harga coba', val: rp(P.testP) }, { label: 'Setelah diskon ' + P.d1 + '%', val: rp(p1) }, { label: 'Setelah diskon ' + P.d2 + '% lagi', val: rp(p2) }];
+receipt = [{ label: 'Harga coba', val: rp(P.testP) }, { label: 'Setelah diskon ' + P.d1 + '%', val: '…' }, { label: 'Setelah diskon ' + P.d2 + '% lagi', val: '…' }]; /* harga setelah diskon tidak dihitungkan (anti-clue, Faiq 19 Nov) */
 const target = 100 - (100 - P.d1) * (100 - P.d2) / 100;
 hasKeypad = !locked;
 keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '⌫'].map(q => ({ label: q, aria: q === '⌫' ? 'Hapus' : q, tap: () => { let a = P.ans ? String(P.ans) : ''; if (q === '⌫') a = a.slice(0, -1); else if (a.length < 3) a = a + q; setP({ ans: Math.min(100, Number(a) || 0) }); }, style: 'padding: 3px 0 5px; border: 6px solid transparent; border-image: var(--px-fWhite) 30 fill / 6px; background: none; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 700; color: ' + (q === '⌫' ? '#4B4B57' : '#2B1D1A') + '; cursor: pointer' }));
@@ -16783,7 +16786,7 @@ const n = P.n;
 if (P.shown) {
 const r = P.shown.r, c = P.shown.c, cap = r * c;
 cols = c; for (let i = 0; i < cap; i++) kinds.push(i < n ? 'fill' : 'empty');
-boardNote = r + ' baris × ' + c + ' kolom · ' + (cap === n ? 'pas, tanpa sisa' : cap < n ? (n - cap) + ' kue tidak muat' : (cap - n) + ' tempat kosong');
+boardNote = r + ' baris × ' + c + ' kolom · ' + (cap === n ? 'pas' : 'tidak pas'); /* selisih tidak dihitungkan (anti-clue, Faiq 19 Nov) */
 } else {
 cols = P.c; for (let i = 0; i < P.r * P.c; i++) kinds.push('plan');
 boardNote = 'Rencana: ' + P.r + ' baris × ' + P.c + ' kolom';
