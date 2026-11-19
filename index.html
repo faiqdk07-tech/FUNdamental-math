@@ -4195,7 +4195,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="4">
 <button type="button" onClick="{{r.tap}}" aria-label="{{r.lab}}" class="mh-row {{r.on}}">
 <span class="mh-row-l">{{r.lab}}</span>
-<span class="mh-row-s"><span class="mh-strip {{r.kind}}" style="width: max(14px, {{r.pct}}%)"></span></span>
+<span class="mh-row-s"><span class="mh-strip {{r.kind}}" style="{{r.sw}}"></span></span>
 <span class="mh-row-v">{{r.val}}</span>
 <span class="mh-row-b">{{r.badge}}</span>
 </button>
@@ -12649,7 +12649,9 @@ rows = vals.map((v, i) => {
 const on = s.sel.indexOf(i);
 const lab = nm + ' ' + (i + 1);
 const val = v === null ? (i === 0 ? '?' : '? + ' + (B.d * i)) : v + ' ' + (B.r ? 'tamu' : 'kursi');
-return { lab: lab, val: val, pct: v === null ? 40 : Math.max(4, Math.round(v / mx * 100)), badge: on >= 0 ? String(on + 1) : '', on: on >= 0 ? 'on' : '', kind: v === null ? 'unk' : B.r ? 'orang' : 'kursi',
+const base = B.r ? 9 : 11, iw = v === null || v <= 0 ? base : Math.min(base, 200 / v);
+const sw = v === null ? 'width: 40%' : v > 40 ? 'width: ' + Math.max(4, Math.round(v / mx * 100)) + '%; background: #C9772E; box-shadow: inset 0 -3px 0 #8A4E1C' : 'width: ' + (v * iw).toFixed(2) + 'px; background-size: ' + iw.toFixed(2) + 'px ' + Math.round(iw * 13 / base) + 'px; background-position: 0 50%';
+return { lab: lab, val: val, sw: sw, pct: v === null ? 40 : Math.max(4, Math.round(v / mx * 100)), badge: on >= 0 ? String(on + 1) : '', on: on >= 0 ? 'on' : '', kind: v === null ? 'unk' : B.r ? 'orang' : 'kursi',
 tap: () => { const sel = on >= 0 ? s.sel.filter(x => x !== i) : s.sel.concat([i]).slice(-2); this.setState({ sel: sel, msg: '' }); },
 style: 'display: flex; align-items: center; gap: 6px; width: 100%; padding: 4px 6px; border-radius: 5px; font: inherit; cursor: pointer; color: #1C1C1A; background: ' + (on >= 0 ? '#E8EDFB' : '#FFFFFF') + '; border: 1px solid ' + (on >= 0 ? '#1C1C1A' : '#ECEBE7') };
 });
