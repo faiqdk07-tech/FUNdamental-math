@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2D3250">
 <title>App Fundamental Math</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'"><!-- dimuat di belakang supaya tidak menahan tampilan (laporan Faiq 19 Nov: buka web > 5 detik) -->
 <style>
 /* Kerangka aplikasi. Setiap layar di bawah aslinya dirancang 390 x 844 px. */
 *{box-sizing:border-box}
@@ -27,6 +27,8 @@ body.fm-framed .px-topscene{max-height:260px;object-fit:cover;object-position:ce
 body.fm-framed #root.px-room>div>div>div:first-child::before{max-height:170px;background-size:cover!important}
 a{color:#2F5BD3}a:hover{color:#1E3F9E}
 button{font:inherit}
+/* iPad: ketuk dua kali tidak memperbesar layar (laporan Faiq 19 Nov); cubit dua jari tetap bisa */
+html,body,*{touch-action:manipulation}
 #root{max-width:834px;margin:0 auto;background:#F7F7F5;min-height:100vh;min-height:var(--appH,100vh)}
 /* Layar mengikuti lebar perangkat: ponsel sampai iPad mini 7 (744 px) */
 #root>div>div{width:100%!important}
@@ -1518,6 +1520,9 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 #root .pj>button[style*="1px solid #1C1C1A"],#root .pj>button[style*="2px solid #1C1C1A"]{filter:drop-shadow(0 0 0 #FFC83D) drop-shadow(0 0 2px #FFC83D)}
 #root .pj>button[style*="display: flex"]{border-width:16px!important;border-image-width:16px!important;height:auto!important;min-height:64px!important;justify-content:space-between!important}
 #root .pj>button[style*="display: flex"]>*{position:static!important}
+/* Teks layar kalkulator tidak menempel ke garis bingkai (laporan Faiq 19 Nov): huruf pixel diperbesar font-size-adjust, jadi baris perlu tinggi cukup dan jarak dari bingkai */
+#root .pj>button[style*="display: flex"]{padding:6px 7px 5px!important}
+#root .pj>button[style*="display: flex"]>span:first-child{line-height:1.3!important}
 #root .pj.dev-argo>button[style*="display: flex"]>span:first-child{color:#FFB0A8!important;text-shadow:none!important}
 #root .pj.dev-pelab>button[style*="display: flex"]>span:first-child{color:#B8F5CF!important;text-shadow:none!important}
 #root .pj.dev-grafik>button[style*="display: flex"]>span:first-child{color:#C9DFF7!important;text-shadow:none!important}
