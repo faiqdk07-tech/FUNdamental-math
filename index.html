@@ -7900,6 +7900,15 @@ const PX = (() => {
       R(P.r, 122, 9, 26, 6); R(P.Y, 122, 18, 26, 6);
       R(P.k, 0, 38, W, 2); R('#C99A5B', 0, 40, W, 10); R(P.k, 50, 33, 96, 6); R(P.b, 51, 34, 94, 4);
       [24, 160, 176].forEach(a => { R(P.k, a, 28, 9, 12); R(P.u, a + 1, 29, 7, 4); });
+    } else if (o.kind === 'arisan') {
+      /* ruang tamu arisan: jendela bertirai, bingkai foto, meja-meja berisi loyang kue bolu sisa, teko dan gelas */
+      R('#F6E7D2', 0, 0, W, 50); R('#EBD6B8', 0, 0, W, 3);
+      R(P.k, 14, 5, 34, 22); R('#9ED7F5', 16, 7, 30, 18); R(P.w, 17, 8, 6, 3); R(P.k, 30, 7, 2, 18); R(P.k, 16, 16, 30, 1);
+      R('#D9483E', 12, 4, 6, 25); R('#B23A34', 15, 4, 1, 25); R('#D9483E', 44, 4, 6, 25); R('#B23A34', 46, 4, 1, 25); R(P.k, 10, 3, 42, 2);
+      R(P.k, 150, 6, 22, 16); R('#C99A5B', 151, 7, 20, 14); R('#E8F4D9', 153, 9, 16, 10); R('#5DB848', 155, 14, 12, 5); R('#F2C035', 163, 10, 3, 3);
+      R(P.k, 0, 38, W, 2); R('#D8C3A0', 0, 40, W, 10); for (let x = 0; x < W; x += 16) R('#C9B48E', x, 40, 1, 10);
+      const cake = (x, y, eaten) => { R(P.k, x - 2, y + 5, 24, 2); R(P.w, x - 1, y + 5, 22, 1); R(P.k, x, y - 3, 20, 9); R('#B07A48', x + 1, y + 1, 18, 4); R('#8A5A32', x + 1, y + 4, 18, 1); R('#FFF6E0', x + 1, y - 2, 18, 3); R('#FFFFFF', x + 2, y - 2, 6, 1); [4, 9, 14].forEach(d => R('#E8554E', x + d, y - 3, 2, 1)); if (eaten) { R('#F6E7D2', x + 12, y - 3, 8, 8); R(P.k, x + 11, y - 3, 1, 8); R(P.k, x + 11, y + 5, 9, 0); R('#D99A4E', x + 12, y + 1, 7, 4); R('#FFF6E0', x + 12, y - 2, 7, 1); R(P.k, x + 12, y - 3, 8, 1); R(P.k, x + 19, y - 3, 1, 8); } };
+      [[56, 1], [118, 0]].forEach((q, n) => { const tx = q[0]; R(P.k, tx, 31, 44, 3); R('#8A5A32', tx + 1, 32, 42, 1); R(P.k, tx + 3, 34, 3, 5); R(P.k, tx + 38, 34, 3, 5); cake(tx + 4, 24, q[1]); R(P.k, tx + 30, 23, 9, 8); R(n ? '#4C8FDD' : '#E8873A', tx + 31, 24, 7, 6); R(P.w, tx + 32, 24, 2, 2); R(P.k, tx + 39, 25, 2, 3); });
     } else if (o.kind === 'label') {
       /* mesin cetak label grosir: karung berlabel, mesin, gulungan label */
       R('#F1EBDD', 0, 0, W, 50); R(P.k, 0, 37, W, 2); R('#C9B79A', 0, 39, W, 11);
@@ -8531,7 +8540,7 @@ if (t === 'garis') return ['Papan sisa', ['Ketuk satu kartu, lalu ketuk papan di
 if (t === 'porsi') return ['Menyajikan porsi', ['Ketuk angka di pisau untuk memotong loyang dan melihat potongannya.', 'Ketik jumlah porsi, lalu tekan Sajikan.', 'Jawaban yang meleset memakai satu kesempatan.']];
 return ['Membagi pizza', ['Ketuk angka di pisau untuk memotong semua loyang. Potongannya langsung dibagikan.', 'Nomor pada potongan menunjukkan pemiliknya, dan piring tiap orang menampung potongannya. Potongan abu-abu bertanda titik masuk kotak sisa.', 'Pembagian yang menyisakan potongan memakai satu kesempatan.']];
 }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.kedai() }, PX.v2(this, v, { face: 'ketua', name: 'Ketua Panitia', game: 'Bagi Pizza' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const P = this.state.P || {}; const kue = this.state.mode === 'harian' && /arisan|\bkue\b/i.test((P.cerita || '') + ' ' + (P.konteks || '')); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: kue ? PX.kbScene({ kind: 'arisan' }) : PX.kedai() }, PX.v2(this, v, kue ? { face: 'ketua', role: 'Tuan rumah', name: 'Ketua Panitia', game: 'Bagi Pizza' } : { face: 'ketua', name: 'Ketua Panitia', game: 'Bagi Pizza' })); }
 gmRender() {
 const s = this.state, P = s.P, n = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null, isLab = s.mode === 'lab';
