@@ -17961,7 +17961,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     if (hasAsks) return ('Jawab pertanyaan di bawah. ' + tail).trim();
     return t;
   }
-  return { nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, casePrompt, caseAdd, caseStored, caseRemove, caseGames: () => MATS.map(m => [m[0], m[2].filter(g => canCase(g[1])).map(g => g[1])]), isGame: k => !!KEYS[k] };
+  return { genCase, nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, casePrompt, caseAdd, caseStored, caseRemove, caseGames: () => MATS.map(m => [m[0], m[2].filter(g => canCase(g[1])).map(g => g[1])]), isGame: k => !!KEYS[k] };
 })();
 
 /* ===== Navigasi: tautan "Nama.dc.html" dibuka sebagai #Nama ===== */
