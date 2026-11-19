@@ -6171,6 +6171,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <path d="{{gridD}}" stroke="#E2E1DC" stroke-width="1" fill="none"></path>
 <path d="{{pathA}}" fill="#DCE5FA" stroke="#2F5BD3" stroke-width="1.5"></path>
 <path d="{{pathB}}" fill="#EFE6D2" stroke="#8C6A3E" stroke-width="1.5"></path>
+<path d="{{gridD}}" stroke="#1A1C2C" stroke-opacity="0.25" stroke-width="1" fill="none" pointer-events="none"></path>
 <path d="{{pathC}}" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4 3"></path>
 <path d="{{pathD}}" fill="none" stroke="#1C1C1A" stroke-width="2"></path>
 <text x="{{tAx}}" y="{{tAy}}" font-size="11" fill="#444441">{{tA}}</text>
@@ -7936,6 +7937,12 @@ const PX = (() => {
       R(P.k, 88, 16, 18, 20); R('#C0C8D6', 89, 17, 16, 18); R('#EDE2C4', 89, 22, 16, 13); R(P.w, 90, 18, 2, 14);
       for (let y = 0; y < 20; y++) { const w = Math.round(y * 0.45); R(P.k, 128 - w - 1, 16 + y, 2 * w + 3, 1); R(y > 4 ? '#EDE2C4' : '#C0C8D6', 128 - w, 16 + y, 2 * w + 1, 1); } R(P.k, 118, 35, 22, 1);
       R(P.k, 152, 10, 34, 20); R(P.w, 153, 11, 32, 18); for (let r = 0; r < 4; r++) { R(P.k, 156, 14 + r * 4, 14, 1); R(P.r, 174, 14 + r * 4, 8, 1); }
+    } else if (o.kind === 'kampung') {
+      /* kampung: balai warga, rumah warga, tiang listrik dan kabel */
+      R('#9ED7F5', 0, 0, W, 50); R('#B8E5FA', 0, 20, W, 12); R(P.a, 0, 38, W, 12); R(P.A, 0, 38, W, 1);
+      R(P.k, 10, 16, 52, 22); R('#F2EAD9', 11, 17, 50, 21); for (i = 0; i < 9; i++) R(P.k, 8 + i * 3, 15 - i, 58 - i * 6, 1); R(P.r, 14, 9, 44, 6); R(P.k, 31, 26, 10, 12); R(P.b, 32, 27, 8, 11); R(P.k, 14, 8, 44, 1);
+      [[134, P.y], [164, P.g]].forEach(q => { R(P.k, q[0], 22, 26, 16); R('#FFF6E0', q[0] + 1, 23, 24, 15); for (i = 0; i < 7; i++) R(P.k, q[0] - 2 + i * 2, 21 - i, 30 - i * 4, 1); R(q[1], q[0] + 2, 16, 22, 5); R(P.k, q[0] + 4, 27, 6, 6); R('#8FD0F2', q[0] + 5, 28, 4, 4); R(P.k, q[0] + 15, 29, 6, 9); });
+      [76, 112].forEach(x => { R(P.k, x, 6, 2, 32); R(P.k, x - 5, 8, 12, 2); }); for (i = 0; i < 3; i++) { R(P.k, 64 + i * 4, 11 + (i % 2), 4, 1); R(P.k, 78, 10 + (i % 2), 34, 1); R(P.k, 114 + i * 6, 11 + i, 6, 1); }
     } else if (o.kind === 'bayangan') {
       /* lapangan siang: pohon, tiang bendera, tongkat, dan bayangannya */
       R('#9ED7F5', 0, 0, W, 50); R(P.Y, 56, 3, 10, 10); R(P.y, 58, 5, 6, 6); R(P.a, 0, 34, W, 16); R(P.A, 0, 34, W, 1); /* matahari di kiri: bayangan jatuh ke kanan */
@@ -15957,7 +15964,7 @@ show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(M
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Tangga Bangunan'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('proyek') }, PX.v2(this, v, { face: 'mandor', name: 'Mandor Joko', game: 'Tangga Bangunan' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: (this.state.P || {}).type === 'peta' || /kampung|kabel|blok/i.test(String(v.story || '')) ? PX.kbScene({ kind: 'kampung' }) : PX.alView('proyek') }, PX.v2(this, v, Object.assign({ name: 'Mandor Joko', game: 'Tangga Bangunan' }, /Pak RT/.test(String(v.story || '')) ? { face: 'pakrt', role: 'Pak RT' } : { face: 'mandor', role: 'Mandor Joko' }))); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -16095,8 +16102,8 @@ setup() {
 this.MN = ['Persegi di tiap sisi', 'Kaki tangga', 'Tangga darurat'];
 this.M = [
 { tingkat: 'F', type: 'persegi', a: 3, b: 4, asks: [{ label: 'Petak persegi miring di papan', key: 25 }, { label: 'Petak persegi miring untuk sisi 6 dan 8', key: 100 }], budget: 2, cerita: 'Mandor Joko menggambar tangga yang bersandar sebagai segitiga di lantai berpetak. Ia ingin tahu luas ubin persegi yang menempel di sisi tangga.', tujuan: 'Berapa petak persegi miring itu, di papan dan untuk sisi 6 dan 8? Kamu punya 2 kesempatan.' },
-{ tingkat: 'I', type: 'tangga', c: 10, asks: [{ label: 'Kaki tangga 13 m, puncak di 12 m', key: 5 }, { label: 'Kaki tangga 25 m, puncak di 24 m', key: 7 }], budget: 2, cerita: 'Tangga harus menyentuh jendela tepat di ketinggian yang diminta. Di halaman ada tangga 10 m untuk dicoba.', tujuan: 'Berapa meter kaki tangga dari tembok untuk kedua pesanan? Kamu punya 2 kesempatan dan 3 jatah ukur.' },
-{ tingkat: 'E', type: 'miring', c: 8, th: 30, asks: [{ label: 'Tinggi puncak tangga 10 m, miring 30°', key: 5 }, { label: 'Jarak kaki tangga 10 m, miring 60°', key: 5 }], budget: 2, cerita: 'Tangga darurat gedung dipasang dengan kemiringan tertentu terhadap lantai. Mandor Joko butuh ukurannya sebelum tangga dibeli.', tujuan: 'Jawab kedua ukuran itu. Kamu punya 2 kesempatan.' }
+{ tingkat: 'I', type: 'tangga', c: 10, asks: [{ label: 'Tangga 13 m, puncak di 12 m: jarak kaki (m)', key: 5 }, { label: 'Tangga 25 m, puncak di 24 m: jarak kaki (m)', key: 7 }], budget: 2, cerita: 'Tangga harus menyentuh jendela tepat di ketinggian yang diminta. Di halaman ada tangga 10 m untuk dicoba.', tujuan: 'Berapa meter kaki tangga dari tembok untuk kedua pesanan? Kamu punya 2 kesempatan dan 3 jatah ukur.' },
+{ tingkat: 'E', type: 'miring', c: 8, th: 30, asks: [{ label: 'Tangga 10 m, miring 30°: tinggi puncak (m)', key: 5 }, { label: 'Tangga 10 m, miring 60°: jarak kaki (m)', key: 5 }], budget: 2, cerita: 'Tangga darurat gedung dipasang dengan kemiringan tertentu terhadap lantai. Mandor Joko butuh ukurannya sebelum tangga dibeli.', tujuan: 'Jawab kedua ukuran itu. Kamu punya 2 kesempatan.' }
 ];
 this.H = [
 { id: 'g1', konteks: 'Peta kampung', tingkat: 'I', type: 'peta', dx: 6, dy: 8, asks: [{ label: 'Jarak lurus (blok)', key: 10 }], budget: 2, cerita: 'Rumah Pak RT berada 6 blok ke timur dan 8 blok ke utara dari balai warga. Kabel listrik akan ditarik lurus di antara keduanya.', tujuan: 'Berapa blok panjang kabel yang lurus itu?' },
@@ -16106,7 +16113,7 @@ this.H = [
 { id: 'g5', konteks: 'Tangga 45°', tingkat: 'I', type: 'miring', c: 8, th: 45, asks: [{ label: 'Tinggi puncak (m)', key: 7 }], budget: 2, cerita: 'Tangga dipasang miring 45° terhadap lantai, dan kakinya 7 m dari tembok.', tujuan: 'Berapa meter tinggi puncaknya?' },
 { id: 'g6', konteks: 'Jalan menanjak', tingkat: 'I', type: 'miring', c: 8, th: 30, asks: [{ label: 'Tinggi ujung atas jalan (m)', key: 6 }], budget: 2, cerita: 'Jalan ke gudang proyek menanjak lurus sepanjang 12 m dengan kemiringan 30° terhadap tanah datar.', tujuan: 'Berapa meter tinggi ujung atas jalan itu dari tanah datar?' },
 { id: 'g7', konteks: 'Ubin teras', tingkat: 'E', type: 'persegi', a: 3, b: 4, asks: [{ label: 'Sisi persegi miring untuk 8 dan 15', key: 17 }], budget: 1, cerita: 'Segitiga siku di teras punya sisi tegak 8 dan 15 ubin. Persegi akan dipasang menempel di sisi miringnya.', tujuan: 'Berapa ubin panjang sisi persegi miring itu?' },
-{ id: 'g8', konteks: 'Klaim mandor', tingkat: 'E', type: 'miring', c: 8, th: 60, asks: [{ label: 'Jarak kaki tangga 10 m (m)', key: 5 }], budget: 1, verdict: { q: 'Apakah mandor benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Tangga 10 m dipasang miring 60° terhadap lantai. Mandor bilang tinggi puncaknya setengah panjang tangga.', tujuan: 'Hitung jarak kakinya, lalu nilai ucapan mandor.' },
+{ id: 'g8', konteks: 'Klaim mandor', tingkat: 'E', type: 'miring', c: 8, th: 60, asks: [{ label: 'Tangga 10 m: jarak kaki (m)', key: 5 }], budget: 1, verdict: { q: 'Apakah mandor benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Tangga 10 m dipasang miring 60° terhadap lantai. Mandor bilang tinggi puncaknya setengah panjang tangga.', tujuan: 'Hitung jarak kakinya, lalu nilai ucapan mandor.' },
 {id: "f1", konteks: "Gambar mandor", tingkat: "F", type: "persegi", a: 3, b: 5, asks: [{label: "Petak persegi miring di papan", key: 34}, {label: "Petak persegi miring untuk sisi 9 dan 12", key: 225}], budget: 2, cerita: "Gambar segitiga lain sudah disiapkan di lantai berpetak.", tujuan: "Berapa petak persegi miring itu, di papan dan untuk sisi 9 dan 12?"},
 {id: "f2", konteks: "Lantai gudang", tingkat: "F", type: "persegi", a: 1, b: 5, asks: [{label: "Petak persegi miring di papan", key: 26}, {label: "Petak persegi miring untuk sisi 20 dan 21", key: 841}], budget: 2, cerita: "Gambar segitiga lain sudah disiapkan di lantai berpetak.", tujuan: "Berapa petak persegi miring itu, di papan dan untuk sisi 20 dan 21?"},
 { id: 'f3', konteks: 'Klaim mandor', tingkat: 'F', type: 'persegi', a: 3, b: 4, asks: [{ label: 'Petak persegi miring di papan', key: 25 }], budget: 2, verdict: { q: 'Apakah mandor benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Mandor baru bilang persegi di sisi miring segitiga ini cukup 3 + 4 = 7 petak.', tujuan: 'Hitung petaknya, lalu nilai ucapan mandor.' }
@@ -16118,12 +16125,12 @@ F: [this.M[0],
 { type: 'persegi', a: 1, b: 3, asks: [{ label: 'Petak persegi miring di papan', key: 10 }, { label: 'Petak persegi miring untuk sisi 8 dan 15', key: 289 }], budget: 2, cerita: 'Segitiga kecil di pojok teras akan diberi ubin di sisi miringnya. Segitiga besar di halaman bersisi tegak 8 dan 15.', tujuan: 'Berapa petak persegi miring itu, di papan dan untuk sisi 8 dan 15? Kamu punya 2 kesempatan.' }
 ],
 I: [this.M[1],
-{ type: 'tangga', c: 10, asks: [{ label: 'Kaki tangga 17 m, puncak di 15 m', key: 8 }, { label: 'Kaki tangga 10 m, puncak di 8 m', key: 6 }], budget: 2, cerita: 'Jendela loteng gedung olahraga harus dicat dari luar. Di halaman ada tangga 10 m untuk dicoba.', tujuan: 'Berapa meter kaki tangga dari tembok untuk tiap tangga? Kamu punya 2 kesempatan dan 3 jatah ukur.' },
-{ type: 'tangga', c: 10, asks: [{ label: 'Kaki tangga 13 m, puncak di 12 m', key: 5 }], budget: 2, verdict: { q: 'Apakah tukang itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Tangga 13 m harus menyentuh talang setinggi 12 m. Tukang bilang kakinya cukup 1 m dari tembok, karena 13 − 12 = 1.', tujuan: 'Hitung jarak kakinya, lalu nilai ucapan tukang. Kamu punya 2 kesempatan dan 3 jatah ukur.' }
+{ type: 'tangga', c: 10, asks: [{ label: 'Tangga 17 m, puncak di 15 m: jarak kaki (m)', key: 8 }, { label: 'Tangga 10 m, puncak di 8 m: jarak kaki (m)', key: 6 }], budget: 2, cerita: 'Jendela loteng gedung olahraga harus dicat dari luar. Di halaman ada tangga 10 m untuk dicoba.', tujuan: 'Berapa meter kaki tangga dari tembok untuk tiap tangga? Kamu punya 2 kesempatan dan 3 jatah ukur.' },
+{ type: 'tangga', c: 10, asks: [{ label: 'Tangga 13 m, puncak di 12 m: jarak kaki (m)', key: 5 }], budget: 2, verdict: { q: 'Apakah tukang itu benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Tangga 13 m harus menyentuh talang setinggi 12 m. Tukang bilang kakinya cukup 1 m dari tembok, karena 13 − 12 = 1.', tujuan: 'Hitung jarak kakinya, lalu nilai ucapan tukang. Kamu punya 2 kesempatan dan 3 jatah ukur.' }
 ],
 E: [this.M[2],
-{ type: 'miring', c: 8, th: 45, asks: [{ label: 'Tinggi puncak, kaki 9 m dari tembok, miring 45°', key: 9 }], budget: 2, cerita: 'Tangga darurat gudang dipasang miring 45° terhadap lantai. Kakinya berjarak 9 m dari tembok.', tujuan: 'Berapa meter tinggi puncak tangga? Kamu punya 2 kesempatan.' },
-{ type: 'miring', c: 8, th: 60, asks: [{ label: 'Jarak kaki tangga 12 m, miring 60°', key: 6 }, { label: 'Tinggi puncak tangga 14 m, miring 30°', key: 7 }], budget: 2, cerita: 'Gedung sekolah memesan dua tangga darurat dengan kemiringan berbeda terhadap lantai.', tujuan: 'Jawab kedua ukuran tangga. Kamu punya 2 kesempatan.' }
+{ type: 'miring', c: 8, th: 45, asks: [{ label: 'Kaki 9 m dari tembok, miring 45°: tinggi puncak (m)', key: 9 }], budget: 2, cerita: 'Tangga darurat gudang dipasang miring 45° terhadap lantai. Kakinya berjarak 9 m dari tembok.', tujuan: 'Berapa meter tinggi puncak tangga? Kamu punya 2 kesempatan.' },
+{ type: 'miring', c: 8, th: 60, asks: [{ label: 'Tangga 12 m, miring 60°: jarak kaki (m)', key: 6 }, { label: 'Tangga 14 m, miring 30°: tinggi puncak (m)', key: 7 }], budget: 2, cerita: 'Gedung sekolah memesan dua tangga darurat dengan kemiringan berbeda terhadap lantai.', tujuan: 'Jawab kedua ukuran tangga. Kamu punya 2 kesempatan.' }
 ]
 };
 this.TM.F.concat(this.TM.I, this.TM.E).forEach(m => { delete m.tingkat; });
@@ -16182,10 +16189,10 @@ const R = (a, b) => this.rnd(a, b);
 i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
 const TR = [[3, 4, 5], [5, 12, 13], [6, 8, 10], [8, 15, 17], [7, 24, 25], [9, 12, 15], [12, 16, 20], [20, 21, 29]];
 if (i === 0) { const a = R(1, 4), b = R(2, 5), x = TR[R(0, TR.length - 1)]; return { a: a, b: b, asks: [{ label: 'Petak persegi miring di papan', key: a * a + b * b }, { label: 'Petak persegi miring untuk sisi ' + x[0] + ' dan ' + x[1], key: x[2] * x[2] }], cerita: 'Gambar segitiga lain sudah disiapkan di lantai berpetak.' }; }
-if (i === 1) { const x = TR[R(0, TR.length - 1)], y = TR[R(0, TR.length - 1)]; return { asks: [{ label: 'Kaki tangga ' + x[2] + ' m, puncak di ' + x[1] + ' m', key: x[0] }, { label: 'Kaki tangga ' + y[2] + ' m, puncak di ' + y[0] + ' m', key: y[1] }], cerita: 'Dua jendela lain juga butuh tangga.' }; }
-const c = 2 * R(3, 15); return { asks: [{ label: 'Tinggi puncak tangga ' + c + ' m, miring 30°', key: c / 2 }, { label: 'Jarak kaki tangga ' + c + ' m, miring 60°', key: c / 2 }], cerita: 'Gedung lain memesan tangga darurat sepanjang ' + c + ' m.' };
+if (i === 1) { const x = TR[R(0, TR.length - 1)], y = TR[R(0, TR.length - 1)]; return { asks: [{ label: 'Tangga ' + x[2] + ' m, puncak di ' + x[1] + ' m: jarak kaki (m)', key: x[0] }, { label: 'Tangga ' + y[2] + ' m, puncak di ' + y[0] + ' m: jarak kaki (m)', key: y[1] }], cerita: 'Dua jendela lain juga butuh tangga.' }; }
+const c = 2 * R(3, 15); return { asks: [{ label: 'Tangga ' + c + ' m, miring 30°: tinggi puncak (m)', key: c / 2 }, { label: 'Tangga ' + c + ' m, miring 60°: jarak kaki (m)', key: c / 2 }], cerita: 'Gedung lain memesan tangga darurat sepanjang ' + c + ' m.' };
 }
-customMission(c) { const k = Math.sqrt(c.c * c.c - c.h * c.h); return { tingkat: '', type: 'tangga', special: true, c: 10, asks: [{ label: 'Kaki tangga ' + c.c + ' m, puncak di ' + c.h + ' m', key: Math.round(k * 10) / 10 }], budget: 2, cerita: 'Rekan kerjamu memasang tangga ' + c.c + ' m yang puncaknya harus di ketinggian ' + c.h + ' m.', tujuan: 'Berapa meter kaki tangga dari tembok? Bulatkan satu angka di belakang koma.' }; }
+customMission(c) { const k = Math.sqrt(c.c * c.c - c.h * c.h); return { tingkat: '', type: 'tangga', special: true, c: 10, asks: [{ label: 'Tangga ' + c.c + ' m, puncak di ' + c.h + ' m: jarak kaki (m)', key: Math.round(k * 10) / 10 }], budget: 2, cerita: 'Rekan kerjamu memasang tangga ' + c.c + ' m yang puncaknya harus di ketinggian ' + c.h + ' m.', tujuan: 'Berapa meter kaki tangga dari tembok? Bulatkan satu angka di belakang koma.' }; }
 roller(label, val, min, max, step, set) {
 const up = val + step <= max, dn = val - step >= min;
 return { label: label, val: String(val), upCol: up ? '#1C1C1A' : '#B9B8B2', downCol: dn ? '#1C1C1A' : '#B9B8B2', upAria: label + ' naik, sekarang ' + val, downAria: label + ' turun, sekarang ' + val,
