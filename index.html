@@ -1876,6 +1876,25 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .pg-page .px-bag+div,#root .pg-page .px-bag+sc-if>div{color:#2B1D1A!important;background:#FFF6E0;padding:6px 8px!important;box-shadow:0 0 0 2px #1A1C2C}
 #root .pg-page .px-tcoin{background:#EFE6D2!important;color:#9A9488!important;box-shadow:0 0 0 2px #B9AE96!important}
 #root .pg-page .px-tcoin.on{background:#FFC83D!important;color:#2B1D1A!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #E39A1C!important}
+
+/* Tantangan (19 Nov): alun-alun desa, papan pengumuman, selebaran bercap status (tanpa miring) */
+#root.px-p-Tantangan>div>div{background-color:#EAF3E2!important}
+#root.px-p-Tantangan .px-cork{gap:14px!important;padding:20px 16px 18px!important;background:#E3BD86!important;border:0!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 0 0 7px #8A5A32,inset 0 0 0 9px #1A1C2C,0 5px 0 rgba(26,28,44,.25)!important}
+#root.px-p-Tantangan .px-cnote{transform:none!important;display:grid;grid-template-columns:28px 28px minmax(0,1fr) auto;align-items:center;column-gap:10px;padding:14px 12px 12px;background:#FFFDF5!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 5px 0 #B9AE96,0 3px 0 rgba(26,28,44,.22)!important;margin:0!important}
+#root.px-p-Tantangan .px-cnote::before{top:-4px;width:9px;height:9px;margin-left:-4px;background:#E8554E;box-shadow:0 0 0 2px #1A1C2C}
+#root.px-p-Tantangan .px-cnote::after{display:none}
+#root.px-p-Tantangan .px-cnote>span:only-child{grid-column:1 / -1}
+#root.px-p-Tantangan .px-cnum{width:28px;height:28px;border-radius:50%;background:#EFE6D2;box-shadow:0 0 0 2px #1A1C2C;font-size:14px}
+#root.px-p-Tantangan .px-cst{justify-self:end;font-size:10px;line-height:14px;padding:1px 6px;text-transform:uppercase;letter-spacing:.03em;color:#8A8780;border:2px solid #B9AE96;box-shadow:none;background:transparent;transform:none!important}
+#root.px-p-Tantangan .px-cnote.now{box-shadow:0 0 0 2px #1A1C2C,0 0 0 5px #FFC83D,inset 0 5px 0 #4C8FDD,0 3px 0 rgba(26,28,44,.22)!important}
+#root.px-p-Tantangan .px-cnote.now .px-cnum{background:#4C8FDD;color:#FFFFFF}
+#root.px-p-Tantangan .px-cnote.now .px-cst{color:#2F64B0;border-color:#2F64B0;background:transparent;font-weight:700}
+#root.px-p-Tantangan .px-cnote.done{box-shadow:0 0 0 2px #1A1C2C,inset 0 5px 0 #57A843,0 3px 0 rgba(26,28,44,.22)!important}
+#root.px-p-Tantangan .px-cnote.done .px-cnum{background:#BFE8C9;color:#2E8B4E}
+#root.px-p-Tantangan .px-cnote.done .px-cst{color:#2E8B4E;border-color:#2E8B4E;font-weight:700}
+#root.px-p-Tantangan .px-pinnote{transform:none;margin:4px 0 0}
+#root.px-p-Tantangan .px-pbtn{background:#5DC46A!important;color:#FFFFFF!important;border:0!important;border-image:none!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -5px 0 #2F8A43,inset 0 3px 0 #9BE6A4!important;text-shadow:0 1px 0 #1F5E2E;padding:10px 10px 12px!important}
+#root.px-p-Tantangan .px-f[style*="font-size: 20px"]{display:inline-block;padding:2px 10px 3px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C}
 </style>
 </head>
 <body>
@@ -7840,6 +7859,20 @@ const PX = (() => {
     panel: ['#E3E8EF', t => { const R = t.R; let i; R(P.k, 30, 6, 135, 38); R('#9AA7BA', 31, 7, 133, 36); R('#C9D3E0', 31, 7, 133, 3);
       for (i = 0; i < 4; i++) { const x = 42 + i * 20; R(P.k, x, 14, 10, 22); R('#5A6278', x + 1, 15, 8, 20); R(P.k, x - 1, 18 + (i * 5) % 14, 12, 4); R([P.r, P.y, P.a, P.u][i], x, 19 + (i * 5) % 14, 10, 2); }
       R(P.k, 126, 12, 28, 18); R('#2D3250', 127, 13, 26, 16); R('#9FE0B5', 130, 18, 14, 2); R('#9FE0B5', 130, 22, 8, 2); t.stamp('gir', 134, 32); }],
+    alunalun: ['#9ED7F5', t => { const R = t.R; let i;
+      /* alun-alun desa siang: langit, pohon, papan pengumuman beratap di tengah dengan selebaran, lampu jalan, bangku */
+      R('#B8E5FA', 0, 14, 195, 10); t.cloud(10, 4); t.cloud(150, 7);
+      R(P.a, 0, 30, 195, 17); R(P.c, 0, 30, 195, 2); for (i = 0; i < 195; i += 9) R(P.A, i + 3, 38 + (i % 4), 2, 1);
+      R('#E3BD86', 70, 38, 56, 9); R('#CDA066', 70, 38, 56, 1);
+      [[8, 12], [168, 14]].forEach(q => t.tree(q[0], q[1]));
+      R(P.k, 74, 10, 2, 30); R(P.k, 120, 10, 2, 30); R(P.b, 75, 11, 1, 28); R(P.b, 121, 11, 1, 28);
+      for (i = 0; i < 6; i++) R(P.k, 68 + i, 9 - i, 60 - 2 * i, 1); for (i = 1; i < 5; i++) R(i % 2 ? '#E8554E' : '#B23A34', 69 + i, 9 - i, 58 - 2 * i, 1);
+      R(P.k, 72, 11, 52, 23); R('#D8B07A', 73, 12, 50, 21);
+      [[76, 14, P.w], [89, 15, '#FFE98A'], [102, 14, P.w], [113, 15, '#BFE8C9']].forEach(q => { R(P.k, q[0], q[1], 9, 12); R(q[2], q[0] + 1, q[1] + 1, 7, 10); R('#BFD3EA', q[0] + 2, q[1] + 4, 5, 1); R('#BFD3EA', q[0] + 2, q[1] + 6, 5, 1); R(P.r, q[0] + 4, q[1], 1, 1); });
+      R(P.k, 40, 14, 2, 26); R(P.k, 37, 12, 8, 3); R(P.Y, 38, 13, 6, 1); R(P.k, 36, 39, 10, 2);
+      R(P.k, 140, 34, 22, 3); R(P.t, 141, 35, 20, 1); R(P.k, 142, 37, 2, 5); R(P.k, 158, 37, 2, 5); R(P.k, 140, 30, 22, 2); R(P.b, 141, 30, 20, 1);
+      for (i = 0; i < 8; i++) t.flower(52 + i * 3 + (i % 2), 41 + (i % 3), i);
+    }],
     papan: ['#F2EAD9', t => { const R = t.R; let i; R(P.k, 24, 4, 148, 42); R(P.b, 25, 5, 146, 40); R('#D8B07A', 29, 9, 138, 32);
       [[36, 12, P.w, P.r], [66, 16, P.Y, P.u], [98, 11, P.w, P.a], [130, 15, '#F7A8B0', P.r]].forEach(q => { R(P.k, q[0], q[1], 24, 20); R(q[2], q[0] + 1, q[1] + 1, 22, 18); for (i = 0; i < 3; i++) R('#9AA7BA', q[0] + 4, q[1] + 7 + i * 4, 16, 1); R(P.k, q[0] + 10, q[1] - 2, 4, 4); R(q[3], q[0] + 11, q[1] - 1, 2, 2); }); }],
     bengkel: ['#EFE8DC', t => { const R = t.R; let i; R(P.k, 20, 4, 155, 26); R('#C9A47A', 21, 5, 153, 24); for (i = 0; i < 12; i++) R('#B48E62', 26 + i * 12, 8, 2, 2);
@@ -8364,7 +8397,7 @@ PX.devOf = (g, comp) => {
     return memo[key] = t.cv.toDataURL();
   }
   PX.scene = scene;
-  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'panel', Tantangan: 'papan', Bengkel: 'bengkel', CekCelah: 'teropong', KasusBaru: 'pos' };
+  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'panel', Tantangan: 'alunalun', Bengkel: 'bengkel', CekCelah: 'teropong', KasusBaru: 'pos' };
   const DONE = { LokerOSIS: 1, PentasSeni: 1, UndianDoorprize: 1, RaporKelas: 1, GrafikViral: 1, RuteKurir: 1, PasangLantai: 1, GudangKardus: 1, CetakSpanduk: 1, TanggaBangunan: 1, Pelabuhan: 1, Main: 1, MiniGames: 1, KasirKilat: 1, Timbangan: 1, Ubin: 1, JadwalBus: 1, BagiPizza: 1, RacikResep: 1, LipatKertas: 1, DuaStruk: 1, MejaHajatan: 1, MartabakTopping: 1, MesinMinuman: 1, ArgoOjek: 1, RekapGrosir: 1, KebunPagar: 1, DapurRoti: 1 };
   PX.skin = (root, name) => {
     if (DONE[name]) { root.className = ''; return; }
