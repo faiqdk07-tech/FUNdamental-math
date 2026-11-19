@@ -7585,6 +7585,11 @@ const PX = (() => {
   const AL = {
     koperasi: ['#EFE6F4', t => { const R = t.R; [[6, 10], [6, 28], [150, 10], [150, 28]].forEach((q, n) => { R(P.k, q[0], q[1] + 12, 40, 3); R(P.T, q[0], q[1] + 12, 40, 1); t.stamp(n % 2 ? 'roti' : 'gelas', q[0] + 4, q[1]); t.stamp(n % 2 ? 'gelas' : 'roti', q[0] + 22, q[1]); });
       R(P.k, 64, 26, 68, 20); R(P.b, 65, 27, 66, 19); R(P.T, 65, 27, 66, 2); R(P.k, 82, 10, 32, 17); R('#9AA7BA', 83, 11, 30, 15); R('#2D3250', 86, 13, 18, 6); R('#9FE0B5', 87, 14, 10, 4); R(P.k, 106, 4, 8, 8); R(P.w, 107, 0, 6, 11); R(P.k, 108, 3, 4, 1); R(P.k, 108, 5, 3, 1); R(P.k, 108, 7, 4, 1); }],
+    /* koperasi alat tulis (Faiq 19 Nov): rak buku berwarna, gelas pulpen, map, spidol; meja kasir sama */
+    koperasiAtk: ['#EFE6F4', t => { const R = t.R; [[6, 10], [6, 28], [150, 10], [150, 28]].forEach((q, n) => { R(P.k, q[0], q[1] + 12, 40, 3); R(P.T, q[0], q[1] + 12, 40, 1);
+        if (n % 2 === 0) { [P.r, P.u, P.a, P.y, P.r].forEach((c, k) => { const h = 9 + (k % 2) * 2; R(P.k, q[0] + 3 + k * 6, q[1] + 12 - h, 5, h); R(c, q[0] + 4 + k * 6, q[1] + 13 - h, 3, h - 2); R(P.w, q[0] + 4 + k * 6, q[1] + 14 - h, 3, 1); }); R(P.k, q[0] + 33, q[1] + 6, 5, 6); R(P.Y, q[0] + 34, q[1] + 7, 3, 4); }
+        else { R(P.k, q[0] + 3, q[1] + 4, 9, 8); R('#9AA7BA', q[0] + 4, q[1] + 5, 7, 6); [P.u, P.r, P.k].forEach((c, k) => { R(c, q[0] + 5 + k * 2, q[1], 1, 5); }); R(P.k, q[0] + 16, q[1] + 3, 12, 9); R(P.a, q[0] + 17, q[1] + 4, 10, 7); R(P.w, q[0] + 18, q[1] + 5, 6, 1); [[31, P.r], [35, P.u]].forEach(z => { R(P.k, q[0] + z[0], q[1] + 2, 3, 10); R(z[1], q[0] + z[0] + 1, q[1] + 3, 1, 6); R(P.w, q[0] + z[0] + 1, q[1] + 9, 1, 2); }); } });
+      R(P.k, 64, 26, 68, 20); R(P.b, 65, 27, 66, 19); R(P.T, 65, 27, 66, 2); R(P.k, 82, 10, 32, 17); R('#9AA7BA', 83, 11, 30, 15); R('#2D3250', 86, 13, 18, 6); R('#9FE0B5', 87, 14, 10, 4); R(P.k, 106, 4, 8, 8); R(P.w, 107, 0, 6, 11); R(P.k, 108, 3, 4, 1); R(P.k, 108, 5, 3, 1); R(P.k, 108, 7, 4, 1); }],
     tenda: ['#FBEFD9', t => { const R = t.R; let i;
       for (i = 0; i < 195; i += 13) { const c = (i / 13) % 2 ? P.w : P.r; R(c, i, 0, 13, 7); R(c, i + 1, 7, 11, 2); R(c, i + 3, 9, 7, 1); R(P.k, i, 7, 1, 2); R(P.k, i + 1, 9, 2, 1); R(P.k, i + 10, 9, 2, 1); R(P.k, i + 3, 10, 7, 1); }
       R(P.k, 4, 7, 3, 40); R(P.b, 5, 7, 1, 40); R(P.k, 188, 7, 3, 40); R(P.b, 189, 7, 1, 40);
@@ -9579,7 +9584,7 @@ return ['Meja struk', lines];
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Dua Struk'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('koperasi') }, PX.v2(this, v, { face: 'sari', name: 'Bu Sari', game: 'Dua Struk' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView(/teh|roti|kopi|kantin|minum/i.test(String(v.story || '')) ? 'koperasi' : 'koperasiAtk') }, PX.v2(this, v, { face: 'sari', name: 'Bu Sari', game: 'Dua Struk' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
