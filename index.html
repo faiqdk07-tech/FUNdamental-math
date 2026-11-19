@@ -1722,6 +1722,9 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-gudang .px-pan{flex-wrap:wrap-reverse!important;align-content:flex-start!important}
 /* Tata Barisan (Faiq 19 Nov): cerita menyebut dinding di belakang aula -> dinding digambar di sisi belakang (atas) lantai */
 #root .px-floor-board.ub-wall{padding-top:22px!important;box-shadow:inset 0 16px 0 #D9C7A8,inset 0 18px 0 #1A1C2C,0 0 0 3px #1A1C2C!important;background-image:none}
+/* Pesanan Martabak (Faiq 19 Nov): titik topping diperbesar dan bertepi gelap supaya warnanya terbaca */
+#root .px-st-mart span[style*="border-radius: 50%"]{width:12px!important;height:12px!important;border:2px solid #1A1C2C!important;box-sizing:border-box}
+#root .px-st-mart button[style*="flex-direction: column"]>span:nth-child(2){gap:3px!important}
 </style>
 </head>
 <body>
@@ -7582,6 +7585,12 @@ const PX = (() => {
     return t.cv.toDataURL();
   });
   /* Adegan 8 game Aljabar, masing-masing 195 x 50 kotak */
+  /* gerobak martabak dengan banyak toples topping sesuai cerita (Faiq 19 Nov) */
+  const gerobakDraw = (t, n) => { const R = t.R; let i; R(P.k, 40, 16, 116, 24); R(P.r, 41, 17, 114, 22); R(P.R, 41, 33, 114, 6); R(P.w, 41, 17, 114, 3);
+      R(P.k, 36, 8, 124, 4); R(P.y, 37, 9, 122, 2); R(P.k, 40, 12, 2, 4); R(P.k, 154, 12, 2, 4);
+      (n === 6 ? [[56, 'b'], [72, 'y'], [88, 'c'], [104, 'q'], [120, 'w'], [136, 'k']] : n === 3 ? [[80, 'b'], [96, 'y'], [112, 'c']] : n === 4 ? [[72, 'b'], [88, 'y'], [104, 'c'], [120, 'q']] : [[64, 'b'], [80, 'y'], [96, 'c'], [112, 'q'], [128, 'w']]).forEach(q => { R(P.k, q[0], 19, 12, 12); R('#DCEBFF', q[0] + 1, 20, 10, 10); R(P[q[1]], q[0] + 2, 24, 8, 6); });
+      [[58, 'k'], [138, 'k']].forEach(q => { R(P.k, q[0] - 6, 38, 12, 12); R('#5A6278', q[0] - 5, 39, 10, 10); R('#9AA7BA', q[0] - 2, 42, 4, 4); });
+      R(P.k, 18, 6, 1, 8); R(P.k, 14, 14, 9, 6); R(P.Y, 15, 15, 7, 4); R(P.k, 176, 6, 1, 8); R(P.k, 172, 14, 9, 6); R(P.Y, 173, 15, 7, 4); };
   const AL = {
     koperasi: ['#EFE6F4', t => { const R = t.R; [[6, 10], [6, 28], [150, 10], [150, 28]].forEach((q, n) => { R(P.k, q[0], q[1] + 12, 40, 3); R(P.T, q[0], q[1] + 12, 40, 1); t.stamp(n % 2 ? 'roti' : 'gelas', q[0] + 4, q[1]); t.stamp(n % 2 ? 'gelas' : 'roti', q[0] + 22, q[1]); });
       R(P.k, 64, 26, 68, 20); R(P.b, 65, 27, 66, 19); R(P.T, 65, 27, 66, 2); R(P.k, 82, 10, 32, 17); R('#9AA7BA', 83, 11, 30, 15); R('#2D3250', 86, 13, 18, 6); R('#9FE0B5', 87, 14, 10, 4); R(P.k, 106, 4, 8, 8); R(P.w, 107, 0, 6, 11); R(P.k, 108, 3, 4, 1); R(P.k, 108, 5, 3, 1); R(P.k, 108, 7, 4, 1); }],
@@ -7598,11 +7607,10 @@ const PX = (() => {
       R(P.k, 22, 25, 151, 2); R(P.w, 22, 27, 151, 9); R('#E4ECF5', 22, 33, 151, 3); R(P.r, 22, 36, 151, 3); R(P.k, 22, 39, 151, 1); R(P.k, 22, 25, 1, 15); R(P.k, 172, 25, 1, 15);
       for (i = 0; i < 5; i++) { const x = 42 + i * 26; R(P.k, x, 22, 10, 3); R(P.w, x + 1, 22, 8, 2); R([P.y, P.o, P.a, P.r, P.y][i], x + 3, 21, 4, 2); }
       R(P.k, 30, 20, 6, 5); R(P.w, 31, 21, 4, 4); R(P.k, 159, 20, 6, 5); R(P.w, 160, 21, 4, 4); }],
-    gerobak: ['#FCE8DC', t => { const R = t.R; let i; R(P.k, 40, 16, 116, 24); R(P.r, 41, 17, 114, 22); R(P.R, 41, 33, 114, 6); R(P.w, 41, 17, 114, 3);
-      R(P.k, 36, 8, 124, 4); R(P.y, 37, 9, 122, 2); R(P.k, 40, 12, 2, 4); R(P.k, 154, 12, 2, 4);
-      [[64, 'b'], [80, 'y'], [96, 'c'], [112, 'q'], [128, 'w']].forEach(q => { R(P.k, q[0], 19, 12, 12); R('#DCEBFF', q[0] + 1, 20, 10, 10); R(P[q[1]], q[0] + 2, 24, 8, 6); });
-      [[58, 'k'], [138, 'k']].forEach(q => { R(P.k, q[0] - 6, 38, 12, 12); R('#5A6278', q[0] - 5, 39, 10, 10); R('#9AA7BA', q[0] - 2, 42, 4, 4); });
-      R(P.k, 18, 6, 1, 8); R(P.k, 14, 14, 9, 6); R(P.Y, 15, 15, 7, 4); R(P.k, 176, 6, 1, 8); R(P.k, 172, 14, 9, 6); R(P.Y, 173, 15, 7, 4); }],
+    gerobak: ['#FCE8DC', t => gerobakDraw(t, 5)],
+    gerobak3: ['#FCE8DC', t => gerobakDraw(t, 3)],
+    gerobak4: ['#FCE8DC', t => gerobakDraw(t, 4)],
+    gerobak6: ['#FCE8DC', t => gerobakDraw(t, 6)],
     vending: ['#E3EEFA', t => { const R = t.R; let i, j; [[34, '#E8554E'], [104, '#4C8FDD']].forEach(q => { R(P.k, q[0], 4, 58, 44); R(q[1], q[0] + 1, 5, 56, 42); R(P.k, q[0] + 5, 9, 32, 30); R('#DCEBFF', q[0] + 6, 10, 30, 28);
       for (j = 0; j < 3; j++) for (i = 0; i < 4; i++) { R(P.k, q[0] + 8 + i * 7, 12 + j * 9, 5, 7); R([P.y, P.a, P.r, P.u][(i + j) % 4], q[0] + 9 + i * 7, 13 + j * 9, 3, 5); }
       for (j = 0; j < 4; j++) { R(P.k, q[0] + 42, 10 + j * 6, 10, 4); R(P.w, q[0] + 43, 11 + j * 6, 8, 2); } R(P.k, q[0] + 8, 41, 26, 4); R('#2D3250', q[0] + 9, 42, 24, 2); });
@@ -12230,7 +12238,7 @@ show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(M
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Martabak Topping'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('gerobak') }, PX.v2(this, v, { face: 'udin', name: 'Bang Udin', game: 'Martabak Topping' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView((() => { const m = String(v.story || '').match(/(\d+) topping/); const n = m ? +m[1] : 5; return n === 3 ? 'gerobak3' : n === 4 ? 'gerobak4' : n === 6 ? 'gerobak6' : 'gerobak'; })()) }, PX.v2(this, v, { face: 'udin', name: 'Bang Udin', game: 'Martabak Topping' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -12414,7 +12422,7 @@ return ['Papan survei', ['Ketuk salah satu bagian untuk memilihnya.', 'Ketik isi
 }
 surveiView(ctx, z, selZ, setZ, labA, labB, shown) {
 const s = ctx.s;
-const T = { A: 'Hanya ' + labA, AB: labA + ' dan ' + labB, B: 'Hanya ' + labB, L: 'Tidak keduanya' };
+const T = { A: 'Hanya ' + labA, AB: labA.charAt(0).toUpperCase() + labA.slice(1) + ' dan ' + labB, B: 'Hanya ' + labB, L: 'Tidak keduanya' };
 const szones = ['A', 'AB', 'B', 'L'].map(id => ({ title: T[id], val: String(z[id]), tap: () => setZ(z, id),
 style: 'text-align: left; padding: 8px 10px; border-radius: 6px; font: inherit; cursor: pointer; color: #1C1C1A; background: ' + (id === 'L' ? '#FBFAF7' : id === 'AB' ? '#E8EDFB' : '#F2F5FD') + '; border: 2px solid ' + (selZ === id ? '#1C1C1A' : '#DDDCD7') }));
 const src = shown === undefined ? z : shown;
