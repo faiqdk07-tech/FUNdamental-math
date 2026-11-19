@@ -2942,6 +2942,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <path d="{{gridD}}" stroke="#E2E1DC" stroke-width="1" fill="none"></path>
 <path d="{{pathA}}" fill="#DCE5FA" stroke="#2F5BD3" stroke-width="1.5"></path>
 <path d="{{pathB}}" fill="#EFE6D2" stroke="#8C6A3E" stroke-width="1.5"></path>
+<path d="{{gridD}}" stroke="#5A4630" stroke-opacity="0.3" stroke-width="1" fill="none" pointer-events="none"></path>
 <path d="{{pathC}}" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4 3"></path>
 <path d="{{pathD}}" fill="none" stroke="#1C1C1A" stroke-width="2"></path>
 <text x="{{tAx}}" y="{{tAy}}" font-size="11" fill="#444441">{{tA}}</text>
@@ -7676,9 +7677,8 @@ const PX = (() => {
       for (i = 0; i < 4; i++) { R(P.k, 150, 42 - i * 3, 24, 3); R('#F4EAD2', 151, 43 - i * 3, 22, 1); }
       R(P.k, 180, 34, 12, 12); R('#9AA7BA', 181, 35, 10, 11); R('#D5DDE8', 181, 35, 10, 2); R(P.k, 179, 32, 14, 3); R(P.k, 183, 28, 6, 1); R(P.k, 182, 29, 1, 3); R(P.k, 189, 29, 1, 3); }],
     gudangk: ['#F2EAD9', t => { const R = t.R; let i, j; [[6, 10], [6, 28]].forEach(q => { R(P.k, q[0], q[1] + 16, 90, 3); R(P.T, q[0], q[1] + 16, 90, 1); for (i = 0; i < 6; i++) t.stamp('kardus', q[0] + 4 + i * 14, q[1] + 7); });
-      R(P.k, 112, 14, 70, 32); R('#8FD0F2', 113, 15, 68, 30); R('#4C8FDD', 113, 30, 68, 15); R('#C9D3E0', 113, 15, 68, 3);
-      [[124, 33, P.o], [146, 38, P.y], [162, 31, P.r]].forEach(q => { R(P.k, q[0] - 1, q[1] - 1, 9, 6); R(q[2], q[0], q[1], 7, 4); R(q[2], q[0] - 3, q[1] + 1, 3, 2); R(P.k, q[0] + 5, q[1] + 1, 1, 1); });
-      for (j = 0; j < 3; j++) R(P.w, 150 + j * 6, 22 - j * 3, 2, 2); R(P.k, 110, 45, 74, 2); }],
+      /* tumpukan kardus di lantai gudang (bukan akuarium: adegan ini untuk soal kardus) */
+      for (j = 0; j < 3; j++) for (i = 0; i < 4 - j; i++) t.stamp('kardus', 120 + j * 7 + i * 14, 36 - j * 9); R(P.k, 110, 45, 74, 2); }],
     spanduk: ['#F4E8F2', t => { const R = t.R; let i; R(P.k, 4, 2, 187, 2); [[22, 4], [172, 4]].forEach(q => R(P.k, q[0], q[1], 1, 6));
       R(P.k, 14, 10, 167, 16); R(P.y, 15, 11, 165, 14); R(P.Y, 15, 11, 165, 2);
       R(P.k, 30, 14, 14, 9); R(P.r, 31, 15, 12, 7); for (i = 0; i < 6; i++) R(P.k, 50 + i * 18, 16, 12, 4); R(P.r, 158, 13, 14, 10);
@@ -10386,28 +10386,28 @@ setup() {
 this.MN = ['Kardus kiriman', 'Akuarium toko', 'Wadah lancip'];
 const L = [[0, 0], [5, 0], [5, 2], [2, 2], [2, 4], [0, 4]];
 this.M = [
-{ tingkat: 'F', type: 'kardus', p: 5, l: 4, t: 3, asks: [{ label: 'Kotak kecil dalam kardus ini', key: 60 }, { label: 'Kotak kecil dalam kardus 12 × 10 × 8', key: 960 }], budget: 2, cerita: 'Gudang mengirim kotak sabun kecil di dalam kardus besar. Bu Ratna juga punya kardus jumbo berukuran 12 kotak, 10 kotak, dan tinggi 8 kotak.', tujuan: 'Berapa kotak sabun yang muat di tiap kardus? Kamu punya 2 kesempatan.' },
+{ tingkat: 'F', type: 'kardus', p: 5, l: 4, t: 3, asks: [{ label: 'Kotak kecil dalam kardus ini', key: 60 }, { label: 'Kotak kecil dalam kardus jumbo', key: 960 }], budget: 2, cerita: 'Gudang mengirim kotak sabun kecil di dalam kardus besar. Bu Ratna juga punya kardus jumbo berukuran panjang 12, lebar 10, dan tinggi 8 kotak.', tujuan: 'Berapa kotak sabun yang muat di tiap kardus? Kamu punya 2 kesempatan.' },
 { tingkat: 'I', type: 'prisma', base: L, t: 6, asks: [{ label: 'Liter air setinggi 6', key: 84 }, { label: 'Liter air setinggi 25', key: 350 }], budget: 2, cerita: 'Akuarium toko ikan punya dasar berbentuk huruf L. Satu kotak air seukuran satu petak dasar dan setinggi satu tingkat berisi 1 liter.', tujuan: 'Berapa liter air bila diisi setinggi 6 tingkat, dan setinggi 25 tingkat? Kamu punya 2 kesempatan.' },
 { tingkat: 'E', type: 'lancip', s: 4, t: 9, asks: [{ label: 'Isi wadah lancip dasar 6 × 6, tinggi 10 (kotak)', key: 120 }], budget: 2, cerita: 'Beras dijual dengan dua wadah ukur: wadah tegak dan wadah lancip. Dasar dan tinggi keduanya sama.', tujuan: 'Berapa kotak beras muat dalam wadah lancip berukuran dasar 6 × 6 dan tinggi 10? Kamu punya 2 kesempatan dan 3 jatah tuang.' }
 ];
 this.H = [
-{ id: 'k1', konteks: 'Klaim mandor', tingkat: 'I', type: 'kardus', p: 4, l: 3, t: 5, asks: [{ label: 'Kotak dalam kardus 8 × 6 × 10', key: 480 }], budget: 2, verdict: { q: 'Apakah mandor benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Kardus ini muat 60 kotak sabun. Mandor bilang kardus yang semua ukurannya dua kali lipat cukup untuk 120 kotak.', tujuan: 'Hitung isi kardus besar, lalu nilai ucapan mandor.' },
+{ id: 'k1', konteks: 'Klaim mandor', tingkat: 'I', type: 'kardus', p: 4, l: 3, t: 5, asks: [{ label: 'Kotak dalam kardus besar', key: 480 }], budget: 2, verdict: { q: 'Apakah mandor benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Kardus ini muat 60 kotak sabun. Mandor bilang kardus yang semua ukurannya dua kali lipat cukup untuk 120 kotak.', tujuan: 'Hitung isi kardus besar, lalu nilai ucapan mandor.' },
 { id: 'k2', konteks: 'Akuarium segitiga', tingkat: 'I', type: 'prisma', base: [[0, 0], [6, 0], [2, 4]], t: 7, asks: [{ label: 'Liter air setinggi 7', key: 84 }], budget: 2, cerita: 'Akuarium pojok punya dasar segitiga. Satu kotak air seukuran satu petak dasar dan setinggi satu tingkat berisi 1 liter.', tujuan: 'Berapa liter air bila diisi setinggi 7 tingkat?' },
 { id: 'k3', konteks: 'Tinggi tak tercatat', tingkat: 'I', type: 'kardus', p: 5, l: 4, t: null, asks: [{ label: 'Kotak dalam kardus', key: null }], status: 'kurang', specialMsg: 'Alasnya muat 20 kotak, tetapi tanpa tinggi kardus banyaknya lapisan tidak diketahui.', budget: 2, cerita: 'Pembeli hanya memotret kardus dari atas. Tinggi kardusnya tidak tercatat.', tujuan: 'Berapa kotak sabun muat di kardus itu?' },
-{ id: 'k4', konteks: 'Kotak besar', tingkat: 'E', type: 'kardus', p: 5, l: 4, t: 4, asks: [{ label: 'Kotak besar yang muat', key: null }], status: 'mustahil', specialMsg: 'Panjang 5 tidak habis dibagi 2, jadi kotak 2 × 2 × 2 selalu menyisakan celah.', budget: 1, cerita: 'Kardus ini akan diisi kotak besar seukuran 2 × 2 × 2 kotak kecil. Pemilik ingin kardus penuh tanpa celah sedikit pun.', tujuan: 'Berapa kotak besar yang muat?' },
+{ id: 'k4', konteks: 'Kotak besar', tingkat: 'E', type: 'kardus', p: 5, l: 4, t: 4, asks: [{ label: 'Kotak besar yang muat', key: null }], status: 'mustahil', specialMsg: 'Panjang 5 tidak habis dibagi 2, jadi kotak 2 × 2 × 2 selalu menyisakan celah.', budget: 1, cerita: 'Kardus ini akan diisi kotak besar yang panjang, lebar, dan tingginya masing-masing 2 kotak kecil. Pemilik ingin kardus penuh tanpa celah sedikit pun.', tujuan: 'Berapa kotak besar yang muat?' },
 { id: 'k5', konteks: 'Takaran kopi', tingkat: 'I', type: 'lancip', s: 3, t: 8, asks: [{ label: 'Isi wadah lancip (kotak)', key: 24 }], budget: 2, cerita: 'Warung kopi memakai wadah lancip berdasar 3 × 3 dan tinggi 8 untuk menakar bubuk kopi.', tujuan: 'Berapa kotak bubuk kopi muat dalam wadah lancip itu?' },
 { id: 'k6', konteks: 'Kolam L', tingkat: 'I', type: 'prisma', base: [[0, 0], [4, 0], [4, 2], [1, 2], [1, 4], [0, 4]], t: 12, asks: [{ label: 'Liter air setinggi 12', key: 120 }], budget: 2, cerita: 'Kolam ikan kecil berdasar huruf L. Satu kotak air seukuran satu petak dasar dan setinggi satu tingkat berisi 1 liter.', tujuan: 'Berapa liter air bila diisi setinggi 12 tingkat?' },
 { id: 'k7', konteks: 'Klaim penjual', tingkat: 'E', type: 'lancip', s: 4, t: 6, asks: [{ label: 'Isi wadah lancip (kotak)', key: 32 }], budget: 1, verdict: { q: 'Apakah penjual benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Wadah tegak dan wadah lancip ini sama-sama berdasar 4 × 4 dan tinggi 6. Penjual bilang isi wadah lancip setengah wadah tegak.', tujuan: 'Hitung isi wadah lancip, lalu nilai ucapan penjual.' },
-{ id: 'k8', konteks: 'Kardus jumbo', tingkat: 'E', type: 'kardus', p: 3, l: 3, t: 2, asks: [{ label: 'Kotak dalam kardus 12 × 9 × 7', key: 756 }], budget: 1, cerita: 'Contoh kardus kecil ada di meja. Pesanan hari ini memakai kardus jumbo berukuran 12 × 9 dengan tinggi 7 kotak.', tujuan: 'Berapa kotak sabun muat di kardus jumbo?' },
-{id: "f1", konteks: "Kiriman pagi", tingkat: "F", type: "kardus", p: 5, l: 2, t: 4, asks: [{label: "Kotak kecil dalam kardus ini", key: 40}, {label: "Kotak kecil dalam kardus 14 × 12 × 8", key: 1344}], budget: 2, cerita: "Kardus lain datang. Kardus jumbonya berukuran 14 × 12 dengan tinggi 8 kotak.", tujuan: "Berapa kotak sabun yang muat di tiap kardus?"},
-{id: "f2", konteks: "Kardus retur", tingkat: "F", type: "kardus", p: 3, l: 3, t: 2, asks: [{label: "Kotak kecil dalam kardus ini", key: 18}, {label: "Kotak kecil dalam kardus 10 × 9 × 7", key: 630}], budget: 2, cerita: "Kardus lain datang. Kardus jumbonya berukuran 10 × 9 dengan tinggi 7 kotak.", tujuan: "Berapa kotak sabun yang muat di tiap kardus?"},
+{ id: 'k8', konteks: 'Kardus jumbo', tingkat: 'E', type: 'kardus', p: 3, l: 3, t: 2, asks: [{ label: 'Kotak dalam kardus jumbo', key: 756 }], budget: 1, cerita: 'Contoh kardus kecil ada di meja. Pesanan hari ini memakai kardus jumbo berukuran panjang 12, lebar 9, dan tinggi 7 kotak.', tujuan: 'Berapa kotak sabun muat di kardus jumbo?' },
+{id: "f1", konteks: "Kiriman pagi", tingkat: "F", type: "kardus", p: 5, l: 2, t: 4, asks: [{label: "Kotak kecil dalam kardus ini", key: 40}, {label: "Kotak kecil dalam kardus jumbo", key: 1344}], budget: 2, cerita: "Kardus lain datang. Kardus jumbonya berukuran panjang 14, lebar 12, dan tinggi 8 kotak.", tujuan: "Berapa kotak sabun yang muat di tiap kardus?"},
+{id: "f2", konteks: "Kardus retur", tingkat: "F", type: "kardus", p: 3, l: 3, t: 2, asks: [{label: "Kotak kecil dalam kardus ini", key: 18}, {label: "Kotak kecil dalam kardus jumbo", key: 630}], budget: 2, cerita: "Kardus lain datang. Kardus jumbonya berukuran panjang 10, lebar 9, dan tinggi 7 kotak.", tujuan: "Berapa kotak sabun yang muat di tiap kardus?"},
 { id: 'f3', konteks: 'Klaim kurir', tingkat: 'F', type: 'kardus', p: 4, l: 3, t: 3, asks: [{ label: 'Kotak kecil dalam kardus ini', key: 36 }], budget: 2, verdict: { q: 'Apakah kurir benar?', opts: ['Benar', 'Salah'], correct: 'Salah' }, cerita: 'Kurir melihat kardus dari atas dan bilang isinya pasti 12 kotak sabun.', tujuan: 'Hitung isi kardus, lalu nilai ucapan kurir.' }
 ];
 this.TN = { F: ['Kardus kiriman', 'Kardus mi instan', 'Kardus jumbo'], I: ['Akuarium toko', 'Akuarium pojok', 'Kolam ikan'], E: ['Wadah lancip', 'Takaran gula', 'Corong besar'] };
 this.TM = {
 F: [this.M[0],
-{ type: 'kardus', p: 6, l: 3, t: 4, asks: [{ label: 'Bungkus dalam kardus ini', key: 72 }, { label: 'Bungkus dalam kardus 15 × 12 × 9', key: 1620 }], budget: 2, cerita: 'Gudang menerima mi instan yang dikemas dalam kardus. Toko grosir memesan kardus besar berukuran 15 × 12 dengan tinggi 9 bungkus.', tujuan: 'Berapa bungkus mi muat di tiap kardus? Kamu punya 2 kesempatan.' },
-{ type: 'kardus', p: 4, l: 4, t: 5, asks: [{ label: 'Kotak dalam kardus ini', key: 80 }, { label: 'Kotak dalam kardus 20 × 16 × 12', key: 3840 }], budget: 2, cerita: 'Pabrik sabun mengirim kardus contoh. Pesanan ekspor memakai kardus jumbo 20 × 16 dengan tinggi 12 kotak.', tujuan: 'Berapa kotak sabun muat di tiap kardus? Kamu punya 2 kesempatan.' }
+{ type: 'kardus', p: 6, l: 3, t: 4, asks: [{ label: 'Bungkus dalam kardus ini', key: 72 }, { label: 'Bungkus dalam kardus besar', key: 1620 }], budget: 2, cerita: 'Gudang menerima mi instan yang dikemas dalam kardus. Toko grosir memesan kardus besar berukuran panjang 15, lebar 12, dan tinggi 9 bungkus.', tujuan: 'Berapa bungkus mi muat di tiap kardus? Kamu punya 2 kesempatan.' },
+{ type: 'kardus', p: 4, l: 4, t: 5, asks: [{ label: 'Kotak dalam kardus ini', key: 80 }, { label: 'Kotak dalam kardus jumbo', key: 3840 }], budget: 2, cerita: 'Pabrik sabun mengirim kardus contoh. Pesanan ekspor memakai kardus jumbo berukuran panjang 20, lebar 16, dan tinggi 12 kotak.', tujuan: 'Berapa kotak sabun muat di tiap kardus? Kamu punya 2 kesempatan.' }
 ],
 I: [this.M[1],
 { type: 'prisma', base: [[0, 0], [6, 0], [2, 4]], t: 5, asks: [{ label: 'Liter air setinggi 5', key: 60 }, { label: 'Liter air setinggi 20', key: 240 }], budget: 2, cerita: 'Akuarium pojok punya dasar segitiga. Satu kotak air seukuran satu petak dasar dan setinggi satu tingkat berisi 1 liter.', tujuan: 'Berapa liter air bila diisi setinggi 5 tingkat, dan setinggi 20 tingkat? Kamu punya 2 kesempatan.' },
@@ -10451,18 +10451,18 @@ return this.scene(sp, 'Kardus dari atas dan dari samping');
 prismaScene(base, t) {
 const xs = base.map(p => p[0]), ys = base.map(p => p[1]), W = Math.max.apply(null, xs), Hh = Math.max.apply(null, ys);
 const ox = W + 1.5;
-return this.scene({ grids: [[0, 0, W, Hh]], A: [base], D: [[[ox, 0], [ox, Hh]], [[ox - 0.3, 0], [ox + 0.3, 0]], [[ox - 0.3, Hh], [ox + 0.3, Hh]]], T: [[0, Hh + 0.9, 'dasar dari atas'], [ox + 0.4, Hh / 2, 'tinggi ' + t]] }, 'Dasar akuarium');
+return this.scene({ grids: [[0, 0, W, Hh]], A: [base], D: [[[ox, 0], [ox, Hh]], [[ox - 0.3, 0], [ox + 0.3, 0]], [[ox - 0.3, Hh], [ox + 0.3, Hh]]], T: [[0, Hh + 0.9, 'dasar dari atas'], [ox - 1, Hh + 0.9, 'tinggi ' + t]] }, 'Dasar akuarium');
 }
 lancipScene(P) {
 const s = P.s, t = P.t, lvl = Math.min(P.pours, 3) * t / 3;
 const sp = { grids: [], A: [], B: [[[s + 2, 0], [2 * s + 2, 0], [s * 1.5 + 2, t]]], D: [[[0, t], [0, 0], [s, 0], [s, t]]], T: [[0, t + 0.9, 'wadah tegak'], [s + 2, t + 0.9, 'wadah lancip']] };
-if (lvl > 0) sp.A.push([[0, 0], [s, 0], [s, lvl], [0, lvl]]);
+if (lvl > 0) sp.B.push([[0, 0], [s, 0], [s, lvl], [0, lvl]]); /* isi yang dituang berwarna sama dengan isi wadah lancip */
 return this.scene(sp, 'Wadah tegak dan wadah lancip');
 }
 genMission(i) {
 const R = (a, b) => this.rnd(a, b);
 i = ({ F: 0, I: 1, E: 2 })[this.curLvl()];
-if (i === 0) { const p = R(3, 6), l = R(2, 5), t = R(2, 4), P2 = R(10, 15), L2 = R(8, 12), T2 = R(5, 10); return { p: p, l: l, t: t, asks: [{ label: 'Kotak kecil dalam kardus ini', key: p * l * t }, { label: 'Kotak kecil dalam kardus ' + P2 + ' × ' + L2 + ' × ' + T2, key: P2 * L2 * T2 }], cerita: 'Kardus lain datang. Kardus jumbonya berukuran ' + P2 + ' × ' + L2 + ' dengan tinggi ' + T2 + ' kotak.' }; }
+if (i === 0) { const p = R(3, 6), l = R(2, 5), t = R(2, 4), P2 = R(10, 15), L2 = R(8, 12), T2 = R(5, 10); return { p: p, l: l, t: t, asks: [{ label: 'Kotak kecil dalam kardus ini', key: p * l * t }, { label: 'Kotak kecil dalam kardus jumbo', key: P2 * L2 * T2 }], cerita: 'Kardus lain datang. Kardus jumbonya berukuran panjang ' + P2 + ', lebar ' + L2 + ', dan tinggi ' + T2 + ' kotak.' }; }
 if (i === 1) { const a = R(4, 6), b = R(2, 3), c = R(1, a - 1), d = R(b + 1, b + 3), base = [[0, 0], [a, 0], [a, b], [c, b], [c, d], [0, d]], A = this.shoe(base), t = R(4, 9), T2 = R(15, 30); return { base: base, t: t, asks: [{ label: 'Liter air setinggi ' + t, key: A * t }, { label: 'Liter air setinggi ' + T2, key: A * T2 }], cerita: 'Akuarium lain juga berdasar huruf L, dengan ukuran berbeda.' }; }
 const s = 3 * R(1, 3), t = R(4, 15); return { asks: [{ label: 'Isi wadah lancip dasar ' + s + ' × ' + s + ', tinggi ' + t + ' (kotak)', key: s * s * t / 3 }], cerita: 'Pelanggan lain membawa wadah lancip berdasar ' + s + ' × ' + s + ' dan tinggi ' + t + '.' };
 }
@@ -10507,7 +10507,8 @@ const tuang = () => {
 if (ctx.locked) return;
 if (!ctx.isTut && P.tuangLeft <= 0) return ctx.warn('Jatah tuang sudah habis.');
 const pours = P.pours + 1, lvl = Math.min(pours, 3) * P.t / 3;
-const entry = 'tuang ke-' + pours + ' → ' + (pours > 3 ? 'tumpah, wadah tegak penuh' : 'air setinggi ' + this.num(lvl) + ' dari ' + P.t);
+const ct = String(P.cerita || '') + ' ' + String(P.tujuan || ''), isi = /beras/i.test(ct) ? 'beras' : /gula/i.test(ct) ? 'gula' : /pakan/i.test(ct) ? 'pakan' : /kopi/i.test(ct) ? 'bubuk kopi' : /air/i.test(ct) ? 'air' : 'isi';
+const entry = 'tuang ke-' + pours + ' → ' + (pours > 3 ? 'tumpah, wadah tegak penuh' : isi + ' setinggi ' + this.num(lvl) + ' dari ' + P.t);
 ctx.setP({ pours: pours, tuangLeft: P.tuangLeft - (ctx.isTut ? 0 : 1), plog: P.plog.concat([entry]).slice(-6) }, ctx.tutNext(1));
 };
 const kosong = () => { if (ctx.locked) return; ctx.setP({ pours: 0, plog: P.plog.concat(['dikosongkan']).slice(-6) }, ctx.tutNext(2)); };
