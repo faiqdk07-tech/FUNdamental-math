@@ -12661,7 +12661,7 @@ const B = isLab ? { type: 'meja', s: s.lab.s, ujung: s.lab.ujung, shown: Math.mi
 const isMeja = B.type === 'meja', isBaris = B.type === 'baris';
 let segs = [], rows = [];
 if (isMeja) {
-const n = B.shown, w = Math.max(B.s * 10, Math.min(40, Math.floor(300 / n) - 4));
+const n = B.shown, w = Math.max(B.s * 10, Math.min(26 * B.s, Math.floor(300 / n) - 4)); /* meja panjang (2-3 kursi/sisi) tampak lebih panjang dari meja kotak (Faiq 19 Nov) */
 const dots = Array.from({ length: B.s }, (_, i) => i);
 segs.push(B.ujung >= 1 ? { isEnd: true, isWall: false, isMeja: false, dots: [0] } : { isEnd: false, isWall: true, isMeja: false, dots: [] });
 for (let i = 0; i < n; i++) segs.push({ isEnd: false, isWall: false, isMeja: true, dots: dots, w: w });
