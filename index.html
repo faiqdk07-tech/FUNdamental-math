@@ -1759,6 +1759,13 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 /* adegan atas mengikuti waktu cerita: malam gelap, subuh berkabut */
 #root .px-scn-top.top-malam{filter:brightness(.42) saturate(.7) hue-rotate(15deg)}
 #root .px-scn-top.top-kabut{filter:grayscale(.45) contrast(.6) brightness(1.18)}
+
+/* Rapor Kelas E: warna hasil Belah tetap terlihat di kartu nilai bergaya baru */
+#root .px-da-rapor .px-inner>div:first-child button[style*="background: #FFE3B8"]{background:#FFD36B!important}
+#root .px-da-rapor .px-inner>div:first-child button[style*="background: #E8EDFB"]{background:#BFD5F7!important}
+#root .px-da-rapor .px-inner>div:first-child button[style*="background: #F2F5FD"]{background:#DCE8FB!important}
+#root .px-da-rapor .px-inner>div:first-child button[style*="background: #F9ECE7"]{background:#F6C9BF!important}
+#root .px-da-rapor .px-inner>div:first-child button[style*="background: #FBF3EC"]{background:#FBE0D6!important}
 </style>
 </head>
 <body>
@@ -5544,6 +5551,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <path d="{{gridD}}" stroke="#E2E1DC" stroke-width="1" fill="none"></path>
 <path d="{{pathA}}" fill="#DCE5FA" stroke="#2F5BD3" stroke-width="1.5"></path>
 <path d="{{pathB}}" fill="#EFE6D2" stroke="#8C6A3E" stroke-width="1.5"></path>
+<path d="{{gridH}}" stroke="#1A1C2C" stroke-opacity="0.35" stroke-width="1" fill="none" pointer-events="none"></path>
 <path d="{{pathC}}" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4 3"></path>
 <path d="{{pathD}}" fill="none" stroke="#1C1C1A" stroke-width="2"></path>
 <text x="{{tAx}}" y="{{tAy}}" font-size="11" fill="#444441">{{tA}}</text>
@@ -14877,7 +14885,7 @@ show(v) { if (typeof v === 'boolean') return v ? 'ya' : 'tidak'; return String(M
 initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); if (r && /^[FIE]$/.test(r.lvl)) return r.lvl; } catch (e) {} return 'F'; }
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Rapor Kelas'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('kelas') }, PX.v2(this, v, { face: 'sinta', name: 'Bu Sinta', game: 'Rapor Kelas' })); }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxView: PX.alView('kelas') }, PX.v2(this, v, { face: 'sinta', role: 'Bu Sinta', name: 'Bu Sinta', game: 'Rapor Kelas' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -14974,7 +14982,7 @@ isRumus: s.mode === 'rumus', builders: builders, rules: s.rules.length ? s.rules
 hasRollers: false, rollers: [], rollCols: 3, hasTools: false, tools: [], hits: [], hasMsg: !!s.msg, msg: s.msg, msgBg: s.kind === 'ok' ? '#E6F4EC' : '#FFF3DF', msgFg: s.kind === 'ok' ? '#1F7A4D' : '#8A5200'
 }, view.vals);
 }
-sceneBlank() { return { hasScene: false, sceneAria: '', gridD: '', pathA: '', pathB: '', pathC: '', pathD: '', tA: '', tAx: 0, tAy: 0, tB: '', tBx: 0, tBy: 0, tC: '', tCx: 0, tCy: 0, tD: '', tDx: 0, tDy: 0 }; }
+sceneBlank() { return { hasScene: false, sceneAria: '', gridD: '', gridH: '', pathA: '', pathB: '', pathC: '', pathD: '', tA: '', tAx: 0, tAy: 0, tB: '', tBx: 0, tBy: 0, tC: '', tCx: 0, tCy: 0, tD: '', tDx: 0, tDy: 0 }; }
 sceneMap(sp) {
 const pts = [];
 ['A', 'B', 'C', 'D'].forEach(k => (sp[k] || []).forEach(ps => ps.forEach(p => pts.push(p))));
@@ -14999,7 +15007,7 @@ const X = x => Math.round((120 + (x - (minX + maxX) / 2) * sc) * 10) / 10, Y = y
 const d = (arr, close) => (arr || []).filter(ps => ps.length).map(ps => 'M' + ps.map(p => X(p[0]) + ' ' + Y(p[1])).join(' L') + (close ? ' Z' : '')).join(' ');
 let grid = '';
 (sp.grids || []).forEach(g => { for (let i = g[0]; i <= g[2] + 1e-9; i++) grid += 'M' + X(i) + ' ' + Y(g[1]) + ' L' + X(i) + ' ' + Y(g[3]) + ' '; for (let j = g[1]; j <= g[3] + 1e-9; j++) grid += 'M' + X(g[0]) + ' ' + Y(j) + ' L' + X(g[2]) + ' ' + Y(j) + ' '; });
-const out = { hasScene: true, sceneAria: aria || 'Gambar papan', gridD: grid.trim(), pathA: d(sp.A, true), pathB: d(sp.B, true), pathC: d(sp.C, false), pathD: d(sp.D, false) };
+const out = { hasScene: true, sceneAria: aria || 'Gambar papan', gridD: grid.trim(), gridH: (grid.match(/M(\S+) (\S+) L(\S+) \2/g) || []).join(' '), /* garis mendatar saja: pembatas antarbuku */ pathA: d(sp.A, true), pathB: d(sp.B, true), pathC: d(sp.C, false), pathD: d(sp.D, false) };
 ['A', 'B', 'C', 'D'].forEach((k, i) => { const t = (sp.T || [])[i]; out['t' + k] = t ? t[2] : ''; out['t' + k + 'x'] = t ? Math.min(Math.max(X(t[0]), 2), 238 - String(t[2]).length * 6) : 0; out['t' + k + 'y'] = t ? Math.min(Math.max(Y(t[1]), 11), 168) : 0; });
 return out;
 }
