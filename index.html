@@ -1766,6 +1766,44 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-da-rapor .px-inner>div:first-child button[style*="background: #F2F5FD"]{background:#DCE8FB!important}
 #root .px-da-rapor .px-inner>div:first-child button[style*="background: #F9ECE7"]{background:#F6C9BF!important}
 #root .px-da-rapor .px-inner>div:first-child button[style*="background: #FBF3EC"]{background:#FBE0D6!important}
+
+/* Pohon Temuan (19 Nov): rumah kaca + pohon per materi */
+#root .tm-page .px-tree-tab{background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #D9CBB0,0 3px 0 rgba(26,28,44,.2);padding:5px 2px 7px}
+#root .tm-page .px-tree-tab img{width:52px}
+#root .tm-page .px-tree-tab.on{background:#FFE29A;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #E8B53A,0 3px 0 rgba(26,28,44,.2);transform:translateY(-2px)}
+#root .tm-page .px-tree-tabs,#root .tm-card,#root .tm-hint{flex:none}
+#root .tm-tree{flex:none;position:relative;display:flex;flex-direction:column;align-items:stretch;gap:2px;padding:10px 4px 0;background:linear-gradient(to top,#D9CBB0 0 22px,#1A1C2C 22px 24px,#EEF8FB 24px,#DDF1F8);box-shadow:0 0 0 3px #1A1C2C,inset 0 0 0 3px #F4F6F8,0 4px 0 rgba(26,28,44,.2);overflow:hidden}
+#root .tm-tree::before{content:"";position:absolute;left:50%;width:22px;margin-left:-11px;top:40px;bottom:16px;background:linear-gradient(90deg,#2B1D1A 0 2px,#5E3B20 2px 5px,#8A5A32 5px 12px,#A8773F 12px 15px,#5E3B20 15px 20px,#2B1D1A 20px 22px);z-index:0}
+#root .tm-crown{position:relative;z-index:1;display:block;width:80%;margin:0 auto -14px;image-rendering:pixelated}
+#root .tm-pot{position:relative;z-index:1;display:block;width:120px;margin:-2px auto 0;image-rendering:pixelated}
+#root .tm-tier{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:0;margin-top:4px}
+#root .tm-tag{display:flex;align-items:center;gap:6px;padding:1px 8px 2px;background:#FFF6E0;box-shadow:0 0 0 2px #1A1C2C,0 2px 0 rgba(26,28,44,.2);font-size:12px;color:#2B1D1A;margin-bottom:2px}
+#root .tm-tag b{font-size:11px;color:#5A5048;font-weight:600}
+#root .tm-limb{align-self:stretch;display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);align-items:end}
+#root .tm-twigs{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;gap:0;padding:0 8px 9px 14px;min-height:50px}
+#root .tm-twigs.l{justify-content:flex-end}
+#root .tm-twigs.r{justify-content:flex-start}
+#root .tm-twigs::after{content:"";position:absolute;bottom:0;height:7px;background:#8A5A32;box-shadow:0 0 0 2px #1A1C2C,inset 0 2px 0 #C99A5B,inset 0 -2px 0 #5E3B20}
+#root .tm-twigs.l::after{right:-2px;left:8px;border-radius:0}
+#root .tm-twigs.r::after{left:-2px;right:8px}
+#root .tm-twigs::before{content:"";position:absolute;bottom:-5px;width:21px;height:17px;background:var(--leaf) center/contain no-repeat;image-rendering:pixelated;z-index:1}
+#root .tm-twigs.l::before{left:-6px}
+#root .tm-twigs.r::before{right:-6px;transform:scaleX(-1)}
+#root .tm-twigs:empty::after,#root .tm-twigs:empty::before{display:none}
+#root .tm-twigs .px-plot{width:28px;height:44px;flex:none}
+#root .tm-twigs .px-plot.on::after{inset:auto -2px -3px;height:9px;box-shadow:none;background:#FFE29A;border:2px solid #1A1C2C;border-radius:50%;z-index:-1}
+#root .tm-twigs .px-plot.on{z-index:1}
+#root .tm-twigs .px-plot.on i{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 -2px 0 #FFE29A)}
+#root .tm-twigs.r{padding:0 14px 9px 8px}
+#root .tm-twigs .px-plot i{width:28px;height:36px}
+#root .tm-twigs .px-plot.bud i{width:24px;height:16px}
+#root .tm-card{display:flex;align-items:center;gap:10px;padding:10px 12px 12px;background:#FFFDF5 repeating-linear-gradient(#FFFDF5 0 19px,#DCE8F0 19px 20px);box-shadow:0 0 0 2px #1A1C2C,inset 0 4px 0 #57A843,0 4px 0 rgba(26,28,44,.2)}
+#root .tm-card-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#root .tm-card-t small{font-size:11px;color:#5A5048}
+#root .tm-rule{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:13px;padding:1px 6px;background:#1A2418;color:#7CF0A6;box-shadow:0 0 0 2px #1A1C2C}
+#root .tm-btn{flex:none;text-decoration:none;font-size:13px;color:#2B1D1A;padding:6px 10px 8px;background:#FFF6E0;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #E8D5B5,inset 0 2px 0 #FFFFFF}
+#root .tm-btn.go{background:#5DC46A;color:#FFFFFF;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #2F8A43,inset 0 2px 0 #9BE6A4;text-shadow:0 1px 0 #1F5E2E}
+#root .tm-hint{align-self:center;font-size:12px;color:#2B3A1E;background:#FFF6E0;padding:2px 10px;box-shadow:0 0 0 2px #1A1C2C}
 </style>
 </head>
 <body>
@@ -5288,7 +5326,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{v2Msg}}" hint-placeholder-val="{{ false }}"><div class="px-pop {{v2MsgOk}}"><div class="px-pop-card"><div class="px-pop-rib"><i></i><b>{{v2MsgTitle}}</b><i></i></div><div class="px-pop-main"><span class="px-pop-fw"><img alt="" class="px-pop-face" src="{{v2Face}}"></span><div class="px-pop-body"><span class="px-pop-who">{{v2Name}}</span><div>{{msg}}</div></div></div>
 <div class="px-pop-act"><button type="button" class="px-btn2 px-f" onClick="{{v2CloseMsg}}">Oke</button><sc-if value="{{gmHasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="px-cta px-f" onClick="{{gmNext}}">{{gmNextLabel}} ▸</button></sc-if></div></div></div></sc-if>
 </div></template>
-<template id="tpl-PohonTemuan"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #E6F4DC; color: #2B1D1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
+<template id="tpl-PohonTemuan"><div class="tm-page" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #E9F5EF; color: #2B1D1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 780px; box-sizing: border-box; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px">
 <img alt="" class="px-topscene" src="{{scene}}">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
@@ -5300,27 +5338,28 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <button type="button" onClick="{{m.tap}}" class="px-tree-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
 </sc-for>
 </div>
-<div class="px-farm px-farm-{{matId}}">
-<div class="px-farm-sign px-f">{{matLabel}}</div>
-<sc-for list="{{levels}}" as="lv" hint-placeholder-count="3">
-<div class="px-bed">
-<div class="px-bed-sign"><span class="px-f">{{lv.label}}</span><b>{{lv.count}}</b></div>
-<div class="px-bed-soil">
-<sc-for list="{{lv.nodes}}" as="n" hint-placeholder-count="7">
-<button type="button" onClick="{{n.pick}}" aria-label="{{n.aria}}" class="px-plot {{n.cls}}"><i></i></button>
-</sc-for>
+<div class="tm-tree px-farm-{{matId}}" style="--leaf: url('{{leaf}}')" role="group" aria-label="Pohon temuan {{matLabel}}">
+<img alt="" class="tm-crown" src="{{crown}}">
+<sc-for list="{{tiers}}" as="lv" hint-placeholder-count="3">
+<div class="tm-tier">
+<div class="tm-tag"><span class="px-f">{{lv.label}}</span><b>{{lv.count}}</b></div>
+<div class="tm-limb">
+<div class="tm-twigs l"><sc-for list="{{lv.left}}" as="n" hint-placeholder-count="3"><button type="button" onClick="{{n.pick}}" aria-label="{{n.aria}}" class="px-plot {{n.cls}}"><i></i></button></sc-for></div>
+<div class="tm-gap"></div>
+<div class="tm-twigs r"><sc-for list="{{lv.right}}" as="n" hint-placeholder-count="3"><button type="button" onClick="{{n.pick}}" aria-label="{{n.aria}}" class="px-plot {{n.cls}}"><i></i></button></sc-for></div>
 </div>
 </div>
 </sc-for>
+<img alt="" class="tm-pot" src="{{pot}}">
 </div>
 <sc-if value="{{selFound}}" hint-placeholder-val="{{ false }}">
-<div class="px-farm-info"><i class="px-farm-ic px-farm-{{matId}}"></i><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f">{{sel.name}}</b><span class="px-leaf-rule">{{sel.rule}}</span></span><a href="Jurnal.dc.html" class="px-pbtn px-f" style="text-decoration: none">Jurnal</a></div>
+<div class="tm-card"><i class="px-farm-ic px-farm-{{matId}}"></i><span class="tm-card-t"><b class="px-f">{{sel.name}}</b><span class="tm-rule">{{sel.rule}}</span><small>{{sel.lvName}} · {{sel.game}}</small></span><a href="Jurnal.dc.html" class="tm-btn px-f">Jurnal</a></div>
 </sc-if>
 <sc-if value="{{selHidden}}" hint-placeholder-val="{{ false }}">
-<div class="px-farm-info"><i class="px-farm-ic bud"></i><span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><b class="px-f">Belum ditemukan</b><span class="px-leaf-game">di {{sel.game}}</span></span><a href="{{sel.href}}" onClick="{{sel.tap}}" class="px-pbtn px-f" style="text-decoration: none">Main</a></div>
+<div class="tm-card"><i class="px-farm-ic bud"></i><span class="tm-card-t"><b class="px-f">Belum ditemukan</b><small>{{sel.lvName}} · di {{sel.game}}</small></span><a href="{{sel.href}}" onClick="{{sel.tap}}" class="tm-btn go px-f">Main</a></div>
 </sc-if>
 <sc-if value="{{noSel}}" hint-placeholder-val="{{ true }}">
-<div class="px-farm-hint">Ketuk tanaman atau tunas di kebun.</div>
+<div class="tm-hint">Ketuk tanaman atau tunas di pohon.</div>
 </sc-if>
 </div>
 <nav style="position: absolute; left: 0; right: 0; bottom: 0; height: 64px; display: flex; border-top: 1px solid #DDDCD7; background: #FFFFFF">
@@ -7781,6 +7820,23 @@ const PX = (() => {
       t.stamp('batu', 64, 70); t.stamp('tunggul', 182, 50);
       /* petani menyiram */
       shadow(86, 70, 12); t.stamp('orang', 85, 55); R(P.e, 98, 64, 6, 4); R(P.k, 98, 64, 6, 1); R(P.e, 104, 63, 3, 1);
+    } else if (name === 'rumahkaca') {
+      /* rumah kaca temuan: dinding kaca berbingkai putih, 4 meja lab per materi, pot temuan */
+      R('#CDEBF5', 0, 0, W, 60); R('#E4F5FA', 0, 0, W, 8);
+      for (i = 0; i < 7; i++) { const x = 6 + i * 31; R(P.a, x - 4, 44, 26, 16); R(P.c, x - 2, 44, 10, 3); R(P.A, x + 8, 54, 12, 6); }
+      R(P.k, 0, 20, W, 3); R('#F4F6F8', 0, 21, W, 1); R(P.k, 0, 40, W, 2); R('#F4F6F8', 0, 40, W, 1);
+      for (i = 0; i < W; i += 32) { R(P.k, i, 0, 3, 60); R('#F4F6F8', i + 1, 0, 1, 60); }
+      for (i = 0; i < 6; i++) { R('rgba(255,255,255,.75)', 8 + i * 32, 4, 2, 1); R('rgba(255,255,255,.75)', 10 + i * 32, 2, 2, 1); R('rgba(255,255,255,.55)', 6 + i * 32, 26, 6, 1); }
+      R('#D9CBB0', 0, 60, W, 24); R(P.k, 0, 60, W, 1); for (i = 0; i < W; i += 16) R('#C6B593', i, 61, 1, 23); R('#C6B593', 0, 72, W, 1);
+      const items = [['g_coin', 'wortel'], ['g_timb', 'tomat'], ['g_tangga', 'kubis'], ['g_grafik', 'matahari']];
+      items.forEach((it, k) => { const x = 4 + k * 48;
+        R('rgba(43,29,26,.22)', x + 1, 76, 44, 3);
+        R(P.k, x + 2, 58, 3, 19); R(P.b, x + 3, 59, 1, 17); R(P.k, x + 39, 58, 3, 19); R(P.b, x + 40, 59, 1, 17);
+        R(P.k, x, 52, 44, 7); R(P.T, x + 1, 53, 42, 2); R(P.t, x + 1, 55, 42, 3);
+        t.stamp(it[0], x + 3, 37);
+        R(P.k, x + 24, 44, 14, 9); R('#C0602A', x + 25, 45, 12, 7); R('#F08A3C', x + 25, 45, 12, 2);
+        t.stamp(it[1], x + 25, 31); });
+      R(P.k, 186, 68, 8, 8); R(P.e, 187, 69, 6, 6); R(P.E, 187, 69, 6, 1); R(P.k, 184, 70, 3, 1);
     } else if (name === 'gudang') {
       /* lantai papan */
       R('#C99A5B', 0, 0, W, H); for (j = 0; j < H; j += 7) R('#B48552', 0, j, W, 1); for (j = 0; j < H; j += 7) for (i = (j % 14 ? 10 : 30); i < W; i += 40) R('#B48552', i, j, 1, 7);
@@ -8083,7 +8139,37 @@ const PX = (() => {
     }
     return (objMemo[key] = t.cv.toDataURL());
   };
-  return { obj: obj, topView: topView, U: U, kbScene: kbScene, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
+  /* Pohon Temuan: tajuk, pot, dan meja lab per materi (Faiq 19 Nov: rumah kaca + pohon per materi) */
+  const treeCrown = () => memo.treeCrown || (memo.treeCrown = (() => {
+    const W = 120, H = 50, t = pen(W, H, 77), R = t.R;
+    const blobs = [[60, 22, 19], [36, 26, 15], [84, 26, 15], [18, 30, 11], [102, 30, 11], [48, 13, 12], [72, 13, 12]];
+    const disc = (cx, cy, r, c, dy) => { for (let y = -r; y <= r; y++) { const w = Math.round(Math.sqrt(r * r - y * y)); R(c, cx - w, cy + y + (dy || 0), 2 * w + 1, 1); } };
+    blobs.forEach(b => disc(b[0], b[1], b[2] + 1, P.k));
+    blobs.forEach(b => disc(b[0], b[1], b[2], P.A));
+    blobs.forEach(b => disc(b[0], b[1] - 2, b[2] - 2, P.a));
+    blobs.forEach(b => disc(b[0] - 3, b[1] - 6, Math.max(2, b[2] - 9), P.c));
+    for (let i = 0; i < 26; i++) { const x = 34 + (t.rnd() * 52 | 0), y = 16 + (t.rnd() * 20 | 0); R(t.rnd() < .5 ? P.A : P.c, x, y, 2, 1); }
+    return t.cv.toDataURL(); })());
+  const treeLeaf = () => memo.treeLeaf || (memo.treeLeaf = (() => {
+    const t = pen(14, 11, 3), R = t.R;
+    R(P.k, 3, 0, 8, 1); R(P.k, 1, 1, 12, 1); R(P.k, 0, 2, 14, 7); R(P.k, 1, 9, 12, 1); R(P.k, 4, 10, 6, 1);
+    R(P.A, 1, 2, 12, 7); R(P.A, 2, 1, 10, 1); R(P.A, 4, 9, 6, 1); R(P.a, 2, 2, 9, 5); R(P.c, 3, 2, 4, 2); R(P.A, 7, 5, 1, 4);
+    return t.cv.toDataURL(); })());
+  const treePot = () => memo.treePot || (memo.treePot = (() => {
+    const W = 64, H = 22, t = pen(W, H, 5), R = t.R;
+    R(P.k, 4, 0, 56, 7); R('#F08A3C', 5, 1, 54, 2); R('#E0763A', 5, 3, 54, 3);
+    for (let y = 7; y < H; y++) { const ins = 8 + Math.floor((y - 7) / 3); R(P.k, ins - 1, y, W - 2 * ins + 2, 1); R(y < 9 ? '#A84E22' : '#C0602A', ins, y, W - 2 * ins, 1); R('#E0763A', ins + 3, y, 3, 1); }
+    R(P.k, 13, H - 1, 38, 1); R('#5E3B20', 6, 3, 52, 1);
+    return t.cv.toDataURL(); })());
+  const labBench = id => memo['bench-' + id] || (memo['bench-' + id] = (() => {
+    const W = 44, H = 30, t = pen(W, H, 9), R = t.R, it = { bil: ['g_coin', 'wortel'], alj: ['g_timb', 'tomat'], geo: ['g_tangga', 'kubis'], dat: ['g_grafik', 'matahari'] }[id] || ['g_coin', 'wortel'];
+    R(P.k, 2, 21, 3, 9); R(P.b, 3, 22, 1, 8); R(P.k, 39, 21, 3, 9); R(P.b, 40, 22, 1, 8);
+    R(P.k, 0, 16, 44, 6); R(P.T, 1, 17, 42, 2); R(P.t, 1, 19, 42, 2);
+    t.stamp(it[0], 3, 1);
+    R(P.k, 24, 8, 14, 9); R('#C0602A', 25, 9, 12, 7); R('#F08A3C', 25, 9, 12, 2);
+    t.stamp(it[1], 25, -4 + 0);
+    return t.cv.toDataURL(); })());
+  return { treeCrown: treeCrown, treeLeaf: treeLeaf, treePot: treePot, labBench: labBench, obj: obj, topView: topView, U: U, kbScene: kbScene, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
 /* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
    o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
@@ -14449,7 +14535,7 @@ const LV = { F: 'Fundamental', I: 'Intermediate', E: 'Expert' };
 const m = M[s.mat];
 const all = m.F.concat(m.I, m.E);
 const MID = { Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' };
-const mats = Object.keys(M).map(k => ({ label: k, on: s.mat === k ? 'on' : '', img: PX.house(MID[k] || 'bil'), tap: () => this.setState({ mat: k, sel: null }), style: 'padding: 7px 2px; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; ' + (s.mat === k ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF; font-weight: 500' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') }));
+const mats = Object.keys(M).map(k => ({ label: k, on: s.mat === k ? 'on' : '', img: PX.labBench(MID[k] || 'bil'), tap: () => this.setState({ mat: k, sel: null }), style: 'padding: 7px 2px; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; ' + (s.mat === k ? 'border: 1px solid #1C1C1A; background: #1C1C1A; color: #FFFFFF; font-weight: 500' : 'border: 1px solid #DDDCD7; background: #FFFFFF; color: #1C1C1A') }));
 const levels = ['F', 'I', 'E'].map((l, i) => {
 const key = s.mat + l;
 const open = !s.shut[key];
@@ -14462,7 +14548,10 @@ nodes: list.map(x => { const n = { id: x[0], found: !!FOUND[x[0]], hidden: !FOUN
 };
 });
 const selN = [].concat.apply([], levels.map(v => v.nodes)).find(n => n.id === s.sel) || null;
-return { scene: PX.topView('kebun'), matId: MID[s.mat] || 'bil', matLabel: s.mat, sel: selN || {}, selFound: !!(selN && selN.found), selHidden: !!(selN && selN.hidden), noSel: !selN, mats: mats, levels: levels, count: s.mat + ' · ' + all.filter(x => FOUND[x[0]]).length + ' / ' + all.length + ' temuan' };
+const half = a => { const k = Math.ceil(a.length / 2); return [a.slice(0, k), a.slice(k)]; };
+const tiers = levels.map((v, i) => { const h = half(v.nodes); return Object.assign({}, v, { left: h[0], right: h[1] }); }).reverse(); /* pohon tumbuh ke atas: Fundamental di dahan bawah */
+if (selN) selN.lvName = LV[['F', 'I', 'E'].find(l => m[l].some(x => x[0] === selN.id))];
+return { scene: PX.topView('rumahkaca'), crown: PX.treeCrown(), leaf: PX.treeLeaf(), pot: PX.treePot(), tiers: tiers, matId: MID[s.mat] || 'bil', matLabel: s.mat, sel: selN || {}, selFound: !!(selN && selN.found), selHidden: !!(selN && selN.hidden), noSel: !selN, mats: mats, levels: levels, count: s.mat + ' · ' + all.filter(x => FOUND[x[0]]).length + ' / ' + all.length + ' temuan' };
 }
 }
 

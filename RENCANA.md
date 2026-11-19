@@ -160,6 +160,11 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - Mini Games dibuat 2 langkah.
   - Tombol "?" ditambahkan ke semua game.
 
+## Evaluasi G–J (Faiq 19 Nov, dari file unggahan "Evaluasi per bagian")
+Hampir semua bagian G–J: "Ubah/Rombak total, kurang rapi dan masih mengikuti prototype". Disetujui Faiq: latar terang (tanpa panel gelap), benda nyata per tempat; urutan **Temuan → Jurnal → Progres → J (Tantangan, Bengkel, Cek celah, Pengaturan, Kasus baru)**.
+- **Temuan (selesai 19 Nov):** adegan atas `PX.topView('rumahkaca')` (dinding kaca, 4 meja lab per materi berisi ikon game + pot tanaman temuan); tab materi = meja lab (`PX.labBench(id)`); papan = satu pohon per materi (`.tm-tree`): tajuk `PX.treeCrown()`, batang CSS, dahan kiri-kanan per tingkat (Fundamental bawah, Intermediate tengah, Expert atas; temuan dibagi dua sisi), daun ujung `PX.treeLeaf()`, pot `PX.treePot()`; ikon temuan tetap wortel/tomat/kubis/bunga matahari, tunas = belum (I6, I7 Oke); terpilih = sorotan kuning di bawah tanaman; kartu keterangan `.tm-card` (nama, aturan di layar hijau, tingkat · game, tombol Jurnal/Main hijau).
+- Berikutnya: Jurnal (meja belajar terang, buku dua halaman, pita pembatas, stempel tanggal, kartu indeks), Progres (G1, G3, G4, G7), lalu J.
+
 ## Berikutnya (urut)
 **SERAH TERIMA KE CHAT BARU (18 Nov):** lanjutkan evaluasi Faiq di dokumen "Urutan App Fundamental Math" (https://claude.ai/artifact/9W44dXyDPGRB4uGUxCcMPP), tab "Evaluasi per bagian". Baca tab itu lewat konektor Claude Docs (node 037452e3-da42, hasilnya besar: simpan ke file lalu urai XML-nya).
 - Sudah dikerjakan: A, B, C, D, E (tahap 1, semua game), F1 Kasir Kilat, F2 Timbangan, F3 Tata Barisan, plus perbaikan lintas game dari F1–F3 (lihat "Sudah selesai").
