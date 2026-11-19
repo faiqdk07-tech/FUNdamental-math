@@ -1720,6 +1720,8 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-da-undian .px-inner div:has(> button[style*="background: #DCE5FA"]) button[style*="background: #DCE5FA"]{background:#4C8FDD!important}
 /* Timbangan (Faiq 19 Nov): baris pertama benda selalu di dasar piring, sisanya ditumpuk di atasnya (tidak melayang) */
 #root .px-gudang .px-pan{flex-wrap:wrap-reverse!important;align-content:flex-start!important}
+/* Tata Barisan (Faiq 19 Nov): cerita menyebut dinding di belakang aula -> dinding digambar di sisi belakang (atas) lantai */
+#root .px-floor-board.ub-wall{padding-top:22px!important;box-shadow:inset 0 16px 0 #D9C7A8,inset 0 18px 0 #1A1C2C,0 0 0 3px #1A1C2C!important;background-image:none}
 </style>
 </head>
 <body>
@@ -6500,7 +6502,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div class="px-clip pj ub-calc">
 <div class="pj-h px-f">Hitungan panitia</div>
 <sc-for list="{{blocks}}" as="b" hint-placeholder-count="2">
-<button type="button" onClick="{{b.sel}}" style="{{b.rowStyle}}"><span style="width: 14px; height: 14px; background: {{b.color}}; box-shadow: 0 0 0 2px #2B1D1A"></span><span class="px-f" style="flex: 1">Blok {{b.w}} × {{b.h}}</span><span style="{{b.dispStyle}}">{{b.show}}</span></button>
+<button type="button" onClick="{{b.sel}}" style="{{b.rowStyle}}"><span style="width: 14px; height: 14px; background: {{b.color}}; box-shadow: 0 0 0 2px #2B1D1A"></span><span class="px-f" style="flex: 1">Blok {{b.h}} × {{b.w}}</span><span style="{{b.dispStyle}}">{{b.show}}</span></button>
 </sc-for>
 <div class="px-calc" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px"><sc-for list="{{bkeys}}" as="q" hint-placeholder-count="11"><button type="button" onClick="{{q.tap}}" aria-label="{{q.aria}}" style="{{q.style}}">{{q.label}}</button></sc-for></div>
 </div>
@@ -8020,8 +8022,12 @@ const PX = (() => {
 /* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
    o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
 /* Tokoh balon mengikuti cerita (Faiq 19 Nov): ambil orang yang paling awal disebut di cerita; kalau tidak ada, pakai tokoh bawaan game */
-PX.CAST = [[/\bBu Ani\b/, 'sari', 'Bu Ani'], [/\bIbu kos\b/i, 'sinta', 'Ibu kos'], [/\bPak RT\b/, 'pakrt', 'Pak RT'], [/\bPemilik toko\b/i, 'ratna', 'Pemilik toko'], [/\bPedagang\b/i, 'darto', 'Pedagang'], [/\bPanitia\b/, 'ketua', 'Panitia'], [/\bMandor\b/, 'mandor', 'Mandor gudang'], [/\bBu Sari\b/, 'sari', 'Bu Sari'], [/\bPak Tani\b/, 'harun', 'Pak Tani'], [/\bPetugas bank sampah\b/i, 'yanto', 'Petugas bank sampah'], [/\bKurir\b/, 'kurir', 'Kurir']];
-PX.cast = (story, def, list) => { const st = String(story || ''); let best = null, bi = 1e9; (list || PX.CAST).forEach(c => { const m = st.match(c[0]); if (m && m.index < bi) { bi = m.index; best = c; } }); return best ? { face: best[1], role: best[2] } : def; };
+PX.CAST = [[/\bBu Ani\b/, 'sari', 'Bu Ani'], [/\bIbu kos\b/i, 'sinta', 'Ibu kos'], [/\bPak RT\b/, 'pakrt', 'Pak RT'], [/\bPemilik toko\b/i, 'ratna', 'Pemilik toko'], [/\bPedagang\b/i, 'darto', 'Pedagang'], [/\bPanitia\b/, 'ketua', 'Panitia'], [/\bMandor\b/, 'mandor', 'Mandor gudang'], [/\bBu Sari\b/, 'sari', 'Bu Sari'], [/\bPak Tani\b/, 'harun', 'Pak Tani'], [/\bPetugas bank sampah\b/i, 'yanto', 'Petugas bank sampah'], [/\bKurir\b/, 'kurir', 'Kurir'], [/\bPak Darto\b/, 'darto', 'Pak Darto']];
+PX.cast = (story, def, list) => { const st = String(story || ''); let best = null, bi = 1e9; (list || PX.CAST).forEach(c => { const m = st.match(c[0]); if (m && m.index < bi) { bi = m.index; best = c; } });
+  /* nama berawalan Bu/Pak/Kak/Mbak/Mas yang disebut lebih awal juga dipakai (mis. "Bu Ida yakin ...") */
+  const nm = st.match(/\b(Bu|Pak|Kak|Mbak|Mas) ([A-Z][a-z]+)/);
+  if (nm && nm.index < bi && !/^(RT|RW)$/.test(nm[2])) { const F = { darto: 1, harun: 1, wina: 1, dimas: 1, rara: 1, sari: 1, rina: 1, lina: 1, wati: 1, mira: 1, sinta: 1, yanto: 1, udin: 1, ratna: 1 }, k = nm[2].toLowerCase(); return { face: F[k] ? k : (/^(Bu|Mbak)$/.test(nm[1]) ? 'sinta' : /^Kak$/.test(nm[1]) ? 'dimas' : 'harun'), role: nm[0] }; }
+  return best ? { face: best[1], role: best[2] } : def; };
 PX.V2ROLE = {"Kasir Kilat": "Pelanggan", "Timbangan": "Mandor gudang", "Ubin": "Panitia", "Jadwal Bus": "Petugas terminal", "Bagi Pizza": "Panitia", "Racik Resep": "Pemesan", "Lipat Kertas": "Pemesan", "Dua Struk": "Pembeli", "Meja Hajatan": "Tuan rumah", "Martabak Topping": "Pembeli", "Mesin Minuman": "Petugas", "Argo Ojek": "Penumpang", "Rekap Grosir": "Pemilik toko", "Kebun Pagar": "Pemilik kebun", "Dapur Roti": "Pemilik dapur", "Rute Kurir": "Pengirim paket", "Pasang Lantai": "Pemilik rumah", "Gudang Kardus": "Petugas gudang", "Cetak Spanduk": "Pemesan", "Tangga Bangunan": "Mandor", "Pelabuhan": "Petugas pelabuhan", "Loker OSIS": "Pengurus OSIS", "Pentas Seni": "Panitia", "Undian Doorprize": "Panitia", "Rapor Kelas": "Wali kelas", "Grafik Viral": "Pengelola data"};
 PX.v2 = (comp, v, o) => {
   const st = comp.state || {}, x = comp._v2 || (comp._v2 = { key: null, open: false });
@@ -10661,7 +10667,7 @@ const all = this.common(P.L1, P.L2);
 hasRuler = true; rulerLabel = 'Meteran potong'; rulerVal = P.p + ' ' + unit; { const st = Lm > 30 ? 10 : 5; for (let v = st; v <= Lm; v += st) tapeNums.push({ n: String(v), style: 'left: ' + ((v - 0.5) / Lm * 100) + '%' }); }
 const setL = v => setP({ p: Math.max(1, Math.min(Lm, v)), cut: null });
 ticks = Array.from({ length: Lm }, (_, i) => { const v = i + 1; return tick(v, v % 5 === 0 ? 20 : 12, v < P.p, v === P.p, () => setL(v), 'Panjang ' + v + ' ' + unit); });
-statusLabel = 'Ditemukan ' + P.found.length + ' / ' + all.length; status = 'Kesempatan meleset ' + P.left;
+statusLabel = 'Ditemukan ' + P.found.length; /* total disembunyikan (anti-clue) */ status = 'Kesempatan meleset ' + P.left;
 const cut = () => {
 if (doneStage) return;
 const Pn = Object.assign({}, P, { cut: P.p });
@@ -16736,8 +16742,8 @@ if (t === 'perluas') return ['Menambah kursi', ['Ketuk meteran untuk mengatur ta
 return ['Menghitung aula', ['Meteran Potong kolom dan Potong baris membagi aula menjadi blok berwarna. Nilai 0 berarti tidak dipotong.', 'Ketuk satu blok, ketik jumlah kursinya, lalu tekan Cek hitungan.', 'Setiap cek yang salah memakai satu kesempatan.']];
 }
 /* benda di papan mengikuti cerita (Faiq 18 Nov): kue, tumpeng, kotak nasi, siswa, atau kursi */
-uItem() { const P = this.state.P || {}, t = String(P.cerita || '') + ' ' + String(P.tujuan || ''); if (/tumpeng/i.test(t)) return 'tumpeng'; if (/kotak nasi/i.test(t)) return 'nasibox'; if (/siswa|berbaris|murid/i.test(t)) return 'orang'; if (/kue/i.test(t) || P.type === 'nampan') return 'kue'; return 'kursi'; }
-renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const it = this.uItem(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxBoardCls: { kue: 'px-tray-board', tumpeng: 'px-tray-board', nasibox: 'px-table-board', orang: 'px-field-board' }[it] || 'px-floor-board' }, PX.v2(this, v, { face: 'darto', name: 'Pak Darto', game: 'Ubin' })); }
+uItem() { const P = this.state.P || {}, t = String(P.cerita || '') + ' ' + String(P.tujuan || ''); if (/tumpeng/i.test(t)) return 'tumpeng'; if (/kotak nasi/i.test(t)) return 'nasibox'; if (/siswa|berbaris|murid/i.test(t)) return 'orang'; if (/kursi/i.test(t)) return 'kursi'; if (/kue/i.test(t) || P.type === 'nampan') return 'kue'; return 'kursi'; }
+renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const it = this.uItem(); return Object.assign(v, { px: PX.U, pxHasTag: !!v.gmTagLine, pxBoardCls: ({ kue: 'px-tray-board', tumpeng: 'px-tray-board', nasibox: 'px-table-board', orang: 'px-field-board' }[it] || 'px-floor-board') + (this.state.P && this.state.P.onlyCols ? ' ub-wall' : '') }, PX.v2(this, v, Object.assign(PX.cast(v.story, { face: 'darto', role: 'Panitia' }), { name: 'Pak Darto', game: 'Ubin' }))); }
 gmRender() {
 const s = this.state, P = s.P;
 const isTut = s.mode === 'misi' && s.tut !== null;
@@ -16768,7 +16774,7 @@ cols = P.c; for (let i = 0; i < P.r * P.c; i++) kinds.push('plan');
 boardNote = 'Rencana: ' + P.r + ' baris × ' + P.c + ' kolom';
 }
 const total = this.divs(n).length;
-statusLabel = isTut ? n + ' kue' : 'Ditemukan ' + P.found.length + ' / ' + total;
+statusLabel = isTut ? n + ' kue' : 'Ditemukan ' + P.found.length; /* total tidak ditampilkan: membocorkan banyak susunan (aturan anti-clue, Faiq 19 Nov) */
 status = isTut ? '' : 'Meleset tersisa ' + P.left;
 const setRC = (r, c) => setP({ r: r, c: c, shown: null });
 steppers = [step('Baris', P.r, 1, n, v => setRC(v, P.c)), step('Kolom', P.c, 1, n, v => setRC(P.r, v))];
@@ -17715,7 +17721,9 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
   function genCase(key, l, d, slot) {
     const id = 'a' + d + l + slot, ck = key + id;
     if (ck in genCache) return genCache[ck];
-    const sp = genBy(key, l, ck, (d + slot) % 3);
+    let sp = genBy(key, l, ck, (d + slot) % 3);
+    /* kasus Angka baru 2 tidak boleh sama persis dengan Angka baru 1 (Faiq 19 Nov) */
+    if (sp && slot === 2) { const first = genCase(key, l, d, 1), same = x => first && JSON.stringify(x) === JSON.stringify(Object.assign({}, first, { id: undefined, tingkat: undefined, konteks: undefined, gen: undefined })); const strip = x => JSON.parse(JSON.stringify(x)); for (let n = 0; n < 6 && same(strip(sp)); n++) { const alt = genBy(key, l, ck + 'x' + n, (d + slot + n) % 3); if (alt) sp = alt; } }
     genCache[ck] = sp ? Object.assign(sp, { id: id, tingkat: l, konteks: 'Angka baru ' + slot, gen: true }) : null;
     return genCache[ck];
   }
