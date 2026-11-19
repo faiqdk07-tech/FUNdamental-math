@@ -1961,6 +1961,36 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .cc-legend span{display:flex;align-items:center;gap:8px}
 #root .cc-legend small{font-size:10.5px;color:#5A5048;padding-top:2px;border-top:1px dashed #D9CBB0}
 #root .cc-legend .px-moon{width:14px;height:14px;background:conic-gradient(#FFC83D var(--p),#D5DDE8 0);box-shadow:0 0 0 1.5px #1A1C2C}
+
+/* Pengaturan (19 Nov, gaya Bengkel v2): ruang pengurus terang, lemari panel krem dengan saklar; hapus data di balik pita pengaman */
+#root.px-p-Pengaturan>div>div{background-color:#EAF0F6!important}
+#root .st-face{background:#F6D7C3!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -6px 0 #E8B79A!important}
+#root .st-cab{display:flex;flex-direction:column;background:#F1EADB;box-shadow:0 0 0 2px #1A1C2C,inset 0 3px 0 #FFFDF5,inset 0 -5px 0 #D9CBB0,0 4px 0 rgba(26,28,44,.2)}
+#root .st-sec{display:flex;flex-direction:column;gap:8px;padding:12px 12px 14px}
+#root .st-sec+.st-sec{border-top:2px solid #D9CBB0;box-shadow:inset 0 2px 0 #FFFDF5}
+#root .st-ic{width:18px;height:18px;image-rendering:pixelated}
+#root .st-keys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#root .st-key{display:flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 6px 3px;border:0;cursor:pointer;background:#FFFDF5;color:#2B1D1A;font-size:12.5px;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #D9CBB0}
+#root .st-key i{flex:none;width:9px;height:9px;border-radius:50%;background:#B9AE96;box-shadow:0 0 0 1.5px #1A1C2C}
+#root .st-key.on{background:#FFE29A;box-shadow:0 0 0 2px #1A1C2C,inset 0 -2px 0 #E8B53A;transform:translateY(2px);font-weight:700}
+#root .st-key.on i{background:#5BE07A;box-shadow:0 0 0 1.5px #1A1C2C,0 0 4px #5BE07A}
+#root .st-note,#root .st-sub{font-size:11.5px;color:#5A5048}
+#root .st-sub{color:#2B1D1A;font-size:12.5px;margin-top:2px}
+#root .st-sub small{font-size:11px;color:#5A5048}
+#root .st-row{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:40px;font-size:13px;color:#2B1D1A}
+#root .st-row+.st-row{border-top:1px dashed #D9CBB0;padding-top:6px}
+#root .st-t{display:flex;flex-direction:column;min-width:0}
+#root .st-t small{font-size:11px;color:#5A5048}
+#root .st-stepper{display:flex;align-items:center;gap:8px}
+#root .st-knob{width:30px;height:30px;padding:0 0 2px;border:0;border-radius:50%;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #D9CBB0;font:inherit;font-size:17px;font-weight:700;cursor:pointer}
+#root .st-lcd{min-width:30px;text-align:center;padding:2px 6px;background:#1A2418;color:#7CF0A6;font-weight:700;box-shadow:0 0 0 2px #1A1C2C;text-shadow:0 0 4px rgba(124,240,166,.5)}
+#root .st-btn{flex:none;display:inline-flex;align-items:center;cursor:pointer;font-size:12px;color:#2B1D1A;padding:5px 10px 7px;border:0;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #D9CBB0}
+#root .st-msg{padding:8px 10px;background:#1A2418;color:#7CF0A6;box-shadow:0 0 0 2px #1A1C2C;font-size:12.5px}
+#root .st-danger{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:10px;background:repeating-linear-gradient(135deg,#F2C035 0 10px,#2B1D1A 10px 20px);box-shadow:0 0 0 2px #1A1C2C}
+#root .st-red{display:block;width:100%;padding:8px 10px 10px;border:0;cursor:pointer;font-size:14px;color:#FFFFFF;background:#E8554E;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #A32D2D,inset 0 2px 0 #FF9C8F;text-shadow:0 1px 0 #7A1F1A}
+#root .st-warn{font-size:12.5px;line-height:1.4;color:#791F1F;padding:8px 10px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C}
+#root .st-warn-b{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#root .st-warn-b .st-btn{justify-content:center}
 </style>
 </head>
 <body>
@@ -5222,56 +5252,56 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </div></template>
 <template id="tpl-Pengaturan"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 14px">
-<div style="display: flex; align-items: center; gap: 10px">
+<div class="bk-top">
 <a href="Main.dc.html" aria-label="Kembali ke beranda" class="px-fw px-sq"><img alt="" src="{{px.kiri}}" width="12" height="14"></a>
-<div class="px-f" style="font-size: 20px; font-weight: 700">Pengaturan</div>
+<b class="px-f bk-title">Pengaturan</b>
+<span class="bk-week"><b>{{targetNow}}</b>kegiatan per hari</span>
 </div>
-<div class="px-ctl">
-<div class="px-ctl-h px-f">Target harian</div>
-<div class="px-keys">
+<div class="bk-npc"><span class="bk-face st-face"><img alt="" src="{{face}}"></span><div class="bk-bubble"><b class="px-f">Pengurus</b>Data tersimpan di perangkat ini. Ekspor secara berkala supaya progres tidak hilang.</div></div>
+<div class="st-cab">
+<div class="st-sec">
+<div class="bk-lab px-f"><img alt="" class="st-ic" src="{{px.bintang}}">Target harian</div>
+<div class="st-keys">
 <sc-for list="{{targets}}" as="t" hint-placeholder-count="3">
-<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" class="px-key {{t.on}}"><i></i><span class="px-f">{{t.label}}</span></button>
+<button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" class="st-key {{t.on}}"><i></i><span class="px-f">{{t.label}}</span></button>
 </sc-for>
 </div>
-<div class="px-ctl-note">{{targetNote}}</div>
+<div class="st-note">{{targetNote}}</div>
 </div>
-<div class="px-ctl">
-<div class="px-ctl-h px-f">Latihan</div>
-<div class="px-ctl-row"><span>Kasus per tingkat</span>
-<span style="display: flex; align-items: center; gap: 8px">
-<button type="button" onClick="{{perDown}}" aria-label="Kurangi kasus per tingkat" class="px-knob" style="color: {{perDownCol}}">−</button>
-<span class="px-lcd">{{per}}</span>
-<button type="button" onClick="{{perUp}}" aria-label="Tambah kasus per tingkat" class="px-knob" style="color: {{perUpCol}}">+</button>
+<div class="st-sec">
+<div class="bk-lab px-f"><img alt="" class="st-ic" src="{{px.kalender}}">Latihan</div>
+<div class="st-row"><span>Kasus per tingkat</span>
+<span class="st-stepper">
+<button type="button" onClick="{{perDown}}" aria-label="Kurangi kasus per tingkat" class="st-knob" style="color: {{perDownCol}}">−</button>
+<span class="st-lcd">{{per}}</span>
+<button type="button" onClick="{{perUp}}" aria-label="Tambah kasus per tingkat" class="st-knob" style="color: {{perUpCol}}">+</button>
 </span></div>
-<div class="px-ctl-sub">Syarat tingkat tuntas</div>
-<div class="px-keys">
+<div class="st-sub">Syarat tingkat tuntas <small>(kasus tepat dari 10 terakhir)</small></div>
+<div class="st-keys">
 <sc-for list="{{rules}}" as="r" hint-placeholder-count="3">
-<button type="button" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="px-key {{r.on}}"><i></i><span class="px-f">{{r.label}}</span></button>
+<button type="button" onClick="{{r.tap}}" aria-label="{{r.aria}}" class="st-key {{r.on}}"><i></i><span class="px-f">{{r.label}}</span></button>
 </sc-for>
 </div>
 </div>
-<div class="px-ctl">
-<div class="px-ctl-h px-f">Data</div>
-<div class="px-ctl-row"><span style="display: flex; flex-direction: column"><span>Ekspor progres</span><small>Unduh file cadangan</small></span><button type="button" onClick="{{doCopy}}" class="px-pbtn px-f">Unduh</button></div>
-<div class="px-ctl-row"><span style="display: flex; flex-direction: column"><span>Impor progres</span><small>Pulihkan dari file cadangan</small></span><label class="px-pbtn px-f">Pilih file<input type="file" accept="application/json,.json" onChange="{{doImport}}" style="display: none"></label></div>
-<a href="KasusBaru.dc.html" class="px-ctl-row" style="text-decoration: none"><span style="display: flex; flex-direction: column"><span>Kasus harian baru</span><small>Tambah lewat prompt, untuk 25 game</small></span><span class="px-pbtn px-f">Buka ›</span></a>
-<sc-if value="{{askWipe}}" hint-placeholder-val="{{ false }}">
-<div class="px-ctl-warn">
-<span>Semua progres di perangkat ini akan terhapus dan tidak bisa dikembalikan.</span>
-<span style="display: flex; justify-content: flex-end; gap: 8px">
-<button type="button" onClick="{{cancelWipe}}" class="px-pbtn px-f">Batal</button>
-<button type="button" onClick="{{confirmWipe}}" class="px-pbtn px-red px-f">Ya, hapus</button>
-</span>
+<div class="st-sec">
+<div class="bk-lab px-f"><img alt="" class="st-ic" src="{{px.daftar}}">Data</div>
+<div class="st-row"><span class="st-t"><span>Ekspor progres</span><small>Unduh file cadangan</small></span><button type="button" onClick="{{doCopy}}" class="st-btn px-f">Unduh</button></div>
+<div class="st-row"><span class="st-t"><span>Impor progres</span><small>Pulihkan dari file cadangan</small></span><label class="st-btn px-f">Pilih file<input type="file" accept="application/json,.json" onChange="{{doImport}}" style="display: none"></label></div>
+<a href="KasusBaru.dc.html" class="st-row" style="text-decoration: none"><span class="st-t"><span>Kasus harian baru</span><small>Tambah lewat prompt, untuk 25 game</small></span><span class="st-btn px-f">Buka ›</span></a>
 </div>
-</sc-if>
-<sc-if value="{{showWipeBtn}}" hint-placeholder-val="{{ true }}">
-<div class="px-ctl-row" style="justify-content: flex-start"><button type="button" onClick="{{startWipe}}" class="px-pbtn px-red px-f">Hapus semua data</button></div>
-</sc-if>
 </div>
 <sc-if value="{{hasMsg}}" hint-placeholder-val="{{ false }}">
-<div class="px-lcdmsg">{{msg}}</div>
+<div class="st-msg">{{msg}}</div>
 </sc-if>
-<div style="font-size: 12px; color: #3E4050">Data tersimpan di perangkat ini. Ekspor secara berkala supaya progres tidak hilang.</div>
+<div class="st-danger">
+<sc-if value="{{showWipeBtn}}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{startWipe}}" class="st-red px-f">Hapus semua data</button>
+</sc-if>
+<sc-if value="{{askWipe}}" hint-placeholder-val="{{ false }}">
+<span class="st-warn">Semua progres di perangkat ini akan terhapus dan tidak bisa dikembalikan.</span>
+<span class="st-warn-b"><button type="button" onClick="{{cancelWipe}}" class="st-btn px-f">Batal</button><button type="button" onClick="{{confirmWipe}}" class="st-red px-f">Ya, hapus</button></span>
+</sc-if>
+</div>
 </div>
 
 </div></template>
@@ -7966,6 +7996,18 @@ const PX = (() => {
       R(P.k, 120, 22, 8, 7); R('#9ED7F5', 121, 23, 6, 5); R(P.k, 142, 22, 8, 7); R('#9ED7F5', 143, 23, 6, 5);
       [[60, 30], [176, 28]].forEach(q => t.tree(q[0], q[1]));
     }],
+    ruangatur: ['#EAF0F6', t => { const R = t.R; let i;
+      /* ruang pengurus terang: jendela, lemari panel krem (saklar, tuas, kenop, layar hijau), pot tanaman, lantai */
+      R(P.k, 10, 6, 34, 26); R('#9ED7F5', 12, 8, 30, 22); R('#B8E5FA', 12, 16, 30, 5); R(P.k, 26, 8, 2, 22); R('#F4F6F8', 12, 8, 14, 1);
+      R(P.k, 60, 4, 84, 40); R('#F1EADB', 61, 5, 82, 39); R('#FFFDF5', 61, 5, 82, 2); R('#D9CBB0', 61, 41, 82, 3);
+      [[63, 7], [140, 7], [63, 38], [140, 38]].forEach(q => R('#9A8E74', q[0], q[1], 1, 1));
+      R(P.k, 66, 9, 34, 12); R('#1A2418', 67, 10, 32, 10); R('#7CF0A6', 69, 12, 14, 1); R('#7CF0A6', 69, 15, 22, 1); R('#7CF0A6', 69, 18, 10, 1);
+      [[106, P.r], [116, P.y], [126, P.a]].forEach(q => { R(P.k, q[0], 9, 8, 12); R('#3E4552', q[0] + 1, 10, 6, 10); R(P.k, q[0] + 1, 11, 6, 4); R(q[1], q[0] + 2, 12, 4, 2); });
+      [[68, P.a], [80, P.y], [92, P.r]].forEach(q => { R(P.k, q[0], 25, 9, 9); R('#E3E7EE', q[0] + 1, 26, 7, 7); R(q[1], q[0] + 3, 28, 3, 3); });
+      for (i = 0; i < 3; i++) { R(P.k, 108 + i * 10, 24, 3, 16); R('#9AA7BA', 109 + i * 10, 25, 1, 14); R(P.k, 106 + i * 10, 24 + i * 4, 7, 4); R([P.r, P.u, P.y][i], 107 + i * 10, 25 + i * 4, 5, 2); }
+      R(P.k, 160, 26, 14, 14); R('#C0602A', 161, 27, 12, 13); R('#F08A3C', 161, 27, 12, 2); R(P.a, 162, 14, 4, 13); R(P.c, 167, 10, 5, 16); R(P.A, 170, 18, 4, 8);
+      R(P.k, 0, 44, 195, 1); R('#D8CDB6', 0, 45, 195, 2);
+    }],
     papan: ['#F2EAD9', t => { const R = t.R; let i; R(P.k, 24, 4, 148, 42); R(P.b, 25, 5, 146, 40); R('#D8B07A', 29, 9, 138, 32);
       [[36, 12, P.w, P.r], [66, 16, P.Y, P.u], [98, 11, P.w, P.a], [130, 15, '#F7A8B0', P.r]].forEach(q => { R(P.k, q[0], q[1], 24, 20); R(q[2], q[0] + 1, q[1] + 1, 22, 18); for (i = 0; i < 3; i++) R('#9AA7BA', q[0] + 4, q[1] + 7 + i * 4, 16, 1); R(P.k, q[0] + 10, q[1] - 2, 4, 4); R(q[3], q[0] + 11, q[1] - 1, 2, 2); }); }],
     bengkel: ['#EFE8DC', t => { const R = t.R; let i; R(P.k, 20, 4, 155, 26); R('#C9A47A', 21, 5, 153, 24); for (i = 0; i < 12; i++) R('#B48E62', 26 + i * 12, 8, 2, 2);
@@ -8490,7 +8532,7 @@ PX.devOf = (g, comp) => {
     return memo[key] = t.cv.toDataURL();
   }
   PX.scene = scene;
-  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'panel', Tantangan: 'alunalun', Bengkel: 'bengkelterang', CekCelah: 'teropongpagi', KasusBaru: 'pos' };
+  const ROOM = { Progres: 'ruangpiala', Jurnal: 'meja', PohonTemuan: 'pohon', Pengaturan: 'ruangatur', Tantangan: 'alunalun', Bengkel: 'bengkelterang', CekCelah: 'teropongpagi', KasusBaru: 'pos' };
   const DONE = { LokerOSIS: 1, PentasSeni: 1, UndianDoorprize: 1, RaporKelas: 1, GrafikViral: 1, RuteKurir: 1, PasangLantai: 1, GudangKardus: 1, CetakSpanduk: 1, TanggaBangunan: 1, Pelabuhan: 1, Main: 1, MiniGames: 1, KasirKilat: 1, Timbangan: 1, Ubin: 1, JadwalBus: 1, BagiPizza: 1, RacikResep: 1, LipatKertas: 1, DuaStruk: 1, MejaHajatan: 1, MartabakTopping: 1, MesinMinuman: 1, ArgoOjek: 1, RekapGrosir: 1, KebunPagar: 1, DapurRoti: 1 };
   PX.skin = (root, name) => {
     if (DONE[name]) { root.className = ''; return; }
@@ -14386,10 +14428,10 @@ track: 'flex: none; position: relative; width: 40px; height: 22px; border-radius
 knob: 'position: absolute; top: 2px; left: ' + (on ? 20 : 2) + 'px; width: 18px; height: 18px; border-radius: 50%; background: #FFFFFF' }; };
 return {
 targets: T.map(t => ({ on: s.target === t[0] ? 'on' : '', label: t[1] + ' · ' + t[0], aria: 'Target ' + t[1] + ', ' + t[0] + ' kegiatan per hari' + (s.target === t[0] ? ', dipilih' : ''), style: seg(s.target === t[0]), tap: () => this.save({ target: t[0] }) })),
-px: PX.U, targetNote: 'Dihitung dari misi dan kasus yang selesai hari ini. Target sekarang: ' + s.target + ' per hari.',
+px: PX.U, face: PX.U.sinta, targetNow: String(s.target), targetNote: 'Dihitung dari misi dan kasus yang selesai hari ini.',
 per: String(s.per), perUp: () => { if (s.per < 10) this.save({ per: s.per + 1 }); }, perDown: () => { if (s.per > 3) this.save({ per: s.per - 1 }); },
 perUpCol: s.per < 10 ? '#1C1C1A' : '#B9B8B2', perDownCol: s.per > 3 ? '#1C1C1A' : '#B9B8B2',
-rules: [7, 8, 9].map(r => ({ on: s.rule === r ? 'on' : '', label: r + ' dari 10 tepat', aria: 'Syarat bintang kedua: ' + r + ' dari 10 kasus harian tepat' + (s.rule === r ? ', dipilih' : ''), style: seg(s.rule === r), tap: () => this.save({ rule: r }) })),
+rules: [7, 8, 9].map(r => ({ on: s.rule === r ? 'on' : '', label: r + ' dari 10', aria: 'Syarat bintang kedua: ' + r + ' dari 10 kasus harian tepat' + (s.rule === r ? ', dipilih' : ''), style: seg(s.rule === r), tap: () => this.save({ rule: r }) })),
 toggles: [],
 doCopy: () => { const txt = FMP.exportText(), d = new Date(), fn = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; const cl = window.claude; if (cl && typeof cl.use === 'function') { cl.use('downloads').then(dl => { if (!dl) return this.setState({ msg: 'Unduhan tidak tersedia di tampilan ini.' }); return dl.save({ filename: fn, data: txt }).then(() => this.setState({ msg: 'File cadangan diunduh. Simpan di tempat aman.' }), e => this.setState({ msg: e && e.code === 'declined' ? 'Unduhan dibatalkan.' : 'Unduhan tidak tersedia di tampilan ini.' })); }); return; } (() => { try { const txt = FMP.exportText(), a = document.createElement('a'), d = new Date(); a.href = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.download = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; document.body.appendChild(a); a.click(); a.remove(); this.setState({ msg: 'File cadangan diunduh. Simpan baik-baik.' }); } catch (e) { this.setState({ msg: 'Gagal membuat file cadangan.' }); } })(); },
 doImport: ev => { const f = ev && ev.target && ev.target.files && ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { try { FMP.importText(String(r.result)); this.setState({ msg: 'Progres dari file cadangan sudah dipulihkan.' }); } catch (e) { this.setState({ msg: 'File itu bukan cadangan Fundamental Math.' }); } }; r.readAsText(f); ev.target.value = ''; },
