@@ -1366,6 +1366,8 @@ html.fm-noanim .px-pop.warn:not(.info) .px-pop-rib i:first-child{animation:fm-be
 html.fm-noanim .px-talk-face img{animation:fm-hop2 240ms steps(2,end)!important}
 html.fm-noanim .px-talk-bubble{transform-origin:left 28px;animation:fm-grow 150ms steps(3,end)!important}
 html.fm-noanim .px-talk-next::after{animation:fm-nudge 240ms steps(2,end) 300ms!important}
+/* Kelompok 7: penanda "!" di peta Beranda melompat 2 kali saat peta dibuka, lalu diam. Tokoh berjalan: lihat FMA.afterRender. */
+html.fm-noanim .px-mark{animation:fm-hop 280ms steps(2,end) 2!important}
 }
 /* Teks status di bilah judul (mis. "Jalur ditemukan 0/6") tidak dipotong: bila ada teks, judul dan status jadi dua baris (Faiq 18 Nov) */
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)){flex-direction:column!important;align-items:flex-start!important;justify-content:center;gap:0;padding-top:1px!important;padding-bottom:2px!important}
@@ -18467,7 +18469,25 @@ const FMA = (() => {
       });
     }).observe(box, { childList: true, subtree: true });
   }
+  /* Kelompok 7: tokoh di peta (Beranda, Mini Games) berpindah antartitik jalan dengan langkah patah-patah (satu langkah tiap ±90 ms)
+     dan badannya naik-turun 2 px hanya selama berjalan. Letak akhir tetap diatur left/top dari layar; geraknya translate saja. */
+  function walkHero(h) {
+    const x = h.offsetLeft, y = h.offsetTop, px0 = h.__fmx, py0 = h.__fmy;
+    h.__fmx = x; h.__fmy = y;
+    if (px0 === undefined || (px0 === x && py0 === y) || !on()) return;
+    const dur = parseFloat(h.style.transitionDuration) * (/ms/.test(h.style.transitionDuration) ? 1 : 1000) || 0;
+    if (dur < 60) return;
+    const n = Math.max(2, Math.round(dur / 90));
+    try {
+      if (h.__fmw) h.__fmw.cancel();
+      h.__fmw = h.animate([{ translate: (px0 - x) + 'px ' + (py0 - y) + 'px' }, { translate: '0 0' }], { duration: dur, easing: 'steps(' + n + ', end)' });
+      const img = h.querySelector('img');
+      if (img) img.animate([{ translate: '0 0', easing: 'step-end' }, { translate: '0 -2px', offset: 0.5, easing: 'step-end' }, { translate: '0 0' }], { duration: dur * 2 / n, iterations: Math.ceil(n / 2) });
+    } catch (err) {}
+  }
+  function enter(box) { if (on()) try { box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, easing: 'steps(3, start)' }); } catch (err) {} }
   function afterRender(box) {
+    box.querySelectorAll('.px-hero').forEach(walkHero);
     box.querySelectorAll('.px-talk').forEach(t => {
       const tx = t.querySelector('.px-talk-text'), k = tx ? tx.textContent : '';
       if (t.__fmk !== undefined && t.__fmk !== k && on()) restart(Array.from(t.querySelectorAll('.px-talk-face img, .px-talk-bubble')));
@@ -18481,7 +18501,7 @@ const FMA = (() => {
       p.__fmk = k;
     });
   }
-  return { afterRender, watch };
+  return { afterRender, watch, enter };
 })();
 function show(name) {
   if (!GAMES[name]) name = 'Main';
@@ -18499,6 +18519,7 @@ function show(name) {
     PX.skin(ROOT, name);
     window.__fmComp = m.comp;
     m.host.render();
+    try { FMA.enter(box); } catch (e) {} // Kelompok 6: layar baru muncul pelan dalam 3 langkah (150 ms), tanpa bergeser
   } catch (e) {
     console.error(e);
     ROOT.innerHTML = '<div id="err">Layar ' + name + ' gagal dibuka.\n' + (e && e.message || e) + '</div>';
