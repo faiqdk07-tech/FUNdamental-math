@@ -1712,6 +1712,12 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-rollb:active{transform:translateY(2px)}
 /* Dua Struk (Faiq 19 Nov): struk-struk diletakkan di atas alas meja kasir (laminasi abu kebiruan bertepi), bukan di kertas polos */
 #root .px-st-dua div[style*="grid-template-columns: repeat(2"]{padding:12px 10px 16px!important;gap:10px!important;background:#C9D2DE;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #E1E7EF,inset 0 -7px 0 #9AA6B6,inset 0 -10px 0 #1A1C2C;margin:4px 3px 8px}
+/* Ringkasan yang tidak bisa diketuk (Faiq 19 Nov): label kertas, bukan tombol */
+#root .px-inner button[style*="--tag:1"]{border:0!important;border-radius:0!important;background:#FFFDF6!important;box-shadow:0 0 0 2px #1A1C2C,inset 4px 0 0 #E8554E!important;padding:4px 10px 5px 14px!important;font-size:13px!important;color:#2B1D1A!important;cursor:default;margin:2px}
+#root .px-inner button[style*="--tag:1"]:active{transform:none}
+#root .px-da-undian .px-inner div:has(> button[style*="background: #DCE5FA"]) button[style*="min-width: 32px"]{width:36px;height:36px;padding:0!important;border:0!important;border-radius:50%!important;color:#FFFFFF!important;box-shadow:0 0 0 2px #1A1C2C,inset -4px -4px 0 rgba(0,0,0,.18),inset 3px 3px 0 rgba(255,255,255,.35)!important}
+#root .px-da-undian .px-inner div:has(> button[style*="background: #DCE5FA"]) button[style*="background: #FBD9D3"]{background:#E8554E!important}
+#root .px-da-undian .px-inner div:has(> button[style*="background: #DCE5FA"]) button[style*="background: #DCE5FA"]{background:#4C8FDD!important}
 </style>
 </head>
 <body>
@@ -9969,7 +9975,7 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: 'main', msg:
 }
 num(v) { return String(Math.round(v * 10) / 10).replace('.', ','); }
 rowBlank() { return { hasRow1: false, row1Label: '', row1: [], hasRow2: false, row2Label: '', row2: [] }; }
-chip(label, on, tap, tone) { return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
+chip(label, on, tap, tone) { if (!tap && !tone) return { label: String(label), tap: () => {}, style: '--tag:1' }; return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
 view(sceneVals, rows) { return Object.assign(this.sceneBlank(), this.rowBlank(), sceneVals || {}, rows || {}); }
 setup() {
 this.MN = ['Pilih diagram', 'Sumbu terpotong', 'Judul viral'];
@@ -10090,7 +10096,7 @@ labView(ctx) {
 const s = ctx.s, L = s.lab, act = ctx.act;
 const set = key => val => this.setState({ lab: Object.assign({}, L, { [key]: val }), msg: '' });
 const save = () => { if (!(L.b > L.a && L.a > L.s)) return this.setState({ msg: 'Nilai B harus lebih besar dari A, dan A lebih besar dari awal sumbu.', kind: 'warn' }); this.setState({ customs: s.customs.concat([Object.assign({}, L)]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + '" di tab Misi.', kind: 'ok' }); };
-const v = this.view(L.b > L.a && L.a > L.s ? this.sumbuScene({ data: [L.a, L.b], labels: ['A', 'B'] }, L.s) : null, { hasRow1: true, row1Label: 'Grafik buatanmu', row1: [this.chip('A: ' + L.a), this.chip('B: ' + L.b), this.chip('sumbu dari ' + L.s, false, null, '#FFE3B8')] });
+const v = this.view(L.b > L.a && L.a > L.s ? this.sumbuScene({ data: [L.a, L.b], labels: ['A', 'B'] }, L.s) : null, { hasRow1: true, row1Label: 'Grafik buatanmu', row1: [this.chip('A: ' + L.a), this.chip('B: ' + L.b), this.chip('sumbu dari ' + L.s)] });
 v.hasRollers = true; v.rollCols = 3;
 v.rollers = [this.roller('Nilai A', L.a, 10, 90, 10, set('a')), this.roller('Nilai B', L.b, 20, 100, 10, set('b')), this.roller('Awal sumbu', L.s, 0, 80, 10, set('s'))];
 return { vals: v, boardLabel: 'Grafik jebakan buatanmu', picker: false, statusLabel: 'Grafik', status: 'A ' + L.a + ' · B ' + L.b + ' · sumbu ' + L.s, actions: [act('Jadikan tantangan', save, true)] };
@@ -11893,7 +11899,7 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: 'main', msg:
 }
 num(v) { return String(Math.round(v * 10) / 10).replace('.', ','); }
 rowBlank() { return { hasRow1: false, row1Label: '', row1: [], hasRow2: false, row2Label: '', row2: [] }; }
-chip(label, on, tap, tone) { return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
+chip(label, on, tap, tone) { if (!tap && !tone) return { label: String(label), tap: () => {}, style: '--tag:1' }; return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
 view(sceneVals, rows) { return Object.assign(this.sceneBlank(), this.rowBlank(), sceneVals || {}, rows || {}); }
 setup() {
 this.MN = ['Outfit seragam', 'Paket kantin', 'PIN loker'];
@@ -14198,7 +14204,7 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: 'main', msg:
 }
 num(v) { return String(Math.round(v * 10) / 10).replace('.', ','); }
 rowBlank() { return { hasRow1: false, row1Label: '', row1: [], hasRow2: false, row2Label: '', row2: [] }; }
-chip(label, on, tap, tone) { return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
+chip(label, on, tap, tone) { if (!tap && !tone) return { label: String(label), tap: () => {}, style: '--tag:1' }; return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
 view(sceneVals, rows) { return Object.assign(this.sceneBlank(), this.rowBlank(), sceneVals || {}, rows || {}); }
 setup() {
 this.NAMES = ['Tari', 'Band', 'Puisi', 'Drama'];
@@ -14914,7 +14920,7 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: 'main', msg:
 }
 num(v) { return String(Math.round(v * 10) / 10).replace('.', ','); }
 rowBlank() { return { hasRow1: false, row1Label: '', row1: [], hasRow2: false, row2Label: '', row2: [] }; }
-chip(label, on, tap, tone) { return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
+chip(label, on, tap, tone) { if (!tap && !tone) return { label: String(label), tap: () => {}, style: '--tag:1' }; return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
 view(sceneVals, rows) { return Object.assign(this.sceneBlank(), this.rowBlank(), sceneVals || {}, rows || {}); }
 setup() {
 this.MN = ['Rekap nilai', 'Meratakan tumpukan', 'Membelah antrean'];
@@ -17093,7 +17099,7 @@ this.setState({ P: this.fresh(s.P), sel: [], ans: {}, af: 0, stage: 'main', msg:
 }
 num(v) { return String(Math.round(v * 10) / 10).replace('.', ','); }
 rowBlank() { return { hasRow1: false, row1Label: '', row1: [], hasRow2: false, row2Label: '', row2: [] }; }
-chip(label, on, tap, tone) { return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
+chip(label, on, tap, tone) { if (!tap && !tone) return { label: String(label), tap: () => {}, style: '--tag:1' }; return { label: String(label), tap: tap || (() => {}), style: 'min-width: 32px; padding: 5px 8px; border-radius: 5px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'border: 2px solid #1C1C1A; ' : 'border: 1px solid #DDDCD7; ') + 'background: ' + (tone || '#FFFFFF') + '; color: #1C1C1A' }; }
 view(sceneVals, rows) { return Object.assign(this.sceneBlank(), this.rowBlank(), sceneVals || {}, rows || {}); }
 setup() {
 this.MN = ['Kotak kupon', 'Dadu lomba', 'Kantong bola'];
