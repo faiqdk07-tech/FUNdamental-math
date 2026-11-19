@@ -43,7 +43,18 @@ Perbarui file ini setiap kali ada pekerjaan selesai atau keputusan baru dari Fai
   - **Pasang Lantai gaya benda baru:** ubin keramik bernat dan berkilau (`.pl-floor`), perabot tertutup tetap abu-abu tapi 3D bertepi gelap (sel `#B9B8B2`), garis bidang SVG biru tua tebal, kilap kaca di meja bundar (`.pl-glass`).
   - **Bidang gambar SVG game Geometri (bersama):** garis tepi biru tua tebal (3 px) dengan bayangan lembut pada garis saja (bukan pada teks, supaya teks tidak berbayang ganda), tulisan gambar 12 px gelap. **Isi Wadah:** bidang kardus berwarna kardus; bidang biru (air/lapisan sabun) tetap biru. Jangan mengisi `pathD` (menutupi lapisan di bawahnya).
   - **Pengecualian lapisan tombol bersama karena warna/benda bermakna:** Undian Doorprize (kupon merah/putih, bola merah/biru kembali ke gaya lama) dan Rapor Kelas (kartu rapor bergaris merah, diberi jarak 7 px). Saat menambah lapisan umum, **selalu cek game yang warna tombolnya adalah isi soal**.
-  - Sisa pekerjaan papan ilustrasi yang masih prototipe (tidak rusak, belum bergaya benda): serta papan game Geometri dan Data.
+  - 19 Nov (koreksi Faiq: papan ilustrasi dan opsi jawaban masih prototipe). Dirombak dengan benda nyata bergaya referensi:
+    - Pilihan jawaban bersama: kotak klaim = kartu catatan berpaku dengan tombol netral; "Tidak bisa ditentukan / Tidak mungkin" = slip kertas bercap tinta.
+    - Pilihan OSIS: lemari dengan rel gantungan baju (baju/celana/sepatu bergambar sesuai warna), kartu menu bergambar mangkuk di papan kapur, gembok kuningan beroda angka.
+    - Pentas Seni: panggung bertirai dengan titik sorot, kartu kelompok bergambar (kipas, gitar, buku, topeng), kursi pengurus berpapan nama, papan tulis Kak Dimas.
+    - Grafik Viral: data = lembar kerja berkolom, grafik di layar, penggeser sumbu = slider, tombol jenis diagram bergambar.
+    - Perbesar Gambar: alas potong hijau, kenop putar (penanda per posisi, tidak diputar supaya piksel tajam), lapangan berumput dengan tongkat ukur.
+    - Tangga Bangunan: tembok bata, tangga beranak tangga, meteran kuning, langit; peta kampung di kertas peta.
+    - Pelabuhan: peta laut berbingkai, layar radar hijau, garis pantai berpasir, alat garis bergambar.
+    - Undian: kotak undian bercelah, dadu/koin sungguhan, kantong kain bertali (penanda `--alat:kupon/kantong` menggantikan warna lama di selektor kupon dan bola).
+    - Isi Wadah: papan berbingkai, kardus berwarna karton, wadah tegak dari kaca.
+    - Benda kecil digambar oleh `PX.obj(jenis, warna)` (grid 24 × 26, kilau, bayangan, garis tepi #1A1C2C). Tombol bergaya baru memakai penanda di `style` (mis. `--lk:on`, `--spot:on`) agar tidak ditimpa lapisan tombol bersama.
+  - Sisa yang masih sederhana: tombol Lab (gulungan ▲▼), adegan kartu struk Dua Struk (sudah berbentuk struk), adegan atas kasus "Sisa arisan" Bagi Pizza.
   - **Tombol aksi bersama `.px-acts`** di 5 game Bilangan (Tata Barisan, Kapan Bareng?, Bagi Pizza, Racik Resep, Lipat Kertas): utama hijau timbul, lainnya krem timbul. **Catatan teknis:** CSS baru taruh di **akhir** lembar gaya (sebelum `</style>`), bukan setelah baris `.px-v2.v2wait …`, supaya tidak kalah oleh aturan lama. Bila memakai `font:` singkatan, tambahkan `font-size-adjust:.56` agar huruf pixel tidak mengecil.
 
   - **Contoh papan jawab baru (menunggu persetujuan Faiq), baru di Meja Hajatan:** kelas `.pj` pada `.px-clip` (kertas berbingkai kayu, pita merah "Jawabanmu", kolom jawaban kuning saat dipilih, layar LCD berpetak, tombol kalkulator pixel 4 kolom dengan Cek di dalam kisi `.pj-cek`) dan `.pj-pad` untuk pemilih angka di papan ilustrasi. Bila disetujui, sebar ke semua game (cek nama variabel tiap template) sekalian merapikan papan ilustrasi per game.
