@@ -1351,6 +1351,9 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 @keyframes fm-hop{50%{translate:0 -6px}}
 @keyframes fm-star{0%{scale:0}60%{scale:1.3}100%{scale:1}}
 @keyframes fm-beat{50%{scale:1.3}}
+@keyframes fm-hop2{50%{translate:0 -4px}}
+@keyframes fm-grow{from{scale:.9}}
+@keyframes fm-nudge{50%{translate:3px 0}}
 @media (prefers-reduced-motion:no-preference){
 html.fm-noanim .px-pop{animation:fm-fade 150ms steps(3,end)!important}
 html.fm-noanim .px-pop .px-pop-card{animation:fm-up 160ms steps(4,end)!important}
@@ -1359,6 +1362,10 @@ html.fm-noanim .px-pop.ok .px-pop-rib i{animation:fm-star 180ms steps(3,end) 200
 html.fm-noanim .px-pop.ok .px-pop-rib i:last-child{animation-delay:300ms!important}
 html.fm-noanim .px-pop.warn:not(.info) .px-pop-card{animation:fm-up 160ms steps(4,end),fm-shake 200ms steps(4,end) 160ms!important}
 html.fm-noanim .px-pop.warn:not(.info) .px-pop-rib i:first-child{animation:fm-beat 200ms steps(2,end) 160ms!important}
+/* Kelompok 4: tokoh dan balon, sekali saat cerita baru tampil (diputar ulang oleh FMA.afterRender bila cerita berganti) */
+html.fm-noanim .px-talk-face img{animation:fm-hop2 240ms steps(2,end)!important}
+html.fm-noanim .px-talk-bubble{transform-origin:left 28px;animation:fm-grow 150ms steps(3,end)!important}
+html.fm-noanim .px-talk-next::after{animation:fm-nudge 240ms steps(2,end) 300ms!important}
 }
 /* Teks status di bilah judul (mis. "Jalur ditemukan 0/6") tidak dipotong: bila ada teks, judul dan status jadi dua baris (Faiq 18 Nov) */
 .px-ttl2:has(.px-ttl2-s>span:last-child:not(:empty)){flex-direction:column!important;align-items:flex-start!important;justify-content:center;gap:0;padding-top:1px!important;padding-bottom:2px!important}
@@ -18425,25 +18432,56 @@ const FMA = (() => {
   const rm = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   const on = () => !(rm && rm.matches) && typeof Element.prototype.animate === 'function';
   const TAP = [{ translate: '0 2px', easing: 'step-end' }, { translate: '0 1px', offset: 0.55, easing: 'step-end' }, { translate: '0 0' }];
+  let lastTap = -1e9;
   document.addEventListener('click', e => {
+    lastTap = performance.now();
     if (!on()) return;
     const b = e.target && e.target.closest ? e.target.closest('#root button, #root [role="button"]') : null;
     if (!b || b.disabled) return;
     try { b.animate(TAP, { duration: 140 }); } catch (err) {}
   }, true);
+  const restart = els => {
+    els.forEach(el => el.style.setProperty('animation', 'none', 'important'));
+    if (els[0]) void els[0].offsetWidth;
+    els.forEach(el => el.style.removeProperty('animation'));
+  };
+  /* Kelompok 5: benda yang baru muncul di papan karena ketukan pemain membesar dalam 3 langkah.
+     Hanya bila sedikit benda bertambah (<= 6) dalam 400 ms sesudah ketukan; pindah misi/layar (banyak benda baru) tidak dianimasikan.
+     Hanya benda kecil (<= 120 px); bagian kepala, balon, tugas, kartu hasil, menu, dan adegan tidak ikut. Benda lain di papan tidak bergerak. */
+  const POP = [{ scale: 0.5, easing: 'step-end' }, { scale: 1.15, offset: 0.4, easing: 'step-end' }, { scale: 1, offset: 0.75, easing: 'step-end' }, { scale: 1 }];
+  const FADE = [{ opacity: 0.3, easing: 'step-end' }, { opacity: 0.65, offset: 0.5, easing: 'step-end' }, { opacity: 1 }];
+  const SKIP = '.px-hud2, .px-talk, .px-task, .px-pop, .px-ttl2';
+  function watch(box) {
+    if (typeof MutationObserver !== 'function') return;
+    new MutationObserver(recs => {
+      if (!on() || performance.now() - lastTap > 400) return;
+      const added = [];
+      recs.forEach(r => r.addedNodes.forEach(n => { if (n.nodeType === 1) added.push(n); }));
+      const top = added.filter(n => n.isConnected && !added.some(o => o !== n && o.contains(n)));
+      if (!top.length || top.length > 6) return;
+      top.forEach(n => {
+        if (!n.closest('.px-v2') || n.closest(SKIP)) return;
+        const r = n.getBoundingClientRect();
+        if (!r.width || r.width > 120 || r.height > 120) return; // benda kecil saja; panel, menu, dan adegan besar tidak membesar
+        try { n.animate(n instanceof SVGElement ? FADE : POP, { duration: n instanceof SVGElement ? 120 : 160 }); } catch (err) {}
+      });
+    }).observe(box, { childList: true, subtree: true });
+  }
   function afterRender(box) {
+    box.querySelectorAll('.px-talk').forEach(t => {
+      const tx = t.querySelector('.px-talk-text'), k = tx ? tx.textContent : '';
+      if (t.__fmk !== undefined && t.__fmk !== k && on()) restart(Array.from(t.querySelectorAll('.px-talk-face img, .px-talk-bubble')));
+      t.__fmk = k;
+    });
     box.querySelectorAll('.px-pop').forEach(p => {
       const k = p.className + '|' + p.textContent;
       if (p.__fmk !== undefined && p.__fmk !== k && on()) {
-        const els = [p].concat(Array.from(p.querySelectorAll('.px-pop-card, .px-pop-rib, .px-pop-rib i')));
-        els.forEach(el => el.style.setProperty('animation', 'none', 'important'));
-        void p.offsetWidth;
-        els.forEach(el => el.style.removeProperty('animation'));
+        restart([p].concat(Array.from(p.querySelectorAll('.px-pop-card, .px-pop-rib, .px-pop-rib i'))));
       }
       p.__fmk = k;
     });
   }
-  return { afterRender };
+  return { afterRender, watch };
 })();
 function show(name) {
   if (!GAMES[name]) name = 'Main';
@@ -18456,6 +18494,7 @@ function show(name) {
       onError: e => { ROOT.innerHTML = '<div id="err">Layar ' + name + ' gagal dibuka.\n' + (e && e.message || e) + '</div>'; },
       onRender: () => { try { relabel(box); } catch (e) {} try { FMA.afterRender(box); } catch (e) {} }
     });
+    try { FMA.watch(box); } catch (e) {}
     FMP.applyOpen(name, m.comp);
     PX.skin(ROOT, name);
     window.__fmComp = m.comp;
