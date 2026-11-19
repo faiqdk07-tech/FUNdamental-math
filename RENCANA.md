@@ -294,3 +294,38 @@ Kerangka sama (`this.TM`, `this.TN`, `this.TO`). Tiap tingkat F mendapat 1 kasus
 
 ## Catatan
 - Rotasi kasus harian memakai hari UTC, jadi berganti pukul 07.00 WIB.
+
+## Tinjauan per game (19 Nov) — SEDANG BERJALAN
+Permintaan Faiq: mainkan tiap game satu per satu, cek ilustrasi cocok dengan cerita dan kata-kata di papan presisi (dipicu bug "1 tamu" bergambar banyak orang).
+
+**Sudah ditinjau:** Kasir Kilat, Timbangan, Tata Barisan, Kapan Bareng?, Bagi Pizza, Racik Resep, Lipat Kertas, Dua Struk, Pesanan Martabak, Meja Hajatan, Mesin Minuman, Argo Ojek, Kebun & Lintasan, Dapur Roti (F sudah; I sedang dikerjakan).
+**Belum:** Dapur Roti (I tombol stempel masih gaya prototipe: bergaris biru tipis — ubah jadi stempel karet; E belum dilihat), Rekap Grosir, Rute Kurir, Pasang Lantai, Isi Wadah, Perbesar Gambar, Tangga Bangunan, Pelabuhan, Pilihan OSIS, Pentas Seni, Undian, Rapor Kelas, Grafik Viral.
+
+**Perubahan umum:** `PX.cast(cerita, bawaan)` memilih tokoh balon dari orang yang paling awal disebut di cerita (daftar `PX.CAST` + pola Bu/Pak/Kak/Mbak/Mas/Bang + Nama); dipakai otomatis di `PX.v2` bila game tidak memberi `role`. Kasus "Angka baru 2" dibuat ulang bila sama persis dengan "Angka baru 1".
+
+**Temuan dan perbaikan:**
+- Meja Hajatan: ikon tamu/kursi di batang ikut lebar, bukan angka -> DIPERBAIKI.
+- Kasir Kilat: tokoh balon selalu "Pelanggan" walau cerita tentang Bu Ani / ibu kos / Pak RT -> DIPERBAIKI (tokoh ikut cerita).
+- Kasir Kilat IM3: tugas "Tulis dengan tanda minus kalau utangnya lebih besar" (petunjuk format, dibiarkan; catat untuk Faiq).
+- Timbangan: benda di piring yang tidak muat satu baris melayang di atas benda lain -> DIPERBAIKI (baris pertama di dasar, sisanya bertumpu).
+- Timbangan harian: tokoh selalu "Mandor gudang" walau cerita tentang panitia/pemilik toko/pedagang/Bu Sari/Pak Tani/petugas bank sampah/kurir -> DIPERBAIKI (PX.cast).
+- Timbangan F misi 1: kotak bertanda "?" padahal ceritanya menyebut beratnya 7 kg (dibiarkan: "?" = simbol kotak; catat).
+- Tata Barisan E: label blok kalkulator kolom×baris terbalik dari papan baris×kolom -> DIPERBAIKI. Misi 'dinding' kini menggambar dinding di belakang. Tokoh mengikuti cerita (Pak Darto).
+- Tata Barisan F: penghitung 'Ditemukan 0 / 6' membocorkan banyak susunan (catat untuk Faiq).
+- Tata Barisan harian "17 kursi lipat": papan nampan kue -> DIPERBAIKI (kursi di lantai).
+- Kasus Angka baru 1 dan 2 bisa kembar (Tata Barisan dua-duanya 24 kue) -> DIPERBAIKI (Angka baru 2 dibuat ulang bila sama, semua game).
+- "Ditemukan x / total" di Tata Barisan dan Kapan Bareng? membocorkan banyak jawaban -> DIPERBAIKI (total disembunyikan).
+- Tata Barisan: catatan papan "3 kue tidak muat / 2 tempat kosong" menghitung selisih (dibiarkan, catat untuk Faiq).
+- PX.cast kini juga mengenali nama Bu/Pak/Kak/Mbak/Mas + Nama.
+- Bagi Pizza: judul menghitung banyak potongan (= jawaban porsi) dan catatan menghitung bagian tiap orang (= rumus Aturan) -> DIPERBAIKI (dihapus). Total cara disembunyikan.
+- Racik Resep: tokoh Pemesan memakai wajah barista -> DIPERBAIKI (wajah pelanggan).
+- Racik Resep E misi 2: struk 'Harga coba 100 → 80 → 56' menghitungkan diskon total (catat untuk Faiq; mekanik inti, tidak diubah sendiri).
+- Dua Struk: adegan atas selalu rak minuman/roti padahal misi tentang buku/pulpen/map/spidol -> DIPERBAIKI (rak alat tulis bila cerita bukan makanan). Sisa: kasus seragam (kaos/topi/tas) masih memakai rak alat tulis.
+- Pesanan Martabak: titik topping terlalu kecil -> DIPERBESAR; label 'cokelat dan keju' huruf kecil -> DIPERBAIKI. Sisa: gerobak selalu 5 toples walau cerita 3/4 topping.
+- Meja Hajatan: meja panjang digambar sama lebar dengan meja kotak -> DIPERBAIKI. (Catatan percobaan 'n meja → k kursi' menghitungkan kursi: catat untuk Faiq.)
+- Mesin Minuman: warna teh dan jeruk hampir sama -> DIPERBAIKI (teh cokelat kemerahan, jeruk oranye terang).
+
+**Perlu keputusan Faiq (tidak diubah sendiri):** catatan percobaan yang menghitungkan hasil (Meja Hajatan "n meja → k kursi", Lipat "lapis", Tata Barisan "x kue tidak muat"); Racik Resep E misi 2 "Harga coba 100 → 80 → 56"; Dapur Roti F papan menandai semua rencana yang muat; Kebun E ubin berlabel x² dan 10x; Kasir I misi 3 "tulis tanda minus".
+
+**Cara meninjau:** skrip di scratchpad tidak ikut tersimpan; buat ulang: buka tiap game (tingkat F/I/E × Misi 1-3 dan Harian 1-3), potret layar 390×844 dari atas ke bawah, baca teks balon/papan dengan `innerText`, cek jumlah gambar = angka, tokoh = cerita, warna = teks.
+
