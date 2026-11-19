@@ -1624,6 +1624,21 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-da-loker .px-inner div:has(> button[style*="--pin"])::before{content:"";position:absolute;left:50%;top:-66px;width:56px;height:50px;margin-left:-28px;border:8px solid #B4BAC4;border-bottom:0;box-shadow:0 -3px 0 #1A1C2C,-3px 0 0 #1A1C2C,3px 0 0 #1A1C2C,inset 0 3px 0 #1A1C2C,inset 3px 0 0 #1A1C2C,inset -3px 0 0 #1A1C2C}
 #root .px-da-loker .px-inner button[style*="--pin"]{width:44px;height:60px;border:0!important;border-radius:0!important;padding:0!important;color:#1A1C2C!important;font-size:26px!important;line-height:60px;background:linear-gradient(#2B2E38 0 4px,#4E5363 4px 6px,#2B2E38 6px 9px,#4E5363 9px 11px,#1A1C2C 11px 14px,#F4EFDF 14px 46px,#1A1C2C 46px 49px,#2B2E38 49px 51px,#4E5363 51px 53px,#2B2E38 53px 56px,#4E5363 56px)!important;box-shadow:0 0 0 3px #1A1C2C!important;cursor:pointer}
 #root .px-da-loker .px-inner span[style*="ui-monospace"]{font-family:inherit!important;font-size:14px!important;background:#FFFDF6!important;color:#2F64B0!important;border-radius:0!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #E8EEF4;padding:3px 8px 5px!important;margin:2px}
+/* Pentas Seni (Faiq 18 Nov): panggung kayu bertirai dengan titik sorot, kartu kelompok/calon bergambar, kursi pengurus, papan tulis Kak Dimas */
+#root .px-da-pentas .px-inner div:has(> button[style*="--spot"]){justify-content:center;gap:10px!important;padding:16px 26px 20px!important;margin:4px 3px 6px;background:#C98A4E repeating-linear-gradient(90deg,#C98A4E 0 26px,#B07640 26px 28px)!important;box-shadow:0 0 0 3px #1A1C2C,inset 14px 0 0 #D9483E,inset -14px 0 0 #D9483E,inset 17px 0 0 #1A1C2C,inset -17px 0 0 #1A1C2C,inset 0 -8px 0 #8A5A32,inset 0 -11px 0 #1A1C2C}
+#root .px-da-pentas .px-inner button[style*="--spot:"]{width:62px;height:70px;border:0!important;border-radius:0!important;padding:46px 0 0!important;font-size:13px!important;color:#FFF6E0!important;background-color:rgba(255,236,170,.25)!important;outline:2px dashed #FFF2C8;outline-offset:-5px;box-shadow:none!important;text-shadow:0 1px 0 #1A1C2C}
+#root .px-da-pentas .px-inner button[style*="--spot:on"]{outline:0;background:#FFE9A8 var(--ic) center 4px / 40px 44px no-repeat!important;image-rendering:pixelated;color:#2B1D1A!important;text-shadow:none;box-shadow:0 0 0 2px #1A1C2C,inset 0 -5px 0 #E8B53A!important;cursor:pointer}
+#root .px-da-pentas .px-inner div:has(> button[style*="--kursi"]){justify-content:center;gap:6px!important;padding:10px 10px 12px!important;margin:4px 3px 6px;background:linear-gradient(#EFE3CC 0 58%,#C9B48E 58% 60%,#D9C49E 60%)!important;box-shadow:0 0 0 3px #1A1C2C}
+#root .px-da-pentas .px-inner button[style*="--kursi:"]{width:86px;height:90px;border:0!important;border-radius:0!important;padding:68px 0 0!important;font-size:12px!important;line-height:20px;color:#2B1D1A!important;background:var(--px-kursi) center 20px / 44px 44px no-repeat!important;image-rendering:pixelated;box-shadow:none!important;position:relative}
+#root .px-da-pentas .px-inner button[style*="--kursi:on"]{background:var(--ic) center 0 / 40px 44px no-repeat,var(--px-kursi) center 20px / 44px 44px no-repeat!important;cursor:pointer}
+#root .px-da-pentas .px-inner button[style*="--kursi:"]::after{content:"";position:absolute;left:2px;right:2px;bottom:1px;height:20px;background:#FFF6E0;box-shadow:0 0 0 2px #1A1C2C;z-index:-1}
+#root .px-da-pentas .px-inner button[style*="--kursi:"]{z-index:0}
+#root .px-da-pentas .px-inner div:has(> button[style*="--orang"]){gap:10px!important;padding:3px}
+#root .px-da-pentas .px-inner button[style*="--orang:"]{width:66px;height:76px;border:0!important;border-radius:0!important;padding:50px 0 0!important;font-size:13px!important;color:#2B1D1A!important;background-color:#FFF6E0!important;background-repeat:no-repeat!important;background-position:center 4px!important;background-size:40px 44px!important;image-rendering:pixelated;box-shadow:0 0 0 2px #1A1C2C,inset 0 -5px 0 #E8D5B5,0 3px 0 rgba(26,28,44,.25)!important;cursor:pointer}
+#root .px-da-pentas .px-inner button[style*="--orang:used"]{opacity:.4;box-shadow:0 0 0 2px #1A1C2C!important}
+#root .px-da-pentas .px-inner div:has(> button[style*="--wb"]){flex-direction:column;align-items:stretch;gap:0!important;padding:12px 14px 18px!important;margin:6px 6px 10px;background:#FBFCFD!important;box-shadow:0 0 0 5px #C9CDD6,0 0 0 8px #1A1C2C,inset 0 -6px 0 #E8EEF4;position:relative}
+#root .px-da-pentas .px-inner div:has(> button[style*="--wb"])::after{content:"";position:absolute;left:30%;right:30%;bottom:-14px;height:6px;background:#9AA0AA;box-shadow:0 0 0 2px #1A1C2C}
+#root .px-da-pentas .px-inner button[style*="--wb"]{border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;text-align:left;padding:4px 2px!important;font-size:17px!important;color:#2F64B0!important;cursor:default;border-bottom:1px solid #E3E8EF!important}
 </style>
 </head>
 <body>
@@ -7868,6 +7883,21 @@ const PX = (() => {
       F('#D99A4E', 3, 11, 18, 9); F('#D99A4E', 5, 9, 14, 2); for (let x = 6; x < 18; x += 4) D('#F2C99A', x, 11, 2, 6);
     } else if (kind === 'nasikotak') {
       F('#F2EFE6', 3, 9, 18, 13); D('#D8D2C2', 3, 13, 18, 1); D('#5DB848', 6, 16, 4, 2); D('#E8554E', 12, 16, 3, 3); D('#F2C035', 16, 16, 3, 2);
+    } else if (kind === 'kipas') { /* kipas tari: bilah melebar ke atas, bertemu di pangkal bawah */
+      for (let y = 2; y < 18; y++) for (let x = 0; x < 24; x++) { const dx = x - 11.5, dy = 18 - y, d = Math.sqrt(dx * dx + dy * dy); if (d <= 15 && d >= 3 && Math.abs(dx) <= dy * 1.25) F(d > 12.5 ? '#F2C035' : '#E8554E', x, y, 1, 1); }
+      [-0.9, -0.45, 0, 0.45, 0.9].forEach(k => { for (let r = 4; r < 13; r++) D('#B23A34', Math.round(11.5 + r * Math.sin(k)), Math.round(18 - r * Math.cos(k)), 1, 1); });
+      F('#8A5A32', 10, 17, 4, 3); F('#8A5A32', 11, 20, 2, 3);
+    } else if (kind === 'gitar') { /* gitar tegak: badan angka delapan, lubang suara, leher, kepala */
+      F('#D99A4E', 6, 15, 12, 8); F('#D99A4E', 7, 14, 10, 1); F('#D99A4E', 8, 10, 8, 4); F('#D99A4E', 7, 23, 10, 1);
+      F('#8A5A32', 11, 3, 2, 8); F('#3A3D48', 10, 0, 4, 3); D('#3A3D48', 10, 16, 4, 3); D('#8A5A32', 9, 21, 6, 1); D('#F2EFE6', 11, 4, 1, 12);
+    } else if (kind === 'buku') {
+      F('#F2EFE6', 3, 8, 8, 13); F('#F2EFE6', 13, 8, 8, 13); F('#4C8FDD', 11, 7, 2, 15); for (let y = 11; y < 19; y += 2) { D('#8B909B', 4, y, 6, 1); D('#8B909B', 14, y, 6, 1); }
+    } else if (kind === 'topeng') {
+      F('#F2EFE6', 4, 6, 16, 10); F('#F2EFE6', 6, 16, 12, 4); F('#F2EFE6', 8, 20, 8, 2); D('#3A3D48', 7, 10, 3, 2); D('#3A3D48', 14, 10, 3, 2); D('#E8554E', 9, 16, 6, 1); D('#E8554E', 8, 15, 1, 1); D('#E8554E', 15, 15, 1, 1); D('#F7A8B0', 5, 13, 2, 1); D('#F7A8B0', 17, 13, 2, 1);
+    } else if (kind === 'wajah') { /* kepala + bahu; colName = 'p' (berambut panjang) atau 'l' */
+      const hair = '#3A2A20', skin = '#F2C99A'; F(colName === 'p' ? '#4C8FDD' : '#5DB848', 4, 19, 16, 6); F(skin, 7, 6, 10, 11); F(hair, 6, 3, 12, 4); F(hair, 6, 6, 2, 3); F(hair, 16, 6, 2, 3);
+      if (colName === 'p') { F(hair, 5, 6, 2, 12); F(hair, 17, 6, 2, 12); }
+      D('#1A1C2C', 9, 10, 1, 2); D('#1A1C2C', 14, 10, 1, 2); D('#D9483E', 11, 14, 2, 1); D('#F7A8B0', 8, 12, 1, 1); D('#F7A8B0', 15, 12, 1, 1);
     } else { /* gelas minuman */
       F(mixW(col, 0.35), 7, 8, 10, 15); D(col, 8, 12, 8, 10); D('#FFFFFF', 8, 9, 2, 3);
     }
@@ -14163,16 +14193,18 @@ return ['Calon pengurus', ['Ketuk calon untuk mengisi kursi berikutnya; ketuk ku
 }
 boardView(ctx) {
 const P = ctx.P, act = ctx.act;
-if (P.type === 'bagi') return { vals: this.view(null, { hasRow1: true, row1Label: 'Papan Kak Dimas', row1: P.rows.map(r => this.chip(r[0] + ' kelompok → ' + r[1] + ' urutan', false, null, '#FBFAF7')) }), boardLabel: 'Papan urutan tampil', picker: false, actions: [] };
+if (P.type === 'bagi') return { vals: this.view(null, { hasRow1: true, row1Label: 'Papan Kak Dimas', row1: P.rows.map(r => ({ label: r[0] + ' kelompok → ' + r[1] + ' urutan', tap: () => {}, style: '--wb:1' })) }), boardLabel: 'Papan urutan tampil', picker: false, actions: [] };
 const isAnt = P.type === 'antrean', names = isAnt ? this.NAMES.slice(0, P.nNow) : this.CALON, need = isAnt ? P.nNow : 3;
 const pickName = nm => () => { if (ctx.locked) return; if (P.q.indexOf(nm) >= 0) return ctx.warn(nm + ' sudah ada di susunan.'); if (P.q.length >= need) return ctx.warn('Susunan sudah penuh.'); const q = P.q.concat([nm]); ctx.setP({ q: q }, q.length === need ? ctx.tutNext(1) : {}); };
 const roles = ['Ketua', 'Wakil', 'Sekretaris'];
 const slotName = i => isAnt ? String(i + 1) : (P.mode === 'pengurus' ? roles[i] : 'Tim');
+const ICON = nm => isAnt ? PX.obj(({ Tari: 'kipas', Band: 'gitar', Puisi: 'buku', Drama: 'topeng' })[nm] || 'buku') : PX.obj('wajah', /^(Ayu|Citra)$/.test(nm) ? 'p' : 'l');
+const sk = isAnt ? 'spot' : 'kursi';
 const slots = [];
 for (let i = 0; i < need; i++) { const nm = P.q[i];
-slots.push(nm === undefined ? { label: slotName(i), tap: () => {}, style: 'min-width: 56px; padding: 8px 8px; border-radius: 6px; font: inherit; font-size: 11px; color: #8C8B85; border: 1px dashed #B9B8B2; background: #FAFAF8; cursor: default' }
-: { label: slotName(i) + ' · ' + nm, tap: () => { if (ctx.locked) return; ctx.setP({ q: P.q.filter((_, j) => j !== i) }); }, style: 'min-width: 56px; padding: 8px 8px; border-radius: 6px; font: inherit; font-size: 12px; font-weight: 600; color: #1E3F9E; border: 1px solid #2F5BD3; background: #F2F5FD; cursor: pointer' }); }
-const people = names.map(nm => { const used = P.q.indexOf(nm) >= 0; return { label: nm, tap: pickName(nm), style: 'min-width: 40px; padding: 7px 10px; border-radius: 6px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; ' + (used ? 'color: #B9B8B2; border: 1px solid #ECEBE7; background: #F7F7F5' : 'color: #1C1C1A; border: 1px solid #DDDCD7; background: #FFFFFF') }; });
+slots.push(nm === undefined ? { label: slotName(i), tap: () => {}, style: '--' + sk + ':off; cursor: default' }
+: { label: isAnt ? String(i + 1) : slotName(i), tap: () => { if (ctx.locked) return; ctx.setP({ q: P.q.filter((_, j) => j !== i) }); }, style: '--' + sk + ':on; --ic: url(' + ICON(nm) + ')' }); }
+const people = names.map(nm => { const used = P.q.indexOf(nm) >= 0; return { label: nm, tap: pickName(nm), style: '--orang:' + (used ? 'used' : 'free') + '; background-image: url(' + ICON(nm) + ')' }; });
 const catat = () => {
 if (ctx.locked) return;
 if (P.q.length < need) return ctx.warn('Susunan belum lengkap.');
