@@ -1591,6 +1591,19 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-scn svg text{fill:#2B1D1A!important;font-size:12px!important}
 #root .px-st-gudang svg path[fill="#EFE6D2"]{fill:#E8C58C!important}
 #root .px-st-rapor div[style*="flex-wrap: wrap"],#root .px-st-rapor div[style*="grid-template-columns"]{gap:7px!important}
+/* Pilihan jawaban bersama (Faiq 18 Nov): kotak klaim = kartu catatan kertas berpaku, pilihan = tombol timbul netral (tidak hijau/merah supaya tidak jadi petunjuk); "Tidak bisa ditentukan / Tidak mungkin" = slip kertas bercap tinta */
+#root .px-v2 .px-clip.px-verdict,#root .px-v2 div.px-fg:has(> div > button){position:relative;border:0!important;border-image:none!important;background:#FFFDF6 repeating-linear-gradient(#FFFDF6 0 21px,#E8EEF4 21px 22px)!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 6px 0 #E8554E,inset 0 9px 0 #1A1C2C,0 5px 0 rgba(26,28,44,.25)!important;padding:18px 12px 12px!important;margin-top:10px!important;gap:10px!important}
+#root .px-v2 .px-clip.px-verdict::before,#root .px-v2 div.px-fg:has(> div > button)::before{content:"";display:block!important;position:absolute;top:-7px;left:50%;width:12px;height:12px;margin-left:-6px;background:#E8554E;box-shadow:0 0 0 2px #1A1C2C,inset 3px 3px 0 #FF9C8F;border:0;border-radius:0}
+#root .px-v2 .px-clip.px-verdict>div:first-child,#root .px-v2 div.px-fg:has(> div > button)>div:first-child{font-size:15px!important;color:#2B1D1A!important;font-weight:400!important}
+#root .px-v2 .px-clip.px-verdict button,#root .px-v2 div.px-fg:has(> div > button) button{min-width:84px;height:40px;padding:0 14px!important;border:10px solid transparent!important;border-bottom-width:14px!important;border-image:var(--px-kCream) 5 5 7 5 fill / 10px 10px 14px 10px!important;image-rendering:pixelated;background:none!important;box-shadow:none!important;border-radius:0!important;color:#2B1D1A!important;text-shadow:0 1px 0 #FFFFFF!important;font-size:16px!important;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+#root .px-v2 .px-clip.px-verdict button:active,#root .px-v2 div.px-fg:has(> div > button) button:active{transform:translateY(3px)}
+#root .px-v2 .px-clip.px-verdict>div:last-child,#root .px-v2 div.px-fg:has(> div > button)>div:last-child{gap:10px!important;justify-content:center}
+#root .px-alt{border:0!important;border-image:none!important;background:#FFF6E0!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 -5px 0 #E8D5B5,inset 0 3px 0 #FFFFFF,0 4px 0 rgba(26,28,44,.25)!important;color:#2B1D1A!important;padding:8px 10px 10px!important;font-size:12.5px!important;min-height:44px;text-align:left}
+#root .px-alt i{border:2px solid #2F64B0!important;border-image:none!important;border-radius:0!important;background:rgba(76,143,221,.12)!important;color:#2F64B0!important;width:24px!important;height:24px!important;font-size:14px!important;transform:rotate(-8deg)}
+#root .px-alt + .px-alt i,#root .px-altrow>sc-if + sc-if .px-alt i,#root .px-alt:last-child:not(:first-child) i{border-color:#B23A34!important;background:rgba(232,85,78,.12)!important;color:#B23A34!important;transform:rotate(6deg)}
+#root .px-alt:active{transform:translateY(3px)}
+#root div:has(> .px-alt),#root .px-altrow{gap:10px!important;padding:3px!important}
+#root .px-v2 .px-clip.px-verdict{margin:18px 3px 6px!important}
 </style>
 </head>
 <body>
