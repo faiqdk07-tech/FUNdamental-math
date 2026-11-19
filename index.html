@@ -2024,6 +2024,20 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .kb-card-st{width:28px;height:28px;padding:2px;background:#FFE29A;outline:2px dotted #FFFDF5;outline-offset:-3px;box-shadow:0 0 0 2px #1A1C2C;image-rendering:pixelated}
 #root .kb-card-t{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #root .kb-del{border:0;cursor:pointer;font-size:11.5px;color:#FFFFFF;padding:4px 8px 6px;background:#E8554E;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #A32D2D}
+
+/* Jurnal saat kosong (Faiq 19 Nov: "kaku sebelum ada apa-apa"): Bu Mira menyapa, halaman kiri bergambar, halaman kanan 3 langkah bergambar */
+#root .jr-face{background:#F6D7C3!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -6px 0 #E8B79A!important}
+#root .jr-pagebg .bk-npc{flex:none}
+#root .jr-blank{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:22px 4px 0;line-height:1.3}
+#root .jr-blank img{width:44px;height:44px;image-rendering:pixelated;opacity:.85}
+#root .jr-blank b{font-size:13px;color:#2B1D1A}
+#root .jr-blank span{font-size:11px;color:#5A5048}
+#root .jr-steps{display:flex;flex-direction:column;gap:8px;line-height:1.3}
+#root .jr-steps .jr-lbl{margin-top:0;line-height:1.3;padding-bottom:2px}
+#root .jr-step{display:grid;grid-template-columns:18px 20px minmax(0,1fr);align-items:start;column-gap:6px;font-size:11.5px;color:#2B1D1A}
+#root .jr-step img{width:20px;height:20px;image-rendering:pixelated}
+#root .jr-step-n{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#FFFFFF;background:#2F64B0;box-shadow:0 0 0 1.5px #1A1C2C}
+#root .jr-steps .jr-go{margin-top:4px}
 </style>
 </head>
 <body>
@@ -3485,6 +3499,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <div style="height: 780px; box-sizing: border-box; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px">
 <img alt="" class="px-topscene" src="{{scene}}">
 <div class="jr-head"><div class="px-f jr-title">Jurnal Peneliti</div><div class="jr-count">{{count}}</div></div>
+<div class="bk-npc"><span class="bk-face jr-face"><img alt="" src="{{face}}"></span><div class="bk-bubble"><b class="px-f">Bu Mira</b>{{npcText}}</div></div>
 <div class="jr-book">
 <div class="jr-ribbons">
 <sc-for list="{{mats}}" as="m" hint-placeholder-count="5">
@@ -3499,7 +3514,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <button type="button" onClick="{{it.pick}}" class="jr-line {{it.on}}" style="--c: {{it.col}}"><img alt="" src="{{it.ic}}"><span>{{it.rule}}</span></button>
 </sc-for>
 </sc-for>
-<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}"><div class="jr-empty">{{emptyShort}}</div></sc-if>
+<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}"><div class="jr-blank"><img alt="" src="{{blankIc}}"><b class="px-f">Belum ada catatan</b><span>{{emptyShort}}</span></div></sc-if>
 </div>
 <div class="jr-page r">
 <sc-if value="{{hasSel}}" hint-placeholder-val="{{ false }}">
@@ -3513,7 +3528,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 </sc-for>
 <a href="{{sel.href}}" onClick="{{sel.tap}}" class="jr-go px-f">Buka game</a>
 </sc-if>
-<sc-if value="{{empty}}" hint-placeholder-val="{{ false }}"><div class="jr-empty">{{emptyMsg}}</div></sc-if>
+<sc-if value="{{emptyAll}}" hint-placeholder-val="{{ false }}"><div class="jr-steps"><div class="jr-lbl">Cara catatan pertama muncul</div>
+<sc-for list="{{steps}}" as="sp" hint-placeholder-count="3"><div class="jr-step"><span class="jr-step-n px-f">{{sp.n}}</span><img alt="" src="{{sp.ic}}"><span>{{sp.t}}</span></div></sc-for>
+<a href="MiniGames.dc.html" class="jr-go px-f">Ke Mini Games</a></div></sc-if>
+<sc-if value="{{emptyMat}}" hint-placeholder-val="{{ false }}"><div class="jr-empty">Pilih pita lain untuk melihat catatanmu.</div></sc-if>
 </div>
 </div>
 </div>
@@ -11262,7 +11280,7 @@ tries: (j.gagal || []).map(x => ({ a: x, b: 'ditolak', cls: 'no' })).concat([{ a
 if (e.id === selId) sel = it; return it;
 }) }));
 const mats = ['Semua', 'Bilangan', 'Aljabar', 'Geometri', 'Data'].map(k => ({ label: k, on: s.mat === k ? 'on' : '', col: MC[k], tap: () => this.setState({ mat: k, sel: null }) }));
-return { scene: PX.topView('mejabelajar'), mats: mats, groups: groups, hasSel: !!sel, sel: sel || {}, emptyShort: 'Halaman ini masih kosong.', empty: list.length === 0, emptyMsg: p.journal.length ? 'Belum ada catatan di materi ini.' : 'Belum ada catatan. Buka tab Aturan di sebuah game; setiap aturan yang lolos uji tercatat di sini bersama dugaan yang gagal.', count: list.length + ' catatan' };
+return { scene: PX.topView('mejabelajar'), mats: mats, groups: groups, hasSel: !!sel, sel: sel || {}, emptyShort: p.journal.length ? 'Belum ada catatan di materi ini.' : 'Halaman pertama menunggu temuanmu.', empty: list.length === 0, emptyAll: p.journal.length === 0, blankIc: PX.U.g_buku || PX.U.buku, emptyMat: p.journal.length > 0 && list.length === 0, face: PX.U.mira, npcText: p.journal.length ? 'Setiap aturan yang lolos uji tercatat di sini. Ketuk satu catatan untuk melihat dugaanmu dari awal.' : 'Jurnal ini masih kosong. Begitu kamu menemukan aturan pertamamu, aku catat di sini.', steps: [['dadu', 'Mainkan satu game sampai misinya selesai.'], ['papan', 'Buka tab Aturan di game itu dan rakit aturanmu.'], ['centang', 'Aturan yang lolos uji tercatat di halaman ini.']].map((x, i) => ({ n: String(i + 1), ic: PX.U[x[0]], t: x[1] })), emptyMsg: p.journal.length ? 'Belum ada catatan di materi ini.' : 'Belum ada catatan. Buka tab Aturan di sebuah game; setiap aturan yang lolos uji tercatat di sini bersama dugaan yang gagal.', count: list.length + ' catatan' };
 }
 }
 
