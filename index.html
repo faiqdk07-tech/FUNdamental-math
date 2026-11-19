@@ -1702,6 +1702,14 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-ge-gudang .px-st-gudang:has(button[aria-label^="Wadah tegak"]) path[stroke="#1C1C1A"]{fill:rgba(158,215,245,.45)!important;stroke:#2F64B0!important;stroke-width:3!important}
 #root .px-ge-gudang .px-st-gudang:not(:has(button[aria-label^="Wadah"])):not(:has(button[aria-label^="Petak"])) path[stroke="#1C1C1A"]{fill:rgba(201,154,91,.38)!important;stroke:#8A5A32!important;stroke-width:3!important}
 #root .px-ge-gudang .px-st-gudang:not(:has(button[aria-label^="Wadah"])):not(:has(button[aria-label^="Petak"])) path[stroke="#E2E1DC"]{stroke:#B98A55!important}
+/* Gulungan Lab (Faiq 19 Nov): penghitung mekanis abu tua, jendela angka seperti layar kalkulator, tombol panah gelap */
+#root .px-roll{border:16px solid transparent;border-bottom-width:18px;border-image:var(--px-cBody) 8 8 9 8 fill / 16px 16px 18px 16px;image-rendering:pixelated;padding:0!important;background:none!important;box-shadow:none!important}
+#root .px-roll>span:last-child{color:#F2EFE6!important;font-size:13px!important;margin-top:2px}
+#root .px-rollv{display:block;min-width:56px;padding:2px 6px 4px!important;font-family:inherit!important;font-size:26px!important;line-height:30px;color:#1A1C2C!important;background:#A9B79A!important;border:0!important;border-radius:0!important;box-shadow:0 0 0 3px #1A1C2C,inset 0 3px 0 #8E9C80!important;font-weight:400!important}
+#root .px-rollb{width:100%;height:32px;padding:0!important;border:6px solid transparent!important;border-bottom-width:9px!important;border-image:var(--px-kDark) 5 5 7 5 fill / 6px 6px 9px 6px!important;background:none!important;border-radius:0!important;box-shadow:none!important;font-size:13px!important;cursor:pointer;image-rendering:pixelated}
+#root .px-rollb[style*="#1C1C1A"]{color:#F2EFE6!important}
+#root .px-rollb[style*="#B9B8B2"]{color:#5E6475!important}
+#root .px-rollb:active{transform:translateY(2px)}
 </style>
 </head>
 <body>
@@ -1828,10 +1836,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -2167,10 +2175,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -2356,10 +2364,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -2751,10 +2759,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -2934,10 +2942,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -3486,10 +3494,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -3778,10 +3786,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -4625,10 +4633,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -4808,10 +4816,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -5137,10 +5145,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -5549,10 +5557,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -5769,10 +5777,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -5976,10 +5984,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -6159,10 +6167,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
@@ -6638,10 +6646,10 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <sc-if value="{{hasRollers}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: repeat({{rollCols}}, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{rollers}}" as="rl" hint-placeholder-count="3">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 4px; border: 1px solid #DDDCD7; border-radius: 6px; background: #FFFFFF">
-<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.upCol}}">▲</button>
-<span style="min-width: 44px; padding: 5px 0; border-top: 1px solid #ECEBE7; border-bottom: 1px solid #ECEBE7; text-align: center; font-family: ui-monospace, Menlo, monospace; font-size: 18px; font-weight: 600">{{rl.val}}</span>
-<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" style="width: 100%; padding: 3px 0; border: 1px solid #DDDCD7; border-radius: 4px; background: #F7F7F5; font: inherit; font-size: 11px; cursor: pointer; color: {{rl.downCol}}">▼</button>
+<div class="px-roll" style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<button type="button" onClick="{{rl.up}}" aria-label="{{rl.upAria}}" class="px-rollb" style="color: {{rl.upCol}}">▲</button>
+<span class="px-rollv" style="text-align: center; font-weight: 600">{{rl.val}}</span>
+<button type="button" onClick="{{rl.down}}" aria-label="{{rl.downAria}}" class="px-rollb" style="color: {{rl.downCol}}">▼</button>
 <span style="font-size: 11px; color: #66655F; text-align: center">{{rl.label}}</span>
 </div>
 </sc-for>
