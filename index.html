@@ -8022,11 +8022,11 @@ const PX = (() => {
 /* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
    o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
 /* Tokoh balon mengikuti cerita (Faiq 19 Nov): ambil orang yang paling awal disebut di cerita; kalau tidak ada, pakai tokoh bawaan game */
-PX.CAST = [[/\bBu Ani\b/, 'sari', 'Bu Ani'], [/\bIbu kos\b/i, 'sinta', 'Ibu kos'], [/\bPak RT\b/, 'pakrt', 'Pak RT'], [/\bPemilik toko\b/i, 'ratna', 'Pemilik toko'], [/\bPedagang\b/i, 'darto', 'Pedagang'], [/\bPanitia\b/, 'ketua', 'Panitia'], [/\bMandor\b/, 'mandor', 'Mandor gudang'], [/\bBu Sari\b/, 'sari', 'Bu Sari'], [/\bPak Tani\b/, 'harun', 'Pak Tani'], [/\bPetugas bank sampah\b/i, 'yanto', 'Petugas bank sampah'], [/\bKurir\b/, 'kurir', 'Kurir'], [/\bPak Darto\b/, 'darto', 'Pak Darto']];
+PX.CAST = [[/\bBu Ani\b/, 'sari', 'Bu Ani'], [/\bIbu kos\b/i, 'sinta', 'Ibu kos'], [/\bPak RT\b/, 'pakrt', 'Pak RT'], [/\bPemilik toko\b/i, 'ratna', 'Pemilik toko'], [/\bPedagang\b/i, 'darto', 'Pedagang'], [/\bPanitia\b/, 'ketua', 'Panitia'], [/\bMandor\b/, 'mandor', 'Mandor gudang'], [/\bBu Sari\b/, 'sari', 'Bu Sari'], [/\bPak Tani\b/, 'harun', 'Pak Tani'], [/\bPetugas bank sampah\b/i, 'yanto', 'Petugas bank sampah'], [/\bKurir\b/, 'kurir', 'Kurir'], [/\bPak Darto\b/, 'darto', 'Pak Darto'], [/\bBu RT\b/, 'sinta', 'Bu RT'], [/\bKetua panitia\b/i, 'ketua', 'Ketua panitia'], [/\bPemilik kedai\b/i, 'ratna', 'Pemilik kedai'], [/\bKasir\b/, 'ratna', 'Kasir'], [/\bKepala percetakan\b/i, 'kepala', 'Kepala percetakan'], [/\bKepala terminal\b/i, 'kepala', 'Kepala terminal'], [/\bKepala sekolah\b/i, 'kepala', 'Kepala sekolah'], [/\bPetugas survei\b/i, 'yanto', 'Petugas survei'], [/\bPabrik tisu\b/i, 'mandor', 'Pabrik tisu']];
 PX.cast = (story, def, list) => { const st = String(story || ''); let best = null, bi = 1e9; (list || PX.CAST).forEach(c => { const m = st.match(c[0]); if (m && m.index < bi) { bi = m.index; best = c; } });
   /* nama berawalan Bu/Pak/Kak/Mbak/Mas yang disebut lebih awal juga dipakai (mis. "Bu Ida yakin ...") */
-  const nm = st.match(/\b(Bu|Pak|Kak|Mbak|Mas) ([A-Z][a-z]+)/);
-  if (nm && nm.index < bi && !/^(RT|RW)$/.test(nm[2])) { const F = { darto: 1, harun: 1, wina: 1, dimas: 1, rara: 1, sari: 1, rina: 1, lina: 1, wati: 1, mira: 1, sinta: 1, yanto: 1, udin: 1, ratna: 1 }, k = nm[2].toLowerCase(); return { face: F[k] ? k : (/^(Bu|Mbak)$/.test(nm[1]) ? 'sinta' : /^Kak$/.test(nm[1]) ? 'dimas' : 'harun'), role: nm[0] }; }
+  const nm = st.match(/\b(Bu|Pak|Kak|Mbak|Mas|Bang) ([A-Z][a-z]+)/);
+  if (nm && nm.index < bi && !/^(RT|RW)$/.test(nm[2])) { const F = { darto: 1, harun: 1, wina: 1, dimas: 1, rara: 1, sari: 1, rina: 1, lina: 1, wati: 1, mira: 1, sinta: 1, yanto: 1, udin: 1, ratna: 1 }, k = nm[2].toLowerCase(); return { face: F[k] ? k : (/^(Bu|Mbak)$/.test(nm[1]) ? 'sinta' : /^Kak$/.test(nm[1]) ? 'dimas' : /^Bang$/.test(nm[1]) ? 'barista' : 'harun'), role: nm[0] }; }
   return best ? { face: best[1], role: best[2] } : def; };
 PX.V2ROLE = {"Kasir Kilat": "Pelanggan", "Timbangan": "Mandor gudang", "Ubin": "Panitia", "Jadwal Bus": "Petugas terminal", "Bagi Pizza": "Panitia", "Racik Resep": "Pemesan", "Lipat Kertas": "Pemesan", "Dua Struk": "Pembeli", "Meja Hajatan": "Tuan rumah", "Martabak Topping": "Pembeli", "Mesin Minuman": "Petugas", "Argo Ojek": "Penumpang", "Rekap Grosir": "Pemilik toko", "Kebun Pagar": "Pemilik kebun", "Dapur Roti": "Pemilik dapur", "Rute Kurir": "Pengirim paket", "Pasang Lantai": "Pemilik rumah", "Gudang Kardus": "Petugas gudang", "Cetak Spanduk": "Pemesan", "Tangga Bangunan": "Mandor", "Pelabuhan": "Petugas pelabuhan", "Loker OSIS": "Pengurus OSIS", "Pentas Seni": "Panitia", "Undian Doorprize": "Panitia", "Rapor Kelas": "Wali kelas", "Grafik Viral": "Pengelola data"};
 PX.v2 = (comp, v, o) => {
@@ -8041,10 +8041,12 @@ PX.v2 = (comp, v, o) => {
   const hearts = useH ? Array.from({ length: +m[2] }, (_, i) => i < +m[1] ? 'on' : '') : [];
   const story = o.story !== undefined ? o.story : v.story, goal = o.goal !== undefined ? o.goal : v.goal, hasGoal = o.hasGoal !== undefined ? o.hasGoal : v.hasGoal; const key = String(story || '') + '|' + String(goal || '');
   if (x.key !== key) { x.key = key; x.open = false; }
+  /* tokoh balon mengikuti cerita bila game tidak menentukan perannya sendiri (Faiq 19 Nov) */
+  const cast = !o.role && !o.noCast && story ? PX.cast(story, null) : null;
   const needTap = !!hasGoal && !v.isTut && v.gmInPlay !== false;
   const pick = (v.gmPickItems || []).map((pk, i) => Object.assign({}, pk, { cls: (pk.done ? 'done ' : '') + (i % 2 ? 'r' : 'l') }));
   return {
-    v2Face: PX.U[o.face] || PX.U.pemandu, v2Name: o.role || PX.V2ROLE[o.game] || o.name, v2Tag: tag, v2HasTag: !!tag,
+    v2Face: PX.U[(cast && cast.face) || o.face] || PX.U.pemandu, v2Name: (cast && cast.role) || o.role || PX.V2ROLE[o.game] || o.name, v2Tag: tag, v2HasTag: !!tag,
     v2Hearts: useH, v2HeartList: hearts, v2StatusTxt: useH ? rest : (v.statusLabel ? (/^status$/i.test(String(v.statusLabel)) ? String(v.status || '') : [v.statusLabel, v.status].filter(Boolean).join(' · ')) : String(v.gmStatusLine || '')),
     v2Pick: pick, v2LvlName: ({ F: 'Fundamental', I: 'Intermediate', E: 'Expert' })[comp.curLvl ? comp.curLvl() : ''] || '', v2GameIc: PX.gameIcon(o.game || ''),
     v2ShowTask: !needTap || x.open, v2NeedTap: needTap && !x.open, v2Wait: needTap && !x.open ? 'v2wait' : '', v2Lanjut: () => { x.open = true; comp.setState({}); },
@@ -8608,7 +8610,7 @@ this.setState({ P: Pn, msg: 'Adil tanpa sisa! Tersimpan: potong ' + n + '.', kin
 };
 knives = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(k => ({ label: String(k), aria: 'Potong tiap loyang jadi ' + k, tap: () => cut(k), style: knifeSt(P.cutN === k) }));
 actions = [];
-if (playing && P.goalType === 'all') { statusLabel += ' · ditemukan ' + P.found.length + ' / ' + all.length; log = P.found.map(k => 'potong ' + k + ' → tiap orang ' + (m * k / p) + ' × 1/' + k); }
+if (playing && P.goalType === 'all') { statusLabel += ' · ditemukan ' + P.found.length; /* total disembunyikan (anti-clue) */ log = P.found.map(k => 'potong ' + k + ' → tiap orang ' + (m * k / p) + ' × 1/' + k); }
 if (playing && shown && !locked) actions.push(act('↺ Satukan', () => setP({ cutN: null })));
 if (isLab) actions = actions.concat([act('Loyang ' + s.lab.m + ' ↻', () => { const v = s.lab.m >= 6 ? 1 : s.lab.m + 1; this.setState({ lab: Object.assign({}, s.lab, { m: v }), P: this.fresh({ type: 'bagi', m: v, p: s.lab.p, tutorial: true }) }); }), act('Orang ' + s.lab.p + ' ↻', () => { const v = s.lab.p >= 8 ? 2 : s.lab.p + 1; this.setState({ lab: Object.assign({}, s.lab, { p: v }), P: this.fresh({ type: 'bagi', m: s.lab.m, p: v, tutorial: true }) }); }),
 act('Jadikan tantangan', () => this.setState({ customs: s.customs.concat([{ m: s.lab.m, p: s.lab.p }]), msg: 'Tersimpan sebagai "Tantangan rekan ' + (s.customs.length + 1) + '" di tab Misi.', kind: 'ok' }), true)]);
