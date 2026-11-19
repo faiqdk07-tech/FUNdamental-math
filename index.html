@@ -18463,7 +18463,7 @@ function relabel(root) {
    Semua suara dibuat lewat kode (Web Audio, gaya chiptune), tanpa file. Setelan: fm.settings.sfx (efek, bawaan nyala) dan fm.settings.music (BGM, bawaan nyala).
    Suara baru boleh keluar sesudah ketukan pertama (aturan browser/iPad). Anti-clue: hanya sesudah aksi pemain, semua pilihan berbunyi sama.
    Kekerasan disamakan menurut telinga (gelombang kotak terdengar lebih keras dari segitiga); bunyi salah sengaja lembut.
-   Langkah A: tap, taruh, ambil, benar, salah, habis. Tiap suara = fungsi (ctx, tujuan, waktu mulai) supaya bisa direkam ulang (FMS.render). */
+   Langkah A: tap, taruh, ambil, benar, salah, habis. Langkah B: blip balon, desir pindah layar, langkah tokoh, bintang baru, fanfare aturan lolos uji. Tiap suara = fungsi (ctx, tujuan, waktu mulai) supaya bisa direkam ulang (FMS.render). */
 const FMS = (() => {
   let ctx = null, out = null;
   const setting = k => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {})[k] !== false; } catch (e) { return true; } };
@@ -18481,6 +18481,17 @@ const FMS = (() => {
     osc.connect(g); g.connect(dst);
     osc.start(t); osc.stop(t + o.d + 0.02);
   }
+  // desis: derau putih lewat penyaring yang bergeser (untuk pindah layar)
+  const NB = new WeakMap();
+  function noise(c, dst, t, o) {
+    let buf = NB.get(c);
+    if (!buf) { buf = c.createBuffer(1, Math.ceil(c.sampleRate * 0.5), c.sampleRate); const ch = buf.getChannelData(0); for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1; NB.set(c, buf); }
+    const src = c.createBufferSource(), bp = c.createBiquadFilter(), g = c.createGain();
+    src.buffer = buf; bp.type = 'bandpass'; bp.Q.value = 1.2;
+    bp.frequency.setValueAtTime(o.f, t); bp.frequency.exponentialRampToValueAtTime(o.f2, t + o.d);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(o.v, t + o.d * 0.4); g.gain.linearRampToValueAtTime(0.0001, t + o.d);
+    src.connect(bp); bp.connect(g); g.connect(dst); src.start(t); src.stop(t + o.d + 0.02);
+  }
   const N = { C4: 261.63, D4: 293.66, E4: 329.63, G4: 392, A4: 440, C5: 523.25, E5: 659.25, G5: 783.99, C6: 1046.5 };
   const SFX = {
     tap: (c, d, t) => tone(c, d, t, { type: 'square', f: 1250, d: 0.025, v: 0.035 }),
@@ -18488,7 +18499,13 @@ const FMS = (() => {
     take: (c, d, t) => tone(c, d, t, { type: 'triangle', f: 260, f2: 130, d: 0.09, v: 0.15 }),
     ok: (c, d, t) => { [N.C5, N.E5, N.G5].forEach((f, i) => tone(c, d, t + i * 0.075, { type: 'square', f: f, d: i === 2 ? 0.16 : 0.07, v: 0.09 })); },
     warn: (c, d, t) => { tone(c, d, t, { type: 'triangle', f: N.E4, d: 0.11, v: 0.14 }); tone(c, d, t + 0.12, { type: 'triangle', f: N.C4, d: 0.18, v: 0.14 }); },
-    habis: (c, d, t) => { [N.G4, N.E4, N.C4].forEach((f, i) => tone(c, d, t + i * 0.13, { type: 'triangle', f: f, d: i === 2 ? 0.2 : 0.11, v: 0.14 })); }
+    habis: (c, d, t) => { [N.G4, N.E4, N.C4].forEach((f, i) => tone(c, d, t + i * 0.13, { type: 'triangle', f: f, d: i === 2 ? 0.2 : 0.11, v: 0.14 })); },
+    // Langkah B
+    blip: (c, d, t) => { tone(c, d, t, { type: 'square', f: 660, d: 0.03, v: 0.03 }); tone(c, d, t + 0.035, { type: 'square', f: 990, d: 0.04, v: 0.03 }); },
+    swish: (c, d, t) => noise(c, d, t, { d: 0.14, f: 700, f2: 2600, v: 0.12 }),
+    step: (c, d, t) => tone(c, d, t, { type: 'triangle', f: 150, f2: 110, d: 0.03, v: 0.07 }),
+    star: (c, d, t) => { tone(c, d, t, { type: 'square', f: 1568, d: 0.05, v: 0.04 }); tone(c, d, t + 0.06, { type: 'square', f: 2093, d: 0.09, v: 0.04 }); tone(c, d, t + 0.16, { type: 'square', f: 2093, d: 0.06, v: 0.015 }); },
+    fanfare: (c, d, t) => { [N.G4, N.C5, N.E5, N.G5].forEach((f, i) => tone(c, d, t + i * 0.09, { type: 'square', f: f, d: i === 3 ? 0.3 : 0.08, v: 0.08 })); tone(c, d, t + 0.27, { type: 'triangle', f: N.C4, d: 0.3, v: 0.1 }); }
   };
   function unlock() {
     if (ctx) { if (ctx.state === 'suspended') ctx.resume(); return; }
@@ -18499,12 +18516,12 @@ const FMS = (() => {
   ['pointerdown', 'touchend', 'keydown'].forEach(ev => document.addEventListener(ev, unlock, true));
   document.addEventListener('visibilitychange', () => { if (!ctx) return; if (document.hidden) ctx.suspend(); else ctx.resume(); });
   let lastAt = {};
-  function play(name) {
+  function play(name, delay) {
     if (!ctx || !setting('sfx') || !SFX[name]) return;
-    const now = ctx.currentTime;
-    if (lastAt[name] && now - lastAt[name] < 0.04) return; // tidak menumpuk suara sama di waktu yang sama
-    lastAt[name] = now;
-    try { SFX[name](ctx, out, now + 0.005); } catch (e) {}
+    const at = ctx.currentTime + 0.005 + (delay || 0);
+    if (lastAt[name] && Math.abs(at - lastAt[name]) < 0.04) return; // tidak menumpuk suara sama di waktu yang sama
+    lastAt[name] = at;
+    try { SFX[name](ctx, out, at); } catch (e) {}
   }
   // rekam satu suara ke Float32Array (untuk uji dan contoh dengar)
   function render(name, sr) {
@@ -18571,10 +18588,12 @@ const FMA = (() => {
   function walkHero(h) {
     const x = h.offsetLeft, y = h.offsetTop, px0 = h.__fmx, py0 = h.__fmy;
     h.__fmx = x; h.__fmy = y;
-    if (px0 === undefined || (px0 === x && py0 === y) || !on()) return;
+    if (px0 === undefined || (px0 === x && py0 === y)) return;
     const dur = parseFloat(h.style.transitionDuration) * (/ms/.test(h.style.transitionDuration) ? 1 : 1000) || 0;
     if (dur < 60) return;
     const n = Math.max(2, Math.round(dur / 90));
+    for (let i = 0; i < n; i += 2) FMS.play('step', i * dur / n / 1000); // bunyi langkah pelan tiap dua langkah gambar
+    if (!on()) return;
     try {
       if (h.__fmw) h.__fmw.cancel();
       h.__fmw = h.animate([{ translate: (px0 - x) + 'px ' + (py0 - y) + 'px' }, { translate: '0 0' }], { duration: dur, easing: 'steps(' + n + ', end)' });
@@ -18582,7 +18601,7 @@ const FMA = (() => {
       if (img) img.animate([{ translate: '0 0', easing: 'step-end' }, { translate: '0 -2px', offset: 0.5, easing: 'step-end' }, { translate: '0 0' }], { duration: dur * 2 / n, iterations: Math.ceil(n / 2) });
     } catch (err) {}
   }
-  function enter(box) { if (on()) try { box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, easing: 'steps(3, start)' }); } catch (err) {} }
+  function enter(box) { FMS.play('swish'); if (on()) try { box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150, easing: 'steps(3, start)' }); } catch (err) {} }
   /* Kelompok 8: bintang yang baru didapat sejak terakhir terlihat membesar 0 -> 1,4 -> 1 dan berkilau sekali.
      Catatan bintang yang sudah pernah terlihat: localStorage fm.anim.seen ({ stars: [kunci game|tingkat|urutan], total: n }).
      Saat catatan belum ada (pertama kali), semua bintang yang sudah didapat hanya dicatat, tidak dianimasikan. */
@@ -18596,7 +18615,7 @@ const FMA = (() => {
     const first = !seen;
     if (first) { seen = { stars: [], total: null }; try { Object.keys(FMP.GAME).forEach(g => ['F', 'I', 'E'].forEach(l => FMP.stars(g, l).forEach((on, i) => { if (on) seen.stars.push(g + '|' + l + '|' + i); }))); } catch (e) {} }
     let changed = first, k = 0;
-    const play = (el, glintEl, delay) => { if (!on()) return; try { el.animate(STAR, { duration: 240, delay: delay, fill: 'backwards' }); glintEl.animate(GLINT, { duration: 300, delay: delay + 120, pseudoElement: '::after' }); } catch (e) {} };
+    const play = (el, glintEl, delay) => { FMS.play('star', delay / 1000 + 0.1); if (!on()) return; try { el.animate(STAR, { duration: 240, delay: delay, fill: 'backwards' }); glintEl.animate(GLINT, { duration: 300, delay: delay + 120, pseudoElement: '::after' }); } catch (e) {} };
     stars.forEach(el => {
       if (!el.classList.contains('on')) return;
       const key = el.getAttribute('data-fmstar');
@@ -18615,6 +18634,7 @@ const FMA = (() => {
     box.querySelectorAll('.px-hero').forEach(walkHero);
     box.querySelectorAll('.px-talk').forEach(t => {
       const tx = t.querySelector('.px-talk-text'), k = tx ? tx.textContent : '';
+      if (k && t.__fmk !== k) FMS.play('blip', 0.12); // cerita baru tampil (sesudah desir pindah layar)
       if (t.__fmk !== undefined && t.__fmk !== k && on()) restart(Array.from(t.querySelectorAll('.px-talk-face img, .px-talk-bubble')));
       t.__fmk = k;
     });
@@ -18623,7 +18643,7 @@ const FMA = (() => {
     const pk = pop ? pop.className + '|' + pop.textContent : null;
     if (pk && pk !== box.__fmpk) {
       lastResult = performance.now();
-      if (pop.classList.contains('ok')) FMS.play('ok');
+      if (pop.classList.contains('ok')) FMS.play(/Lolos \d+ uji acak/.test(pop.textContent) ? 'fanfare' : 'ok'); // aturan baru lolos uji = fanfare
       else if (!pop.classList.contains('info')) FMS.play(/Kesempatan habis/.test(pop.textContent) ? 'habis' : 'warn');
     }
     box.__fmpk = pk;
