@@ -18573,12 +18573,39 @@ const FMS = (() => {
     pos: { bpm: 96, vol: 0.5, perc: '..h...h.', leadType: 'triangle', leadV: 0.1,
       lead: L('72 . 69 . 72 . 77 . 74 . . . 72 . 69 . 70 . 74 . 77 . 74 . 72 . . . 0 . 67 . 69 . 72 . 77 . 81 . 79 . 77 . 74 . 72 . 70 . 69 . 67 . 72 . 77 . . . 0 . 0 .'),
       bass: [41, 48, 41, 48, 38, 45, 38, 45, 43, 50, 43, 50, 36, 43, 36, 43, 41, 48, 41, 48, 38, 45, 38, 45, 43, 50, 36, 43, 41, 48, 41, 41] },
-    // Semua game (sementara, sampai langkah C): meja kerja tenang
+    /* ===== Lagu game Bilangan (warung dan pasar; tenang, melodi jarang, tanpa drum keras) ===== */
+    // Kasir Kilat: meja kasir, do mayor
+    kasir: { bpm: 88, vol: 0.45, perc: '....t...', leadType: 'pulse', leadV: 0.035,
+      lead: L('72 . 76 . 79 . . . 81 . 79 . 76 . . . 77 . 76 . 72 . . . 74 . . . 0 . 0 . 72 . 76 . 79 . . . 84 . 81 . 79 . . . 77 . 74 . 72 . 74 . 72 . . . 0 . 0 .'),
+      bass: [48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 41, 48, 43, 50, 43, 50, 48, 55, 48, 55, 45, 52, 45, 52, 41, 48, 43, 50, 48, 55, 48, 43] },
+    // Timbangan: gudang, nada rendah dan mantap, sol mayor
+    timbang: { bpm: 80, vol: 0.42, perc: 't.......', leadType: 'triangle', leadV: 0.09,
+      lead: L('67 . 71 . 74 . . . 76 . 74 . 71 . . . 72 . 76 . 74 . 72 . 74 . . . 0 . 0 . 71 . 74 . 79 . . . 76 . 74 . 71 . 69 . 72 . 71 . 69 . 66 . 67 . . . 0 . 0 .'),
+      bass: [43, 50, 43, 50, 40, 47, 40, 47, 36, 43, 36, 43, 38, 45, 38, 45, 43, 50, 43, 50, 40, 47, 40, 47, 36, 43, 38, 45, 43, 50, 43, 38] },
+    // Tata Barisan: susunan rapi, petikan berpola, fa mayor
+    barisan: { bpm: 84, vol: 0.6, arp: [0, 1, 2, 1, 0, 1, 2, 3], arpType: 'pulse', arpV: 0.03,
+      chords: [C(53, 57, 60, 65), C(46, 50, 53, 58), C(48, 52, 55, 60), C(53, 57, 60, 65), C(50, 53, 57, 62), C(46, 50, 53, 58), C(48, 52, 55, 58), C(53, 57, 60, 65)] },
+    // Kapan Bareng?: jadwal bus, motif yang berulang, re mayor
+    jadwal: { bpm: 96, vol: 0.45, perc: '..t...t.', leadType: 'pulse', leadV: 0.035,
+      lead: L('74 . 78 . 81 . 78 . 76 . 73 . 69 . 73 . 74 . 78 . 81 . 83 . 79 . . . 0 . 0 . 74 . 78 . 81 . 78 . 76 . 79 . 81 . 76 . 79 . 78 . 76 . 73 . 74 . . . 0 . 0 .'),
+      bass: [38, 45, 38, 45, 45, 52, 45, 52, 47, 54, 47, 54, 43, 50, 43, 50, 38, 45, 38, 45, 45, 52, 45, 52, 43, 50, 45, 52, 38, 45, 38, 45] },
+    // Bagi Pizza: kedai hangat, si mol mayor
+    pizza: { bpm: 84, vol: 0.5, perc: '.h...h..', leadType: 'triangle', leadV: 0.09,
+      lead: L('70 . 74 . 77 . 74 . 79 . 77 . 74 . . . 75 . 74 . 72 . 70 . 72 . . . 0 . 0 . 74 . 77 . 82 . 79 . 77 . 74 . 79 . 77 . 75 . 74 . 72 . 77 . 70 . . . 0 . 0 .'),
+      bass: [46, 53, 46, 53, 43, 50, 43, 50, 39, 46, 39, 46, 41, 48, 41, 48, 46, 53, 46, 53, 43, 50, 43, 50, 39, 46, 41, 48, 46, 53, 46, 41] },
+    // Racik Resep: kafe kecil, akor jazz lembut
+    resep: { bpm: 92, vol: 0.6, perc: '..h...h.', arp: [0, 2, 3, 1, 2, 3, 1, 2], arpType: 'pulse', arpV: 0.028, bells: true,
+      chords: [C(48, 52, 55, 59), C(45, 48, 52, 55), C(50, 53, 57, 60), C(43, 47, 50, 53), C(52, 55, 59, 62), C(45, 49, 52, 55), C(50, 53, 57, 60), C(43, 47, 50, 53)] },
+    // Lipat Kertas: halus dan tipis, nada tinggi, mi minor
+    lipat: { bpm: 70, vol: 0.6, arp: [0, 1, 2, 3, -1, 2, 1, -1], arpOct: 24, arpV: 0.04,
+      chords: [C(52, 55, 59, 64), C(48, 52, 55, 60), C(43, 47, 50, 55), C(50, 54, 57, 62), C(52, 55, 59, 64), C(48, 52, 55, 60), C(45, 48, 52, 57), C(47, 51, 54, 59)] },
+    // Game lain (sementara, sampai materinya dikerjakan): meja kerja tenang
     kerja: { bpm: 72, vol: 0.6,
       chords: [C(53, 57, 60, 64), C(52, 55, 59, 62), C(50, 53, 57, 60), C(48, 52, 55, 59), C(53, 57, 60, 64), C(52, 55, 59, 62), C(50, 53, 57, 60), C(43, 47, 50, 53)],
       arp: [0, 1, 2, 3, 2, 1, 2, 1], bells: true }
   };
   // halaman -> lagu
+  const GAME_SONG = { KasirKilat: 'kasir', Timbangan: 'timbang', Ubin: 'barisan', JadwalBus: 'jadwal', BagiPizza: 'pizza', RacikResep: 'resep', LipatKertas: 'lipat' };
   const PAGE_SONG = { Main: 'desa', MiniGames: 'jalan', Progres: 'piala', Jurnal: 'jurnal', PohonTemuan: 'kaca', Tantangan: 'alun', Bengkel: 'bengkel', CekCelah: 'malam', Pengaturan: 'atur', KasusBaru: 'pos' };
   function perc(c, dst, ch, t) {
     if (ch === 'h') noise(c, dst, t, { d: 0.04, f: 6000, f2: 8000, v: 0.025 });
@@ -18673,7 +18700,7 @@ const FMS = (() => {
     if (b.closest('.px-acts')) return 'tap';
     return BOARD[place] || 'tap';
   }
-  return { play, render, names: Object.keys(SFX), setting, music, pageSong: n => PAGE_SONG[n] || 'desa', songs: Object.keys(SONGS), kindOf, place: n => { place = n; }, sync: syncMusic, renderSong, now: () => cur };
+  return { play, render, names: Object.keys(SFX), setting, music, pageSong: n => PAGE_SONG[n] || 'desa', gameSong: n => GAME_SONG[n] || 'kerja', songs: Object.keys(SONGS), kindOf, place: n => { place = n; }, sync: syncMusic, renderSong, now: () => cur };
 })();
 const FMA = (() => {
   const setOn = () => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}).anim !== false; } catch (e) { return true; } };
@@ -18817,7 +18844,7 @@ function show(name) {
     PX.skin(ROOT, name);
     window.__fmComp = m.comp;
     m.host.render();
-    try { FMS.place(name); FMS.music(FMP.isGame(name) ? 'kerja' : FMS.pageSong(name)); } catch (e) {} // BGM: tiap halaman punya lagu sendiri // BGM: di dalam game = Meja kerja, selain itu = Desa
+    try { FMS.place(name); FMS.music(FMP.isGame(name) ? FMS.gameSong(name) : FMS.pageSong(name)); } catch (e) {} // BGM: tiap halaman punya lagu sendiri // BGM: di dalam game = Meja kerja, selain itu = Desa
     try { FMA.enter(box); } catch (e) {} // Kelompok 6: layar baru muncul pelan dalam 3 langkah (150 ms), tanpa bergeser
   } catch (e) {
     console.error(e);
