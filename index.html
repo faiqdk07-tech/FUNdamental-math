@@ -5371,6 +5371,17 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 </div>
 </div>
 <div class="st-sec">
+<div class="bk-lab px-f"><img alt="" class="st-ic" src="{{px.mik}}">Suara</div>
+<sc-for list="{{sounds}}" as="sd" hint-placeholder-count="2">
+<div class="st-sub">{{sd.name}}</div>
+<div class="st-keys st-keys2">
+<sc-for list="{{sd.keys}}" as="a" hint-placeholder-count="2">
+<button type="button" onClick="{{a.tap}}" aria-label="{{a.aria}}" class="st-key {{a.on}}"><i></i><span class="px-f">{{a.label}}</span></button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<div class="st-sec">
 <div class="bk-lab px-f"><img alt="" class="st-ic" src="{{px.daftar}}">Data</div>
 <div class="st-row"><span class="st-t"><span>Ekspor progres</span><small>Unduh file cadangan</small></span><button type="button" onClick="{{doCopy}}" class="st-btn px-f">Unduh</button></div>
 <div class="st-row"><span class="st-t"><span>Impor progres</span><small>Pulihkan dari file cadangan</small></span><label class="st-btn px-f">Pilih file<input type="file" accept="application/json,.json" onChange="{{doImport}}" style="display: none"></label></div>
@@ -14510,11 +14521,11 @@ constructor(props) {
 super(props);
 let saved = {};
 try { saved = JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}; } catch (e) { saved = {}; }
-this.state = Object.assign({ target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, anim: true }, saved, { askWipe: false, msg: '' });
+this.state = Object.assign({ target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, anim: true, music: true, sfx: true }, saved, { askWipe: false, msg: '' });
 }
 save(patch, msg) {
 const next = Object.assign({}, this.state, patch);
-try { window.localStorage.setItem('fm.settings', JSON.stringify({ target: next.target, per: next.per, rule: next.rule, autoLog: next.autoLog, sendPH: next.sendPH, anim: next.anim })); } catch (e) {}
+try { window.localStorage.setItem('fm.settings', JSON.stringify({ target: next.target, per: next.per, rule: next.rule, autoLog: next.autoLog, sendPH: next.sendPH, anim: next.anim, music: next.music, sfx: next.sfx })); } catch (e) {}
 try { FMA.apply(); } catch (e) {}
 this.setState(Object.assign({}, patch, { msg: msg || '' }));
 }
@@ -14533,12 +14544,13 @@ per: String(s.per), perUp: () => { if (s.per < 10) this.save({ per: s.per + 1 })
 perUpCol: s.per < 10 ? '#1C1C1A' : '#B9B8B2', perDownCol: s.per > 3 ? '#1C1C1A' : '#B9B8B2',
 rules: [7, 8, 9].map(r => ({ on: s.rule === r ? 'on' : '', label: r + ' dari 10', aria: 'Syarat bintang kedua: ' + r + ' dari 10 kasus harian tepat' + (s.rule === r ? ', dipilih' : ''), style: seg(s.rule === r), tap: () => this.save({ rule: r }) })),
 toggles: [],
+sounds: [['music', 'Musik'], ['sfx', 'Efek suara']].map(k => ({ name: k[1], keys: [[true, 'Nyala'], [false, 'Mati']].map(a => ({ on: (s[k[0]] !== false) === a[0] ? 'on' : '', label: a[1], aria: k[1] + ' ' + a[1].toLowerCase() + ((s[k[0]] !== false) === a[0] ? ', dipilih' : ''), tap: () => this.save({ [k[0]]: a[0] }) })) })),
 anims: [[true, 'Nyala'], [false, 'Mati']].map(a => ({ on: (s.anim !== false) === a[0] ? 'on' : '', label: a[1], aria: 'Animasi ' + a[1].toLowerCase() + ((s.anim !== false) === a[0] ? ', dipilih' : ''), tap: () => this.save({ anim: a[0] }) })),
 doCopy: () => { const txt = FMP.exportText(), d = new Date(), fn = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; const cl = window.claude; if (cl && typeof cl.use === 'function') { cl.use('downloads').then(dl => { if (!dl) return this.setState({ msg: 'Unduhan tidak tersedia di tampilan ini.' }); return dl.save({ filename: fn, data: txt }).then(() => this.setState({ msg: 'File cadangan diunduh. Simpan di tempat aman.' }), e => this.setState({ msg: e && e.code === 'declined' ? 'Unduhan dibatalkan.' : 'Unduhan tidak tersedia di tampilan ini.' })); }); return; } (() => { try { const txt = FMP.exportText(), a = document.createElement('a'), d = new Date(); a.href = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.download = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; document.body.appendChild(a); a.click(); a.remove(); this.setState({ msg: 'File cadangan diunduh. Simpan baik-baik.' }); } catch (e) { this.setState({ msg: 'Gagal membuat file cadangan.' }); } })(); },
 doImport: ev => { const f = ev && ev.target && ev.target.files && ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { try { FMP.importText(String(r.result)); this.setState({ msg: 'Progres dari file cadangan sudah dipulihkan.' }); } catch (e) { this.setState({ msg: 'File itu bukan cadangan Fundamental Math.' }); } }; r.readAsText(f); ev.target.value = ''; },
 askWipe: s.askWipe, showWipeBtn: !s.askWipe,
 startWipe: () => this.setState({ askWipe: true, msg: '' }), cancelWipe: () => this.setState({ askWipe: false }),
-confirmWipe: () => { try { window.localStorage.removeItem('fm.settings'); window.localStorage.removeItem('fm.lastLvl'); } catch (e) {} FMP.reset(); try { FMA.apply(); } catch (e) {} this.setState({ askWipe: false, target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, anim: true, msg: 'Semua data dihapus. Pengaturan kembali ke awal.' }); },
+confirmWipe: () => { try { window.localStorage.removeItem('fm.settings'); window.localStorage.removeItem('fm.lastLvl'); } catch (e) {} FMP.reset(); try { FMA.apply(); } catch (e) {} this.setState({ askWipe: false, target: 2, per: 5, rule: 8, autoLog: true, sendPH: true, anim: true, music: true, sfx: true, msg: 'Semua data dihapus. Pengaturan kembali ke awal.' }); },
 hasMsg: !!s.msg, msg: s.msg
 };
 }
@@ -18447,6 +18459,62 @@ function relabel(root) {
    Kelompok 1: tombol yang diketuk naik kembali dalam 2 langkah (2 px -> 1 px -> 0). Sama untuk semua tombol, jadi tidak membedakan pilihan.
    Dipakai Web Animations + properti translate, supaya tidak tertimpa render ulang dan tidak mengganggu transform tombol.
    afterRender: kartu hasil Cek yang tetap terbuka tapi isinya berganti (mis. salah lagi) memutar ulang animasinya. */
+/* ===== Suara (dirancang Faiq 19 Nov) =====
+   Semua suara dibuat lewat kode (Web Audio, gaya chiptune), tanpa file. Setelan: fm.settings.sfx (efek, bawaan nyala) dan fm.settings.music (BGM, bawaan nyala).
+   Suara baru boleh keluar sesudah ketukan pertama (aturan browser/iPad). Anti-clue: hanya sesudah aksi pemain, semua pilihan berbunyi sama.
+   Kekerasan disamakan menurut telinga (gelombang kotak terdengar lebih keras dari segitiga); bunyi salah sengaja lembut.
+   Langkah A: tap, taruh, ambil, benar, salah, habis. Tiap suara = fungsi (ctx, tujuan, waktu mulai) supaya bisa direkam ulang (FMS.render). */
+const FMS = (() => {
+  let ctx = null, out = null;
+  const setting = k => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {})[k] !== false; } catch (e) { return true; } };
+  // satu nada: bentuk gelombang, frekuensi awal -> akhir, lama (detik), keras
+  function tone(c, dst, t, o) {
+    const osc = c.createOscillator(), g = c.createGain();
+    osc.type = o.type || 'square';
+    osc.frequency.setValueAtTime(o.f, t);
+    if (o.f2) osc.frequency.linearRampToValueAtTime(o.f2, t + o.d);
+    const v = o.v || 0.1;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(v, t + 0.004);
+    g.gain.setValueAtTime(v, t + Math.max(0.005, o.d - 0.03));
+    g.gain.linearRampToValueAtTime(0.0001, t + o.d);
+    osc.connect(g); g.connect(dst);
+    osc.start(t); osc.stop(t + o.d + 0.02);
+  }
+  const N = { C4: 261.63, D4: 293.66, E4: 329.63, G4: 392, A4: 440, C5: 523.25, E5: 659.25, G5: 783.99, C6: 1046.5 };
+  const SFX = {
+    tap: (c, d, t) => tone(c, d, t, { type: 'square', f: 1250, d: 0.025, v: 0.035 }),
+    put: (c, d, t) => tone(c, d, t, { type: 'triangle', f: 330, f2: 220, d: 0.07, v: 0.16 }),
+    take: (c, d, t) => tone(c, d, t, { type: 'triangle', f: 260, f2: 130, d: 0.09, v: 0.15 }),
+    ok: (c, d, t) => { [N.C5, N.E5, N.G5].forEach((f, i) => tone(c, d, t + i * 0.075, { type: 'square', f: f, d: i === 2 ? 0.16 : 0.07, v: 0.09 })); },
+    warn: (c, d, t) => { tone(c, d, t, { type: 'triangle', f: N.E4, d: 0.11, v: 0.14 }); tone(c, d, t + 0.12, { type: 'triangle', f: N.C4, d: 0.18, v: 0.14 }); },
+    habis: (c, d, t) => { [N.G4, N.E4, N.C4].forEach((f, i) => tone(c, d, t + i * 0.13, { type: 'triangle', f: f, d: i === 2 ? 0.2 : 0.11, v: 0.14 })); }
+  };
+  function unlock() {
+    if (ctx) { if (ctx.state === 'suspended') ctx.resume(); return; }
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    try { ctx = new AC(); out = ctx.createGain(); out.gain.value = 0.9; out.connect(ctx.destination); } catch (e) { ctx = null; }
+  }
+  ['pointerdown', 'touchend', 'keydown'].forEach(ev => document.addEventListener(ev, unlock, true));
+  document.addEventListener('visibilitychange', () => { if (!ctx) return; if (document.hidden) ctx.suspend(); else ctx.resume(); });
+  let lastAt = {};
+  function play(name) {
+    if (!ctx || !setting('sfx') || !SFX[name]) return;
+    const now = ctx.currentTime;
+    if (lastAt[name] && now - lastAt[name] < 0.04) return; // tidak menumpuk suara sama di waktu yang sama
+    lastAt[name] = now;
+    try { SFX[name](ctx, out, now + 0.005); } catch (e) {}
+  }
+  // rekam satu suara ke Float32Array (untuk uji dan contoh dengar)
+  function render(name, sr) {
+    const OC = window.OfflineAudioContext || window.webkitOfflineAudioContext, len = Math.ceil((sr || 44100) * 0.7);
+    const oc = new OC(1, len, sr || 44100); const g = oc.createGain(); g.gain.value = 0.9; g.connect(oc.destination);
+    SFX[name](oc, g, 0.01);
+    return oc.startRendering().then(b => b.getChannelData(0));
+  }
+  return { play, render, names: Object.keys(SFX), setting };
+})();
 const FMA = (() => {
   const rm = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
   const setOn = () => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {}).anim !== false; } catch (e) { return true; } };
@@ -18455,12 +18523,13 @@ const FMA = (() => {
   function apply() { document.documentElement.classList.toggle('fm-animoff', !setOn()); }
   apply();
   const TAP = [{ translate: '0 2px', easing: 'step-end' }, { translate: '0 1px', offset: 0.55, easing: 'step-end' }, { translate: '0 0' }];
-  let lastTap = -1e9;
+  let lastTap = -1e9, lastResult = -1e9;
   document.addEventListener('click', e => {
     lastTap = performance.now();
-    if (!on()) return;
-    const b = e.target && e.target.closest ? e.target.closest('#root button, #root [role="button"]') : null;
+    const b = e.target && e.target.closest ? e.target.closest('#root button, #root [role="button"], #root a') : null;
     if (!b || b.disabled) return;
+    FMS.play('tap');
+    if (!on() || b.tagName === 'A') return;
     try { b.animate(TAP, { duration: 140 }); } catch (err) {}
   }, true);
   const restart = els => {
@@ -18477,17 +18546,24 @@ const FMA = (() => {
   function watch(box) {
     if (typeof MutationObserver !== 'function') return;
     new MutationObserver(recs => {
-      if (!on() || performance.now() - lastTap > 400) return;
-      const added = [];
-      recs.forEach(r => r.addedNodes.forEach(n => { if (n.nodeType === 1) added.push(n); }));
-      const top = added.filter(n => n.isConnected && !added.some(o => o !== n && o.contains(n)));
-      if (!top.length || top.length > 6) return;
-      top.forEach(n => {
-        if (!n.closest('.px-v2') || n.closest(SKIP)) return;
-        const r = n.getBoundingClientRect();
-        if (!r.width || r.width > 120 || r.height > 120) return; // benda kecil saja; panel, menu, dan adegan besar tidak membesar
-        try { n.animate(n instanceof SVGElement ? FADE : POP, { duration: n instanceof SVGElement ? 120 : 160 }); } catch (err) {}
+      if (performance.now() - lastTap > 400) return;
+      const added = [], gone = [];
+      recs.forEach(r => {
+        r.addedNodes.forEach(n => { if (n.nodeType === 1) added.push(n); });
+        r.removedNodes.forEach(n => { if (n.nodeType === 1 && r.target.closest && r.target.closest('.px-v2') && !r.target.closest(SKIP) && !(n.matches(SKIP) || n.querySelector(SKIP))) gone.push(n); });
       });
+      const top = added.filter(n => n.isConnected && !added.some(o => o !== n && o.contains(n)));
+      if (top.length > 6) return;
+      const small = top.filter(n => {
+        if (!n.closest('.px-v2') || n.closest(SKIP)) return false;
+        const r = n.getBoundingClientRect();
+        return r.width && r.width <= 120 && r.height <= 120; // benda kecil saja; panel, menu, dan adegan besar tidak ikut
+      });
+      // Suara: benda kecil bertambah = "tuk" taruh; hanya berkurang (paling banyak 6) = "tuk" ambil
+      if (performance.now() - lastResult < 80) {} // kartu hasil baru saja muncul: papan yang direset tidak ikut berbunyi
+      else if (small.length) FMS.play('put'); else if (!top.length && gone.length && gone.length <= 6) FMS.play('take');
+      if (!on()) return;
+      small.forEach(n => { try { n.animate(n instanceof SVGElement ? FADE : POP, { duration: n instanceof SVGElement ? 120 : 160 }); } catch (err) {} });
     }).observe(box, { childList: true, subtree: true });
   }
   /* Kelompok 7: tokoh di peta (Beranda, Mini Games) berpindah antartitik jalan dengan langkah patah-patah (satu langkah tiap ±90 ms)
@@ -18542,6 +18618,15 @@ const FMA = (() => {
       if (t.__fmk !== undefined && t.__fmk !== k && on()) restart(Array.from(t.querySelectorAll('.px-talk-face img, .px-talk-bubble')));
       t.__fmk = k;
     });
+    /* Suara hasil Cek: sekali tiap kartu hasil baru (atau isinya berganti). Pesan biasa (kelas info) tidak berbunyi. */
+    const pop = box.querySelector('.px-pop');
+    const pk = pop ? pop.className + '|' + pop.textContent : null;
+    if (pk && pk !== box.__fmpk) {
+      lastResult = performance.now();
+      if (pop.classList.contains('ok')) FMS.play('ok');
+      else if (!pop.classList.contains('info')) FMS.play(/Kesempatan habis/.test(pop.textContent) ? 'habis' : 'warn');
+    }
+    box.__fmpk = pk;
     box.querySelectorAll('.px-pop').forEach(p => {
       const k = p.className + '|' + p.textContent;
       if (p.__fmk !== undefined && p.__fmk !== k && on()) {

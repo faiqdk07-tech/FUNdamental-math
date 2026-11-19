@@ -56,7 +56,7 @@ Satu file, tanpa build.
 - **Data tersimpan (localStorage):**
   - `fm.minigames.return` {mat, lvl, g, t}
   - `fm.lastLvl` {namaGame: lvl}
-  - `fm.settings` (termasuk `anim`: saklar animasi, bawaan nyala)
+  - `fm.settings` (termasuk `anim`, `music`, `sfx`: saklar animasi, musik, efek suara; bawaan nyala)
   - `fm.progress` (progres pemain, lihat modul `FMP` dan RENCANA.md)
   - `fm.anim.seen` (bintang yang sudah pernah dianimasikan, lihat RENCANA.md bagian "Animasi")
 - **Pola tingkat (contoh di 7 game Bilangan):**
