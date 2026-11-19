@@ -1666,6 +1666,18 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-ge-spanduk .px-inner div:has(> button[style*="--stake"]){gap:8px!important;padding:0 10px 12px;align-items:flex-end!important;background:linear-gradient(transparent calc(100% - 12px),#1A1C2C calc(100% - 12px) calc(100% - 10px),#57A843 calc(100% - 10px));box-shadow:0 0 0 3px #1A1C2C;margin:4px 3px 6px;background-color:#DDF0FB}
 #root .px-ge-spanduk .px-inner button[style*="--stake:"]{width:26px;border:0!important;border-radius:0!important;padding:0!important;display:flex;align-items:flex-start;justify-content:center;background:linear-gradient(#E8554E 0 6px,#1A1C2C 6px 8px,transparent 8px) center 16px / 10px calc(100% - 16px) no-repeat,linear-gradient(90deg,transparent 8px,#1A1C2C 8px 10px,#E3B47A 10px 13px,#B98A55 13px 16px,#1A1C2C 16px 18px,transparent 18px) 0 16px / 26px 100% no-repeat!important;box-shadow:none!important;font-size:12px!important;color:#2B1D1A!important;cursor:pointer;margin-bottom:-6px}
 #root .px-ge-spanduk .px-inner button[style*="--stake:used"]{opacity:.35}
+/* Tangga Bangunan (Faiq 18 Nov): tembok bata, tangga beranak tangga, meteran kuning, langit; peta kampung di kertas peta */
+#root .px-ge-tangga .px-inner div[style*="width: 240px; height: 170px"]{box-shadow:0 0 0 3px #1A1C2C,0 6px 0 3px rgba(26,28,44,.18);margin:12px auto 10px!important;background:#FFF6E0}
+#root .px-ge-tangga .px-st-tangga:has(button[style*="--meter"]) div[style*="width: 240px; height: 170px"],#root .px-ge-tangga .px-st-tangga:has(button[aria-label^="Alat"]) div[style*="width: 240px; height: 170px"],#root .px-ge-tangga .px-st-tangga:not(:has(button[aria-label^="Bingkai"])):not(:has(button[aria-label^="Peta"])) div[style*="width: 240px; height: 170px"]{background:#D6ECF8}
+#root .px-ge-tangga .px-st-tangga:has(button[style*="--meter"]) path[fill="#EFE6D2"]{fill:#E8873A!important;stroke:#1A1C2C!important;stroke-width:2!important}
+#root .px-ge-tangga .px-st-tangga:has(button[style*="--meter"]) path[fill="#DCE5FA"]{fill:rgba(26,28,44,.10)!important;stroke:none!important}
+#root .px-ge-tangga .px-st-tangga:has(button[style*="--meter"]) path[stroke="#C0392B"]{stroke:#5A3A20!important;stroke-width:10!important;stroke-dasharray:2 6!important}
+#root .px-ge-tangga .px-st-tangga:has(button[style*="--meter"]) path[stroke="#1C1C1A"]{stroke:#5A3A20!important;stroke-width:3!important}
+#root .px-ge-tangga .px-inner button[style*="--meter"]{border:0!important;border-radius:0!important;background:#F2C035!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #C98A1B,inset 0 3px 0 #FFE680!important;color:#2B1D1A!important;font-size:12px!important;text-shadow:none}
+#root .px-ge-tangga .px-st-tangga:has(button[aria-label^="Peta"]) div[style*="width: 240px; height: 170px"]{background:#F3E6C4}
+#root .px-ge-tangga .px-st-tangga:has(button[aria-label^="Peta"]) path[stroke="#E2E1DC"]{stroke:#C9B48E!important}
+#root .px-ge-tangga .px-st-tangga:has(button[aria-label^="Bingkai"]) div[style*="width: 240px; height: 170px"]{background:#EFE3C8}
+#root .px-ge-tangga .px-st-tangga:has(button[aria-label^="Bingkai"]) svg{background:transparent!important}
 </style>
 </head>
 <body>
@@ -16010,13 +16022,13 @@ else { sp.A.push([[0, 0], [a, 0], [a, a], [0, a]], [[a, a], [n, a], [n, n], [a, 
 return this.sceneM(sp, 'Bingkai persegi berisi empat segitiga');
 }
 tanggaScene(c, k) {
-const sp = { D: [[[0, 0], [0, c + 0.5]], [[0, 0], [c + 0.5, 0]]], C: [], A: [], T: [[0.2, c + 0.3, 'tembok']] };
-if (k !== null) { const h = Math.sqrt(c * c - k * k); sp.A.push([[0, 0], [k, 0], [0, h]]); sp.C.push([[k, 0], [0, h]]); if (!this.noKakiLabel) sp.T.push([k / 2, -0.6, 'kaki ' + k + ' m']); }
+const sp = { D: [[[0, 0], [c + 0.5, 0]]], B: [[[-1.2, 0], [0, 0], [0, c + 0.5], [-1.2, c + 0.5]]], C: [], A: [], T: [] };
+if (k !== null) { const h = Math.sqrt(c * c - k * k); sp.A.push([[0, 0], [k, 0], [0, h]]); sp.C.push([[k, 0], [0, h]]); sp.D.push([[k, 0], [0, h]]); if (!this.noKakiLabel) sp.T.push([k / 2 - 0.6, -1.0, 'kaki ' + k + ' m']); }
 return this.sceneM(sp, 'Tangga bersandar di tembok');
 }
 miringScene(P) {
 const th = P.bth || P.th, c = P.c, t = th * Math.PI / 180, top = [c * Math.cos(t), c * Math.sin(t)];
-const sp = { D: [[[0, 0], [c + 1, 0]], [[0, 0], top]], C: [], A: [], T: [[0.3, 0.4, th + '°']] };
+const sp = { D: [[[0, 0], [c + 1, 0]], [[0, 0], top]], C: [], A: [], T: [[c * 0.22, -0.7, th + '°']] };
 const bt = P.bantu || [];
 if (bt.indexOf('bawah') >= 0) sp.C.push([[0, 0], top, [top[0], -top[1]], [0, 0]]);
 if (bt.indexOf('samping') >= 0) sp.C.push([[0, 0], top, [2 * top[0], 0], [0, 0]]);
@@ -16066,7 +16078,7 @@ if (P.ukurLeft <= 0) return ctx.warn('Jatah ukur sudah habis.');
 ctx.setP({ tried: P.tried.concat([{ k: P.kaki, h: Math.sqrt(P.c * P.c - P.kaki * P.kaki) }]), ukurLeft: P.ukurLeft - 1 });
 };
 const v = this.tanggaScene(P.c, P.kaki), m = v.map;
-v.hits = [this.hit(m.X(0) + 4, m.Y(P.c + 0.5), 40, 20, ukur, 'Meteran di tembok, ketuk untuk mengukur puncak tangga', 'ukur', 'border: 1px solid #C98A2B; background: #FFF3DF; border-radius: 4px')];
+v.hits = [this.hit(m.X(0) + 4, m.Y(P.c + 0.5), 40, 20, ukur, 'Meteran di tembok, ketuk untuk mengukur puncak tangga', 'ukur', '--meter:1')];
 v.hasTools = true;
 v.tools = [{ label: 'Kaki tangga dari tembok (m)', items: [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(x => x < P.c).map(x => ({ label: String(x), aria: 'Kaki tangga ' + x + ' m dari tembok' + (P.kaki === x ? ', sekarang' : ''), style: this.tb(P.kaki === x), tap: () => { if (ctx.locked) return; ctx.setP({ kaki: x }); } })) }];
 return { vals: v, boardLabel: 'Tangga percobaan · panjang ' + P.c + ' m', log: P.tried.map(x => 'kaki ' + x.k + ' m → puncak ' + this.num(x.h) + ' m'), logLabel: 'Hasil ukur', picker: false, actions: [], statusLabel: 'Kesempatan · jatah ukur', status: P.left + ' / ' + P.budget + ' · ' + P.ukurLeft };
