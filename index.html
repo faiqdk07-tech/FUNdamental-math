@@ -1697,6 +1697,11 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .px-st-undian button[style*="--alat"][style*="px-dadu"],#root .px-st-undian button[style*="--alat"][style*="px-coin"]{background-size:52px 52px!important;background-position:center 12px!important}
 #root .px-st-undian button[style*="--alat"]:active{transform:translateY(3px)}
 #root .px-st-undian div[style*="width: 240px; height: 170px"]{background:#FFFFFF;box-shadow:0 0 0 5px #C9CDD6,0 0 0 8px #1A1C2C,inset 0 -6px 0 #E8EEF4;margin:16px auto 12px!important}
+/* Isi Wadah (Faiq 18 Nov): kardus berwarna karton, wadah takar dari kaca bening, papan berbingkai */
+#root .px-ge-gudang .px-inner div[style*="width: 240px; height: 170px"]{background:#FFFDF6;box-shadow:0 0 0 3px #1A1C2C,0 6px 0 3px rgba(26,28,44,.18);margin:12px auto 10px!important}
+#root .px-ge-gudang .px-st-gudang:has(button[aria-label^="Wadah tegak"]) path[stroke="#1C1C1A"]{fill:rgba(158,215,245,.45)!important;stroke:#2F64B0!important;stroke-width:3!important}
+#root .px-ge-gudang .px-st-gudang:not(:has(button[aria-label^="Wadah"])):not(:has(button[aria-label^="Petak"])) path[stroke="#1C1C1A"]{fill:rgba(201,154,91,.38)!important;stroke:#8A5A32!important;stroke-width:3!important}
+#root .px-ge-gudang .px-st-gudang:not(:has(button[aria-label^="Wadah"])):not(:has(button[aria-label^="Petak"])) path[stroke="#E2E1DC"]{stroke:#B98A55!important}
 </style>
 </head>
 <body>
