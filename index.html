@@ -8088,7 +8088,7 @@ const PX = (() => {
 /* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
    o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
 /* Tokoh balon mengikuti cerita (Faiq 19 Nov): ambil orang yang paling awal disebut di cerita; kalau tidak ada, pakai tokoh bawaan game */
-PX.CAST = [[/\bBu Ani\b/, 'sari', 'Bu Ani'], [/\bIbu kos\b/i, 'sinta', 'Ibu kos'], [/\bPak RT\b/, 'pakrt', 'Pak RT'], [/\bPemilik toko\b/i, 'ratna', 'Pemilik toko'], [/\bPedagang\b/i, 'darto', 'Pedagang'], [/\bPanitia\b/, 'ketua', 'Panitia'], [/\bMandor\b/, 'mandor', 'Mandor gudang'], [/\bBu Sari\b/, 'sari', 'Bu Sari'], [/\bPak Tani\b/, 'harun', 'Pak Tani'], [/\bPetugas bank sampah\b/i, 'yanto', 'Petugas bank sampah'], [/\bKurir\b/, 'kurir', 'Kurir'], [/\bPak Darto\b/, 'darto', 'Pak Darto'], [/\bBu RT\b/, 'sinta', 'Bu RT'], [/\bKetua panitia\b/i, 'ketua', 'Ketua panitia'], [/\bPemilik kedai\b/i, 'ratna', 'Pemilik kedai'], [/\bKasir\b/, 'ratna', 'Kasir'], [/\bKepala percetakan\b/i, 'kepala', 'Kepala percetakan'], [/\bKepala terminal\b/i, 'kepala', 'Kepala terminal'], [/\bKepala sekolah\b/i, 'kepala', 'Kepala sekolah'], [/\bPetugas survei\b/i, 'yanto', 'Petugas survei'], [/\bPabrik tisu\b/i, 'mandor', 'Pabrik tisu'], [/\bDimas\b/, 'dimas', 'Dimas']];
+PX.CAST = [[/\bBu Ani\b/, 'sari', 'Bu Ani'], [/\bIbu kos\b/i, 'sinta', 'Ibu kos'], [/\bPak RT\b/, 'pakrt', 'Pak RT'], [/\bPemilik toko\b/i, 'ratna', 'Pemilik toko'], [/\bPedagang\b/i, 'darto', 'Pedagang'], [/\bPanitia\b/, 'ketua', 'Panitia'], [/\bMandor\b/, 'mandor', 'Mandor gudang'], [/\bBu Sari\b/, 'sari', 'Bu Sari'], [/\bPak Tani\b/, 'harun', 'Pak Tani'], [/\bPetugas bank sampah\b/i, 'yanto', 'Petugas bank sampah'], [/\bKurir\b/, 'kurir', 'Kurir'], [/\bPak Darto\b/, 'darto', 'Pak Darto'], [/\bBu RT\b/, 'sinta', 'Bu RT'], [/\bKetua panitia\b/i, 'ketua', 'Ketua panitia'], [/\bPemilik kedai\b/i, 'ratna', 'Pemilik kedai'], [/\bKasir\b/, 'ratna', 'Kasir'], [/\bKepala percetakan\b/i, 'kepala', 'Kepala percetakan'], [/\bKepala terminal\b/i, 'kepala', 'Kepala terminal'], [/\bKepala sekolah\b/i, 'kepala', 'Kepala sekolah'], [/\bPetugas survei\b/i, 'yanto', 'Petugas survei'], [/\bPabrik tisu\b/i, 'mandor', 'Pabrik tisu'], [/\bDimas\b/, 'dimas', 'Dimas'], [/\bPustakawan\b/, 'sinta', 'Pustakawan']];
 PX.cast = (story, def, list) => { const st = String(story || ''); let best = null, bi = 1e9; (list || PX.CAST).forEach(c => { const m = st.match(c[0]); if (m && m.index < bi) { bi = m.index; best = c; } });
   /* nama berawalan Bu/Pak/Kak/Mbak/Mas yang disebut lebih awal juga dipakai (mis. "Bu Ida yakin ...") */
   const nm = st.match(/\b(Bu|Pak|Kak|Mbak|Mas|Bang) ([A-Z][a-z]+)/);
@@ -17806,7 +17806,23 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     return null;
   }
   // tingkat yang misinya belum punya tombol soal acak
+  /* Timbangan: kasus Angka baru (dulu tidak ada karena tidak punya tombol soal acak). B = Timbangan Balon (Aljabar) */
+  const TB_ITEM = [['kardus', 'Petugas gudang menimbang'], ['karung beras', 'Bu Sari menimbang'], ['sak semen', 'Pemilik toko bangunan menimbang'], ['galon', 'Ibu kos menimbang'], ['kotak buku', 'Pustakawan menimbang'], ['keranjang', 'Pedagang buah menimbang'], ['kotak kue', 'Pemilik toko kue menimbang'], ['kotak hadiah', 'Panitia lomba menimbang']];
+  const tbSplit = (t, R) => { const w = []; while (t > 9) { const x = R(5, 9); w.push(x); t -= x; } if (t > 0) w.push(t); return w; };
+  const tbList = w => w.length === 1 ? w[0] + ' kg' : w.slice(0, -1).map(x => x + ' kg').join(', ') + (w.length > 2 ? ', dan ' : ' dan ') + w[w.length - 1] + ' kg';
+  const tbPick = R => TB_ITEM[(R(0, 999) * 7 + R(0, 999)) % TB_ITEM.length];
+  const tbN = n => ['', 'Satu', 'Dua', 'Tiga', 'Empat'][n] || String(n);
   const EXTRA = {
+    Timbangan: {
+      F: R => { const it = tbPick(R), n = R(2, 4), w = R(3, 9); return { type: 'seimbangkan', item: it[0], showBag: true, L: { b: n, w: [] }, R: { b: 0, w: [] }, bag: w, cerita: 'Satu ' + it[0] + ' beratnya ' + w + ' kg. ' + it[1].replace(' menimbang', ' menaruh') + ' ' + n + ' ' + it[0] + ' di sisi kiri.', tujuan: 'Seimbangkan timbangan hanya dengan beban di sisi kanan.' }; },
+      I: R => { const it = tbPick(R), w = R(3, 12), a = R(2, 4), c = R(0, a - 1), x = R(1, 9), rw = tbSplit((a - c) * w + x, R); return { item: it[0], L: { b: a, w: [x] }, R: { b: c, w: rw }, bag: w, cerita: it[1] + ' ' + a + ' ' + it[0] + ' dan beban ' + x + ' kg di kiri, melawan ' + (c ? c + ' ' + it[0] + ' dan ' : '') + 'beban ' + tbList(rw) + ' di kanan. Timbangan seimbang.', tujuan: 'Berapa berat satu ' + it[0] + '?' }; },
+      E: R => { const it = tbPick(R), w = R(3, 8), a = R(1, 3), x = R(1, 6), heavyR = R(0, 1), tot = a * w + x + (heavyR ? R(1, 4) : -R(1, Math.min(4, a * w + x - 1))), rw = tbSplit(tot, R); return { item: it[0], L: { b: a, w: [x] }, R: { b: 0, w: rw }, bag: w, cukup: false, cerita: it[1] + ' ' + a + ' ' + it[0] + ' dan beban ' + x + ' kg di kiri, beban ' + tbList(rw) + ' di kanan. Jarum condong ke ' + (heavyR ? 'kanan' : 'kiri') + '.', tujuan: 'Bisakah berat satu ' + it[0] + ' ditentukan pasti?' }; }
+    },
+    TimbanganB: {
+      F: R => { const it = tbPick(R), n = R(1, 3), w = R(3, 8), q = R(1, Math.min(9, n * w - 1)), r = n * w - q; if (r > 9) return { item: it[0], balon: true, L: { b: 1, w: [], p: [2] }, R: { b: 0, w: [w - 2 > 0 ? w - 2 : 1] }, bag: w - 2 > 0 ? w : 3, cerita: 'Satu ' + it[0] + ' diikat balon yang mengangkat 2 kg. ' + it[0][0].toUpperCase() + it[0].slice(1) + ' berbalon itu seimbang dengan beban ' + (w - 2 > 0 ? w - 2 : 1) + ' kg.', tujuan: 'Berapa berat satu ' + it[0] + '?' }; return { item: it[0], balon: true, L: { b: n, w: [], p: [q] }, R: { b: 0, w: [r] }, bag: w, cerita: tbN(n) + ' ' + it[0] + ' diikat balon yang mengangkat ' + q + ' kg di kiri. Di kanan ada beban ' + r + ' kg. Timbangan seimbang.', tujuan: 'Berapa berat satu ' + it[0] + '?' }; },
+      I: R => { const it = tbPick(R), w = R(3, 8), a = R(2, 4), c = R(0, a - 1), q = R(1, Math.min(9, (a - c) * w - 1)), r = (a - c) * w - q; if (r > 9 || r < 1) return { item: it[0], balon: true, L: { b: 3, w: [], p: [4] }, R: { b: 1, w: [6] }, bag: 5, cerita: 'Tiga ' + it[0] + ' diikat balon yang mengangkat 4 kg di kiri. Di kanan ada satu ' + it[0] + ' serupa dan beban 6 kg. Timbangan seimbang.', tujuan: 'Berapa berat satu ' + it[0] + '?' }; return { item: it[0], balon: true, L: { b: a, w: [], p: [q] }, R: { b: c, w: [r] }, bag: w, cerita: tbN(a) + ' ' + it[0] + ' diikat balon yang mengangkat ' + q + ' kg di kiri. Di kanan ada ' + (c ? c + ' ' + it[0] + ' serupa dan ' : '') + 'beban ' + r + ' kg. Timbangan seimbang.', tujuan: 'Berapa berat satu ' + it[0] + '?' }; },
+      E: R => { const it = tbPick(R), w = R(2, 6), a = R(1, 3), q = R(1, Math.min(8, a * w)), net = a * w - q, rw = tbSplit(R(Math.max(net + 1, 1), net + 4), R); return { item: it[0], balon: true, L: { b: a, w: [], p: [q] }, R: { b: 0, w: rw }, bag: w, cukup: false, cerita: tbN(a) + ' ' + it[0] + ' diikat balon yang mengangkat ' + q + ' kg di kiri; beban ' + tbList(rw) + ' di kanan. Jarum condong ke kanan.', tujuan: 'Bisakah berat satu ' + it[0] + ' ditentukan pasti?' }; }
+    },
     JadwalBus: {
       I: R => { const pr = [[2, 3], [3, 4], [2, 5], [3, 5], [4, 5], [4, 6], [3, 6], [2, 4]][R(0, 7)], g = R(3, 9), L1 = g * pr[0], L2 = g * pr[1]; return { type: 'pita', L1: L1, L2: L2, cerita: 'Dua gulung pita lain datang ke loket, ' + L1 + ' cm dan ' + L2 + ' cm.', tujuan: 'Potong keduanya jadi potongan sama panjang tanpa sisa. Temukan semua panjang yang mungkin.' }; },
       E: R => { const T = [[30, 3], [45, 3], [50, 2], [60, 2], [100, 3]][R(0, 4)], st = R(0, 6), D = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']; return { type: 'hari', start: st, target: T[0], maxJumps: T[1], cerita: 'Hari ini ' + D[st] + '. Rombongan wisata akan tiba ' + T[0] + ' hari lagi.', tujuan: 'Majulah tepat ' + T[0] + ' hari dengan paling banyak ' + T[1] + ' lompatan untuk mengetahui harinya.' }; }
@@ -17819,7 +17835,8 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     }
   };
   function genBy(key, l, seedStr, mi0) {
-    if (key === 'Timbangan' || !GAMES[key]) return null;
+    if (/^Timbangan/.test(key)) { const X = EXTRA[key] && EXTRA[key][l]; return X ? withSeed(hash(seedStr), () => X((a, b) => a + Math.floor(Math.random() * (b - a + 1)))) : null; }
+    if (!GAMES[key]) return null;
     try {
       return withSeed(hash(seedStr), () => {
         const X = EXTRA[key] && EXTRA[key][l];
@@ -17846,7 +17863,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     if (ck in genCache) return genCache[ck];
     let sp = genBy(key, l, ck, (d + slot) % 3);
     /* kasus Angka baru 2 tidak boleh sama persis dengan Angka baru 1 (Faiq 19 Nov) */
-    if (sp && slot === 2) { const first = genCase(key, l, d, 1), same = x => first && JSON.stringify(x) === JSON.stringify(Object.assign({}, first, { id: undefined, tingkat: undefined, konteks: undefined, gen: undefined })); const strip = x => JSON.parse(JSON.stringify(x)); for (let n = 0; n < 6 && same(strip(sp)); n++) { const alt = genBy(key, l, ck + 'x' + n, (d + slot + n) % 3); if (alt) sp = alt; } }
+    if (sp && slot === 2) { /* kedua kasus dinormalkan dengan cara yang sama (dulu kolom tingkat hanya dibuang dari kasus 1, jadi kembar tidak pernah terdeteksi) */ const norm = x => JSON.stringify(Object.assign({}, x, { id: undefined, tingkat: undefined, konteks: undefined, gen: undefined, name: undefined, tujuan: undefined, nTest: undefined, nNow: undefined, th: undefined, bth: undefined })), /* judul kasus, kalimat tugas, dan setelan contoh papan tidak membuat soal berbeda */ first = genCase(key, l, d, 1), same = x => first && norm(x) === norm(first); for (let n = 0; n < 12 && same(sp); n++) { const alt = genBy(key, l, ck + 'x' + n, (d + slot + n) % 3); if (alt) sp = alt; } }
     genCache[ck] = sp ? Object.assign(sp, { id: id, tingkat: l, konteks: 'Angka baru ' + slot, gen: true }) : null;
     return genCache[ck];
   }
@@ -17872,7 +17889,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
         if (o.regen && c.genMission && c.fresh && c.NEXT_STORY && o.idx < 3) { const g = c.genMission(o.idx); if (g) c.setState({ P: c.fresh(Object.assign(c.mission(o.idx), { cerita: c.NEXT_STORY, verdict: undefined }, g)) }); }
       } else {
         const gm = GEN_RE.exec(o.id || '');
-        if (gm && c.H && !c.H.some(h => h.id === o.id)) { const sp = genCase(name, gm[2], Number(gm[1]), Number(gm[3])); if (sp) c.H.push(sp); }
+        if (gm && c.H && !c.H.some(h => h.id === o.id)) { const sp = genCase(name === 'Timbangan' && c.isAlj && c.isAlj() ? 'TimbanganB' : name, gm[2], Number(gm[1]), Number(gm[3])); if (sp) c.H.push(sp); }
         const ix = (c.H || []).findIndex(h => h.id === o.id);
         if (ix < 0) return;
         c.todayIdx = () => [ix];
@@ -17926,12 +17943,12 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
       }
       todayIdx(day) {
         const base = super.todayIdx(day);
-        if (key === 'Timbangan') return base;
         try {
+          const tb = key === 'Timbangan', alj = tb && this.isAlj && this.isAlj(), gk = alj ? 'TimbanganB' : key;
           const l = this.curLvl(), H = this.H, d = absDay() + (day === undefined ? ((this.state && this.state.hDay) || 0) : day);
-          const pool = H.map((c, i) => i).filter(i => H[i].tingkat === l && !H[i].gen);
+          const pool = H.map((c, i) => i).filter(i => H[i].tingkat === l && !H[i].gen && (!tb || !!H[i].balon === alj));
           const out = pool.length ? [pool[d % pool.length]] : [];
-          [1, 2].forEach(slot => { const sp = genCase(key, l, d, slot); if (!sp) return; let ix = H.findIndex(h => h.id === sp.id); if (ix < 0) { H.push(sp); ix = H.length - 1; } out.push(ix); });
+          [1, 2].forEach(slot => { const sp = genCase(gk, l, d, slot); if (!sp) return; let ix = H.findIndex(h => h.id === sp.id); if (ix < 0) { H.push(sp); ix = H.length - 1; } out.push(ix); });
           for (let k = 1; out.length < 3 && k < pool.length; k++) out.push(pool[(d + k) % pool.length]);
           return out.length ? out : base;
         } catch (e) { return base; }
