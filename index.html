@@ -2175,6 +2175,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <path d="{{gridD}}" stroke="#E2E1DC" stroke-width="1" fill="none"></path>
 <path d="{{pathA}}" fill="#DCE5FA" stroke="#2F5BD3" stroke-width="1.5"></path>
 <path d="{{pathB}}" fill="#EFE6D2" stroke="#8C6A3E" stroke-width="1.5"></path>
+<path d="{{gridD}}" stroke="#1A1C2C" stroke-opacity="0.22" stroke-width="1" fill="none" pointer-events="none"></path>
 <path d="{{pathC}}" fill="none" stroke="#C0392B" stroke-width="1.5" stroke-dasharray="4 3"></path>
 <path d="{{pathD}}" fill="none" stroke="#1C1C1A" stroke-width="2"></path>
 <text x="{{tAx}}" y="{{tAy}}" font-size="11" fill="#444441">{{tA}}</text>
@@ -7937,9 +7938,10 @@ const PX = (() => {
       R(P.k, 152, 10, 34, 20); R(P.w, 153, 11, 32, 18); for (let r = 0; r < 4; r++) { R(P.k, 156, 14 + r * 4, 14, 1); R(P.r, 174, 14 + r * 4, 8, 1); }
     } else if (o.kind === 'bayangan') {
       /* lapangan siang: pohon, tiang bendera, tongkat, dan bayangannya */
-      R('#9ED7F5', 0, 0, W, 50); R(P.Y, 170, 4, 10, 10); R(P.y, 172, 6, 6, 6); R(P.a, 0, 34, W, 16); R(P.A, 0, 34, W, 1);
+      R('#9ED7F5', 0, 0, W, 50); R(P.Y, 56, 3, 10, 10); R(P.y, 58, 5, 6, 6); R(P.a, 0, 34, W, 16); R(P.A, 0, 34, W, 1); /* matahari di kiri: bayangan jatuh ke kanan */
       R('rgba(30,60,30,.45)', 34, 36, 60, 4); R(P.k, 30, 14, 6, 22); R(P.b, 31, 15, 4, 21); for (let y = 0; y < 14; y++) { const w = Math.round(14 * Math.sin((y + 1) / 15 * Math.PI)); R(P.k, 33 - w - 1, 2 + y, 2 * w + 2, 1); R(y % 3 ? P.a : P.A, 33 - w, 2 + y, 2 * w, 1); }
-      R('rgba(30,60,30,.45)', 110, 36, 40, 2); R(P.k, 108, 6, 2, 30); R(P.r, 110, 6, 10, 4); R(P.w, 110, 10, 10, 4); R(P.k, 106, 35, 6, 2);
+      if (o.obj === 'menara') { R('rgba(30,60,30,.45)', 104, 36, 50, 2); R(P.k, 99, 3, 20, 11); R('#9AA7BA', 100, 4, 18, 9); R('#C9D3E0', 100, 4, 18, 2); R(P.k, 102, 14, 2, 22); R(P.k, 114, 14, 2, 22); R(P.k, 103, 22, 12, 1); R(P.k, 103, 29, 12, 1); }
+      else { R('rgba(30,60,30,.45)', 110, 36, 40, 2); R(P.k, 108, 6, 2, 30); R(P.r, 110, 6, 10, 4); R(P.w, 110, 10, 10, 4); R(P.k, 106, 35, 6, 2); }
       R('rgba(30,60,30,.45)', 160, 37, 10, 2); R(P.k, 158, 28, 2, 9);
     } else if (o.kind === 'kantin') {
       /* kantin sekolah: papan menu, etalase lauk, minuman */
@@ -8883,7 +8885,7 @@ initLvl() { try { const r = JSON.parse(window.localStorage.getItem('fm.minigames
 curLvl() { return this.state.lvl || this._lvl0 || (this._lvl0 = this.initLvl()); }
 setLvl(l) { this.setState({ lvl: l, mi: 0, hi: 0, msg: '', kind: '', help: false }); try { const r = JSON.parse(window.localStorage.getItem('fm.minigames.return') || 'null'); const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; m[(r && r.g) || 'Cetak Spanduk'] = l; window.localStorage.setItem('fm.lastLvl', JSON.stringify(m)); } catch (e) {} }
 /* Cetak Spanduk (Faiq 18 Nov): adegan dan tokoh ikut jenis cerita */
-lk() { const s = this.state, P = s.P || {}; if (s.mode !== 'rumus' && s.mode !== 'lab' && P.type === 'bayangan') return { view: PX.kbScene({ kind: 'bayangan' }), face: 'ketua', role: 'Panitia' }; return { view: PX.alView('spanduk'), face: 'desainer', role: 'Pemesan' }; }
+lk() { const s = this.state, P = s.P || {}; if (s.mode !== 'rumus' && s.mode !== 'lab' && P.type === 'bayangan') return { view: PX.kbScene({ kind: 'bayangan', obj: /menara/i.test(String(P.cerita || '')) ? 'menara' : '' }), face: 'ketua', role: 'Panitia' }; return { view: PX.alView('spanduk'), face: 'desainer', role: 'Pemesan' }; }
 renderVals() { const v = PX.modeIcons(this.gmWrap(this.gmRender())); const k = this.lk(); const dv = PX.devOf('CetakSpanduk', this) || ['', 'c']; return Object.assign(v, { devLabel: dv[0], devCls: 'devc-' + dv[1], px: PX.U, pxHasTag: !!v.gmTagLine, pxView: k.view }, PX.v2(this, v, { face: k.face, role: k.role, name: 'Perancang', game: 'Cetak Spanduk' })); }
 gmRender() {
 const s = this.state, P = s.P, k = s.n;
@@ -9137,7 +9139,7 @@ v.hasTools = true;
 v.tools = [{ label: 'Kenop ukuran cetak · ketuk untuk memutar', items: [
 { label: 'lebar ' + P.w, aria: 'Kenop lebar, sekarang ' + P.w + ', ketuk untuk memutar', style: '--knob:off; background-image: url(' + PX.obj('kenop', String(P.w * 32 - 160)) + ')', tap: () => { if (ctx.locked) return; ctx.setP({ w: P.w % 9 + 1, printed: false }, ctx.tutNext(1)); } },
 { label: 'tinggi ' + P.h, aria: 'Kenop tinggi, sekarang ' + P.h + ', ketuk untuk memutar', style: '--knob:off; background-image: url(' + PX.obj('kenop', String(P.h * 32 - 160)) + ')', tap: () => { if (ctx.locked) return; ctx.setP({ h: P.h % 9 + 1, printed: false }); } }] }];
-return { vals: v, boardLabel: 'Kain berpetak · contoh ' + P.w0 + ' × ' + P.h0, picker: false, actions: [act('Cetak', cetak, true)] };
+return { vals: v, boardLabel: 'Kain berpetak · contoh lebar ' + P.w0 + ', tinggi ' + P.h0, picker: false, actions: [act('Cetak', cetak, true)] };
 }
 if (P.type === 'tinta') {
 const cetak = k => () => {
@@ -9161,7 +9163,7 @@ const v = this.bayanganScene(P);
 v.hasTools = true;
 v.tools = [{ label: 'Tongkat ukur · ketuk untuk menancapkan', items: [1, 2, 3, 4, 5, 6, 7, 8, 9].map(h => { const used = P.sticks.indexOf(h) >= 0; return { label: String(h), aria: 'Tongkat ' + h + ' m' + (used ? ', sudah ditancapkan' : ''), tap: pasang(h),
 style: '--stake:' + (used ? 'used' : 'free') + '; height: ' + (34 + h * 6) + 'px' }; }) }];
-return { vals: v, boardLabel: 'Lapangan · waktu yang sama dengan pengukuran pohon', log: P.sticks.map(h => 'tongkat ' + h + ' m → bayangan ' + this.num(h * P.r) + ' m'), logLabel: 'Catatan tongkat', picker: false, actions: [], statusLabel: 'Kesempatan · jatah tongkat', status: P.left + ' / ' + P.budget + ' · ' + P.tongkatLeft };
+return { vals: v, boardLabel: 'Lapangan · jam yang sama dengan bayangan ' + (/menara/i.test(String(P.cerita || '')) ? 'menara' : /tiang/i.test(String(P.cerita || '')) ? 'tiang' : /gedung/i.test(String(P.cerita || '')) ? 'gedung' : 'pohon'), log: P.sticks.map(h => 'tongkat ' + h + ' m → bayangan ' + this.num(h * P.r) + ' m'), logLabel: 'Catatan tongkat', picker: false, actions: [], statusLabel: 'Kesempatan · jatah tongkat', status: P.left + ' / ' + P.budget + ' · ' + P.tongkatLeft };
 }
 labView(ctx) {
 const s = ctx.s, L = s.lab, act = ctx.act;
