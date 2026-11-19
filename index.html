@@ -1844,6 +1844,38 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 #root .jr-empty{font-size:12px;line-height:22px;color:#5A5048}
 #root .jr-sticky{flex:none;align-self:flex-end;display:flex;align-items:center;gap:6px;text-decoration:none;font-size:12px;line-height:1.2;color:#2B1D1A;padding:7px 10px 8px;background:#FFE98A;box-shadow:0 0 0 2px #1A1C2C,0 3px 0 rgba(26,28,44,.2)}
 #root .jr-sticky i{width:18px;height:18px;background:var(--px-pohon) center/contain no-repeat;image-rendering:pixelated}
+
+/* Progres (19 Nov): ruang piala rapi, panel terang (bukan ungu gelap), tumpukan kertas kasus, papan lencana */
+#root .pg-page .px-hud3{gap:6px;padding:0;background:none;box-shadow:none}
+#root .pg-page .px-hud3-c{flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;padding:8px 4px 9px;background:#FFFDF5;color:#2B1D1A;text-align:center;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #E8DFC8,0 3px 0 rgba(26,28,44,.2)}
+#root .pg-page .px-hud3-c i{width:26px;height:26px}
+#root .pg-page .px-hud3-c b{font-size:18px;color:#2B1D1A}
+#root .pg-page .px-hud3-c small{color:#5A5048;font-size:10.5px}
+#root .pg-page .px-inv{gap:8px;padding:10px;background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C,inset 0 -4px 0 #E8DFC8,0 4px 0 rgba(26,28,44,.2)}
+#root .pg-page .px-inv-num,#root .pg-page .px-inv-empty{color:#5A5048!important}
+#root .pg-page .px-crates{gap:4px;padding:8px 4px 0;background:#F3EBDD;box-shadow:inset 0 0 0 2px #D9CBB0}
+#root .pg-page .px-crate-col{height:118px}
+#root .pg-page .px-crate-n{color:#5A5048}
+#root .pg-page .px-crate-stack{gap:1px;border-bottom:3px solid #1A1C2C;padding-bottom:1px}
+#root .pg-page .px-crate-stack i{width:24px;height:6px;background:#FFFFFF;box-shadow:0 0 0 1px #1A1C2C,inset 4px -2px 0 -1px #DCE8F0}
+#root .pg-page .px-crate-col.on .px-crate-stack i{background:#FFE98A}
+#root .pg-page .px-crate-d{color:#5A5048;padding-top:2px}
+#root .pg-page .px-crate-col.on .px-crate-d,#root .pg-page .px-crate-col.on .px-crate-n{color:#B5730E}
+#root .pg-page .px-slotrow{background:#F3EBDD;box-shadow:inset 0 0 0 2px #D9CBB0}
+#root .pg-page .px-slotbtn{color:#2B1D1A}
+#root .pg-page .px-slot{background:#FFFDF5;box-shadow:0 0 0 2px #1A1C2C}
+#root .pg-page .px-xpbar{background:#E3D7BD!important;box-shadow:0 0 0 2px #1A1C2C!important}
+#root .pg-page .px-slotgame{background:#FFFDF5;color:#2B1D1A;box-shadow:0 0 0 2px #1A1C2C}
+#root .pg-page .px-bag{gap:8px;padding:10px;background:#3E6FB8;box-shadow:0 0 0 2px #1A1C2C,inset 0 0 0 4px #2F5A9A,inset 0 0 0 6px #C9A15A}
+#root .pg-page .px-bagslot{display:grid;grid-template-rows:44px 26px;justify-items:center;align-items:center;gap:2px;padding:6px 4px;background:#FFFDF5;color:#2B1D1A;font-size:11px;line-height:1.15;text-align:center;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #E8DFC8}
+#root .pg-page .px-bagslot i{width:32px;height:40px}
+#root .pg-page .px-bagslot.lock{color:#8A8780}
+#root .pg-page .px-bagslot.lock i{filter:brightness(0) opacity(.25)}
+#root .pg-page .px-bagslot.got{background:#FFF3C4}
+#root .pg-page .px-bagslot.sel{box-shadow:0 0 0 2px #1A1C2C,0 0 0 4px #FFC83D,inset 0 -3px 0 #E8DFC8}
+#root .pg-page .px-bag+div,#root .pg-page .px-bag+sc-if>div{color:#2B1D1A!important;background:#FFF6E0;padding:6px 8px!important;box-shadow:0 0 0 2px #1A1C2C}
+#root .pg-page .px-tcoin{background:#EFE6D2!important;color:#9A9488!important;box-shadow:0 0 0 2px #B9AE96!important}
+#root .pg-page .px-tcoin.on{background:#FFC83D!important;color:#2B1D1A!important;box-shadow:0 0 0 2px #1A1C2C,inset 0 -3px 0 #E39A1C!important}
 </style>
 </head>
 <body>
@@ -5397,7 +5429,7 @@ html.fm-noanim *,html.fm-noanim *::before,html.fm-noanim *::after{animation:none
 <a href="PohonTemuan.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 11px; text-decoration: none; color: #2F5BD3; font-weight: 500"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M12 7v4M12 11l-5 5M12 11l5 5"></path></svg>Temuan</a>
 </nav>
 </div></template>
-<template id="tpl-Progres"><div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
+<template id="tpl-Progres"><div class="pg-page" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F7F7F5; color: #1C1C1A; font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.45">
 <div style="height: 844px; box-sizing: border-box; overflow-y: auto; padding: 16px 16px 80px; display: flex; flex-direction: column; gap: 14px">
 <img alt="" class="px-topscene" src="{{scene}}">
 <div class="px-f" style="font-size: 20px; font-weight: 700">Progres</div>
@@ -7042,6 +7074,7 @@ const PX = (() => {
     bus: ['............', '.kkkkkkkkkk.', 'kyyyyyyyyyyk', 'kyssyssyssyk', 'kyssyssyssyk', 'kyyyyyyyyyyk', 'kyyyyyyyyyyk', 'kooooooooook', 'kkkkkkkkkkkk', '.kek....kek.', '..k......k..', '............'],
     pizza: ['kkkkkkkkkkkk', 'kTTTTTTTTTTk', '.kyyryyyyyk.', '.kyyyyyryyk.', '..kyryyyyk..', '..kyyyyyyk..', '...kyyryk...', '...kyyyyk...', '....kyyk....', '....kyyk....', '.....kk.....', '............'],
     panci: ['..w..w..w...', '...w..w..w..', '............', 'kkkkkkkkkkkk', 'keeeeeeeeeek', 'kkkkkkkkkkkk', '.kEEEEEEEEk.', 'kkeeeeeeeekk', '.keeeeeeeek.', '.keeeeeeeNk.', '.kNNNNNNNNk.', '..kkkkkkkk..'],
+    centang: ['.........kk.', '........kcak', '.......kcak.', 'kk....kcak..', 'kck..kcak...', 'kack.kcak...', '.kackcak....', '..kaaak.....', '...kak......', '....k.......'],
     kertas: ['.kkkkkkkkk..', '.kwwwwwwwkk.', '.kwkkkkkwkwk', '.kwwwwwwwkkk', '.kwkkkkkkwwk', '.kwwwwwwwwwk', '.kwkkkkkkkwk', '.kwwwwwwwwwk', '.kwkkkkkwwwk', '.kwwwwwwwwwk', '.kEEEEEEEEEk', '.kkkkkkkkkkk'],
     struk: ['.kkkkkkkkkk.', '.kwwwwwwwwk.', '.kwkkkkwwwk.', '.kwwwwwwwwk.', '.kwkkkwkkwk.', '.kwwwwwwwwk.', '.kwkkkwkkwk.', '.kwwwwwwwwk.', '.kwkkkkkkwk.', '.kwwwwwwwwk.', '.kwkwkwkwkk.', '.k.k.k.k.k..'],
     meja: ['............', '............', 'kkkkkkkkkkkk', 'kwwwwwwwwwwk', 'krwrwrwrwrwk', 'kkkkkkkkkkkk', '.kbk....kbk.', '.kbk....kbk.', '.kbk....kbk.', '.kbk....kbk.', '.kkk....kkk.', '............'],
@@ -7183,7 +7216,7 @@ const PX = (() => {
   }
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
   const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
-  ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas'].forEach(n => css(n, U[n]));
+  ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas', 'centang', 'kertas', 'piala'].forEach(n => css(n, U[n]));
   /* Tata Barisan: kursi berwarna sesuai blok (biru, oranye, hijau, ungu) */
   [['kursiG', 'h', 'g', 'G'], ['kursiH', 'c', 'a', 'A'], ['kursiV', 'x', 'v', 'V']].forEach(q => { SPR[q[0]] = SPR.kursi.map(r => r.replace(/s/g, q[1]).replace(/u/g, q[2]).replace(/U/g, q[3])); U[q[0]] = uri(q[0]); css(q[0], U[q[0]]); });
   ['tb_karung', 'tb_semen', 'tb_pupuk', 'tb_galon', 'tb_panci', 'tb_keranjang', 'tb_kue', 'tb_buku', 'hadiah', 'rr_teh', 'rr_gula', 'rr_air', 'motor', 'pohon'].forEach(n => css(n, U[n]));
@@ -7847,6 +7880,16 @@ const PX = (() => {
       t.stamp('batu', 64, 70); t.stamp('tunggul', 182, 50);
       /* petani menyiram */
       shadow(86, 70, 12); t.stamp('orang', 85, 55); R(P.e, 98, 64, 6, 4); R(P.k, 98, 64, 6, 1); R(P.e, 104, 63, 3, 1);
+    } else if (name === 'ruangpiala') {
+      /* ruang piala yang rapi: dinding krem berpanel, bendera segitiga, 2 rak simetris, 4 piala materi, medali, lantai papan */
+      R('#F3E3C3', 0, 0, W, 62); R('#E6D2AA', 0, 44, W, 18); R(P.k, 0, 44, W, 1); for (i = 0; i < W; i += 24) R('#D6BE90', i, 45, 1, 17);
+      for (i = 0; i < 13; i++) { const x = 4 + i * 15; R(P.k, x, 2, 1, 1); const c = [P.r, P.y, P.u, P.a][i % 4]; for (j = 0; j < 6; j++) R(c, x + j, 3 + (j >> 1), 12 - 2 * j > 0 ? 12 - 2 * j : 1, 1); } R(P.k, 0, 2, W, 1);
+      const shelf = y => { R('rgba(43,29,26,.2)', 14, y + 4, 168, 2); R(P.k, 12, y, 172, 4); R(P.t, 13, y + 1, 170, 1); R(P.b, 13, y + 2, 170, 1); R(P.k, 20, y + 4, 2, 4); R(P.k, 174, y + 4, 2, 4); };
+      shelf(28); shelf(52);
+      [[P.r, 30], [P.y, 72], [P.u, 114], [P.a, 156]].forEach((q, k) => { t.stamp('piala', q[1] - 2, 14); R(P.k, q[1] - 1, 25, 12, 3); R(q[0], q[1], 26, 10, 1); });
+      [44, 92, 140].forEach(x => { t.stamp('medali', x, 37); });
+      [[20, '#4C8FDD'], [24, '#E8554E'], [28, '#57A843'], [166, '#A98BE0'], [170, '#F2C035']].forEach(q => { R(P.k, q[0], 41, 4, 11); R(q[1], q[0] + 1, 42, 2, 10); });
+      R('#C99A5B', 0, 62, W, 22); R(P.k, 0, 62, W, 2); for (j = 66; j < 84; j += 6) R('#B48552', 0, j, W, 1); for (i = 10; i < W; i += 37) R('#B48552', i, 64, 1, 20);
     } else if (name === 'mejabelajar') {
       /* meja belajar peneliti di siang hari: dinding krem, jendela bertirai, rak buku, lampu, meja kayu muda */
       R('#F6EEDD', 0, 0, W, 58); for (i = 0; i < W; i += 12) R('#EFE4CC', i, 0, 1, 58);
@@ -14650,8 +14693,8 @@ const redo = Object.keys(tiersSeen).map(k => { const t = tiersSeen[k], ev = p.ev
 let nFound = 0, nAll = 0; Object.keys(FMP.SUB).forEach(m => ['F', 'I', 'E'].forEach(l => FMP.SUB[m][l].forEach(x => { nAll++; if (FMP.found(x[0])) nFound++; })));
 const a10 = FMP.acc(p.ev.slice(-10));
 return {
-scene: PX.topView('gudang'),
-stats: [{ ic: 'dadu', v: String(p.ev.length), k: 'kasus dimainkan' }, { ic: 'bintang', v: a10 === null ? '–' : a10 + '%', k: 'tepat, 10 terakhir' }, { ic: 'wortel', v: nFound + ' / ' + nAll, k: 'temuan' }],
+scene: PX.topView('ruangpiala'),
+stats: [{ ic: 'kertas', v: String(p.ev.length), k: 'kasus dimainkan' }, { ic: 'centang', v: a10 === null ? '–' : a10 + '%', k: 'tepat, 10 terakhir' }, { ic: 'tunas', v: nFound + ' / ' + nAll, k: 'temuan' }],
 week: week, mats: mats,
 redo: redo, hasRedo: redo.length > 0, noRedo: redo.length === 0,
 badges: badges, badgeCount: got + ' dari ' + B.length, hasBadgeInfo: !!sel, badgeInfo: sel ? sel[0] + ': ' + sel[1] + (sel[2] ? '' : ' Belum didapat.') : '',
