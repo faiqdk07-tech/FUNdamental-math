@@ -42,7 +42,7 @@ Baca file ini dan `RENCANA.md` sebelum mengubah apa pun. Dokumen konsep lengkap 
 - Kasus harian per tingkat per hari: 1 kasus cerita (bergilir, termasuk kasus tempelan) + 2 kasus "Angka baru" buatan `FMP.genCase`. Lihat RENCANA.md.
 
 ## Struktur kode `index.html`
-Satu file, tanpa build.
+Satu file, tanpa build. Pendamping: `sw.js` (menyimpan app di perangkat untuk GitHub Pages; buka dari salinan, versi baru dipakai pada pembukaan berikutnya) dan layar muat `#fm-splash` di awal `<body>`.
 - **`<template id="tpl-Nama">`**: tampilan satu layar.
   - `{{nilai}}` diisi dari `renderVals()`.
   - `<sc-for list="{{daftar}}" as="x">` untuk mengulang.

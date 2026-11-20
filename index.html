@@ -2091,6 +2091,16 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 </style>
 </head>
 <body>
+<!-- Layar muat (Faiq 20 Nov): tampil seketika selagi app disiapkan, dihapus show() sesudah layar pertama siap -->
+<div id="fm-splash" style="position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#EFE9DE;color:#2B1D1A;font-family:'Jersey 15',sans-serif">
+<div style="width:56px;height:48px;position:relative;image-rendering:pixelated" aria-hidden="true">
+<div style="position:absolute;left:2px;right:2px;top:-4px;height:26px;background:#2B1D1A;clip-path:polygon(50% 0,100% 100%,0 100%)"></div><div style="position:absolute;left:9px;right:9px;top:3px;height:16px;background:#E8554E;clip-path:polygon(50% 0,100% 100%,0 100%)"></div>
+<div style="position:absolute;left:12px;right:12px;top:20px;bottom:0;background:#FFF6E0;box-shadow:0 0 0 3px #2B1D1A"></div>
+<div style="position:absolute;left:24px;width:8px;top:32px;bottom:0;background:#8A5A32"></div>
+</div>
+<div style="font-size:30px;line-height:1">Fundamental Math</div>
+<div style="font-size:17px;line-height:1;color:#6B5A4A">Desa sedang disiapkan&hellip;</div>
+</div>
 <div id="root"></div>
 
 <!-- ===== Tampilan tiap layar (satu template per file .dc.html asal) ===== -->
@@ -18961,11 +18971,13 @@ function show(name) {
     PX.skin(ROOT, name);
     window.__fmComp = m.comp;
     m.host.render();
+    { const sp = document.getElementById('fm-splash'); if (sp) sp.remove(); } // layar muat selesai
     try { FMS.place(name); FMS.music(FMP.isGame(name) ? FMS.gameSong(name) : FMS.pageSong(name)); } catch (e) {} // BGM: tiap halaman punya lagu sendiri // BGM: di dalam game = Meja kerja, selain itu = Desa
     try { FMA.enter(box); } catch (e) {} // Kelompok 6: layar baru muncul pelan dalam 3 langkah (150 ms), tanpa bergeser
   } catch (e) {
     console.error(e);
     ROOT.innerHTML = '<div id="err">Layar ' + name + ' gagal dibuka.\n' + (e && e.message || e) + '</div>';
+    { const sp = document.getElementById('fm-splash'); if (sp) sp.remove(); }
   }
   document.title = 'App Fundamental Math';
   window.scrollTo(0, 0);
@@ -19017,6 +19029,10 @@ show(current());
   window.addEventListener('resize', fit);
   fit();
 })();
+/* Simpan app di iPad (Faiq 20 Nov): hanya di github.io (dan localhost untuk uji). Lihat sw.js: buka dari salinan, versi baru diunduh di belakang. */
+if ('serviceWorker' in navigator && (/\.github\.io$/.test(location.hostname) || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
 </script>
 </body>
 </html>
