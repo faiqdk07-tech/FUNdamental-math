@@ -1523,6 +1523,10 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 /* Teks layar kalkulator tidak menempel ke garis bingkai (laporan Faiq 19 Nov): huruf pixel diperbesar font-size-adjust, jadi baris perlu tinggi cukup dan jarak dari bingkai */
 #root .pj>button[style*="display: flex"]{padding:6px 7px 5px!important}
 #root .pj>button[style*="display: flex"]>span:first-child{line-height:1.3!important}
+/* Angka di layar gelap (argometer, radar, grafik) ikut warna menyala layarnya; dulu tertimpa warna angka gelap sehingga hampir tak terlihat (laporan Faiq 20 Nov) */
+#root .pj.dev-argo>button[style*="display: flex"]>span:last-child{color:#FF6A5E!important;text-shadow:0 0 6px rgba(255,90,78,.6)!important}
+#root .pj.dev-pelab>button[style*="display: flex"]>span:last-child{color:#7CF0A6!important;text-shadow:0 0 6px rgba(124,240,166,.6)!important}
+#root .pj.dev-grafik>button[style*="display: flex"]>span:last-child{color:#8CC0F5!important;text-shadow:0 0 6px rgba(140,192,245,.5)!important}
 #root .pj.dev-argo>button[style*="display: flex"]>span:first-child{color:#FFB0A8!important;text-shadow:none!important}
 #root .pj.dev-pelab>button[style*="display: flex"]>span:first-child{color:#B8F5CF!important;text-shadow:none!important}
 #root .pj.dev-grafik>button[style*="display: flex"]>span:first-child{color:#C9DFF7!important;text-shadow:none!important}
