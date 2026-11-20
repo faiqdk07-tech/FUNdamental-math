@@ -2093,11 +2093,7 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 <body>
 <!-- Layar muat (Faiq 20 Nov): tampil seketika selagi app disiapkan, dihapus show() sesudah layar pertama siap -->
 <div id="fm-splash" style="position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#EFE9DE;color:#2B1D1A;font-family:'Jersey 15',sans-serif">
-<div style="width:56px;height:48px;position:relative;image-rendering:pixelated" aria-hidden="true">
-<div style="position:absolute;left:2px;right:2px;top:-4px;height:26px;background:#2B1D1A;clip-path:polygon(50% 0,100% 100%,0 100%)"></div><div style="position:absolute;left:9px;right:9px;top:3px;height:16px;background:#E8554E;clip-path:polygon(50% 0,100% 100%,0 100%)"></div>
-<div style="position:absolute;left:12px;right:12px;top:20px;bottom:0;background:#FFF6E0;box-shadow:0 0 0 3px #2B1D1A"></div>
-<div style="position:absolute;left:24px;width:8px;top:32px;bottom:0;background:#8A5A32"></div>
-</div>
+<img alt="" width="56" height="48" style="display:block;image-rendering:pixelated" src="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%27112%27%20height=%2796%27%20viewBox=%270%200%2056%2048%27%20shape-rendering=%27crispEdges%27%3E%3Crect%20x=%279%27%20y=%2720%27%20width=%2738%27%20height=%2728%27%20fill=%27%232B1D1A%27/%3E%3Crect%20x=%2712%27%20y=%2723%27%20width=%2732%27%20height=%2722%27%20fill=%27%23FFF6E0%27/%3E%3Crect%20x=%2724%27%20y=%2733%27%20width=%278%27%20height=%2712%27%20fill=%27%238A5A32%27/%3E%3Cpolygon%20points=%2728,0%2055,22%201,22%27%20fill=%27%232B1D1A%27/%3E%3Cpolygon%20points=%2728,6%2046,19%2010,19%27%20fill=%27%23E8554E%27/%3E%3C/svg%3E">
 <div style="font-size:30px;line-height:1">Fundamental Math</div>
 <div style="font-size:17px;line-height:1;color:#6B5A4A">Desa sedang disiapkan&hellip;</div>
 </div>
@@ -18993,7 +18989,8 @@ document.addEventListener('click', e => {
   if (current() === m[1]) show(m[1]); else location.hash = m[1];
 });
 window.addEventListener('hashchange', () => show(current()));
-show(current());
+/* Beri browser satu kesempatan menggambar layar muat dulu (Safari menunda gambar selama skrip berjalan), baru siapkan layar pertama (Faiq 20 Nov) */
+requestAnimationFrame(() => setTimeout(() => { if (!document.querySelector('#root > div')) show(current()); }, 0));
 </script>
 <script>
 /* Layar lebar (iPad, tablet; permintaan Faiq 17 Nov): app dikunci ke bingkai HP 402 x 874
