@@ -7135,6 +7135,7 @@ window.__fmT = { muatDibaca: performance.now() }; requestAnimationFrame(function
 </div></template>
 
 <script>
+window.__fmT && (window.__fmT.skrip = performance.now()); // catatan waktu buka sementara
 /* ===== Mesin kecil yang menjalankan template sc-for / sc-if + kelas DCLogic ===== */
 class DCLogic {
   constructor(props) { this.props = props || {}; this.state = {}; }
@@ -7461,7 +7462,12 @@ const PX = (() => {
   SPR.bebek = ['.....kkkk..', '.....kwkk..', '.....kwwkgg', 'kkkkkkkkk..', 'kwwwwwwwk..', 'kwwwwwwwk..', 'kwwwwwwwk..', 'kkkkkkkkk..'];
   SPR.ayam = ['......r..', '.....kkk.', '.....wkkg', 'kkkkkkkk.', 'kwwwwwk..', 'kwwwwwk..', 'kwwwwwk..', 'kkkkkkk..', '..y.y....'];
   const U = {}; Object.keys(SPR).forEach(n => { U[n] = uri(n); });
-  const css = (n, v) => document.documentElement.style.setProperty('--px-' + n, 'url("' + v + '")');
+  /* Variabel gambar CSS (--px-*): dikumpulkan lalu dipasang SEKALI sebagai satu blok <style id="fm-vars">.
+     Dulu dipasang satu per satu di style <html> (±88 kali, ±670 KB): di Safari iPad membuat app ±10 detik sebelum bisa menggambar (laporan Faiq 20 Nov). */
+  const VARS = {}; let varsEl = null, varsReady = false;
+  const flushVars = () => { if (!varsEl) { varsEl = document.createElement('style'); varsEl.id = 'fm-vars'; document.head.appendChild(varsEl); } varsEl.textContent = ':root{' + Object.keys(VARS).map(k => '--px-' + k + ':' + VARS[k]).join(';') + '}'; };
+  const css = (n, v) => { VARS[n] = 'url("' + v + '")'; if (varsReady) flushVars(); };
+  const cssMany = o => { Object.keys(o).forEach(n => { VARS[n] = 'url("' + o[n] + '")'; }); flushVars(); };
   ['semak', 'tumpeng', 'nasibox', 'orang', 'paku', 'hati', 'hati0', 'fGreen', 'fPaper', 'fWood', 'lvA', 'lvB', 'bendera', 'panah', 'coin', 'coinR', 'coinB', 'fPanel', 'fWhite', 'fGold', 'fRed', 'fOrange', 'beban', 'kardus', 'balon', 'kue', 'kursi', 'martabak', 'roti', 'baju', 'celana', 'bintang', 'bintang0', 'buah', 'kuncup', 'medali', 'medali0', 'dadu', 'wortel', 'tomat', 'kubis', 'matahari', 'tunas', 'centang', 'kertas', 'piala'].forEach(n => css(n, U[n]));
   /* Tata Barisan: kursi berwarna sesuai blok (biru, oranye, hijau, ungu) */
   [['kursiG', 'h', 'g', 'G'], ['kursiH', 'c', 'a', 'A'], ['kursiV', 'x', 'v', 'V']].forEach(q => { SPR[q[0]] = SPR.kursi.map(r => r.replace(/s/g, q[1]).replace(/u/g, q[2]).replace(/U/g, q[3])); U[q[0]] = uri(q[0]); css(q[0], U[q[0]]); });
@@ -8566,8 +8572,10 @@ const PX = (() => {
     return t.cv.toDataURL(); })());
   /* letak hewan di peta Beranda (satuan kotak peta): kiri-atas gambar, lebar, cermin */
   const CRITTERS = [['bebek', 140, 290, 11], ['bebek', 152, 296, 11], ['bebek', 160, 287, 11], ['ayam', -58, 98, 9], ['ayam', -46, 102, 9, 1], ['ayam', -30, 96, 9], ['ayam', -10, 68, 9, 1]];
-  return { CRITTERS: CRITTERS, treeCrown: treeCrown, treeLeaf: treeLeaf, treePot: treePot, labBench: labBench, obj: obj, topView: topView, U: U, kbScene: kbScene, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
+  varsReady = true; flushVars();
+  return { cssMany: cssMany, CRITTERS: CRITTERS, treeCrown: treeCrown, treeLeaf: treeLeaf, treePot: treePot, labBench: labBench, obj: obj, topView: topView, U: U, kbScene: kbScene, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
+window.__fmT && (window.__fmT.px = performance.now()); // catatan waktu buka sementara: gambar PX selesai
 /* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
    o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
 /* Tokoh balon mengikuti cerita (Faiq 19 Nov): ambil orang yang paling awal disebut di cerita; kalau tidak ada, pakai tokoh bawaan game */
@@ -8617,7 +8625,7 @@ PX.devOf = (g, comp) => {
 };
 /* ===== Kulit pixel: latar tiap layar lama ===== */
 (() => {
-  ['rumah', 'dadu', 'grafik', 'buku', 'pohon', 'stik'].forEach(n => document.documentElement.style.setProperty('--px-i-' + n, 'url("' + PX.U[n] + '")'));
+  PX.cssMany(Object.fromEntries(['rumah', 'dadu', 'grafik', 'buku', 'pohon', 'stik'].map(n => ['i-' + n, PX.U[n]])));
   const P = PX.P, memo = {};
   /* Pemandangan 195 x 422 kotak: langit, awan, bukit, rumput, jalan, lalu benda utama sesuai cerita game. */
   function scene(key, mat) {
@@ -18500,6 +18508,7 @@ function relabel(root) {
    BGM: FMS.music('desa' | 'kerja') dipanggil show(); saklar Musik dibaca ulang lewat FMS.sync().
    Ketuk per benda: coin, key, heavy, paper, wood, liquid, dice, stamp, act (lihat kindOf).
    Langkah A: tap, taruh, ambil, benar, salah, habis. Langkah B: blip balon, desir pindah layar, langkah tokoh, bintang baru, fanfare aturan lolos uji. Tiap suara = fungsi (ctx, tujuan, waktu mulai) supaya bisa direkam ulang (FMS.render). */
+window.__fmT && (window.__fmT.game = performance.now()); // catatan waktu buka sementara: semua game terpasang
 const FMS = (() => {
   let ctx = null, out = null;
   const setting = k => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {})[k] !== false; } catch (e) { return true; } };
@@ -19001,7 +19010,7 @@ requestAnimationFrame(() => setTimeout(() => {
   requestAnimationFrame(() => setTimeout(() => { // bingkai sesudah layar pertama tergambar
     try {
       const n = performance.getEntriesByType('navigation')[0] || {}, d = v => v == null ? '?' : (v / 1000).toFixed(1).replace('.', ',');
-      const txt = 'unduh ' + d(n.responseEnd) + ' · muat dibaca ' + d(T.muatDibaca) + ' · muat tergambar ' + d(T.muatDigambar) + ' · mulai siapkan ' + d(T.mulaiSiapkan) + ' · tampil ' + d(performance.now()) + ' · dari salinan: ' + (navigator.serviceWorker && navigator.serviceWorker.controller ? 'ya' : 'tidak');
+      const txt = 'unduh ' + d(n.responseEnd) + ' · muat dibaca ' + d(T.muatDibaca) + ' · skrip mulai ' + d(T.skrip) + ' · gambar PX ' + d(T.px) + ' · game terpasang ' + d(T.game) + ' · muat tergambar ' + d(T.muatDigambar) + ' · mulai siapkan ' + d(T.mulaiSiapkan) + ' · tampil ' + d(performance.now()) + ' · dari salinan: ' + (navigator.serviceWorker && navigator.serviceWorker.controller ? 'ya' : 'tidak');
       localStorage.setItem('fm.diag.load', JSON.stringify({ txt: txt, at: Date.now() }));
     } catch (e) {}
   }, 0));
