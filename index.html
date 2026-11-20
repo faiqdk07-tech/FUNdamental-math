@@ -2097,8 +2097,6 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 <div style="font-size:30px;line-height:1">Fundamental Math</div>
 <div style="font-size:17px;line-height:1;color:#6B5A4A">Desa sedang disiapkan&hellip;</div>
 </div>
-<script>/* Catatan waktu buka sementara (Faiq 20 Nov, untuk mencari penyebab lambat; hapus sesudah beres) */
-window.__fmT = { muatDibaca: performance.now() }; requestAnimationFrame(function () { window.__fmT.muatDigambar = performance.now(); });</script>
 <div id="root"></div>
 
 <!-- ===== Tampilan tiap layar (satu template per file .dc.html asal) ===== -->
@@ -5411,7 +5409,6 @@ window.__fmT = { muatDibaca: performance.now() }; requestAnimationFrame(function
 <div class="bk-lab px-f"><img alt="" class="st-ic" src="{{px.daftar}}">Data</div>
 <div class="st-row"><span class="st-t"><span>Ekspor progres</span><small>Unduh file cadangan</small></span><button type="button" onClick="{{doCopy}}" class="st-btn px-f">Unduh</button></div>
 <div class="st-row"><span class="st-t"><span>Impor progres</span><small>Pulihkan dari file cadangan</small></span><label class="st-btn px-f">Pilih file<input type="file" accept="application/json,.json" onChange="{{doImport}}" style="display: none"></label></div>
-<div class="st-row"><span class="st-t"><span>Waktu buka terakhir (detik)</span><small>{{diagLoad}}</small></span></div>
 <a href="KasusBaru.dc.html" class="st-row" style="text-decoration: none"><span class="st-t"><span>Kasus harian baru</span><small>Tambah lewat prompt, untuk 25 game</small></span><span class="st-btn px-f">Buka ›</span></a>
 </div>
 </div>
@@ -7135,7 +7132,6 @@ window.__fmT = { muatDibaca: performance.now() }; requestAnimationFrame(function
 </div></template>
 
 <script>
-window.__fmT && (window.__fmT.skrip = performance.now()); // catatan waktu buka sementara
 /* ===== Mesin kecil yang menjalankan template sc-for / sc-if + kelas DCLogic ===== */
 class DCLogic {
   constructor(props) { this.props = props || {}; this.state = {}; }
@@ -8575,7 +8571,6 @@ const PX = (() => {
   varsReady = true; flushVars();
   return { cssMany: cssMany, CRITTERS: CRITTERS, treeCrown: treeCrown, treeLeaf: treeLeaf, treePot: treePot, labBench: labBench, obj: obj, topView: topView, U: U, kbScene: kbScene, P: P, pen: pen, world: world, WORLD: WORLD, mgMap: mgMap, MGW: MGW, mgTop: mgTop, mgStreet: mgStreet, PLACE_AT: PLACE_AT, streetH: streetH, streetW: streetW, shop: shop, house: house, stage: stage, peron: peron, kedai: kedai, kedaiteh: kedaiteh, cetakView: cetakView, alView: alView, modeIcons: modeIcons, gameIcon: gameIcon };
 })();
-window.__fmT && (window.__fmT.px = performance.now()); // catatan waktu buka sementara: gambar PX selesai
 /* ===== Layar bermain gaya baru (evaluasi E, 17 Nov): nilai tambahan untuk template ber-kelas px-v2.
    o = { face: nama gambar tokoh di PX.U, name: nama tokoh } ===== */
 /* Tokoh balon mengikuti cerita (Faiq 19 Nov): ambil orang yang paling awal disebut di cerita; kalau tidak ada, pakai tokoh bawaan game */
@@ -14585,7 +14580,6 @@ per: String(s.per), perUp: () => { if (s.per < 10) this.save({ per: s.per + 1 })
 perUpCol: s.per < 10 ? '#1C1C1A' : '#B9B8B2', perDownCol: s.per > 3 ? '#1C1C1A' : '#B9B8B2',
 rules: [7, 8, 9].map(r => ({ on: s.rule === r ? 'on' : '', label: r + ' dari 10', aria: 'Syarat bintang kedua: ' + r + ' dari 10 kasus harian tepat' + (s.rule === r ? ', dipilih' : ''), style: seg(s.rule === r), tap: () => this.save({ rule: r }) })),
 toggles: [],
-diagLoad: (() => { try { const o = JSON.parse(localStorage.getItem('fm.diag.load') || 'null'); return o ? o.txt : 'belum tercatat'; } catch (e) { return 'belum tercatat'; } })(),
 sounds: [['music', 'Musik'], ['sfx', 'Efek suara']].map(k => ({ name: k[1], keys: [[true, 'Nyala'], [false, 'Mati']].map(a => ({ on: (s[k[0]] !== false) === a[0] ? 'on' : '', label: a[1], aria: k[1] + ' ' + a[1].toLowerCase() + ((s[k[0]] !== false) === a[0] ? ', dipilih' : ''), tap: () => this.save({ [k[0]]: a[0] }) })) })),
 anims: [[true, 'Nyala'], [false, 'Mati']].map(a => ({ on: (s.anim !== false) === a[0] ? 'on' : '', label: a[1], aria: 'Animasi ' + a[1].toLowerCase() + ((s.anim !== false) === a[0] ? ', dipilih' : ''), tap: () => this.save({ anim: a[0] }) })),
 doCopy: () => { const txt = FMP.exportText(), d = new Date(), fn = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; const cl = window.claude; if (cl && typeof cl.use === 'function') { cl.use('downloads').then(dl => { if (!dl) return this.setState({ msg: 'Unduhan tidak tersedia di tampilan ini.' }); return dl.save({ filename: fn, data: txt }).then(() => this.setState({ msg: 'File cadangan diunduh. Simpan di tempat aman.' }), e => this.setState({ msg: e && e.code === 'declined' ? 'Unduhan dibatalkan.' : 'Unduhan tidak tersedia di tampilan ini.' })); }); return; } (() => { try { const txt = FMP.exportText(), a = document.createElement('a'), d = new Date(); a.href = URL.createObjectURL(new Blob([txt], { type: 'application/json' })); a.download = 'cadangan-fundamental-math-' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '.json'; document.body.appendChild(a); a.click(); a.remove(); this.setState({ msg: 'File cadangan diunduh. Simpan baik-baik.' }); } catch (e) { this.setState({ msg: 'Gagal membuat file cadangan.' }); } })(); },
@@ -18508,7 +18502,6 @@ function relabel(root) {
    BGM: FMS.music('desa' | 'kerja') dipanggil show(); saklar Musik dibaca ulang lewat FMS.sync().
    Ketuk per benda: coin, key, heavy, paper, wood, liquid, dice, stamp, act (lihat kindOf).
    Langkah A: tap, taruh, ambil, benar, salah, habis. Langkah B: blip balon, desir pindah layar, langkah tokoh, bintang baru, fanfare aturan lolos uji. Tiap suara = fungsi (ctx, tujuan, waktu mulai) supaya bisa direkam ulang (FMS.render). */
-window.__fmT && (window.__fmT.game = performance.now()); // catatan waktu buka sementara: semua game terpasang
 const FMS = (() => {
   let ctx = null, out = null;
   const setting = k => { try { return (JSON.parse(window.localStorage.getItem('fm.settings') || '{}') || {})[k] !== false; } catch (e) { return true; } };
@@ -19003,18 +18996,8 @@ document.addEventListener('click', e => {
 });
 window.addEventListener('hashchange', () => show(current()));
 /* Beri browser satu kesempatan menggambar layar muat dulu (Safari menunda gambar selama skrip berjalan), baru siapkan layar pertama (Faiq 20 Nov) */
-requestAnimationFrame(() => setTimeout(() => {
-  const T = window.__fmT || {}; T.mulaiSiapkan = performance.now();
-  if (!document.querySelector('#root > div')) show(current());
-  T.siap = performance.now();
-  requestAnimationFrame(() => setTimeout(() => { // bingkai sesudah layar pertama tergambar
-    try {
-      const n = performance.getEntriesByType('navigation')[0] || {}, d = v => v == null ? '?' : (v / 1000).toFixed(1).replace('.', ',');
-      const txt = 'unduh ' + d(n.responseEnd) + ' · muat dibaca ' + d(T.muatDibaca) + ' · skrip mulai ' + d(T.skrip) + ' · gambar PX ' + d(T.px) + ' · game terpasang ' + d(T.game) + ' · muat tergambar ' + d(T.muatDigambar) + ' · mulai siapkan ' + d(T.mulaiSiapkan) + ' · tampil ' + d(performance.now()) + ' · dari salinan: ' + (navigator.serviceWorker && navigator.serviceWorker.controller ? 'ya' : 'tidak');
-      localStorage.setItem('fm.diag.load', JSON.stringify({ txt: txt, at: Date.now() }));
-    } catch (e) {}
-  }, 0));
-}, 0));
+requestAnimationFrame(() => setTimeout(() => { if (!document.querySelector('#root > div')) show(current()); }, 0));
+try { localStorage.removeItem('fm.diag.load'); } catch (e) {} // sisa catatan waktu buka sementara (20 Nov)
 </script>
 <script>
 /* Layar lebar (iPad, tablet; permintaan Faiq 17 Nov): app dikunci ke bingkai HP 402 x 874
