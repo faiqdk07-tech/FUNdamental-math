@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2D3250">
-<meta name="fm-ver" content="2026-11-24b">
+<meta name="fm-ver" content="2026-11-24c">
 <title>App Fundamental Math</title>
 <link rel="apple-touch-icon" href="ikon-180.png">
 <link rel="icon" type="image/png" href="ikon-180.png">
@@ -5313,6 +5313,11 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 <button type="button" onClick="{{t.tap}}" aria-label="{{t.aria}}" class="st-key {{t.on}}"><i></i><span class="px-f">{{t.label}}</span></button>
 </sc-for>
 </div>
+<sc-if value="{{isWeek}}" hint-placeholder-val="{{ false }}"><div class="cc-tabs">
+<sc-for list="{{wkMatTabs}}" as="m" hint-placeholder-count="4">
+<button type="button" onClick="{{m.tap}}" aria-label="{{m.aria}}" class="cc-tab {{m.on}}"><img alt="" src="{{m.img}}"><span class="px-f">{{m.label}}</span></button>
+</sc-for>
+</div></sc-if>
 <sc-if value="{{isWeek}}" hint-placeholder-val="{{ false }}"><div class="kb-wk"><b class="px-f">{{wkTitle}}</b><span>{{wkLine}}</span><span>{{wkState}}</span></div></sc-if>
 <sc-if value="{{isGame}}" hint-placeholder-val="{{ true }}">
 <div class="cc-tabs">
@@ -17891,13 +17896,19 @@ super(props);
 let key = 'Ubin', l = 'F', mode = 'game';
 try { const r = JSON.parse(window.localStorage.getItem('fm.kasusbaru') || 'null'); if (r && FMP.KEYS[r.key] && /^[FIE]$/.test(r.lvl)) { key = r.key; l = r.lvl; } if (r && r.mode === 'minggu') mode = 'minggu'; } catch (e) {}
 this.txt = '';
-this.state = { key: key, lvl: l, mode: mode, mat: this.matOf(key), prompt: mode === 'minggu' ? FMP.wkPrompt(FMP.wkInfo().target) : FMP.casePrompt(key, l), msg: '', kind: '', bad: [], tick: 0 };
+const wm = [FMP.wkInfo().mat];
+this.state = { key: key, lvl: l, mode: mode, wkMats: wm, mat: this.matOf(key), prompt: mode === 'minggu' ? FMP.wkPrompt(FMP.wkInfo().target, wm) : FMP.casePrompt(key, l), msg: '', kind: '', bad: [], tick: 0 };
 }
 matOf(key) { const G = FMP.caseGames(); for (let i = 0; i < G.length; i++) if (G[i][1].indexOf(key) >= 0) return i; return 0; }
 setMode(mode) {
 const s = this.state; try { window.localStorage.setItem('fm.kasusbaru', JSON.stringify({ key: s.key, lvl: s.lvl, mode: mode })); } catch (e) {}
 const el = document.getElementById('kb-paste'); if (el) el.value = ''; this.txt = '';
-this.setState({ mode: mode, prompt: mode === 'minggu' ? FMP.wkPrompt(FMP.wkInfo().target) : FMP.casePrompt(s.key, s.lvl), msg: '', bad: [] });
+this.setState({ mode: mode, prompt: mode === 'minggu' ? FMP.wkPrompt(FMP.wkInfo().target, s.wkMats) : FMP.casePrompt(s.key, s.lvl), msg: '', bad: [] });
+}
+toggleWkMat(m) {
+const s = this.state, on = s.wkMats.indexOf(m) >= 0; if (on && s.wkMats.length === 1) return;
+const ms = FMP.MATS.map(x => x[0]).filter(x => x === m ? !on : s.wkMats.indexOf(x) >= 0);
+this.setState({ wkMats: ms, prompt: FMP.wkPrompt(FMP.wkInfo().target, ms), msg: '', bad: [] });
 }
 pick(key, l, mat) {
 try { window.localStorage.setItem('fm.kasusbaru', JSON.stringify({ key: key, lvl: l })); } catch (e) {}
@@ -17909,19 +17920,20 @@ const s = this.state, key = s.key, G = FMP.caseGames();
 const chip = on => 'padding: 6px 12px; border-radius: 6px; font: inherit; font-size: 13px; cursor: pointer; ' + (on ? 'background: #1C1C1A; color: #FFFFFF; border: 1px solid #1C1C1A' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7');
 const small = on => 'padding: 4px 9px; border-radius: 6px; font: inherit; font-size: 12px; cursor: pointer; ' + (on ? 'background: #2F5BD3; color: #FFFFFF; border: 1px solid #2F5BD3' : 'background: #FFFFFF; color: #1C1C1A; border: 1px solid #DDDCD7');
 const list = FMP.caseStored(key).filter(c => c.tingkat === s.lvl);
-const name = FMP.KEYS[key], wk = s.mode === 'minggu', W = FMP.wkInfo(), wt = W.target, wn = FMP.wkGames(wt).length, wd = W.W[wt];
+const name = FMP.KEYS[key], wk = s.mode === 'minggu', W = FMP.wkInfo(), wt = W.target, wn = FMP.wkGames(wt, s.wkMats).length, wd = W.W[wt], wc = FMP.wkCount(s.wkMats);
 const wkWhen = (wt === W.cur ? 'Minggu ini' : 'Minggu depan') + ', ' + FMP.wkTgl(wt) + '–' + FMP.wkTgl(FMP.wkPlus(wt, 6));
 return {
 step1: wk ? 'Pilih pesanan' : 'Pilih perangko game', isWeek: wk, isGame: !wk,
 modes: [['game', 'Satu game'], ['minggu', 'Pesanan mingguan']].map(m => ({ on: s.mode === m[0] ? 'on' : '', label: m[1], aria: m[1] + (s.mode === m[0] ? ', dipilih' : ''), tap: () => this.setMode(m[0]) })),
-wkTitle: W.mat + ' · ' + wkWhen, wkLine: wn + ' game, masing-masing 2 kasus di tingkat terakhir yang kamu mainkan. Materi berganti tiap minggu.',
+wkTitle: s.wkMats.join(' + ') + ' · ' + wkWhen, wkLine: wn + ' game, masing-masing ' + wc + ' kasus di tingkat terakhir yang kamu mainkan. Giliran minggu ini: ' + W.mat + '; ketuk subject di atas untuk menambah atau mengurangi.',
+wkMatTabs: G.map(m => { const on = s.wkMats.indexOf(m[0]) >= 0; return { on: on ? 'on' : '', img: PX.labBench({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m[0]] || 'bil'), label: m[0], aria: 'Subject ' + m[0] + (on ? ', ikut pesanan' : ', tidak ikut'), tap: () => this.toggleWkMat(m[0]) }; }),
 wkState: wd ? 'Sudah dikirim: ' + wd.n + ' kasus lolos.' : wt === W.cur ? 'Belum dikirim dan sudah lewat batas (hari Minggu). Kirim secepatnya.' : 'Belum dikirim. Paling lambat ' + FMP.wkTgl(FMP.wkPlus(wt, -1), true) + '.',
-sub: wk ? W.mat + ' · ' + wkWhen : ((typeof GAME_DN !== 'undefined' && GAME_DN[name]) || name) + ' · ' + FMP.LVN[s.lvl], face: PX.U.sari || PX.U.sinta, storedN: String(list.length), envOpen: s.envOpen ? 'open' : '', showPrompt: !!s.envOpen, toggleEnv: () => this.setState({ envOpen: !s.envOpen }), envAria: s.envOpen ? 'Tutup amplop prompt' : 'Buka amplop untuk membaca prompt', envHint: s.envOpen ? 'Ketuk untuk melipat kembali' : 'Ketuk amplop untuk membaca isinya', msgKind: s.kind === 'ok' ? 'ok' : 'warn',
+sub: wk ? s.wkMats.join(' + ') + ' · ' + wkWhen : ((typeof GAME_DN !== 'undefined' && GAME_DN[name]) || name) + ' · ' + FMP.LVN[s.lvl], face: PX.U.sari || PX.U.sinta, storedN: String(list.length), envOpen: s.envOpen ? 'open' : '', showPrompt: !!s.envOpen, toggleEnv: () => this.setState({ envOpen: !s.envOpen }), envAria: s.envOpen ? 'Tutup amplop prompt' : 'Buka amplop untuk membaca prompt', envHint: s.envOpen ? 'Ketuk untuk melipat kembali' : 'Ketuk amplop untuk membaca isinya', msgKind: s.kind === 'ok' ? 'ok' : 'warn',
 px: PX.U, mats: G.map((m, i) => ({ on: s.mat === i ? 'on' : '', img: PX.labBench({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m[0]] || 'bil'), label: m[0], aria: 'Materi ' + m[0] + (s.mat === i ? ', dipilih' : ''), style: small(s.mat === i), tap: () => this.pick(m[1].indexOf(key) >= 0 ? key : m[1][0], s.lvl, i) })),
 games: (G[s.mat] ? G[s.mat][1] : []).map(k => ({ on: k === key ? 'on' : '', ic: PX.gameIcon(FMP.KEYS[k]), label: FMP.KEYS[k], aria: 'Game ' + FMP.KEYS[k] + (k === key ? ', dipilih' : ''), style: small(k === key), tap: () => this.pick(k, s.lvl) })),
 tiers: ['F', 'I', 'E'].map(l => ({ on: s.lvl === l ? 'on' : '', label: FMP.LVN[l], aria: 'Tingkat ' + FMP.LVN[l] + (s.lvl === l ? ', dipilih' : ''), style: chip(s.lvl === l), tap: () => this.pick(key, l) })),
 prompt: s.prompt || 'Game ini belum bisa membuat prompt untuk tingkat ini.',
-regen: () => this.setState({ prompt: wk ? FMP.wkPrompt(wt) : FMP.casePrompt(key, s.lvl), msg: '' }),
+regen: () => this.setState({ prompt: wk ? FMP.wkPrompt(wt, s.wkMats) : FMP.casePrompt(key, s.lvl), msg: '' }),
 copy: () => {
 const done = ok => this.setState({ msg: ok ? 'Prompt tersalin. Jalankan di proyek Claude, lalu tempel jawabannya di bawah.' : 'Tidak bisa menyalin otomatis. Tekan lama teks prompt di atas untuk menyalinnya.', kind: ok ? 'ok' : 'warn' });
 try { navigator.clipboard.writeText(s.prompt).then(() => done(true), () => done(false)); } catch (e) { done(false); }
@@ -17931,7 +17943,7 @@ check: () => {
 const el = document.getElementById('kb-paste'); if (el) this.txt = el.value;
 if (!this.txt.trim()) return this.setState({ msg: 'Tempel dulu jawaban Claude di kotak di atas.', kind: 'warn', bad: [] });
 const r = wk ? FMP.wkAdd(wt, this.txt) : FMP.caseAdd(key, s.lvl, this.txt);
-if (wk && !r.err) { if (r.ok && el) { el.value = ''; this.txt = ''; } return this.setState({ msg: r.ok ? r.ok + ' kasus lolos dan tersimpan ke game masing-masing.' + (r.bad.length ? ' ' + r.bad.length + ' ditolak.' : '') : 'Tidak ada kasus yang lolos.', kind: r.ok ? 'ok' : 'warn', bad: r.bad, prompt: r.ok ? FMP.wkPrompt(FMP.wkInfo().target) : s.prompt }); }
+if (wk && !r.err) { if (r.ok && el) { el.value = ''; this.txt = ''; } return this.setState({ msg: r.ok ? r.ok + ' kasus lolos dan tersimpan ke game masing-masing.' + (r.bad.length ? ' ' + r.bad.length + ' ditolak.' : '') : 'Tidak ada kasus yang lolos.', kind: r.ok ? 'ok' : 'warn', bad: r.bad, prompt: r.ok ? FMP.wkPrompt(FMP.wkInfo().target, s.wkMats) : s.prompt }); }
 if (r.err) return this.setState({ msg: r.err, kind: 'warn', bad: [] });
 if (r.ok.length && el) { el.value = ''; this.txt = ''; }
 this.setState({ msg: r.ok.length ? r.ok.length + ' kasus lolos dan tersimpan.' + (r.bad.length ? ' ' + r.bad.length + ' ditolak.' : '') : 'Tidak ada kasus yang lolos.', kind: r.ok.length ? 'ok' : 'warn', bad: r.bad });
@@ -18347,17 +18359,19 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     const has = k => !!W[k], status = !has(cur) ? 'telat' : has(nxt) ? 'siap' : dow >= 4 ? 'segera' : 'aman', target = has(cur) ? nxt : cur;
     return { t, cur, nxt, akhir: wkPlus(cur, 6), status, target, has, W, mat: wkMat(target), matCur: wkMat(cur) };
   }
-  function wkGames(mon) { const m = wkMat(mon), row = MATS.find(x => x[0] === m); return row ? row[2].filter(g => canCase(g[1])).map(g => g[1]) : []; }
+  // mats: daftar subject yang dipilih pemain (bawaan: subject giliran minggu itu). 3–4 subject = 1 kasus per game supaya jawaban Claude tidak terlalu panjang.
+  function wkGames(mon, mats) { const ms = mats && mats.length ? mats : [wkMat(mon)]; return MATS.filter(x => ms.indexOf(x[0]) >= 0).reduce((a, x) => a.concat(x[2].filter(g => canCase(g[1])).map(g => g[1])), []); }
+  const wkCount = mats => (mats && mats.length >= 3 ? 1 : WK_N);
   function wkLvl(key) { try { const m = JSON.parse(window.localStorage.getItem('fm.lastLvl') || '{}') || {}; const l = m[KEYS[key]]; return /^[FIE]$/.test(l) ? l : 'F'; } catch (e) { return 'F'; } }
-  function wkPrompt(mon) {
-    const parts = [];
-    wkGames(mon).forEach(key => {
-      const l = wkLvl(key), txt = casePrompt(key, l, WK_N); if (!txt) return;
-      const lines = txt.split('\n'); lines[0] = '### Bagian ' + (parts.length + 1) + ': game "' + KEYS[key] + '", tingkat ' + l + ' (' + LVN[l] + '), ' + WK_N + ' kasus';
+  function wkPrompt(mon, mats) {
+    const parts = [], n = wkCount(mats), ms = mats && mats.length ? mats : [wkMat(mon)];
+    wkGames(mon, ms).forEach(key => {
+      const l = wkLvl(key), txt = casePrompt(key, l, n); if (!txt) return;
+      const lines = txt.split('\n'); lines[0] = '### Bagian ' + (parts.length + 1) + ': game "' + KEYS[key] + '", tingkat ' + l + ' (' + LVN[l] + '), ' + n + ' kasus';
       parts.push(lines.join('\n'));
     });
     if (!parts.length) return '';
-    return ['PESANAN MINGGUAN · ' + wkMat(mon) + ' · minggu ' + wkTgl(mon, true) + ' sampai ' + wkTgl(wkPlus(mon, 6), true),
+    return ['PESANAN MINGGUAN · ' + ms.join(' + ') + ' · minggu ' + wkTgl(mon, true) + ' sampai ' + wkTgl(wkPlus(mon, 6), true),
       'Pesanan ini terdiri dari ' + parts.length + ' bagian, satu bagian per game. Kerjakan tiap bagian sesuai aturannya sendiri.',
       'Balas HANYA dengan SATU JSON array yang berisi semua kasus dari semua bagian. Setiap objek wajib memuat "game" (persis seperti di judul bagian) dan "tingkat" (huruf F, I, atau E seperti di judul bagian). Tanpa penjelasan dan tanpa teks lain.',
       ''].concat(parts.map(x => x + '\n')).join('\n').trim();
@@ -18370,8 +18384,8 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     catch (e) { res.err = 'Teks itu bukan JSON yang utuh. Salin seluruh jawaban, dari tanda [ sampai ].'; return res; }
     if (!arr || !arr.length) { res.err = 'Tidak ada kasus di dalam teks itu.'; return res; }
     const names = {}; Object.keys(KEYS).forEach(k => { names[KEYS[k]] = k; names[k] = k; if (typeof GAME_DN !== 'undefined' && GAME_DN[KEYS[k]]) names[GAME_DN[KEYS[k]]] = k; });
-    const groups = {}, allowed = wkGames(mon);
-    arr.slice(0, 40).forEach((o, i) => {
+    const groups = {}, allowed = wkGames(mon, MATS.map(x => x[0]));
+    arr.slice(0, 80).forEach((o, i) => {
       const key = o && typeof o === 'object' ? names[String(o.game || '').trim()] : null, l = o && /^[FIE]$/.test(o.tingkat) ? o.tingkat : null;
       if (!key || allowed.indexOf(key) < 0) return res.bad.push({ no: i + 1, why: 'game "' + ((o && o.game) || '') + '" tidak ada di pesanan ini' });
       if (!l) return res.bad.push({ no: i + 1, why: 'tingkat harus F, I, atau E' });
@@ -18383,7 +18397,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
       res.ok += r.ok.length; r.bad.forEach(b => res.bad.push({ no: list[b.no - 1] ? list[b.no - 1].no : b.no, why: nm + ': ' + b.why }));
     });
     res.bad.sort((a, b) => a.no - b.no);
-    if (res.ok) { const p = load(); if (!p.wk) p.wk = {}; const old = p.wk[mon]; p.wk[mon] = { mat: wkMat(mon), n: (old ? old.n : 0) + res.ok, tgl: ymdL(new Date()) }; save(); wkShare(); }
+    if (res.ok) { const p = load(); if (!p.wk) p.wk = {}; const old = p.wk[mon], got = MATS.filter(x => x[2].some(g => Object.keys(groups).some(k => k.split('|')[0] === g[1]))).map(x => x[0]); const all = ((old && old.mat) ? old.mat.split(' + ') : []).concat(got).filter((x, i, a) => a.indexOf(x) === i); p.wk[mon] = { mat: all.join(' + '), n: (old ? old.n : 0) + res.ok, tgl: ymdL(new Date()) }; save(); wkShare(); }
     return res;
   }
   function caseRemove(key, id) { const p = load(); if (!p.cases || !p.cases[key]) return; p.cases[key] = p.cases[key].filter(c => c.id !== id); save(); }
@@ -18571,7 +18585,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
     if (hasAsks) return ('Jawab pertanyaan di bawah. ' + tail).trim();
     return t;
   }
-  return { genCase, nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, casePrompt, caseAdd, caseStored, caseRemove, wkInfo, wkPrompt, wkAdd, wkShare, wkTgl, wkGames, wkPlus, caseGames: () => MATS.map(m => [m[0], m[2].filter(g => canCase(g[1])).map(g => g[1])]), isGame: k => !!KEYS[k] };
+  return { genCase, nextGoal, SUB, found, LVN, MATS, GAME, KEYS, load, save, reset, exportText, importText, stars, played, streak, todayOk, acc, badges, tantangan, go, applyOpen, wrap, dayDiff, casePrompt, caseAdd, caseStored, caseRemove, wkInfo, wkPrompt, wkAdd, wkCount, wkShare, wkTgl, wkGames, wkPlus, caseGames: () => MATS.map(m => [m[0], m[2].filter(g => canCase(g[1])).map(g => g[1])]), isGame: k => !!KEYS[k] };
 })();
 
 /* ===== Navigasi: tautan "Nama.dc.html" dibuka sebagai #Nama ===== */
