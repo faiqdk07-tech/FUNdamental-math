@@ -43,6 +43,7 @@ Baca file ini dan `RENCANA.md` sebelum mengubah apa pun. Dokumen konsep lengkap 
 
 ## Struktur kode `index.html`
 Satu file, tanpa build. Pendamping: `sw.js` (menyimpan app di perangkat untuk GitHub Pages; buka dari salinan, versi baru dipakai pada pembukaan berikutnya) dan layar muat `#fm-splash` di awal `<body>`.
+- **Naikkan `<meta name="fm-ver">` setiap kali `index.html` diubah** (mis. `2026-11-24b` → `2026-11-25a`). App membandingkannya dengan versi di server saat dibuka/kembali ke depan, lalu menampilkan bilah "Versi baru siap · Muat ulang" (`#fm-upd`). Tanpa kenaikan ini iPad Faiq bisa terus memakai versi lama.
 - **`<template id="tpl-Nama">`**: tampilan satu layar.
   - `{{nilai}}` diisi dari `renderVals()`.
   - `<sc-for list="{{daftar}}" as="x">` untuk mengulang.

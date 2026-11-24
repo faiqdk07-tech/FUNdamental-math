@@ -3,6 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2D3250">
+<meta name="fm-ver" content="2026-11-24b">
 <title>App Fundamental Math</title>
 <link rel="apple-touch-icon" href="ikon-180.png">
 <link rel="icon" type="image/png" href="ikon-180.png">
@@ -883,6 +884,12 @@ body.fm-framed .px-mid:has(> .px-modes){zoom:1.25}
 .px-mgscroll{flex:none;overflow-x:auto;overflow-y:hidden;margin:0 calc(-16px - var(--padX));-webkit-overflow-scrolling:touch;scrollbar-width:thin;--stU:calc(100vw / 195 * 1.15)}
 body.fm-framed .px-mgscroll{--stU:calc(560px / 195 * 1.25)}
 .px-mgscroll .px-mgstreet{left:auto;transform:none;max-width:none}
+.px-mghint-up{bottom:122px}
+/* papan pesanan soal mingguan di peta pilih subject (Faiq 24 Nov): gulungan kertas seperti "Coba berikutnya" di Beranda */
+#fm-upd,#fm-upd button{font-family:"Jersey 15",Inter,sans-serif;font-size-adjust:0.56;letter-spacing:.3px}
+#fm-upd{position:fixed;left:50%;top:calc(64px + env(safe-area-inset-top));transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:10px;padding:6px 6px 6px 12px;background:#FFF6C8;border:2px solid #1A1C2C;box-shadow:inset 0 -3px 0 #E8D27A,0 3px 0 rgba(26,28,44,.35);font-size:14px;color:#1A1C2C;white-space:nowrap}
+#fm-upd button{font:inherit;font-size:13px;color:#fff;background:#3FA34D;border:2px solid #1A1C2C;box-shadow:inset 0 -3px 0 #2B7A37,inset 0 2px 0 #7BD487;padding:4px 10px;cursor:pointer}
+#root .px-mgweek{position:absolute;left:0;right:0;bottom:76px;z-index:3;text-decoration:none;color:#1A1C2C}
 .px-mghint2{text-align:center;font-size:12px;color:#FFFFFF;text-shadow:0 2px 0 #2F7A36;margin-top:-6px}
 .px-mgstreet .px-gslot-new{width:auto;height:calc(var(--stU) * 14)}
 .px-gsign-n{font-size:12px}
@@ -4884,7 +4891,8 @@ html.fm-noanim:not(.fm-animoff) .px-mark{animation:fm-hop 280ms steps(2,end) 2!i
 </sc-for>
 <div class="px-hero {{heroFlip}}" style="{{heroStyle}}"><img alt="" src="{{px.orang}}"></div>
 </div></div>
-<div class="px-mghint px-f">Ketuk gedung untuk masuk</div>
+<div class="px-mghint px-mghint-up px-f">Ketuk gedung untuk masuk</div>
+<a href="KasusBaru.dc.html" onClick="{{wkTap}}" class="px-quest px-scroll px-mgweek"><span class="px-tag px-f">Soal mingguan</span><span style="flex: 1; min-width: 0"><b class="px-f">{{wkTitle}}</b><small>{{wkSub}}</small></span><img alt="" src="{{px.kanan}}" width="10" height="12"></a>
 </sc-if>
 <sc-if value="{{isGame}}" hint-placeholder-val="{{ false }}">
 <div class="px-page px-mgpage">
@@ -13867,6 +13875,10 @@ const NOTE = { alj: 'Timbangan Balon membuka game Timbangan dengan misi dan kasu
 const hp = MG_NODES[this.state.at] || MG_NODES.S;
 return {
   isMat: s.step === 'mat', isGame: s.step === 'game', canBack: s.step !== 'mat',
+  ...(() => { const W = FMP.wkInfo(), t = W.target, done = W.W[t], when = FMP.wkTgl(t) + '–' + FMP.wkTgl(FMP.wkPlus(t, 6));
+    return { wkTitle: 'Pesanan ' + W.mat + ' · ' + when,
+      wkSub: done ? 'Sudah dikirim · ' + done.n + ' kasus baru' : (t === W.cur ? 'Belum dikirim · ketuk ke kantor pos' : 'Untuk minggu depan · ketuk ke kantor pos'),
+      wkTap: () => { try { const r = JSON.parse(window.localStorage.getItem('fm.kasusbaru') || 'null') || {}; r.mode = 'minggu'; window.localStorage.setItem('fm.kasusbaru', JSON.stringify(r)); } catch (e) {} } }; })(),
   back: () => { clearTimeout(this._wt); this._at = 'S'; this.setState({ step: 'mat', at: 'S', dur: 0, going: null, info: false }); },
   crumb: s.step === 'mat' ? 'Langkah 1/2 · pilih subject' : 'Langkah 2/2 · ' + mat.label,
   px: PX.U, mapImg: PX.mgMap(), mats: mats, streetStyle: 'background-image: url(\'' + PX.mgStreet(s.mat, list.map(g => g.name)) + '\'); width: calc(var(--stU) * ' + PX.streetW(list.length) + '); aspect-ratio: ' + PX.streetW(list.length) + ' / ' + PX.streetH(list.length),
@@ -19123,6 +19135,35 @@ try { localStorage.removeItem('fm.diag.load'); } catch (e) {} // sisa catatan wa
 if ('serviceWorker' in navigator && (/\.github\.io$/.test(location.hostname) || location.hostname === 'localhost')) {
   window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
 }
+/* Versi baru siap (Faiq 24 Nov): app di layar utama iPad sering hanya dilanjutkan, tidak dibuka ulang, jadi versi baru tidak
+   pernah terpakai. Saat app dibuka atau kembali ke depan, cek fm-ver di server; bila berbeda, tampilkan bilah kecil
+   "Versi baru siap" + tombol Muat ulang (tidak memuat ulang sendiri supaya permainan tidak terputus).
+   PENTING: naikkan <meta name="fm-ver"> setiap kali index.html diubah. */
+(function () {
+  if (!/^https?:$/.test(location.protocol)) return;
+  const mine = (document.querySelector('meta[name="fm-ver"]') || {}).content || '';
+  let busy = false, last = 0;
+  function bar(resp) {
+    if (document.getElementById('fm-upd')) return;
+    const el = document.createElement('div'); el.id = 'fm-upd'; el.setAttribute('role', 'status');
+    el.innerHTML = '<span>Versi baru siap</span><button type="button">Muat ulang</button>';
+    el.querySelector('button').onclick = () => {
+      const go = () => location.reload();
+      if (!window.caches) return go();
+      caches.open('fm-app').then(c => c.put(new URL('./', location.href).href, resp)).then(go, go);
+    };
+    document.body.appendChild(el);
+  }
+  function check() {
+    if (busy || Date.now() - last < 60000) return; busy = true; last = Date.now();
+    fetch(new URL('./', location.href).href, { cache: 'no-cache' }).then(r => r.ok ? r.clone().text().then(t => {
+      const m = /<meta name="fm-ver" content="([^"]+)">/.exec(t);
+      if (m && m[1] !== mine) bar(r);
+    }) : null).catch(() => {}).then(() => { busy = false; });
+  }
+  window.addEventListener('load', () => setTimeout(check, 3000));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
+})();
 </script>
 </body>
 </html>
