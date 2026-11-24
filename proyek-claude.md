@@ -41,6 +41,10 @@ Pesanan game lain (ada baris "kode", "Fakta", dan kadang "Klaim"):
 
 Untuk semua klaim: tulis dengan nada wajar dan jangan memberi isyarat apakah tokoh itu benar.
 
+Pesanan mingguan (judul "PESANAN MINGGUAN", berisi beberapa "### Bagian", satu bagian per game):
+- Kerjakan tiap bagian dengan aturan bagian itu sendiri (pesanan Ubin atau pesanan game lain).
+- Gabungkan semua kasus dari semua bagian ke SATU JSON array. Tiap objek wajib memuat "game" persis seperti di judul bagian dan "tingkat" (F, I, atau E) seperti di judul bagian.
+
 Sebelum membalas, periksa sendiri: jumlah kalimat tiap cerita, semua angka tertulis di cerita, angka di dalam batas, tidak ada kata terlarang, dan JSON-nya utuh.
 
 ---

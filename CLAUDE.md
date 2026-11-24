@@ -59,6 +59,8 @@ Satu file, tanpa build. Pendamping: `sw.js` (menyimpan app di perangkat untuk Gi
   - `fm.settings` (termasuk `anim`, `music`, `sfx`: saklar animasi, musik, efek suara; bawaan nyala)
   - `fm.progress` (progres pemain, lihat modul `FMP` dan RENCANA.md)
   - `fm.anim.seen` (bintang yang sudah pernah dianimasikan, lihat RENCANA.md bagian "Animasi")
+  - `fm.kasusbaru` {key, lvl, mode} (pilihan terakhir di Kantor Pos; `mode: 'minggu'` = pesanan mingguan)
+  - `paketMingguan:fundamental-math` (status pesanan mingguan untuk Progres Harian; jangan ganti nama kuncinya)
 - **Pola tingkat (contoh di 7 game Bilangan):**
   - `this.T = {F:[...3 misi], I:[...], E:[...]}`;
   - `initLvl()`, `curLvl()`, `setLvl(l)`;
