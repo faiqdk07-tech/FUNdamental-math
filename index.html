@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#2D3250">
-<meta name="fm-ver" content="2026-11-25b">
+<meta name="fm-ver" content="2026-11-25c">
 <title>App Fundamental Math</title>
 <link rel="apple-touch-icon" href="ikon-180.png">
 <link rel="icon" type="image/png" href="ikon-180.png">
@@ -12742,9 +12742,9 @@ const GUIDE = {
 let d, face = 'pemandu';
 const W = FMP.wkInfo(); let wkHid = false; try { wkHid = window.sessionStorage.getItem('fm.wkHide') === W.t; } catch (e) {}
 const wkDue = (W.status === 'telat' || W.status === 'segera') && !wkHid; FMP.wkShare();
-if (sid === 'pos') { face = PX.U.sari ? 'sari' : 'sinta'; const sent = W.W[W.cur], nx = W.W[W.nxt], P0 = FMP.load(), tot = Object.keys(P0.cases || {}).reduce((a, k) => a + (P0.cases[k] || []).length, 0);
+if (sid === 'pos') { face = PX.U.sari ? 'sari' : 'sinta'; const sent = W.has(W.cur), nx = W.W[W.nxt], P0 = FMP.load(), tot = Object.keys(P0.cases || {}).reduce((a, k) => a + (P0.cases[k] || []).length, 0);
   d = { s: 'Petugas pos', t: sent ? 'Pesanan minggu ini terkirim' : 'Pesanan minggu ini belum dikirim',
-    d: (sent ? sent.mat + ' · ' + sent.n + ' kasus lolos · dikirim ' + FMP.wkTgl(sent.tgl) + '. ' : 'Minggu ' + FMP.wkTgl(W.cur) + '–' + FMP.wkTgl(W.akhir) + ' belum ada kiriman. ') + (nx ? 'Minggu depan juga sudah siap. ' : '') + 'Kasus kiriman tersimpan: ' + tot + (P0.casesAt ? ' (terakhir ' + FMP.wkTgl(P0.casesAt) + ').' : '.'),
+    d: (sent ? 'Masuk minggu ini: ' + (W.st.txt || W.W[W.cur].mat) + ' kasus. ' : 'Minggu ' + FMP.wkTgl(W.cur) + '–' + FMP.wkTgl(W.akhir) + ' belum ada kiriman. ') + (nx ? 'Minggu depan juga sudah siap. ' : '') + 'Kasus kiriman tersimpan: ' + tot + (P0.casesAt ? ' (terakhir ' + FMP.wkTgl(P0.casesAt) + ').' : '.'),
     btn: 'Ke kantor pos', href: 'KasusBaru.dc.html', tap: () => { try { const r = JSON.parse(window.localStorage.getItem('fm.kasusbaru') || 'null') || {}; r.mode = 'minggu'; window.localStorage.setItem('fm.kasusbaru', JSON.stringify(r)); } catch (e) {} } }; }
 else if (sid === 'api') { const g = GUIDE.api; d = { s: g[1], t: st > 0 ? st + ' hari beruntun' : 'Api belum menyala', d: g[2], btn: 'Atur target', href: 'Pengaturan.dc.html' }; }
 else if (sp && sp.mat) {
@@ -12763,7 +12763,7 @@ return {
   critters: PX.CRITTERS.map(c => ({ kind: 'c-' + c[0], src: PX.U[c[0]], flip: c[4] ? 'flip' : '', style: 'left: ' + px(c[1]) + '; top: ' + py(c[2]) + '; width: ' + pw(c[3]) })),
   hasMark: !!recMat, markStyle: recMat ? 'left: ' + px(recMat.mark[0] - 6) + '; top: ' + py(recMat.mark[1] - 16) : '',
   starTotal: String(starTotal), streak: String(st), streakOn: st > 0 ? 'on' : '', streakAria: st + ' hari beruntun', streakTap: () => { clearTimeout(this._wt); this.setState({ spot: sid === 'api' ? null : 'api' }); },
-  postTap: () => { clearTimeout(this._wt); this.setState({ spot: sid === 'pos' ? null : 'pos' }); }, postOn: W.W[W.cur] ? 'on' : '', postMark: W.W[W.cur] ? '✓' : '!', postAria: W.W[W.cur] ? 'Pesanan minggu ini terkirim' : 'Pesanan minggu ini belum dikirim',
+  postTap: () => { clearTimeout(this._wt); this.setState({ spot: sid === 'pos' ? null : 'pos' }); }, postOn: W.has(W.cur) ? 'on' : '', postMark: W.has(W.cur) ? '✓' : '!', postAria: W.has(W.cur) ? 'Pesanan minggu ini terkirim' : 'Pesanan minggu ini belum dikirim',
   targetTxt: Math.min(n, target) + '/' + target, pips: Array.from({ length: target }, (_, i) => i < n ? 'on' : ''),
   hasRec: !!rec && !sid, recTitle: rec ? rec.g + ' · ' + LVN[rec.l] : '', recSub: rec ? rec.why : '', recHref: rec ? rec.key + '.dc.html' : 'MiniGames.dc.html', recTap: () => { if (rec) FMP.go(rec); },
   dHasS: !!d.s, dS: d.s || '', dT: d.t, dHasN: !!d.n, dN: d.n || '', dHasD: !!d.d, dD: d.d || '', dHasLv: !!d.lv, dLv: d.lv || [],
@@ -13892,6 +13892,8 @@ const hp = MG_NODES[this.state.at] || MG_NODES.S;
 return {
   isMat: s.step === 'mat', isGame: s.step === 'game', canBack: s.step !== 'mat',
   ...(() => { const W = FMP.wkInfo(), t = W.target, done = W.W[t], when = FMP.wkTgl(t) + '–' + FMP.wkTgl(FMP.wkPlus(t, 6));
+    if (W.has(W.cur)) return { wkTitle: 'Minggu ini terkirim · ' + (W.st.tot || (W.W[W.cur] || {}).n || 0) + ' kasus', wkSub: (W.st.tot ? W.st.pendek : (W.W[W.cur] || {}).mat || '') + ' · ketuk untuk rincian',
+      wkTap: () => { try { const r = JSON.parse(window.localStorage.getItem('fm.kasusbaru') || 'null') || {}; r.mode = 'minggu'; window.localStorage.setItem('fm.kasusbaru', JSON.stringify(r)); } catch (e) {} } };
     return { wkTitle: 'Pesanan ' + W.mat + ' · ' + when,
       wkSub: done ? 'Sudah dikirim · ' + done.n + ' kasus baru' : (t === W.cur ? 'Belum dikirim · ketuk ke kantor pos' : 'Untuk minggu depan · ketuk ke kantor pos'),
       wkTap: () => { try { const r = JSON.parse(window.localStorage.getItem('fm.kasusbaru') || 'null') || {}; r.mode = 'minggu'; window.localStorage.setItem('fm.kasusbaru', JSON.stringify(r)); } catch (e) {} } }; })(),
@@ -17936,9 +17938,9 @@ const wkWhen = (wt === W.cur ? 'Minggu ini' : 'Minggu depan') + ', ' + FMP.wkTgl
 return {
 step1: wk ? 'Pilih pesanan' : 'Pilih perangko game', isWeek: wk, isGame: !wk,
 modes: [['game', 'Satu game'], ['minggu', 'Pesanan mingguan']].map(m => ({ on: s.mode === m[0] ? 'on' : '', label: m[1], aria: m[1] + (s.mode === m[0] ? ', dipilih' : ''), tap: () => this.setMode(m[0]) })),
-wkTitle: s.wkMats.join(' + ') + ' · ' + wkWhen, wkLine: wn + ' game, masing-masing ' + wc + ' kasus di tingkat terakhir yang kamu mainkan. Giliran minggu ini: ' + W.mat + '; ketuk subject di atas untuk menambah atau mengurangi.',
+wkTitle: s.wkMats.join(' + ') + ' · ' + wkWhen, wkLine: wn + ' game, masing-masing ' + wc + ' kasus di tingkat terakhir yang kamu mainkan. Giliran ' + (wt === W.cur ? 'minggu ini' : 'minggu depan') + ': ' + W.mat + '; ketuk subject di atas untuk menambah atau mengurangi.',
 wkMatTabs: G.map(m => { const on = s.wkMats.indexOf(m[0]) >= 0; return { on: on ? 'on' : '', img: PX.labBench({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m[0]] || 'bil'), label: m[0], aria: 'Subject ' + m[0] + (on ? ', ikut pesanan' : ', tidak ikut'), tap: () => this.toggleWkMat(m[0]) }; }),
-wkState: wd ? 'Sudah dikirim: ' + wd.n + ' kasus lolos.' : wt === W.cur ? 'Belum dikirim dan sudah lewat batas (hari Minggu). Kirim secepatnya.' : 'Belum dikirim. Paling lambat ' + FMP.wkTgl(FMP.wkPlus(wt, -1), true) + '.',
+wkState: (wt !== W.cur && W.has(W.cur) ? 'Minggu ini sudah masuk: ' + (W.st.txt || (W.W[W.cur] || {}).mat) + '. ' : '') + (wt !== W.cur ? 'Pesanan di bawah untuk minggu depan. ' : '') + (wd ? 'Sudah dikirim: ' + wd.n + ' kasus lolos.' : wt === W.cur ? 'Belum dikirim dan sudah lewat batas (hari Minggu). Kirim secepatnya.' : 'Belum dikirim. Paling lambat ' + FMP.wkTgl(FMP.wkPlus(wt, -1), true) + '.'),
 sub: wk ? s.wkMats.join(' + ') + ' · ' + wkWhen : ((typeof GAME_DN !== 'undefined' && GAME_DN[name]) || name) + ' · ' + FMP.LVN[s.lvl], face: PX.U.sari || PX.U.sinta, storedN: String(list.length), envOpen: s.envOpen ? 'open' : '', showPrompt: !!s.envOpen, toggleEnv: () => this.setState({ envOpen: !s.envOpen }), envAria: s.envOpen ? 'Tutup amplop prompt' : 'Buka amplop untuk membaca prompt', envHint: s.envOpen ? 'Ketuk untuk melipat kembali' : 'Ketuk amplop untuk membaca isinya', msgKind: s.kind === 'ok' ? 'ok' : 'warn',
 px: PX.U, mats: G.map((m, i) => ({ on: s.mat === i ? 'on' : '', img: PX.labBench({ Bilangan: 'bil', Aljabar: 'alj', Geometri: 'geo', Data: 'dat' }[m[0]] || 'bil'), label: m[0], aria: 'Materi ' + m[0] + (s.mat === i ? ', dipilih' : ''), style: small(s.mat === i), tap: () => this.pick(m[1].indexOf(key) >= 0 ? key : m[1][0], s.lvl, i) })),
 games: (G[s.mat] ? G[s.mat][1] : []).map(k => ({ on: k === key ? 'on' : '', ic: PX.gameIcon(FMP.KEYS[k]), label: FMP.KEYS[k], aria: 'Game ' + FMP.KEYS[k] + (k === key ? ', dipilih' : ''), style: small(k === key), tap: () => this.pick(k, s.lvl) })),
@@ -18365,10 +18367,19 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
   function wkMon(k) { const d = dOf(k); d.setDate(d.getDate() - (d.getDay() + 6) % 7); return ymdL(d); }
   function wkMat(mon) { const n = Math.round((dOf(mon) - dOf(WK_START)) / 6048e5); return MATS[((n % 4) + 4) % 4][0]; }
   function wkTgl(k, panjang) { return dOf(k).toLocaleDateString('id-ID', panjang ? { weekday: 'long', day: 'numeric', month: 'short' } : { day: 'numeric', month: 'short' }); }
+  // kiriman per subject dalam satu minggu, dihitung dari kasus yang tersimpan (id = 'x' + waktu base36 + nomor),
+  // jadi kiriman lewat pesanan mingguan maupun satu game ikut terhitung, termasuk yang ditempel sebelum fitur ini ada.
+  function wkStats(mon) {
+    const p = load(), a = dOf(mon).getTime(), b = a + 6048e5, per = {}; let tot = 0;
+    Object.keys(p.cases || {}).forEach(key => { const row = MATS.find(x => x[2].some(g => g[1] === key)); if (!row) return;
+      (p.cases[key] || []).forEach(c => { const ts = parseInt(String(c.id || '').slice(1, 9), 36); if (ts >= a && ts < b) { per[row[0]] = (per[row[0]] || 0) + 1; tot++; } }); });
+    const ms = MATS.map(x => x[0]).filter(m => per[m]);
+    return { per, tot, txt: ms.map(m => m + ' ' + per[m]).join(' · '), pendek: ms.map(m => m.slice(0, 3) + ' ' + per[m]).join(' · ') };
+  }
   function wkInfo() {
-    const p = load(), W = p.wk || {}, t = ymdL(new Date()), cur = wkMon(t), nxt = wkPlus(cur, 7), dow = (new Date().getDay() + 6) % 7;
-    const has = k => !!W[k], status = !has(cur) ? 'telat' : has(nxt) ? 'siap' : dow >= 4 ? 'segera' : 'aman', target = has(cur) ? nxt : cur;
-    return { t, cur, nxt, akhir: wkPlus(cur, 6), status, target, has, W, mat: wkMat(target), matCur: wkMat(cur) };
+    const p = load(), W = p.wk || {}, t = ymdL(new Date()), cur = wkMon(t), nxt = wkPlus(cur, 7), dow = (new Date().getDay() + 6) % 7, st = wkStats(cur);
+    const has = k => !!W[k] || (k === cur && st.tot > 0), status = !has(cur) ? 'telat' : has(nxt) ? 'siap' : dow >= 4 ? 'segera' : 'aman', target = has(cur) ? nxt : cur;
+    return { t, cur, nxt, akhir: wkPlus(cur, 6), status, target, has, W, st, mat: wkMat(target), matCur: wkMat(cur) };
   }
   // mats: daftar subject yang dipilih pemain (bawaan: subject giliran minggu itu). 3–4 subject = 1 kasus per game supaya jawaban Claude tidak terlalu panjang.
   function wkGames(mon, mats) { const ms = mats && mats.length ? mats : [wkMat(mon)]; return MATS.filter(x => ms.indexOf(x[0]) >= 0).reduce((a, x) => a.concat(x[2].filter(g => canCase(g[1])).map(g => g[1])), []); }
@@ -18387,7 +18398,7 @@ Data: { F: [['DAT-01', 'Apa itu kombinatorika?', 'Loker OSIS'], ['DAT-03', 'Kaid
       'Balas HANYA dengan SATU JSON array yang berisi semua kasus dari semua bagian. Setiap objek wajib memuat "game" (persis seperti di judul bagian) dan "tingkat" (huruf F, I, atau E seperti di judul bagian). Tanpa penjelasan dan tanpa teks lain.',
       ''].concat(parts.map(x => x + '\n')).join('\n').trim();
   }
-  function wkShare() { try { const p = load(); window.localStorage.setItem('paketMingguan:fundamental-math', JSON.stringify({ app: 'fundamental-math', nama: 'Fundamental Math', minggu: Object.keys(p.wk || {}).sort(), diperbarui: ymdL(new Date()) })); } catch (e) {} }
+  function wkShare() { try { const p = load(); window.localStorage.setItem('paketMingguan:fundamental-math', JSON.stringify({ app: 'fundamental-math', nama: 'Fundamental Math', minggu: Object.keys(p.wk || {}).concat(wkStats(wkMon(ymdL(new Date()))).tot ? [wkMon(ymdL(new Date()))] : []).filter((x, i, a) => a.indexOf(x) === i).sort(), diperbarui: ymdL(new Date()) })); } catch (e) {} }
   function wkAdd(mon, txt) {
     const res = { ok: 0, bad: [], err: '' };
     let arr;
